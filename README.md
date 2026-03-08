@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MatchIndex
 
-## Getting Started
+Football data exploration platform — high-density, desktop-first UI inspired by Football Manager's information architecture.
 
-First, run the development server:
+## Quick Start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js 16** (App Router, Turbopack)
+- **TypeScript**
+- **TailwindCSS v4** (dark theme, custom design tokens)
+- **Lucide React** (icons)
 
-## Learn More
+## Routes
 
-To learn more about Next.js, take a look at the following resources:
+| Route | Description |
+|---|---|
+| `/` | Dashboard — league standings, recent results, top scorers |
+| `/leagues/:id` | League — standings, fixtures, clubs, top scorers |
+| `/clubs/:id` | Club — squad list, matches, league position |
+| `/players/:id` | Player — bio, season stats, recent matches |
+| `/nations/:id` | Nation — FIFA ranking, national team players |
+| `/matches/:id` | Match — score, events, statistics |
+| `/results` | All results — filterable by league |
+| `/search?q=` | Global search — players, clubs, leagues, nations |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Architecture
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/                    # Next.js App Router pages
+├── components/
+│   ├── layout/             # Sidebar, TopBar, PageHeader
+│   ├── data/               # DataTable, StandingsTable, MatchCard, etc.
+│   └── ui/                 # Badge, EntityLink, TabGroup, etc.
+├── data/                   # Types + mock data + data access layer
+├── config/                 # Navigation config
+├── lib/                    # Utilities (cn, formatters)
+└── styles/                 # Global CSS + design tokens
+```
 
-## Deploy on Vercel
+### Data Layer
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+All data access goes through `src/data/index.ts`. Currently returns mock data — swap implementations to connect a real API without changing any components.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```typescript
+// Current: mock data
+export function getClubById(id: string): Club | undefined {
+  return clubMap.get(id);
+}
+
+// Future: API call
+export async function getClubById(id: string): Promise<Club | undefined> {
+  const res = await fetch(`/api/clubs/${id}`);
+  return res.json();
+}
+```
+
+### Mock Data Scope
+
+- 2 leagues (Premier League, La Liga)
+- 8 clubs (4 per league)
+- 40 players (5 per club)
+- 4 nations (England, Spain, France, Brazil)
+- 20 matches (10 finished, 10 scheduled)
+- Full standings for both leagues
+
+## Design
+
+- Dark theme with custom color tokens (surface layers, text hierarchy)
+- 13px base font, 11px table headers — FM-style density
+- Tabular numbers for all stats columns
+- Custom scrollbar styling
+- Panel/card-based page sections
+
+## API Integration TODO
+
+- [ ] Replace mock data functions with API calls in `src/data/index.ts`
+- [ ] Add loading states (Suspense boundaries)
+- [ ] Add error boundaries
+- [ ] Implement real-time match updates (WebSocket or polling)
+- [ ] Add player images / club logos
+- [ ] Add lineup data for match pages
+- [ ] Add match events timeline
+- [ ] Integrate with [football-data.org](https://www.football-data.org/) or [API-Football](https://www.api-football.com/)
+- [ ] Add pagination for large datasets
+- [ ] Add sorting to all data tables
+- [ ] Add more leagues and clubs

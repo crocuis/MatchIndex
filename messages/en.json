@@ -1,0 +1,170 @@
+{
+  "common": {
+    "viewFullTable": "View Full Table",
+    "freeAgent": "Free Agent",
+    "unknown": "Unknown",
+    "vs": "vs",
+    "home": "Home",
+    "away": "Away",
+    "loading": "Loading..."
+  },
+  "nav": {
+    "brand": "MatchIndex",
+    "overview": "Overview",
+    "data": "Data",
+    "dashboard": "Dashboard",
+    "results": "Results",
+    "search": "Search",
+    "leagues": "Leagues",
+    "clubs": "Clubs",
+    "players": "Players",
+    "nations": "Nations",
+    "version": "v0.1.0 · Mock Data"
+  },
+  "topBar": {
+    "searchPlaceholder": "Search players, clubs, leagues...",
+    "langToggle": "한국어"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Football data at a glance",
+    "recentResults": "Recent Results",
+    "upcomingFixtures": "Upcoming Fixtures",
+    "topScorersPL": "Top Scorers — Premier League",
+    "topScorersLL": "Top Scorers — La Liga"
+  },
+  "league": {
+    "country": "Country",
+    "season": "Season",
+    "clubs": "Clubs",
+    "matchesPlayed": "Matches Played",
+    "standings": "Standings",
+    "clubsList": "Clubs",
+    "recentResults": "Recent Results",
+    "upcomingFixtures": "Upcoming Fixtures",
+    "topScorers": "Top Scorers"
+  },
+  "club": {
+    "squad": "Squad",
+    "leaguePosition": "League Position",
+    "clubInfo": "Club Info",
+    "recentMatches": "Recent Matches",
+    "upcomingFixtures": "Upcoming Fixtures",
+    "leaguePos": "League Pos",
+    "points": "Points",
+    "goalsScored": "Goals Scored",
+    "assists": "Assists",
+    "fullName": "Full Name",
+    "shortName": "Short Name",
+    "founded": "Founded",
+    "stadium": "Stadium",
+    "capacity": "Capacity",
+    "country": "Country",
+    "league": "League"
+  },
+  "player": {
+    "appearances": "Appearances",
+    "goals": "Goals",
+    "assists": "Assists",
+    "minutes": "Minutes",
+    "seasonStats": "Season Statistics",
+    "minutesPlayed": "Minutes Played",
+    "yellowCards": "Yellow Cards",
+    "redCards": "Red Cards",
+    "cleanSheets": "Clean Sheets",
+    "goalsPer90": "Goals/90",
+    "recentMatches": "Recent Matches",
+    "playerInfo": "Player Info",
+    "fullName": "Full Name",
+    "dateOfBirth": "Date of Birth",
+    "age": "Age",
+    "height": "Height",
+    "nationality": "Nationality",
+    "position": "Position",
+    "shirtNumber": "Shirt Number",
+    "preferredFoot": "Preferred Foot",
+    "club": "Club",
+    "nation": "Nation"
+  },
+  "nation": {
+    "fifaRanking": "FIFA Ranking",
+    "confederation": "Confederation",
+    "countryCode": "Country Code",
+    "players": "Players"
+  },
+  "match": {
+    "matchEvents": "Match Events",
+    "matchStats": "Match Statistics",
+    "lineups": "Lineups",
+    "lineupsPlaceholder": "Lineup data will be available when connected to a live API.",
+    "matchInfo": "Match Info",
+    "competition": "Competition",
+    "date": "Date",
+    "kickoff": "Kick-off",
+    "venue": "Venue",
+    "status": "Status",
+    "teams": "Teams",
+    "possession": "Possession",
+    "shots": "Shots",
+    "shotsOnTarget": "Shots on Target",
+    "corners": "Corners",
+    "fouls": "Fouls"
+  },
+  "results": {
+    "title": "Results",
+    "matchCount": "{count} matches",
+    "allLeagues": "All Leagues",
+    "matchResults": "Match Results",
+    "date": "Date",
+    "home": "Home",
+    "score": "Score",
+    "away": "Away",
+    "league": "League",
+    "venue": "Venue"
+  },
+  "search": {
+    "title": "Search",
+    "subtitle": "Find players, clubs, leagues, and nations",
+    "emptyQuery": "Enter a search query to find players, clubs, leagues, and nations.",
+    "noResults": "No results found for \"{query}\"",
+    "playersGroup": "Players",
+    "clubsGroup": "Clubs",
+    "leaguesGroup": "Leagues",
+    "nationsGroup": "Nations"
+  },
+  "standings": {
+    "pos": "#",
+    "club": "Club",
+    "played": "P",
+    "won": "W",
+    "drawn": "D",
+    "lost": "L",
+    "goalsFor": "GF",
+    "goalsAgainst": "GA",
+    "goalDifference": "GD",
+    "points": "Pts",
+    "form": "Form"
+  },
+  "table": {
+    "rank": "#",
+    "player": "Player",
+    "club": "Club",
+    "pos": "Pos",
+    "age": "Age",
+    "nationality": "Nationality",
+    "app": "App",
+    "goals": "G",
+    "assists": "A",
+    "mins": "Mins"
+  },
+  "matchStatus": {
+    "finished": "FT",
+    "live": "LIVE",
+    "scheduled": "SCH"
+  },
+  "stats": {
+    "leagues": "Leagues",
+    "results": "Results",
+    "upcoming": "Upcoming"
+  }
+}

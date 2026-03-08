@@ -1,0 +1,170 @@
+{
+  "common": {
+    "viewFullTable": "전체 순위표 보기",
+    "freeAgent": "자유 계약",
+    "unknown": "알 수 없음",
+    "vs": "vs",
+    "home": "홈",
+    "away": "원정",
+    "loading": "로딩 중..."
+  },
+  "nav": {
+    "brand": "MatchIndex",
+    "overview": "개요",
+    "data": "데이터",
+    "dashboard": "대시보드",
+    "results": "경기 결과",
+    "search": "검색",
+    "leagues": "리그",
+    "clubs": "구단",
+    "players": "선수",
+    "nations": "국가",
+    "version": "v0.1.0 · 모의 데이터"
+  },
+  "topBar": {
+    "searchPlaceholder": "선수, 구단, 리그 검색...",
+    "langToggle": "English"
+  },
+  "dashboard": {
+    "title": "대시보드",
+    "subtitle": "축구 데이터를 한눈에",
+    "recentResults": "최근 경기 결과",
+    "upcomingFixtures": "예정된 경기",
+    "topScorersPL": "득점 순위 — 프리미어리그",
+    "topScorersLL": "득점 순위 — 라리가"
+  },
+  "league": {
+    "country": "국가",
+    "season": "시즌",
+    "clubs": "구단 수",
+    "matchesPlayed": "경기 수",
+    "standings": "순위표",
+    "clubsList": "참가 구단",
+    "recentResults": "최근 결과",
+    "upcomingFixtures": "예정된 경기",
+    "topScorers": "득점 순위"
+  },
+  "club": {
+    "squad": "선수단",
+    "leaguePosition": "리그 순위",
+    "clubInfo": "구단 정보",
+    "recentMatches": "최근 경기",
+    "upcomingFixtures": "예정된 경기",
+    "leaguePos": "리그 순위",
+    "points": "승점",
+    "goalsScored": "득점",
+    "assists": "도움",
+    "fullName": "정식 명칭",
+    "shortName": "약칭",
+    "founded": "창단",
+    "stadium": "경기장",
+    "capacity": "수용 인원",
+    "country": "국가",
+    "league": "리그"
+  },
+  "player": {
+    "appearances": "출전",
+    "goals": "득점",
+    "assists": "도움",
+    "minutes": "출전 시간",
+    "seasonStats": "시즌 기록",
+    "minutesPlayed": "출전 시간",
+    "yellowCards": "경고",
+    "redCards": "퇴장",
+    "cleanSheets": "클린시트",
+    "goalsPer90": "90분당 골",
+    "recentMatches": "최근 경기",
+    "playerInfo": "선수 정보",
+    "fullName": "성명",
+    "dateOfBirth": "생년월일",
+    "age": "나이",
+    "height": "신장",
+    "nationality": "국적",
+    "position": "포지션",
+    "shirtNumber": "등번호",
+    "preferredFoot": "주발",
+    "club": "소속 구단",
+    "nation": "국가대표"
+  },
+  "nation": {
+    "fifaRanking": "FIFA 랭킹",
+    "confederation": "대륙 연맹",
+    "countryCode": "국가 코드",
+    "players": "선수"
+  },
+  "match": {
+    "matchEvents": "경기 이벤트",
+    "matchStats": "경기 통계",
+    "lineups": "라인업",
+    "lineupsPlaceholder": "라인업 데이터는 실제 API 연결 시 제공됩니다.",
+    "matchInfo": "경기 정보",
+    "competition": "대회",
+    "date": "날짜",
+    "kickoff": "킥오프",
+    "venue": "경기장",
+    "status": "상태",
+    "teams": "팀",
+    "possession": "점유율",
+    "shots": "슈팅",
+    "shotsOnTarget": "유효 슈팅",
+    "corners": "코너킥",
+    "fouls": "파울"
+  },
+  "results": {
+    "title": "경기 결과",
+    "matchCount": "{count}경기",
+    "allLeagues": "전체 리그",
+    "matchResults": "경기 결과",
+    "date": "날짜",
+    "home": "홈",
+    "score": "스코어",
+    "away": "원정",
+    "league": "리그",
+    "venue": "경기장"
+  },
+  "search": {
+    "title": "검색",
+    "subtitle": "선수, 구단, 리그, 국가를 검색하세요",
+    "emptyQuery": "검색어를 입력하여 선수, 구단, 리그, 국가를 찾아보세요.",
+    "noResults": "\"{query}\"에 대한 검색 결과가 없습니다",
+    "playersGroup": "선수",
+    "clubsGroup": "구단",
+    "leaguesGroup": "리그",
+    "nationsGroup": "국가"
+  },
+  "standings": {
+    "pos": "#",
+    "club": "구단",
+    "played": "경기",
+    "won": "승",
+    "drawn": "무",
+    "lost": "패",
+    "goalsFor": "득점",
+    "goalsAgainst": "실점",
+    "goalDifference": "득실차",
+    "points": "승점",
+    "form": "최근 전적"
+  },
+  "table": {
+    "rank": "#",
+    "player": "선수",
+    "club": "구단",
+    "pos": "포지션",
+    "age": "나이",
+    "nationality": "국적",
+    "app": "출전",
+    "goals": "골",
+    "assists": "도움",
+    "mins": "시간"
+  },
+  "matchStatus": {
+    "finished": "종료",
+    "live": "진행중",
+    "scheduled": "예정"
+  },
+  "stats": {
+    "leagues": "리그",
+    "results": "경기 결과",
+    "upcoming": "예정 경기"
+  }
+}
