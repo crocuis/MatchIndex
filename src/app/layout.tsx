@@ -33,12 +33,14 @@ export default async function RootLayout({
     <html lang={locale} className="dark">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          <div className="flex h-screen overflow-hidden bg-surface-0">
-            <Sidebar />
-            <div className="flex flex-1 flex-col overflow-hidden">
-              <TopBar />
-              <main className="flex-1 overflow-y-auto px-6 py-4">
-                {children}
+          <div className="flex h-screen flex-col overflow-hidden bg-surface-0 font-sans text-[13px]">
+            <TopBar />
+            <div className="flex flex-1 overflow-hidden">
+              <Sidebar />
+              <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-surface-0">
+                <div className="mx-auto max-w-[1400px]">
+                  {children}
+                </div>
               </main>
             </div>
           </div>

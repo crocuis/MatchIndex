@@ -1,163 +1,116 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
-import { PageHeader } from '@/components/layout/PageHeader';
+import { Suspense } from 'react';
+import { getLocale, getTranslations } from 'next-intl/server';
+import { LeagueDetailSections } from '@/app/leagues/[id]/LeagueDetailSections';
 import { SectionCard } from '@/components/ui/SectionCard';
-import { StandingsTable } from '@/components/data/StandingsTable';
-import { MatchCard } from '@/components/data/MatchCard';
-import { FixtureCard } from '@/components/data/FixtureCard';
+import { PageHeader } from '@/components/layout/PageHeader';
 import { StatPanel } from '@/components/data/StatPanel';
-import { EntityLink } from '@/components/ui/EntityLink';
-import { ClubBadge } from '@/components/ui/ClubBadge';
+import { Badge } from '@/components/ui/Badge';
 import { LeagueLogo } from '@/components/ui/LeagueLogo';
+import { cn } from '@/lib/utils';
+import { isTournamentCompetition } from '@/data/competitionTypes';
 import {
-  getLeagueById,
-  getStandingsByLeague,
-  getClubsByLeague,
-  getFinishedMatchesByLeague,
-  getScheduledMatchesByLeague,
-  getTopScorers,
-  getPlayerName,
-  getClubShortName,
-  getLeagues,
-} from '@/data';
-
-export async function generateStaticParams() {
-  return getLeagues().map((l) => ({ id: l.id }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}): Promise<Metadata> {
-  const { id } = await params;
-  const league = getLeagueById(id);
-  return { title: league?.name ?? 'League' };
-}
+  getLeagueByIdDb,
+  getSeasonsByLeagueDb,
+} from '@/data/server';
 
 export default async function LeaguePage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ season?: string }>;
 }) {
   const { id } = await params;
-  const league = getLeagueById(id);
+  const { season } = await searchParams;
+  const locale = await getLocale();
+  const league = await getLeagueByIdDb(id, locale);
   if (!league) notFound();
 
-  const standings = getStandingsByLeague(id);
-  const clubs = getClubsByLeague(id);
-  const recentResults = getFinishedMatchesByLeague(id).slice(0, 10);
-  const upcomingFixtures = getScheduledMatchesByLeague(id).slice(0, 10);
-  const topScorers = getTopScorers(id, 10);
-  const tLeague = await getTranslations('league');
-  const tTable = await getTranslations('table');
+  const availableSeasons = await getSeasonsByLeagueDb(id);
+  const currentSeason = availableSeasons.find((s) => s.isCurrent) ?? availableSeasons[0];
+  const selectedSeason = season
+    ? availableSeasons.find((s) => s.seasonId === season) ?? currentSeason
+    : currentSeason;
+  const isNonDefaultSeason = selectedSeason && selectedSeason.seasonId !== currentSeason?.seasonId;
+
+  const [tLeague, tCommon] = await Promise.all([
+    getTranslations('league'),
+    getTranslations('common'),
+  ]);
+  const isTournament = isTournamentCompetition(league);
+  const formatLabel = isTournament ? tLeague('formatTournament') : tLeague('formatLeague');
+  const formatDetail = isTournament ? tLeague('formatTournamentDetail') : tLeague('formatLeagueDetail');
 
   return (
     <div>
       <PageHeader
         title={(
           <div className="flex items-center gap-2">
-            <LeagueLogo leagueId={league.id} name={league.name} size="lg" />
+            <LeagueLogo leagueId={league.id} name={league.name} logo={league.logo} size="lg" />
             <span>{league.name}</span>
+            <Badge variant={isTournament ? 'info' : 'default'}>{formatLabel}</Badge>
           </div>
         )}
-        subtitle={`${league.country} · ${tLeague('season')} ${league.season}`}
-        meta={`${league.numberOfClubs} ${tLeague('clubs')}`}
+        subtitle={`${league.country} · ${tLeague('season')} ${selectedSeason?.seasonLabel ?? league.season}`}
+        meta={isTournament ? formatDetail : `${league.numberOfClubs} ${tLeague('clubs')}`}
       />
 
       <StatPanel
         stats={[
           { label: tLeague('country'), value: league.country },
-          { label: tLeague('season'), value: league.season },
+          { label: tLeague('season'), value: selectedSeason?.seasonLabel ?? league.season },
+          { label: tLeague('format'), value: formatLabel },
           { label: tLeague('clubs'), value: league.numberOfClubs },
-          { label: tLeague('matchesPlayed'), value: recentResults.length },
         ]}
         columns={4}
         className="mb-4"
       />
 
-      <div className="grid grid-cols-12 gap-4">
-        {/* Main — Standings */}
-        <div className="col-span-8 space-y-4">
-          <SectionCard title={tLeague('standings')} noPadding>
-            <StandingsTable standings={standings} />
-          </SectionCard>
+      {availableSeasons.length > 1 ? (
+        <SectionCard title={tLeague('seasonHistory')} className="mb-4">
+          <div className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-text-muted">
+            {tLeague('selectSeason')}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {availableSeasons.map((entry) => {
+              const isActive = entry.seasonId === selectedSeason?.seasonId;
 
-          {/* Clubs grid */}
-          <SectionCard title={tLeague('clubsList')}>
-            <div className="grid grid-cols-2 gap-2">
-              {clubs.map((club) => (
+              return (
                 <Link
-                  key={club.id}
-                  href={`/clubs/${club.id}`}
-                  className="flex items-center gap-3 px-3 py-2 rounded border border-border-subtle bg-surface-2 hover:bg-surface-3 transition-colors"
+                  key={entry.seasonId}
+                  href={`/leagues/${id}?season=${entry.seasonId}`}
+                  className={cn(
+                    'rounded border px-2.5 py-1 text-[11px] font-medium transition-colors',
+                    isActive
+                      ? 'border-accent-emerald bg-accent-emerald/10 text-accent-emerald'
+                      : 'border-border-subtle bg-surface-2 text-text-secondary hover:border-border hover:text-text-primary'
+                  )}
                 >
-                  <ClubBadge shortName={club.shortName} clubId={club.id} size="lg" />
-                  <div>
-                    <div className="text-[13px] font-medium text-text-primary">{club.name}</div>
-                    <div className="text-[11px] text-text-muted">{club.stadium}</div>
-                  </div>
+                  {entry.seasonLabel}
                 </Link>
-              ))}
-            </div>
-          </SectionCard>
-        </div>
+              );
+            })}
+          </div>
+        </SectionCard>
+      ) : null}
 
-        {/* Sidebar — Results, Fixtures, Scorers */}
-        <div className="col-span-4 space-y-4">
-          <SectionCard title={tLeague('recentResults')}>
-            <div className="space-y-1.5">
-              {recentResults.map((m) => (
-                <MatchCard key={m.id} match={m} />
-              ))}
-            </div>
+      <Suspense
+        fallback={
+          <SectionCard title={tLeague('standings')}>
+            <div className="py-8 text-center text-[13px] text-text-muted">{tCommon('loading')}</div>
           </SectionCard>
-
-          <SectionCard title={tLeague('upcomingFixtures')}>
-            <div className="space-y-1.5">
-              {upcomingFixtures.map((m) => (
-                <FixtureCard key={m.id} match={m} />
-              ))}
-            </div>
-          </SectionCard>
-
-          <SectionCard title={tLeague('topScorers')} noPadding>
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="px-3 py-1.5 text-left">{tTable('rank')}</th>
-                  <th className="px-3 py-1.5 text-left">{tTable('player')}</th>
-                  <th className="px-3 py-1.5 text-center">{tTable('club')}</th>
-                  <th className="px-3 py-1.5 text-center">{tTable('goals')}</th>
-                  <th className="px-3 py-1.5 text-center">{tTable('assists')}</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border-subtle">
-                {topScorers.map((s, i) => (
-                  <tr key={s.playerId} className="hover:bg-surface-2">
-                    <td className="px-3 py-1.5 text-[13px] text-text-muted tabular-nums">{i + 1}</td>
-                    <td className="px-3 py-1.5 text-[13px]">
-                      <EntityLink type="player" id={s.playerId}>
-                        {getPlayerName(s.playerId)}
-                      </EntityLink>
-                    </td>
-                    <td className="px-3 py-1.5 text-[13px] text-center text-text-secondary">
-                      <div className="flex items-center justify-center gap-2">
-                        <ClubBadge shortName={getClubShortName(s.clubId)} clubId={s.clubId} size="sm" />
-                        <span>{getClubShortName(s.clubId)}</span>
-                      </div>
-                    </td>
-                    <td className="px-3 py-1.5 text-[13px] text-center tabular-nums font-semibold">{s.goals}</td>
-                    <td className="px-3 py-1.5 text-[13px] text-center tabular-nums text-text-secondary">{s.assists}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </SectionCard>
-        </div>
-      </div>
+        }
+      >
+        <LeagueDetailSections
+          league={league}
+          locale={locale}
+          selectedSeason={selectedSeason}
+          isNonDefaultSeason={Boolean(isNonDefaultSeason)}
+          isTournament={isTournament}
+        />
+      </Suspense>
     </div>
   );
 }

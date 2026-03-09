@@ -21,21 +21,23 @@ export function TabGroup({ tabs, defaultTab, className }: TabGroupProps) {
 
   return (
     <div className={className}>
-      <div className="flex border-b border-border mb-4">
-        {tabs.map((tab) => (
-          <button
-            key={tab.key}
-            onClick={() => setActiveTab(tab.key)}
-            className={cn(
-              'px-3 py-2 text-[13px] font-medium transition-colors border-b-2 -mb-px',
-              activeTab === tab.key
-                ? 'text-text-primary border-accent-emerald'
-                : 'text-text-muted border-transparent hover:text-text-secondary'
-            )}
-          >
-            {tab.label}
-          </button>
-        ))}
+      <div className="-mx-1 mb-4 overflow-x-auto border-b border-border px-1">
+        <div className="flex min-w-max gap-1">
+          {tabs.map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className={cn(
+                'whitespace-nowrap rounded-t-md px-3 py-2 text-[13px] font-medium transition-colors border-b-2 -mb-px',
+                activeTab === tab.key
+                  ? 'text-text-primary border-accent-emerald bg-surface-2/40'
+                  : 'text-text-muted border-transparent hover:text-text-secondary hover:bg-surface-2/20'
+              )}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
       </div>
       <div>{activeContent}</div>
     </div>

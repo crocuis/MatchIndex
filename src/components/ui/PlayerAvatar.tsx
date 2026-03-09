@@ -3,7 +3,8 @@ import { cn } from '@/lib/utils';
 interface PlayerAvatarProps {
   name: string;
   position: 'GK' | 'DEF' | 'MID' | 'FWD';
-  size?: 'sm' | 'md' | 'lg';
+  imageUrl?: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
 }
 
@@ -18,12 +19,14 @@ const sizeClasses = {
   sm: 'h-7 w-7',
   md: 'h-9 w-9',
   lg: 'h-14 w-14',
+  xl: 'h-32 w-32',
 };
 
 const fontSizes = {
   sm: 9,
   md: 11,
   lg: 16,
+  xl: 34,
 };
 
 function hashString(str: string): number {
@@ -44,16 +47,30 @@ function getInitials(name: string): string {
   return name.slice(0, 2).toUpperCase();
 }
 
-export function PlayerAvatar({ name, position, size = 'md', className }: PlayerAvatarProps) {
+export function PlayerAvatar({ name, position, imageUrl, size = 'md', className }: PlayerAvatarProps) {
   const colors = positionColors[position] ?? positionColors.MID;
   const initials = getInitials(name);
   const hash = hashString(name);
   const rotation = (hash % 360);
-  const sz = size === 'sm' ? 28 : size === 'md' ? 36 : 56;
+  const sz = size === 'sm' ? 28 : size === 'md' ? 36 : size === 'lg' ? 56 : 128;
   const fontSize = fontSizes[size];
 
+  if (imageUrl) {
+    return (
+      <div className={cn(sizeClasses[size], 'rounded-full overflow-hidden shrink-0 border border-border-subtle bg-surface-2', className)}>
+        <img
+          src={imageUrl}
+          alt={`${name} portrait`}
+          width={sz}
+          height={sz}
+          className="h-full w-full object-cover"
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className={cn(sizeClasses[size], 'rounded-full overflow-hidden shrink-0', className)}>
+    <div className={cn(sizeClasses[size], 'rounded-full overflow-hidden shrink-0 border border-border-subtle', className)}>
       <svg viewBox={`0 0 ${sz} ${sz}`} width={sz} height={sz} xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id={`pg-${hash}`} x1="0%" y1="0%" x2="100%" y2="100%"

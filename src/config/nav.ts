@@ -25,6 +25,7 @@ export const NAV_GROUPS: NavGroup[] = [
     title: 'Overview',
     items: [
       { label: 'Dashboard', href: '/', icon: LayoutDashboard },
+      { label: 'World Cup', href: '/worldcup/2026', icon: Trophy },
       { label: 'Results', href: '/results', icon: Calendar },
       { label: 'Search', href: '/search', icon: Search },
     ],

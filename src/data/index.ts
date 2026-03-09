@@ -6,13 +6,14 @@
  * No consumer changes needed.
  */
 
-import type { League, Club, Player, Nation, Match, StandingRow, StatLeader, SearchResult } from './types';
+import type { League, Club, Player, Nation, Match, StandingRow, StatLeader, SearchResult, WorldCupTournament } from './types';
 import { leagues } from './leagues';
 import { clubs } from './clubs';
 import { players } from './players';
 import { nations } from './nations';
 import { matches } from './matches';
 import { standings } from './standings';
+import { worldCup2026 } from './worldCup';
 
 // ═══════════════════════════════════════
 // Maps for O(1) lookup
@@ -21,7 +22,12 @@ const leagueMap = new Map(leagues.map((l) => [l.id, l]));
 const clubMap = new Map(clubs.map((c) => [c.id, c]));
 const playerMap = new Map(players.map((p) => [p.id, p]));
 const nationMap = new Map(nations.map((n) => [n.id, n]));
-const matchMap = new Map(matches.map((m) => [m.id, m]));
+
+function getAllMatches() {
+  return [...matches, ...worldCup2026.matches];
+}
+
+const matchMap = new Map(getAllMatches().map((m) => [m.id, m]));
 
 // ═══════════════════════════════════════
 // League queries
@@ -95,7 +101,7 @@ export function getNationById(id: string): Nation | undefined {
 // Match queries
 // ═══════════════════════════════════════
 export function getMatches(): Match[] {
-  return matches;
+  return getAllMatches();
 }
 
 export function getMatchById(id: string): Match | undefined {
@@ -103,23 +109,29 @@ export function getMatchById(id: string): Match | undefined {
 }
 
 export function getMatchesByLeague(leagueId: string): Match[] {
-  return matches.filter((m) => m.leagueId === leagueId);
+  return getAllMatches().filter((m) => m.leagueId === leagueId);
 }
 
 export function getFinishedMatches(): Match[] {
-  return matches
+  return getAllMatches()
     .filter((m) => m.status === 'finished')
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export function getScheduledMatches(): Match[] {
-  return matches
+  return getAllMatches()
     .filter((m) => m.status === 'scheduled')
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 }
 
 export function getMatchesByClub(clubId: string): Match[] {
-  return matches.filter((m) => m.homeTeamId === clubId || m.awayTeamId === clubId);
+  return getAllMatches().filter((m) => m.homeTeamId === clubId || m.awayTeamId === clubId);
+}
+
+export function getMatchesByNation(nationId: string): Match[] {
+  return getAllMatches().filter(
+    (m) => m.teamType === 'nation' && (m.homeTeamId === nationId || m.awayTeamId === nationId)
+  );
 }
 
 export function getFinishedMatchesByLeague(leagueId: string): Match[] {
@@ -132,6 +144,22 @@ export function getScheduledMatchesByLeague(leagueId: string): Match[] {
   return matches
     .filter((m) => m.leagueId === leagueId && m.status === 'scheduled')
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+}
+
+export function getFinishedMatchesByNation(nationId: string): Match[] {
+  return getMatchesByNation(nationId)
+    .filter((m) => m.status === 'finished')
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
+export function getScheduledMatchesByNation(nationId: string): Match[] {
+  return getMatchesByNation(nationId)
+    .filter((m) => m.status === 'scheduled')
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+}
+
+export function getWorldCup2026(): WorldCupTournament {
+  return worldCup2026;
 }
 
 // ═══════════════════════════════════════

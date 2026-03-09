@@ -2,24 +2,53 @@
 
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import type { Match } from '@/data/types';
-import { getClubById, getClubShortName } from '@/data';
+import type { Match, WorldCupPlaceholder } from '@/data/types';
 import { ClubBadge } from '@/components/ui/ClubBadge';
-import { formatDateShort, cn } from '@/lib/utils';
+import { LocalizedMatchText } from '@/components/ui/LocalizedMatchText';
+import { NationFlag } from '@/components/ui/NationFlag';
+import { WorldCupPlaceholderLink } from '@/components/ui/WorldCupPlaceholderLink';
+import { cn } from '@/lib/utils';
 
 interface MatchCardProps {
   match: Match;
+  placeholders?: WorldCupPlaceholder[];
   showDate?: boolean;
   showLeague?: boolean;
   leagueName?: string;
   className?: string;
 }
 
-export function MatchCard({ match, showDate = true, showLeague = false, leagueName, className }: MatchCardProps) {
+function isPendingNationSlot(name?: string, code?: string) {
+  const value = `${name ?? ''} ${code ?? ''}`.toLowerCase();
+  return value.includes('winner')
+    || value.includes('runners-up')
+    || value.includes('third place')
+    || value.includes('loser match')
+    || value.includes('group ')
+    || value.includes('path ')
+    || value.includes('ic path');
+}
+
+export function MatchCard({ match, placeholders = [], showDate = true, showLeague = false, leagueName, className }: MatchCardProps) {
   const router = useRouter();
   const tMatchStatus = useTranslations('matchStatus');
-  const homeClub = getClubById(match.homeTeamId);
-  const awayClub = getClubById(match.awayTeamId);
+  const isNationMatch = match.teamType === 'nation';
+  const homeShortName = isNationMatch
+    ? match.homeTeamCode ?? '???'
+    : match.homeTeamCode ?? match.homeTeamName ?? '???';
+  const awayShortName = isNationMatch
+    ? match.awayTeamCode ?? '???'
+    : match.awayTeamCode ?? match.awayTeamName ?? '???';
+  const homeLabel = isNationMatch
+    ? match.homeTeamName ?? homeShortName
+    : homeShortName;
+  const awayLabel = isNationMatch
+    ? match.awayTeamName ?? awayShortName
+    : awayShortName;
+  const showHomeNationFlag = !isPendingNationSlot(homeLabel, homeShortName);
+  const showAwayNationFlag = !isPendingNationSlot(awayLabel, awayShortName);
+  const homePlaceholder = placeholders.find((placeholder) => placeholder.id === match.homeTeamId);
+  const awayPlaceholder = placeholders.find((placeholder) => placeholder.id === match.awayTeamId);
   const statusClassName = match.status === 'finished'
     ? 'text-zinc-400'
     : match.status === 'live'
@@ -36,17 +65,21 @@ export function MatchCard({ match, showDate = true, showLeague = false, leagueNa
     >
       {showDate && (
         <div className="text-[11px] text-text-muted w-12 shrink-0">
-          {formatDateShort(match.date)}
+          <LocalizedMatchText matchId={match.id} venue={match.venue} date={match.date} time={match.time} variant="dateShort" />
         </div>
       )}
 
       <div className="flex-1 flex items-center justify-between min-w-0">
         <div className="flex items-center gap-2 min-w-0 flex-1">
-          <div className="flex items-center justify-end gap-1.5 w-20 shrink-0">
-            {homeClub && <ClubBadge shortName={homeClub.shortName} clubId={homeClub.id} size="sm" />}
-            <span className="text-[13px] font-medium text-text-primary truncate text-right">
-              {getClubShortName(match.homeTeamId)}
-            </span>
+          <div className="flex items-center justify-end gap-1.5 min-w-0 flex-1">
+              {isNationMatch
+                ? showHomeNationFlag && (
+                  <NationFlag nationId={match.homeTeamId} code={homeShortName} size="sm" />
+                )
+                : <ClubBadge shortName={homeShortName} clubId={match.homeTeamId} logo={match.homeTeamLogo} size="sm" />}
+            <div className="min-w-0 text-[13px] font-medium text-text-primary text-right">
+              {homePlaceholder ? <WorldCupPlaceholderLink placeholder={homePlaceholder} label={homeLabel} className="items-end" /> : <span className="truncate block">{homeLabel}</span>}
+            </div>
           </div>
 
           <div className="flex items-center gap-1.5 shrink-0">
@@ -71,15 +104,19 @@ export function MatchCard({ match, showDate = true, showLeague = false, leagueNa
                 </span>
               </>
             ) : (
-              <span className="text-[11px] text-text-muted">{match.time}</span>
+              <LocalizedMatchText matchId={match.id} venue={match.venue} date={match.date} time={match.time} variant="time" className="text-[11px] text-text-muted" />
             )}
           </div>
 
-          <div className="flex items-center gap-1.5 w-20 shrink-0">
-            {awayClub && <ClubBadge shortName={awayClub.shortName} clubId={awayClub.id} size="sm" />}
-            <span className="text-[13px] font-medium text-text-primary truncate">
-              {getClubShortName(match.awayTeamId)}
-            </span>
+          <div className="flex items-center gap-1.5 min-w-0 flex-1 justify-start">
+              {isNationMatch
+                ? showAwayNationFlag && (
+                  <NationFlag nationId={match.awayTeamId} code={awayShortName} size="sm" />
+                )
+                : <ClubBadge shortName={awayShortName} clubId={match.awayTeamId} logo={match.awayTeamLogo} size="sm" />}
+            <div className="min-w-0 text-[13px] font-medium text-text-primary">
+              {awayPlaceholder ? <WorldCupPlaceholderLink placeholder={awayPlaceholder} label={awayLabel} /> : <span className="truncate block">{awayLabel}</span>}
+            </div>
           </div>
         </div>
       </div>

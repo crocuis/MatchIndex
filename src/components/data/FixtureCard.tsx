@@ -2,21 +2,42 @@
 
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import type { Match } from '@/data/types';
-import { getClubById, getClubName } from '@/data';
+import type { Match, WorldCupPlaceholder } from '@/data/types';
 import { ClubBadge } from '@/components/ui/ClubBadge';
-import { formatDate, cn } from '@/lib/utils';
+import { LocalizedMatchText } from '@/components/ui/LocalizedMatchText';
+import { NationFlag } from '@/components/ui/NationFlag';
+import { WorldCupPlaceholderLink } from '@/components/ui/WorldCupPlaceholderLink';
+import { cn } from '@/lib/utils';
 
 interface FixtureCardProps {
   match: Match;
+  placeholders?: WorldCupPlaceholder[];
   className?: string;
 }
 
-export function FixtureCard({ match, className }: FixtureCardProps) {
+function isPendingNationSlot(name?: string, code?: string) {
+  const value = `${name ?? ''} ${code ?? ''}`.toLowerCase();
+  return value.includes('winner')
+    || value.includes('runners-up')
+    || value.includes('third place')
+    || value.includes('loser match')
+    || value.includes('group ')
+    || value.includes('path ')
+    || value.includes('ic path');
+}
+
+export function FixtureCard({ match, placeholders = [], className }: FixtureCardProps) {
   const router = useRouter();
   const tCommon = useTranslations('common');
-  const homeClub = getClubById(match.homeTeamId);
-  const awayClub = getClubById(match.awayTeamId);
+  const isNationMatch = match.teamType === 'nation';
+  const homeNationCode = match.homeTeamCode ?? '???';
+  const awayNationCode = match.awayTeamCode ?? '???';
+  const homeNationName = match.homeTeamName ?? tCommon('home');
+  const awayNationName = match.awayTeamName ?? tCommon('away');
+  const showHomeNationFlag = !isPendingNationSlot(homeNationName, homeNationCode);
+  const showAwayNationFlag = !isPendingNationSlot(awayNationName, awayNationCode);
+  const homePlaceholder = placeholders.find((placeholder) => placeholder.id === match.homeTeamId);
+  const awayPlaceholder = placeholders.find((placeholder) => placeholder.id === match.awayTeamId);
 
   return (
     <div
@@ -28,22 +49,38 @@ export function FixtureCard({ match, className }: FixtureCardProps) {
     >
       <div className="flex items-center gap-3 min-w-0 flex-1">
         <div className="flex items-center gap-1.5 min-w-0">
-          {homeClub && <ClubBadge shortName={homeClub.shortName} clubId={homeClub.id} size="sm" />}
-          <span className="text-[13px] font-medium text-text-primary truncate">
-            {getClubName(match.homeTeamId)}
-          </span>
+          {isNationMatch
+            ? showHomeNationFlag && (
+              <NationFlag nationId={match.homeTeamId} code={homeNationCode} size="sm" />
+            )
+            : <ClubBadge shortName={match.homeTeamCode ?? match.homeTeamName ?? '???'} clubId={match.homeTeamId} logo={match.homeTeamLogo} size="sm" />}
+          <div className="min-w-0 text-[13px] font-medium text-text-primary">
+            {isNationMatch
+              ? homePlaceholder
+                ? <WorldCupPlaceholderLink placeholder={homePlaceholder} label={homeNationName} />
+                : homeNationName
+              : match.homeTeamName ?? tCommon('home')}
+          </div>
         </div>
         <span className="text-[11px] text-text-muted shrink-0">{tCommon('vs')}</span>
         <div className="flex items-center gap-1.5 min-w-0">
-          {awayClub && <ClubBadge shortName={awayClub.shortName} clubId={awayClub.id} size="sm" />}
-          <span className="text-[13px] font-medium text-text-primary truncate">
-            {getClubName(match.awayTeamId)}
-          </span>
+          {isNationMatch
+            ? showAwayNationFlag && (
+              <NationFlag nationId={match.awayTeamId} code={awayNationCode} size="sm" />
+            )
+            : <ClubBadge shortName={match.awayTeamCode ?? match.awayTeamName ?? '???'} clubId={match.awayTeamId} logo={match.awayTeamLogo} size="sm" />}
+          <div className="min-w-0 text-[13px] font-medium text-text-primary">
+            {isNationMatch
+              ? awayPlaceholder
+                ? <WorldCupPlaceholderLink placeholder={awayPlaceholder} label={awayNationName} />
+                : awayNationName
+              : match.awayTeamName ?? tCommon('away')}
+          </div>
         </div>
       </div>
       <div className="flex items-center gap-2 shrink-0 ml-3">
-        <span className="text-[11px] text-text-secondary">{formatDate(match.date)}</span>
-        <span className="text-[11px] text-text-muted">{match.time}</span>
+        <LocalizedMatchText matchId={match.id} venue={match.venue} date={match.date} time={match.time} variant="date" className="text-[11px] text-text-secondary" />
+        <LocalizedMatchText matchId={match.id} venue={match.venue} date={match.date} time={match.time} variant="time" className="text-[11px] text-text-muted" />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 interface LeagueLogoProps {
   leagueId: string;
   name: string;
+  logo?: string;
   size?: 'sm' | 'md' | 'lg';
   className?: string;
 }
@@ -18,14 +19,29 @@ const sizeClasses = { sm: 'h-6 w-6', md: 'h-8 w-8', lg: 'h-12 w-12' };
 const svgSizes = { sm: 24, md: 32, lg: 48 };
 const fontSizes = { sm: 6, md: 8, lg: 11 };
 
-export function LeagueLogo({ leagueId, name, size = 'md', className }: LeagueLogoProps) {
+export function LeagueLogo({ leagueId, name, logo, size = 'md', className }: LeagueLogoProps) {
   const colors = leagueColorMap[leagueId] ?? defaultColors;
   const sz = svgSizes[size];
   const fs = fontSizes[size];
   const cx = sz / 2;
 
   // Get abbreviation (e.g., "Premier League" → "PL", "La Liga" → "LL")
-  const abbr = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+  const abbr = name.split(' ').map((word) => word[0]).join('').toUpperCase().slice(0, 2);
+
+  if (logo) {
+    return (
+      <div className={cn(sizeClasses[size], 'shrink-0 overflow-hidden', className)}>
+        <img
+          src={logo}
+          alt={`${name} logo`}
+          width={sz}
+          height={sz}
+          referrerPolicy="no-referrer-when-downgrade"
+          className="h-full w-full object-contain"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={cn(sizeClasses[size], 'shrink-0', className)}>

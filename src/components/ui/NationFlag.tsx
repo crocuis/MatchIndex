@@ -1,8 +1,10 @@
 import { cn } from '@/lib/utils';
+import { getNationFlagUrl } from '@/data/nationVisuals';
 
 interface NationFlagProps {
   nationId: string;
   code: string;
+  flag?: string;
   size?: 'sm' | 'md' | 'lg';
   className?: string;
 }
@@ -22,18 +24,33 @@ const svgW = { sm: 28, md: 36, lg: 48 };
 const svgH = { sm: 20, md: 24, lg: 32 };
 const fontSizes = { sm: 7, md: 8, lg: 11 };
 
-export function NationFlag({ nationId, code, size = 'md', className }: NationFlagProps) {
-  const flag = flagColors[nationId] ?? defaultFlag;
+export function NationFlag({ nationId, code, flag, size = 'md', className }: NationFlagProps) {
+  const flagStyle = flagColors[nationId] ?? defaultFlag;
+  const flagUrl = getNationFlagUrl(code, flag);
   const w = svgW[size];
   const h = svgH[size];
   const fs = fontSizes[size];
-  const bandH = h / flag.bands.length;
+  const bandH = h / flagStyle.bands.length;
+
+  if (flagUrl) {
+    return (
+      <div className={cn(sizeClasses[size], 'rounded-sm overflow-hidden shrink-0 border border-border-subtle bg-white', className)}>
+        <img
+          src={flagUrl}
+          alt={`${code} flag`}
+          width={w}
+          height={h}
+          className="h-full w-full object-contain"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={cn(sizeClasses[size], 'rounded-sm overflow-hidden shrink-0 border border-border-subtle', className)}>
       <svg viewBox={`0 0 ${w} ${h}`} width={w} height={h} xmlns="http://www.w3.org/2000/svg">
         {/* Flag bands */}
-        {flag.bands.map((color, i) => (
+        {flagStyle.bands.map((color, i) => (
           <rect
             key={i}
             x={0}
@@ -49,7 +66,7 @@ export function NationFlag({ nationId, code, size = 'md', className }: NationFla
           y="50%"
           textAnchor="middle"
           dominantBaseline="central"
-          fill={flag.textColor}
+          fill={flagStyle.textColor}
           fontSize={fs}
           fontWeight="800"
           fontFamily="system-ui, sans-serif"

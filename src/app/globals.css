@@ -9,33 +9,35 @@
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  /* Surface palette — dark layered depth */
-  --color-surface-0: #0a0d12;
-  --color-surface-1: #111419;
-  --color-surface-2: #1a1d23;
-  --color-surface-3: #22262d;
-  --color-surface-4: #2a2e36;
+  /* Surface palette — dark layered depth (Navy/Purple tint for FM feel) */
+  --color-surface-0: #0b0c10; /* Deepest background */
+  --color-surface-1: #13151c; /* Main panel background */
+  --color-surface-2: #1c1e28; /* Hover/Secondary panel */
+  --color-surface-3: #262936; /* Active/Tertiary */
+  --color-surface-4: #323646; /* Highlight */
 
   /* Borders */
-  --color-border: #2a2e36;
-  --color-border-subtle: #1e2229;
+  --color-border: #2a2d3d;
+  --color-border-subtle: #1c1e28;
 
   /* Text */
-  --color-text-primary: #e8eaed;
-  --color-text-secondary: #9ca3af;
-  --color-text-muted: #6b7280;
+  --color-text-primary: #f8f9fa;
+  --color-text-secondary: #a1a5b5;
+  --color-text-muted: #6b7085;
 
   /* Accent colors */
-  --color-accent-green: #22c55e;
-  --color-accent-red: #ef4444;
+  --color-accent-green: #10b981;
+  --color-accent-red: #f43f5e;
   --color-accent-amber: #f59e0b;
   --color-accent-blue: #3b82f6;
   --color-accent-emerald: #10b981;
+  --color-accent-magenta: #d946ef; /* New magenta accent */
+  --color-accent-violet: #8b5cf6; /* New violet accent */
 
   /* Semantic */
-  --color-win: #22c55e;
-  --color-draw: #6b7280;
-  --color-loss: #ef4444;
+  --color-win: #10b981;
+  --color-draw: #6b7085;
+  --color-loss: #f43f5e;
 }
 
 /* Base layer — force dark everywhere */
@@ -50,6 +52,8 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Subtle noise texture for depth */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
   }
 
   /* Scrollbar styling for desktop-app feel */
@@ -79,7 +83,7 @@
   }
 
   th {
-    font-weight: 500;
+    font-weight: 600;
     text-align: left;
     color: var(--color-text-muted);
     text-transform: uppercase;

@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 interface ClubBadgeProps {
   shortName: string;
   clubId: string;
+  logo?: string;
   size?: 'sm' | 'md' | 'lg';
   className?: string;
 }
@@ -30,11 +31,26 @@ const sizeClasses = {
 const svgSizes = { sm: 24, md: 32, lg: 48 };
 const fontSizes = { sm: 7, md: 9, lg: 13 };
 
-export function ClubBadge({ shortName, clubId, size = 'md', className }: ClubBadgeProps) {
+export function ClubBadge({ shortName, clubId, logo, size = 'md', className }: ClubBadgeProps) {
   const colors = clubColorMap[clubId] ?? defaultColors;
   const sz = svgSizes[size];
   const fs = fontSizes[size];
   const cx = sz / 2;
+
+  if (logo) {
+    return (
+      <div className={cn(sizeClasses[size], 'shrink-0 overflow-hidden', className)}>
+        <img
+          src={logo}
+          alt={`${shortName} badge`}
+          width={sz}
+          height={sz}
+          referrerPolicy="no-referrer-when-downgrade"
+          className="h-full w-full object-contain"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={cn(sizeClasses[size], 'shrink-0', className)}>

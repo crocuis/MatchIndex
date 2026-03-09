@@ -1,33 +1,52 @@
 import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { PageHeader } from '@/components/layout/PageHeader';
+import { FixtureCard } from '@/components/data/FixtureCard';
+import { MatchCard } from '@/components/data/MatchCard';
 import { SectionCard } from '@/components/ui/SectionCard';
 import { StatPanel } from '@/components/data/StatPanel';
 import { ClubBadge } from '@/components/ui/ClubBadge';
 import { EntityLink } from '@/components/ui/EntityLink';
+import { NationBadge } from '@/components/ui/NationBadge';
 import { NationFlag } from '@/components/ui/NationFlag';
 import { PlayerAvatar } from '@/components/ui/PlayerAvatar';
 import { getPositionColor, cn } from '@/lib/utils';
 import {
-  getNationById,
-  getNations,
-  getPlayersByNation,
-  getClubById,
-} from '@/data';
+  getClubsByIdsDb,
+  getFinishedMatchesByNationDb,
+  getNationByIdDb,
+  getPlayersByNationDb,
+  getScheduledMatchesByNationDb,
+} from '@/data/server';
 
-export async function generateStaticParams() {
-  return getNations().map((n) => ({ id: n.id }));
+function getContinentLabel(confederation: string, locale: string) {
+  const labels = locale === 'ko'
+    ? {
+        UEFA: '유럽',
+        CONMEBOL: '남미',
+        CONCACAF: '북중미',
+        AFC: '아시아',
+        CAF: '아프리카',
+        OFC: '오세아니아',
+      }
+    : {
+        UEFA: 'Europe',
+        CONMEBOL: 'South America',
+        CONCACAF: 'North & Central America',
+        AFC: 'Asia',
+        CAF: 'Africa',
+        OFC: 'Oceania',
+      };
+
+  return labels[confederation as keyof typeof labels] ?? confederation;
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}): Promise<Metadata> {
-  const { id } = await params;
-  const nation = getNationById(id);
-  return { title: nation?.name ?? 'Nation' };
+function formatRankingChange(change?: number) {
+  if (change === undefined || change === 0) {
+    return '-';
+  }
+
+  return change > 0 ? `▲${change}` : `▼${Math.abs(change)}`;
 }
 
 export default async function NationPage({
@@ -36,10 +55,17 @@ export default async function NationPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const nation = getNationById(id);
+  const locale = await getLocale();
+  const nation = await getNationByIdDb(id, locale);
   if (!nation) notFound();
 
-  const nationalPlayers = getPlayersByNation(id);
+  const [nationalPlayers, recentMatches, upcomingFixtures] = await Promise.all([
+    getPlayersByNationDb(id, locale),
+    getFinishedMatchesByNationDb(id, locale),
+    getScheduledMatchesByNationDb(id, locale),
+  ]);
+  const clubs = await getClubsByIdsDb(nationalPlayers.map((player) => player.clubId), locale);
+  const clubMap = new Map(clubs.map((club) => [club.id, club]));
   const tNation = await getTranslations('nation');
   const tTable = await getTranslations('table');
   const tCommon = await getTranslations('common');
@@ -49,18 +75,23 @@ export default async function NationPage({
       <PageHeader
         title={(
           <div className="flex items-center gap-2">
+            <NationBadge nationId={nation.id} code={nation.code} crest={nation.crest} size="lg" />
             <NationFlag nationId={nation.id} code={nation.code} size="lg" />
             <span>{nation.name}</span>
           </div>
         )}
-        subtitle={`${nation.confederation} · FIFA Ranking #${nation.fifaRanking}`}
+        subtitle={`${getContinentLabel(nation.confederation, locale)} · FIFA Ranking #${nation.fifaRanking}`}
       />
 
       <StatPanel
         stats={[
           { label: tNation('fifaRanking'), value: `#${nation.fifaRanking}`, highlight: nation.fifaRanking <= 5 },
-          { label: tNation('confederation'), value: nation.confederation },
-          { label: tNation('countryCode'), value: nation.code },
+          {
+            label: tNation('rankChange'),
+            value: formatRankingChange(nation.rankingChange),
+            highlight: (nation.rankingChange ?? 0) > 0,
+          },
+          { label: tNation('continent'), value: getContinentLabel(nation.confederation, locale) },
           { label: tNation('players'), value: nationalPlayers.length },
         ]}
         columns={4}
@@ -68,7 +99,28 @@ export default async function NationPage({
       />
 
       <div className="grid grid-cols-12 gap-4">
-        <div className="col-span-12">
+        <div className="col-span-8 space-y-4">
+          <SectionCard title={tNation('recentTournaments')} noPadding>
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="px-3 py-2 text-left">{tNation('competition')}</th>
+                  <th className="px-3 py-2 text-center w-20">{tNation('year')}</th>
+                  <th className="px-3 py-2 text-left w-36">{tNation('result')}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border-subtle">
+                {(nation.recentTournaments ?? []).map((entry) => (
+                  <tr key={`${entry.competition}-${entry.year}`} className="hover:bg-surface-2">
+                    <td className="px-3 py-2 text-[13px] font-medium text-text-primary">{entry.competition}</td>
+                    <td className="px-3 py-2 text-[13px] text-center tabular-nums text-text-secondary">{entry.year}</td>
+                    <td className="px-3 py-2 text-[13px] text-text-secondary">{entry.result}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </SectionCard>
+
           {/* Squad */}
           <SectionCard title={`${tNation('players')} (${nationalPlayers.length})`} noPadding>
             <table className="w-full">
@@ -91,12 +143,12 @@ export default async function NationPage({
                     return order[a.position] - order[b.position];
                   })
                   .map((player) => {
-                    const club = getClubById(player.clubId);
+                      const club = clubMap.get(player.clubId);
                     return (
                       <tr key={player.id} className="hover:bg-surface-2">
                         <td className="px-3 py-1.5 text-[13px]">
                           <EntityLink type="player" id={player.id} className="flex items-center gap-2">
-                            <PlayerAvatar name={player.name} position={player.position} size="sm" />
+                            <PlayerAvatar name={player.name} position={player.position} imageUrl={player.photoUrl} size="sm" />
                             <span>{player.name}</span>
                           </EntityLink>
                         </td>
@@ -111,7 +163,7 @@ export default async function NationPage({
                         <td className="px-3 py-1.5 text-[13px]">
                           {club ? (
                             <EntityLink type="club" id={club.id} className="flex items-center gap-2 text-text-secondary">
-                              <ClubBadge shortName={club.shortName} clubId={club.id} size="sm" />
+                              <ClubBadge shortName={club.shortName} clubId={club.id} logo={club.logo} size="sm" />
                               <span>{club.name}</span>
                             </EntityLink>
                           ) : (
@@ -135,6 +187,24 @@ export default async function NationPage({
                   })}
               </tbody>
             </table>
+          </SectionCard>
+        </div>
+
+        <div className="col-span-4 space-y-4">
+          <SectionCard title={tNation('recentMatches')}>
+            <div className="space-y-1.5">
+              {recentMatches.length > 0 ? recentMatches.map((match) => <MatchCard key={match.id} match={match} />) : (
+                <div className="text-[13px] text-text-muted">{tCommon('unknown')}</div>
+              )}
+            </div>
+          </SectionCard>
+
+          <SectionCard title={tNation('upcomingFixtures')}>
+            <div className="space-y-1.5">
+              {upcomingFixtures.length > 0 ? upcomingFixtures.map((match) => <FixtureCard key={match.id} match={match} />) : (
+                <div className="text-[13px] text-text-muted">{tCommon('unknown')}</div>
+              )}
+            </div>
           </SectionCard>
         </div>
       </div>

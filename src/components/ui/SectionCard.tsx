@@ -10,12 +10,15 @@ interface SectionCardProps {
 
 export function SectionCard({ title, children, action, className, noPadding }: SectionCardProps) {
   return (
-    <div className={cn('rounded-lg border border-border bg-surface-1', className)}>
-      <div className="flex items-center justify-between border-b border-border-subtle px-4 py-2.5">
-        <h3 className="text-[13px] font-semibold text-text-primary">{title}</h3>
-        {action}
+    <div className={cn('rounded border border-border bg-surface-1 shadow-sm overflow-hidden flex flex-col', className)}>
+      <div className="flex items-center justify-between border-b border-border bg-surface-2/50 px-3 py-2">
+        <h3 className="text-[11px] font-bold uppercase tracking-wider text-text-primary flex items-center gap-2">
+          <div className="w-1 h-3 bg-accent-magenta rounded-full" />
+          {title}
+        </h3>
+        {action && <div className="flex items-center">{action}</div>}
       </div>
-      <div className={cn(!noPadding && 'p-4')}>{children}</div>
+      <div className={cn('flex-1', !noPadding && 'p-3')}>{children}</div>
     </div>
   );
 }

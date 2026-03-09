@@ -29,7 +29,7 @@ export function StatPanel({ stats, columns = 3, className }: StatPanelProps) {
           <div
             className={cn(
               'text-[15px] font-semibold tabular-nums',
-              stat.highlight ? 'text-accent-emerald' : 'text-text-primary'
+              stat.highlight ? 'text-accent-magenta' : 'text-text-primary'
             )}
           >
             {stat.value}

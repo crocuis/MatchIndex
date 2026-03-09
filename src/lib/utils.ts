@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import type { Match } from '@/data/types';
 
 /** Merge Tailwind classes with conflict resolution */
 export function cn(...inputs: ClassValue[]) {
@@ -23,6 +24,102 @@ export function formatDateShort(dateStr: string): string {
     day: 'numeric',
     month: 'short',
   });
+}
+
+function getMatchDate(dateStr: string, timeStr?: string | null, sourceOffsetMinutes: number = 0): Date {
+  const [year, month, day] = dateStr.split('-').map(Number);
+  const normalizedTime = timeStr && timeStr.includes(':') ? timeStr : '00:00';
+  const [hour, minute] = normalizedTime.split(':').map(Number);
+
+  return new Date(Date.UTC(year, month - 1, day, hour, minute) - (sourceOffsetMinutes * 60 * 1000));
+}
+
+export function getMatchSourceOffsetMinutes(match: Pick<Match, 'id' | 'venue'>): number {
+  if (!match.id.startsWith('m-wc26-')) {
+    return 0;
+  }
+
+  if (
+    match.venue.includes('Mexico City')
+    || match.venue.includes('Guadalajara')
+    || match.venue.includes('Monterrey')
+  ) {
+    return -360;
+  }
+
+  if (match.venue.includes('Toronto') || match.venue.includes('New York') || match.venue.includes('Boston') || match.venue.includes('Philadelphia') || match.venue.includes('Miami') || match.venue.includes('Atlanta')) {
+    return -240;
+  }
+
+  if (match.venue.includes('Houston') || match.venue.includes('Dallas') || match.venue.includes('Kansas City')) {
+    return -300;
+  }
+
+  if (
+    match.venue.includes('Vancouver')
+    || match.venue.includes('Seattle')
+    || match.venue.includes('Los Angeles')
+    || match.venue.includes('San Francisco Bay Area')
+  ) {
+    return -420;
+  }
+
+  return 0;
+}
+
+export function getMatchDateKeyForTimeZone(dateStr: string, timeStr: string | null | undefined, timeZone: string, sourceOffsetMinutes: number = 0): string {
+  return new Intl.DateTimeFormat('sv-SE', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    timeZone,
+  }).format(getMatchDate(dateStr, timeStr, sourceOffsetMinutes));
+}
+
+export function formatMatchDateForTimeZone(dateStr: string, timeStr: string | null | undefined, locale: string, timeZone: string, sourceOffsetMinutes: number = 0): string {
+  return new Intl.DateTimeFormat(locale, {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    timeZone,
+  }).format(getMatchDate(dateStr, timeStr, sourceOffsetMinutes));
+}
+
+export function formatMatchDateShortForTimeZone(dateStr: string, timeStr: string | null | undefined, locale: string, timeZone: string, sourceOffsetMinutes: number = 0): string {
+  return new Intl.DateTimeFormat(locale, {
+    day: 'numeric',
+    month: 'short',
+    timeZone,
+  }).format(getMatchDate(dateStr, timeStr, sourceOffsetMinutes));
+}
+
+export function formatMatchTimeForTimeZone(dateStr: string, timeStr: string | null | undefined, locale: string, timeZone: string, sourceOffsetMinutes: number = 0): string {
+  return new Intl.DateTimeFormat(locale, {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZone,
+  }).format(getMatchDate(dateStr, timeStr, sourceOffsetMinutes));
+}
+
+export function formatMatchDateLabelForTimeZone(dateStr: string, timeStr: string | null | undefined, locale: string, timeZone: string, sourceOffsetMinutes: number = 0): string {
+  return new Intl.DateTimeFormat(locale, {
+    month: 'short',
+    day: 'numeric',
+    weekday: 'short',
+    timeZone,
+  }).format(getMatchDate(dateStr, timeStr, sourceOffsetMinutes));
+}
+
+export function formatMatchDateTimeForTimeZone(dateStr: string, timeStr: string | null | undefined, locale: string, timeZone: string, sourceOffsetMinutes: number = 0): string {
+  return new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone,
+  }).format(getMatchDate(dateStr, timeStr, sourceOffsetMinutes));
 }
 
 /** Format large numbers with commas (e.g., 60000 → "60,000") */
