@@ -55,15 +55,19 @@ export interface Player {
   age: number;
   nationality: string;
   nationId: string;
+  gender?: 'male' | 'female' | 'mixed';
   clubId: string;
   position: 'GK' | 'DEF' | 'MID' | 'FWD';
   photoUrl?: string;
   shirtNumber: number;
   height: number; // cm
   preferredFoot: 'Left' | 'Right' | 'Both';
+  isRetired?: boolean;
   contract?: PlayerContract;
   scoutingReport?: PlayerScoutingReport;
   seasonStats: PlayerSeasonStats;
+  seasonHistory?: PlayerSeasonHistoryEntry[];
+  clubHistory?: PlayerClubHistoryEntry[];
 }
 
 export interface PlayerListItem extends Player {
@@ -105,6 +109,28 @@ export interface PlayerSeasonStats {
   yellowCards: number;
   redCards: number;
   cleanSheets?: number; // goalkeepers only
+}
+
+export interface PlayerSeasonHistoryEntry {
+  seasonId: string;
+  seasonLabel: string;
+  clubId: string;
+  clubName: string;
+  appearances: number;
+  goals: number;
+  assists: number;
+  minutesPlayed: number;
+  yellowCards: number;
+  redCards: number;
+  cleanSheets?: number;
+}
+
+export interface PlayerClubHistoryEntry {
+  clubId: string;
+  clubName: string;
+  startYear: number;
+  endYear: number;
+  periodLabel: string;
 }
 
 export type PhotoSyncProvider = 'api_football' | 'sofascore' | 'wikimedia';

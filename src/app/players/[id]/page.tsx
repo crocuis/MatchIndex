@@ -9,7 +9,7 @@ import { EntityLink } from '@/components/ui/EntityLink';
 import { NationFlag } from '@/components/ui/NationFlag';
 import { PlayerAvatar } from '@/components/ui/PlayerAvatar';
 import { cn, formatDate, formatNumber, getPositionColor } from '@/lib/utils';
-import { getClubByIdDb, getNationByIdDb, getPlayerByIdDb, getRecentFinishedMatchesByClubDb } from '@/data/server';
+import { getClubByIdDb, getClubsByIdsDb, getNationByIdDb, getPlayerByIdDb, getRecentFinishedMatchesByClubDb } from '@/data/server';
 
 export default async function PlayerPage({
   params,
@@ -20,14 +20,21 @@ export default async function PlayerPage({
   const player = await getPlayerByIdDb(id);
   if (!player) notFound();
   const locale = await getLocale();
+  const currentYear = new Date().getUTCFullYear();
+  const latestClubHistoryYear = player.clubHistory?.[player.clubHistory.length - 1]?.endYear;
+  const isRetired = Boolean(player.isRetired || (latestClubHistoryYear !== undefined && latestClubHistoryYear < currentYear - 2));
+  const clubHistoryIds = [...new Set((player.clubHistory ?? []).map((entry) => entry.clubId))];
 
-  const [club, nation, recentMatches] = await Promise.all([
-    getClubByIdDb(player.clubId, locale),
+  const [club, nation, recentMatches, historyClubs] = await Promise.all([
+    isRetired ? Promise.resolve(undefined) : getClubByIdDb(player.clubId, locale),
     getNationByIdDb(player.nationId, locale),
-    getRecentFinishedMatchesByClubDb(player.clubId, locale, 10),
+    isRetired ? Promise.resolve([]) : getRecentFinishedMatchesByClubDb(player.clubId, locale, 10),
+    clubHistoryIds.length > 0 ? getClubsByIdsDb(clubHistoryIds, locale) : Promise.resolve([]),
   ]);
+  const historyClubMap = new Map(historyClubs.map((entry) => [entry.id, entry]));
 
   const stats = player.seasonStats;
+  const latestSeason = player.seasonHistory?.[0];
   const contract = player.contract;
   const scoutingReport = player.scoutingReport;
   const tPlayer = await getTranslations('player');
@@ -42,7 +49,7 @@ export default async function PlayerPage({
             <span>{player.name}</span>
           </div>
         )}
-        subtitle={`${club?.name ?? tCommon('freeAgent')} · ${player.position}`}
+        subtitle={`${isRetired ? tPlayer('retired') : club?.name ?? tCommon('freeAgent')} · ${player.position}`}
       >
         <span className={cn('px-2 py-1 rounded text-[11px] font-bold', getPositionColor(player.position))}>
           {player.position}
@@ -65,6 +72,16 @@ export default async function PlayerPage({
         <div className="col-span-8 space-y-4">
           {/* Season Stats Detail */}
           <SectionCard title={tPlayer('seasonStats')}>
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <div className="text-[11px] text-text-muted">
+                {latestSeason ? `${tPlayer('latestSeason')} · ${latestSeason.seasonLabel}` : tCommon('unknown')}
+              </div>
+              {latestSeason ? (
+                <EntityLink type="club" id={latestSeason.clubId} className="text-[11px] font-medium text-text-secondary transition-colors hover:text-text-primary">
+                  {latestSeason.clubName}
+                </EntityLink>
+              ) : null}
+            </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 {[
@@ -96,6 +113,41 @@ export default async function PlayerPage({
               </div>
             </div>
           </SectionCard>
+
+          {player.seasonHistory && player.seasonHistory.length > 0 ? (
+            <SectionCard title={tPlayer('seasonHistory')}>
+              <div className="overflow-x-auto">
+                <table className="min-w-full text-left text-[12px]">
+                  <thead className="border-b border-border-subtle text-text-muted">
+                    <tr>
+                      <th className="px-2 py-2 font-medium">{tPlayer('season')}</th>
+                      <th className="px-2 py-2 font-medium">{tPlayer('club')}</th>
+                      <th className="px-2 py-2 text-right font-medium">{tPlayer('appearances')}</th>
+                      <th className="px-2 py-2 text-right font-medium">{tPlayer('goals')}</th>
+                      <th className="px-2 py-2 text-right font-medium">{tPlayer('assists')}</th>
+                      <th className="px-2 py-2 text-right font-medium">{tPlayer('minutes')}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {player.seasonHistory.map((entry) => (
+                      <tr key={`${entry.seasonId}-${entry.clubId}`} className="border-b border-border-subtle/60 last:border-b-0">
+                        <td className="px-2 py-2 text-text-primary">{entry.seasonLabel}</td>
+                        <td className="px-2 py-2 text-text-secondary">
+                          <EntityLink type="club" id={entry.clubId} className="transition-colors hover:text-text-primary">
+                            {entry.clubName}
+                          </EntityLink>
+                        </td>
+                        <td className="px-2 py-2 text-right tabular-nums text-text-primary">{entry.appearances}</td>
+                        <td className="px-2 py-2 text-right tabular-nums text-text-primary">{entry.goals}</td>
+                        <td className="px-2 py-2 text-right tabular-nums text-text-primary">{entry.assists}</td>
+                        <td className="px-2 py-2 text-right tabular-nums text-text-primary">{entry.minutesPlayed.toLocaleString()}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </SectionCard>
+          ) : null}
 
           {scoutingReport ? (
             <SectionCard title={tPlayer('scoutingReport')}>
@@ -158,14 +210,15 @@ export default async function PlayerPage({
             </SectionCard>
           ) : null}
 
-          {/* Recent Matches */}
-          <SectionCard title={tPlayer('recentMatches')}>
-            <div className="space-y-1.5">
-              {recentMatches.map((m) => (
-                <MatchCard key={m.id} match={m} />
-              ))}
-            </div>
-          </SectionCard>
+          {!isRetired ? (
+            <SectionCard title={tPlayer('recentMatches')}>
+              <div className="space-y-1.5">
+                {recentMatches.map((m) => (
+                  <MatchCard key={m.id} match={m} />
+                ))}
+              </div>
+            </SectionCard>
+          ) : null}
         </div>
 
         {/* Sidebar — Bio */}
@@ -268,19 +321,41 @@ export default async function PlayerPage({
             </SectionCard>
           ) : null}
 
-          <SectionCard title={tPlayer('club')}>
-            {club ? (
-              <EntityLink type="club" id={club.id} className="flex items-center gap-3">
-                <ClubBadge shortName={club.shortName} clubId={club.id} logo={club.logo} size="lg" />
-                <div>
-                  <div className="text-[13px] font-medium">{club.name}</div>
-                  <div className="text-[11px] text-text-muted">{club.stadium}</div>
-                </div>
-              </EntityLink>
-            ) : (
-              <div className="text-[13px] text-text-muted">{tCommon('freeAgent')}</div>
-            )}
-          </SectionCard>
+          {!isRetired ? (
+            <SectionCard title={tPlayer('club')}>
+              {club ? (
+                <EntityLink type="club" id={club.id} className="flex items-center gap-3">
+                  <ClubBadge shortName={club.shortName} clubId={club.id} logo={club.logo} size="lg" />
+                  <div>
+                    <div className="text-[13px] font-medium">{club.name}</div>
+                    <div className="text-[11px] text-text-muted">{club.stadium}</div>
+                  </div>
+                </EntityLink>
+              ) : (
+                <div className="text-[13px] text-text-muted">{tCommon('freeAgent')}</div>
+              )}
+            </SectionCard>
+          ) : null}
+
+          {player.clubHistory && player.clubHistory.length > 0 ? (
+            <SectionCard title={tPlayer('clubHistory')}>
+              <div className="space-y-2">
+                {player.clubHistory.map((entry) => (
+                  <EntityLink key={`${entry.clubId}-${entry.periodLabel}`} type="club" id={entry.clubId} className="flex items-center gap-3 rounded border border-border-subtle bg-surface-2/30 px-3 py-2 text-[13px] font-medium text-text-primary transition-colors hover:border-border hover:bg-surface-2/60">
+                    <ClubBadge
+                      shortName={historyClubMap.get(entry.clubId)?.shortName ?? entry.clubName.slice(0, 3).toUpperCase()}
+                      clubId={entry.clubId}
+                      logo={historyClubMap.get(entry.clubId)?.logo}
+                      size="md"
+                    />
+                    <span>
+                      {entry.clubName} <span className="text-[11px] text-text-muted tabular-nums">({entry.periodLabel})</span>
+                    </span>
+                  </EntityLink>
+                ))}
+              </div>
+            </SectionCard>
+          ) : null}
 
           <SectionCard title={tPlayer('nation')}>
             {nation ? (
