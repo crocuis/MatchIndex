@@ -35,7 +35,7 @@ export const NAV_GROUPS: NavGroup[] = [
     items: [
       { label: 'Leagues', href: '/leagues', icon: Trophy },
       { label: 'Clubs', href: '/clubs', icon: Shield },
-      { label: 'Players', href: '/players', icon: Users },
+      { label: 'People', href: '/players', icon: Users },
       { label: 'Nations', href: '/nations', icon: Globe },
     ],
   },

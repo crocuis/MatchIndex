@@ -24,6 +24,7 @@
     "leagues": "Leagues",
     "clubs": "Clubs",
     "players": "Players",
+    "People": "People",
     "nations": "Nations",
     "version": "v0.1.0 · Mock Data"
   },
@@ -101,6 +102,11 @@
     "assists": "Assists",
     "minutes": "Minutes",
     "seasonStats": "Season Statistics",
+    "latestSeason": "Latest Season",
+    "seasonHistory": "Season-by-Season",
+    "clubHistory": "Club History",
+    "season": "Season",
+    "retired": "Retired",
     "minutesPlayed": "Minutes Played",
     "yellowCards": "Yellow Cards",
     "redCards": "Red Cards",
@@ -211,7 +217,7 @@
     "searchPlaceholder": "Search players, clubs, leagues, nations...",
     "emptyQuery": "Enter a search query to find players, clubs, leagues, and nations.",
     "noResults": "No results found for \"{query}\"",
-    "playersGroup": "Players",
+    "playersGroup": "People",
     "clubsGroup": "Clubs",
     "leaguesGroup": "Leagues",
     "nationsGroup": "Nations",
@@ -269,9 +275,11 @@
     "women": "Women"
   },
   "playersList": {
-    "title": "Players",
-    "subtitle": "{count} players",
-    "searchPlaceholder": "Search players, clubs, nations...",
+    "title": "People",
+    "subtitle": "{count} people",
+    "searchPlaceholder": "Search people, clubs, nations...",
+    "active": "Active Players",
+    "retired": "Retired Players",
     "men": "Men",
     "women": "Women"
   },

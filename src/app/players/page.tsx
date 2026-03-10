@@ -21,21 +21,22 @@ function parsePage(value?: string) {
 }
 
 export const metadata: Metadata = {
-  title: 'Players',
+  title: 'People',
 };
 
 export default async function PlayersPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string; q?: string; gender?: string }>;
+  searchParams: Promise<{ page?: string; q?: string; gender?: string; status?: string }>;
 }) {
   const locale = await getLocale();
-  const { page, q, gender } = await searchParams;
+  const { page, q, gender, status } = await searchParams;
   const currentPage = parsePage(page);
   const query = q?.trim() ?? '';
   const genderCategory = gender === 'women' ? 'women' : 'men';
   const genderFilter = genderCategory === 'women' ? 'female' : 'male';
-  const playersResult = await getPaginatedPlayersDb(locale, query, genderFilter, { page: currentPage, pageSize: PAGE_SIZE });
+  const statusCategory = status === 'retired' ? 'retired' : 'active';
+  const playersResult = await getPaginatedPlayersDb(locale, query, genderFilter, statusCategory, { page: currentPage, pageSize: PAGE_SIZE });
   const t = await getTranslations('playersList');
   const tTable = await getTranslations('table');
   const tCommon = await getTranslations('common');
@@ -45,6 +46,7 @@ export default async function PlayersPage({
     if (nextPage > 1) params.set('page', String(nextPage));
     if (query) params.set('q', query);
     params.set('gender', genderCategory);
+    params.set('status', statusCategory);
     const queryString = params.toString();
     return queryString ? `/players?${queryString}` : '/players';
   };
@@ -75,13 +77,32 @@ export default async function PlayersPage({
         </Link>
       </div>
 
+      <div className="mb-3 flex items-center gap-2">
+        <Link
+          href={query ? `/players?gender=${genderCategory}&status=active&q=${encodeURIComponent(query)}` : `/players?gender=${genderCategory}&status=active`}
+          className={statusCategory === 'active'
+            ? 'rounded-md bg-surface-3 px-2.5 py-1 text-[11px] font-semibold text-text-primary'
+            : 'rounded-md px-2.5 py-1 text-[11px] font-medium text-text-secondary hover:bg-surface-2'}
+        >
+          {t('active')}
+        </Link>
+        <Link
+          href={query ? `/players?gender=${genderCategory}&status=retired&q=${encodeURIComponent(query)}` : `/players?gender=${genderCategory}&status=retired`}
+          className={statusCategory === 'retired'
+            ? 'rounded-md bg-surface-3 px-2.5 py-1 text-[11px] font-semibold text-text-primary'
+            : 'rounded-md px-2.5 py-1 text-[11px] font-medium text-text-secondary hover:bg-surface-2'}
+        >
+          {t('retired')}
+        </Link>
+      </div>
+
       <ListSearchForm
         action="/players"
         query={query}
         placeholder={t('searchPlaceholder')}
         searchLabel={tCommon('search')}
         clearLabel={tCommon('clear')}
-        hiddenValues={{ gender: genderCategory }}
+        hiddenValues={{ gender: genderCategory, status: statusCategory }}
       />
 
       <SectionCard

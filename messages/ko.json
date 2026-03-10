@@ -24,6 +24,7 @@
     "leagues": "리그",
     "clubs": "구단",
     "players": "선수",
+    "People": "인물",
     "nations": "국가",
     "version": "v0.1.0 · 모의 데이터"
   },
@@ -101,6 +102,11 @@
     "assists": "도움",
     "minutes": "출전 시간",
     "seasonStats": "시즌 기록",
+    "latestSeason": "최신 시즌",
+    "seasonHistory": "시즌별 기록",
+    "clubHistory": "구단 이력",
+    "season": "시즌",
+    "retired": "은퇴",
     "minutesPlayed": "출전 시간",
     "yellowCards": "경고",
     "redCards": "퇴장",
@@ -211,7 +217,7 @@
     "searchPlaceholder": "선수, 구단, 리그, 국가를 검색하세요...",
     "emptyQuery": "검색어를 입력하여 선수, 구단, 리그, 국가를 찾아보세요.",
     "noResults": "\"{query}\"에 대한 검색 결과가 없습니다",
-    "playersGroup": "선수",
+    "playersGroup": "인물",
     "clubsGroup": "구단",
     "leaguesGroup": "리그",
     "nationsGroup": "국가",
@@ -269,9 +275,11 @@
     "women": "여자"
   },
   "playersList": {
-    "title": "선수",
-    "subtitle": "{count}명 선수",
-    "searchPlaceholder": "선수, 구단, 국가를 검색하세요...",
+    "title": "인물",
+    "subtitle": "{count}명 인물",
+    "searchPlaceholder": "인물, 구단, 국가를 검색하세요...",
+    "active": "현역 선수",
+    "retired": "은퇴 선수",
     "men": "남자",
     "women": "여자"
   },
