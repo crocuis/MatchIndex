@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-03-11T07:56:20.085Z",
+  "selectedCount": 4,
+  "mergeEntries": [
+    {
+      "aliasSlug": "werder-bremen-germany",
+      "canonicalSlug": "sv-werder-bremen-germany",
+      "aliasName": "Werder Bremen",
+      "canonicalName": "SV Werder Bremen",
+      "countryCode": "DEU",
+      "leagueSlug": "1-bundesliga",
+      "reason": "promote German prefix fullname canonical slug"
+    },
+    {
+      "aliasSlug": "wolfsburg-germany",
+      "canonicalSlug": "vfl-wolfsburg-germany",
+      "aliasName": "Wolfsburg",
+      "canonicalName": "VfL Wolfsburg",
+      "countryCode": "DEU",
+      "leagueSlug": "1-bundesliga",
+      "reason": "promote German prefix fullname canonical slug"
+    },
+    {
+      "aliasSlug": "augsburg-germany",
+      "canonicalSlug": "fc-augsburg-germany",
+      "aliasName": "Augsburg",
+      "canonicalName": "FC Augsburg",
+      "countryCode": "DEU",
+      "leagueSlug": "1-bundesliga",
+      "reason": "promote German prefix fullname canonical slug"
+    },
+    {
+      "aliasSlug": "bochum-germany",
+      "canonicalSlug": "vfl-bochum-1848-germany",
+      "aliasName": "Bochum",
+      "canonicalName": "VfL Bochum 1848",
+      "countryCode": "DEU",
+      "leagueSlug": "1-bundesliga",
+      "reason": "promote German prefix fullname canonical slug"
+    }
+  ],
+  "mergeCommand": "node --experimental-strip-types scripts/apply-team-merge-batch-sequential.mts --surface-only --batch-file=logs/german-fullname-residual-batch-2.json"
+}

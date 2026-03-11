@@ -1,0 +1,1198 @@
+{
+  "provider": "capology",
+  "competition": "Italy Serie A",
+  "season": "2015",
+  "fetchedAt": "2026-03-08T15:30:27.118212+00:00",
+  "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+  "currencyCode": "EUR",
+  "rows": [
+    {
+      "playerName": "Gonzalo Higuaín",
+      "teamName": "Napoli",
+      "annualSalary": "€ 7,670,000",
+      "weeklyWage": "€ 147,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Gonzalo Higuaín",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 147,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 7,670,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 9,390,600",
+        "BIO POS.": "F",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Napoli"
+      }
+    },
+    {
+      "playerName": "Mario Balotelli",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 7,220,000",
+      "weeklyWage": "€ 138,846",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mario Balotelli",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 138,846",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 7,220,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 8,839,652",
+        "BIO POS.": "F",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Paul Pogba",
+      "teamName": "Juventus",
+      "annualSalary": "€ 6,260,000",
+      "weeklyWage": "€ 120,385",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Paul Pogba",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 120,385",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 6,260,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 7,664,297",
+        "BIO POS.": "M",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "France",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Sami Khedira",
+      "teamName": "Juventus",
+      "annualSalary": "€ 5,570,000",
+      "weeklyWage": "€ 107,115",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Sami Khedira",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 107,115",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 5,570,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 6,819,510",
+        "BIO POS.": "M",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Gianluigi Buffon",
+      "teamName": "Juventus",
+      "annualSalary": "€ 5,570,000",
+      "weeklyWage": "€ 107,115",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Gianluigi Buffon",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 107,115",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 5,570,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 6,819,510",
+        "BIO POS.": "K",
+        "BIO AGE": 37,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Juan Cuadrado",
+      "teamName": "Juventus",
+      "annualSalary": "€ 4,910,000",
+      "weeklyWage": "€ 94,423",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Juan Cuadrado",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 94,423",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,910,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 6,011,453",
+        "BIO POS.": "F",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Colombia",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Riccardo Montolivo",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 4,870,000",
+      "weeklyWage": "€ 93,654",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Riccardo Montolivo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 93,654",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,870,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,962,480",
+        "BIO POS.": "M",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Leonardo Bonucci",
+      "teamName": "Juventus",
+      "annualSalary": "€ 4,870,000",
+      "weeklyWage": "€ 93,654",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Leonardo Bonucci",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 93,654",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,870,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,962,480",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Giorgio Chiellini",
+      "teamName": "Juventus",
+      "annualSalary": "€ 4,870,000",
+      "weeklyWage": "€ 93,654",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Giorgio Chiellini",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 93,654",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,870,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,962,480",
+        "BIO POS.": "D",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Carlos Bacca",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 4,870,000",
+      "weeklyWage": "€ 93,654",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Carlos Bacca",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 93,654",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,870,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,962,480",
+        "BIO POS.": "F",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Colombia",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Claudio Marchisio",
+      "teamName": "Juventus",
+      "annualSalary": "€ 4,870,000",
+      "weeklyWage": "€ 93,654",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Claudio Marchisio",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 93,654",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,870,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,962,480",
+        "BIO POS.": "M",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Geoffrey Kondogbia",
+      "teamName": "Inter Milan",
+      "annualSalary": "€ 4,870,000",
+      "weeklyWage": "€ 93,654",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Geoffrey Kondogbia",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 93,654",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,870,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,962,480",
+        "BIO POS.": "M",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Central African Republic",
+        "CLUB": "Inter Milan"
+      }
+    },
+    {
+      "playerName": "Rodrigo Palacio",
+      "teamName": "Inter Milan",
+      "annualSalary": "€ 4,460,000",
+      "weeklyWage": "€ 85,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Rodrigo Palacio",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 85,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,460,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,460,505",
+        "BIO POS.": "F",
+        "BIO AGE": 33,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Inter Milan"
+      }
+    },
+    {
+      "playerName": "Camilo Zúñiga",
+      "teamName": "Bologna",
+      "annualSalary": "€ 4,460,000",
+      "weeklyWage": "€ 85,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Camilo Zúñiga",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 85,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,460,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,460,505",
+        "BIO POS.": "D",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Colombia",
+        "CLUB": "Bologna"
+      }
+    },
+    {
+      "playerName": "Mauro Icardi",
+      "teamName": "Inter Milan",
+      "annualSalary": "€ 4,460,000",
+      "weeklyWage": "€ 85,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mauro Icardi",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 85,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,460,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,460,505",
+        "BIO POS.": "F",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Inter Milan"
+      }
+    },
+    {
+      "playerName": "Paulo Dybala",
+      "teamName": "Juventus",
+      "annualSalary": "€ 4,190,000",
+      "weeklyWage": "€ 80,577",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Paulo Dybala",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 80,577",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,190,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,129,937",
+        "BIO POS.": "F",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Luiz Adriano",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 4,190,000",
+      "weeklyWage": "€ 80,577",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Luiz Adriano",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 80,577",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,190,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,129,937",
+        "BIO POS.": "F",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Stephan Lichtsteiner",
+      "teamName": "Juventus",
+      "annualSalary": "€ 3,910,000",
+      "weeklyWage": "€ 75,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Stephan Lichtsteiner",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 75,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,910,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,787,125",
+        "BIO POS.": "D",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "Switzerland",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Alex Sandro",
+      "teamName": "Juventus",
+      "annualSalary": "€ 3,910,000",
+      "weeklyWage": "€ 75,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Alex Sandro",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 75,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,910,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,787,125",
+        "BIO POS.": "D",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "José Callejón",
+      "teamName": "Napoli",
+      "annualSalary": "€ 3,610,000",
+      "weeklyWage": "€ 69,423",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "José Callejón",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 69,423",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,610,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,419,826",
+        "BIO POS.": "F",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Napoli"
+      }
+    },
+    {
+      "playerName": "Felipe Melo",
+      "teamName": "Inter Milan",
+      "annualSalary": "€ 3,610,000",
+      "weeklyWage": "€ 69,423",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Felipe Melo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 69,423",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,610,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,419,826",
+        "BIO POS.": "M",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Inter Milan"
+      }
+    },
+    {
+      "playerName": "Pepe Reina",
+      "teamName": "Napoli",
+      "annualSalary": "€ 3,520,000",
+      "weeklyWage": "€ 67,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Pepe Reina",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 67,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,520,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,309,636",
+        "BIO POS.": "K",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Napoli"
+      }
+    },
+    {
+      "playerName": "Alessio Cerci",
+      "teamName": "Genoa",
+      "annualSalary": "€ 3,480,000",
+      "weeklyWage": "€ 66,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Alessio Cerci",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 66,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,480,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,260,663",
+        "BIO POS.": "F",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Genoa"
+      }
+    },
+    {
+      "playerName": "Álvaro Morata",
+      "teamName": "Juventus",
+      "annualSalary": "€ 3,480,000",
+      "weeklyWage": "€ 66,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Álvaro Morata",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 66,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,480,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,260,663",
+        "BIO POS.": "F",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Andrea Barzagli",
+      "teamName": "Juventus",
+      "annualSalary": "€ 3,480,000",
+      "weeklyWage": "€ 66,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Andrea Barzagli",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 66,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,480,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,260,663",
+        "BIO POS.": "D",
+        "BIO AGE": 34,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Patrice Evra",
+      "teamName": "Juventus",
+      "annualSalary": "€ 3,480,000",
+      "weeklyWage": "€ 66,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Patrice Evra",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 66,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,480,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,260,663",
+        "BIO POS.": "D",
+        "BIO AGE": 34,
+        "BIO COUNTRY": "France",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Keisuke Honda",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 3,480,000",
+      "weeklyWage": "€ 66,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Keisuke Honda",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 66,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,480,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,260,663",
+        "BIO POS.": "M",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Japan",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Diego López",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 3,480,000",
+      "weeklyWage": "€ 66,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Diego López",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 66,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,480,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,260,663",
+        "BIO POS.": "K",
+        "BIO AGE": 33,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Jérémy Ménez",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 3,330,000",
+      "weeklyWage": "€ 64,038",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jérémy Ménez",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 64,038",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,330,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,077,014",
+        "BIO POS.": "F",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "France",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Andrea Ranocchia",
+      "teamName": "Sampdoria",
+      "annualSalary": "€ 3,330,000",
+      "weeklyWage": "€ 64,038",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Andrea Ranocchia",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 64,038",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,330,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,077,014",
+        "BIO POS.": "D",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Sampdoria"
+      }
+    },
+    {
+      "playerName": "Ignazio Abate",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 3,200,000",
+      "weeklyWage": "€ 61,538",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Ignazio Abate",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 61,538",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,200,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,917,851",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Alessandro Diamanti",
+      "teamName": "Atalanta",
+      "annualSalary": "€ 3,170,000",
+      "weeklyWage": "€ 60,962",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Alessandro Diamanti",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 60,962",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,170,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,881,121",
+        "BIO POS.": "F",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Atalanta"
+      }
+    },
+    {
+      "playerName": "Raúl Albiol",
+      "teamName": "Napoli",
+      "annualSalary": "€ 2,930,000",
+      "weeklyWage": "€ 56,346",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Raúl Albiol",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 56,346",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,930,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,587,283",
+        "BIO POS.": "D",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Napoli"
+      }
+    },
+    {
+      "playerName": "Miroslav Klose",
+      "teamName": "Lazio",
+      "annualSalary": "€ 2,780,000",
+      "weeklyWage": "€ 53,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Miroslav Klose",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 53,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,780,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,403,633",
+        "BIO POS.": "F",
+        "BIO AGE": 37,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Lazio"
+      }
+    },
+    {
+      "playerName": "Martín Cáceres",
+      "teamName": "Juventus",
+      "annualSalary": "€ 2,780,000",
+      "weeklyWage": "€ 53,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Martín Cáceres",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 53,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,780,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,403,633",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Uruguay",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Neto",
+      "teamName": "Juventus",
+      "annualSalary": "€ 2,780,000",
+      "weeklyWage": "€ 53,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Neto",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 53,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,780,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,403,633",
+        "BIO POS.": "K",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Alessio Romagnoli",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 2,780,000",
+      "weeklyWage": "€ 53,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Alessio Romagnoli",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 53,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,780,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,403,633",
+        "BIO POS.": "D",
+        "BIO AGE": 20,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Mario Suárez",
+      "teamName": "Fiorentina",
+      "annualSalary": "€ 2,780,000",
+      "weeklyWage": "€ 53,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mario Suárez",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 53,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,780,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,403,633",
+        "BIO POS.": "M",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Fiorentina"
+      }
+    },
+    {
+      "playerName": "Andrea Bertolacci",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 2,780,000",
+      "weeklyWage": "€ 53,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Andrea Bertolacci",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 53,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,780,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,403,633",
+        "BIO POS.": "M",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Antonio Nocerino",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 2,650,000",
+      "weeklyWage": "€ 50,962",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Antonio Nocerino",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 50,962",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,650,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,244,471",
+        "BIO POS.": "M",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Antonio Candreva",
+      "teamName": "Lazio",
+      "annualSalary": "€ 2,500,000",
+      "weeklyWage": "€ 48,077",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Antonio Candreva",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 48,077",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,500,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,060,821",
+        "BIO POS.": "F",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Lazio"
+      }
+    },
+    {
+      "playerName": "Simone Zaza",
+      "teamName": "Juventus",
+      "annualSalary": "€ 2,500,000",
+      "weeklyWage": "€ 48,077",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Simone Zaza",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 48,077",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,500,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,060,821",
+        "BIO POS.": "F",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Martín Montoya",
+      "teamName": "Inter Milan",
+      "annualSalary": "€ 2,410,000",
+      "weeklyWage": "€ 46,346",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Martín Montoya",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 46,346",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,410,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,950,632",
+        "BIO POS.": "D",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Inter Milan"
+      }
+    },
+    {
+      "playerName": "Cristian Tello",
+      "teamName": "Fiorentina",
+      "annualSalary": "€ 2,300,000",
+      "weeklyWage": "€ 44,231",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Cristian Tello",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 44,231",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,300,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,815,956",
+        "BIO POS.": "F",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Fiorentina"
+      }
+    },
+    {
+      "playerName": "Cristián Zapata",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 2,220,000",
+      "weeklyWage": "€ 42,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Cristián Zapata",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 42,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,220,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,718,009",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Colombia",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Kwadwo Asamoah",
+      "teamName": "Juventus",
+      "annualSalary": "€ 2,220,000",
+      "weeklyWage": "€ 42,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Kwadwo Asamoah",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 42,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,220,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,718,009",
+        "BIO POS.": "D",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Ghana",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Gary Medel",
+      "teamName": "Inter Milan",
+      "annualSalary": "€ 2,220,000",
+      "weeklyWage": "€ 42,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Gary Medel",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 42,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,220,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,718,009",
+        "BIO POS.": "M",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Chile",
+        "CLUB": "Inter Milan"
+      }
+    },
+    {
+      "playerName": "Mattia Destro",
+      "teamName": "Bologna",
+      "annualSalary": "€ 2,220,000",
+      "weeklyWage": "€ 42,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mattia Destro",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 42,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,220,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,718,009",
+        "BIO POS.": "F",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Bologna"
+      }
+    },
+    {
+      "playerName": "Pablo Armero",
+      "teamName": "Udinese",
+      "annualSalary": "€ 2,090,000",
+      "weeklyWage": "€ 40,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Pablo Armero",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 40,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,090,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,558,847",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Colombia",
+        "CLUB": "Udinese"
+      }
+    },
+    {
+      "playerName": "Andrea Poli",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 2,090,000",
+      "weeklyWage": "€ 40,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Andrea Poli",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 40,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,090,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,558,847",
+        "BIO POS.": "M",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Philippe Mexès",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 2,090,000",
+      "weeklyWage": "€ 40,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Philippe Mexès",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 40,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,090,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,558,847",
+        "BIO POS.": "D",
+        "BIO AGE": 33,
+        "BIO COUNTRY": "France",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Mattia De Sciglio",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 2,090,000",
+      "weeklyWage": "€ 40,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mattia De Sciglio",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 40,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,090,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,558,847",
+        "BIO POS.": "D",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Juraj Kucka",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 2,090,000",
+      "weeklyWage": "€ 40,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Juraj Kucka",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 40,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,090,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,558,847",
+        "BIO POS.": "M",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Slovakia",
+        "CLUB": "AC Milan"
+      }
+    },
+    {
+      "playerName": "Roberto Pereyra",
+      "teamName": "Juventus",
+      "annualSalary": "€ 2,090,000",
+      "weeklyWage": "€ 40,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Roberto Pereyra",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 40,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,090,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,558,847",
+        "BIO POS.": "M",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Jonathan de Guzmán",
+      "teamName": "Carpi",
+      "annualSalary": "€ 2,090,000",
+      "weeklyWage": "€ 40,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jonathan de Guzmán",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 40,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,090,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,558,847",
+        "BIO POS.": "M",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Netherlands",
+        "CLUB": "Carpi"
+      }
+    },
+    {
+      "playerName": "Khouma Babacar",
+      "teamName": "Fiorentina",
+      "annualSalary": "€ 2,090,000",
+      "weeklyWage": "€ 40,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Khouma Babacar",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 40,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,090,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,558,847",
+        "BIO POS.": "F",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Senegal",
+        "CLUB": "Fiorentina"
+      }
+    },
+    {
+      "playerName": "Stefano Sturaro",
+      "teamName": "Juventus",
+      "annualSalary": "€ 2,090,000",
+      "weeklyWage": "€ 40,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Stefano Sturaro",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 40,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,090,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,558,847",
+        "BIO POS.": "M",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Juventus"
+      }
+    },
+    {
+      "playerName": "Nathaniel Chalobah",
+      "teamName": "Napoli",
+      "annualSalary": "€ 2,020,000",
+      "weeklyWage": "€ 38,846",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Nathaniel Chalobah",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 38,846",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,020,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,473,144",
+        "BIO POS.": "M",
+        "BIO AGE": 20,
+        "BIO COUNTRY": "England",
+        "CLUB": "Napoli"
+      }
+    },
+    {
+      "playerName": "Emanuele Giaccherini",
+      "teamName": "Bologna",
+      "annualSalary": "€ 2,020,000",
+      "weeklyWage": "€ 38,846",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Emanuele Giaccherini",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 38,846",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,020,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,473,144",
+        "BIO POS.": "M",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Bologna"
+      }
+    },
+    {
+      "playerName": "Juan Jesus",
+      "teamName": "Inter Milan",
+      "annualSalary": "€ 1,940,000",
+      "weeklyWage": "€ 37,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Juan Jesus",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 37,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,940,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,375,197",
+        "BIO POS.": "D",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Inter Milan"
+      }
+    },
+    {
+      "playerName": "Lucas Biglia",
+      "teamName": "Lazio",
+      "annualSalary": "€ 1,940,000",
+      "weeklyWage": "€ 37,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Lucas Biglia",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 37,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,940,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,375,197",
+        "BIO POS.": "M",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Lazio"
+      }
+    },
+    {
+      "playerName": "Borja Valero",
+      "teamName": "Fiorentina",
+      "annualSalary": "€ 1,940,000",
+      "weeklyWage": "€ 37,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Borja Valero",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 37,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,940,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,375,197",
+        "BIO POS.": "M",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Fiorentina"
+      }
+    },
+    {
+      "playerName": "Ciro Immobile",
+      "teamName": "Torino",
+      "annualSalary": "€ 1,830,000",
+      "weeklyWage": "€ 35,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Ciro Immobile",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 35,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,830,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,240,521",
+        "BIO POS.": "F",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Torino"
+      }
+    },
+    {
+      "playerName": "Davide Santon",
+      "teamName": "Inter Milan",
+      "annualSalary": "€ 1,810,000",
+      "weeklyWage": "€ 34,808",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Davide Santon",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 34,808",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,810,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,216,035",
+        "BIO POS.": "D",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Inter Milan"
+      }
+    },
+    {
+      "playerName": "Jeison Murillo",
+      "teamName": "Inter Milan",
+      "annualSalary": "€ 1,810,000",
+      "weeklyWage": "€ 34,808",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jeison Murillo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 34,808",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,810,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,216,035",
+        "BIO POS.": "D",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Colombia",
+        "CLUB": "Inter Milan"
+      }
+    },
+    {
+      "playerName": "Luca Antonelli",
+      "teamName": "AC Milan",
+      "annualSalary": "€ 1,810,000",
+      "weeklyWage": "€ 34,808",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/it/serie-a/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Luca Antonelli",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 34,808",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,810,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,216,035",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "AC Milan"
+      }
+    }
+  ]
+}

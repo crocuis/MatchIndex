@@ -1,0 +1,22 @@
+{
+  "competitionSlug": "1-bundesliga",
+  "exportedAt": "2026-03-08T14:39:36.895Z",
+  "seasonSlug": "2023-2024",
+  "targets": [
+    {
+      "competitionSeasonId": "1",
+      "contractId": "15",
+      "playerName": "Florian Wirtz",
+      "playerNames": [
+        "Florian Wirtz"
+      ],
+      "playerSlug": "florian-wirtz",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    }
+  ]
+}

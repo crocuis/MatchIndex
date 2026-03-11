@@ -1,0 +1,3935 @@
+{
+  "provider": "transfermarkt",
+  "competition": null,
+  "season": null,
+  "fetchedAt": "2026-03-10T13:17:47.194667+00:00",
+  "rows": [
+    {
+      "playerSlug": "abdoulaye-keita",
+      "playerName": "Abdoulaye Keita",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "2002-09-01",
+      "heightCm": 186,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-04",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/abdoulaye-keita/profil/spieler/949489",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "01/09/2002 (23)",
+        "heightText": "1,86 m",
+        "footText": null,
+        "joinedText": "04/07/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "abolfazl-jalali",
+      "playerName": "Abolfazl Jalali",
+      "nationalities": [
+        "Iran"
+      ],
+      "dateOfBirth": "1998-06-26",
+      "heightCm": 177,
+      "preferredFoot": null,
+      "contractStartDate": "2021-08-31",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/abolfazl-jalali/profil/spieler/599240",
+      "raw": {
+        "citizenshipText": "Iran",
+        "dateOfBirthText": "26/06/1998 (27)",
+        "heightText": "1,77 m",
+        "footText": null,
+        "joinedText": "31/08/2021",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "adama-ba",
+      "playerName": "Adama Ba",
+      "nationalities": [
+        "France"
+      ],
+      "dateOfBirth": "1992-06-18",
+      "heightCm": 187,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/adama-soumaoro/profil/spieler/126673",
+      "raw": {
+        "citizenshipText": "France",
+        "dateOfBirthText": "18/06/1992 (33)",
+        "heightText": "1,87 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "adnane-tighadouini",
+      "playerName": "Adnane Tighadouini",
+      "nationalities": [
+        "Morocco"
+      ],
+      "dateOfBirth": "1992-10-30",
+      "heightCm": 180,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/adnane-tighadouini/profil/spieler/185570",
+      "raw": {
+        "citizenshipText": "Morocco",
+        "dateOfBirthText": "30/10/1992 (33)",
+        "heightText": "1,80 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "ahmad-nourollahi",
+      "playerName": "Ahmad Nourollahi",
+      "nationalities": [
+        "Iran"
+      ],
+      "dateOfBirth": "1993-02-01",
+      "heightCm": 185,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-20",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/ahmad-nourollahi/profil/spieler/327140",
+      "raw": {
+        "citizenshipText": "Iran",
+        "dateOfBirthText": "01/02/1993 (33)",
+        "heightText": "1,85 m",
+        "footText": null,
+        "joinedText": "20/07/2025",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "jacques-alaixys-romao",
+      "playerName": "Alaixys Romao",
+      "nationalities": [
+        "Togo"
+      ],
+      "dateOfBirth": "1984-01-18",
+      "heightCm": 180,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-16",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/alaixys-romao/profil/spieler/40014",
+      "raw": {
+        "citizenshipText": "Togo",
+        "dateOfBirthText": "18/01/1984 (42)",
+        "heightText": "1,80 m",
+        "footText": null,
+        "joinedText": "16/07/2025",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "alberto-guitian-ceballos",
+      "playerName": "Alberto Guitián",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1990-07-29",
+      "heightCm": 181,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/alberto-guitian/profil/spieler/230895",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "29/07/1990 (35)",
+        "heightText": "1,81 m",
+        "footText": null,
+        "joinedText": "01/07/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "albert-rafetraniaina",
+      "playerName": "Albert Rafetraniaina",
+      "nationalities": [
+        "Madagascar"
+      ],
+      "dateOfBirth": "1996-09-09",
+      "heightCm": 176,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/albert-rafetraniaina/profil/spieler/236783",
+      "raw": {
+        "citizenshipText": "Madagascar",
+        "dateOfBirthText": "09/09/1996 (29)",
+        "heightText": "1,76 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "aleksandar-tonev",
+      "playerName": "Aleksandar Tonev",
+      "nationalities": [
+        "Bulgaria"
+      ],
+      "dateOfBirth": "1990-02-03",
+      "heightCm": 178,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/aleksandar-tonev/profil/spieler/87282",
+      "raw": {
+        "citizenshipText": "Bulgaria",
+        "dateOfBirthText": "03/02/1990 (36)",
+        "heightText": "1,78 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "ali-nadhoim-ahamada",
+      "playerName": "Ali Ahamada",
+      "nationalities": [
+        "Comoros"
+      ],
+      "dateOfBirth": "1991-08-19",
+      "heightCm": 189,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/ali-ahamada/profil/spieler/126767",
+      "raw": {
+        "citizenshipText": "Comoros",
+        "dateOfBirthText": "19/08/1991 (34)",
+        "heightText": "1,89 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "ali-gholizadeh",
+      "playerName": "Ali Gholizadeh",
+      "nationalities": [
+        "Iran"
+      ],
+      "dateOfBirth": "1996-03-10",
+      "heightCm": 175,
+      "preferredFoot": null,
+      "contractStartDate": "2023-07-11",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/ali-gholizadeh/profil/spieler/294772",
+      "raw": {
+        "citizenshipText": "Iran",
+        "dateOfBirthText": "10/03/1996 (30)",
+        "heightText": "1,75 m",
+        "footText": null,
+        "joinedText": "11/07/2023",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "ali-karimi",
+      "playerName": "Ali Karimi",
+      "nationalities": [
+        "Iran"
+      ],
+      "dateOfBirth": "1978-11-08",
+      "heightCm": null,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/ali-karimi/profil/spieler/15412",
+      "raw": {
+        "citizenshipText": "Iran",
+        "dateOfBirthText": "08/11/1978 (47)",
+        "heightText": "N/A",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "alvaro-traver-navarrete",
+      "playerName": "Álvaro Traver",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1993-04-01",
+      "heightCm": 187,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/alvaro-traver/profil/spieler/253153",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "01/04/1993 (32)",
+        "heightText": "1,87 m",
+        "footText": null,
+        "joinedText": "01/07/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "amir-dervisevic",
+      "playerName": "Amir Derviševič",
+      "nationalities": [
+        "Slovenia"
+      ],
+      "dateOfBirth": "1992-07-04",
+      "heightCm": 195,
+      "preferredFoot": null,
+      "contractStartDate": "2025-02-01",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/amir-dervisevic/profil/spieler/148940",
+      "raw": {
+        "citizenshipText": "Slovenia",
+        "dateOfBirthText": "04/07/1992 (33)",
+        "heightText": "1,95 m",
+        "footText": null,
+        "joinedText": "01/02/2025",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "amos-youga",
+      "playerName": "Amos Youga",
+      "nationalities": [
+        "Central African Republic"
+      ],
+      "dateOfBirth": "1992-12-08",
+      "heightCm": 186,
+      "preferredFoot": null,
+      "contractStartDate": "2025-01-29",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/amos-youga/profil/spieler/203540",
+      "raw": {
+        "citizenshipText": "Central African Republic",
+        "dateOfBirthText": "08/12/1992 (33)",
+        "heightText": "1,86 m",
+        "footText": null,
+        "joinedText": "29/01/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "ander-gayoso-reina",
+      "playerName": "Ander Gayoso",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1993-07-20",
+      "heightCm": 171,
+      "preferredFoot": null,
+      "contractStartDate": "2024-07-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/ander-gayoso/profil/spieler/333347",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "20/07/1993 (32)",
+        "heightText": "1,71 m",
+        "footText": null,
+        "joinedText": "01/07/2024",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "anel-ahmedhodzic",
+      "playerName": "Anel Ahmedhodžić",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1999-03-26",
+      "heightCm": 190,
+      "preferredFoot": null,
+      "contractStartDate": "2025-08-05",
+      "contractEndDate": "2029-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/anel-ahmedhodzic/profil/spieler/377468",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "26/03/1999 (26)",
+        "heightText": "1,90 m",
+        "footText": null,
+        "joinedText": "05/08/2025",
+        "contractExpiresText": "30/06/2029"
+      }
+    },
+    {
+      "playerSlug": "anthony-william-hernandez-gonzalez",
+      "playerName": "Anthony William Hernández González",
+      "nationalities": [
+        "Costa Rica"
+      ],
+      "dateOfBirth": "2001-10-11",
+      "heightCm": 179,
+      "preferredFoot": null,
+      "contractStartDate": "2023-07-17",
+      "contractEndDate": "2028-12-31",
+      "sourceUrl": "https://www.transfermarkt.com/anthony-hernandez/profil/spieler/1035805",
+      "raw": {
+        "citizenshipText": "Costa Rica",
+        "dateOfBirthText": "11/10/2001 (24)",
+        "heightText": "1,79 m",
+        "footText": null,
+        "joinedText": "17/07/2023",
+        "contractExpiresText": "31/12/2028"
+      }
+    },
+    {
+      "playerSlug": "antonio-jesus-cotan-perez",
+      "playerName": "Antonio Cotán",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1995-09-19",
+      "heightCm": 175,
+      "preferredFoot": null,
+      "contractStartDate": "2026-01-12",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/antonio-cotan/profil/spieler/199330",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "19/09/1995 (30)",
+        "heightText": "1,75 m",
+        "footText": null,
+        "joinedText": "12/01/2026",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "aras-ozbiliz",
+      "playerName": "Aras Özbiliz",
+      "nationalities": [
+        "Armenia"
+      ],
+      "dateOfBirth": "1990-03-09",
+      "heightCm": 175,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/aras-ozbiliz/profil/spieler/124891",
+      "raw": {
+        "citizenshipText": "Armenia",
+        "dateOfBirthText": "09/03/1990 (36)",
+        "heightText": "1,75 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "arber-hoxha",
+      "playerName": "Arbër Hoxha",
+      "nationalities": [
+        "Albania"
+      ],
+      "dateOfBirth": "1998-10-06",
+      "heightCm": 185,
+      "preferredFoot": null,
+      "contractStartDate": "2024-01-18",
+      "contractEndDate": "2029-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/arber-hoxha/profil/spieler/458367",
+      "raw": {
+        "citizenshipText": "Albania",
+        "dateOfBirthText": "06/10/1998 (27)",
+        "heightText": "1,85 m",
+        "footText": null,
+        "joinedText": "18/01/2024",
+        "contractExpiresText": "30/06/2029"
+      }
+    },
+    {
+      "playerSlug": "aristote-n-dongala",
+      "playerName": "Aristote N'Dongala",
+      "nationalities": [
+        "DR Congo"
+      ],
+      "dateOfBirth": "1994-01-19",
+      "heightCm": 174,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/aristote-ndongala/profil/spieler/255930",
+      "raw": {
+        "citizenshipText": "DR Congo",
+        "dateOfBirthText": "19/01/1994 (32)",
+        "heightText": "1,74 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "artur-ionita",
+      "playerName": "Artur Ioniţă",
+      "nationalities": [
+        "Moldova"
+      ],
+      "dateOfBirth": "1990-08-17",
+      "heightCm": 184,
+      "preferredFoot": null,
+      "contractStartDate": "2026-01-08",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/artur-ionita/profil/spieler/98888",
+      "raw": {
+        "citizenshipText": "Moldova",
+        "dateOfBirthText": "17/08/1990 (35)",
+        "heightText": "1,84 m",
+        "footText": null,
+        "joinedText": "08/01/2026",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "felix-asdrubal-padron-hernandez",
+      "playerName": "Asdrúbal Padrón",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1991-03-13",
+      "heightCm": 173,
+      "preferredFoot": null,
+      "contractStartDate": "2023-07-18",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/asdrubal-padron/profil/spieler/274771",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "13/03/1991 (34)",
+        "heightText": "1,73 m",
+        "footText": null,
+        "joinedText": "18/07/2023",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "ashot-khachatryan",
+      "playerName": "Ashot Khachatryan",
+      "nationalities": [
+        "Armenia"
+      ],
+      "dateOfBirth": "1987-01-22",
+      "heightCm": 178,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/ashot-khachatryan/profil/spieler/252581",
+      "raw": {
+        "citizenshipText": "Armenia",
+        "dateOfBirthText": "22/01/1987 (39)",
+        "heightText": "1,78 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "asier-etxaburu-diz",
+      "playerName": "Asier Etxaburu",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1994-04-07",
+      "heightCm": 181,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/asier-etxaburu/profil/spieler/255496",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "07/04/1994 (31)",
+        "heightText": "1,81 m",
+        "footText": null,
+        "joinedText": "01/07/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "asmir-begovic",
+      "playerName": "Asmir Begović",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1987-06-20",
+      "heightCm": 199,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-29",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/asmir-begovic/profil/spieler/33873",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "20/06/1987 (38)",
+        "heightText": "1,99 m",
+        "footText": null,
+        "joinedText": "29/07/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "baba-traore",
+      "playerName": "Baba Traore",
+      "nationalities": [
+        "Mali"
+      ],
+      "dateOfBirth": "1996-02-21",
+      "heightCm": 181,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/baba-traore/profil/spieler/371926",
+      "raw": {
+        "citizenshipText": "Mali",
+        "dateOfBirthText": "21/02/1996 (30)",
+        "heightText": "1,81 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "billy-ketkeophomphone",
+      "playerName": "Billy Ketkeophomphone",
+      "nationalities": [
+        "Laos"
+      ],
+      "dateOfBirth": "1990-03-24",
+      "heightCm": 180,
+      "preferredFoot": null,
+      "contractStartDate": "2023-08-24",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/billy-ketkeophomphone/profil/spieler/134712",
+      "raw": {
+        "citizenshipText": "Laos",
+        "dateOfBirthText": "24/03/1990 (35)",
+        "heightText": "1,80 m",
+        "footText": null,
+        "joinedText": "24/08/2023",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "borja-galan-gonzalez",
+      "playerName": "Borja Galán",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1993-04-26",
+      "heightCm": 182,
+      "preferredFoot": null,
+      "contractStartDate": "2024-07-01",
+      "contractEndDate": "2028-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/borja-galan/profil/spieler/221295",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "26/04/1993 (32)",
+        "heightText": "1,82 m",
+        "footText": null,
+        "joinedText": "01/07/2024",
+        "contractExpiresText": "30/06/2028"
+      }
+    },
+    {
+      "playerSlug": "francisco-borja-lasso-de-la-vega-gayan",
+      "playerName": "Borja Lasso",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1994-01-01",
+      "heightCm": 178,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/borja-lasso/profil/spieler/268949",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "01/01/1994 (32)",
+        "heightText": "1,78 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "brendan-joel-zibusiso-galloway",
+      "playerName": "Brendan Galloway",
+      "nationalities": [
+        "Zimbabwe"
+      ],
+      "dateOfBirth": "1996-03-17",
+      "heightCm": 186,
+      "preferredFoot": null,
+      "contractStartDate": "2021-07-21",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/brendan-galloway/profil/spieler/208244",
+      "raw": {
+        "citizenshipText": "Zimbabwe",
+        "dateOfBirthText": "17/03/1996 (29)",
+        "heightText": "1,86 m",
+        "footText": null,
+        "joinedText": "21/07/2021",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "carl-cort",
+      "playerName": "Carl Cort",
+      "nationalities": [
+        "Guyana"
+      ],
+      "dateOfBirth": "1977-11-01",
+      "heightCm": 193,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/carl-cort/profil/spieler/3093",
+      "raw": {
+        "citizenshipText": "Guyana",
+        "dateOfBirthText": "01/11/1977 (48)",
+        "heightText": "1,93 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "francisco-carlos-gonzalez-cabrera",
+      "playerName": "Carlos González",
+      "nationalities": [
+        "Uruguay"
+      ],
+      "dateOfBirth": "1924-08-22",
+      "heightCm": null,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/juan-carlos-gonzalez/profil/spieler/248084",
+      "raw": {
+        "citizenshipText": "Uruguay",
+        "dateOfBirthText": "22/08/1924",
+        "heightText": null,
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "carlos-manuel-martinez-castro",
+      "playerName": "Carlos Martínez",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1986-04-09",
+      "heightCm": 189,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/carlos-martinez/profil/spieler/58074",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "09/04/1986 (39)",
+        "heightText": "1,89 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "rodrigue-casimir-ninga",
+      "playerName": "Casimir Ninga",
+      "nationalities": [
+        "Chad"
+      ],
+      "dateOfBirth": "1993-05-17",
+      "heightCm": 186,
+      "preferredFoot": null,
+      "contractStartDate": "2026-01-09",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/casimir-ninga/profil/spieler/392810",
+      "raw": {
+        "citizenshipText": "Chad",
+        "dateOfBirthText": "17/05/1993 (32)",
+        "heightText": "1,86 m",
+        "footText": null,
+        "joinedText": "09/01/2026",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "cazim-suljic",
+      "playerName": "Cazim Suljic",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1996-10-29",
+      "heightCm": 178,
+      "preferredFoot": null,
+      "contractStartDate": "2024-07-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/cazim-suljic/profil/spieler/348431",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "29/10/1996 (29)",
+        "heightText": "1,78 m",
+        "footText": null,
+        "joinedText": "01/07/2024",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "cedric-yambere",
+      "playerName": "Cédric Yambéré",
+      "nationalities": [
+        "Central African Republic"
+      ],
+      "dateOfBirth": "1990-11-06",
+      "heightCm": 190,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/cedric-yambere/profil/spieler/291140",
+      "raw": {
+        "citizenshipText": "Central African Republic",
+        "dateOfBirthText": "06/11/1990 (35)",
+        "heightText": "1,90 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "chaker-alhadhur",
+      "playerName": "Chaker Alhadhur",
+      "nationalities": [
+        "Comoros"
+      ],
+      "dateOfBirth": "1991-12-04",
+      "heightCm": 172,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/chaker-alhadhur/profil/spieler/178540",
+      "raw": {
+        "citizenshipText": "Comoros",
+        "dateOfBirthText": "04/12/1991 (34)",
+        "heightText": "1,72 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "charlison-benschop",
+      "playerName": "Charlison Benschop",
+      "nationalities": [
+        "Curacao"
+      ],
+      "dateOfBirth": "1989-08-21",
+      "heightCm": 191,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/charlison-benschop/profil/spieler/66783",
+      "raw": {
+        "citizenshipText": "Curacao",
+        "dateOfBirthText": "21/08/1989 (36)",
+        "heightText": "1,91 m",
+        "footText": null,
+        "joinedText": "01/07/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "chencho-gyeltshen",
+      "playerName": "Chencho Gyeltshen",
+      "nationalities": [
+        "Bhutan"
+      ],
+      "dateOfBirth": "1996-05-10",
+      "heightCm": 173,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/chencho-gyeltshen/profil/spieler/364437",
+      "raw": {
+        "citizenshipText": "Bhutan",
+        "dateOfBirthText": "10/05/1996 (29)",
+        "heightText": "1,73 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "christian-kouakou-yao",
+      "playerName": "Christian Kouakou",
+      "nationalities": [
+        "Cote d'Ivoire"
+      ],
+      "dateOfBirth": "1991-03-01",
+      "heightCm": 182,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/christian-kouakou/profil/spieler/230221",
+      "raw": {
+        "citizenshipText": "Cote d'Ivoire",
+        "dateOfBirthText": "01/03/1991 (35)",
+        "heightText": "1,82 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "rhu-endly-martina",
+      "playerName": "Cuco Martina",
+      "nationalities": [
+        "Curacao"
+      ],
+      "dateOfBirth": "1989-09-25",
+      "heightCm": 185,
+      "preferredFoot": null,
+      "contractStartDate": "2025-05-09",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/cuco-martina/profil/spieler/91251",
+      "raw": {
+        "citizenshipText": "Curacao",
+        "dateOfBirthText": "25/09/1989 (36)",
+        "heightText": "1,85 m",
+        "footText": null,
+        "joinedText": "09/05/2025",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "daniel-alonso-chacon-salas",
+      "playerName": "Daniel Alonso Chacón Salas",
+      "nationalities": [
+        "Costa Rica"
+      ],
+      "dateOfBirth": "2001-04-11",
+      "heightCm": 186,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/daniel-chacon/profil/spieler/524992",
+      "raw": {
+        "citizenshipText": "Costa Rica",
+        "dateOfBirthText": "11/04/2001 (24)",
+        "heightText": "1,86 m",
+        "footText": null,
+        "joinedText": "01/07/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "daniel-pavlovic",
+      "playerName": "Daniel Pavlovic",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1988-04-22",
+      "heightCm": 183,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/daniel-pavlovic/profil/spieler/19671",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "22/04/1988 (37)",
+        "heightText": "1,83 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "daniel-lorenzo-lorenzo",
+      "playerName": "Dani Lorenzo",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1993-04-20",
+      "heightCm": 188,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/dani-lorenzo/profil/spieler/282725",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "20/04/1993 (32)",
+        "heightText": "1,88 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "danny-higginbotham",
+      "playerName": "Danny Higginbotham",
+      "nationalities": [
+        "Gibraltar"
+      ],
+      "dateOfBirth": "1978-12-29",
+      "heightCm": 185,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/danny-higginbotham/profil/spieler/3686",
+      "raw": {
+        "citizenshipText": "Gibraltar",
+        "dateOfBirthText": "29/12/1978 (47)",
+        "heightText": "1,85 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "david-goldar-gomez",
+      "playerName": "David Goldar",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1994-09-15",
+      "heightCm": 184,
+      "preferredFoot": null,
+      "contractStartDate": "2023-08-22",
+      "contractEndDate": "2027-05-31",
+      "sourceUrl": "https://www.transfermarkt.com/david-goldar/profil/spieler/278357",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "15/09/1994 (31)",
+        "heightText": "1,84 m",
+        "footText": null,
+        "joinedText": "22/08/2023",
+        "contractExpiresText": "31/05/2027"
+      }
+    },
+    {
+      "playerSlug": "david-gomez-vazquez",
+      "playerName": "David Gómez Vázquez",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1994-04-11",
+      "heightCm": 184,
+      "preferredFoot": null,
+      "contractStartDate": "2021-07-01",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/david-gomez/profil/spieler/165004",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "11/04/1994 (31)",
+        "heightText": "1,84 m",
+        "footText": null,
+        "joinedText": "01/07/2021",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "angel-de-la-calzada-ramos",
+      "playerName": "De la Calzada",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1994-09-02",
+      "heightCm": 191,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-04",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/angel-de-la-calzada/profil/spieler/233072",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "02/09/1994 (31)",
+        "heightText": "1,91 m",
+        "footText": null,
+        "joinedText": "04/07/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "denis-huseinbasic",
+      "playerName": "Denis Huseinbašić",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "2001-07-03",
+      "heightCm": 184,
+      "preferredFoot": null,
+      "contractStartDate": "2022-07-01",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/denis-huseinbasic/profil/spieler/678479",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "03/07/2001 (24)",
+        "heightText": "1,84 m",
+        "footText": null,
+        "joinedText": "01/07/2022",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "diego-caballo-alonso",
+      "playerName": "Diego Caballo",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1994-02-17",
+      "heightCm": 171,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/diego-caballo/profil/spieler/162036",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "17/02/1994 (32)",
+        "heightText": "1,71 m",
+        "footText": null,
+        "joinedText": "01/07/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "djamel-bakar",
+      "playerName": "Djamel Bakar",
+      "nationalities": [
+        "Comoros"
+      ],
+      "dateOfBirth": "1989-04-06",
+      "heightCm": 171,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/djamel-bakar/profil/spieler/49872",
+      "raw": {
+        "citizenshipText": "Comoros",
+        "dateOfBirthText": "06/04/1989 (36)",
+        "heightText": "1,71 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "djene-dakonam-ortega",
+      "playerName": "Djene Dakonam",
+      "nationalities": [
+        "Togo"
+      ],
+      "dateOfBirth": "1991-12-31",
+      "heightCm": 178,
+      "preferredFoot": null,
+      "contractStartDate": "2017-07-24",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/dakonam-djene/profil/spieler/221150",
+      "raw": {
+        "citizenshipText": "Togo",
+        "dateOfBirthText": "31/12/1991 (34)",
+        "heightText": "1,78 m",
+        "footText": null,
+        "joinedText": "24/07/2017",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "donovan-leon",
+      "playerName": "Donovan Léon",
+      "nationalities": [
+        "French Guiana"
+      ],
+      "dateOfBirth": "1992-11-03",
+      "heightCm": 187,
+      "preferredFoot": null,
+      "contractStartDate": "2020-07-01",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/donovan-leon/profil/spieler/170911",
+      "raw": {
+        "citizenshipText": "French Guiana",
+        "dateOfBirthText": "03/11/1992 (33)",
+        "heightText": "1,87 m",
+        "footText": null,
+        "joinedText": "01/07/2020",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "douglas-andrey-lopez-araya",
+      "playerName": "Douglas Andrey López Araya",
+      "nationalities": [
+        "Costa Rica"
+      ],
+      "dateOfBirth": "1998-09-21",
+      "heightCm": 180,
+      "preferredFoot": null,
+      "contractStartDate": "2023-07-01",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/douglas-lopez/profil/spieler/580201",
+      "raw": {
+        "citizenshipText": "Costa Rica",
+        "dateOfBirthText": "21/09/1998 (27)",
+        "heightText": "1,80 m",
+        "footText": null,
+        "joinedText": "01/07/2023",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "dylan-saint-louis",
+      "playerName": "Dylan Saint-Louis",
+      "nationalities": [
+        "Congo"
+      ],
+      "dateOfBirth": "1995-04-26",
+      "heightCm": 185,
+      "preferredFoot": null,
+      "contractStartDate": "2026-01-23",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/dylan-saint-louis/profil/spieler/355370",
+      "raw": {
+        "citizenshipText": "Congo",
+        "dateOfBirthText": "26/04/1995 (30)",
+        "heightText": "1,85 m",
+        "footText": null,
+        "joinedText": "23/01/2026",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "edin-dzeko",
+      "playerName": "Edin Džeko",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1986-03-17",
+      "heightCm": 193,
+      "preferredFoot": null,
+      "contractStartDate": "2026-01-22",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/edin-dzeko/profil/spieler/28396",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "17/03/1986 (39)",
+        "heightText": "1,93 m",
+        "footText": null,
+        "joinedText": "22/01/2026",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "edvinas-gertmonas",
+      "playerName": "Edvinas Gertmonas",
+      "nationalities": [
+        "Lithuania"
+      ],
+      "dateOfBirth": "1996-06-01",
+      "heightCm": 192,
+      "preferredFoot": null,
+      "contractStartDate": "2024-03-05",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/edvinas-gertmonas/profil/spieler/229292",
+      "raw": {
+        "citizenshipText": "Lithuania",
+        "dateOfBirthText": "01/06/1996 (29)",
+        "heightText": "1,92 m",
+        "footText": null,
+        "joinedText": "05/03/2024",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "emir-spahic",
+      "playerName": "Emir Spahić",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1980-08-18",
+      "heightCm": 186,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/emir-spahic/profil/spieler/25812",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "18/08/1980 (45)",
+        "heightText": "1,86 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "emmanuel-adebayor",
+      "playerName": "Emmanuel Adebayor",
+      "nationalities": [
+        "Togo"
+      ],
+      "dateOfBirth": "1984-02-26",
+      "heightCm": 192,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/emmanuel-adebayor/profil/spieler/8883",
+      "raw": {
+        "citizenshipText": "Togo",
+        "dateOfBirthText": "26/02/1984 (42)",
+        "heightText": "1,92 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "eneko-capilla-gonzalez",
+      "playerName": "Eneko Capilla",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1995-06-13",
+      "heightCm": 167,
+      "preferredFoot": null,
+      "contractStartDate": "2024-07-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/eneko-capilla/profil/spieler/289241",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "13/06/1995 (30)",
+        "heightText": "1,67 m",
+        "footText": null,
+        "joinedText": "01/07/2024",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "enes-sipovic",
+      "playerName": "Enes Sipović",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1990-09-11",
+      "heightCm": 198,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/enes-sipovic/profil/spieler/104219",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "11/09/1990 (35)",
+        "heightText": "1,98 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "erin-jorge-gomes-pinheiro",
+      "playerName": "Erin Pinheiro",
+      "nationalities": [
+        "Cape Verde"
+      ],
+      "dateOfBirth": "1997-07-15",
+      "heightCm": 190,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/cicin/profil/spieler/395447",
+      "raw": {
+        "citizenshipText": "Cape Verde",
+        "dateOfBirthText": "15/07/1997 (28)",
+        "heightText": "1,90 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "ermedin-demirovic",
+      "playerName": "Ermedin Demirović",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1998-03-25",
+      "heightCm": 185,
+      "preferredFoot": null,
+      "contractStartDate": "2024-07-16",
+      "contractEndDate": "2028-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/ermedin-demirovic/profil/spieler/335457",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "25/03/1998 (27)",
+        "heightText": "1,85 m",
+        "footText": null,
+        "joinedText": "16/07/2024",
+        "contractExpiresText": "30/06/2028"
+      }
+    },
+    {
+      "playerSlug": "ermin-bicakcic",
+      "playerName": "Ermin Bičakčić",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1990-01-24",
+      "heightCm": 185,
+      "preferredFoot": null,
+      "contractStartDate": "2026-02-12",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/ermin-bicakcic/profil/spieler/51676",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "24/01/1990 (36)",
+        "heightText": "1,85 m",
+        "footText": null,
+        "joinedText": "12/02/2026",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "ervin-zukanovic",
+      "playerName": "Ervin Zukanović",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1987-02-11",
+      "heightCm": 188,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/ervin-zukanovic/profil/spieler/44059",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "11/02/1987 (39)",
+        "heightText": "1,88 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "esteban-alvarado-brown",
+      "playerName": "Esteban Alvarado Brown",
+      "nationalities": [
+        "Costa Rica"
+      ],
+      "dateOfBirth": "1989-04-28",
+      "heightCm": 193,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/esteban-alvarado/profil/spieler/128502",
+      "raw": {
+        "citizenshipText": "Costa Rica",
+        "dateOfBirthText": "28/04/1989 (36)",
+        "heightText": "1,93 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "eyal-berkovic",
+      "playerName": "Eyal Berkovic",
+      "nationalities": [
+        "Israel"
+      ],
+      "dateOfBirth": "1972-04-02",
+      "heightCm": 170,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/eyal-berkovic/profil/spieler/3231",
+      "raw": {
+        "citizenshipText": "Israel",
+        "dateOfBirthText": "02/04/1972 (53)",
+        "heightText": "1,70 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "florent-malouda",
+      "playerName": "Florent Malouda",
+      "nationalities": [
+        "France"
+      ],
+      "dateOfBirth": "1980-06-13",
+      "heightCm": 177,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/florent-malouda/profil/spieler/5461",
+      "raw": {
+        "citizenshipText": "France",
+        "dateOfBirthText": "13/06/1980 (45)",
+        "heightText": "1,77 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "floyd-ayite",
+      "playerName": "Floyd Ayité",
+      "nationalities": [
+        "Togo"
+      ],
+      "dateOfBirth": "1988-12-15",
+      "heightCm": 175,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/floyd-ayite/profil/spieler/77974",
+      "raw": {
+        "citizenshipText": "Togo",
+        "dateOfBirthText": "15/12/1988 (37)",
+        "heightText": "1,75 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "francisco-jose-villalba-rodrigo",
+      "playerName": "Fran Villalba",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1998-05-11",
+      "heightCm": 168,
+      "preferredFoot": null,
+      "contractStartDate": "2024-07-07",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/fran-villalba/profil/spieler/311680",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "11/05/1998 (27)",
+        "heightText": "1,68 m",
+        "footText": null,
+        "joinedText": "07/07/2024",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "gael-andonian",
+      "playerName": "Gaël Andonian",
+      "nationalities": [
+        "Armenia"
+      ],
+      "dateOfBirth": "1995-02-07",
+      "heightCm": 185,
+      "preferredFoot": null,
+      "contractStartDate": "2022-07-01",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/gael-andonian/profil/spieler/182811",
+      "raw": {
+        "citizenshipText": "Armenia",
+        "dateOfBirthText": "07/02/1995 (31)",
+        "heightText": "1,85 m",
+        "footText": null,
+        "joinedText": "01/07/2022",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "gen-shoji",
+      "playerName": "Gen Shōji",
+      "nationalities": [
+        "Japan"
+      ],
+      "dateOfBirth": "1992-12-11",
+      "heightCm": 182,
+      "preferredFoot": null,
+      "contractStartDate": "2024-01-08",
+      "contractEndDate": "2026-01-31",
+      "sourceUrl": "https://www.transfermarkt.com/gen-shoji/profil/spieler/164277",
+      "raw": {
+        "citizenshipText": "Japan",
+        "dateOfBirthText": "11/12/1992 (33)",
+        "heightText": "1,82 m",
+        "footText": null,
+        "joinedText": "08/01/2024",
+        "contractExpiresText": "31/01/2026"
+      }
+    },
+    {
+      "playerSlug": "geoffrey-kondogbia",
+      "playerName": "Geoffrey Kondogbia",
+      "nationalities": [
+        "Central African Republic"
+      ],
+      "dateOfBirth": "1993-02-15",
+      "heightCm": 188,
+      "preferredFoot": null,
+      "contractStartDate": "2023-07-01",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/geoffrey-kondogbia/profil/spieler/127189",
+      "raw": {
+        "citizenshipText": "Central African Republic",
+        "dateOfBirthText": "15/02/1993 (33)",
+        "heightText": "1,88 m",
+        "footText": null,
+        "joinedText": "01/07/2023",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "gerson-torres-barrantes",
+      "playerName": "Gerson Torres Barrantes",
+      "nationalities": [
+        "Costa Rica"
+      ],
+      "dateOfBirth": "1997-08-28",
+      "heightCm": 176,
+      "preferredFoot": null,
+      "contractStartDate": "2025-01-01",
+      "contractEndDate": "2026-12-31",
+      "sourceUrl": "https://www.transfermarkt.com/gerson-torres/profil/spieler/372737",
+      "raw": {
+        "citizenshipText": "Costa Rica",
+        "dateOfBirthText": "28/08/1997 (28)",
+        "heightText": "1,76 m",
+        "footText": null,
+        "joinedText": "01/01/2025",
+        "contractExpiresText": "31/12/2026"
+      }
+    },
+    {
+      "playerSlug": "giedrius-arlauskis",
+      "playerName": "Giedrius Arlauskis",
+      "nationalities": [
+        "Lithuania"
+      ],
+      "dateOfBirth": "1987-12-01",
+      "heightCm": 191,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/giedrius-arlauskis/profil/spieler/69001",
+      "raw": {
+        "citizenshipText": "Lithuania",
+        "dateOfBirthText": "01/12/1987 (38)",
+        "heightText": "1,91 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "gilles-sunu",
+      "playerName": "Gilles Sunu",
+      "nationalities": [
+        "Togo"
+      ],
+      "dateOfBirth": "1991-03-30",
+      "heightCm": 183,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/gilles-sunu/profil/spieler/54933",
+      "raw": {
+        "citizenshipText": "Togo",
+        "dateOfBirthText": "30/03/1991 (34)",
+        "heightText": "1,83 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "mouhamadou-habib-habibou",
+      "playerName": "Habib Habibou",
+      "nationalities": [
+        "Central African Republic"
+      ],
+      "dateOfBirth": "1987-04-16",
+      "heightCm": 192,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/habib-habibou/profil/spieler/41261",
+      "raw": {
+        "citizenshipText": "Central African Republic",
+        "dateOfBirthText": "16/04/1987 (38)",
+        "heightText": "1,92 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "hachim-mastour",
+      "playerName": "Hachim Mastour",
+      "nationalities": [
+        "Morocco"
+      ],
+      "dateOfBirth": "1998-06-15",
+      "heightCm": 181,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/hachim-mastour/profil/spieler/253267",
+      "raw": {
+        "citizenshipText": "Morocco",
+        "dateOfBirthText": "15/06/1998 (27)",
+        "heightText": "1,81 m",
+        "footText": null,
+        "joinedText": "01/07/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "haris-medunjanin",
+      "playerName": "Haris Medunjanin",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1985-03-08",
+      "heightCm": 188,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/haris-medunjanin/profil/spieler/30666",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "08/03/1985 (41)",
+        "heightText": "1,88 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "henok-goitom",
+      "playerName": "Henok Goitom",
+      "nationalities": [
+        "Eritrea"
+      ],
+      "dateOfBirth": "1984-09-22",
+      "heightCm": 189,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/henok-goitom/profil/spieler/6838",
+      "raw": {
+        "citizenshipText": "Eritrea",
+        "dateOfBirthText": "22/09/1984 (41)",
+        "heightText": "1,89 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "henrikh-mkhitaryan",
+      "playerName": "Henrikh Mkhitaryan",
+      "nationalities": [
+        "Armenia"
+      ],
+      "dateOfBirth": "1989-01-21",
+      "heightCm": 177,
+      "preferredFoot": null,
+      "contractStartDate": "2022-07-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/henrikh-mkhitaryan/profil/spieler/55735",
+      "raw": {
+        "citizenshipText": "Armenia",
+        "dateOfBirthText": "21/01/1989 (37)",
+        "heightText": "1,77 m",
+        "footText": null,
+        "joinedText": "01/07/2022",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "hugo-fraile-martin",
+      "playerName": "Hugo Fraile",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1987-03-16",
+      "heightCm": 170,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/hugo-fraile/profil/spieler/72201",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "16/03/1987 (38)",
+        "heightText": "1,70 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "ian-gonzalez-nieto",
+      "playerName": "Ian González",
+      "nationalities": [
+        "Colombia"
+      ],
+      "dateOfBirth": "1993-02-18",
+      "heightCm": 182,
+      "preferredFoot": null,
+      "contractStartDate": "2024-07-19",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/cristian-borja/profil/spieler/356099",
+      "raw": {
+        "citizenshipText": "Colombia",
+        "dateOfBirthText": "18/02/1993 (33)",
+        "heightText": "1,82 m",
+        "footText": null,
+        "joinedText": "19/07/2024",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "ibrahim-diallo",
+      "playerName": "Ibrahim Diallo",
+      "nationalities": [
+        "Mali"
+      ],
+      "dateOfBirth": "1996-08-12",
+      "heightCm": 176,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/ibrahim-diallo/profil/spieler/342887",
+      "raw": {
+        "citizenshipText": "Mali",
+        "dateOfBirthText": "12/08/1996 (29)",
+        "heightText": "1,76 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "ihlas-bebou",
+      "playerName": "Ihlas Bebou",
+      "nationalities": [
+        "Togo"
+      ],
+      "dateOfBirth": "1994-04-23",
+      "heightCm": 185,
+      "preferredFoot": null,
+      "contractStartDate": "2019-07-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/ihlas-bebou/profil/spieler/237164",
+      "raw": {
+        "citizenshipText": "Togo",
+        "dateOfBirthText": "23/04/1994 (31)",
+        "heightText": "1,85 m",
+        "footText": null,
+        "joinedText": "01/07/2019",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "imanol-corral-matellan",
+      "playerName": "Imanol Corral Matellán",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1994-03-19",
+      "heightCm": 180,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/imanol-corral/profil/spieler/255493",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "19/03/1994 (31)",
+        "heightText": "1,80 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "ivaylo-chochev",
+      "playerName": "Ivaylo Chochev",
+      "nationalities": [
+        "Bulgaria"
+      ],
+      "dateOfBirth": "1993-02-18",
+      "heightCm": 188,
+      "preferredFoot": null,
+      "contractStartDate": "2024-02-15",
+      "contractEndDate": "2028-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/ivaylo-chochev/profil/spieler/252767",
+      "raw": {
+        "citizenshipText": "Bulgaria",
+        "dateOfBirthText": "18/02/1993 (33)",
+        "heightText": "1,88 m",
+        "footText": null,
+        "joinedText": "15/02/2024",
+        "contractExpiresText": "30/06/2028"
+      }
+    },
+    {
+      "playerSlug": "izet-hajrovic",
+      "playerName": "Izet Hajrović",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1991-08-04",
+      "heightCm": 177,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/izet-hajrovic/profil/spieler/74996",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "04/08/1991 (34)",
+        "heightText": "1,77 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "francisco-javier-garcia-noblejas-hernanz",
+      "playerName": "Javi Noblejas",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1993-03-18",
+      "heightCm": 188,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/javi-noblejas/profil/spieler/126731",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "18/03/1993 (32)",
+        "heightText": "1,88 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "jefte-betancor-sanchez",
+      "playerName": "Jefté Betancor",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1993-07-06",
+      "heightCm": 186,
+      "preferredFoot": null,
+      "contractStartDate": "2025-08-08",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/jefte-betancor/profil/spieler/198015",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "06/07/1993 (32)",
+        "heightText": "1,86 m",
+        "footText": null,
+        "joinedText": "08/08/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "jeremy-morel",
+      "playerName": "Jérémy Morel",
+      "nationalities": [
+        "Madagascar"
+      ],
+      "dateOfBirth": "1984-04-02",
+      "heightCm": 172,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/jeremy-morel/profil/spieler/23960",
+      "raw": {
+        "citizenshipText": "Madagascar",
+        "dateOfBirthText": "02/04/1984 (41)",
+        "heightText": "1,72 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "jewison-bennette",
+      "playerName": "Jewison Bennette",
+      "nationalities": [
+        "Costa Rica"
+      ],
+      "dateOfBirth": "2004-06-15",
+      "heightCm": 173,
+      "preferredFoot": null,
+      "contractStartDate": "2025-03-09",
+      "contractEndDate": "2028-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/jewison-bennette/profil/spieler/743627",
+      "raw": {
+        "citizenshipText": "Costa Rica",
+        "dateOfBirthText": "15/06/2004 (21)",
+        "heightText": "1,73 m",
+        "footText": null,
+        "joinedText": "09/03/2025",
+        "contractExpiresText": "30/06/2028"
+      }
+    },
+    {
+      "playerSlug": "jlloyd-tafari-samuel",
+      "playerName": "Jlloyd Samuel",
+      "nationalities": [
+        "Trinidad and Tobago"
+      ],
+      "dateOfBirth": "1981-03-29",
+      "heightCm": 180,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/jlloyd-samuel/profil/spieler/4067",
+      "raw": {
+        "citizenshipText": "Trinidad and Tobago",
+        "dateOfBirthText": "29/03/1981",
+        "heightText": "1,80 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "jorge-gomez-mediavilla",
+      "playerName": "Jorge Mediavilla",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1993-06-16",
+      "heightCm": 188,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/jorge-mediavilla/profil/spieler/248870",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "16/06/1993 (32)",
+        "heightText": "1,88 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "jose-carlos-lazo-romero",
+      "playerName": "José Carlos Lazo",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1996-02-16",
+      "heightCm": 178,
+      "preferredFoot": null,
+      "contractStartDate": "2024-08-20",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/jose-carlos-lazo/profil/spieler/282410",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "16/02/1996 (30)",
+        "heightText": "1,78 m",
+        "footText": null,
+        "joinedText": "20/08/2024",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "jose-carrillo-mancilla",
+      "playerName": "José Carrillo",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1995-03-04",
+      "heightCm": 185,
+      "preferredFoot": null,
+      "contractStartDate": "2026-01-30",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/jose-carrillo/profil/spieler/337179",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "04/03/1995 (31)",
+        "heightText": "1,85 m",
+        "footText": null,
+        "joinedText": "30/01/2026",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "jose-joaquin-matos-garcia",
+      "playerName": "José Matos",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1995-05-06",
+      "heightCm": 168,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-21",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/jose-matos/profil/spieler/268957",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "06/05/1995 (30)",
+        "heightText": "1,68 m",
+        "footText": null,
+        "joinedText": "21/07/2025",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "josue-albert",
+      "playerName": "Josué Albert",
+      "nationalities": [
+        "French Guiana"
+      ],
+      "dateOfBirth": "1992-01-21",
+      "heightCm": 187,
+      "preferredFoot": null,
+      "contractStartDate": "2024-08-01",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/josue-albert/profil/spieler/170487",
+      "raw": {
+        "citizenshipText": "French Guiana",
+        "dateOfBirthText": "21/01/1992 (34)",
+        "heightText": "1,87 m",
+        "footText": null,
+        "joinedText": "01/08/2024",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "juan-del-carmen-camara-mesa",
+      "playerName": "Juan Cámara",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1994-02-13",
+      "heightCm": 184,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-20",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/juan-camara/profil/spieler/162039",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "13/02/1994 (32)",
+        "heightText": "1,84 m",
+        "footText": null,
+        "joinedText": "20/07/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "juan-muniz-gallego",
+      "playerName": "Juan Muñiz",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1968-11-02",
+      "heightCm": null,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/juan-muniz/profil/spieler/187836",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "02/11/1968 (57)",
+        "heightText": "N/A",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "julen-lopez-salas",
+      "playerName": "Julen López",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1995-07-20",
+      "heightCm": 187,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/julen-lopez/profil/spieler/354359",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "20/07/1995 (30)",
+        "heightText": "1,87 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "justin-hoyte",
+      "playerName": "Justin Hoyte",
+      "nationalities": [
+        "Trinidad and Tobago"
+      ],
+      "dateOfBirth": "1984-11-20",
+      "heightCm": 178,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/justin-hoyte/profil/spieler/7335",
+      "raw": {
+        "citizenshipText": "Trinidad and Tobago",
+        "dateOfBirthText": "20/11/1984 (41)",
+        "heightText": "1,78 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "kenan-kodro",
+      "playerName": "Kenan Kodro",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1993-08-19",
+      "heightCm": 188,
+      "preferredFoot": null,
+      "contractStartDate": "2025-09-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/kenan-kodro/profil/spieler/197126",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "19/08/1993 (32)",
+        "heightText": "1,88 m",
+        "footText": null,
+        "joinedText": "01/09/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "kevin-rimane",
+      "playerName": "Kévin Rimane",
+      "nationalities": [
+        "French Guiana"
+      ],
+      "dateOfBirth": "1991-02-23",
+      "heightCm": 181,
+      "preferredFoot": null,
+      "contractStartDate": "2024-08-14",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/kevin-rimane/profil/spieler/93751",
+      "raw": {
+        "citizenshipText": "French Guiana",
+        "dateOfBirthText": "23/02/1991 (35)",
+        "heightText": "1,81 m",
+        "footText": null,
+        "joinedText": "14/08/2024",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "keysher-fuller-spence",
+      "playerName": "Keysher Fuller Spence",
+      "nationalities": [
+        "Costa Rica"
+      ],
+      "dateOfBirth": "1994-07-12",
+      "heightCm": 183,
+      "preferredFoot": null,
+      "contractStartDate": "2026-01-01",
+      "contractEndDate": "2027-12-31",
+      "sourceUrl": "https://www.transfermarkt.com/keysher-fuller/profil/spieler/525122",
+      "raw": {
+        "citizenshipText": "Costa Rica",
+        "dateOfBirthText": "12/07/1994 (31)",
+        "heightText": "1,83 m",
+        "footText": null,
+        "joinedText": "01/01/2026",
+        "contractExpiresText": "31/12/2027"
+      }
+    },
+    {
+      "playerSlug": "konstantin-engel",
+      "playerName": "Konstantin Engel",
+      "nationalities": [
+        "Kazakhstan"
+      ],
+      "dateOfBirth": "1988-07-27",
+      "heightCm": 179,
+      "preferredFoot": null,
+      "contractStartDate": "2024-07-01",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/konstantin-engel/profil/spieler/42318",
+      "raw": {
+        "citizenshipText": "Kazakhstan",
+        "dateOfBirthText": "27/07/1988 (37)",
+        "heightText": "1,79 m",
+        "footText": null,
+        "joinedText": "01/07/2024",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "kossi-agassa",
+      "playerName": "Kossi Agassa",
+      "nationalities": [
+        "Togo"
+      ],
+      "dateOfBirth": "1978-07-02",
+      "heightCm": 190,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/kossi-agassa/profil/spieler/12028",
+      "raw": {
+        "citizenshipText": "Togo",
+        "dateOfBirthText": "02/07/1978 (47)",
+        "heightText": "1,90 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "kosuke-nakamura",
+      "playerName": "Kosuke Nakamura",
+      "nationalities": [
+        "Japan"
+      ],
+      "dateOfBirth": "1995-02-27",
+      "heightCm": 185,
+      "preferredFoot": null,
+      "contractStartDate": "2026-01-12",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/kosuke-nakamura/profil/spieler/165794",
+      "raw": {
+        "citizenshipText": "Japan",
+        "dateOfBirthText": "27/02/1995 (31)",
+        "heightText": "1,85 m",
+        "footText": null,
+        "joinedText": "12/01/2026",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "leandro-bacuna",
+      "playerName": "Leandro Bacuna",
+      "nationalities": [
+        "Curacao"
+      ],
+      "dateOfBirth": "1991-08-21",
+      "heightCm": 180,
+      "preferredFoot": null,
+      "contractStartDate": "2026-01-06",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/leandro-bacuna/profil/spieler/126014",
+      "raw": {
+        "citizenshipText": "Curacao",
+        "dateOfBirthText": "21/08/1991 (34)",
+        "heightText": "1,80 m",
+        "footText": null,
+        "joinedText": "06/01/2026",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "leandro-barreiro-martins",
+      "playerName": "Leandro Barreiro",
+      "nationalities": [
+        "Luxembourg"
+      ],
+      "dateOfBirth": "2000-01-03",
+      "heightCm": 174,
+      "preferredFoot": null,
+      "contractStartDate": "2024-07-02",
+      "contractEndDate": "2029-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/leandro-barreiro/profil/spieler/357233",
+      "raw": {
+        "citizenshipText": "Luxembourg",
+        "dateOfBirthText": "03/01/2000 (26)",
+        "heightText": "1,74 m",
+        "footText": null,
+        "joinedText": "02/07/2024",
+        "contractExpiresText": "30/06/2029"
+      }
+    },
+    {
+      "playerSlug": "ludovic-baal",
+      "playerName": "Ludovic Baal",
+      "nationalities": [
+        "French Guiana"
+      ],
+      "dateOfBirth": "1986-05-24",
+      "heightCm": 176,
+      "preferredFoot": null,
+      "contractStartDate": "2023-07-01",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/ludovic-baal/profil/spieler/39913",
+      "raw": {
+        "citizenshipText": "French Guiana",
+        "dateOfBirthText": "24/05/1986 (39)",
+        "heightText": "1,76 m",
+        "footText": null,
+        "joinedText": "01/07/2023",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "marcel-buchel",
+      "playerName": "Marcel Büchel",
+      "nationalities": [
+        "Liechtenstein"
+      ],
+      "dateOfBirth": "1991-03-18",
+      "heightCm": 175,
+      "preferredFoot": null,
+      "contractStartDate": "2025-11-27",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/marcel-buchel/profil/spieler/74956",
+      "raw": {
+        "citizenshipText": "Liechtenstein",
+        "dateOfBirthText": "18/03/1991 (34)",
+        "heightText": "1,75 m",
+        "footText": null,
+        "joinedText": "27/11/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "mariano-diaz-mejia",
+      "playerName": "Mariano Díaz",
+      "nationalities": [
+        "Dominican Republic"
+      ],
+      "dateOfBirth": "1993-08-01",
+      "heightCm": 180,
+      "preferredFoot": null,
+      "contractStartDate": "2025-08-07",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/mariano-diaz/profil/spieler/225020",
+      "raw": {
+        "citizenshipText": "Dominican Republic",
+        "dateOfBirthText": "01/08/1993 (32)",
+        "heightText": "1,80 m",
+        "footText": null,
+        "joinedText": "07/08/2025",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "marians-pahars",
+      "playerName": "Marians Pahars",
+      "nationalities": [
+        "Latvia"
+      ],
+      "dateOfBirth": "1976-08-05",
+      "heightCm": 175,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/marians-pahars/profil/spieler/3689",
+      "raw": {
+        "citizenshipText": "Latvia",
+        "dateOfBirthText": "05/08/1976 (49)",
+        "heightText": "1,75 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "mario-vrancic",
+      "playerName": "Mario Vrančić",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1989-05-23",
+      "heightCm": 187,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/mario-vrancic/profil/spieler/39372",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "23/05/1989 (36)",
+        "heightText": "1,87 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "maris-verpakovskis",
+      "playerName": "Maris Verpakovskis",
+      "nationalities": [
+        "Latvia"
+      ],
+      "dateOfBirth": "1979-10-15",
+      "heightCm": 173,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/maris-verpakovskis/profil/spieler/15404",
+      "raw": {
+        "citizenshipText": "Latvia",
+        "dateOfBirthText": "15/10/1979 (46)",
+        "heightText": "1,73 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "marius-stankevicius",
+      "playerName": "Marius Stankevičius",
+      "nationalities": [
+        "Lithuania"
+      ],
+      "dateOfBirth": "1981-07-15",
+      "heightCm": 190,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/marius-stankevicius/profil/spieler/5966",
+      "raw": {
+        "citizenshipText": "Lithuania",
+        "dateOfBirthText": "15/07/1981 (44)",
+        "heightText": "1,90 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "marshall-nyasha-munetsi",
+      "playerName": "Marshall Munetsi",
+      "nationalities": [
+        "Zimbabwe"
+      ],
+      "dateOfBirth": "1996-06-22",
+      "heightCm": 188,
+      "preferredFoot": null,
+      "contractStartDate": "2026-01-16",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/marshall-munetsi/profil/spieler/414908",
+      "raw": {
+        "citizenshipText": "Zimbabwe",
+        "dateOfBirthText": "22/06/1996 (29)",
+        "heightText": "1,88 m",
+        "footText": null,
+        "joinedText": "16/01/2026",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "masaaki-higashiguchi",
+      "playerName": "Masaaki Higashiguchi",
+      "nationalities": [
+        "Japan"
+      ],
+      "dateOfBirth": "1986-05-12",
+      "heightCm": 184,
+      "preferredFoot": null,
+      "contractStartDate": "2014-01-01",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/masaaki-higashiguchi/profil/spieler/113712",
+      "raw": {
+        "citizenshipText": "Japan",
+        "dateOfBirthText": "12/05/1986 (39)",
+        "heightText": "1,84 m",
+        "footText": null,
+        "joinedText": "01/01/2014",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "massimo-bonini",
+      "playerName": "Massimo Bonini",
+      "nationalities": [
+        "San Marino"
+      ],
+      "dateOfBirth": "1959-10-13",
+      "heightCm": 178,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/massimo-bonini/profil/spieler/126265",
+      "raw": {
+        "citizenshipText": "San Marino",
+        "dateOfBirthText": "13/10/1959 (66)",
+        "heightText": "1,78 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "mathias-flaga-olesen",
+      "playerName": "Mathias Flaga Olesen",
+      "nationalities": [
+        "Luxembourg"
+      ],
+      "dateOfBirth": "2001-03-21",
+      "heightCm": 188,
+      "preferredFoot": null,
+      "contractStartDate": "2026-02-02",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/mathias-olesen/profil/spieler/490581",
+      "raw": {
+        "citizenshipText": "Luxembourg",
+        "dateOfBirthText": "21/03/2001 (24)",
+        "heightText": "1,88 m",
+        "footText": null,
+        "joinedText": "02/02/2026",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "mato-jajalo",
+      "playerName": "Mato Jajalo",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1988-05-25",
+      "heightCm": 182,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/mato-jajalo/profil/spieler/47513",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "25/05/1988 (37)",
+        "heightText": "1,82 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "medon-berisha",
+      "playerName": "Medon Berisha",
+      "nationalities": [
+        "Albania"
+      ],
+      "dateOfBirth": "2003-10-21",
+      "heightCm": 186,
+      "preferredFoot": null,
+      "contractStartDate": "2022-07-01",
+      "contractEndDate": "2028-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/medon-berisha/profil/spieler/583046",
+      "raw": {
+        "citizenshipText": "Albania",
+        "dateOfBirthText": "21/10/2003 (22)",
+        "heightText": "1,86 m",
+        "footText": null,
+        "joinedText": "01/07/2022",
+        "contractExpiresText": "30/06/2028"
+      }
+    },
+    {
+      "playerSlug": "michael-olunga-ogada",
+      "playerName": "Michael Olunga",
+      "nationalities": [
+        "Kenya"
+      ],
+      "dateOfBirth": "1994-03-26",
+      "heightCm": 193,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-05",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/michael-olunga/profil/spieler/263482",
+      "raw": {
+        "citizenshipText": "Kenya",
+        "dateOfBirthText": "26/03/1994 (31)",
+        "heightText": "1,93 m",
+        "footText": null,
+        "joinedText": "05/07/2025",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "miguel-juan-llambrich",
+      "playerName": "Miguelón Llambrich",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1996-01-18",
+      "heightCm": 170,
+      "preferredFoot": null,
+      "contractStartDate": "2025-03-28",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/miguel-llambrich/profil/spieler/399775",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "18/01/1996 (30)",
+        "heightText": "1,70 m",
+        "footText": null,
+        "joinedText": "28/03/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "mihai-roman",
+      "playerName": "Mihai Roman",
+      "nationalities": [
+        "Romania"
+      ],
+      "dateOfBirth": "1984-10-16",
+      "heightCm": 174,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/mihai-roman/profil/spieler/64229",
+      "raw": {
+        "citizenshipText": "Romania",
+        "dateOfBirthText": "16/10/1984 (41)",
+        "heightText": "1,74 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "milan-gajic",
+      "playerName": "Milan Gajić",
+      "nationalities": [
+        "Serbia"
+      ],
+      "dateOfBirth": "1996-01-28",
+      "heightCm": 178,
+      "preferredFoot": null,
+      "contractStartDate": "2022-07-01",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/milan-gajic/profil/spieler/245030",
+      "raw": {
+        "citizenshipText": "Serbia",
+        "dateOfBirthText": "28/01/1996 (30)",
+        "heightText": "1,78 m",
+        "footText": null,
+        "joinedText": "01/07/2022",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "miralem-pjanic",
+      "playerName": "Miralem Pjanić",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1990-04-02",
+      "heightCm": 181,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/miralem-pjanic/profil/spieler/44162",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "02/04/1990 (35)",
+        "heightText": "1,81 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "mirlan-murzaev",
+      "playerName": "Mirlan Murzaev",
+      "nationalities": [
+        "Kyrgyzstan"
+      ],
+      "dateOfBirth": "1990-03-29",
+      "heightCm": 182,
+      "preferredFoot": null,
+      "contractStartDate": "2025-01-11",
+      "contractEndDate": "2026-11-30",
+      "sourceUrl": "https://www.transfermarkt.com/mirlan-murzaev/profil/spieler/125802",
+      "raw": {
+        "citizenshipText": "Kyrgyzstan",
+        "dateOfBirthText": "29/03/1990 (35)",
+        "heightText": "1,82 m",
+        "footText": null,
+        "joinedText": "11/01/2025",
+        "contractExpiresText": "30/11/2026"
+      }
+    },
+    {
+      "playerSlug": "mirlind-daku",
+      "playerName": "Mirlind Daku",
+      "nationalities": [
+        "Albania"
+      ],
+      "dateOfBirth": "1998-01-01",
+      "heightCm": 192,
+      "preferredFoot": null,
+      "contractStartDate": "2023-07-11",
+      "contractEndDate": "2029-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/mirlind-daku/profil/spieler/521872",
+      "raw": {
+        "citizenshipText": "Albania",
+        "dateOfBirthText": "01/01/1998 (28)",
+        "heightText": "1,92 m",
+        "footText": null,
+        "joinedText": "11/07/2023",
+        "contractExpiresText": "30/06/2029"
+      }
+    },
+    {
+      "playerSlug": "mohamed-youssouf",
+      "playerName": "Mohamed Youssouf",
+      "nationalities": [
+        "Comoros"
+      ],
+      "dateOfBirth": "1988-03-26",
+      "heightCm": 169,
+      "preferredFoot": null,
+      "contractStartDate": "2026-02-05",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/mohamed-youssouf/profil/spieler/57482",
+      "raw": {
+        "citizenshipText": "Comoros",
+        "dateOfBirthText": "26/03/1988 (37)",
+        "heightText": "1,69 m",
+        "footText": null,
+        "joinedText": "05/02/2026",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "muhamed-besic",
+      "playerName": "Muhamed Bešić",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1992-09-10",
+      "heightCm": 180,
+      "preferredFoot": null,
+      "contractStartDate": "2025-01-18",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/muhamed-besic/profil/spieler/93905",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "10/09/1992 (33)",
+        "heightText": "1,80 m",
+        "footText": null,
+        "joinedText": "18/01/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "ignacio-monsalve-vicente",
+      "playerName": "Nacho Monsalve",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1994-04-27",
+      "heightCm": 188,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-08",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/nacho-monsalve/profil/spieler/281990",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "27/04/1994 (31)",
+        "heightText": "1,88 m",
+        "footText": null,
+        "joinedText": "08/07/2025",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "naomichi-ueda",
+      "playerName": "Naomichi Ueda",
+      "nationalities": [
+        "Japan"
+      ],
+      "dateOfBirth": "1994-10-24",
+      "heightCm": 186,
+      "preferredFoot": null,
+      "contractStartDate": "2023-01-09",
+      "contractEndDate": "2026-01-31",
+      "sourceUrl": "https://www.transfermarkt.com/naomichi-ueda/profil/spieler/188915",
+      "raw": {
+        "citizenshipText": "Japan",
+        "dateOfBirthText": "24/10/1994 (31)",
+        "heightText": "1,86 m",
+        "footText": null,
+        "joinedText": "09/01/2023",
+        "contractExpiresText": "31/01/2026"
+      }
+    },
+    {
+      "playerSlug": "nerijus-valskis",
+      "playerName": "Nerijus Valskis",
+      "nationalities": [
+        "Lithuania"
+      ],
+      "dateOfBirth": "1987-08-04",
+      "heightCm": 185,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/nerijus-valskis/profil/spieler/42665",
+      "raw": {
+        "citizenshipText": "Lithuania",
+        "dateOfBirthText": "04/08/1987 (38)",
+        "heightText": "1,85 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "nestor-diaz-garcia",
+      "playerName": "Néstor Díaz",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1992-06-26",
+      "heightCm": 183,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/nestor-diaz/profil/spieler/223781",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "26/06/1992 (33)",
+        "heightText": "1,83 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "ognjen-vranjes",
+      "playerName": "Ognjen Vranješ",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1989-10-24",
+      "heightCm": 183,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/ognjen-vranjes/profil/spieler/94807",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "24/10/1989 (36)",
+        "heightText": "1,83 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "ousseynou-cisse",
+      "playerName": "Ousseynou Cissé",
+      "nationalities": [
+        "Mali"
+      ],
+      "dateOfBirth": "1991-04-07",
+      "heightCm": 195,
+      "preferredFoot": null,
+      "contractStartDate": "2025-08-28",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/ousseynou-cisse/profil/spieler/98827",
+      "raw": {
+        "citizenshipText": "Mali",
+        "dateOfBirthText": "07/04/1991 (34)",
+        "heightText": "1,95 m",
+        "footText": null,
+        "joinedText": "28/08/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "pablo-claveria-herraiz",
+      "playerName": "Pablo Clavería",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1996-04-01",
+      "heightCm": 176,
+      "preferredFoot": null,
+      "contractStartDate": "2026-02-10",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/pablo-claveria/profil/spieler/348553",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "01/04/1996 (29)",
+        "heightText": "1,76 m",
+        "footText": null,
+        "joinedText": "10/02/2026",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "pablo-iniguez-de-heredia-larraz",
+      "playerName": "Pablo Íñiguez",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1994-01-20",
+      "heightCm": 183,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/pablo-iniguez/profil/spieler/165008",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "20/01/1994 (32)",
+        "heightText": "1,83 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "payam-niazmand",
+      "playerName": "Payam Niazmand",
+      "nationalities": [
+        "Iran"
+      ],
+      "dateOfBirth": "1995-04-06",
+      "heightCm": 194,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-01",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/payam-niazmand/profil/spieler/343044",
+      "raw": {
+        "citizenshipText": "Iran",
+        "dateOfBirthText": "06/04/1995 (30)",
+        "heightText": "1,94 m",
+        "footText": null,
+        "joinedText": "01/07/2025",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "jose-luis-garcia-vaya",
+      "playerName": "Pepelu",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1998-08-11",
+      "heightCm": 186,
+      "preferredFoot": null,
+      "contractStartDate": "2023-07-08",
+      "contractEndDate": "2028-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/pepelu/profil/spieler/328480",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "11/08/1998 (27)",
+        "heightText": "1,86 m",
+        "footText": null,
+        "joinedText": "08/07/2023",
+        "contractExpiresText": "30/06/2028"
+      }
+    },
+    {
+      "playerSlug": "rade-krunic",
+      "playerName": "Rade Krunić",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1993-10-07",
+      "heightCm": 184,
+      "preferredFoot": null,
+      "contractStartDate": "2024-09-03",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/rade-krunic/profil/spieler/259953",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "07/10/1993 (32)",
+        "heightText": "1,84 m",
+        "footText": null,
+        "joinedText": "03/09/2024",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "radostin-kishishev",
+      "playerName": "Radostin Kishishev",
+      "nationalities": [
+        "Bulgaria"
+      ],
+      "dateOfBirth": "1974-07-30",
+      "heightCm": 180,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/radostin-kishishev/profil/spieler/3001",
+      "raw": {
+        "citizenshipText": "Bulgaria",
+        "dateOfBirthText": "30/07/1974 (51)",
+        "heightText": "1,80 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "rafidine-abdullah",
+      "playerName": "Rafidine Abdullah",
+      "nationalities": [
+        "Comoros"
+      ],
+      "dateOfBirth": "1994-01-15",
+      "heightCm": 179,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-16",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/rafidine-abdullah/profil/spieler/215652",
+      "raw": {
+        "citizenshipText": "Comoros",
+        "dateOfBirthText": "15/01/1994 (32)",
+        "heightText": "1,79 m",
+        "footText": null,
+        "joinedText": "16/07/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "ragnar-klavan",
+      "playerName": "Ragnar Klavan",
+      "nationalities": [
+        "Estonia"
+      ],
+      "dateOfBirth": "1985-10-30",
+      "heightCm": 187,
+      "preferredFoot": null,
+      "contractStartDate": "2026-03-05",
+      "contractEndDate": "2026-12-31",
+      "sourceUrl": "https://www.transfermarkt.com/ragnar-klavan/profil/spieler/26669",
+      "raw": {
+        "citizenshipText": "Estonia",
+        "dateOfBirthText": "30/10/1985 (40)",
+        "heightText": "1,87 m",
+        "footText": null,
+        "joinedText": "05/03/2026",
+        "contractExpiresText": "31/12/2026"
+      }
+    },
+    {
+      "playerSlug": "rashade-sido",
+      "playerName": "Rashade Sido",
+      "nationalities": [
+        "Burkina Faso"
+      ],
+      "dateOfBirth": "1995-04-28",
+      "heightCm": 179,
+      "preferredFoot": null,
+      "contractStartDate": "2024-01-15",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/rashade-sido/profil/spieler/189487",
+      "raw": {
+        "citizenshipText": "Burkina Faso",
+        "dateOfBirthText": "28/04/1995 (30)",
+        "heightText": "1,79 m",
+        "footText": null,
+        "joinedText": "15/01/2024",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "rayan-ny-aina-arnaldo-raveloson",
+      "playerName": "Rayan Ny Aina Arnaldo Raveloson",
+      "nationalities": [
+        "Madagascar"
+      ],
+      "dateOfBirth": "1997-01-16",
+      "heightCm": 182,
+      "preferredFoot": null,
+      "contractStartDate": "2025-01-18",
+      "contractEndDate": "2028-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/rayan-raveloson/profil/spieler/344576",
+      "raw": {
+        "citizenshipText": "Madagascar",
+        "dateOfBirthText": "16/01/1997 (29)",
+        "heightText": "1,82 m",
+        "footText": null,
+        "joinedText": "18/01/2025",
+        "contractExpiresText": "30/06/2028"
+      }
+    },
+    {
+      "playerSlug": "roan-roberto-wilson-gordon",
+      "playerName": "Roan Roberto Wilson Gordon",
+      "nationalities": [
+        "Costa Rica"
+      ],
+      "dateOfBirth": "2002-05-01",
+      "heightCm": 184,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/roan-wilson/profil/spieler/645191",
+      "raw": {
+        "citizenshipText": "Costa Rica",
+        "dateOfBirthText": "01/05/2002 (23)",
+        "heightText": "1,84 m",
+        "footText": null,
+        "joinedText": "01/07/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "ronald-alberto-matarrita-ulate",
+      "playerName": "Ronald Matarrita",
+      "nationalities": [
+        "Costa Rica"
+      ],
+      "dateOfBirth": "1994-07-09",
+      "heightCm": 175,
+      "preferredFoot": null,
+      "contractStartDate": "2024-07-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/ronald-matarrita/profil/spieler/268273",
+      "raw": {
+        "citizenshipText": "Costa Rica",
+        "dateOfBirthText": "09/07/1994 (31)",
+        "heightText": "1,75 m",
+        "footText": null,
+        "joinedText": "01/07/2024",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "roozbeh-cheshmi",
+      "playerName": "Roozbeh Cheshmi",
+      "nationalities": [
+        "Iran"
+      ],
+      "dateOfBirth": "1993-07-24",
+      "heightCm": 194,
+      "preferredFoot": null,
+      "contractStartDate": "2021-10-10",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/roozbeh-cheshmi/profil/spieler/273879",
+      "raw": {
+        "citizenshipText": "Iran",
+        "dateOfBirthText": "24/07/1993 (32)",
+        "heightText": "1,94 m",
+        "footText": null,
+        "joinedText": "10/10/2021",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "ryan-donk",
+      "playerName": "Ryan Donk",
+      "nationalities": [
+        "Suriname"
+      ],
+      "dateOfBirth": "1986-03-30",
+      "heightCm": 192,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/ryan-donk/profil/spieler/38414",
+      "raw": {
+        "citizenshipText": "Suriname",
+        "dateOfBirthText": "30/03/1986 (39)",
+        "heightText": "1,92 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "ryota-oshima",
+      "playerName": "Ryota Oshima",
+      "nationalities": [
+        "Japan"
+      ],
+      "dateOfBirth": "1993-01-23",
+      "heightCm": 168,
+      "preferredFoot": null,
+      "contractStartDate": "2011-02-01",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/ryota-oshima/profil/spieler/164264",
+      "raw": {
+        "citizenshipText": "Japan",
+        "dateOfBirthText": "23/01/1993 (33)",
+        "heightText": "1,68 m",
+        "footText": null,
+        "joinedText": "01/02/2011",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "sadegh-moharrami",
+      "playerName": "Sadegh Moharrami",
+      "nationalities": [
+        "Iran"
+      ],
+      "dateOfBirth": "1996-03-01",
+      "heightCm": 174,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-13",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/sadegh-moharrami/profil/spieler/294778",
+      "raw": {
+        "citizenshipText": "Iran",
+        "dateOfBirthText": "01/03/1996 (30)",
+        "heightText": "1,74 m",
+        "footText": null,
+        "joinedText": "13/07/2025",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "salvador-ruiz-rodriguez",
+      "playerName": "Salva Ruiz",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1995-05-17",
+      "heightCm": 177,
+      "preferredFoot": null,
+      "contractStartDate": "2021-07-25",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/salva-ruiz/profil/spieler/162063",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "17/05/1995 (30)",
+        "heightText": "1,77 m",
+        "footText": null,
+        "joinedText": "25/07/2021",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "samir-ujkani",
+      "playerName": "Samir Ujkani",
+      "nationalities": [
+        "Kosovo"
+      ],
+      "dateOfBirth": "1988-07-05",
+      "heightCm": 186,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/samir-ujkani/profil/spieler/42744",
+      "raw": {
+        "citizenshipText": "Kosovo",
+        "dateOfBirthText": "05/07/1988 (37)",
+        "heightText": "1,86 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "samuel-villa-rodriguez",
+      "playerName": "Samuel Villa Rodríguez",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1994-09-16",
+      "heightCm": 176,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/samuel-villa/profil/spieler/268383",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "16/09/1994 (31)",
+        "heightText": "1,76 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "sanjin-prcic",
+      "playerName": "Sanjin Prcić",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1993-11-20",
+      "heightCm": 181,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/sanjin-prcic/profil/spieler/125783",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "20/11/1993 (32)",
+        "heightText": "1,81 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "sargis-adamyan",
+      "playerName": "Sargis Adamyan",
+      "nationalities": [
+        "Armenia"
+      ],
+      "dateOfBirth": "1993-05-23",
+      "heightCm": 184,
+      "preferredFoot": null,
+      "contractStartDate": "2025-08-13",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/sargis-adamyan/profil/spieler/125614",
+      "raw": {
+        "citizenshipText": "Armenia",
+        "dateOfBirthText": "23/05/1993 (32)",
+        "heightText": "1,84 m",
+        "footText": null,
+        "joinedText": "13/08/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "sead-kolasinac",
+      "playerName": "Sead Kolašinac",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1993-06-20",
+      "heightCm": 183,
+      "preferredFoot": null,
+      "contractStartDate": "2023-07-06",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/sead-kolasinac/profil/spieler/94005",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "20/06/1993 (32)",
+        "heightText": "1,83 m",
+        "footText": null,
+        "joinedText": "06/07/2023",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "senad-lulic",
+      "playerName": "Senad Lulić",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1986-01-18",
+      "heightCm": 183,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/senad-lulic/profil/spieler/61449",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "18/01/1986 (40)",
+        "heightText": "1,83 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "serge-gakpe",
+      "playerName": "Serge Gakpé",
+      "nationalities": [
+        "Togo"
+      ],
+      "dateOfBirth": "1987-05-07",
+      "heightCm": 180,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/serge-gakpe/profil/spieler/36293",
+      "raw": {
+        "citizenshipText": "Togo",
+        "dateOfBirthText": "07/05/1987 (38)",
+        "heightText": "1,80 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "sergio-mendigutxia-iglesias",
+      "playerName": "Sergio Mendigutxia Iglesias",
+      "nationalities": [
+        "Spain"
+      ],
+      "dateOfBirth": "1993-06-12",
+      "heightCm": 183,
+      "preferredFoot": null,
+      "contractStartDate": "2025-09-06",
+      "contractEndDate": "2026-02-28",
+      "sourceUrl": "https://www.transfermarkt.com/sergio-mendi/profil/spieler/158071",
+      "raw": {
+        "citizenshipText": "Spain",
+        "dateOfBirthText": "12/06/1993 (32)",
+        "heightText": "1,83 m",
+        "footText": null,
+        "joinedText": "06/09/2025",
+        "contractExpiresText": "28/02/2026"
+      }
+    },
+    {
+      "playerSlug": "seyed-hossein-hosseini",
+      "playerName": "Seyed Hossein Hosseini",
+      "nationalities": [
+        "Iran"
+      ],
+      "dateOfBirth": "1992-06-30",
+      "heightCm": 187,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-23",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/seyed-hossein-hosseini/profil/spieler/132561",
+      "raw": {
+        "citizenshipText": "Iran",
+        "dateOfBirthText": "30/06/1992 (33)",
+        "heightText": "1,87 m",
+        "footText": null,
+        "joinedText": "23/07/2025",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "shaka-hislop",
+      "playerName": "Shaka Hislop",
+      "nationalities": [
+        "Trinidad and Tobago"
+      ],
+      "dateOfBirth": "1969-02-22",
+      "heightCm": 193,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/shaka-hislop/profil/spieler/4175",
+      "raw": {
+        "citizenshipText": "Trinidad and Tobago",
+        "dateOfBirthText": "22/02/1969 (57)",
+        "heightText": "1,93 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "sheraldo-becker",
+      "playerName": "Sheraldo Becker",
+      "nationalities": [
+        "Suriname"
+      ],
+      "dateOfBirth": "1995-02-09",
+      "heightCm": 180,
+      "preferredFoot": null,
+      "contractStartDate": "2026-02-02",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/sheraldo-becker/profil/spieler/188888",
+      "raw": {
+        "citizenshipText": "Suriname",
+        "dateOfBirthText": "09/02/1995 (31)",
+        "heightText": "1,80 m",
+        "footText": null,
+        "joinedText": "02/02/2026",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "shoja-khalilzadeh",
+      "playerName": "Shoja Khalilzadeh",
+      "nationalities": [
+        "Iran"
+      ],
+      "dateOfBirth": "1989-05-14",
+      "heightCm": 180,
+      "preferredFoot": null,
+      "contractStartDate": "2023-07-01",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/shoja-khalilzadeh/profil/spieler/213715",
+      "raw": {
+        "citizenshipText": "Iran",
+        "dateOfBirthText": "14/05/1989 (36)",
+        "heightText": "1,80 m",
+        "footText": null,
+        "joinedText": "01/07/2023",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "sloan-privat",
+      "playerName": "Sloan Privat",
+      "nationalities": [
+        "French Guiana"
+      ],
+      "dateOfBirth": "1989-07-24",
+      "heightCm": 186,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-24",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/sloan-privat/profil/spieler/66407",
+      "raw": {
+        "citizenshipText": "French Guiana",
+        "dateOfBirthText": "24/07/1989 (36)",
+        "heightText": "1,86 m",
+        "footText": null,
+        "joinedText": "24/07/2025",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "stephan-raheriharimanana",
+      "playerName": "Stéphan Raheriharimanana",
+      "nationalities": [
+        "Madagascar"
+      ],
+      "dateOfBirth": "1993-08-16",
+      "heightCm": 168,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/stephan-raheriharimanana/profil/spieler/170957",
+      "raw": {
+        "citizenshipText": "Madagascar",
+        "dateOfBirthText": "16/08/1993 (32)",
+        "heightText": "1,68 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "stern-john",
+      "playerName": "Stern John",
+      "nationalities": [
+        "Trinidad and Tobago"
+      ],
+      "dateOfBirth": "1976-10-30",
+      "heightCm": 185,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/stern-john/profil/spieler/3793",
+      "raw": {
+        "citizenshipText": "Trinidad and Tobago",
+        "dateOfBirthText": "30/10/1976 (49)",
+        "heightText": "1,85 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "steven-caulker",
+      "playerName": "Steven Caulker",
+      "nationalities": [
+        "Sierra Leone"
+      ],
+      "dateOfBirth": "1991-12-29",
+      "heightCm": 191,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/steven-caulker/profil/spieler/121280",
+      "raw": {
+        "citizenshipText": "Sierra Leone",
+        "dateOfBirthText": "29/12/1991 (34)",
+        "heightText": "1,91 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "tomas-lian-romero-keubler",
+      "playerName": "Tomás Romero",
+      "nationalities": [
+        "El Salvador"
+      ],
+      "dateOfBirth": "2000-12-19",
+      "heightCm": 184,
+      "preferredFoot": null,
+      "contractStartDate": "2024-02-06",
+      "contractEndDate": "2026-12-31",
+      "sourceUrl": "https://www.transfermarkt.com/tomas-romero/profil/spieler/465105",
+      "raw": {
+        "citizenshipText": "El Salvador",
+        "dateOfBirthText": "19/12/2000 (25)",
+        "heightText": "1,84 m",
+        "footText": null,
+        "joinedText": "06/02/2024",
+        "contractExpiresText": "31/12/2026"
+      }
+    },
+    {
+      "playerSlug": "tomoaki-makino",
+      "playerName": "Tomoaki Makino",
+      "nationalities": [
+        "Japan"
+      ],
+      "dateOfBirth": "1987-05-11",
+      "heightCm": null,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/tomoaki-makino/profil/spieler/106064",
+      "raw": {
+        "citizenshipText": "Japan",
+        "dateOfBirthText": "11/05/1987 (38)",
+        "heightText": "N/A",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "toni-sunjic",
+      "playerName": "Toni Šunjić",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1988-12-15",
+      "heightCm": 194,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/toni-sunjic/profil/spieler/60790",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "15/12/1988 (37)",
+        "heightText": "1,94 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "vedad-ibisevic",
+      "playerName": "Vedad Ibišević",
+      "nationalities": [
+        "Bosnia-Herzegovina"
+      ],
+      "dateOfBirth": "1984-08-06",
+      "heightCm": null,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/vedad-ibisevic/profil/spieler/21175",
+      "raw": {
+        "citizenshipText": "Bosnia-Herzegovina",
+        "dateOfBirthText": "06/08/1984 (41)",
+        "heightText": "N/A",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "victor-wanyama",
+      "playerName": "Victor Wanyama",
+      "nationalities": [
+        "Kenya"
+      ],
+      "dateOfBirth": "1991-06-25",
+      "heightCm": 184,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/victor-wanyama/profil/spieler/77760",
+      "raw": {
+        "citizenshipText": "Kenya",
+        "dateOfBirthText": "25/06/1991 (34)",
+        "heightText": "1,84 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "vurnon-anita",
+      "playerName": "Vurnon Anita",
+      "nationalities": [
+        "Curacao"
+      ],
+      "dateOfBirth": "1989-04-04",
+      "heightCm": 169,
+      "preferredFoot": null,
+      "contractStartDate": "2025-10-31",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/vurnon-anita/profil/spieler/30670",
+      "raw": {
+        "citizenshipText": "Curacao",
+        "dateOfBirthText": "04/04/1989 (36)",
+        "heightText": "1,69 m",
+        "footText": null,
+        "joinedText": "31/10/2025",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "wilfried-aimeric-zahibo",
+      "playerName": "Wilfried Zahibo",
+      "nationalities": [
+        "Central African Republic"
+      ],
+      "dateOfBirth": "1993-08-21",
+      "heightCm": 191,
+      "preferredFoot": null,
+      "contractStartDate": null,
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/wilfried-zahibo/profil/spieler/198529",
+      "raw": {
+        "citizenshipText": "Central African Republic",
+        "dateOfBirthText": "21/08/1993 (32)",
+        "heightText": "1,91 m",
+        "footText": null,
+        "joinedText": null,
+        "contractExpiresText": null
+      }
+    },
+    {
+      "playerSlug": "yakou-meite",
+      "playerName": "Yakou Meïté",
+      "nationalities": [
+        "Cote d'Ivoire"
+      ],
+      "dateOfBirth": "1996-02-11",
+      "heightCm": 185,
+      "preferredFoot": null,
+      "contractStartDate": "2025-08-27",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/yakou-meite/profil/spieler/289433",
+      "raw": {
+        "citizenshipText": "Cote d'Ivoire",
+        "dateOfBirthText": "11/02/1996 (30)",
+        "heightText": "1,85 m",
+        "footText": null,
+        "joinedText": "27/08/2025",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "yhoan-many-andzouana",
+      "playerName": "Yhoan Many Andzouana",
+      "nationalities": [
+        "Congo"
+      ],
+      "dateOfBirth": "1996-12-13",
+      "heightCm": 179,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-07",
+      "contractEndDate": "2028-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/yhoan-andzouana/profil/spieler/342218",
+      "raw": {
+        "citizenshipText": "Congo",
+        "dateOfBirthText": "13/12/1996 (29)",
+        "heightText": "1,79 m",
+        "footText": null,
+        "joinedText": "07/07/2025",
+        "contractExpiresText": "30/06/2028"
+      }
+    },
+    {
+      "playerSlug": "yoann-salmier",
+      "playerName": "Yoann Salmier",
+      "nationalities": [
+        "French Guiana"
+      ],
+      "dateOfBirth": "1992-11-21",
+      "heightCm": 188,
+      "preferredFoot": null,
+      "contractStartDate": "2025-02-03",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/yoann-salmier/profil/spieler/351843",
+      "raw": {
+        "citizenshipText": "French Guiana",
+        "dateOfBirthText": "21/11/1992 (33)",
+        "heightText": "1,88 m",
+        "footText": null,
+        "joinedText": "03/02/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "youssef-ait-bennasser",
+      "playerName": "Youssef Aït Bennasser",
+      "nationalities": [
+        "Morocco"
+      ],
+      "dateOfBirth": "1996-07-07",
+      "heightCm": 184,
+      "preferredFoot": null,
+      "contractStartDate": "2025-09-04",
+      "contractEndDate": "2027-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/youssef-ait-bennasser/profil/spieler/265569",
+      "raw": {
+        "citizenshipText": "Morocco",
+        "dateOfBirthText": "07/07/1996 (29)",
+        "heightText": "1,84 m",
+        "footText": null,
+        "joinedText": "04/09/2025",
+        "contractExpiresText": "30/06/2027"
+      }
+    },
+    {
+      "playerSlug": "youssouf-m-changama",
+      "playerName": "Youssouf M'Changama",
+      "nationalities": [
+        "Comoros"
+      ],
+      "dateOfBirth": "1990-08-29",
+      "heightCm": 175,
+      "preferredFoot": null,
+      "contractStartDate": "2025-09-10",
+      "contractEndDate": null,
+      "sourceUrl": "https://www.transfermarkt.com/youssouf-mchangama/profil/spieler/167472",
+      "raw": {
+        "citizenshipText": "Comoros",
+        "dateOfBirthText": "29/08/1990 (35)",
+        "heightText": "1,75 m",
+        "footText": null,
+        "joinedText": "10/09/2025",
+        "contractExpiresText": "-"
+      }
+    },
+    {
+      "playerSlug": "youstin-delfin-salas-gomez",
+      "playerName": "Youstin Delfin Salas Gómez",
+      "nationalities": [
+        "Costa Rica"
+      ],
+      "dateOfBirth": "1996-06-17",
+      "heightCm": 173,
+      "preferredFoot": null,
+      "contractStartDate": "2025-09-15",
+      "contractEndDate": "2026-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/youstin-salas/profil/spieler/322958",
+      "raw": {
+        "citizenshipText": "Costa Rica",
+        "dateOfBirthText": "17/06/1996 (29)",
+        "heightText": "1,73 m",
+        "footText": null,
+        "joinedText": "15/09/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    },
+    {
+      "playerSlug": "yvandro-borges-sanches",
+      "playerName": "Yvandro Borges Sanches",
+      "nationalities": [
+        "Luxembourg"
+      ],
+      "dateOfBirth": "2004-05-24",
+      "heightCm": 180,
+      "preferredFoot": null,
+      "contractStartDate": "2025-08-07",
+      "contractEndDate": "2028-06-30",
+      "sourceUrl": "https://www.transfermarkt.com/yvandro-borges-sanches/profil/spieler/586659",
+      "raw": {
+        "citizenshipText": "Luxembourg",
+        "dateOfBirthText": "24/05/2004 (21)",
+        "heightText": "1,80 m",
+        "footText": null,
+        "joinedText": "07/08/2025",
+        "contractExpiresText": "30/06/2028"
+      }
+    }
+  ]
+}

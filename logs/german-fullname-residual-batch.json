@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-03-10T22:10:08.097Z",
+  "selectedCount": 2,
+  "mergeEntries": [
+    {
+      "aliasSlug": "fsv-mainz-05-germany",
+      "canonicalSlug": "1-fsv-mainz-05-germany",
+      "aliasName": "FSV Mainz 05",
+      "canonicalName": "1. FSV Mainz 05",
+      "countryCode": "DEU",
+      "leagueSlug": "1-bundesliga",
+      "reason": "promote German numeric fullname canonical slug"
+    },
+    {
+      "aliasSlug": "fc-koln-germany",
+      "canonicalSlug": "1-fc-ko-ln-germany",
+      "aliasName": "FC Köln",
+      "canonicalName": "1. FC Köln",
+      "countryCode": "DEU",
+      "leagueSlug": "1-bundesliga",
+      "reason": "promote German numeric fullname canonical slug"
+    }
+  ],
+  "mergeCommand": "node --experimental-strip-types scripts/apply-team-merge-batch-sequential.mts --surface-only --batch-file=logs/german-fullname-residual-batch.json"
+}

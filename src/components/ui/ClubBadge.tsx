@@ -5,6 +5,7 @@ interface ClubBadgeProps {
   clubId: string;
   logo?: string;
   size?: 'sm' | 'md' | 'lg';
+  showText?: boolean;
   className?: string;
 }
 
@@ -31,11 +32,35 @@ const sizeClasses = {
 const svgSizes = { sm: 24, md: 32, lg: 48 };
 const fontSizes = { sm: 7, md: 9, lg: 13 };
 
-export function ClubBadge({ shortName, clubId, logo, size = 'md', className }: ClubBadgeProps) {
+function getBadgeLabel(shortName: string) {
+  const normalized = shortName.trim();
+  if (!normalized) {
+    return 'CLB';
+  }
+
+  const compact = normalized.replace(/[^A-Za-z0-9]/g, '');
+  if (compact.length > 0 && compact.length <= 4) {
+    return compact.toUpperCase();
+  }
+
+  const parts = normalized
+    .split(/\s+/)
+    .map((part) => part.replace(/[^A-Za-z0-9]/g, ''))
+    .filter(Boolean);
+
+  if (parts.length >= 2) {
+    return parts.slice(0, 3).map((part) => part[0]?.toUpperCase() ?? '').join('');
+  }
+
+  return compact.slice(0, 3).toUpperCase();
+}
+
+export function ClubBadge({ shortName, clubId, logo, size = 'md', showText = true, className }: ClubBadgeProps) {
   const colors = clubColorMap[clubId] ?? defaultColors;
   const sz = svgSizes[size];
   const fs = fontSizes[size];
   const cx = sz / 2;
+  const badgeLabel = getBadgeLabel(shortName);
 
   if (logo) {
     return (
@@ -78,19 +103,21 @@ export function ClubBadge({ shortName, clubId, logo, size = 'md', className }: C
           rx={sz * 0.02}
         />
         {/* Club short name */}
-        <text
-          x="50%"
-          y="50%"
-          textAnchor="middle"
-          dominantBaseline="central"
-          fill={colors.secondary}
-          fontSize={fs}
-          fontWeight="800"
-          fontFamily="system-ui, sans-serif"
-          letterSpacing="0.5"
-        >
-          {shortName}
-        </text>
+        {showText && (
+          <text
+            x="50%"
+            y="50%"
+            textAnchor="middle"
+            dominantBaseline="central"
+            fill={colors.secondary}
+            fontSize={fs}
+            fontWeight="800"
+            fontFamily="system-ui, sans-serif"
+            letterSpacing="0.5"
+          >
+            {badgeLabel}
+          </text>
+        )}
       </svg>
     </div>
   );

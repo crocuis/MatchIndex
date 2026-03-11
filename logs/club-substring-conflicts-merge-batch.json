@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-03-10T21:02:44.555Z",
+  "sourceConflictCount": 3,
+  "selectedCount": 3,
+  "mergeEntries": [
+    {
+      "aliasSlug": "espanyol-spain",
+      "canonicalSlug": "rcd-espanyol-de-barcelona-spain",
+      "aliasName": "Espanyol",
+      "canonicalName": "RCD Espanyol de Barcelona",
+      "countryCode": "ESP",
+      "leagueSlug": null,
+      "reason": "promote official expanded full-name slug over substring-style short name"
+    },
+    {
+      "aliasSlug": "rayo-vallecano-spain",
+      "canonicalSlug": "rayo-vallecano-de-madrid-spain",
+      "aliasName": "Rayo Vallecano",
+      "canonicalName": "Rayo Vallecano de Madrid",
+      "countryCode": "ESP",
+      "leagueSlug": null,
+      "reason": "promote official expanded full-name slug over substring-style short name"
+    },
+    {
+      "aliasSlug": "real-sociedad-spain",
+      "canonicalSlug": "real-sociedad-de-fu-tbol-spain",
+      "aliasName": "Real Sociedad",
+      "canonicalName": "Real Sociedad de Fútbol",
+      "countryCode": "ESP",
+      "leagueSlug": null,
+      "reason": "promote official expanded full-name slug over substring-style short name"
+    }
+  ],
+  "mergeCommand": "node --experimental-strip-types scripts/apply-team-merge-batch-sequential.mts --surface-only --batch-file=logs/club-substring-conflicts-merge-batch.json"
+}

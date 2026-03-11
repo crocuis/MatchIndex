@@ -41,10 +41,10 @@ export function MatchCard({ match, placeholders = [], showDate = true, showLeagu
     : match.awayTeamCode ?? match.awayTeamName ?? '???';
   const homeLabel = isNationMatch
     ? match.homeTeamName ?? homeShortName
-    : homeShortName;
+    : match.homeTeamName ?? homeShortName;
   const awayLabel = isNationMatch
     ? match.awayTeamName ?? awayShortName
-    : awayShortName;
+    : match.awayTeamName ?? awayShortName;
   const showHomeNationFlag = !isPendingNationSlot(homeLabel, homeShortName);
   const showAwayNationFlag = !isPendingNationSlot(awayLabel, awayShortName);
   const homePlaceholder = placeholders.find((placeholder) => placeholder.id === match.homeTeamId);
@@ -76,7 +76,7 @@ export function MatchCard({ match, placeholders = [], showDate = true, showLeagu
                 ? showHomeNationFlag && (
                   <NationFlag nationId={match.homeTeamId} code={homeShortName} size="sm" />
                 )
-                : <ClubBadge shortName={homeShortName} clubId={match.homeTeamId} logo={match.homeTeamLogo} size="sm" />}
+              : <ClubBadge shortName={homeShortName} clubId={match.homeTeamId} logo={match.homeTeamLogo} size="sm" showText={false} />}
             <div className="min-w-0 text-[13px] font-medium text-text-primary text-right">
               {homePlaceholder ? <WorldCupPlaceholderLink placeholder={homePlaceholder} label={homeLabel} className="items-end" /> : <span className="truncate block">{homeLabel}</span>}
             </div>
@@ -113,7 +113,7 @@ export function MatchCard({ match, placeholders = [], showDate = true, showLeagu
                 ? showAwayNationFlag && (
                   <NationFlag nationId={match.awayTeamId} code={awayShortName} size="sm" />
                 )
-                : <ClubBadge shortName={awayShortName} clubId={match.awayTeamId} logo={match.awayTeamLogo} size="sm" />}
+              : <ClubBadge shortName={awayShortName} clubId={match.awayTeamId} logo={match.awayTeamLogo} size="sm" showText={false} />}
             <div className="min-w-0 text-[13px] font-medium text-text-primary">
               {awayPlaceholder ? <WorldCupPlaceholderLink placeholder={awayPlaceholder} label={awayLabel} /> : <span className="truncate block">{awayLabel}</span>}
             </div>

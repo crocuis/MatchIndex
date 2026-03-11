@@ -56,6 +56,7 @@ export function StandingsTable({ standings, compact = false, className }: Standi
                     clubId={row.clubId}
                     logo={row.clubLogo}
                     size="sm"
+                    showText={false}
                   />
                   <span>{compact ? (row.clubShortName ?? row.clubId) : (row.clubName ?? row.clubId)}</span>
                 </div>

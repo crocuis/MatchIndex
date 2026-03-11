@@ -1,0 +1,2541 @@
+{
+  "exportedAt": "2026-03-10T13:12:10.817Z",
+  "provider": "transfermarkt",
+  "targets": [
+    {
+      "playerSlug": "abdoulaye-keita",
+      "playerName": "Abdoulaye Keita",
+      "playerNames": [
+        "Abdoulaye Keita",
+        "Abdoulaye Keita"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/abdoulaye-keita/profil/spieler/949489",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "abdulelah-saad-hameed-al-malki",
+      "playerName": "Abdulelah Al Malki",
+      "playerNames": [
+        "Abdulelah Al Malki",
+        "Abdulelah Saad Hameed Al-Malki"
+      ],
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "abolfazl-jalali",
+      "playerName": "Abolfazl Jalali",
+      "playerNames": [
+        "Abolfazl Jalali",
+        "Abolfazl Jalali"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/abolfazl-jalali/profil/spieler/599240",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "adama-ba",
+      "playerName": "Adama Ba",
+      "playerNames": [
+        "Adama Ba",
+        "Adama Ba"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/adama-soumaoro/profil/spieler/126673",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "adnane-tighadouini",
+      "playerName": "Adnane Tighadouini",
+      "playerNames": [
+        "Adnane Tighadouini",
+        "Adnane Tighadouini"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/adnane-tighadouini/profil/spieler/185570",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "ahmad-nourollahi",
+      "playerName": "Ahmad Nourollahi",
+      "playerNames": [
+        "Ahmad Nourollahi",
+        "Ahmad Nourollahi"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ahmad-nourollahi/profil/spieler/327140",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "jacques-alaixys-romao",
+      "playerName": "Alaixys Romao",
+      "playerNames": [
+        "Alaixys Romao",
+        "Jacques-Alaixys Romao"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/alaixys-romao/profil/spieler/40014",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "Marseille",
+        "marseille-france"
+      ]
+    },
+    {
+      "playerSlug": "alberto-guitian-ceballos",
+      "playerName": "Alberto Guitián",
+      "playerNames": [
+        "Alberto Guitián",
+        "Alberto Guitián Ceballos"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/alberto-guitian/profil/spieler/230895",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "albert-rafetraniaina",
+      "playerName": "Albert Rafetraniaina",
+      "playerNames": [
+        "Albert Rafetraniaina",
+        "Albert Rafetraniaina"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/albert-rafetraniaina/profil/spieler/236783",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "aleksandar-tonev",
+      "playerName": "Aleksandar Tonev",
+      "playerNames": [
+        "Aleksandar Tonev",
+        "Aleksandar Tonev"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/aleksandar-tonev/profil/spieler/87282",
+      "teamName": "Frosinone",
+      "teamNames": [
+        "Frosinone",
+        "Frosinone",
+        "frosinone-italy"
+      ]
+    },
+    {
+      "playerSlug": "ali-nadhoim-ahamada",
+      "playerName": "Ali Ahamada",
+      "playerNames": [
+        "Ali Ahamada",
+        "Ali Nadhoim Ahamada"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ali-ahamada/profil/spieler/126767",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "ali-gholizadeh",
+      "playerName": "Ali Gholizadeh",
+      "playerNames": [
+        "Ali Gholizadeh",
+        "Ali Gholizadeh"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ali-gholizadeh/profil/spieler/294772",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "ali-karimi",
+      "playerName": "Ali Karimi",
+      "playerNames": [
+        "Ali Karimi",
+        "Ali Karimi"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ali-karimi/profil/spieler/15412",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "alvaro-traver-navarrete",
+      "playerName": "Álvaro Traver",
+      "playerNames": [
+        "Álvaro Traver",
+        "Álvaro Traver Navarrete"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/alvaro-traver/profil/spieler/253153",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "amir-dervisevic",
+      "playerName": "Amir Derviševič",
+      "playerNames": [
+        "Amir Derviševič",
+        "Amir Derviševič"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/amir-dervisevic/profil/spieler/148940",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "amos-youga",
+      "playerName": "Amos Youga",
+      "playerNames": [
+        "Amos Youga",
+        "Amos Youga"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/amos-youga/profil/spieler/203540",
+      "teamName": "Gazélec Ajaccio",
+      "teamNames": [
+        "Gazélec Ajaccio",
+        "Gazélec Ajaccio",
+        "gazelec-ajaccio-france"
+      ]
+    },
+    {
+      "playerSlug": "ander-gayoso-reina",
+      "playerName": "Ander Gayoso",
+      "playerNames": [
+        "Ander Gayoso",
+        "Ander Gayoso Reina"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ander-gayoso/profil/spieler/333347",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "anel-ahmedhodzic",
+      "playerName": "Anel Ahmedhodžić",
+      "playerNames": [
+        "Anel Ahmedhodžić",
+        "Anel Ahmedhodžić"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/anel-ahmedhodzic/profil/spieler/377468",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "Bordeaux",
+        "bordeaux-france"
+      ]
+    },
+    {
+      "playerSlug": "anthony-william-hernandez-gonzalez",
+      "playerName": "Anthony William Hernández González",
+      "playerNames": [
+        "Anthony William Hernández González",
+        "Anthony William Hernández González"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/anthony-hernandez/profil/spieler/1035805",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "antonio-jesus-cotan-perez",
+      "playerName": "Antonio Cotán",
+      "playerNames": [
+        "Antonio Cotán",
+        "Antonio Jesús Cotán Pérez"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/antonio-cotan/profil/spieler/199330",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "aras-ozbiliz",
+      "playerName": "Aras Özbiliz",
+      "playerNames": [
+        "Aras Özbiliz",
+        "Aras Özbiliz"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/aras-ozbiliz/profil/spieler/124891",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ]
+    },
+    {
+      "playerSlug": "arber-hoxha",
+      "playerName": "Arbër Hoxha",
+      "playerNames": [
+        "Arbër Hoxha",
+        "Arbër Hoxha"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/arber-hoxha/profil/spieler/458367",
+      "teamName": "Albania",
+      "teamNames": [
+        "Albania",
+        "Albania",
+        "albania"
+      ]
+    },
+    {
+      "playerSlug": "aristote-n-dongala",
+      "playerName": "Aristote N'Dongala",
+      "playerNames": [
+        "Aristote N'Dongala",
+        "Aristote N'Dongala"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/aristote-ndongala/profil/spieler/255930",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "artoms-rudnevs",
+      "playerName": "Artoms Rudņevs",
+      "playerNames": [
+        "Artoms Rudņevs",
+        "Artoms Rudņevs"
+      ],
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "artur-ionita",
+      "playerName": "Artur Ioniţă",
+      "playerNames": [
+        "Artur Ioniţă",
+        "Artur Ioniţă"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/artur-ionita/profil/spieler/98888",
+      "teamName": "Hellas Verona",
+      "teamNames": [
+        "Hellas Verona",
+        "Hellas Verona",
+        "hellas-verona-italy"
+      ]
+    },
+    {
+      "playerSlug": "felix-asdrubal-padron-hernandez",
+      "playerName": "Asdrúbal Padrón",
+      "playerNames": [
+        "Asdrúbal Padrón",
+        "Félix Asdrúbal Padrón Hernández"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/asdrubal-padron/profil/spieler/274771",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "ashot-khachatryan",
+      "playerName": "Ashot Khachatryan",
+      "playerNames": [
+        "Ashot Khachatryan",
+        "Ashot Khachatryan"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ashot-khachatryan/profil/spieler/252581",
+      "teamName": "Soviet Union U20",
+      "teamNames": [
+        "Soviet Union U20",
+        "Soviet Union U20",
+        "soviet-union-u20"
+      ]
+    },
+    {
+      "playerSlug": "asier-etxaburu-diz",
+      "playerName": "Asier Etxaburu",
+      "playerNames": [
+        "Asier Etxaburu",
+        "Asier Etxaburu Diz"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/asier-etxaburu/profil/spieler/255496",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "asmir-begovic",
+      "playerName": "Asmir Begović",
+      "playerNames": [
+        "Asmir Begović",
+        "Asmir Begović"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/asmir-begovic/profil/spieler/33873",
+      "teamName": "Everton",
+      "teamNames": [
+        "Everton",
+        "Everton",
+        "everton-england"
+      ]
+    },
+    {
+      "playerSlug": "baba-traore",
+      "playerName": "Baba Traore",
+      "playerNames": [
+        "Baba Traore",
+        "Baba Traore"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/baba-traore/profil/spieler/371926",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "billy-ketkeophomphone",
+      "playerName": "Billy Ketkeophomphone",
+      "playerNames": [
+        "Billy Ketkeophomphone",
+        "Billy Ketkeophomphone"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/billy-ketkeophomphone/profil/spieler/134712",
+      "teamName": "Angers",
+      "teamNames": [
+        "Angers",
+        "Angers",
+        "angers-france"
+      ]
+    },
+    {
+      "playerSlug": "borja-galan-gonzalez",
+      "playerName": "Borja Galán",
+      "playerNames": [
+        "Borja Galán",
+        "Borja Galán González"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/borja-galan/profil/spieler/221295",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "francisco-borja-lasso-de-la-vega-gayan",
+      "playerName": "Borja Lasso",
+      "playerNames": [
+        "Borja Lasso",
+        "Francisco Borja Lasso de la Vega Gayán"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/borja-lasso/profil/spieler/268949",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "brendan-joel-zibusiso-galloway",
+      "playerName": "Brendan Galloway",
+      "playerNames": [
+        "Brendan Galloway",
+        "Brendan Joel Zibusiso Galloway"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/brendan-galloway/profil/spieler/208244",
+      "teamName": "Everton",
+      "teamNames": [
+        "Everton",
+        "Everton",
+        "everton-england"
+      ]
+    },
+    {
+      "playerSlug": "calvin-anele-ngcongca",
+      "playerName": "Calvin Anele Ngcongca",
+      "playerNames": [
+        "Calvin Anele Ngcongca",
+        "Calvin Anele Ngcongca"
+      ],
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "carl-cort",
+      "playerName": "Carl Cort",
+      "playerNames": [
+        "Carl Cort",
+        "Carl Cort"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/carl-cort/profil/spieler/3093",
+      "teamName": "Wolverhampton Wanderers",
+      "teamNames": [
+        "Wolverhampton Wanderers",
+        "Wolverhampton Wan.",
+        "wolverhampton-wanderers-england"
+      ]
+    },
+    {
+      "playerSlug": "francisco-carlos-gonzalez-cabrera",
+      "playerName": "Carlos González",
+      "playerNames": [
+        "Carlos González",
+        "Francisco Carlos González Cabrera"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/juan-carlos-gonzalez/profil/spieler/248084",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "carlos-manuel-martinez-castro",
+      "playerName": "Carlos Martínez",
+      "playerNames": [
+        "Carlos Martínez",
+        "Carlos Manuel Martínez Castro"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/carlos-martinez/profil/spieler/58074",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "rodrigue-casimir-ninga",
+      "playerName": "Casimir Ninga",
+      "playerNames": [
+        "Casimir Ninga",
+        "Rodrigue Casimir Ninga"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/casimir-ninga/profil/spieler/392810",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "Montpellier",
+        "montpellier-france"
+      ]
+    },
+    {
+      "playerSlug": "cayetano-bartolome-bonnin-vasquez",
+      "playerName": "Cayetano Bartolomé Bonnín Vásquez",
+      "playerNames": [
+        "Cayetano Bartolomé Bonnín Vásquez",
+        "Cayetano Bartolomé Bonnín Vásquez"
+      ],
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "Osasuna",
+        "osasuna-spain"
+      ]
+    },
+    {
+      "playerSlug": "cazim-suljic",
+      "playerName": "Cazim Suljic",
+      "playerNames": [
+        "Cazim Suljic",
+        "Cazim Suljic"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/cazim-suljic/profil/spieler/348431",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "cedric-yambere",
+      "playerName": "Cédric Yambéré",
+      "playerNames": [
+        "Cédric Yambéré",
+        "Cédric Yambéré"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/cedric-yambere/profil/spieler/291140",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "Bordeaux",
+        "bordeaux-france"
+      ]
+    },
+    {
+      "playerSlug": "chaker-alhadhur",
+      "playerName": "Chaker Alhadhur",
+      "playerNames": [
+        "Chaker Alhadhur",
+        "Chaker Alhadhur"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/chaker-alhadhur/profil/spieler/178540",
+      "teamName": "Caen",
+      "teamNames": [
+        "Caen",
+        "Caen",
+        "caen-france"
+      ]
+    },
+    {
+      "playerSlug": "charlison-benschop",
+      "playerName": "Charlison Benschop",
+      "playerNames": [
+        "Charlison Benschop",
+        "Charlison Benschop"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/charlison-benschop/profil/spieler/66783",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "chencho-gyeltshen",
+      "playerName": "Chencho Gyeltshen",
+      "playerNames": [
+        "Chencho Gyeltshen",
+        "Chencho Gyeltshen"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/chencho-gyeltshen/profil/spieler/364437",
+      "teamName": "Kerala Blasters",
+      "teamNames": [
+        "Kerala Blasters",
+        "Kerala Blasters",
+        "kerala-blasters-india"
+      ]
+    },
+    {
+      "playerSlug": "christian-kouakou-yao",
+      "playerName": "Christian Kouakou",
+      "playerNames": [
+        "Christian Kouakou",
+        "Christian Kouakou Yao"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/christian-kouakou/profil/spieler/230221",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "rhu-endly-martina",
+      "playerName": "Cuco Martina",
+      "playerNames": [
+        "Cuco Martina",
+        "Rhu-endly Martina"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/cuco-martina/profil/spieler/91251",
+      "teamName": "Southampton",
+      "teamNames": [
+        "Southampton",
+        "Southampton",
+        "southampton-england"
+      ]
+    },
+    {
+      "playerSlug": "daniel-alonso-chacon-salas",
+      "playerName": "Daniel Alonso Chacón Salas",
+      "playerNames": [
+        "Daniel Alonso Chacón Salas",
+        "Daniel Alonso Chacón Salas"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/daniel-chacon/profil/spieler/524992",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "daniel-pavlovic",
+      "playerName": "Daniel Pavlovic",
+      "playerNames": [
+        "Daniel Pavlovic",
+        "Daniel Pavlovic"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/daniel-pavlovic/profil/spieler/19671",
+      "teamName": "Frosinone",
+      "teamNames": [
+        "Frosinone",
+        "Frosinone",
+        "frosinone-italy"
+      ]
+    },
+    {
+      "playerSlug": "daniel-lorenzo-lorenzo",
+      "playerName": "Dani Lorenzo",
+      "playerNames": [
+        "Dani Lorenzo",
+        "Daniel Lorenzo Lorenzo"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/dani-lorenzo/profil/spieler/282725",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "danny-higginbotham",
+      "playerName": "Danny Higginbotham",
+      "playerNames": [
+        "Danny Higginbotham",
+        "Danny Higginbotham"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/danny-higginbotham/profil/spieler/3686",
+      "teamName": "Southampton",
+      "teamNames": [
+        "Southampton",
+        "Southampton",
+        "southampton-england"
+      ]
+    },
+    {
+      "playerSlug": "david-goldar-gomez",
+      "playerName": "David Goldar",
+      "playerNames": [
+        "David Goldar",
+        "David Goldar Gómez"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/david-goldar/profil/spieler/278357",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "david-gomez-vazquez",
+      "playerName": "David Gómez Vázquez",
+      "playerNames": [
+        "David Gómez Vázquez",
+        "David Gómez Vázquez"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/david-gomez/profil/spieler/165004",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "angel-de-la-calzada-ramos",
+      "playerName": "De la Calzada",
+      "playerNames": [
+        "De la Calzada",
+        "Ángel de la Calzada Ramos"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/angel-de-la-calzada/profil/spieler/233072",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "denis-huseinbasic",
+      "playerName": "Denis Huseinbašić",
+      "playerNames": [
+        "Denis Huseinbašić",
+        "Denis Huseinbašić"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/denis-huseinbasic/profil/spieler/678479",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "dennis-diaz-fernanadez",
+      "playerName": "Dennis Díaz Fernánadez",
+      "playerNames": [
+        "Dennis Díaz Fernánadez",
+        "Dennis Díaz Fernánadez"
+      ],
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "didi-haracic",
+      "playerName": "DiDi Haracic",
+      "playerNames": [
+        "DiDi Haracic",
+        "DiDi Haracic"
+      ],
+      "teamName": "Washington Spirit",
+      "teamNames": [
+        "Washington Spirit",
+        "Washington Spirit",
+        "washington-spirit-united-states-of-america"
+      ]
+    },
+    {
+      "playerSlug": "diego-caballo-alonso",
+      "playerName": "Diego Caballo",
+      "playerNames": [
+        "Diego Caballo",
+        "Diego Caballo Alonso"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/diego-caballo/profil/spieler/162036",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "djamel-bakar",
+      "playerName": "Djamel Bakar",
+      "playerNames": [
+        "Djamel Bakar",
+        "Djamel Bakar"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/djamel-bakar/profil/spieler/49872",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "Montpellier",
+        "montpellier-france"
+      ]
+    },
+    {
+      "playerSlug": "djene-dakonam-ortega",
+      "playerName": "Djene Dakonam",
+      "playerNames": [
+        "Djene Dakonam",
+        "Djené Dakonam Ortega"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/dakonam-djene/profil/spieler/221150",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "Getafe",
+        "getafe-spain"
+      ]
+    },
+    {
+      "playerSlug": "donovan-leon",
+      "playerName": "Donovan Léon",
+      "playerNames": [
+        "Donovan Léon",
+        "Donovan Léon"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/donovan-leon/profil/spieler/170911",
+      "teamName": "Auxerre",
+      "teamNames": [
+        "Auxerre",
+        "Auxerre",
+        "auxerre-france"
+      ]
+    },
+    {
+      "playerSlug": "douglas-andrey-lopez-araya",
+      "playerName": "Douglas Andrey López Araya",
+      "playerNames": [
+        "Douglas Andrey López Araya",
+        "Douglas Andrey López Araya"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/douglas-lopez/profil/spieler/580201",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "dylan-saint-louis",
+      "playerName": "Dylan Saint-Louis",
+      "playerNames": [
+        "Dylan Saint-Louis",
+        "Dylan Saint-Louis"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/dylan-saint-louis/profil/spieler/355370",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "edin-dzeko",
+      "playerName": "Edin Džeko",
+      "playerNames": [
+        "Edin Džeko",
+        "Edin Džeko"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/edin-dzeko/profil/spieler/28396",
+      "teamName": "AS Roma",
+      "teamNames": [
+        "AS Roma",
+        "AS Roma",
+        "as-roma-italy"
+      ]
+    },
+    {
+      "playerSlug": "edvinas-gertmonas",
+      "playerName": "Edvinas Gertmonas",
+      "playerNames": [
+        "Edvinas Gertmonas",
+        "Edvinas Gertmonas"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/edvinas-gertmonas/profil/spieler/229292",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "Rennes",
+        "rennes-france"
+      ]
+    },
+    {
+      "playerSlug": "emir-spahic",
+      "playerName": "Emir Spahić",
+      "playerNames": [
+        "Emir Spahić",
+        "Emir Spahić"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/emir-spahic/profil/spieler/25812",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "Sevilla",
+        "sevilla-spain"
+      ]
+    },
+    {
+      "playerSlug": "emmanuel-adebayor",
+      "playerName": "Emmanuel Adebayor",
+      "playerNames": [
+        "Emmanuel Adebayor",
+        "Emmanuel Adebayor"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/emmanuel-adebayor/profil/spieler/8883",
+      "teamName": "Crystal Palace",
+      "teamNames": [
+        "Crystal Palace",
+        "Crystal Palace",
+        "crystal-palace-england"
+      ]
+    },
+    {
+      "playerSlug": "eneko-capilla-gonzalez",
+      "playerName": "Eneko Capilla",
+      "playerNames": [
+        "Eneko Capilla",
+        "Eneko Capilla González"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/eneko-capilla/profil/spieler/289241",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "enes-sipovic",
+      "playerName": "Enes Sipović",
+      "playerNames": [
+        "Enes Sipović",
+        "Enes Sipović"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/enes-sipovic/profil/spieler/104219",
+      "teamName": "Kerala Blasters",
+      "teamNames": [
+        "Kerala Blasters",
+        "Kerala Blasters",
+        "kerala-blasters-india"
+      ]
+    },
+    {
+      "playerSlug": "erin-jorge-gomes-pinheiro",
+      "playerName": "Erin Pinheiro",
+      "playerNames": [
+        "Erin Pinheiro",
+        "Erin Jorge Gomes Pinheiro"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/cicin/profil/spieler/395447",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "ermedin-demirovic",
+      "playerName": "Ermedin Demirović",
+      "playerNames": [
+        "Ermedin Demirović",
+        "Ermedin Demirović"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ermedin-demirovic/profil/spieler/335457",
+      "teamName": "Deportivo Alavés",
+      "teamNames": [
+        "Deportivo Alavés",
+        "Deportivo Alavés",
+        "deportivo-alaves-spain"
+      ]
+    },
+    {
+      "playerSlug": "ermin-bicakcic",
+      "playerName": "Ermin Bičakčić",
+      "playerNames": [
+        "Ermin Bičakčić",
+        "Ermin Bičakčić"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ermin-bicakcic/profil/spieler/51676",
+      "teamName": "Hoffenheim",
+      "teamNames": [
+        "Hoffenheim",
+        "Hoffenheim",
+        "hoffenheim-germany"
+      ]
+    },
+    {
+      "playerSlug": "ervin-zukanovic",
+      "playerName": "Ervin Zukanović",
+      "playerNames": [
+        "Ervin Zukanović",
+        "Ervin Zukanović"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ervin-zukanovic/profil/spieler/44059",
+      "teamName": "AS Roma",
+      "teamNames": [
+        "AS Roma",
+        "AS Roma",
+        "as-roma-italy"
+      ]
+    },
+    {
+      "playerSlug": "esteban-alvarado-brown",
+      "playerName": "Esteban Alvarado Brown",
+      "playerNames": [
+        "Esteban Alvarado Brown",
+        "Esteban Alvarado Brown"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/esteban-alvarado/profil/spieler/128502",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "eyal-berkovic",
+      "playerName": "Eyal Berkovic",
+      "playerNames": [
+        "Eyal Berkovic",
+        "Eyal Berkovic"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/eyal-berkovic/profil/spieler/3231",
+      "teamName": "Manchester City FC",
+      "teamNames": [
+        "Manchester City FC",
+        "Man City",
+        "manchester-city-fc-england"
+      ]
+    },
+    {
+      "playerSlug": "florent-malouda",
+      "playerName": "Florent Malouda",
+      "playerNames": [
+        "Florent Malouda",
+        "Florent Malouda"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/florent-malouda/profil/spieler/5461",
+      "teamName": "Chelsea FC",
+      "teamNames": [
+        "Chelsea FC",
+        "Chelsea",
+        "chelsea-fc-england"
+      ]
+    },
+    {
+      "playerSlug": "floyd-ayite",
+      "playerName": "Floyd Ayité",
+      "playerNames": [
+        "Floyd Ayité",
+        "Floyd Ayité"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/floyd-ayite/profil/spieler/77974",
+      "teamName": "Bastia",
+      "teamNames": [
+        "Bastia",
+        "Bastia",
+        "bastia-france"
+      ]
+    },
+    {
+      "playerSlug": "francisco-jose-villalba-rodrigo",
+      "playerName": "Fran Villalba",
+      "playerNames": [
+        "Fran Villalba",
+        "Francisco José Villalba Rodrigo"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/fran-villalba/profil/spieler/311680",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "gael-andonian",
+      "playerName": "Gaël Andonian",
+      "playerNames": [
+        "Gaël Andonian",
+        "Gaël Andonian"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/gael-andonian/profil/spieler/182811",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "gen-shoji",
+      "playerName": "Gen Shōji",
+      "playerNames": [
+        "Gen Shōji",
+        "Gen Shōji"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/gen-shoji/profil/spieler/164277",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "geoffrey-kondogbia",
+      "playerName": "Geoffrey Kondogbia",
+      "playerNames": [
+        "Geoffrey Kondogbia",
+        "Geoffrey Kondogbia"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/geoffrey-kondogbia/profil/spieler/127189",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ]
+    },
+    {
+      "playerSlug": "gerson-torres-barrantes",
+      "playerName": "Gerson Torres Barrantes",
+      "playerNames": [
+        "Gerson Torres Barrantes",
+        "Gerson Torres Barrantes"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/gerson-torres/profil/spieler/372737",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "giedrius-arlauskis",
+      "playerName": "Giedrius Arlauskis",
+      "playerNames": [
+        "Giedrius Arlauskis",
+        "Giedrius Arlauskis"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/giedrius-arlauskis/profil/spieler/69001",
+      "teamName": "Watford",
+      "teamNames": [
+        "Watford",
+        "Watford",
+        "watford-england"
+      ]
+    },
+    {
+      "playerSlug": "gilles-sunu",
+      "playerName": "Gilles Sunu",
+      "playerNames": [
+        "Gilles Sunu",
+        "Gilles Sunu"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/gilles-sunu/profil/spieler/54933",
+      "teamName": "Angers",
+      "teamNames": [
+        "Angers",
+        "Angers",
+        "angers-france"
+      ]
+    },
+    {
+      "playerSlug": "mouhamadou-habib-habibou",
+      "playerName": "Habib Habibou",
+      "playerNames": [
+        "Habib Habibou",
+        "Mouhamadou Habib Habibou"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/habib-habibou/profil/spieler/41261",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "hachim-mastour",
+      "playerName": "Hachim Mastour",
+      "playerNames": [
+        "Hachim Mastour",
+        "Hachim Mastour"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/hachim-mastour/profil/spieler/253267",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "haris-medunjanin",
+      "playerName": "Haris Medunjanin",
+      "playerNames": [
+        "Haris Medunjanin",
+        "Haris Medunjanin"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/haris-medunjanin/profil/spieler/30666",
+      "teamName": "RC Deportivo La Coruña",
+      "teamNames": [
+        "RC Deportivo La Coruña",
+        "RC Deportivo La C.",
+        "rc-deportivo-la-coruna-spain"
+      ]
+    },
+    {
+      "playerSlug": "henok-goitom",
+      "playerName": "Henok Goitom",
+      "playerNames": [
+        "Henok Goitom",
+        "Henok Goitom"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/henok-goitom/profil/spieler/6838",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "Getafe",
+        "getafe-spain"
+      ]
+    },
+    {
+      "playerSlug": "henrikh-mkhitaryan",
+      "playerName": "Henrikh Mkhitaryan",
+      "playerNames": [
+        "Henrikh Mkhitaryan",
+        "Henrikh Mkhitaryan"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/henrikh-mkhitaryan/profil/spieler/55735",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "hugo-fraile-martin",
+      "playerName": "Hugo Fraile",
+      "playerNames": [
+        "Hugo Fraile",
+        "Hugo Fraile Martín"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/hugo-fraile/profil/spieler/72201",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "ian-gonzalez-nieto",
+      "playerName": "Ian González",
+      "playerNames": [
+        "Ian González",
+        "Ian González Nieto"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/cristian-borja/profil/spieler/356099",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "ibrahim-diallo",
+      "playerName": "Ibrahim Diallo",
+      "playerNames": [
+        "Ibrahim Diallo",
+        "Ibrahim Diallo"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ibrahim-diallo/profil/spieler/342887",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "ihlas-bebou",
+      "playerName": "Ihlas Bebou",
+      "playerNames": [
+        "Ihlas Bebou",
+        "Ihlas Bebou"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ihlas-bebou/profil/spieler/237164",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "imanol-corral-matellan",
+      "playerName": "Imanol Corral Matellán",
+      "playerNames": [
+        "Imanol Corral Matellán",
+        "Imanol Corral Matellán"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/imanol-corral/profil/spieler/255493",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "ivaylo-chochev",
+      "playerName": "Ivaylo Chochev",
+      "playerNames": [
+        "Ivaylo Chochev",
+        "Ivaylo Chochev"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ivaylo-chochev/profil/spieler/252767",
+      "teamName": "Palermo",
+      "teamNames": [
+        "Palermo",
+        "Palermo",
+        "palermo-italy"
+      ]
+    },
+    {
+      "playerSlug": "izet-hajrovic",
+      "playerName": "Izet Hajrović",
+      "playerNames": [
+        "Izet Hajrović",
+        "Izet Hajrović"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/izet-hajrovic/profil/spieler/74996",
+      "teamName": "Eibar",
+      "teamNames": [
+        "Eibar",
+        "Eibar",
+        "eibar-spain"
+      ]
+    },
+    {
+      "playerSlug": "francisco-javier-garcia-noblejas-hernanz",
+      "playerName": "Javi Noblejas",
+      "playerNames": [
+        "Javi Noblejas",
+        "Francisco Javier García Noblejas Hernanz"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/javi-noblejas/profil/spieler/126731",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "jefte-betancor-sanchez",
+      "playerName": "Jefté Betancor",
+      "playerNames": [
+        "Jefté Betancor",
+        "Jefté Betancor Sánchez"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/jefte-betancor/profil/spieler/198015",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "jeremy-morel",
+      "playerName": "Jérémy Morel",
+      "playerNames": [
+        "Jérémy Morel",
+        "Jérémy Morel"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/jeremy-morel/profil/spieler/23960",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "Lorient",
+        "lorient-france"
+      ]
+    },
+    {
+      "playerSlug": "jewison-bennette",
+      "playerName": "Jewison Bennette",
+      "playerNames": [
+        "Jewison Bennette",
+        "Jewison Bennette"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/jewison-bennette/profil/spieler/743627",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "jlloyd-tafari-samuel",
+      "playerName": "Jlloyd Samuel",
+      "playerNames": [
+        "Jlloyd Samuel",
+        "Jlloyd Tafari Samuel"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/jlloyd-samuel/profil/spieler/4067",
+      "teamName": "Aston Villa",
+      "teamNames": [
+        "Aston Villa",
+        "Aston Villa",
+        "aston-villa-england"
+      ]
+    },
+    {
+      "playerSlug": "jorge-gomez-mediavilla",
+      "playerName": "Jorge Mediavilla",
+      "playerNames": [
+        "Jorge Mediavilla",
+        "Jorge Gómez Mediavilla"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/jorge-mediavilla/profil/spieler/248870",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "jose-carlos-lazo-romero",
+      "playerName": "José Carlos Lazo",
+      "playerNames": [
+        "José Carlos Lazo",
+        "José Carlos Lazo Romero"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/jose-carlos-lazo/profil/spieler/282410",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "jose-carrillo-mancilla",
+      "playerName": "José Carrillo",
+      "playerNames": [
+        "José Carrillo",
+        "José Carrillo Mancilla"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/jose-carrillo/profil/spieler/337179",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "jose-joaquin-matos-garcia",
+      "playerName": "José Matos",
+      "playerNames": [
+        "José Matos",
+        "José Joaquín Matos García"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/jose-matos/profil/spieler/268957",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "josue-albert",
+      "playerName": "Josué Albert",
+      "playerNames": [
+        "Josué Albert",
+        "Josué Albert"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/josue-albert/profil/spieler/170487",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "Clermont Foot",
+        "clermont-foot-france"
+      ]
+    },
+    {
+      "playerSlug": "juan-del-carmen-camara-mesa",
+      "playerName": "Juan Cámara",
+      "playerNames": [
+        "Juan Cámara",
+        "Juan del Cármen Cámara Mesa"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/juan-camara/profil/spieler/162039",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "juan-muniz-gallego",
+      "playerName": "Juan Muñiz",
+      "playerNames": [
+        "Juan Muñiz",
+        "Juan Muñiz Gallego"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/juan-muniz/profil/spieler/187836",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "julen-lopez-salas",
+      "playerName": "Julen López",
+      "playerNames": [
+        "Julen López",
+        "Julen López Salas"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/julen-lopez/profil/spieler/354359",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "justin-hoyte",
+      "playerName": "Justin Hoyte",
+      "playerNames": [
+        "Justin Hoyte",
+        "Justin Hoyte"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/justin-hoyte/profil/spieler/7335",
+      "teamName": "Arsenal FC",
+      "teamNames": [
+        "Arsenal FC",
+        "Arsenal",
+        "arsenal-fc-england"
+      ]
+    },
+    {
+      "playerSlug": "kenan-kodro",
+      "playerName": "Kenan Kodro",
+      "playerNames": [
+        "Kenan Kodro",
+        "Kenan Kodro"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/kenan-kodro/profil/spieler/197126",
+      "teamName": "Real Valladolid",
+      "teamNames": [
+        "Real Valladolid",
+        "Real Valladolid",
+        "real-valladolid-spain"
+      ]
+    },
+    {
+      "playerSlug": "kevin-rimane",
+      "playerName": "Kévin Rimane",
+      "playerNames": [
+        "Kévin Rimane",
+        "Kevin Rimane"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/kevin-rimane/profil/spieler/93751",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "keysher-fuller-spence",
+      "playerName": "Keysher Fuller Spence",
+      "playerNames": [
+        "Keysher Fuller Spence",
+        "Keysher Fuller Spence"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/keysher-fuller/profil/spieler/525122",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "konstantin-engel",
+      "playerName": "Konstantin Engel",
+      "playerNames": [
+        "Konstantin Engel",
+        "Konstantin Engel"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/konstantin-engel/profil/spieler/42318",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "kossi-agassa",
+      "playerName": "Kossi Agassa",
+      "playerNames": [
+        "Kossi Agassa",
+        "Kossi Agassa"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/kossi-agassa/profil/spieler/12028",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ]
+    },
+    {
+      "playerSlug": "kosuke-nakamura",
+      "playerName": "Kosuke Nakamura",
+      "playerNames": [
+        "Kosuke Nakamura",
+        "Kosuke Nakamura"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/kosuke-nakamura/profil/spieler/165794",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "leandro-bacuna",
+      "playerName": "Leandro Bacuna",
+      "playerNames": [
+        "Leandro Bacuna",
+        "Leandro Bacuna"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/leandro-bacuna/profil/spieler/126014",
+      "teamName": "Aston Villa",
+      "teamNames": [
+        "Aston Villa",
+        "Aston Villa",
+        "aston-villa-england"
+      ]
+    },
+    {
+      "playerSlug": "leandro-barreiro-martins",
+      "playerName": "Leandro Barreiro",
+      "playerNames": [
+        "Leandro Barreiro",
+        "Leandro Barreiro Martins"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/leandro-barreiro/profil/spieler/357233",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "louis-didace-mafouta",
+      "playerName": "Louis Didace Mafouta",
+      "playerNames": [
+        "Louis Didace Mafouta",
+        "Louis Didace Mafouta"
+      ],
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "Metz",
+        "metz-france"
+      ]
+    },
+    {
+      "playerSlug": "lucia-leon",
+      "playerName": "Lucia Leon",
+      "playerNames": [
+        "Lucia Leon",
+        "Lucia Leon"
+      ],
+      "teamName": "Tottenham Hotspur Women",
+      "teamNames": [
+        "Tottenham Hotspur Women",
+        "Tottenham Hotspur.",
+        "tottenham-hotspur-women-england"
+      ]
+    },
+    {
+      "playerSlug": "ludovic-baal",
+      "playerName": "Ludovic Baal",
+      "playerNames": [
+        "Ludovic Baal",
+        "Ludovic Baal"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ludovic-baal/profil/spieler/39913",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "Rennes",
+        "rennes-france"
+      ]
+    },
+    {
+      "playerSlug": "macdonald-mariga-wanyama",
+      "playerName": "MacDonald Mariga Wanyama",
+      "playerNames": [
+        "MacDonald Mariga Wanyama",
+        "MacDonald Mariga Wanyama"
+      ],
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ]
+    },
+    {
+      "playerSlug": "marcel-buchel",
+      "playerName": "Marcel Büchel",
+      "playerNames": [
+        "Marcel Büchel",
+        "Marcel Büchel"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/marcel-buchel/profil/spieler/74956",
+      "teamName": "Empoli",
+      "teamNames": [
+        "Empoli",
+        "Empoli",
+        "empoli-italy"
+      ]
+    },
+    {
+      "playerSlug": "mariano-diaz-mejia",
+      "playerName": "Mariano Díaz",
+      "playerNames": [
+        "Mariano Díaz",
+        "Mariano Díaz Mejía"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/mariano-diaz/profil/spieler/225020",
+      "teamName": "Real Madrid CF",
+      "teamNames": [
+        "Real Madrid CF",
+        "Real Madrid",
+        "real-madrid-cf-spain"
+      ]
+    },
+    {
+      "playerSlug": "marians-pahars",
+      "playerName": "Marians Pahars",
+      "playerNames": [
+        "Marians Pahars",
+        "Marians Pahars"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/marians-pahars/profil/spieler/3689",
+      "teamName": "Southampton",
+      "teamNames": [
+        "Southampton",
+        "Southampton",
+        "southampton-england"
+      ]
+    },
+    {
+      "playerSlug": "mario-vrancic",
+      "playerName": "Mario Vrančić",
+      "playerNames": [
+        "Mario Vrančić",
+        "Mario Vrančić"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/mario-vrancic/profil/spieler/39372",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "maris-verpakovskis",
+      "playerName": "Maris Verpakovskis",
+      "playerNames": [
+        "Maris Verpakovskis",
+        "Maris Verpakovskis"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/maris-verpakovskis/profil/spieler/15404",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "Getafe",
+        "getafe-spain"
+      ]
+    },
+    {
+      "playerSlug": "marius-stankevicius",
+      "playerName": "Marius Stankevičius",
+      "playerNames": [
+        "Marius Stankevičius",
+        "Marius Stankevičius"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/marius-stankevicius/profil/spieler/5966",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "Valencia",
+        "valencia-spain"
+      ]
+    },
+    {
+      "playerSlug": "marshall-nyasha-munetsi",
+      "playerName": "Marshall Munetsi",
+      "playerNames": [
+        "Marshall Munetsi",
+        "Marshall Nyasha Munetsi"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/marshall-munetsi/profil/spieler/414908",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ]
+    },
+    {
+      "playerSlug": "masaaki-higashiguchi",
+      "playerName": "Masaaki Higashiguchi",
+      "playerNames": [
+        "Masaaki Higashiguchi",
+        "Masaaki Higashiguchi"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/masaaki-higashiguchi/profil/spieler/113712",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "massimo-bonini",
+      "playerName": "Massimo Bonini",
+      "playerNames": [
+        "Massimo Bonini",
+        "Massimo Bonini"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/massimo-bonini/profil/spieler/126265",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "JUV",
+        "juventus-italy"
+      ]
+    },
+    {
+      "playerSlug": "mathias-flaga-olesen",
+      "playerName": "Mathias Flaga Olesen",
+      "playerNames": [
+        "Mathias Flaga Olesen",
+        "Mathias Flaga Olesen"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/mathias-olesen/profil/spieler/490581",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "mato-jajalo",
+      "playerName": "Mato Jajalo",
+      "playerNames": [
+        "Mato Jajalo",
+        "Mato Jajalo"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/mato-jajalo/profil/spieler/47513",
+      "teamName": "Palermo",
+      "teamNames": [
+        "Palermo",
+        "Palermo",
+        "palermo-italy"
+      ]
+    },
+    {
+      "playerSlug": "medon-berisha",
+      "playerName": "Medon Berisha",
+      "playerNames": [
+        "Medon Berisha",
+        "Medon Berisha"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/medon-berisha/profil/spieler/583046",
+      "teamName": "Albania",
+      "teamNames": [
+        "Albania",
+        "Albania",
+        "albania"
+      ]
+    },
+    {
+      "playerSlug": "michael-olunga-ogada",
+      "playerName": "Michael Olunga",
+      "playerNames": [
+        "Michael Olunga",
+        "Michael Olunga Ogada"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/michael-olunga/profil/spieler/263482",
+      "teamName": "Girona",
+      "teamNames": [
+        "Girona",
+        "Girona",
+        "girona-spain"
+      ]
+    },
+    {
+      "playerSlug": "miguel-juan-llambrich",
+      "playerName": "Miguelón Llambrich",
+      "playerNames": [
+        "Miguelón Llambrich",
+        "Miguel Juan Llambrich"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/miguel-llambrich/profil/spieler/399775",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "mihai-roman",
+      "playerName": "Mihai Roman",
+      "playerNames": [
+        "Mihai Roman",
+        "Mihai Roman"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/mihai-roman/profil/spieler/64229",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "milan-gajic",
+      "playerName": "Milan Gajić",
+      "playerNames": [
+        "Milan Gajić",
+        "Milan Gajić"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/milan-gajic/profil/spieler/245030",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "miralem-pjanic",
+      "playerName": "Miralem Pjanić",
+      "playerNames": [
+        "Miralem Pjanić",
+        "Miralem Pjanić"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/miralem-pjanic/profil/spieler/44162",
+      "teamName": "FC Barcelona",
+      "teamNames": [
+        "FC Barcelona",
+        "BAR",
+        "fc-barcelona-spain"
+      ]
+    },
+    {
+      "playerSlug": "mirlan-murzaev",
+      "playerName": "Mirlan Murzaev",
+      "playerNames": [
+        "Mirlan Murzaev",
+        "Mirlan Murzaev"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/mirlan-murzaev/profil/spieler/125802",
+      "teamName": "Chennaiyin",
+      "teamNames": [
+        "Chennaiyin",
+        "Chennaiyin",
+        "chennaiyin-india"
+      ]
+    },
+    {
+      "playerSlug": "mirlind-daku",
+      "playerName": "Mirlind Daku",
+      "playerNames": [
+        "Mirlind Daku",
+        "Mirlind Daku"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/mirlind-daku/profil/spieler/521872",
+      "teamName": "Albania",
+      "teamNames": [
+        "Albania",
+        "Albania",
+        "albania"
+      ]
+    },
+    {
+      "playerSlug": "mohamed-youssouf",
+      "playerName": "Mohamed Youssouf",
+      "playerNames": [
+        "Mohamed Youssouf",
+        "Mohamed Youssouf"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/mohamed-youssouf/profil/spieler/57482",
+      "teamName": "AC Ajaccio",
+      "teamNames": [
+        "AC Ajaccio",
+        "AC Ajaccio",
+        "ac-ajaccio-france"
+      ]
+    },
+    {
+      "playerSlug": "mohammad-hossein-kanani-zadegan",
+      "playerName": "Mohammad Hossein Kanani Zadegan",
+      "playerNames": [
+        "Mohammad Hossein Kanani Zadegan",
+        "Mohammad Hossein Kanani Zadegan"
+      ],
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "muhamed-besic",
+      "playerName": "Muhamed Bešić",
+      "playerNames": [
+        "Muhamed Bešić",
+        "Muhamed Bešić"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/muhamed-besic/profil/spieler/93905",
+      "teamName": "Everton",
+      "teamNames": [
+        "Everton",
+        "Everton",
+        "everton-england"
+      ]
+    },
+    {
+      "playerSlug": "ignacio-monsalve-vicente",
+      "playerName": "Nacho Monsalve",
+      "playerNames": [
+        "Nacho Monsalve",
+        "Ignacio Monsalve Vicente"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/nacho-monsalve/profil/spieler/281990",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "naomichi-ueda",
+      "playerName": "Naomichi Ueda",
+      "playerNames": [
+        "Naomichi Ueda",
+        "Naomichi Ueda"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/naomichi-ueda/profil/spieler/188915",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "nerijus-valskis",
+      "playerName": "Nerijus Valskis",
+      "playerNames": [
+        "Nerijus Valskis",
+        "Nerijus Valskis"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/nerijus-valskis/profil/spieler/42665",
+      "teamName": "Chennaiyin",
+      "teamNames": [
+        "Chennaiyin",
+        "Chennaiyin",
+        "chennaiyin-india"
+      ]
+    },
+    {
+      "playerSlug": "nestor-diaz-garcia",
+      "playerName": "Néstor Díaz",
+      "playerNames": [
+        "Néstor Díaz",
+        "Néstor Díaz García"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/nestor-diaz/profil/spieler/223781",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "ognjen-vranjes",
+      "playerName": "Ognjen Vranješ",
+      "playerNames": [
+        "Ognjen Vranješ",
+        "Ognjen Vranješ"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ognjen-vranjes/profil/spieler/94807",
+      "teamName": "Sporting Gijón",
+      "teamNames": [
+        "Sporting Gijón",
+        "Sporting Gijón",
+        "sporting-gijon-spain"
+      ]
+    },
+    {
+      "playerSlug": "ousseynou-cisse",
+      "playerName": "Ousseynou Cissé",
+      "playerNames": [
+        "Ousseynou Cissé",
+        "Ousseynou Cissé"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ousseynou-cisse/profil/spieler/98827",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "pablo-claveria-herraiz",
+      "playerName": "Pablo Clavería",
+      "playerNames": [
+        "Pablo Clavería",
+        "Pablo Clavería Herráiz"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/pablo-claveria/profil/spieler/348553",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "pablo-iniguez-de-heredia-larraz",
+      "playerName": "Pablo Íñiguez",
+      "playerNames": [
+        "Pablo Íñiguez",
+        "Pablo Íñiguez de Heredia Larraz"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/pablo-iniguez/profil/spieler/165008",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "payam-niazmand",
+      "playerName": "Payam Niazmand",
+      "playerNames": [
+        "Payam Niazmand",
+        "Payam Niazmand"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/payam-niazmand/profil/spieler/343044",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "jose-luis-garcia-vaya",
+      "playerName": "Pepelu",
+      "playerNames": [
+        "Pepelu",
+        "José Luis García Vayá"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/pepelu/profil/spieler/328480",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "rade-krunic",
+      "playerName": "Rade Krunić",
+      "playerNames": [
+        "Rade Krunić",
+        "Rade Krunić"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/rade-krunic/profil/spieler/259953",
+      "teamName": "Empoli",
+      "teamNames": [
+        "Empoli",
+        "Empoli",
+        "empoli-italy"
+      ]
+    },
+    {
+      "playerSlug": "radostin-kishishev",
+      "playerName": "Radostin Kishishev",
+      "playerNames": [
+        "Radostin Kishishev",
+        "Radostin Kishishev"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/radostin-kishishev/profil/spieler/3001",
+      "teamName": "Charlton Athletic",
+      "teamNames": [
+        "Charlton Athletic",
+        "Charlton Athletic",
+        "charlton-athletic-england"
+      ]
+    },
+    {
+      "playerSlug": "rafidine-abdullah",
+      "playerName": "Rafidine Abdullah",
+      "playerNames": [
+        "Rafidine Abdullah",
+        "Rafidine Abdullah"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/rafidine-abdullah/profil/spieler/215652",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "Lorient",
+        "lorient-france"
+      ]
+    },
+    {
+      "playerSlug": "ragnar-klavan",
+      "playerName": "Ragnar Klavan",
+      "playerNames": [
+        "Ragnar Klavan",
+        "Ragnar Klavan"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ragnar-klavan/profil/spieler/26669",
+      "teamName": "Liverpool FC",
+      "teamNames": [
+        "Liverpool FC",
+        "Liverpool",
+        "liverpool-fc-england"
+      ]
+    },
+    {
+      "playerSlug": "rashade-sido",
+      "playerName": "Rashade Sido",
+      "playerNames": [
+        "Rashade Sido",
+        "Rashade Sido"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/rashade-sido/profil/spieler/189487",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "rayan-ny-aina-arnaldo-raveloson",
+      "playerName": "Rayan Ny Aina Arnaldo Raveloson",
+      "playerNames": [
+        "Rayan Ny Aina Arnaldo Raveloson",
+        "Rayan Ny Aina Arnaldo Raveloson"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/rayan-raveloson/profil/spieler/344576",
+      "teamName": "Auxerre",
+      "teamNames": [
+        "Auxerre",
+        "Auxerre",
+        "auxerre-france"
+      ]
+    },
+    {
+      "playerSlug": "roan-roberto-wilson-gordon",
+      "playerName": "Roan Roberto Wilson Gordon",
+      "playerNames": [
+        "Roan Roberto Wilson Gordon",
+        "Roan Roberto Wilson Gordon"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/roan-wilson/profil/spieler/645191",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "ronald-alberto-matarrita-ulate",
+      "playerName": "Ronald Matarrita",
+      "playerNames": [
+        "Ronald Matarrita",
+        "Ronald Alberto Matarrita Ulate"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ronald-matarrita/profil/spieler/268273",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "roozbeh-cheshmi",
+      "playerName": "Roozbeh Cheshmi",
+      "playerNames": [
+        "Roozbeh Cheshmi",
+        "Roozbeh Cheshmi"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/roozbeh-cheshmi/profil/spieler/273879",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "ryan-donk",
+      "playerName": "Ryan Donk",
+      "playerNames": [
+        "Ryan Donk",
+        "Ryan Donk"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ryan-donk/profil/spieler/38414",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "Real Betis",
+        "real-betis-spain"
+      ]
+    },
+    {
+      "playerSlug": "ryota-oshima",
+      "playerName": "Ryota Oshima",
+      "playerNames": [
+        "Ryota Oshima",
+        "Ryota Oshima"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/ryota-oshima/profil/spieler/164264",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "sadegh-moharrami",
+      "playerName": "Sadegh Moharrami",
+      "playerNames": [
+        "Sadegh Moharrami",
+        "Sadegh Moharrami"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/sadegh-moharrami/profil/spieler/294778",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "salvador-ruiz-rodriguez",
+      "playerName": "Salva Ruiz",
+      "playerNames": [
+        "Salva Ruiz",
+        "Salvador Ruiz Rodríguez"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/salva-ruiz/profil/spieler/162063",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "samir-ujkani",
+      "playerName": "Samir Ujkani",
+      "playerNames": [
+        "Samir Ujkani",
+        "Samir Ujkani"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/samir-ujkani/profil/spieler/42744",
+      "teamName": "Genoa",
+      "teamNames": [
+        "Genoa",
+        "Genoa",
+        "genoa-italy"
+      ]
+    },
+    {
+      "playerSlug": "samuel-villa-rodriguez",
+      "playerName": "Samuel Villa Rodríguez",
+      "playerNames": [
+        "Samuel Villa Rodríguez",
+        "Samuel Villa Rodríguez"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/samuel-villa/profil/spieler/268383",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "sanjin-prcic",
+      "playerName": "Sanjin Prcić",
+      "playerNames": [
+        "Sanjin Prcić",
+        "Sanjin Prcić"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/sanjin-prcic/profil/spieler/125783",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "Strasbourg",
+        "strasbourg-france"
+      ]
+    },
+    {
+      "playerSlug": "sargis-adamyan",
+      "playerName": "Sargis Adamyan",
+      "playerNames": [
+        "Sargis Adamyan",
+        "Sargis Adamyan"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/sargis-adamyan/profil/spieler/125614",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "sead-kolasinac",
+      "playerName": "Sead Kolašinac",
+      "playerNames": [
+        "Sead Kolašinac",
+        "Sead Kolašinac"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/sead-kolasinac/profil/spieler/94005",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "Marseille",
+        "marseille-france"
+      ]
+    },
+    {
+      "playerSlug": "senad-lulic",
+      "playerName": "Senad Lulić",
+      "playerNames": [
+        "Senad Lulić",
+        "Senad Lulić"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/senad-lulic/profil/spieler/61449",
+      "teamName": "Lazio",
+      "teamNames": [
+        "Lazio",
+        "Lazio",
+        "lazio-italy"
+      ]
+    },
+    {
+      "playerSlug": "serge-gakpe",
+      "playerName": "Serge Gakpé",
+      "playerNames": [
+        "Serge Gakpé",
+        "Serge Gakpé"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/serge-gakpe/profil/spieler/36293",
+      "teamName": "Atalanta",
+      "teamNames": [
+        "Atalanta",
+        "Atalanta",
+        "atalanta-italy"
+      ]
+    },
+    {
+      "playerSlug": "sergio-mendigutxia-iglesias",
+      "playerName": "Sergio Mendigutxia Iglesias",
+      "playerNames": [
+        "Sergio Mendigutxia Iglesias",
+        "Sergio Mendigutxia Iglesias"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/sergio-mendi/profil/spieler/158071",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "seyed-hossein-hosseini",
+      "playerName": "Seyed Hossein Hosseini",
+      "playerNames": [
+        "Seyed Hossein Hosseini",
+        "Seyed Hossein Hosseini"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/seyed-hossein-hosseini/profil/spieler/132561",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "shaka-hislop",
+      "playerName": "Shaka Hislop",
+      "playerNames": [
+        "Shaka Hislop",
+        "Shaka Hislop"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/shaka-hislop/profil/spieler/4175",
+      "teamName": "Portsmouth",
+      "teamNames": [
+        "Portsmouth",
+        "Portsmouth",
+        "portsmouth-england"
+      ]
+    },
+    {
+      "playerSlug": "sheraldo-becker",
+      "playerName": "Sheraldo Becker",
+      "playerNames": [
+        "Sheraldo Becker",
+        "Sheraldo Becker"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/sheraldo-becker/profil/spieler/188888",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "shoja-khalilzadeh",
+      "playerName": "Shoja Khalilzadeh",
+      "playerNames": [
+        "Shoja Khalilzadeh",
+        "Shoja Khalilzadeh"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/shoja-khalilzadeh/profil/spieler/213715",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "sloan-privat",
+      "playerName": "Sloan Privat",
+      "playerNames": [
+        "Sloan Privat",
+        "Sloan Privat"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/sloan-privat/profil/spieler/66407",
+      "teamName": "Guingamp",
+      "teamNames": [
+        "Guingamp",
+        "Guingamp",
+        "guingamp-france"
+      ]
+    },
+    {
+      "playerSlug": "stephan-raheriharimanana",
+      "playerName": "Stéphan Raheriharimanana",
+      "playerNames": [
+        "Stéphan Raheriharimanana",
+        "Stéphan Raheriharimanana"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/stephan-raheriharimanana/profil/spieler/170957",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "OGC Nice",
+        "ogc-nice-france"
+      ]
+    },
+    {
+      "playerSlug": "stern-john",
+      "playerName": "Stern John",
+      "playerNames": [
+        "Stern John",
+        "Stern John"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/stern-john/profil/spieler/3793",
+      "teamName": "Birmingham City",
+      "teamNames": [
+        "Birmingham City",
+        "Birmingham City",
+        "birmingham-city-england"
+      ]
+    },
+    {
+      "playerSlug": "steven-caulker",
+      "playerName": "Steven Caulker",
+      "playerNames": [
+        "Steven Caulker",
+        "Steven Caulker"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/steven-caulker/profil/spieler/121280",
+      "teamName": "Southampton",
+      "teamNames": [
+        "Southampton",
+        "Southampton",
+        "southampton-england"
+      ]
+    },
+    {
+      "playerSlug": "tomas-lian-romero-keubler",
+      "playerName": "Tomás Romero",
+      "playerNames": [
+        "Tomás Romero",
+        "Tomas Lían Romero Keubler"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/tomas-romero/profil/spieler/465105",
+      "teamName": "Toronto FC",
+      "teamNames": [
+        "Toronto FC",
+        "Toronto FC",
+        "toronto-fc-canada"
+      ]
+    },
+    {
+      "playerSlug": "tomoaki-makino",
+      "playerName": "Tomoaki Makino",
+      "playerNames": [
+        "Tomoaki Makino",
+        "Tomoaki Makino"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/tomoaki-makino/profil/spieler/106064",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "toni-sunjic",
+      "playerName": "Toni Šunjić",
+      "playerNames": [
+        "Toni Šunjić",
+        "Toni Šunjić"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/toni-sunjic/profil/spieler/60790",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "vedad-ibisevic",
+      "playerName": "Vedad Ibišević",
+      "playerNames": [
+        "Vedad Ibišević",
+        "Vedad Ibišević"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/vedad-ibisevic/profil/spieler/21175",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "victor-wanyama",
+      "playerName": "Victor Wanyama",
+      "playerNames": [
+        "Victor Wanyama",
+        "Victor Wanyama"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/victor-wanyama/profil/spieler/77760",
+      "teamName": "Tottenham Hotspur",
+      "teamNames": [
+        "Tottenham Hotspur",
+        "Tottenham Hotspur",
+        "tottenham-hotspur-england"
+      ]
+    },
+    {
+      "playerSlug": "vurnon-anita",
+      "playerName": "Vurnon Anita",
+      "playerNames": [
+        "Vurnon Anita",
+        "Vurnon Anita"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/vurnon-anita/profil/spieler/30670",
+      "teamName": "Newcastle United",
+      "teamNames": [
+        "Newcastle United",
+        "Newcastle United",
+        "newcastle-united-england"
+      ]
+    },
+    {
+      "playerSlug": "wilfried-aimeric-zahibo",
+      "playerName": "Wilfried Zahibo",
+      "playerNames": [
+        "Wilfried Zahibo",
+        "Wilfried Aimeric Zahibo"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/wilfried-zahibo/profil/spieler/198529",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "yakou-meite",
+      "playerName": "Yakou Meïté",
+      "playerNames": [
+        "Yakou Meïté",
+        "Yakou Meïté"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/yakou-meite/profil/spieler/289433",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "yhoan-many-andzouana",
+      "playerName": "Yhoan Many Andzouana",
+      "playerNames": [
+        "Yhoan Many Andzouana",
+        "Yhoan Many Andzouana"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/yhoan-andzouana/profil/spieler/342218",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "yoann-salmier",
+      "playerName": "Yoann Salmier",
+      "playerNames": [
+        "Yoann Salmier",
+        "Yoann Salmier"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/yoann-salmier/profil/spieler/351843",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "Troyes",
+        "troyes-france"
+      ]
+    },
+    {
+      "playerSlug": "youssef-ait-bennasser",
+      "playerName": "Youssef Aït Bennasser",
+      "playerNames": [
+        "Youssef Aït Bennasser",
+        "Youssef Aït Bennasser"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/youssef-ait-bennasser/profil/spieler/265569",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "youssouf-m-changama",
+      "playerName": "Youssouf M'Changama",
+      "playerNames": [
+        "Youssouf M'Changama",
+        "Youssouf M''Changama"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/youssouf-mchangama/profil/spieler/167472",
+      "teamName": "Auxerre",
+      "teamNames": [
+        "Auxerre",
+        "Auxerre",
+        "auxerre-france"
+      ]
+    },
+    {
+      "playerSlug": "youstin-delfin-salas-gomez",
+      "playerName": "Youstin Delfin Salas Gómez",
+      "playerNames": [
+        "Youstin Delfin Salas Gómez",
+        "Youstin Delfin Salas Gómez"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/youstin-salas/profil/spieler/322958",
+      "teamName": "",
+      "teamNames": []
+    },
+    {
+      "playerSlug": "yvandro-borges-sanches",
+      "playerName": "Yvandro Borges Sanches",
+      "playerNames": [
+        "Yvandro Borges Sanches",
+        "Yvandro Borges Sanches"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/yvandro-borges-sanches/profil/spieler/586659",
+      "teamName": "",
+      "teamNames": []
+    }
+  ],
+  "totalMissingPlayers": 197,
+  "mappedTargets": 187,
+  "unmappedPlayerSlugs": [
+    "abdulelah-saad-hameed-al-malki",
+    "artoms-rudnevs",
+    "calvin-anele-ngcongca",
+    "cayetano-bartolome-bonnin-vasquez",
+    "dennis-diaz-fernanadez",
+    "didi-haracic",
+    "louis-didace-mafouta",
+    "lucia-leon",
+    "macdonald-mariga-wanyama",
+    "mohammad-hossein-kanani-zadegan"
+  ]
+}

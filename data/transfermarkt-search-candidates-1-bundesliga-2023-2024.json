@@ -1,0 +1,39 @@
+{
+  "competitionSlug": "1-bundesliga",
+  "provider": "transfermarkt",
+  "seasonSlug": "2023-2024",
+  "totalTargets": 119,
+  "searchedTargets": 3,
+  "candidates": [
+    {
+      "candidateUrls": [
+        "https://www.transfermarkt.com/adam-hlozek/detaillierteleistungsdaten/spieler/552057",
+        "https://www.transfermarkt.com/adam-hlozek/erfolge/spieler/552057",
+        "https://www.transfermarkt.com/adam-hlozek/profil/spieler/552057",
+        "https://www.transfermarkt.com/adam-hlozek-joins-leverkusen-so-what-does-that-mean-for-schicks-future-/view/news/404891",
+        "https://www.transfermarkt.com/adam-hlozek/leistungsdatentrainer/spieler/552057"
+      ],
+      "playerName": "Adam Hložek",
+      "playerSlug": "adam-hlozek",
+      "searchUrl": "https://html.duckduckgo.com/html/?q=Adam%20Hlo%C5%BEek%20Bayer%20Leverkusen%20site%3Atransfermarkt.com",
+      "suggestedQuery": "Adam Hložek Bayer Leverkusen site:transfermarkt.com",
+      "teamName": "Bayer Leverkusen"
+    },
+    {
+      "candidateUrls": [],
+      "playerName": "Aïssa Laïdouni",
+      "playerSlug": "aissa-bilal-laidouni",
+      "searchUrl": "https://html.duckduckgo.com/html/?q=A%C3%AFssa%20La%C3%AFdouni%20Union%20Berlin%20site%3Atransfermarkt.com",
+      "suggestedQuery": "Aïssa Laïdouni Union Berlin site:transfermarkt.com",
+      "teamName": "Union Berlin"
+    },
+    {
+      "candidateUrls": [],
+      "playerName": "Alexander Schwolow",
+      "playerSlug": "alexander-schwolow",
+      "searchUrl": "https://html.duckduckgo.com/html/?q=Alexander%20Schwolow%20Union%20Berlin%20site%3Atransfermarkt.com",
+      "suggestedQuery": "Alexander Schwolow Union Berlin site:transfermarkt.com",
+      "teamName": "Union Berlin"
+    }
+  ]
+}

@@ -1,0 +1,4096 @@
+{
+  "provider": "capology",
+  "competition": "France Ligue 1",
+  "season": "2015",
+  "fetchedAt": "2026-03-08T15:26:54.358422+00:00",
+  "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+  "currencyCode": "EUR",
+  "rows": [
+    {
+      "playerName": "Mathieu Valbuena",
+      "teamName": "Lyon",
+      "annualSalary": "€ 4,750,000",
+      "weeklyWage": "€ 91,346",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mathieu Valbuena",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 91,346",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,750,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,815,561",
+        "BIO POS.": "F",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Mathieu Debuchy",
+      "teamName": "Bordeaux",
+      "annualSalary": "€ 4,040,000",
+      "weeklyWage": "€ 77,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mathieu Debuchy",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 77,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,040,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,946,287",
+        "BIO POS.": "D",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "France",
+        "CLUB": "Bordeaux"
+      }
+    },
+    {
+      "playerName": "Alexandre Lacazette",
+      "teamName": "Lyon",
+      "annualSalary": "€ 3,810,000",
+      "weeklyWage": "€ 73,269",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Alexandre Lacazette",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 73,269",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,810,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,664,692",
+        "BIO POS.": "F",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Florian Thauvin",
+      "teamName": "Marseille",
+      "annualSalary": "€ 2,890,000",
+      "weeklyWage": "€ 55,577",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Florian Thauvin",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 55,577",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,890,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,538,309",
+        "BIO POS.": "F",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "France",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Steve Mandanda",
+      "teamName": "Marseille",
+      "annualSalary": "€ 2,860,000",
+      "weeklyWage": "€ 55,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Steve Mandanda",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 55,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,860,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,501,580",
+        "BIO POS.": "K",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "France",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Clément Grenier",
+      "teamName": "Lyon",
+      "annualSalary": "€ 2,850,000",
+      "weeklyWage": "€ 54,808",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Clément Grenier",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 54,808",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,850,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,489,336",
+        "BIO POS.": "M",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Rafael",
+      "teamName": "Lyon",
+      "annualSalary": "€ 2,660,000",
+      "weeklyWage": "€ 51,154",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Rafael",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 51,154",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,660,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,256,714",
+        "BIO POS.": "D",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Wahbi Khazri",
+      "teamName": "Bordeaux",
+      "annualSalary": "€ 2,430,000",
+      "weeklyWage": "€ 46,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Wahbi Khazri",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 46,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,430,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,975,118",
+        "BIO POS.": "M",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Tunisia",
+        "CLUB": "Bordeaux"
+      }
+    },
+    {
+      "playerName": "Mapou Yanga-Mbiwa",
+      "teamName": "Lyon",
+      "annualSalary": "€ 2,310,000",
+      "weeklyWage": "€ 44,423",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mapou Yanga-Mbiwa",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 44,423",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,310,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,828,199",
+        "BIO POS.": "D",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Steven Fletcher",
+      "teamName": "Marseille",
+      "annualSalary": "€ 2,250,000",
+      "weeklyWage": "€ 43,269",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Steven Fletcher",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 43,269",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,250,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,754,739",
+        "BIO POS.": "F",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Scotland",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Maxime Gonalons",
+      "teamName": "Lyon",
+      "annualSalary": "€ 2,220,000",
+      "weeklyWage": "€ 42,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Maxime Gonalons",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 42,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,220,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,718,009",
+        "BIO POS.": "M",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Rémy Cabella",
+      "teamName": "Marseille",
+      "annualSalary": "€ 2,090,000",
+      "weeklyWage": "€ 40,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Rémy Cabella",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 40,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,090,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,558,847",
+        "BIO POS.": "M",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "France",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Corentin Tolisso",
+      "teamName": "Lyon",
+      "annualSalary": "€ 2,060,000",
+      "weeklyWage": "€ 39,615",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Corentin Tolisso",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 39,615",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,060,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,522,117",
+        "BIO POS.": "M",
+        "BIO AGE": 20,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Nabil Fekir",
+      "teamName": "Lyon",
+      "annualSalary": "€ 2,000,000",
+      "weeklyWage": "€ 38,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Nabil Fekir",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 38,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,000,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,448,657",
+        "BIO POS.": "M",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Mauricio Isla",
+      "teamName": "Marseille",
+      "annualSalary": "€ 1,950,000",
+      "weeklyWage": "€ 37,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mauricio Isla",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 37,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,950,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,387,441",
+        "BIO POS.": "D",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Chile",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Rio Mavuba",
+      "teamName": "Lille",
+      "annualSalary": "€ 1,710,000",
+      "weeklyWage": "€ 32,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Rio Mavuba",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 32,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,710,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,093,602",
+        "BIO POS.": "M",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "Cédric Carrasso",
+      "teamName": "Bordeaux",
+      "annualSalary": "€ 1,650,000",
+      "weeklyWage": "€ 31,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Cédric Carrasso",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 31,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,650,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,020,142",
+        "BIO POS.": "K",
+        "BIO AGE": 33,
+        "BIO COUNTRY": "France",
+        "CLUB": "Bordeaux"
+      }
+    },
+    {
+      "playerName": "Samuel Umtiti",
+      "teamName": "Lyon",
+      "annualSalary": "€ 1,610,000",
+      "weeklyWage": "€ 30,962",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Samuel Umtiti",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 30,962",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,610,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,971,169",
+        "BIO POS.": "D",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Lucas Silva",
+      "teamName": "Marseille",
+      "annualSalary": "€ 1,580,000",
+      "weeklyWage": "€ 30,385",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Lucas Silva",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 30,385",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,580,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,934,439",
+        "BIO POS.": "M",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Jordan Ferri",
+      "teamName": "Lyon",
+      "annualSalary": "€ 1,530,000",
+      "weeklyWage": "€ 29,423",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jordan Ferri",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 29,423",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,530,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,873,223",
+        "BIO POS.": "M",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Romain Alessandrini",
+      "teamName": "Marseille",
+      "annualSalary": "€ 1,430,000",
+      "weeklyWage": "€ 27,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Romain Alessandrini",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 27,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,430,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,750,790",
+        "BIO POS.": "F",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "France",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Lassana Diarra",
+      "teamName": "Marseille",
+      "annualSalary": "€ 1,430,000",
+      "weeklyWage": "€ 27,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Lassana Diarra",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 27,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,430,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,750,790",
+        "BIO POS.": "M",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "France",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Anthony Lopes",
+      "teamName": "Lyon",
+      "annualSalary": "€ 1,420,000",
+      "weeklyWage": "€ 27,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Anthony Lopes",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 27,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,420,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,738,547",
+        "BIO POS.": "K",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Portugal",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Éder",
+      "teamName": "Lille",
+      "annualSalary": "€ 1,390,000",
+      "weeklyWage": "€ 26,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Éder",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 26,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,390,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,701,817",
+        "BIO POS.": "F",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Portugal",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "Clément Chantôme",
+      "teamName": "Bordeaux",
+      "annualSalary": "€ 1,360,000",
+      "weeklyWage": "€ 26,154",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Clément Chantôme",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 26,154",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,360,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,665,087",
+        "BIO POS.": "M",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "France",
+        "CLUB": "Bordeaux"
+      }
+    },
+    {
+      "playerName": "Michy Batshuayi",
+      "teamName": "Marseille",
+      "annualSalary": "€ 1,330,000",
+      "weeklyWage": "€ 25,577",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Michy Batshuayi",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 25,577",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,330,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,628,357",
+        "BIO POS.": "F",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "Belgium",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Martin Braithwaite",
+      "teamName": "Toulouse",
+      "annualSalary": "€ 1,300,000",
+      "weeklyWage": "€ 25,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Martin Braithwaite",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 25,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,300,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,591,627",
+        "BIO POS.": "F",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Denmark",
+        "CLUB": "Toulouse"
+      }
+    },
+    {
+      "playerName": "Lucas Ocampos",
+      "teamName": "Marseille",
+      "annualSalary": "€ 1,300,000",
+      "weeklyWage": "€ 25,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Lucas Ocampos",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 25,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,300,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,591,627",
+        "BIO POS.": "F",
+        "BIO AGE": 20,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Cheick Diabaté",
+      "teamName": "Bordeaux",
+      "annualSalary": "€ 1,280,000",
+      "weeklyWage": "€ 24,615",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Cheick Diabaté",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 24,615",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,280,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,567,141",
+        "BIO POS.": "F",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Mali",
+        "CLUB": "Bordeaux"
+      }
+    },
+    {
+      "playerName": "Sergi Darder",
+      "teamName": "Lyon",
+      "annualSalary": "€ 1,260,000",
+      "weeklyWage": "€ 24,231",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Sergi Darder",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 24,231",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,260,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,542,654",
+        "BIO POS.": "M",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Karim Rekik",
+      "teamName": "Marseille",
+      "annualSalary": "€ 1,200,000",
+      "weeklyWage": "€ 23,077",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Karim Rekik",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 23,077",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,200,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,469,194",
+        "BIO POS.": "D",
+        "BIO AGE": 20,
+        "BIO COUNTRY": "Netherlands",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Hilton",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 1,190,000",
+      "weeklyWage": "€ 22,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Hilton",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 22,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,190,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,456,951",
+        "BIO POS.": "D",
+        "BIO AGE": 37,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Wissam Ben Yedder",
+      "teamName": "Toulouse",
+      "annualSalary": "€ 1,160,000",
+      "weeklyWage": "€ 22,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Wissam Ben Yedder",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 22,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,160,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,420,221",
+        "BIO POS.": "F",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "France",
+        "CLUB": "Toulouse"
+      }
+    },
+    {
+      "playerName": "Abdelaziz Barrada",
+      "teamName": "Marseille",
+      "annualSalary": "€ 1,140,000",
+      "weeklyWage": "€ 21,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Abdelaziz Barrada",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 21,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,140,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,395,735",
+        "BIO POS.": "M",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Morocco",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Jérémy Morel",
+      "teamName": "Lyon",
+      "annualSalary": "€ 1,140,000",
+      "weeklyWage": "€ 21,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jérémy Morel",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 21,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,140,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,395,735",
+        "BIO POS.": "D",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "Madagascar",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Malcom",
+      "teamName": "Bordeaux",
+      "annualSalary": "€ 1,030,000",
+      "weeklyWage": "€ 19,808",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Malcom",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 19,808",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,030,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,261,058",
+        "BIO POS.": "F",
+        "BIO AGE": 18,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Bordeaux"
+      }
+    },
+    {
+      "playerName": "Diego Contento",
+      "teamName": "Bordeaux",
+      "annualSalary": "€ 1,000,000",
+      "weeklyWage": "€ 19,231",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Diego Contento",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 19,231",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,000,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,224,329",
+        "BIO POS.": "D",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Bordeaux"
+      }
+    },
+    {
+      "playerName": "Bakary Koné",
+      "teamName": "Lyon",
+      "annualSalary": "€ 950,000",
+      "weeklyWage": "€ 18,269",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Bakary Koné",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 18,269",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 950,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,163,112",
+        "BIO POS.": "D",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Burkina Faso",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Christophe Jallet",
+      "teamName": "Lyon",
+      "annualSalary": "€ 950,000",
+      "weeklyWage": "€ 18,269",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Christophe Jallet",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 18,269",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 950,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,163,112",
+        "BIO POS.": "D",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Rony Lopes",
+      "teamName": "Lille",
+      "annualSalary": "€ 950,000",
+      "weeklyWage": "€ 18,269",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Rony Lopes",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 18,269",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 950,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,163,112",
+        "BIO POS.": "F",
+        "BIO AGE": 19,
+        "BIO COUNTRY": "Portugal",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "Franck Béria",
+      "teamName": "Lille",
+      "annualSalary": "€ 950,000",
+      "weeklyWage": "€ 18,269",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Franck Béria",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 18,269",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 950,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,163,112",
+        "BIO POS.": "D",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "Florent Balmont",
+      "teamName": "Lille",
+      "annualSalary": "€ 950,000",
+      "weeklyWage": "€ 18,269",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Florent Balmont",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 18,269",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 950,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,163,112",
+        "BIO POS.": "M",
+        "BIO AGE": 35,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "Henri Bedimo",
+      "teamName": "Lyon",
+      "annualSalary": "€ 950,000",
+      "weeklyWage": "€ 18,269",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Henri Bedimo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 18,269",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 950,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,163,112",
+        "BIO POS.": "D",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "Cameroon",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Mustapha Yatabaré",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 930,000",
+      "weeklyWage": "€ 17,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mustapha Yatabaré",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 17,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 930,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,138,626",
+        "BIO POS.": "F",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Mali",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Sofiane Boufal",
+      "teamName": "Lille",
+      "annualSalary": "€ 890,000",
+      "weeklyWage": "€ 17,115",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Sofiane Boufal",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 17,115",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 890,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,089,652",
+        "BIO POS.": "F",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "Morocco",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "Vincent Enyeama",
+      "teamName": "Lille",
+      "annualSalary": "€ 870,000",
+      "weeklyWage": "€ 16,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Vincent Enyeama",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 16,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 870,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,065,166",
+        "BIO POS.": "K",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "Nigeria",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "Alaixys Romao",
+      "teamName": "Marseille",
+      "annualSalary": "€ 860,000",
+      "weeklyWage": "€ 16,538",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Alaixys Romao",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 16,538",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 860,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,052,923",
+        "BIO POS.": "M",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "Togo",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Juan Fernando Quintero",
+      "teamName": "Rennes",
+      "annualSalary": "€ 830,000",
+      "weeklyWage": "€ 15,962",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Juan Fernando Quintero",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 15,962",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 830,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,016,193",
+        "BIO POS.": "M",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Colombia",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Rémy Vercoutre",
+      "teamName": "Caen",
+      "annualSalary": "€ 830,000",
+      "weeklyWage": "€ 15,962",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Rémy Vercoutre",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 15,962",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 830,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,016,193",
+        "BIO POS.": "K",
+        "BIO AGE": 35,
+        "BIO COUNTRY": "France",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Jimmy Briand",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 790,000",
+      "weeklyWage": "€ 15,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jimmy Briand",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 15,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 790,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 967,220",
+        "BIO POS.": "F",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "France",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "Majeed Waris",
+      "teamName": "Lorient",
+      "annualSalary": "€ 790,000",
+      "weeklyWage": "€ 15,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Majeed Waris",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 15,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 790,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 967,220",
+        "BIO POS.": "F",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Ghana",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Rolando",
+      "teamName": "Marseille",
+      "annualSalary": "€ 760,000",
+      "weeklyWage": "€ 14,615",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Rolando",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 14,615",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 760,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 930,490",
+        "BIO POS.": "D",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Portugal",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Steeve Elana",
+      "teamName": "Lille",
+      "annualSalary": "€ 760,000",
+      "weeklyWage": "€ 14,615",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Steeve Elana",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 14,615",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 760,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 930,490",
+        "BIO POS.": "K",
+        "BIO AGE": 34,
+        "BIO COUNTRY": "Martinique",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "Mouhamadou Dabo",
+      "teamName": "Troyes",
+      "annualSalary": "€ 730,000",
+      "weeklyWage": "€ 14,038",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mouhamadou Dabo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 14,038",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 730,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 893,760",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "France",
+        "CLUB": "Troyes"
+      }
+    },
+    {
+      "playerName": "Yann Jouffre",
+      "teamName": "Lorient",
+      "annualSalary": "€ 720,000",
+      "weeklyWage": "€ 13,846",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Yann Jouffre",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 13,846",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 720,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 881,517",
+        "BIO POS.": "M",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Guillaume Gillet",
+      "teamName": "Nantes",
+      "annualSalary": "€ 720,000",
+      "weeklyWage": "€ 13,846",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Guillaume Gillet",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 13,846",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 720,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 881,517",
+        "BIO POS.": "M",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "Belgium",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Yoann Gourcuff",
+      "teamName": "Rennes",
+      "annualSalary": "€ 710,000",
+      "weeklyWage": "€ 13,654",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Yoann Gourcuff",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 13,654",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 710,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 869,273",
+        "BIO POS.": "M",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "France",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Romain Danzé",
+      "teamName": "Rennes",
+      "annualSalary": "€ 710,000",
+      "weeklyWage": "€ 13,654",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Romain Danzé",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 13,654",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 710,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 869,273",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "France",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Mounir Obbadi",
+      "teamName": "Lille",
+      "annualSalary": "€ 700,000",
+      "weeklyWage": "€ 13,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mounir Obbadi",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 13,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 700,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 857,030",
+        "BIO POS.": "M",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "Morocco",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "Giovanni Sio",
+      "teamName": "Rennes",
+      "annualSalary": "€ 700,000",
+      "weeklyWage": "€ 13,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Giovanni Sio",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 13,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 700,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 857,030",
+        "BIO POS.": "F",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Cote d'Ivoire",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Vincent Bessat",
+      "teamName": "Caen",
+      "annualSalary": "€ 700,000",
+      "weeklyWage": "€ 13,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Vincent Bessat",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 13,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 700,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 857,030",
+        "BIO POS.": "D",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "France",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Benjamin André",
+      "teamName": "Rennes",
+      "annualSalary": "€ 680,000",
+      "weeklyWage": "€ 13,077",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Benjamin André",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 13,077",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 680,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 832,543",
+        "BIO POS.": "M",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "France",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Gelson Fernandes",
+      "teamName": "Rennes",
+      "annualSalary": "€ 680,000",
+      "weeklyWage": "€ 13,077",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Gelson Fernandes",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 13,077",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 680,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 832,543",
+        "BIO POS.": "M",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Switzerland",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Daniel Congré",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 670,000",
+      "weeklyWage": "€ 12,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Daniel Congré",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 12,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 670,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 820,300",
+        "BIO POS.": "D",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "France",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Lamine Sané",
+      "teamName": "Bordeaux",
+      "annualSalary": "€ 660,000",
+      "weeklyWage": "€ 12,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Lamine Sané",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 12,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 660,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 808,057",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Senegal",
+        "CLUB": "Bordeaux"
+      }
+    },
+    {
+      "playerName": "Morgan Sanson",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 660,000",
+      "weeklyWage": "€ 12,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Morgan Sanson",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 12,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 660,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 808,057",
+        "BIO POS.": "M",
+        "BIO AGE": 20,
+        "BIO COUNTRY": "France",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Dennis Appiah",
+      "teamName": "Caen",
+      "annualSalary": "€ 660,000",
+      "weeklyWage": "€ 12,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Dennis Appiah",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 12,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 660,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 808,057",
+        "BIO POS.": "D",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "France",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Jérôme Roussillon",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 660,000",
+      "weeklyWage": "€ 12,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jérôme Roussillon",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 12,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 660,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 808,057",
+        "BIO POS.": "D",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "France",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Rémy Riou",
+      "teamName": "Nantes",
+      "annualSalary": "€ 660,000",
+      "weeklyWage": "€ 12,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Rémy Riou",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 12,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 660,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 808,057",
+        "BIO POS.": "K",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "France",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Kévin Bérigaud",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 650,000",
+      "weeklyWage": "€ 12,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Kévin Bérigaud",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 12,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 650,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 795,814",
+        "BIO POS.": "F",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "France",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Benjamin Moukandjo",
+      "teamName": "Lorient",
+      "annualSalary": "€ 640,000",
+      "weeklyWage": "€ 12,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Benjamin Moukandjo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 12,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 640,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 783,570",
+        "BIO POS.": "F",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Cameroon",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Andy Delort",
+      "teamName": "Caen",
+      "annualSalary": "€ 640,000",
+      "weeklyWage": "€ 12,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Andy Delort",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 12,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 640,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 783,570",
+        "BIO POS.": "F",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Algeria",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Geoffrey Jourdren",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 640,000",
+      "weeklyWage": "€ 12,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Geoffrey Jourdren",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 12,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 640,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 783,570",
+        "BIO POS.": "K",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "France",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Jonas Martin",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 640,000",
+      "weeklyWage": "€ 12,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jonas Martin",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 12,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 640,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 783,570",
+        "BIO POS.": "M",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "France",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Romain Thomas",
+      "teamName": "Angers",
+      "annualSalary": "€ 640,000",
+      "weeklyWage": "€ 12,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Romain Thomas",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 12,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 640,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 783,570",
+        "BIO POS.": "D",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "France",
+        "CLUB": "Angers"
+      }
+    },
+    {
+      "playerName": "Maxime Barthelmé",
+      "teamName": "Lorient",
+      "annualSalary": "€ 640,000",
+      "weeklyWage": "€ 12,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Maxime Barthelmé",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 12,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 640,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 783,570",
+        "BIO POS.": "M",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Djamel Bakar",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 630,000",
+      "weeklyWage": "€ 12,115",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Djamel Bakar",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 12,115",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 630,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 771,327",
+        "BIO POS.": "F",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Comoros",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Floyd Ayité",
+      "teamName": "Bastia",
+      "annualSalary": "€ 620,000",
+      "weeklyWage": "€ 11,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Floyd Ayité",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 11,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 620,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 759,084",
+        "BIO POS.": "F",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Togo",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Julian Palmieri",
+      "teamName": "Bastia",
+      "annualSalary": "€ 610,000",
+      "weeklyWage": "€ 11,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Julian Palmieri",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 11,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 610,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 746,840",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "France",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Adrien Thomasson",
+      "teamName": "Nantes",
+      "annualSalary": "€ 610,000",
+      "weeklyWage": "€ 11,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Adrien Thomasson",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 11,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 610,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 746,840",
+        "BIO POS.": "M",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "France",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Gaël Danic",
+      "teamName": "Bastia",
+      "annualSalary": "€ 610,000",
+      "weeklyWage": "€ 11,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Gaël Danic",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 11,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 610,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 746,840",
+        "BIO POS.": "F",
+        "BIO AGE": 33,
+        "BIO COUNTRY": "France",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Julien Féret",
+      "teamName": "Caen",
+      "annualSalary": "€ 610,000",
+      "weeklyWage": "€ 11,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Julien Féret",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 11,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 610,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 746,840",
+        "BIO POS.": "M",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "France",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Morgan Amalfitano",
+      "teamName": "Lille",
+      "annualSalary": "€ 600,000",
+      "weeklyWage": "€ 11,538",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Morgan Amalfitano",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 11,538",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 600,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 734,597",
+        "BIO POS.": "F",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "Fabien Camus",
+      "teamName": "Troyes",
+      "annualSalary": "€ 600,000",
+      "weeklyWage": "€ 11,538",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Fabien Camus",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 11,538",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 600,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 734,597",
+        "BIO POS.": "M",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "Tunisia",
+        "CLUB": "Troyes"
+      }
+    },
+    {
+      "playerName": "Ryad Boudebouz",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 590,000",
+      "weeklyWage": "€ 11,346",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Ryad Boudebouz",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 11,346",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 590,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 722,354",
+        "BIO POS.": "M",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Algeria",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Fallou Diagne",
+      "teamName": "Rennes",
+      "annualSalary": "€ 590,000",
+      "weeklyWage": "€ 11,346",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Fallou Diagne",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 11,346",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 590,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 722,354",
+        "BIO POS.": "D",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Senegal",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Jamel Saihi",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 590,000",
+      "weeklyWage": "€ 11,346",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jamel Saihi",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 11,346",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 590,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 722,354",
+        "BIO POS.": "M",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Tunisia",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Brice Dja Djédjé",
+      "teamName": "Marseille",
+      "annualSalary": "€ 570,000",
+      "weeklyWage": "€ 10,962",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Brice Dja Djédjé",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 10,962",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 570,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 697,867",
+        "BIO POS.": "M",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Cote d'Ivoire",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Benjamin Mendy",
+      "teamName": "Marseille",
+      "annualSalary": "€ 570,000",
+      "weeklyWage": "€ 10,962",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Benjamin Mendy",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 10,962",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 570,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 697,867",
+        "BIO POS.": "D",
+        "BIO AGE": 20,
+        "BIO COUNTRY": "France",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Romain Saïss",
+      "teamName": "Angers",
+      "annualSalary": "€ 570,000",
+      "weeklyWage": "€ 10,962",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Romain Saïss",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 10,962",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 570,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 697,867",
+        "BIO POS.": "M",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Morocco",
+        "CLUB": "Angers"
+      }
+    },
+    {
+      "playerName": "Pablo",
+      "teamName": "Bordeaux",
+      "annualSalary": "€ 570,000",
+      "weeklyWage": "€ 10,962",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Pablo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 10,962",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 570,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 697,867",
+        "BIO POS.": "D",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Bordeaux"
+      }
+    },
+    {
+      "playerName": "Lorik Cana",
+      "teamName": "Nantes",
+      "annualSalary": "€ 560,000",
+      "weeklyWage": "€ 10,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Lorik Cana",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 10,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 560,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 685,624",
+        "BIO POS.": "D",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "Albania",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Bryan Dabo",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 560,000",
+      "weeklyWage": "€ 10,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Bryan Dabo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 10,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 560,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 685,624",
+        "BIO POS.": "M",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Burkina Faso",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Kermit Erasmus",
+      "teamName": "Rennes",
+      "annualSalary": "€ 540,000",
+      "weeklyWage": "€ 10,385",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Kermit Erasmus",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 10,385",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 540,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 661,137",
+        "BIO POS.": "F",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "South Africa",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Lossémy Karaboué",
+      "teamName": "Troyes",
+      "annualSalary": "€ 530,000",
+      "weeklyWage": "€ 10,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Lossémy Karaboué",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 10,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 530,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 648,894",
+        "BIO POS.": "M",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Cote d'Ivoire",
+        "CLUB": "Troyes"
+      }
+    },
+    {
+      "playerName": "Lindsay Rose",
+      "teamName": "Lorient",
+      "annualSalary": "€ 530,000",
+      "weeklyWage": "€ 10,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Lindsay Rose",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 10,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 530,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 648,894",
+        "BIO POS.": "D",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Mauritius",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Oswaldo Vizcarrondo",
+      "teamName": "Nantes",
+      "annualSalary": "€ 530,000",
+      "weeklyWage": "€ 10,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Oswaldo Vizcarrondo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 10,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 530,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 648,894",
+        "BIO POS.": "D",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "Venezuela",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Rémi Gomis",
+      "teamName": "Nantes",
+      "annualSalary": "€ 530,000",
+      "weeklyWage": "€ 10,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Rémi Gomis",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 10,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 530,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 648,894",
+        "BIO POS.": "M",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "Senegal",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Lionel Mathis",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 520,000",
+      "weeklyWage": "€ 10,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Lionel Mathis",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 10,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 520,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 636,651",
+        "BIO POS.": "M",
+        "BIO AGE": 33,
+        "BIO COUNTRY": "France",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "Thomas Mangani",
+      "teamName": "Angers",
+      "annualSalary": "€ 520,000",
+      "weeklyWage": "€ 10,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Thomas Mangani",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 10,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 520,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 636,651",
+        "BIO POS.": "M",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "France",
+        "CLUB": "Angers"
+      }
+    },
+    {
+      "playerName": "Jean-Armel Kana-Biyik",
+      "teamName": "Toulouse",
+      "annualSalary": "€ 520,000",
+      "weeklyWage": "€ 10,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jean-Armel Kana-Biyik",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 10,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 520,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 636,651",
+        "BIO POS.": "D",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Cameroon",
+        "CLUB": "Toulouse"
+      }
+    },
+    {
+      "playerName": "Ludovic Baal",
+      "teamName": "Rennes",
+      "annualSalary": "€ 520,000",
+      "weeklyWage": "€ 10,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Ludovic Baal",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 10,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 520,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 636,651",
+        "BIO POS.": "D",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "French Guiana",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Arnold Mvuemba",
+      "teamName": "Lyon",
+      "annualSalary": "€ 510,000",
+      "weeklyWage": "€ 9,808",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Arnold Mvuemba",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,808",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 510,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 624,408",
+        "BIO POS.": "M",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "Democratic Republic of Congo",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Pavle Ninkov",
+      "teamName": "Toulouse",
+      "annualSalary": "€ 510,000",
+      "weeklyWage": "€ 9,808",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Pavle Ninkov",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,808",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 510,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 624,408",
+        "BIO POS.": "D",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "Serbia",
+        "CLUB": "Toulouse"
+      }
+    },
+    {
+      "playerName": "Christophe Kerbrat",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 510,000",
+      "weeklyWage": "€ 9,808",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Christophe Kerbrat",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,808",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 510,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 624,408",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "France",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "Mathieu Deplagne",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 510,000",
+      "weeklyWage": "€ 9,808",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mathieu Deplagne",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,808",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 510,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 624,408",
+        "BIO POS.": "D",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "France",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Mathieu Peybernes",
+      "teamName": "Bastia",
+      "annualSalary": "€ 510,000",
+      "weeklyWage": "€ 9,808",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mathieu Peybernes",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,808",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 510,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 624,408",
+        "BIO POS.": "D",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "France",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Yoann Andreu",
+      "teamName": "Angers",
+      "annualSalary": "€ 500,000",
+      "weeklyWage": "€ 9,615",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Yoann Andreu",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,615",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 500,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 612,164",
+        "BIO POS.": "D",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "France",
+        "CLUB": "Angers"
+      }
+    },
+    {
+      "playerName": "Gilles Sunu",
+      "teamName": "Angers",
+      "annualSalary": "€ 500,000",
+      "weeklyWage": "€ 9,615",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Gilles Sunu",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,615",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 500,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 612,164",
+        "BIO POS.": "F",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Togo",
+        "CLUB": "Angers"
+      }
+    },
+    {
+      "playerName": "Pedro Henrique",
+      "teamName": "Rennes",
+      "annualSalary": "€ 500,000",
+      "weeklyWage": "€ 9,615",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Pedro Henrique",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,615",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 500,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 612,164",
+        "BIO POS.": "F",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Mohamed Yattara",
+      "teamName": "Angers",
+      "annualSalary": "€ 500,000",
+      "weeklyWage": "€ 9,615",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mohamed Yattara",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,615",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 500,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 612,164",
+        "BIO POS.": "F",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "Guinea",
+        "CLUB": "Angers"
+      }
+    },
+    {
+      "playerName": "Kamil Grosicki",
+      "teamName": "Rennes",
+      "annualSalary": "€ 490,000",
+      "weeklyWage": "€ 9,423",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Kamil Grosicki",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,423",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 490,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 599,921",
+        "BIO POS.": "F",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Poland",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Benjamin Jeannot",
+      "teamName": "Lorient",
+      "annualSalary": "€ 490,000",
+      "weeklyWage": "€ 9,423",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Benjamin Jeannot",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,423",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 490,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 599,921",
+        "BIO POS.": "F",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Souleymane Camara",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 490,000",
+      "weeklyWage": "€ 9,423",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Souleymane Camara",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,423",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 490,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 599,921",
+        "BIO POS.": "F",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "Senegal",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Romain Philippoteaux",
+      "teamName": "Lorient",
+      "annualSalary": "€ 480,000",
+      "weeklyWage": "€ 9,231",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Romain Philippoteaux",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,231",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 480,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 587,678",
+        "BIO POS.": "M",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Raphaël Guerreiro",
+      "teamName": "Lorient",
+      "annualSalary": "€ 480,000",
+      "weeklyWage": "€ 9,231",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Raphaël Guerreiro",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,231",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 480,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 587,678",
+        "BIO POS.": "M",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "Portugal",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Birama Touré",
+      "teamName": "Nantes",
+      "annualSalary": "€ 480,000",
+      "weeklyWage": "€ 9,231",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Birama Touré",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,231",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 480,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 587,678",
+        "BIO POS.": "M",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Mali",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Damien Da Silva",
+      "teamName": "Caen",
+      "annualSalary": "€ 480,000",
+      "weeklyWage": "€ 9,231",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Damien Da Silva",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,231",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 480,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 587,678",
+        "BIO POS.": "D",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "France",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Sylvain Armand",
+      "teamName": "Rennes",
+      "annualSalary": "€ 470,000",
+      "weeklyWage": "€ 9,038",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Sylvain Armand",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,038",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 470,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 575,434",
+        "BIO POS.": "D",
+        "BIO AGE": 34,
+        "BIO COUNTRY": "France",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Ismaël Traoré",
+      "teamName": "Angers",
+      "annualSalary": "€ 470,000",
+      "weeklyWage": "€ 9,038",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Ismaël Traoré",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 9,038",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 470,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 575,434",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Cote d'Ivoire",
+        "CLUB": "Angers"
+      }
+    },
+    {
+      "playerName": "Younousse Sankharé",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 460,000",
+      "weeklyWage": "€ 8,846",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Younousse Sankharé",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,846",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 460,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 563,191",
+        "BIO POS.": "M",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Senegal",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "Emiliano Sala",
+      "teamName": "Nantes",
+      "annualSalary": "€ 460,000",
+      "weeklyWage": "€ 8,846",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Emiliano Sala",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,846",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 460,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 563,191",
+        "BIO POS.": "F",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Lenny Nangis",
+      "teamName": "Lille",
+      "annualSalary": "€ 460,000",
+      "weeklyWage": "€ 8,846",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Lenny Nangis",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,846",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 460,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 563,191",
+        "BIO POS.": "F",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "Guadeloupe",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "Joris Marveaux",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 460,000",
+      "weeklyWage": "€ 8,846",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Joris Marveaux",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,846",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 460,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 563,191",
+        "BIO POS.": "M",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "Martinique",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Bouna Sarr",
+      "teamName": "Marseille",
+      "annualSalary": "€ 460,000",
+      "weeklyWage": "€ 8,846",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Bouna Sarr",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,846",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 460,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 563,191",
+        "BIO POS.": "D",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "France",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Jordan Adéoti",
+      "teamName": "Caen",
+      "annualSalary": "€ 450,000",
+      "weeklyWage": "€ 8,654",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jordan Adéoti",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,654",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 450,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 550,948",
+        "BIO POS.": "M",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Benin",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Youssouf Sabaly",
+      "teamName": "Nantes",
+      "annualSalary": "€ 450,000",
+      "weeklyWage": "€ 8,654",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Youssouf Sabaly",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,654",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 450,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 550,948",
+        "BIO POS.": "D",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Senegal",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Walid Mesloub",
+      "teamName": "Lorient",
+      "annualSalary": "€ 450,000",
+      "weeklyWage": "€ 8,654",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Walid Mesloub",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,654",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 450,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 550,948",
+        "BIO POS.": "M",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Algeria",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Renato Civelli",
+      "teamName": "Lille",
+      "annualSalary": "€ 450,000",
+      "weeklyWage": "€ 8,654",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Renato Civelli",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,654",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 450,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 550,948",
+        "BIO POS.": "D",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "François Moubandje",
+      "teamName": "Toulouse",
+      "annualSalary": "€ 450,000",
+      "weeklyWage": "€ 8,654",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "François Moubandje",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,654",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 450,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 550,948",
+        "BIO POS.": "D",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Switzerland",
+        "CLUB": "Toulouse"
+      }
+    },
+    {
+      "playerName": "Jérémy Sorbon",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 450,000",
+      "weeklyWage": "€ 8,654",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jérémy Sorbon",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,654",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 450,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 550,948",
+        "BIO POS.": "D",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "France",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "Wesley Lautoa",
+      "teamName": "Lorient",
+      "annualSalary": "€ 440,000",
+      "weeklyWage": "€ 8,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Wesley Lautoa",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 440,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 538,705",
+        "BIO POS.": "D",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Florian Raspentino",
+      "teamName": "Bastia",
+      "annualSalary": "€ 440,000",
+      "weeklyWage": "€ 8,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Florian Raspentino",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 440,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 538,705",
+        "BIO POS.": "F",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "France",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Alejandro Bedoya",
+      "teamName": "Nantes",
+      "annualSalary": "€ 440,000",
+      "weeklyWage": "€ 8,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Alejandro Bedoya",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 440,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 538,705",
+        "BIO POS.": "M",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "United States",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Valentin Rongier",
+      "teamName": "Nantes",
+      "annualSalary": "€ 440,000",
+      "weeklyWage": "€ 8,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Valentin Rongier",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 440,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 538,705",
+        "BIO POS.": "M",
+        "BIO AGE": 20,
+        "BIO COUNTRY": "France",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "André Poko",
+      "teamName": "Bordeaux",
+      "annualSalary": "€ 430,000",
+      "weeklyWage": "€ 8,269",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "André Poko",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,269",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 430,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 526,461",
+        "BIO POS.": "M",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Gabon",
+        "CLUB": "Bordeaux"
+      }
+    },
+    {
+      "playerName": "Jesper Hansen",
+      "teamName": "Bastia",
+      "annualSalary": "€ 430,000",
+      "weeklyWage": "€ 8,269",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jesper Hansen",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,269",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 430,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 526,461",
+        "BIO POS.": "K",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "Denmark",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Sébastien Squillaci",
+      "teamName": "Bastia",
+      "annualSalary": "€ 430,000",
+      "weeklyWage": "€ 8,269",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Sébastien Squillaci",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,269",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 430,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 526,461",
+        "BIO POS.": "D",
+        "BIO AGE": 34,
+        "BIO COUNTRY": "France",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Florian Marange",
+      "teamName": "Bastia",
+      "annualSalary": "€ 430,000",
+      "weeklyWage": "€ 8,269",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Florian Marange",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,269",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 430,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 526,461",
+        "BIO POS.": "D",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "France",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Yacouba Sylla",
+      "teamName": "Rennes",
+      "annualSalary": "€ 420,000",
+      "weeklyWage": "€ 8,077",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Yacouba Sylla",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,077",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 420,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 514,218",
+        "BIO POS.": "M",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Mali",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Yannis Salibur",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 420,000",
+      "weeklyWage": "€ 8,077",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Yannis Salibur",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 8,077",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 420,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 514,218",
+        "BIO POS.": "F",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "France",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "Ismaël Diomandé",
+      "teamName": "Caen",
+      "annualSalary": "€ 410,000",
+      "weeklyWage": "€ 7,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Ismaël Diomandé",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 410,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 501,975",
+        "BIO POS.": "M",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Cote d'Ivoire",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Yacine Bammou",
+      "teamName": "Nantes",
+      "annualSalary": "€ 410,000",
+      "weeklyWage": "€ 7,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Yacine Bammou",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 410,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 501,975",
+        "BIO POS.": "F",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Morocco",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Marcel Tisserand",
+      "teamName": "Toulouse",
+      "annualSalary": "€ 410,000",
+      "weeklyWage": "€ 7,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Marcel Tisserand",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 410,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 501,975",
+        "BIO POS.": "D",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Democratic Republic of Congo",
+        "CLUB": "Toulouse"
+      }
+    },
+    {
+      "playerName": "Syam Ben Youssef",
+      "teamName": "Caen",
+      "annualSalary": "€ 410,000",
+      "weeklyWage": "€ 7,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Syam Ben Youssef",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 410,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 501,975",
+        "BIO POS.": "D",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Tunisia",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Steeve Yago",
+      "teamName": "Toulouse",
+      "annualSalary": "€ 410,000",
+      "weeklyWage": "€ 7,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Steeve Yago",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 410,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 501,975",
+        "BIO POS.": "D",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Burkina Faso",
+        "CLUB": "Toulouse"
+      }
+    },
+    {
+      "playerName": "Benjamin Angoua",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 410,000",
+      "weeklyWage": "€ 7,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Benjamin Angoua",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 410,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 501,975",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Cote d'Ivoire",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "Adrien Regattin",
+      "teamName": "Toulouse",
+      "annualSalary": "€ 410,000",
+      "weeklyWage": "€ 7,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Adrien Regattin",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 410,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 501,975",
+        "BIO POS.": "M",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Morocco",
+        "CLUB": "Toulouse"
+      }
+    },
+    {
+      "playerName": "Koffi Djidji",
+      "teamName": "Nantes",
+      "annualSalary": "€ 410,000",
+      "weeklyWage": "€ 7,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Koffi Djidji",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 410,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 501,975",
+        "BIO POS.": "D",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Cote d'Ivoire",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Ermir Lenjani",
+      "teamName": "Nantes",
+      "annualSalary": "€ 410,000",
+      "weeklyWage": "€ 7,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Ermir Lenjani",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 410,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 501,975",
+        "BIO POS.": "M",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Albania",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Axel Ngando",
+      "teamName": "Bastia",
+      "annualSalary": "€ 410,000",
+      "weeklyWage": "€ 7,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Axel Ngando",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 410,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 501,975",
+        "BIO POS.": "M",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "France",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Ibrahim Amadou",
+      "teamName": "Lille",
+      "annualSalary": "€ 400,000",
+      "weeklyWage": "€ 7,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Ibrahim Amadou",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 400,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 489,731",
+        "BIO POS.": "M",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "Grégory Bourillon",
+      "teamName": "Angers",
+      "annualSalary": "€ 400,000",
+      "weeklyWage": "€ 7,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Grégory Bourillon",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 400,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 489,731",
+        "BIO POS.": "D",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "France",
+        "CLUB": "Angers"
+      }
+    },
+    {
+      "playerName": "Yannick Cahuzac",
+      "teamName": "Bastia",
+      "annualSalary": "€ 400,000",
+      "weeklyWage": "€ 7,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Yannick Cahuzac",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 400,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 489,731",
+        "BIO POS.": "M",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "France",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Hervé Bazile",
+      "teamName": "Caen",
+      "annualSalary": "€ 400,000",
+      "weeklyWage": "€ 7,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Hervé Bazile",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 400,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 489,731",
+        "BIO POS.": "F",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Haiti",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Jonathan Delaplace",
+      "teamName": "Caen",
+      "annualSalary": "€ 400,000",
+      "weeklyWage": "€ 7,692",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jonathan Delaplace",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,692",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 400,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 489,731",
+        "BIO POS.": "M",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "France",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Dorian Lévêque",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 390,000",
+      "weeklyWage": "€ 7,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Dorian Lévêque",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 390,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 477,488",
+        "BIO POS.": "D",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "France",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "Mana Dembélé",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 390,000",
+      "weeklyWage": "€ 7,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mana Dembélé",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 390,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 477,488",
+        "BIO POS.": "F",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Mali",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "Didier Ndong",
+      "teamName": "Lorient",
+      "annualSalary": "€ 390,000",
+      "weeklyWage": "€ 7,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Didier Ndong",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 390,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 477,488",
+        "BIO POS.": "M",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "Gabon",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "François Bellugou",
+      "teamName": "Lorient",
+      "annualSalary": "€ 390,000",
+      "weeklyWage": "€ 7,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "François Bellugou",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 390,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 477,488",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Lamine Gassama",
+      "teamName": "Lorient",
+      "annualSalary": "€ 390,000",
+      "weeklyWage": "€ 7,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Lamine Gassama",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 390,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 477,488",
+        "BIO POS.": "D",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Senegal",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Zargo Touré",
+      "teamName": "Lorient",
+      "annualSalary": "€ 390,000",
+      "weeklyWage": "€ 7,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Zargo Touré",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 390,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 477,488",
+        "BIO POS.": "D",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Senegal",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Pierrick Capelle",
+      "teamName": "Angers",
+      "annualSalary": "€ 390,000",
+      "weeklyWage": "€ 7,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Pierrick Capelle",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 390,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 477,488",
+        "BIO POS.": "M",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "France",
+        "CLUB": "Angers"
+      }
+    },
+    {
+      "playerName": "Christopher Maboulou",
+      "teamName": "Bastia",
+      "annualSalary": "€ 390,000",
+      "weeklyWage": "€ 7,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Christopher Maboulou",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 390,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 477,488",
+        "BIO POS.": "F",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Congo",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Sébastien Wüthrich",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 390,000",
+      "weeklyWage": "€ 7,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Sébastien Wüthrich",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 390,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 477,488",
+        "BIO POS.": "M",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Switzerland",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Yohann Pelé",
+      "teamName": "Marseille",
+      "annualSalary": "€ 380,000",
+      "weeklyWage": "€ 7,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Yohann Pelé",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 380,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 465,245",
+        "BIO POS.": "K",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "France",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Abou Diaby",
+      "teamName": "Marseille",
+      "annualSalary": "€ 380,000",
+      "weeklyWage": "€ 7,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Abou Diaby",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 380,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 465,245",
+        "BIO POS.": "M",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "France",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Somália",
+      "teamName": "Toulouse",
+      "annualSalary": "€ 380,000",
+      "weeklyWage": "€ 7,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Somália",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 380,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 465,245",
+        "BIO POS.": "M",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Toulouse"
+      }
+    },
+    {
+      "playerName": "Nicolas Pallois",
+      "teamName": "Bordeaux",
+      "annualSalary": "€ 380,000",
+      "weeklyWage": "€ 7,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Nicolas Pallois",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 380,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 465,245",
+        "BIO POS.": "D",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "France",
+        "CLUB": "Bordeaux"
+      }
+    },
+    {
+      "playerName": "Wilfried Moimbé",
+      "teamName": "Nantes",
+      "annualSalary": "€ 370,000",
+      "weeklyWage": "€ 7,115",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Wilfried Moimbé",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,115",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 370,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 453,002",
+        "BIO POS.": "D",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "France",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Gilles Cioni",
+      "teamName": "Bastia",
+      "annualSalary": "€ 370,000",
+      "weeklyWage": "€ 7,115",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Gilles Cioni",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,115",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 370,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 453,002",
+        "BIO POS.": "D",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "France",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Yassine Benzia",
+      "teamName": "Lille",
+      "annualSalary": "€ 370,000",
+      "weeklyWage": "€ 7,115",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Yassine Benzia",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,115",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 370,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 453,002",
+        "BIO POS.": "M",
+        "BIO AGE": 20,
+        "BIO COUNTRY": "Algeria",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "Sadio Diallo",
+      "teamName": "Bastia",
+      "annualSalary": "€ 370,000",
+      "weeklyWage": "€ 7,115",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Sadio Diallo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,115",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 370,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 453,002",
+        "BIO POS.": "M",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Guinea",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Junior Tallo",
+      "teamName": "Lille",
+      "annualSalary": "€ 370,000",
+      "weeklyWage": "€ 7,115",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Junior Tallo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,115",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 370,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 453,002",
+        "BIO POS.": "F",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Cote d'Ivoire",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "Jessy Pi",
+      "teamName": "Troyes",
+      "annualSalary": "€ 370,000",
+      "weeklyWage": "€ 7,115",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jessy Pi",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 7,115",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 370,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 453,002",
+        "BIO POS.": "M",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "France",
+        "CLUB": "Troyes"
+      }
+    },
+    {
+      "playerName": "Corentin Jean",
+      "teamName": "Troyes",
+      "annualSalary": "€ 360,000",
+      "weeklyWage": "€ 6,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Corentin Jean",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 360,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 440,758",
+        "BIO POS.": "F",
+        "BIO AGE": 19,
+        "BIO COUNTRY": "France",
+        "CLUB": "Troyes"
+      }
+    },
+    {
+      "playerName": "Slimane Sissoko",
+      "teamName": "Angers",
+      "annualSalary": "€ 360,000",
+      "weeklyWage": "€ 6,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Slimane Sissoko",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 360,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 440,758",
+        "BIO POS.": "F",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "France",
+        "CLUB": "Angers"
+      }
+    },
+    {
+      "playerName": "Mehdi Mostefa",
+      "teamName": "Bastia",
+      "annualSalary": "€ 360,000",
+      "weeklyWage": "€ 6,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mehdi Mostefa",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 360,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 440,758",
+        "BIO POS.": "M",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "Algeria",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Maxime Baca",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 360,000",
+      "weeklyWage": "€ 6,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Maxime Baca",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 360,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 440,758",
+        "BIO POS.": "D",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "France",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "Vincent Le Goff",
+      "teamName": "Lorient",
+      "annualSalary": "€ 350,000",
+      "weeklyWage": "€ 6,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Vincent Le Goff",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 350,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 428,515",
+        "BIO POS.": "D",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Pape Paye",
+      "teamName": "Lorient",
+      "annualSalary": "€ 350,000",
+      "weeklyWage": "€ 6,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Pape Paye",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 350,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 428,515",
+        "BIO POS.": "D",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Laurent Pionnier",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 350,000",
+      "weeklyWage": "€ 6,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Laurent Pionnier",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 350,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 428,515",
+        "BIO POS.": "K",
+        "BIO AGE": 33,
+        "BIO COUNTRY": "France",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Yoann Court",
+      "teamName": "Troyes",
+      "annualSalary": "€ 350,000",
+      "weeklyWage": "€ 6,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Yoann Court",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 350,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 428,515",
+        "BIO POS.": "M",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "France",
+        "CLUB": "Troyes"
+      }
+    },
+    {
+      "playerName": "Chaker Alhadhur",
+      "teamName": "Caen",
+      "annualSalary": "€ 350,000",
+      "weeklyWage": "€ 6,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Chaker Alhadhur",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 350,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 428,515",
+        "BIO POS.": "D",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Comoros",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Alexandre Raineau",
+      "teamName": "Caen",
+      "annualSalary": "€ 350,000",
+      "weeklyWage": "€ 6,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Alexandre Raineau",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 350,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 428,515",
+        "BIO POS.": "D",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "France",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Alaeddine Yahia",
+      "teamName": "Caen",
+      "annualSalary": "€ 350,000",
+      "weeklyWage": "€ 6,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Alaeddine Yahia",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 350,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 428,515",
+        "BIO POS.": "D",
+        "BIO AGE": 33,
+        "BIO COUNTRY": "Tunisia",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Pedro Mendes",
+      "teamName": "Rennes",
+      "annualSalary": "€ 350,000",
+      "weeklyWage": "€ 6,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Pedro Mendes",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 350,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 428,515",
+        "BIO POS.": "D",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Portugal",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Johan Martial",
+      "teamName": "Troyes",
+      "annualSalary": "€ 350,000",
+      "weeklyWage": "€ 6,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Johan Martial",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 350,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 428,515",
+        "BIO POS.": "D",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Martinique",
+        "CLUB": "Troyes"
+      }
+    },
+    {
+      "playerName": "Jonathan Martins Pereira",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 350,000",
+      "weeklyWage": "€ 6,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jonathan Martins Pereira",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 350,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 428,515",
+        "BIO POS.": "D",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "France",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "Chaouki Ben Saada",
+      "teamName": "Troyes",
+      "annualSalary": "€ 340,000",
+      "weeklyWage": "€ 6,538",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Chaouki Ben Saada",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,538",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 340,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 416,272",
+        "BIO POS.": "M",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "Tunisia",
+        "CLUB": "Troyes"
+      }
+    },
+    {
+      "playerName": "Rachid Ghezzal",
+      "teamName": "Lyon",
+      "annualSalary": "€ 340,000",
+      "weeklyWage": "€ 6,538",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Rachid Ghezzal",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,538",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 340,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 416,272",
+        "BIO POS.": "F",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Algeria",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Maxwel Cornet",
+      "teamName": "Lyon",
+      "annualSalary": "€ 340,000",
+      "weeklyWage": "€ 6,538",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Maxwel Cornet",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,538",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 340,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 416,272",
+        "BIO POS.": "F",
+        "BIO AGE": 18,
+        "BIO COUNTRY": "Cote d'Ivoire",
+        "CLUB": "Lyon"
+      }
+    },
+    {
+      "playerName": "Steven Moreira",
+      "teamName": "Rennes",
+      "annualSalary": "€ 340,000",
+      "weeklyWage": "€ 6,538",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Steven Moreira",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,538",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 340,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 416,272",
+        "BIO POS.": "D",
+        "BIO AGE": 20,
+        "BIO COUNTRY": "France",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Maxime Poundjé",
+      "teamName": "Bordeaux",
+      "annualSalary": "€ 330,000",
+      "weeklyWage": "€ 6,346",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Maxime Poundjé",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,346",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 330,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 404,028",
+        "BIO POS.": "D",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "France",
+        "CLUB": "Bordeaux"
+      }
+    },
+    {
+      "playerName": "Olivier Sorin",
+      "teamName": "Rennes",
+      "annualSalary": "€ 330,000",
+      "weeklyWage": "€ 6,346",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Olivier Sorin",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,346",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 330,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 404,028",
+        "BIO POS.": "K",
+        "BIO AGE": 34,
+        "BIO COUNTRY": "France",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Benjamin Lecomte",
+      "teamName": "Lorient",
+      "annualSalary": "€ 330,000",
+      "weeklyWage": "€ 6,346",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Benjamin Lecomte",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,346",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 330,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 404,028",
+        "BIO POS.": "K",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Johan Audel",
+      "teamName": "Nantes",
+      "annualSalary": "€ 330,000",
+      "weeklyWage": "€ 6,346",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Johan Audel",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,346",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 330,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 404,028",
+        "BIO POS.": "F",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "Martinique",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Jeff Louis",
+      "teamName": "Caen",
+      "annualSalary": "€ 330,000",
+      "weeklyWage": "€ 6,346",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jeff Louis",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,346",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 330,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 404,028",
+        "BIO POS.": "M",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Haiti",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Karim Azamoum",
+      "teamName": "Troyes",
+      "annualSalary": "€ 320,000",
+      "weeklyWage": "€ 6,154",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Karim Azamoum",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,154",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 320,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 391,785",
+        "BIO POS.": "M",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "France",
+        "CLUB": "Troyes"
+      }
+    },
+    {
+      "playerName": "Jonas Lössl",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 310,000",
+      "weeklyWage": "€ 5,962",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jonas Lössl",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,962",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 310,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 379,542",
+        "BIO POS.": "K",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Denmark",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "Paolo De Ceglie",
+      "teamName": "Marseille",
+      "annualSalary": "€ 310,000",
+      "weeklyWage": "€ 5,962",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Paolo De Ceglie",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,962",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 310,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 379,542",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Ronny Rodelin",
+      "teamName": "Caen",
+      "annualSalary": "€ 300,000",
+      "weeklyWage": "€ 5,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Ronny Rodelin",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 300,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 367,299",
+        "BIO POS.": "F",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "France",
+        "CLUB": "Caen"
+      }
+    },
+    {
+      "playerName": "Yassine Jebbour",
+      "teamName": "Bastia",
+      "annualSalary": "€ 300,000",
+      "weeklyWage": "€ 5,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Yassine Jebbour",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 300,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 367,299",
+        "BIO POS.": "D",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Morocco",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Jimmy Cabot",
+      "teamName": "Lorient",
+      "annualSalary": "€ 300,000",
+      "weeklyWage": "€ 5,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jimmy Cabot",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 300,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 367,299",
+        "BIO POS.": "M",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Mehdi Zeffane",
+      "teamName": "Rennes",
+      "annualSalary": "€ 300,000",
+      "weeklyWage": "€ 5,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mehdi Zeffane",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 300,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 367,299",
+        "BIO POS.": "D",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Algeria",
+        "CLUB": "Rennes"
+      }
+    },
+    {
+      "playerName": "Ramy Bensebaini",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 300,000",
+      "weeklyWage": "€ 5,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Ramy Bensebaini",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 300,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 367,299",
+        "BIO POS.": "D",
+        "BIO AGE": 20,
+        "BIO COUNTRY": "Algeria",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Chris Mavinga",
+      "teamName": "Troyes",
+      "annualSalary": "€ 290,000",
+      "weeklyWage": "€ 5,577",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Chris Mavinga",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,577",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 290,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 355,055",
+        "BIO POS.": "D",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Democratic Republic of Congo",
+        "CLUB": "Troyes"
+      }
+    },
+    {
+      "playerName": "Stéphane Sparagna",
+      "teamName": "Marseille",
+      "annualSalary": "€ 290,000",
+      "weeklyWage": "€ 5,577",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Stéphane Sparagna",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,577",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 290,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 355,055",
+        "BIO POS.": "D",
+        "BIO AGE": 20,
+        "BIO COUNTRY": "France",
+        "CLUB": "Marseille"
+      }
+    },
+    {
+      "playerName": "Moryké Fofana",
+      "teamName": "Lorient",
+      "annualSalary": "€ 290,000",
+      "weeklyWage": "€ 5,577",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Moryké Fofana",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,577",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 290,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 355,055",
+        "BIO POS.": "F",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Cote d'Ivoire",
+        "CLUB": "Lorient"
+      }
+    },
+    {
+      "playerName": "Sébastien Corchia",
+      "teamName": "Lille",
+      "annualSalary": "€ 290,000",
+      "weeklyWage": "€ 5,577",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Sébastien Corchia",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,577",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 290,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 355,055",
+        "BIO POS.": "D",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "France",
+        "CLUB": "Lille"
+      }
+    },
+    {
+      "playerName": "Tongo Doumbia",
+      "teamName": "Toulouse",
+      "annualSalary": "€ 280,000",
+      "weeklyWage": "€ 5,385",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Tongo Doumbia",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,385",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 280,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 342,812",
+        "BIO POS.": "M",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Mali",
+        "CLUB": "Toulouse"
+      }
+    },
+    {
+      "playerName": "Brayan Perea",
+      "teamName": "Troyes",
+      "annualSalary": "€ 280,000",
+      "weeklyWage": "€ 5,385",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Brayan Perea",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,385",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 280,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 342,812",
+        "BIO POS.": "F",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Colombia",
+        "CLUB": "Troyes"
+      }
+    },
+    {
+      "playerName": "Mamadou Samassa",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 280,000",
+      "weeklyWage": "€ 5,385",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mamadou Samassa",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,385",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 280,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 342,812",
+        "BIO POS.": "K",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Mali",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "Julien Cardy",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 280,000",
+      "weeklyWage": "€ 5,385",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Julien Cardy",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,385",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 280,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 342,812",
+        "BIO POS.": "M",
+        "BIO AGE": 33,
+        "BIO COUNTRY": "France",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "Stéphane Darbion",
+      "teamName": "Troyes",
+      "annualSalary": "€ 280,000",
+      "weeklyWage": "€ 5,385",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Stéphane Darbion",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,385",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 280,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 342,812",
+        "BIO POS.": "M",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "France",
+        "CLUB": "Troyes"
+      }
+    },
+    {
+      "playerName": "Sloan Privat",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 270,000",
+      "weeklyWage": "€ 5,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Sloan Privat",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 270,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 330,569",
+        "BIO POS.": "F",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "French Guiana",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "Thibault Giresse",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 270,000",
+      "weeklyWage": "€ 5,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Thibault Giresse",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 270,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 330,569",
+        "BIO POS.": "M",
+        "BIO AGE": 34,
+        "BIO COUNTRY": "France",
+        "CLUB": "Guingamp"
+      }
+    },
+    {
+      "playerName": "François Kamano",
+      "teamName": "Bastia",
+      "annualSalary": "€ 270,000",
+      "weeklyWage": "€ 5,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "François Kamano",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 270,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 330,569",
+        "BIO POS.": "F",
+        "BIO AGE": 19,
+        "BIO COUNTRY": "Guinea",
+        "CLUB": "Bastia"
+      }
+    },
+    {
+      "playerName": "Rincón",
+      "teamName": "Troyes",
+      "annualSalary": "€ 270,000",
+      "weeklyWage": "€ 5,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Rincón",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 270,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 330,569",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Troyes"
+      }
+    },
+    {
+      "playerName": "Mathias Serin",
+      "teamName": "Angers",
+      "annualSalary": "€ 260,000",
+      "weeklyWage": "€ 5,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mathias Serin",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 260,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 318,325",
+        "BIO POS.": "M",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "France",
+        "CLUB": "Angers"
+      }
+    },
+    {
+      "playerName": "Léo Dubois",
+      "teamName": "Nantes",
+      "annualSalary": "€ 260,000",
+      "weeklyWage": "€ 5,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Léo Dubois",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 260,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 318,325",
+        "BIO POS.": "D",
+        "BIO AGE": 20,
+        "BIO COUNTRY": "France",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Jules Iloki",
+      "teamName": "Nantes",
+      "annualSalary": "€ 260,000",
+      "weeklyWage": "€ 5,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jules Iloki",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 260,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 318,325",
+        "BIO POS.": "M",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "France",
+        "CLUB": "Nantes"
+      }
+    },
+    {
+      "playerName": "Saïd Benrahma",
+      "teamName": "Angers",
+      "annualSalary": "€ 260,000",
+      "weeklyWage": "€ 5,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Saïd Benrahma",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 260,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 318,325",
+        "BIO POS.": "F",
+        "BIO AGE": 19,
+        "BIO COUNTRY": "Algeria",
+        "CLUB": "Angers"
+      }
+    },
+    {
+      "playerName": "Vincent Manceau",
+      "teamName": "Angers",
+      "annualSalary": "€ 260,000",
+      "weeklyWage": "€ 5,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Vincent Manceau",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 5,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 260,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 318,325",
+        "BIO POS.": "D",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "France",
+        "CLUB": "Angers"
+      }
+    },
+    {
+      "playerName": "Casimir Ninga",
+      "teamName": "Montpellier",
+      "annualSalary": "€ 250,000",
+      "weeklyWage": "€ 4,808",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Casimir Ninga",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 4,808",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 250,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 306,082",
+        "BIO POS.": "F",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Chad",
+        "CLUB": "Montpellier"
+      }
+    },
+    {
+      "playerName": "Óscar Trejo",
+      "teamName": "Toulouse",
+      "annualSalary": "€ 250,000",
+      "weeklyWage": "€ 4,808",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Óscar Trejo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 4,808",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 250,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 306,082",
+        "BIO POS.": "M",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Toulouse"
+      }
+    },
+    {
+      "playerName": "Lars Jacobsen",
+      "teamName": "Guingamp",
+      "annualSalary": "€ 250,000",
+      "weeklyWage": "€ 4,808",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/fr/ligue-1/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Lars Jacobsen",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 4,808",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 250,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 306,082",
+        "BIO POS.": "D",
+        "BIO AGE": 35,
+        "BIO COUNTRY": "Denmark",
+        "CLUB": "Guingamp"
+      }
+    }
+  ]
+}

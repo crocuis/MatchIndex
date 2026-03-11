@@ -1,0 +1,6451 @@
+{
+  "competitionSlug": "ligue-1",
+  "exportedAt": "2026-03-08T15:26:08.724Z",
+  "seasonSlug": "2021-2022",
+  "targets": [
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11621",
+      "playerName": "Abdel Medioub",
+      "playerNames": [
+        "Abdel Medioub",
+        "Abdel Jalil Zaim Idriss Medioub"
+      ],
+      "playerSlug": "abdel-jalil-zaim-idriss-medioub",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11412",
+      "playerName": "Abdou Diallo",
+      "playerNames": [
+        "Abdou Diallo"
+      ],
+      "playerSlug": "abdou-diallo",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11728",
+      "playerName": "Abdu Conté",
+      "playerNames": [
+        "Abdu Conté"
+      ],
+      "playerSlug": "abdu-conte",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11353",
+      "playerName": "Achraf Hakimi",
+      "playerNames": [
+        "Achraf Hakimi",
+        "Achraf Hakimi Mouh"
+      ],
+      "playerSlug": "achraf-hakimi-mouh",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11431",
+      "playerName": "Adam Jakubech",
+      "playerNames": [
+        "Adam Jakubech"
+      ],
+      "playerSlug": "adam-jakubech",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11634",
+      "playerName": "Adil Aouchiche",
+      "playerNames": [
+        "Adil Aouchiche"
+      ],
+      "playerSlug": "adil-aouchiche",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11600",
+      "playerName": "Adrian Grbic",
+      "playerNames": [
+        "Adrian Grbic"
+      ],
+      "playerSlug": "adrian-grbic",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11330",
+      "playerName": "Adrien Thomasson",
+      "playerNames": [
+        "Adrien Thomasson"
+      ],
+      "playerSlug": "adrien-thomasson",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11521",
+      "playerName": "Adrien Truffert",
+      "playerNames": [
+        "Adrien Truffert"
+      ],
+      "playerSlug": "adrien-truffert",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11692",
+      "playerName": "Aimen Moueffek",
+      "playerNames": [
+        "Aimen Moueffek"
+      ],
+      "playerSlug": "aimen-moueffek",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11379",
+      "playerName": "Akim Zedadka",
+      "playerNames": [
+        "Akim Zedadka"
+      ],
+      "playerSlug": "akim-zedadka",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11644",
+      "playerName": "Alban Lafont",
+      "playerNames": [
+        "Alban Lafont"
+      ],
+      "playerSlug": "alban-lafont",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11610",
+      "playerName": "Alberth Elis",
+      "playerNames": [
+        "Alberth Elis",
+        "Alberth Josué Elis Martínez"
+      ],
+      "playerSlug": "alberth-josue-elis-martinez",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11580",
+      "playerName": "Aleksandr Golovin",
+      "playerNames": [
+        "Aleksandr Golovin"
+      ],
+      "playerSlug": "aleksandr-golovin",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11326",
+      "playerName": "Alexander Djiku",
+      "playerNames": [
+        "Alexander Djiku"
+      ],
+      "playerSlug": "alexander-djiku",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11589",
+      "playerName": "Alexander Nübel",
+      "playerNames": [
+        "Alexander Nübel"
+      ],
+      "playerSlug": "alexander-nubel",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11384",
+      "playerName": "Alexandre Letellier",
+      "playerNames": [
+        "Alexandre Letellier"
+      ],
+      "playerSlug": "alexandre-letellier",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11696",
+      "playerName": "Alexandre Oukidja",
+      "playerNames": [
+        "Alexandre Oukidja"
+      ],
+      "playerSlug": "alexandre-oukidja",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11671",
+      "playerName": "Alexis Claude-Maurice",
+      "playerNames": [
+        "Alexis Claude-Maurice",
+        "Alexis Claude Maurice"
+      ],
+      "playerSlug": "alexis-claude-maurice",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11403",
+      "playerName": "Alexis Flips",
+      "playerNames": [
+        "Alexis Flips"
+      ],
+      "playerSlug": "alexis-flips",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11509",
+      "playerName": "Alfred Gomis",
+      "playerNames": [
+        "Alfred Gomis",
+        "Alfred Benjamin Gomis"
+      ],
+      "playerSlug": "alfred-benjamin-gomis",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11382",
+      "playerName": "Alidu Seidu",
+      "playerNames": [
+        "Alidu Seidu"
+      ],
+      "playerSlug": "alidu-seidu",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11631",
+      "playerName": "Alpha Sissoko",
+      "playerNames": [
+        "Alpha Sissoko",
+        "Nelson Sissoko"
+      ],
+      "playerSlug": "nelson-sissoko",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11555",
+      "playerName": "Álvaro González",
+      "playerNames": [
+        "Álvaro González",
+        "Álvaro González Soberón"
+      ],
+      "playerSlug": "alvaro-gonzalez-soberon",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11442",
+      "playerName": "Amadou Onana",
+      "playerNames": [
+        "Amadou Onana"
+      ],
+      "playerSlug": "amadou-onana",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11711",
+      "playerName": "Amadou Salif Mbengue",
+      "playerNames": [
+        "Amadou Salif Mbengue"
+      ],
+      "playerSlug": "amadou-salif-mbengue",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11472",
+      "playerName": "Ambroise Oyongo",
+      "playerNames": [
+        "Ambroise Oyongo",
+        "Ambroise Oyongo Bitolo"
+      ],
+      "playerSlug": "ambroise-oyongo-bitolo",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11669",
+      "playerName": "Amine Gouiri",
+      "playerNames": [
+        "Amine Gouiri"
+      ],
+      "playerSlug": "amine-gouiri",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11530",
+      "playerName": "Amine Harit",
+      "playerNames": [
+        "Amine Harit"
+      ],
+      "playerSlug": "amine-harit",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11394",
+      "playerName": "Anastasios Donis",
+      "playerNames": [
+        "Anastasios Donis"
+      ],
+      "playerSlug": "anastasios-donis",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11349",
+      "playerName": "Ander Herrera",
+      "playerNames": [
+        "Ander Herrera",
+        "Ander Herrera Agüera"
+      ],
+      "playerSlug": "ander-herrera-aguera",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11404",
+      "playerName": "Andreaw Gravillon",
+      "playerNames": [
+        "Andreaw Gravillon"
+      ],
+      "playerSlug": "andreaw-gravillon",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11645",
+      "playerName": "Andrei Girotto",
+      "playerNames": [
+        "Andrei Girotto"
+      ],
+      "playerSlug": "andrei-girotto",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11742",
+      "playerName": "Andy Alune Diouf",
+      "playerNames": [
+        "Andy Alune Diouf"
+      ],
+      "playerSlug": "andy-alune-diouf",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11664",
+      "playerName": "Andy Delort",
+      "playerNames": [
+        "Andy Delort"
+      ],
+      "playerSlug": "andy-delort",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11615",
+      "playerName": "Anel Ahmedhodžić",
+      "playerNames": [
+        "Anel Ahmedhodžić"
+      ],
+      "playerSlug": "anel-ahmedhodzic",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11344",
+      "playerName": "Ángel Di María",
+      "playerNames": [
+        "Ángel Di María",
+        "Ángel Fabián Di María Hernández"
+      ],
+      "playerSlug": "angel-fabian-di-maria-hernandez",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11435",
+      "playerName": "Angel Gomes",
+      "playerNames": [
+        "Angel Gomes"
+      ],
+      "playerSlug": "angel-gomes",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11338",
+      "playerName": "Anthony Caci",
+      "playerNames": [
+        "Anthony Caci"
+      ],
+      "playerSlug": "anthony-caci",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11482",
+      "playerName": "Anthony Lopes",
+      "playerNames": [
+        "Anthony Lopes"
+      ],
+      "playerSlug": "anthony-lopes",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11374",
+      "playerName": "Arial Mendy",
+      "playerNames": [
+        "Arial Mendy",
+        "Arial Benabent Mendy"
+      ],
+      "playerSlug": "arial-benabent-mendy",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11554",
+      "playerName": "Arkadiusz Milik",
+      "playerNames": [
+        "Arkadiusz Milik"
+      ],
+      "playerSlug": "arkadiusz-milik",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11567",
+      "playerName": "Armand Laurienté",
+      "playerNames": [
+        "Armand Laurienté",
+        "Armand Lauriente"
+      ],
+      "playerSlug": "armand-lauriente",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11413",
+      "playerName": "Arnaud Kalimuendo",
+      "playerNames": [
+        "Arnaud Kalimuendo",
+        "Arnaud Kalimuendo Muinga"
+      ],
+      "playerSlug": "arnaud-kalimuendo-muinga",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11689",
+      "playerName": "Arnaud Nordin",
+      "playerNames": [
+        "Arnaud Nordin"
+      ],
+      "playerSlug": "arnaud-nordin",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11468",
+      "playerName": "Arnaud Souquet",
+      "playerNames": [
+        "Arnaud Souquet"
+      ],
+      "playerSlug": "arnaud-souquet",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11375",
+      "playerName": "Arthur Desmas",
+      "playerNames": [
+        "Arthur Desmas"
+      ],
+      "playerSlug": "arthur-desmas",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11625",
+      "playerName": "Assane Dioussé",
+      "playerNames": [
+        "Assane Dioussé",
+        "Assane Dioussé El Hadji"
+      ],
+      "playerSlug": "assane-diousse-el-hadji",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11586",
+      "playerName": "Aurélien Tchouaméni",
+      "playerNames": [
+        "Aurélien Tchouaméni",
+        "Aurélien Djani Tchouaméni"
+      ],
+      "playerSlug": "aurelien-djani-tchouameni",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11584",
+      "playerName": "Axel Disasi",
+      "playerNames": [
+        "Axel Disasi"
+      ],
+      "playerSlug": "axel-disasi",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11397",
+      "playerName": "Azor Matusiwa",
+      "playerNames": [
+        "Azor Matusiwa"
+      ],
+      "playerSlug": "azor-matusiwa",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11686",
+      "playerName": "Bakary Sako",
+      "playerNames": [
+        "Bakary Sako"
+      ],
+      "playerSlug": "bakary-sako",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11544",
+      "playerName": "Bamba Dieng",
+      "playerNames": [
+        "Bamba Dieng",
+        "Cheikh Ahmadou Bamba Mbacke Dieng"
+      ],
+      "playerSlug": "cheikh-ahmadou-bamba-mbacke-dieng",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11602",
+      "playerName": "Baptiste Mouazan",
+      "playerNames": [
+        "Baptiste Mouazan"
+      ],
+      "playerSlug": "baptiste-mouazan",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11503",
+      "playerName": "Baptiste Santamaría",
+      "playerNames": [
+        "Baptiste Santamaría"
+      ],
+      "playerSlug": "baptiste-santamaria",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11545",
+      "playerName": "Benjamin André",
+      "playerNames": [
+        "Benjamin André"
+      ],
+      "playerSlug": "benjamin-andre",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11506",
+      "playerName": "Benjamin Bourigeaud",
+      "playerNames": [
+        "Benjamin Bourigeaud"
+      ],
+      "playerSlug": "benjamin-bourigeaud",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11683",
+      "playerName": "Bilal Brahimi",
+      "playerNames": [
+        "Bilal Brahimi"
+      ],
+      "playerSlug": "bilal-brahimi",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11512",
+      "playerName": "Birger Meling",
+      "playerNames": [
+        "Birger Meling"
+      ],
+      "playerSlug": "birger-meling",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11641",
+      "playerName": "Boubacar Fall",
+      "playerNames": [
+        "Boubacar Fall"
+      ],
+      "playerSlug": "boubacar-fall",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11529",
+      "playerName": "Boubacar Kamara",
+      "playerNames": [
+        "Boubacar Kamara"
+      ],
+      "playerSlug": "boubacar-kamara",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11707",
+      "playerName": "Boubacar Traore",
+      "playerNames": [
+        "Boubacar Traore"
+      ],
+      "playerSlug": "boubacar-traore",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11499",
+      "playerName": "Bradley Barcola",
+      "playerNames": [
+        "Bradley Barcola"
+      ],
+      "playerSlug": "bradley-barcola",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11409",
+      "playerName": "Bradley Locko",
+      "playerNames": [
+        "Bradley Locko"
+      ],
+      "playerSlug": "bradley-locko",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11524",
+      "playerName": "Brayann Pereira",
+      "playerNames": [
+        "Brayann Pereira"
+      ],
+      "playerSlug": "brayann-pereira",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11493",
+      "playerName": "Bruno Guimarães",
+      "playerNames": [
+        "Bruno Guimarães",
+        "Bruno Guimarães Rodriguez Moura"
+      ],
+      "playerSlug": "bruno-guimaraes-rodriguez-moura",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11434",
+      "playerName": "Burak Yılmaz",
+      "playerNames": [
+        "Burak Yılmaz"
+      ],
+      "playerSlug": "burak-y-lmaz",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11593",
+      "playerName": "Caio Henrique",
+      "playerNames": [
+        "Caio Henrique",
+        "Caio Henrique Oliveira Silva"
+      ],
+      "playerSlug": "caio-henrique-oliveira-silva",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11674",
+      "playerName": "Calvin Stengs",
+      "playerNames": [
+        "Calvin Stengs"
+      ],
+      "playerSlug": "calvin-stengs",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11533",
+      "playerName": "Cédric Bakambu",
+      "playerNames": [
+        "Cédric Bakambu"
+      ],
+      "playerSlug": "cedric-bakambu",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11534",
+      "playerName": "Cengiz Ünder",
+      "playerNames": [
+        "Cengiz Ünder"
+      ],
+      "playerSlug": "cengiz-under",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11458",
+      "playerName": "Charles Boli",
+      "playerNames": [
+        "Charles Boli"
+      ],
+      "playerSlug": "charles-boli",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11649",
+      "playerName": "Charles Traoré",
+      "playerNames": [
+        "Charles Traoré"
+      ],
+      "playerSlug": "charles-traore",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11455",
+      "playerName": "Cheick Doucouré",
+      "playerNames": [
+        "Cheick Doucouré",
+        "Cheick Oumar Doucoure"
+      ],
+      "playerSlug": "cheick-oumar-doucoure",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11597",
+      "playerName": "Chrislain Matsima",
+      "playerNames": [
+        "Chrislain Matsima"
+      ],
+      "playerSlug": "chrislain-matsima",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11460",
+      "playerName": "Christopher Wooh",
+      "playerNames": [
+        "Christopher Wooh"
+      ],
+      "playerSlug": "christopher-wooh",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11387",
+      "playerName": "Colin Dagba",
+      "playerNames": [
+        "Colin Dagba"
+      ],
+      "playerSlug": "colin-dagba",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11443",
+      "playerName": "Corentin Jean",
+      "playerNames": [
+        "Corentin Jean"
+      ],
+      "playerSlug": "corentin-jean",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11488",
+      "playerName": "Damien Da Silva",
+      "playerNames": [
+        "Damien Da Silva"
+      ],
+      "playerSlug": "damien-da-silva",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11576",
+      "playerName": "Dango Ouattara",
+      "playerNames": [
+        "Dango Ouattara",
+        "Dango Aboubacar Faissal Ouattara"
+      ],
+      "playerSlug": "dango-aboubacar-faissal-ouattara",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11358",
+      "playerName": "Danilo Pereira",
+      "playerNames": [
+        "Danilo Pereira",
+        "Danilo Luís Hélio Pereira"
+      ],
+      "playerSlug": "danilo-luis-helio-pereira",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11712",
+      "playerName": "Danley Jean Jacques",
+      "playerNames": [
+        "Danley Jean Jacques"
+      ],
+      "playerSlug": "danley-jean-jacques",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11665",
+      "playerName": "Dante",
+      "playerNames": [
+        "Dante",
+        "Dante Bonfim da Costa Santos"
+      ],
+      "playerSlug": "dante-bonfim-da-costa-santos",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11617",
+      "playerName": "Danylo Ignatenko",
+      "playerNames": [
+        "Danylo Ignatenko"
+      ],
+      "playerSlug": "danylo-ignatenko",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11459",
+      "playerName": "David Costa",
+      "playerNames": [
+        "David Costa",
+        "David Pereira da Costa"
+      ],
+      "playerSlug": "david-pereira-da-costa",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11523",
+      "playerName": "Deiver Andrés Machado Mena",
+      "playerNames": [
+        "Deiver Andrés Machado Mena"
+      ],
+      "playerSlug": "deiver-andres-machado-mena",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11629",
+      "playerName": "Denis Bouanga",
+      "playerNames": [
+        "Denis Bouanga"
+      ],
+      "playerSlug": "denis-bouanga",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11391",
+      "playerName": "Denis Franchi",
+      "playerNames": [
+        "Denis Franchi"
+      ],
+      "playerSlug": "denis-franchi",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11659",
+      "playerName": "Denis Petrić",
+      "playerNames": [
+        "Denis Petrić"
+      ],
+      "playerSlug": "denis-petric",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11658",
+      "playerName": "Dennis Appiah",
+      "playerNames": [
+        "Dennis Appiah"
+      ],
+      "playerSlug": "dennis-appiah",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11731",
+      "playerName": "Derek Mazou-Sacko",
+      "playerNames": [
+        "Derek Mazou-Sacko"
+      ],
+      "playerSlug": "derek-mazou-sacko",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11700",
+      "playerName": "Didier Lamkel Zé",
+      "playerNames": [
+        "Didier Lamkel Zé"
+      ],
+      "playerSlug": "didier-lamkel-ze",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11328",
+      "playerName": "Dimitri Liénard",
+      "playerNames": [
+        "Dimitri Liénard"
+      ],
+      "playerSlug": "dimitri-lienard",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11526",
+      "playerName": "Dimitri Payet",
+      "playerNames": [
+        "Dimitri Payet"
+      ],
+      "playerSlug": "dimitri-payet",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11473",
+      "playerName": "Dimitry Bertaud",
+      "playerNames": [
+        "Dimitry Bertaud"
+      ],
+      "playerSlug": "dimitry-bertaud",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11407",
+      "playerName": "Dion Lopy",
+      "playerNames": [
+        "Dion Lopy"
+      ],
+      "playerSlug": "dion-lopy",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11463",
+      "playerName": "Djeidi Gassama",
+      "playerNames": [
+        "Djeidi Gassama"
+      ],
+      "playerSlug": "djeidi-gassama",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11578",
+      "playerName": "Djibril Sidibé",
+      "playerNames": [
+        "Djibril Sidibé"
+      ],
+      "playerSlug": "djibril-sidibe",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11741",
+      "playerName": "Doğan Alemdar",
+      "playerNames": [
+        "Doğan Alemdar"
+      ],
+      "playerSlug": "dogan-alemdar",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11550",
+      "playerName": "Domagoj Bradarić",
+      "playerNames": [
+        "Domagoj Bradarić"
+      ],
+      "playerSlug": "domagoj-bradaric",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11531",
+      "playerName": "Duje Ćaleta-Car",
+      "playerNames": [
+        "Duje Ćaleta-Car"
+      ],
+      "playerSlug": "duje-caleta-car",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11727",
+      "playerName": "Dylan Chambost",
+      "playerNames": [
+        "Dylan Chambost"
+      ],
+      "playerSlug": "dylan-chambost",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11698",
+      "playerName": "Dylan Daniel Mahmoud Bronn",
+      "playerNames": [
+        "Dylan Daniel Mahmoud Bronn"
+      ],
+      "playerSlug": "dylan-daniel-mahmoud-bronn",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11549",
+      "playerName": "Edon Zhegrova",
+      "playerNames": [
+        "Edon Zhegrova"
+      ],
+      "playerSlug": "edon-zhegrova",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11363",
+      "playerName": "Edouard Michut",
+      "playerNames": [
+        "Edouard Michut"
+      ],
+      "playerSlug": "edouard-michut",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11327",
+      "playerName": "Eiji Kawashima",
+      "playerNames": [
+        "Eiji Kawashima"
+      ],
+      "playerSlug": "eiji-kawashima",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11420",
+      "playerName": "El Bilal Touré",
+      "playerNames": [
+        "El Bilal Touré",
+        "El Bilal Toure"
+      ],
+      "playerSlug": "el-bilal-toure",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11388",
+      "playerName": "El Chadaille Bitshiabu",
+      "playerNames": [
+        "El Chadaille Bitshiabu"
+      ],
+      "playerSlug": "el-chadaille-bitshiabu",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11684",
+      "playerName": "Eliaquim Mangala",
+      "playerNames": [
+        "Eliaquim Mangala"
+      ],
+      "playerSlug": "eliaquim-mangala",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11596",
+      "playerName": "Eliot Matazo",
+      "playerNames": [
+        "Eliot Matazo"
+      ],
+      "playerSlug": "eliot-matazo",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11487",
+      "playerName": "Emerson",
+      "playerNames": [
+        "Emerson",
+        "Emerson Palmieri dos Santos"
+      ],
+      "playerSlug": "emerson-palmieri-dos-santos",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11604",
+      "playerName": "Enock Kwateng",
+      "playerNames": [
+        "Enock Kwateng"
+      ],
+      "playerSlug": "enock-kwateng",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11570",
+      "playerName": "Enzo Le Fée",
+      "playerNames": [
+        "Enzo Le Fée"
+      ],
+      "playerSlug": "enzo-le-fee",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11360",
+      "playerName": "Éric Ebimbe",
+      "playerNames": [
+        "Éric Ebimbe",
+        "Eric Junior Dina Ebimbe"
+      ],
+      "playerSlug": "eric-junior-dina-ebimbe",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11725",
+      "playerName": "Erik Palmer-Brown",
+      "playerNames": [
+        "Erik Palmer-Brown"
+      ],
+      "playerSlug": "erik-palmer-brown",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11642",
+      "playerName": "Etienne Green",
+      "playerNames": [
+        "Etienne Green"
+      ],
+      "playerSlug": "etienne-green",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11682",
+      "playerName": "Evann Guessand",
+      "playerNames": [
+        "Evann Guessand"
+      ],
+      "playerSlug": "evann-guessand",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11562",
+      "playerName": "Fabien Lemoine",
+      "playerNames": [
+        "Fabien Lemoine"
+      ],
+      "playerSlug": "fabien-lemoine",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11656",
+      "playerName": "Fábio",
+      "playerNames": [
+        "Fábio",
+        "Fábio Pereira da Silva"
+      ],
+      "playerSlug": "fabio-pereira-da-silva",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11457",
+      "playerName": "Facundo Medina",
+      "playerNames": [
+        "Facundo Medina",
+        "Facundo Axel Medina"
+      ],
+      "playerSlug": "facundo-axel-medina",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11691",
+      "playerName": "Falaye Sacko",
+      "playerNames": [
+        "Falaye Sacko"
+      ],
+      "playerSlug": "falaye-sacko",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11704",
+      "playerName": "Fali Candé",
+      "playerNames": [
+        "Fali Candé"
+      ],
+      "playerSlug": "fali-cande",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11697",
+      "playerName": "Farid Boulaya",
+      "playerNames": [
+        "Farid Boulaya"
+      ],
+      "playerSlug": "farid-boulaya",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11507",
+      "playerName": "Flavien Tait",
+      "playerNames": [
+        "Flavien Tait"
+      ],
+      "playerSlug": "flavien-tait",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11681",
+      "playerName": "Flavius Daniliuc",
+      "playerNames": [
+        "Flavius Daniliuc"
+      ],
+      "playerSlug": "flavius-daniliuc",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11465",
+      "playerName": "Florent Mollet",
+      "playerNames": [
+        "Florent Mollet"
+      ],
+      "playerSlug": "florent-mollet",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11368",
+      "playerName": "Florent Ogier",
+      "playerNames": [
+        "Florent Ogier"
+      ],
+      "playerSlug": "florent-ogier",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11453",
+      "playerName": "Florian Sotoca",
+      "playerNames": [
+        "Florian Sotoca"
+      ],
+      "playerSlug": "florian-sotoca",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11719",
+      "playerName": "Florian Tardieu",
+      "playerNames": [
+        "Florian Tardieu"
+      ],
+      "playerSlug": "florian-tardieu",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11421",
+      "playerName": "Fodé Doucouré",
+      "playerNames": [
+        "Fodé Doucouré"
+      ],
+      "playerSlug": "fode-doucoure",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11609",
+      "playerName": "Fransérgio",
+      "playerNames": [
+        "Fransérgio",
+        "Fransérgio Rodrigues Barbosa"
+      ],
+      "playerSlug": "fransergio-rodrigues-barbosa",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11325",
+      "playerName": "Frédéric Guilbert",
+      "playerNames": [
+        "Frédéric Guilbert"
+      ],
+      "playerSlug": "frederic-guilbert",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11438",
+      "playerName": "Gabriel Gudmundsson",
+      "playerNames": [
+        "Gabriel Gudmundsson"
+      ],
+      "playerSlug": "gabriel-gudmundsson",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11685",
+      "playerName": "Gabriel Silva",
+      "playerNames": [
+        "Gabriel Silva",
+        "Gabriel Moisés Antunes da Silva"
+      ],
+      "playerSlug": "gabriel-moises-antunes-da-silva",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11444",
+      "playerName": "Gaël Kakuta",
+      "playerNames": [
+        "Gaël Kakuta"
+      ],
+      "playerSlug": "gael-kakuta",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11504",
+      "playerName": "Gaëtan Laborde",
+      "playerNames": [
+        "Gaëtan Laborde"
+      ],
+      "playerSlug": "gaetan-laborde",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11613",
+      "playerName": "Gaëtan Poussin",
+      "playerNames": [
+        "Gaëtan Poussin"
+      ],
+      "playerSlug": "gaetan-poussin",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11581",
+      "playerName": "Gelson Martins",
+      "playerNames": [
+        "Gelson Martins",
+        "Gelson Dany Batalha Martins"
+      ],
+      "playerSlug": "gelson-dany-batalha-martins",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11348",
+      "playerName": "Georginio Wijnaldum",
+      "playerNames": [
+        "Georginio Wijnaldum"
+      ],
+      "playerSlug": "georginio-wijnaldum",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11535",
+      "playerName": "Gerson",
+      "playerNames": [
+        "Gerson",
+        "Gerson Santos da Silva"
+      ],
+      "playerSlug": "gerson-santos-da-silva",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11332",
+      "playerName": "Gerzino Nyamsi",
+      "playerNames": [
+        "Gerzino Nyamsi"
+      ],
+      "playerSlug": "gerzino-nyamsi",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11416",
+      "playerName": "Ghislain Konan",
+      "playerNames": [
+        "Ghislain Konan"
+      ],
+      "playerSlug": "ghislain-konan",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11356",
+      "playerName": "Gianluigi Donnarumma",
+      "playerNames": [
+        "Gianluigi Donnarumma"
+      ],
+      "playerSlug": "gianluigi-donnarumma",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11612",
+      "playerName": "Gideon Mensah",
+      "playerNames": [
+        "Gideon Mensah"
+      ],
+      "playerSlug": "gideon-mensah",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11726",
+      "playerName": "Giulian Biancone",
+      "playerNames": [
+        "Giulian Biancone"
+      ],
+      "playerSlug": "giulian-biancone",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11662",
+      "playerName": "Gor Manvelyan",
+      "playerNames": [
+        "Gor Manvelyan"
+      ],
+      "playerSlug": "gor-manvelyan",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11366",
+      "playerName": "Grejohn Kyei",
+      "playerNames": [
+        "Grejohn Kyei"
+      ],
+      "playerSlug": "grejohn-kyei",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11583",
+      "playerName": "Guillermo Maripán",
+      "playerNames": [
+        "Guillermo Maripán",
+        "Guillermo Alfonso Maripán Loaysa"
+      ],
+      "playerSlug": "guillermo-alfonso-maripan-loaysa",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11339",
+      "playerName": "Habib Diallo",
+      "playerNames": [
+        "Habib Diallo",
+        "Habibou Mouhamadou Diallo"
+      ],
+      "playerSlug": "habibou-mouhamadou-diallo",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11501",
+      "playerName": "Habib Keita",
+      "playerNames": [
+        "Habib Keita"
+      ],
+      "playerSlug": "habib-keita",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11505",
+      "playerName": "Hamari Traoré",
+      "playerNames": [
+        "Hamari Traoré"
+      ],
+      "playerSlug": "hamari-traore",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11630",
+      "playerName": "Harold Moukoudi",
+      "playerNames": [
+        "Harold Moukoudi"
+      ],
+      "playerSlug": "harold-moukoudi",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11733",
+      "playerName": "Hassane Kamara",
+      "playerNames": [
+        "Hassane Kamara"
+      ],
+      "playerSlug": "hassane-kamara",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11547",
+      "playerName": "Hatem Ben Arfa",
+      "playerNames": [
+        "Hatem Ben Arfa"
+      ],
+      "playerSlug": "hatem-ben-arfa",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11494",
+      "playerName": "Henrique",
+      "playerNames": [
+        "Henrique",
+        "Henrique Silva Milagres"
+      ],
+      "playerSlug": "henrique-silva-milagres",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11679",
+      "playerName": "Hichem Boudaoui",
+      "playerNames": [
+        "Hichem Boudaoui"
+      ],
+      "playerSlug": "hichem-boudaoui",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11566",
+      "playerName": "Houboulang Mendes",
+      "playerNames": [
+        "Houboulang Mendes"
+      ],
+      "playerSlug": "houboulang-mendes",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11486",
+      "playerName": "Houssem Aouar",
+      "playerNames": [
+        "Houssem Aouar"
+      ],
+      "playerSlug": "houssem-aouar",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11406",
+      "playerName": "Hugo Ekitike",
+      "playerNames": [
+        "Hugo Ekitike"
+      ],
+      "playerSlug": "hugo-ekitike",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11616",
+      "playerName": "Hwang Ui-jo",
+      "playerNames": [
+        "Hwang Ui-jo",
+        "Ui-Jo Hwang"
+      ],
+      "playerSlug": "ui-jo-hwang",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11571",
+      "playerName": "Ibrahima Koné",
+      "playerNames": [
+        "Ibrahima Koné"
+      ],
+      "playerSlug": "ibrahima-kone",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11693",
+      "playerName": "Ibrahima Niane",
+      "playerNames": [
+        "Ibrahima Niane"
+      ],
+      "playerSlug": "ibrahima-niane",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11335",
+      "playerName": "Ibrahima Sissoko",
+      "playerNames": [
+        "Ibrahima Sissoko"
+      ],
+      "playerSlug": "ibrahima-sissoko",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11385",
+      "playerName": "Idrissa Gueye",
+      "playerNames": [
+        "Idrissa Gueye",
+        "Idrissa Gana Gueye"
+      ],
+      "playerSlug": "idrissa-gana-gueye",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11638",
+      "playerName": "Ignacio Ramírez",
+      "playerNames": [
+        "Ignacio Ramírez",
+        "Juan Ignacio Ramírez Polero"
+      ],
+      "playerSlug": "juan-ignacio-ramirez-polero",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11447",
+      "playerName": "Ignatius Ganago",
+      "playerNames": [
+        "Ignatius Ganago",
+        "Ignatius Kpene Ganago"
+      ],
+      "playerSlug": "ignatius-kpene-ganago",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11568",
+      "playerName": "Igor Silva",
+      "playerNames": [
+        "Igor Silva",
+        "Igor Silva de Almeida"
+      ],
+      "playerSlug": "igor-silva-de-almeida",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11717",
+      "playerName": "Ike Ugbo",
+      "playerNames": [
+        "Ike Ugbo"
+      ],
+      "playerSlug": "ike-ugbo",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11405",
+      "playerName": "Ilan Kebbal",
+      "playerNames": [
+        "Ilan Kebbal"
+      ],
+      "playerSlug": "ilan-kebbal",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11441",
+      "playerName": "Isaac Lihadji",
+      "playerNames": [
+        "Isaac Lihadji"
+      ],
+      "playerSlug": "isaac-lihadji",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11485",
+      "playerName": "Islam Slimani",
+      "playerNames": [
+        "Islam Slimani"
+      ],
+      "playerSlug": "islam-slimani",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11462",
+      "playerName": "Ismaël Gharbi",
+      "playerNames": [
+        "Ismaël Gharbi"
+      ],
+      "playerSlug": "ismael-gharbi",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11595",
+      "playerName": "Ismail Jakobs",
+      "playerNames": [
+        "Ismail Jakobs"
+      ],
+      "playerSlug": "ismail-jakobs",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11730",
+      "playerName": "Issa Kabore",
+      "playerNames": [
+        "Issa Kabore"
+      ],
+      "playerSlug": "issa-kabore",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11437",
+      "playerName": "Ivo Grbić",
+      "playerNames": [
+        "Ivo Grbić"
+      ],
+      "playerSlug": "ivo-grbic",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11367",
+      "playerName": "Jason Berthomier",
+      "playerNames": [
+        "Jason Berthomier"
+      ],
+      "playerSlug": "jason-berthomier",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11491",
+      "playerName": "Jason Denayer",
+      "playerNames": [
+        "Jason Denayer"
+      ],
+      "playerSlug": "jason-denayer",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11611",
+      "playerName": "Javairô Dilrosun",
+      "playerNames": [
+        "Javairô Dilrosun"
+      ],
+      "playerSlug": "javairo-dilrosun",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11703",
+      "playerName": "Jean-Armel Kana-Biyik",
+      "playerNames": [
+        "Jean-Armel Kana-Biyik"
+      ],
+      "playerSlug": "jean-armel-kana-biyik",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11654",
+      "playerName": "Jean-Charles Castelletto",
+      "playerNames": [
+        "Jean-Charles Castelletto"
+      ],
+      "playerSlug": "jean-charles-castelletto",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11675",
+      "playerName": "Jean-Clair Todibo",
+      "playerNames": [
+        "Jean-Clair Todibo"
+      ],
+      "playerSlug": "jean-clair-todibo",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11371",
+      "playerName": "Jean-Claude Billong",
+      "playerNames": [
+        "Jean-Claude Billong"
+      ],
+      "playerSlug": "jean-claude-billong",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11324",
+      "playerName": "Jean Eudès Aholou",
+      "playerNames": [
+        "Jean Eudès Aholou"
+      ],
+      "playerSlug": "jean-eudes-aholou",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11737",
+      "playerName": "Jean-Kévin Augustin",
+      "playerNames": [
+        "Jean-Kévin Augustin"
+      ],
+      "playerSlug": "jean-kevin-augustin",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11449",
+      "playerName": "Jean-Louis Leca",
+      "playerNames": [
+        "Jean-Louis Leca"
+      ],
+      "playerSlug": "jean-louis-leca",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11592",
+      "playerName": "Jean Lucas",
+      "playerNames": [
+        "Jean Lucas",
+        "Jean Lucas de Souza Oliveira"
+      ],
+      "playerSlug": "jean-lucas-de-souza-oliveira",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11618",
+      "playerName": "Jean Onana",
+      "playerNames": [
+        "Jean Onana",
+        "Jean Emile Junior Onana Onana"
+      ],
+      "playerSlug": "jean-emile-junior-onana-onana",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11637",
+      "playerName": "Jean-Philippe Krasso",
+      "playerNames": [
+        "Jean-Philippe Krasso"
+      ],
+      "playerSlug": "jean-philippe-krasso",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11340",
+      "playerName": "Jean-Ricner Bellegarde",
+      "playerNames": [
+        "Jean-Ricner Bellegarde"
+      ],
+      "playerSlug": "jean-ricner-bellegarde",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11401",
+      "playerName": "Jens Cajuste",
+      "playerNames": [
+        "Jens Cajuste",
+        "Jens-Lys Michel Cajuste"
+      ],
+      "playerSlug": "jens-lys-michel-cajuste",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11558",
+      "playerName": "Jérémy Morel",
+      "playerNames": [
+        "Jérémy Morel"
+      ],
+      "playerSlug": "jeremy-morel",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11430",
+      "playerName": "Jérémy Pied",
+      "playerNames": [
+        "Jérémy Pied"
+      ],
+      "playerSlug": "jeremy-pied",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11489",
+      "playerName": "Jérôme Boateng",
+      "playerNames": [
+        "Jérôme Boateng"
+      ],
+      "playerSlug": "jerome-boateng",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11564",
+      "playerName": "Jérôme Hergault",
+      "playerNames": [
+        "Jérôme Hergault"
+      ],
+      "playerSlug": "jerome-hergault",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11365",
+      "playerName": "Jérôme Phojo",
+      "playerNames": [
+        "Jérôme Phojo"
+      ],
+      "playerSlug": "jerome-phojo",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11715",
+      "playerName": "Jessy Moulin",
+      "playerNames": [
+        "Jessy Moulin"
+      ],
+      "playerSlug": "jessy-moulin",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11377",
+      "playerName": "Jim Allevinah",
+      "playerNames": [
+        "Jim Allevinah"
+      ],
+      "playerSlug": "jim-allevinah",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11378",
+      "playerName": "Jodel Dossou",
+      "playerNames": [
+        "Jodel Dossou"
+      ],
+      "playerSlug": "jodel-dossou",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11369",
+      "playerName": "Johan Gastien",
+      "playerNames": [
+        "Johan Gastien"
+      ],
+      "playerSlug": "johan-gastien",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11502",
+      "playerName": "Jonas Martin",
+      "playerNames": [
+        "Jonas Martin"
+      ],
+      "playerSlug": "jonas-martin",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11429",
+      "playerName": "Jonathan Bamba",
+      "playerNames": [
+        "Jonathan Bamba"
+      ],
+      "playerSlug": "jonathan-bamba",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11448",
+      "playerName": "Jonathan Clauss",
+      "playerNames": [
+        "Jonathan Clauss"
+      ],
+      "playerSlug": "jonathan-clauss",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11436",
+      "playerName": "Jonathan David",
+      "playerNames": [
+        "Jonathan David"
+      ],
+      "playerSlug": "jonathan-david",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11450",
+      "playerName": "Jonathan Gradit",
+      "playerNames": [
+        "Jonathan Gradit"
+      ],
+      "playerSlug": "jonathan-gradit",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11423",
+      "playerName": "Jonathan Ikoné",
+      "playerNames": [
+        "Jonathan Ikoné",
+        "Nanitamo Jonathan Ikoné"
+      ],
+      "playerSlug": "nanitamo-jonathan-ikone",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11461",
+      "playerName": "Jonathan Varane",
+      "playerNames": [
+        "Jonathan Varane"
+      ],
+      "playerSlug": "jonathan-varane",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11553",
+      "playerName": "Jordan Amavi",
+      "playerNames": [
+        "Jordan Amavi"
+      ],
+      "playerSlug": "jordan-amavi",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11466",
+      "playerName": "Jordan Ferri",
+      "playerNames": [
+        "Jordan Ferri"
+      ],
+      "playerSlug": "jordan-ferri",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11677",
+      "playerName": "Jordan Lotomba",
+      "playerNames": [
+        "Jordan Lotomba"
+      ],
+      "playerSlug": "jordan-lotomba",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11477",
+      "playerName": "Joris Chotard",
+      "playerNames": [
+        "Joris Chotard"
+      ],
+      "playerSlug": "joris-chotard",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11428",
+      "playerName": "José Fonte",
+      "playerNames": [
+        "José Fonte",
+        "José Miguel da Rocha Fonte"
+      ],
+      "playerSlug": "jose-miguel-da-rocha-fonte",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11370",
+      "playerName": "Josué Albert",
+      "playerNames": [
+        "Josué Albert"
+      ],
+      "playerSlug": "josue-albert",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11608",
+      "playerName": "Josuha Guilavogui",
+      "playerNames": [
+        "Josuha Guilavogui"
+      ],
+      "playerSlug": "josuha-guilavogui",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11359",
+      "playerName": "Juan Bernat",
+      "playerNames": [
+        "Juan Bernat",
+        "Juan Bernat Velasco"
+      ],
+      "playerSlug": "juan-bernat-velasco",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11389",
+      "playerName": "Julian Draxler",
+      "playerNames": [
+        "Julian Draxler"
+      ],
+      "playerSlug": "julian-draxler",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11490",
+      "playerName": "Julian Pollersbeck",
+      "playerNames": [
+        "Julian Pollersbeck"
+      ],
+      "playerSlug": "julian-pollersbeck",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11565",
+      "playerName": "Julien Laporte",
+      "playerNames": [
+        "Julien Laporte"
+      ],
+      "playerSlug": "julien-laporte",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11500",
+      "playerName": "Junior Castello Lukeba",
+      "playerNames": [
+        "Junior Castello Lukeba"
+      ],
+      "playerSlug": "junior-castello-lukeba",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11464",
+      "playerName": "Junior Sambia",
+      "playerNames": [
+        "Junior Sambia",
+        "Salomon Junior Sambia"
+      ],
+      "playerSlug": "salomon-junior-sambia",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11672",
+      "playerName": "Justin Kluivert",
+      "playerNames": [
+        "Justin Kluivert"
+      ],
+      "playerSlug": "justin-kluivert",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11650",
+      "playerName": "Kalifa Coulibaly",
+      "playerNames": [
+        "Kalifa Coulibaly"
+      ],
+      "playerSlug": "kalifa-coulibaly",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11515",
+      "playerName": "Kamaldeen Sulemana",
+      "playerNames": [
+        "Kamaldeen Sulemana"
+      ],
+      "playerSlug": "kamaldeen-sulemana",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11484",
+      "playerName": "Karl Toko Ekambi",
+      "playerNames": [
+        "Karl Toko Ekambi",
+        "Karl Brillant Toko Ekambi"
+      ],
+      "playerSlug": "karl-brillant-toko-ekambi",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11336",
+      "playerName": "Karol Fila",
+      "playerNames": [
+        "Karol Fila"
+      ],
+      "playerSlug": "karol-fila",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11670",
+      "playerName": "Kasper Dolberg",
+      "playerNames": [
+        "Kasper Dolberg"
+      ],
+      "playerSlug": "kasper-dolberg",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11454",
+      "playerName": "Kevin Danso",
+      "playerNames": [
+        "Kevin Danso"
+      ],
+      "playerSlug": "kevin-danso",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11333",
+      "playerName": "Kévin Gameiro",
+      "playerNames": [
+        "Kévin Gameiro",
+        "Kevin Gameiro"
+      ],
+      "playerSlug": "kevin-gameiro",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11355",
+      "playerName": "Keylor Navas",
+      "playerNames": [
+        "Keylor Navas",
+        "Keylor Navas Gamboa"
+      ],
+      "playerSlug": "keylor-navas-gamboa",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11676",
+      "playerName": "Khéphren Thuram",
+      "playerNames": [
+        "Khéphren Thuram",
+        "Khéphren Thuram-Ulien"
+      ],
+      "playerSlug": "khephren-thuram-ulien",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11702",
+      "playerName": "Kiki Kouyaté",
+      "playerNames": [
+        "Kiki Kouyaté",
+        "Boubakar Kouyate"
+      ],
+      "playerSlug": "boubakar-kouyate",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11633",
+      "playerName": "Kolo",
+      "playerNames": [
+        "Kolo",
+        "Timothée Kolodziejczak"
+      ],
+      "playerSlug": "timothee-kolodziejczak",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11557",
+      "playerName": "Konrad De la Fuente",
+      "playerNames": [
+        "Konrad De la Fuente",
+        "Konrad De La Fuente"
+      ],
+      "playerSlug": "konrad-de-la-fuente",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11424",
+      "playerName": "Kouadio Yves Dabila",
+      "playerNames": [
+        "Kouadio Yves Dabila"
+      ],
+      "playerSlug": "kouadio-yves-dabila",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11346",
+      "playerName": "Kylian Mbappé",
+      "playerNames": [
+        "Kylian Mbappé",
+        "Kylian Mbappé Lottin"
+      ],
+      "playerSlug": "kylian-mbappe-lottin",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11563",
+      "playerName": "Laurent Abergel",
+      "playerNames": [
+        "Laurent Abergel"
+      ],
+      "playerSlug": "laurent-abergel",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11552",
+      "playerName": "Layvin Kurzawa",
+      "playerNames": [
+        "Layvin Kurzawa"
+      ],
+      "playerSlug": "layvin-kurzawa",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11390",
+      "playerName": "Leandro Paredes",
+      "playerNames": [
+        "Leandro Paredes",
+        "Leandro Daniel Paredes"
+      ],
+      "playerSlug": "leandro-daniel-paredes",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11710",
+      "playerName": "Lenny Joseph",
+      "playerNames": [
+        "Lenny Joseph"
+      ],
+      "playerSlug": "lenny-joseph",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11708",
+      "playerName": "Lenny Lacroix",
+      "playerNames": [
+        "Lenny Lacroix"
+      ],
+      "playerSlug": "lenny-lacroix",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11556",
+      "playerName": "Leo Balerdi",
+      "playerNames": [
+        "Leo Balerdi",
+        "Leonardo Julián Balerdi Rossa"
+      ],
+      "playerSlug": "leonardo-julian-balerdi-rossa",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11546",
+      "playerName": "Léo Jardim",
+      "playerNames": [
+        "Léo Jardim",
+        "Leonardo Cesar Jardim"
+      ],
+      "playerSlug": "leonardo-cesar-jardim",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11475",
+      "playerName": "Léo Leroy",
+      "playerNames": [
+        "Léo Leroy",
+        "Leo Leroy"
+      ],
+      "playerSlug": "leo-leroy",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11577",
+      "playerName": "Léo Pétrot",
+      "playerNames": [
+        "Léo Pétrot"
+      ],
+      "playerSlug": "leo-petrot",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11520",
+      "playerName": "Lesley Ugochukwu",
+      "playerNames": [
+        "Lesley Ugochukwu",
+        "Lesley Chimuanya Ugochukwu"
+      ],
+      "playerSlug": "lesley-chimuanya-ugochukwu",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11354",
+      "playerName": "Lionel Messi",
+      "playerNames": [
+        "Lionel Messi",
+        "Lionel Andrés Messi Cuccittini"
+      ],
+      "playerSlug": "lionel-andres-messi-cuccittini",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11514",
+      "playerName": "Loïc Badé",
+      "playerNames": [
+        "Loïc Badé"
+      ],
+      "playerSlug": "loic-bade",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11517",
+      "playerName": "Lorenz Assignon",
+      "playerNames": [
+        "Lorenz Assignon"
+      ],
+      "playerSlug": "lorenz-assignon",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11705",
+      "playerName": "Louis Didace Mafouta",
+      "playerNames": [
+        "Louis Didace Mafouta"
+      ],
+      "playerSlug": "louis-didace-mafouta",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11519",
+      "playerName": "Loum Tchaouna",
+      "playerNames": [
+        "Loum Tchaouna"
+      ],
+      "playerSlug": "loum-tchaouna",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11740",
+      "playerName": "Lovro Majer",
+      "playerNames": [
+        "Lovro Majer"
+      ],
+      "playerSlug": "lovro-majer",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11540",
+      "playerName": "Luan Peres",
+      "playerNames": [
+        "Luan Peres",
+        "Luan Peres Petroni"
+      ],
+      "playerSlug": "luan-peres-petroni",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11643",
+      "playerName": "Lucas Calodat",
+      "playerNames": [
+        "Lucas Calodat"
+      ],
+      "playerSlug": "lucas-calodat",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11380",
+      "playerName": "Lucas Da Cunha",
+      "playerNames": [
+        "Lucas Da Cunha"
+      ],
+      "playerSlug": "lucas-da-cunha",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11639",
+      "playerName": "Lucas Gourna-Douath",
+      "playerNames": [
+        "Lucas Gourna-Douath"
+      ],
+      "playerSlug": "lucas-gourna-douath",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11492",
+      "playerName": "Lucas Paquetá",
+      "playerNames": [
+        "Lucas Paquetá",
+        "Lucas Tolentino Coelho de Lima"
+      ],
+      "playerSlug": "lucas-tolentino-coelho-de-lima",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11341",
+      "playerName": "Lucas Perrin",
+      "playerNames": [
+        "Lucas Perrin"
+      ],
+      "playerSlug": "lucas-perrin",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11334",
+      "playerName": "Ludovic Ajorque",
+      "playerNames": [
+        "Ludovic Ajorque"
+      ],
+      "playerSlug": "ludovic-ajorque",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11647",
+      "playerName": "Ludovic Blas",
+      "playerNames": [
+        "Ludovic Blas"
+      ],
+      "playerSlug": "ludovic-blas",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11541",
+      "playerName": "Luis Henrique",
+      "playerNames": [
+        "Luis Henrique",
+        "Luis Henrique Tomaz de Lima"
+      ],
+      "playerSlug": "luis-henrique-tomaz-de-lima",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11632",
+      "playerName": "Mahdi Camara",
+      "playerNames": [
+        "Mahdi Camara"
+      ],
+      "playerSlug": "mahdi-camara",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11498",
+      "playerName": "Malo Gusto",
+      "playerNames": [
+        "Malo Gusto"
+      ],
+      "playerSlug": "malo-gusto",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11724",
+      "playerName": "Mama Baldé",
+      "playerNames": [
+        "Mama Baldé",
+        "Mama Samba Baldé"
+      ],
+      "playerSlug": "mama-samba-balde",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11732",
+      "playerName": "Mamadou Camara",
+      "playerNames": [
+        "Mamadou Camara"
+      ],
+      "playerSlug": "mamadou-camara",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11701",
+      "playerName": "Marc-Aurèle Caillard",
+      "playerNames": [
+        "Marc-Aurèle Caillard"
+      ],
+      "playerSlug": "marc-aurele-caillard",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11603",
+      "playerName": "Marcelo",
+      "playerNames": [
+        "Marcelo",
+        "Marcelo Antônio Guedes Filho"
+      ],
+      "playerSlug": "marcelo-antonio-guedes-filho",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11678",
+      "playerName": "Marcin Bulka",
+      "playerNames": [
+        "Marcin Bulka"
+      ],
+      "playerSlug": "marcin-bulka",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11347",
+      "playerName": "Marco Verratti",
+      "playerNames": [
+        "Marco Verratti"
+      ],
+      "playerSlug": "marco-verratti",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11648",
+      "playerName": "Marcus Coco",
+      "playerNames": [
+        "Marcus Coco"
+      ],
+      "playerSlug": "marcus-coco",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11668",
+      "playerName": "Mario Lemina",
+      "playerNames": [
+        "Mario Lemina"
+      ],
+      "playerSlug": "mario-lemina",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11351",
+      "playerName": "Marquinhos",
+      "playerNames": [
+        "Marquinhos",
+        "Marcos Aoás Corrêa"
+      ],
+      "playerSlug": "marcos-aoas-correa",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11419",
+      "playerName": "Marshall Munetsi",
+      "playerNames": [
+        "Marshall Munetsi",
+        "Marshall Nyasha Munetsi"
+      ],
+      "playerSlug": "marshall-nyasha-munetsi",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11411",
+      "playerName": "Martin Adeline",
+      "playerNames": [
+        "Martin Adeline"
+      ],
+      "playerSlug": "martin-adeline",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11508",
+      "playerName": "Martin Terrier",
+      "playerNames": [
+        "Martin Terrier"
+      ],
+      "playerSlug": "martin-terrier",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11446",
+      "playerName": "Massadio Haïdara",
+      "playerNames": [
+        "Massadio Haïdara"
+      ],
+      "playerSlug": "massadio-haidara",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11415",
+      "playerName": "Mathieu Cafaro",
+      "playerNames": [
+        "Mathieu Cafaro"
+      ],
+      "playerSlug": "mathieu-cafaro",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11479",
+      "playerName": "Mathis Carvalho",
+      "playerNames": [
+        "Mathis Carvalho"
+      ],
+      "playerSlug": "mathis-carvalho",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11743",
+      "playerName": "Mathys Tel",
+      "playerNames": [
+        "Mathys Tel"
+      ],
+      "playerSlug": "mathys-tel",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11536",
+      "playerName": "Mattéo Guendouzi",
+      "playerNames": [
+        "Mattéo Guendouzi",
+        "Mattéo Guendouzi Olié"
+      ],
+      "playerSlug": "matteo-guendouzi-olie",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11573",
+      "playerName": "Matthieu Dreyer",
+      "playerNames": [
+        "Matthieu Dreyer"
+      ],
+      "playerSlug": "matthieu-dreyer",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11516",
+      "playerName": "Matthis Abline",
+      "playerNames": [
+        "Matthis Abline"
+      ],
+      "playerSlug": "matthis-abline",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11337",
+      "playerName": "Matz Sels",
+      "playerNames": [
+        "Matz Sels"
+      ],
+      "playerSlug": "matz-sels",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11386",
+      "playerName": "Mauro Icardi",
+      "playerNames": [
+        "Mauro Icardi",
+        "Mauro Emanuel Icardi Rivero"
+      ],
+      "playerSlug": "mauro-emanuel-icardi-rivero",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11496",
+      "playerName": "Maxence Caqueret",
+      "playerNames": [
+        "Maxence Caqueret"
+      ],
+      "playerSlug": "maxence-caqueret",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11399",
+      "playerName": "Maxime Busi",
+      "playerNames": [
+        "Maxime Busi"
+      ],
+      "playerSlug": "maxime-busi",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11480",
+      "playerName": "Maxime Esteve",
+      "playerNames": [
+        "Maxime Esteve"
+      ],
+      "playerSlug": "maxime-esteve",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11329",
+      "playerName": "Maxime Le Marchand",
+      "playerNames": [
+        "Maxime Le Marchand"
+      ],
+      "playerSlug": "maxime-le-marchand",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11606",
+      "playerName": "M'Baye Niang",
+      "playerNames": [
+        "M'Baye Niang",
+        "M''Baye Babacar Niang"
+      ],
+      "playerSlug": "m-baye-babacar-niang",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11680",
+      "playerName": "Melvin Bard",
+      "playerNames": [
+        "Melvin Bard"
+      ],
+      "playerSlug": "melvin-bard",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11636",
+      "playerName": "Mickaël Nade",
+      "playerNames": [
+        "Mickaël Nade"
+      ],
+      "playerSlug": "mickael-nade",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11627",
+      "playerName": "Miguel Trauco",
+      "playerNames": [
+        "Miguel Trauco",
+        "Miguel Ángel Trauco Saavedra"
+      ],
+      "playerSlug": "miguel-angel-trauco-saavedra",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11474",
+      "playerName": "Mihailo Ristić",
+      "playerNames": [
+        "Mihailo Ristić"
+      ],
+      "playerSlug": "mihailo-ristic",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11414",
+      "playerName": "Mitchell van Bergen",
+      "playerNames": [
+        "Mitchell van Bergen"
+      ],
+      "playerSlug": "mitchell-van-bergen",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11372",
+      "playerName": "Mohamed Bayo",
+      "playerNames": [
+        "Mohamed Bayo"
+      ],
+      "playerSlug": "mohamed-bayo",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11342",
+      "playerName": "Moïse Orell Dion Sahi",
+      "playerNames": [
+        "Moïse Orell Dion Sahi"
+      ],
+      "playerSlug": "moise-orell-dion-sahi",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11400",
+      "playerName": "Moreto Cassamã",
+      "playerNames": [
+        "Moreto Cassamã",
+        "Moreto Moro Cassamã"
+      ],
+      "playerSlug": "moreto-moro-cassama",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11667",
+      "playerName": "Morgan Schneiderlin",
+      "playerNames": [
+        "Morgan Schneiderlin"
+      ],
+      "playerSlug": "morgan-schneiderlin",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11574",
+      "playerName": "Moritz Jenz",
+      "playerNames": [
+        "Moritz Jenz"
+      ],
+      "playerSlug": "moritz-jenz",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11738",
+      "playerName": "Moses Simon",
+      "playerNames": [
+        "Moses Simon",
+        "Moses Daddy-Ajala Simon"
+      ],
+      "playerSlug": "moses-daddy-ajala-simon",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11343",
+      "playerName": "Mouhamadou Diarra",
+      "playerNames": [
+        "Mouhamadou Diarra"
+      ],
+      "playerSlug": "mouhamadou-diarra",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11408",
+      "playerName": "Moustapha Mbow",
+      "playerNames": [
+        "Moustapha Mbow"
+      ],
+      "playerSlug": "moustapha-mbow",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11588",
+      "playerName": "Myron Boadu",
+      "playerNames": [
+        "Myron Boadu"
+      ],
+      "playerSlug": "myron-boadu",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11383",
+      "playerName": "Naël Jaby",
+      "playerNames": [
+        "Naël Jaby"
+      ],
+      "playerSlug": "nael-jaby",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11402",
+      "playerName": "Nathanaël Mbuku",
+      "playerNames": [
+        "Nathanaël Mbuku"
+      ],
+      "playerSlug": "nathanael-mbuku",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11598",
+      "playerName": "Nathan Bitumazala",
+      "playerNames": [
+        "Nathan Bitumazala"
+      ],
+      "playerSlug": "nathan-bitumazala",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11511",
+      "playerName": "Nayef Aguerd",
+      "playerNames": [
+        "Nayef Aguerd"
+      ],
+      "playerSlug": "nayef-aguerd",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11410",
+      "playerName": "N''Dri Philippe Koffi",
+      "playerNames": [
+        "N''Dri Philippe Koffi"
+      ],
+      "playerSlug": "n-dri-philippe-koffi",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11350",
+      "playerName": "Neymar",
+      "playerNames": [
+        "Neymar",
+        "Neymar da Silva Santos Junior"
+      ],
+      "playerSlug": "neymar-da-silva-santos-junior",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11478",
+      "playerName": "Nicholas Gioacchini",
+      "playerNames": [
+        "Nicholas Gioacchini"
+      ],
+      "playerSlug": "nicholas-gioacchini",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11471",
+      "playerName": "Nicolas Cozza",
+      "playerNames": [
+        "Nicolas Cozza",
+        "Nicolas Louis Marcel Cozza"
+      ],
+      "playerSlug": "nicolas-louis-marcel-cozza",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11735",
+      "playerName": "Nicolas Pallois",
+      "playerNames": [
+        "Nicolas Pallois"
+      ],
+      "playerSlug": "nicolas-pallois",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11398",
+      "playerName": "Nicolas Penneteau",
+      "playerNames": [
+        "Nicolas Penneteau"
+      ],
+      "playerSlug": "nicolas-penneteau",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11362",
+      "playerName": "Nuno Mendes",
+      "playerNames": [
+        "Nuno Mendes"
+      ],
+      "playerSlug": "nuno-mendes",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11695",
+      "playerName": "Opa Nguette",
+      "playerNames": [
+        "Opa Nguette",
+        "Opa N''Guette"
+      ],
+      "playerSlug": "opa-n-guette",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11373",
+      "playerName": "Oriol Busquets",
+      "playerNames": [
+        "Oriol Busquets",
+        "Oriol Busquets Mas"
+      ],
+      "playerSlug": "oriol-busquets-mas",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11660",
+      "playerName": "Osman Bukari",
+      "playerNames": [
+        "Osman Bukari"
+      ],
+      "playerSlug": "osman-bukari",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11716",
+      "playerName": "Oualid El Hajjam",
+      "playerNames": [
+        "Oualid El Hajjam"
+      ],
+      "playerSlug": "oualid-el-hajjam",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11381",
+      "playerName": "Ouparine Djoco",
+      "playerNames": [
+        "Ouparine Djoco"
+      ],
+      "playerSlug": "ouparine-djoco",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11543",
+      "playerName": "Oussama Targhalline",
+      "playerNames": [
+        "Oussama Targhalline"
+      ],
+      "playerSlug": "oussama-targhalline",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11673",
+      "playerName": "Pablo Rosario",
+      "playerNames": [
+        "Pablo Rosario",
+        "Pablo Paulino Rosario"
+      ],
+      "playerSlug": "pablo-paulino-rosario",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11539",
+      "playerName": "Pape Gueye",
+      "playerNames": [
+        "Pape Gueye"
+      ],
+      "playerSlug": "pape-gueye",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11706",
+      "playerName": "Pape Sarr",
+      "playerNames": [
+        "Pape Sarr",
+        "Pape Matar Sarr"
+      ],
+      "playerSlug": "pape-matar-sarr",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11688",
+      "playerName": "Paul Bernardoni",
+      "playerNames": [
+        "Paul Bernardoni"
+      ],
+      "playerSlug": "paul-bernardoni",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11569",
+      "playerName": "Paul Nardi",
+      "playerNames": [
+        "Paul Nardi"
+      ],
+      "playerSlug": "paul-nardi",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11532",
+      "playerName": "Pau López",
+      "playerNames": [
+        "Pau López",
+        "Pau López Sabata"
+      ],
+      "playerSlug": "pau-lopez-sabata",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11655",
+      "playerName": "Pedro Chirivella",
+      "playerNames": [
+        "Pedro Chirivella",
+        "Pedro Chirivella Burgos"
+      ],
+      "playerSlug": "pedro-chirivella-burgos",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11469",
+      "playerName": "Pedro Mendes",
+      "playerNames": [
+        "Pedro Mendes",
+        "Pedro Filipe Teodósio Mendes"
+      ],
+      "playerSlug": "pedro-filipe-teodosio-mendes",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11537",
+      "playerName": "Pol Lirola",
+      "playerNames": [
+        "Pol Lirola",
+        "Pol Mikel Lirola Kosok"
+      ],
+      "playerSlug": "pol-mikel-lirola-kosok",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11395",
+      "playerName": "Predrag Rajković",
+      "playerNames": [
+        "Predrag Rajković"
+      ],
+      "playerSlug": "predrag-rajkovic",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11345",
+      "playerName": "Presnel Kimpembe",
+      "playerNames": [
+        "Presnel Kimpembe"
+      ],
+      "playerSlug": "presnel-kimpembe",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11452",
+      "playerName": "Przemysław Frankowski",
+      "playerNames": [
+        "Przemysław Frankowski"
+      ],
+      "playerSlug": "przemys-aw-frankowski",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11560",
+      "playerName": "Quentin Boisgard",
+      "playerNames": [
+        "Quentin Boisgard"
+      ],
+      "playerSlug": "quentin-boisgard",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11661",
+      "playerName": "Quentin Merlin",
+      "playerNames": [
+        "Quentin Merlin"
+      ],
+      "playerSlug": "quentin-merlin",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11590",
+      "playerName": "Radosław Majecki",
+      "playerNames": [
+        "Radosław Majecki"
+      ],
+      "playerSlug": "rados-aw-majecki",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11422",
+      "playerName": "Rafinha",
+      "playerNames": [
+        "Rafinha",
+        "Rafael Alcântara do Nascimento"
+      ],
+      "playerSlug": "rafael-alcantara-do-nascimento",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11657",
+      "playerName": "Randal Kolo",
+      "playerNames": [
+        "Randal Kolo",
+        "Randal Kolo Muani"
+      ],
+      "playerSlug": "randal-kolo-muani",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11495",
+      "playerName": "Rayan Cherki",
+      "playerNames": [
+        "Rayan Cherki",
+        "Mathis Rayan Cherki"
+      ],
+      "playerSlug": "mathis-rayan-cherki",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11433",
+      "playerName": "Reinildo Mandava",
+      "playerNames": [
+        "Reinildo Mandava",
+        "Reinildo Isnard Mandava"
+      ],
+      "playerSlug": "reinildo-isnard-mandava",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11607",
+      "playerName": "Rémi Oudin",
+      "playerNames": [
+        "Rémi Oudin"
+      ],
+      "playerSlug": "remi-oudin",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11736",
+      "playerName": "Rémy Descamps",
+      "playerNames": [
+        "Rémy Descamps"
+      ],
+      "playerSlug": "remy-descamps",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11427",
+      "playerName": "Renato Sanches",
+      "playerNames": [
+        "Renato Sanches",
+        "Renato Júnior Luz Sanches"
+      ],
+      "playerSlug": "renato-junior-luz-sanches",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11722",
+      "playerName": "Renaud Ripart",
+      "playerNames": [
+        "Renaud Ripart"
+      ],
+      "playerSlug": "renaud-ripart",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11739",
+      "playerName": "Roli Pereira de Sa",
+      "playerNames": [
+        "Roli Pereira de Sa"
+      ],
+      "playerSlug": "roli-pereira-de-sa",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11687",
+      "playerName": "Romain Hamouma",
+      "playerNames": [
+        "Romain Hamouma"
+      ],
+      "playerSlug": "romain-hamouma",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11513",
+      "playerName": "Romain Salin",
+      "playerNames": [
+        "Romain Salin",
+        "Romain Jules Salin"
+      ],
+      "playerSlug": "romain-jules-salin",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11718",
+      "playerName": "Rominigue Kouamé",
+      "playerNames": [
+        "Rominigue Kouamé",
+        "Rominigue Kouamé N''Guessan"
+      ],
+      "playerSlug": "rominigue-kouame-n-guessan",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11579",
+      "playerName": "Ruben Aguilar",
+      "playerNames": [
+        "Ruben Aguilar"
+      ],
+      "playerSlug": "ruben-aguilar",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11628",
+      "playerName": "Ryad Boudebouz",
+      "playerNames": [
+        "Ryad Boudebouz"
+      ],
+      "playerSlug": "ryad-boudebouz",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11481",
+      "playerName": "Sacha Delaye",
+      "playerNames": [
+        "Sacha Delaye"
+      ],
+      "playerSlug": "sacha-delaye",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11690",
+      "playerName": "Sada Thioub",
+      "playerNames": [
+        "Sada Thioub"
+      ],
+      "playerSlug": "sada-thioub",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11640",
+      "playerName": "Saidou Sow",
+      "playerNames": [
+        "Saidou Sow"
+      ],
+      "playerSlug": "saidou-sow",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11364",
+      "playerName": "Saîf-Eddine Khaoui",
+      "playerNames": [
+        "Saîf-Eddine Khaoui"
+      ],
+      "playerSlug": "saif-eddine-khaoui",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11542",
+      "playerName": "Salim Ben Seghir",
+      "playerNames": [
+        "Salim Ben Seghir"
+      ],
+      "playerSlug": "salim-ben-seghir",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11575",
+      "playerName": "Sambou Soumano",
+      "playerNames": [
+        "Sambou Soumano"
+      ],
+      "playerSlug": "sambou-soumano",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11651",
+      "playerName": "Samuel Moutoussamy",
+      "playerNames": [
+        "Samuel Moutoussamy"
+      ],
+      "playerSlug": "samuel-moutoussamy",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11331",
+      "playerName": "Sanjin Prcić",
+      "playerNames": [
+        "Sanjin Prcić"
+      ],
+      "playerSlug": "sanjin-prcic",
+      "teamName": "Strasbourg",
+      "teamNames": [
+        "Strasbourg",
+        "strasbourg-france"
+      ],
+      "teamSlug": "strasbourg-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11527",
+      "playerName": "Sead Kolašinac",
+      "playerNames": [
+        "Sead Kolašinac"
+      ],
+      "playerSlug": "sead-kolasinac",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11653",
+      "playerName": "Sébastien Corchia",
+      "playerNames": [
+        "Sébastien Corchia"
+      ],
+      "playerSlug": "sebastien-corchia",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11723",
+      "playerName": "Sébastien Renot",
+      "playerNames": [
+        "Sébastien Renot",
+        "Sebastien Renot"
+      ],
+      "playerSlug": "sebastien-renot",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11451",
+      "playerName": "Seko Fofana",
+      "playerNames": [
+        "Seko Fofana"
+      ],
+      "playerSlug": "seko-fofana",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11620",
+      "playerName": "Sékou Mara",
+      "playerNames": [
+        "Sékou Mara"
+      ],
+      "playerSlug": "sekou-mara",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11352",
+      "playerName": "Sergio Ramos",
+      "playerNames": [
+        "Sergio Ramos",
+        "Sergio Ramos García"
+      ],
+      "playerSlug": "sergio-ramos-garcia",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11623",
+      "playerName": "Sergio Rico",
+      "playerNames": [
+        "Sergio Rico",
+        "Sergio Rico González"
+      ],
+      "playerSlug": "sergio-rico-gonzalez",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11510",
+      "playerName": "Serhou Guirassy",
+      "playerNames": [
+        "Serhou Guirassy"
+      ],
+      "playerSlug": "serhou-guirassy",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11699",
+      "playerName": "Sikou Niakaté",
+      "playerNames": [
+        "Sikou Niakaté",
+        "Sikou Niakate"
+      ],
+      "playerSlug": "sikou-niakate",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11497",
+      "playerName": "Sinaly Diomandé",
+      "playerNames": [
+        "Sinaly Diomandé",
+        "Sinaly Diomande"
+      ],
+      "playerSlug": "sinaly-diomande",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11585",
+      "playerName": "Sofiane Diop",
+      "playerNames": [
+        "Sofiane Diop"
+      ],
+      "playerSlug": "sofiane-diop",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11470",
+      "playerName": "Stephy Mavididi",
+      "playerNames": [
+        "Stephy Mavididi",
+        "Stephy Alvaro Mavididi"
+      ],
+      "playerSlug": "stephy-alvaro-mavididi",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11528",
+      "playerName": "Steve Mandanda",
+      "playerNames": [
+        "Steve Mandanda"
+      ],
+      "playerSlug": "steve-mandanda",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11614",
+      "playerName": "Stian Gregersen",
+      "playerNames": [
+        "Stian Gregersen",
+        "Stian Rode Gregersen"
+      ],
+      "playerSlug": "stian-rode-gregersen",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11594",
+      "playerName": "Strahinja Pavlović",
+      "playerNames": [
+        "Strahinja Pavlović"
+      ],
+      "playerSlug": "strahinja-pavlovic",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11548",
+      "playerName": "Sven Botman",
+      "playerNames": [
+        "Sven Botman"
+      ],
+      "playerSlug": "sven-botman",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11599",
+      "playerName": "S.Yansane",
+      "playerNames": [
+        "S.Yansane",
+        "Sekou Oumar Yansane"
+      ],
+      "playerSlug": "sekou-oumar-yansane",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11572",
+      "playerName": "Terem Moffi",
+      "playerNames": [
+        "Terem Moffi",
+        "Terem Igobor Moffi"
+      ],
+      "playerSlug": "terem-igobor-moffi",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11601",
+      "playerName": "Théo Le Bris",
+      "playerNames": [
+        "Théo Le Bris"
+      ],
+      "playerSlug": "theo-le-bris",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11357",
+      "playerName": "Thilo Kehrer",
+      "playerNames": [
+        "Thilo Kehrer"
+      ],
+      "playerSlug": "thilo-kehrer",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11396",
+      "playerName": "Thomas Foket",
+      "playerNames": [
+        "Thomas Foket"
+      ],
+      "playerSlug": "thomas-foket",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11559",
+      "playerName": "Thomas Monconduit",
+      "playerNames": [
+        "Thomas Monconduit"
+      ],
+      "playerSlug": "thomas-monconduit",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11476",
+      "playerName": "Thuler",
+      "playerNames": [
+        "Thuler",
+        "Matheus Soares Thuler"
+      ],
+      "playerSlug": "matheus-soares-thuler",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11440",
+      "playerName": "Tiago Djaló",
+      "playerNames": [
+        "Tiago Djaló",
+        "Tiago Emanuel Embaló Djaló"
+      ],
+      "playerSlug": "tiago-emanuel-embalo-djalo",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11622",
+      "playerName": "Tidiane Malbec",
+      "playerNames": [
+        "Tidiane Malbec"
+      ],
+      "playerSlug": "tidiane-malbec",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11619",
+      "playerName": "Timothée Pembélé",
+      "playerNames": [
+        "Timothée Pembélé",
+        "Timothee Pembele"
+      ],
+      "playerSlug": "timothee-pembele",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11426",
+      "playerName": "Timothy Weah",
+      "playerNames": [
+        "Timothy Weah"
+      ],
+      "playerSlug": "timothy-weah",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11714",
+      "playerName": "Tristan Dingomé",
+      "playerNames": [
+        "Tristan Dingomé"
+      ],
+      "playerSlug": "tristan-dingome",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11551",
+      "playerName": "Ugo Raghouber",
+      "playerNames": [
+        "Ugo Raghouber"
+      ],
+      "playerSlug": "ugo-raghouber",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11525",
+      "playerName": "Valentin Rongier",
+      "playerNames": [
+        "Valentin Rongier"
+      ],
+      "playerSlug": "valentin-rongier",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11467",
+      "playerName": "Valère Germain",
+      "playerNames": [
+        "Valère Germain"
+      ],
+      "playerSlug": "valere-germain",
+      "teamName": "Montpellier",
+      "teamNames": [
+        "Montpellier",
+        "montpellier-france"
+      ],
+      "teamSlug": "montpellier-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11417",
+      "playerName": "Valon Berisha",
+      "playerNames": [
+        "Valon Berisha"
+      ],
+      "playerSlug": "valon-berisha",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11561",
+      "playerName": "Vincent Le Goff",
+      "playerNames": [
+        "Vincent Le Goff"
+      ],
+      "playerSlug": "vincent-le-goff",
+      "teamName": "Lorient",
+      "teamNames": [
+        "Lorient",
+        "lorient-france"
+      ],
+      "teamSlug": "lorient-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11694",
+      "playerName": "Vincent Pajot",
+      "playerNames": [
+        "Vincent Pajot"
+      ],
+      "playerSlug": "vincent-pajot",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11624",
+      "playerName": "Wahbi Khazri",
+      "playerNames": [
+        "Wahbi Khazri"
+      ],
+      "playerSlug": "wahbi-khazri",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11666",
+      "playerName": "Walter Benítez",
+      "playerNames": [
+        "Walter Benítez",
+        "Walter Daniel Benítez"
+      ],
+      "playerSlug": "walter-daniel-benitez",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11518",
+      "playerName": "Warmed Omari",
+      "playerNames": [
+        "Warmed Omari"
+      ],
+      "playerSlug": "warmed-omari",
+      "teamName": "Rennes",
+      "teamNames": [
+        "Rennes",
+        "rennes-france"
+      ],
+      "teamSlug": "rennes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11522",
+      "playerName": "Wesley Saïd",
+      "playerNames": [
+        "Wesley Saïd"
+      ],
+      "playerSlug": "wesley-said",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11652",
+      "playerName": "Willem Geubbels",
+      "playerNames": [
+        "Willem Geubbels"
+      ],
+      "playerSlug": "willem-geubbels",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11709",
+      "playerName": "William Mikelbrencis",
+      "playerNames": [
+        "William Mikelbrencis"
+      ],
+      "playerSlug": "william-mikelbrencis",
+      "teamName": "Metz",
+      "teamNames": [
+        "Metz",
+        "metz-france"
+      ],
+      "teamSlug": "metz-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11538",
+      "playerName": "William Saliba",
+      "playerNames": [
+        "William Saliba"
+      ],
+      "playerSlug": "william-saliba",
+      "teamName": "Marseille",
+      "teamNames": [
+        "Marseille",
+        "marseille-france"
+      ],
+      "teamSlug": "marseille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11591",
+      "playerName": "Wilson Isidor",
+      "playerNames": [
+        "Wilson Isidor"
+      ],
+      "playerSlug": "wilson-isidor",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11582",
+      "playerName": "Wissam Ben Yedder",
+      "playerNames": [
+        "Wissam Ben Yedder"
+      ],
+      "playerSlug": "wissam-ben-yedder",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11393",
+      "playerName": "Wout Faes",
+      "playerNames": [
+        "Wout Faes"
+      ],
+      "playerSlug": "wout-faes",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11456",
+      "playerName": "Wuilker Fariñez",
+      "playerNames": [
+        "Wuilker Fariñez",
+        "Wuilker Fariñez Aray"
+      ],
+      "playerSlug": "wuilker-farinez-aray",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11646",
+      "playerName": "Wylan Jean-Claude Cyprien",
+      "playerNames": [
+        "Wylan Jean-Claude Cyprien"
+      ],
+      "playerSlug": "wylan-jean-claude-cyprien",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11721",
+      "playerName": "Xavier Chavalerin",
+      "playerNames": [
+        "Xavier Chavalerin"
+      ],
+      "playerSlug": "xavier-chavalerin",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11361",
+      "playerName": "Xavi Simons",
+      "playerNames": [
+        "Xavi Simons"
+      ],
+      "playerSlug": "xavi-simons",
+      "teamName": "Paris Saint-Germain",
+      "teamNames": [
+        "Paris Saint-Germain",
+        "Paris Saint-Germa.",
+        "paris-saint-germain-france"
+      ],
+      "teamSlug": "paris-saint-germain-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11425",
+      "playerName": "Xeka",
+      "playerNames": [
+        "Xeka",
+        "Miguel Ângelo da Silva Rocha"
+      ],
+      "playerSlug": "miguel-angelo-da-silva-rocha",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11483",
+      "playerName": "Xherdan Shaqiri",
+      "playerNames": [
+        "Xherdan Shaqiri"
+      ],
+      "playerSlug": "xherdan-shaqiri",
+      "teamName": "Lyon",
+      "teamNames": [
+        "Lyon",
+        "lyon-france"
+      ],
+      "teamSlug": "lyon-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11605",
+      "playerName": "Yacine Adli",
+      "playerNames": [
+        "Yacine Adli"
+      ],
+      "playerSlug": "yacine-adli",
+      "teamName": "Bordeaux",
+      "teamNames": [
+        "Bordeaux",
+        "bordeaux-france"
+      ],
+      "teamSlug": "bordeaux-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11445",
+      "playerName": "Yannick Cahuzac",
+      "playerNames": [
+        "Yannick Cahuzac"
+      ],
+      "playerSlug": "yannick-cahuzac",
+      "teamName": "Lens",
+      "teamNames": [
+        "Lens",
+        "lens-france"
+      ],
+      "teamSlug": "lens-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11663",
+      "playerName": "Yannis M'Bemba",
+      "playerNames": [
+        "Yannis M'Bemba"
+      ],
+      "playerSlug": "yannis-m-bemba",
+      "teamName": "Nantes",
+      "teamNames": [
+        "Nantes",
+        "nantes-france"
+      ],
+      "teamSlug": "nantes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11729",
+      "playerName": "Yasser Larouci",
+      "playerNames": [
+        "Yasser Larouci"
+      ],
+      "playerSlug": "yasser-larouci",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11418",
+      "playerName": "Yehvann Diouf",
+      "playerNames": [
+        "Yehvann Diouf"
+      ],
+      "playerSlug": "yehvann-diouf",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11713",
+      "playerName": "Yoann Salmier",
+      "playerNames": [
+        "Yoann Salmier"
+      ],
+      "playerSlug": "yoann-salmier",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11720",
+      "playerName": "Yoann Touzghar",
+      "playerNames": [
+        "Yoann Touzghar"
+      ],
+      "playerSlug": "yoann-touzghar",
+      "teamName": "Troyes",
+      "teamNames": [
+        "Troyes",
+        "troyes-france"
+      ],
+      "teamSlug": "troyes-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11376",
+      "playerName": "Yohann Magnin",
+      "playerNames": [
+        "Yohann Magnin"
+      ],
+      "playerSlug": "yohann-magnin",
+      "teamName": "Clermont Foot",
+      "teamNames": [
+        "Clermont Foot",
+        "clermont-foot-france"
+      ],
+      "teamSlug": "clermont-foot-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11734",
+      "playerName": "Youcef Atal",
+      "playerNames": [
+        "Youcef Atal"
+      ],
+      "playerSlug": "youcef-atal",
+      "teamName": "OGC Nice",
+      "teamNames": [
+        "OGC Nice",
+        "ogc-nice-france"
+      ],
+      "teamSlug": "ogc-nice-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11587",
+      "playerName": "Youssouf Fofana",
+      "playerNames": [
+        "Youssouf Fofana"
+      ],
+      "playerSlug": "youssouf-fofana",
+      "teamName": "AS Monaco",
+      "teamNames": [
+        "AS Monaco",
+        "as-monaco-monaco"
+      ],
+      "teamSlug": "as-monaco-monaco"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11392",
+      "playerName": "Yunis Abdelhamid",
+      "playerNames": [
+        "Yunis Abdelhamid"
+      ],
+      "playerSlug": "yunis-abdelhamid",
+      "teamName": "Stade de Reims",
+      "teamNames": [
+        "Stade de Reims",
+        "stade-de-reims-france"
+      ],
+      "teamSlug": "stade-de-reims-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11439",
+      "playerName": "Yusuf Yazıcı",
+      "playerNames": [
+        "Yusuf Yazıcı"
+      ],
+      "playerSlug": "yusuf-yaz-c",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11635",
+      "playerName": "Yvann Maçon",
+      "playerNames": [
+        "Yvann Maçon",
+        "Yvann Macon"
+      ],
+      "playerSlug": "yvann-macon",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11626",
+      "playerName": "Zaydou Youssouf",
+      "playerNames": [
+        "Zaydou Youssouf"
+      ],
+      "playerSlug": "zaydou-youssouf",
+      "teamName": "Saint-Étienne",
+      "teamNames": [
+        "Saint-Étienne",
+        "saint-etienne-france"
+      ],
+      "teamSlug": "saint-etienne-france"
+    },
+    {
+      "competitionSeasonId": "227",
+      "contractId": "11432",
+      "playerName": "Zeki Celik",
+      "playerNames": [
+        "Zeki Celik",
+        "Mehmet Zeki Çelik"
+      ],
+      "playerSlug": "mehmet-zeki-celik",
+      "teamName": "Lille",
+      "teamNames": [
+        "Lille",
+        "lille-france"
+      ],
+      "teamSlug": "lille-france"
+    }
+  ]
+}

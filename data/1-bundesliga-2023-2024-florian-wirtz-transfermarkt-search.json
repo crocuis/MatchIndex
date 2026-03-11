@@ -1,0 +1,17 @@
+{
+  "competitionSlug": "1-bundesliga",
+  "provider": "transfermarkt",
+  "seasonSlug": "2023-2024",
+  "totalTargets": 1,
+  "searchedTargets": 1,
+  "candidates": [
+    {
+      "candidateUrls": [],
+      "playerName": "Florian Wirtz",
+      "playerSlug": "florian-wirtz",
+      "searchUrl": "https://html.duckduckgo.com/html/?q=Florian%20Wirtz%20site%3Atransfermarkt.com",
+      "suggestedQuery": "Florian Wirtz Bayer Leverkusen site:transfermarkt.com",
+      "teamName": "Bayer Leverkusen"
+    }
+  ]
+}

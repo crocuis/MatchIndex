@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-03-10T21:44:34.716Z",
+  "selectedCount": 2,
+  "mergeEntries": [
+    {
+      "aliasSlug": "strasbourg-france",
+      "canonicalSlug": "rc-strasbourg-alsace-france",
+      "aliasName": "Strasbourg",
+      "canonicalName": "RC Strasbourg Alsace",
+      "countryCode": "FRA",
+      "leagueSlug": null,
+      "reason": "promote transliteration/fullname canonical slug"
+    },
+    {
+      "aliasSlug": "bologna-italy",
+      "canonicalSlug": "bologna-fc-1909-italy",
+      "aliasName": "Bologna",
+      "canonicalName": "Bologna FC 1909",
+      "countryCode": "ITA",
+      "leagueSlug": null,
+      "reason": "promote transliteration/fullname canonical slug"
+    }
+  ],
+  "mergeCommand": "node --experimental-strip-types scripts/apply-team-merge-batch-sequential.mts --surface-only --batch-file=logs/club-transliteration-conflicts-merge-batch.json"
+}

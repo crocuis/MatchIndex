@@ -1,0 +1,86 @@
+{
+  "provider": "manual",
+  "fetchedAt": "2026-03-10T14:00:00Z",
+  "rows": [
+    {
+      "playerSlug": "abdulelah-saad-hameed-al-malki",
+      "playerName": "Abdulelah Al Malki",
+      "nationalities": [
+        "Saudi Arabia"
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Abdulellah_Al-Malki"
+    },
+    {
+      "playerSlug": "artoms-rudnevs",
+      "playerName": "Artjoms Rudnevs",
+      "nationalities": [
+        "Latvia"
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Artjoms_Rud%C5%86evs"
+    },
+    {
+      "playerSlug": "calvin-anele-ngcongca",
+      "playerName": "Calvin Anele Ngcongca",
+      "nationalities": [
+        "South Africa"
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Anele_Ngcongca"
+    },
+    {
+      "playerSlug": "cayetano-bartolome-bonnin-vasquez",
+      "playerName": "Cayetano Bartolome Bonnin Vasquez",
+      "nationalities": [
+        "Dominican Republic"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/tano-bonnin/profil/spieler/99924"
+    },
+    {
+      "playerSlug": "dennis-diaz-fernanadez",
+      "playerName": "Dennis Diaz Fernandez",
+      "nationalities": [
+        "Spain"
+      ],
+      "sourceUrl": "https://www.transfermarkt.com/dennis-diaz/profil/spieler/214467"
+    },
+    {
+      "playerSlug": "didi-haracic",
+      "playerName": "DiDi Haracic",
+      "nationalities": [
+        "Bosnia and Herzegovina"
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/DiDi_Hara%C4%8Di%C4%87"
+    },
+    {
+      "playerSlug": "louis-didace-mafouta",
+      "playerName": "Louis Didace Mafouta",
+      "nationalities": [
+        "Central African Republic"
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Louis_Mafouta"
+    },
+    {
+      "playerSlug": "lucia-leon",
+      "playerName": "Lucia Leon",
+      "nationalities": [
+        "Dominican Republic"
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Luc%C3%ADa_Le%C3%B3n"
+    },
+    {
+      "playerSlug": "macdonald-mariga-wanyama",
+      "playerName": "MacDonald Mariga Wanyama",
+      "nationalities": [
+        "Kenya"
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/McDonald_Mariga"
+    },
+    {
+      "playerSlug": "mohammad-hossein-kanani-zadegan",
+      "playerName": "Mohammad Hossein Kanani Zadegan",
+      "nationalities": [
+        "Iran"
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Hossein_Kanaanizadegan"
+    }
+  ]
+}

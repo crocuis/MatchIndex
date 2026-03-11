@@ -1,9 +1,11 @@
 import postgres from 'postgres';
+import { readFile } from 'node:fs/promises';
 
 import { loadProjectEnv } from './load-project-env.mts';
 
 interface CliOptions {
   aliases?: string[];
+  batchFile?: string;
   dryRun: boolean;
   help: boolean;
   skipRefresh: boolean;
@@ -80,6 +82,11 @@ function parseArgs(argv: string[]): CliOptions {
       continue;
     }
 
+    if (arg.startsWith('--batch-file=')) {
+      options.batchFile = arg.slice('--batch-file='.length).trim() || undefined;
+      continue;
+    }
+
     if (arg === '--help' || arg === '-h') {
       options.help = true;
       continue;
@@ -100,6 +107,7 @@ Options:
   --dry-run    Print planned merges without writing to the database
   --teams-only  Skip competition merges and run team merges only
   --aliases=<slug,...>  Restrict merges to specific alias slugs
+  --batch-file=<path>  Load explicit team merge pairs from JSON file
   --surface-only  Merge visible references only, archive alias team rows for deep event history
   --skip-refresh  Skip REFRESH MATERIALIZED VIEW steps after merge
   --help, -h   Show this help message
@@ -117,6 +125,16 @@ function filterMappings(mappings: MergePair[], options: CliOptions) {
 
   const aliasSet = new Set(options.aliases);
   return mappings.filter((mapping) => aliasSet.has(mapping.aliasSlug));
+}
+
+async function loadTeamMappings(options: CliOptions) {
+  if (!options.batchFile) {
+    return filterMappings(TEAM_MAPPINGS, options);
+  }
+
+  const payload = JSON.parse(await readFile(options.batchFile, 'utf8')) as { mergeEntries?: MergePair[] };
+  const fileMappings = (payload.mergeEntries ?? []).filter((entry): entry is MergePair => Boolean(entry?.aliasSlug && entry?.canonicalSlug));
+  return filterMappings(fileMappings, options);
 }
 
 function getSql() {
@@ -582,7 +600,7 @@ async function main() {
       }
     }
 
-    const filteredTeamMappings = filterMappings(TEAM_MAPPINGS, options);
+    const filteredTeamMappings = await loadTeamMappings(options);
     for (const pair of filteredTeamMappings) {
       console.log(`[team] ${pair.aliasSlug} -> ${pair.canonicalSlug}`);
     }

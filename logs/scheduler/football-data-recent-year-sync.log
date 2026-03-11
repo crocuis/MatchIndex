@@ -1,0 +1,26 @@
+(node:112862) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/mizar/MatchIndex/src/data/footballDataOrgIngest.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/mizar/MatchIndex/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+file:///home/mizar/MatchIndex/src/data/footballDataOrg.ts:174
+    throw new Error(`football-data.org request failed: ${response.status} ${response.statusText}`);
+          ^
+
+Error: football-data.org request failed: 429 
+    at fetchFootballDataJson (file:///home/mizar/MatchIndex/src/data/footballDataOrg.ts:174:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async ingestFootballDataManifests (file:///home/mizar/MatchIndex/src/data/footballDataOrgIngest.ts:359:32)
+    at async main (file:///home/mizar/MatchIndex/scripts/football-data-sync-window.mts:155:25)
+    at async file:///home/mizar/MatchIndex/scripts/football-data-sync-window.mts:178:1
+
+Node.js v24.14.0
+file:///home/mizar/MatchIndex/scripts/run-scheduled-job.mts:91
+      reject(new Error(`${description} failed with exit code ${code ?? 'unknown'}`));
+             ^
+
+Error: 최근 1년 경기 동기화 failed with exit code 1
+    at ChildProcess.<anonymous> (file:///home/mizar/MatchIndex/scripts/run-scheduled-job.mts:91:14)
+    at ChildProcess.emit (node:events:508:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:294:12)
+
+Node.js v24.14.0

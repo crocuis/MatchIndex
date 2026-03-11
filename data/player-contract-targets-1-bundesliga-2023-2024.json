@@ -1,0 +1,1830 @@
+{
+  "competitionSlug": "1-bundesliga",
+  "exportedAt": "2026-03-08T12:07:02.758Z",
+  "seasonSlug": "2023-2024",
+  "targets": [
+    {
+      "competitionSeasonId": "1",
+      "contractId": "351",
+      "playerName": "Adam Hložek",
+      "playerNames": [
+        "Adam Hložek"
+      ],
+      "playerSlug": "adam-hlozek",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "348",
+      "playerName": "Aïssa Laïdouni",
+      "playerNames": [
+        "Aïssa Laïdouni",
+        "Aïssa Bilal Laïdouni"
+      ],
+      "playerSlug": "aissa-bilal-laidouni",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "334",
+      "playerName": "Alexander Schwolow",
+      "playerNames": [
+        "Alexander Schwolow"
+      ],
+      "playerSlug": "alexander-schwolow",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "7",
+      "playerName": "Álex Grimaldo",
+      "playerNames": [
+        "Álex Grimaldo",
+        "Alejandro Grimaldo García"
+      ],
+      "playerSlug": "alejandro-grimaldo-garcia",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "341",
+      "playerName": "Alex Král",
+      "playerNames": [
+        "Alex Král"
+      ],
+      "playerSlug": "alex-kral",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "13",
+      "playerName": "Amine Adli",
+      "playerNames": [
+        "Amine Adli"
+      ],
+      "playerSlug": "amine-adli",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "347",
+      "playerName": "András Schäfer",
+      "playerNames": [
+        "András Schäfer"
+      ],
+      "playerSlug": "andras-schafer",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "382",
+      "playerName": "Andreas Luthe",
+      "playerNames": [
+        "Andreas Luthe"
+      ],
+      "playerSlug": "andreas-luthe",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "363",
+      "playerName": "Ansgar Knauff",
+      "playerNames": [
+        "Ansgar Knauff"
+      ],
+      "playerSlug": "ansgar-knauff",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "377",
+      "playerName": "Anthony Losilla",
+      "playerNames": [
+        "Anthony Losilla"
+      ],
+      "playerSlug": "anthony-losilla",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "404",
+      "playerName": "Arne Engels",
+      "playerNames": [
+        "Arne Engels"
+      ],
+      "playerSlug": "arne-engels",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "400",
+      "playerName": "Arne Maier",
+      "playerNames": [
+        "Arne Maier"
+      ],
+      "playerSlug": "arne-maier",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "19",
+      "playerName": "Arthur Augusto de Matos Soares",
+      "playerNames": [
+        "Arthur Augusto de Matos Soares"
+      ],
+      "playerSlug": "arthur-augusto-de-matos-soares",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "358",
+      "playerName": "Aurélio Buta",
+      "playerNames": [
+        "Aurélio Buta",
+        "Aurélio Gabriel Ulineia Buta"
+      ],
+      "playerSlug": "aurelio-gabriel-ulineia-buta",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "349",
+      "playerName": "Benedict Hollerbach",
+      "playerNames": [
+        "Benedict Hollerbach"
+      ],
+      "playerSlug": "benedict-hollerbach",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "376",
+      "playerName": "Bernardo",
+      "playerNames": [
+        "Bernardo",
+        "Bernardo Fernandes da Silva Junior"
+      ],
+      "playerSlug": "bernardo-fernandes-da-silva-junior",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "350",
+      "playerName": "Borja Iglesias",
+      "playerNames": [
+        "Borja Iglesias",
+        "Borja Iglesias Quintas"
+      ],
+      "playerSlug": "borja-iglesias-quintas",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "343",
+      "playerName": "Brenden Aaronson",
+      "playerNames": [
+        "Brenden Aaronson"
+      ],
+      "playerSlug": "brenden-aaronson",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "342",
+      "playerName": "Chris Bedia",
+      "playerNames": [
+        "Chris Bedia",
+        "Chris Vianney Bedia"
+      ],
+      "playerSlug": "chris-vianney-bedia",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "31",
+      "playerName": "Christian Groß",
+      "playerNames": [
+        "Christian Groß"
+      ],
+      "playerSlug": "christian-gro",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "379",
+      "playerName": "Christopher Antwi-Adjei",
+      "playerNames": [
+        "Christopher Antwi-Adjei",
+        "Christopher Antwi-Adjej"
+      ],
+      "playerSlug": "christopher-antwi-adjej",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "335",
+      "playerName": "Christopher Trimmel",
+      "playerNames": [
+        "Christopher Trimmel"
+      ],
+      "playerSlug": "christopher-trimmel",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "36",
+      "playerName": "Cimo Patric Röcker",
+      "playerNames": [
+        "Cimo Patric Röcker"
+      ],
+      "playerSlug": "cimo-patric-rocker",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "372",
+      "playerName": "Cristian Gamboa",
+      "playerNames": [
+        "Cristian Gamboa",
+        "Cristian Gamboa Luna"
+      ],
+      "playerSlug": "cristian-gamboa-luna",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "407",
+      "playerName": "Daniel Hausmann",
+      "playerNames": [
+        "Daniel Hausmann"
+      ],
+      "playerSlug": "daniel-hausmann",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "339",
+      "playerName": "Danilho Doekhi",
+      "playerNames": [
+        "Danilho Doekhi"
+      ],
+      "playerSlug": "danilho-doekhi",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "21",
+      "playerName": "Dawid Kownacki",
+      "playerNames": [
+        "Dawid Kownacki"
+      ],
+      "playerSlug": "dawid-kownacki",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "337",
+      "playerName": "Diogo Leite",
+      "playerNames": [
+        "Diogo Leite",
+        "Diogo Filipe Monteiro Pinto Leite"
+      ],
+      "playerSlug": "diogo-filipe-monteiro-pinto-leite",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "405",
+      "playerName": "Dion Drena Beljo",
+      "playerNames": [
+        "Dion Drena Beljo"
+      ],
+      "playerSlug": "dion-drena-beljo",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "10",
+      "playerName": "Edmond Fayçal Tapsoba",
+      "playerNames": [
+        "Edmond Fayçal Tapsoba"
+      ],
+      "playerSlug": "edmond-faycal-tapsoba",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "35",
+      "playerName": "Eduardo dos Santos Haesler",
+      "playerNames": [
+        "Eduardo dos Santos Haesler"
+      ],
+      "playerSlug": "eduardo-dos-santos-haesler",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "352",
+      "playerName": "Ellyes Joris Skhiri",
+      "playerNames": [
+        "Ellyes Joris Skhiri"
+      ],
+      "playerSlug": "ellyes-joris-skhiri",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "386",
+      "playerName": "Erhan Mašović",
+      "playerNames": [
+        "Erhan Mašović"
+      ],
+      "playerSlug": "erhan-masovic",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "359",
+      "playerName": "Éric Ebimbe",
+      "playerNames": [
+        "Éric Ebimbe",
+        "Eric Junior Dina Ebimbe"
+      ],
+      "playerSlug": "eric-junior-dina-ebimbe",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "393",
+      "playerName": "Ermedin Demirović",
+      "playerNames": [
+        "Ermedin Demirović"
+      ],
+      "playerSlug": "ermedin-demirovic",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "9",
+      "playerName": "Exequiel Palacios",
+      "playerNames": [
+        "Exequiel Palacios",
+        "Exequiel Alejandro Palacios"
+      ],
+      "playerSlug": "exequiel-alejandro-palacios",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "369",
+      "playerName": "Fares Chaïbi",
+      "playerNames": [
+        "Fares Chaïbi"
+      ],
+      "playerSlug": "fares-chaibi",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "30",
+      "playerName": "Felix Agu",
+      "playerNames": [
+        "Felix Agu"
+      ],
+      "playerSlug": "felix-agu",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "373",
+      "playerName": "Felix Passlack",
+      "playerNames": [
+        "Felix Passlack"
+      ],
+      "playerSlug": "felix-passlack",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "394",
+      "playerName": "Felix Uduokhai",
+      "playerNames": [
+        "Felix Uduokhai"
+      ],
+      "playerSlug": "felix-uduokhai",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "15",
+      "playerName": "Florian Wirtz",
+      "playerNames": [
+        "Florian Wirtz"
+      ],
+      "playerSlug": "florian-wirtz",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "338",
+      "playerName": "Frederik Rønnow",
+      "playerNames": [
+        "Frederik Rønnow"
+      ],
+      "playerSlug": "frederik-r-nnow",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "1",
+      "playerName": "Granit Xhaka",
+      "playerNames": [
+        "Granit Xhaka"
+      ],
+      "playerSlug": "granit-xhaka",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "20",
+      "playerName": "Gustavo Adolfo Puerta Molano",
+      "playerNames": [
+        "Gustavo Adolfo Puerta Molano"
+      ],
+      "playerSlug": "gustavo-adolfo-puerta-molano",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "360",
+      "playerName": "Hrvoje Smolčić",
+      "playerNames": [
+        "Hrvoje Smolčić"
+      ],
+      "playerSlug": "hrvoje-smolcic",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "367",
+      "playerName": "Hugo Ekitike",
+      "playerNames": [
+        "Hugo Ekitike"
+      ],
+      "playerSlug": "hugo-ekitike",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "368",
+      "playerName": "Hugo Larsson",
+      "playerNames": [
+        "Hugo Larsson"
+      ],
+      "playerSlug": "hugo-larsson",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "403",
+      "playerName": "Iago",
+      "playerNames": [
+        "Iago",
+        "Iago Amaral Borduchi"
+      ],
+      "playerSlug": "iago-amaral-borduchi",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "34",
+      "playerName": "Isak Hansen-Aarøen",
+      "playerNames": [
+        "Isak Hansen-Aarøen"
+      ],
+      "playerSlug": "isak-hansen-aar-en",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "387",
+      "playerName": "Ivan Ordets",
+      "playerNames": [
+        "Ivan Ordets"
+      ],
+      "playerSlug": "ivan-ordets",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "370",
+      "playerName": "Jean-Mattéo Bahoya Négoce",
+      "playerNames": [
+        "Jean-Mattéo Bahoya Négoce"
+      ],
+      "playerSlug": "jean-matteo-bahoya-negoce",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "395",
+      "playerName": "Jeffrey Gouweleeuw",
+      "playerNames": [
+        "Jeffrey Gouweleeuw"
+      ],
+      "playerSlug": "jeffrey-gouweleeuw",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "362",
+      "playerName": "Jens Grahl",
+      "playerNames": [
+        "Jens Grahl"
+      ],
+      "playerSlug": "jens-grahl",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "12",
+      "playerName": "Jeremie Frimpong",
+      "playerNames": [
+        "Jeremie Frimpong"
+      ],
+      "playerSlug": "jeremie-frimpong",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "38",
+      "playerName": "Joel Victor Imasuen",
+      "playerNames": [
+        "Joel Victor Imasuen"
+      ],
+      "playerSlug": "joel-victor-imasuen",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "5",
+      "playerName": "Jonas Hofmann",
+      "playerNames": [
+        "Jonas Hofmann"
+      ],
+      "playerSlug": "jonas-hofmann",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "3",
+      "playerName": "Jonathan Tah",
+      "playerNames": [
+        "Jonathan Tah"
+      ],
+      "playerSlug": "jonathan-tah",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "345",
+      "playerName": "Josip Juranović",
+      "playerNames": [
+        "Josip Juranović"
+      ],
+      "playerSlug": "josip-juranovic",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "18",
+      "playerName": "Josip Stanišić",
+      "playerNames": [
+        "Josip Stanišić"
+      ],
+      "playerSlug": "josip-stanisic",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "33",
+      "playerName": "Julián Malatini",
+      "playerNames": [
+        "Julián Malatini"
+      ],
+      "playerSlug": "julian-malatini",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "384",
+      "playerName": "Keven Schlotterbeck",
+      "playerNames": [
+        "Keven Schlotterbeck"
+      ],
+      "playerSlug": "keven-schlotterbeck",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "380",
+      "playerName": "Kevin Stöger",
+      "playerNames": [
+        "Kevin Stöger"
+      ],
+      "playerSlug": "kevin-stoger",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "353",
+      "playerName": "Kevin Trapp",
+      "playerNames": [
+        "Kevin Trapp"
+      ],
+      "playerSlug": "kevin-trapp",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "333",
+      "playerName": "Kevin Vogt",
+      "playerNames": [
+        "Kevin Vogt"
+      ],
+      "playerSlug": "kevin-vogt",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "25",
+      "playerName": "Leonardo Bittencourt",
+      "playerNames": [
+        "Leonardo Bittencourt"
+      ],
+      "playerSlug": "leonardo-bittencourt",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "37",
+      "playerName": "Leon Opitz",
+      "playerNames": [
+        "Leon Opitz"
+      ],
+      "playerSlug": "leon-opitz",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "330",
+      "playerName": "Lucas Tousart",
+      "playerNames": [
+        "Lucas Tousart"
+      ],
+      "playerSlug": "lucas-tousart",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "383",
+      "playerName": "Lukas Daschner",
+      "playerNames": [
+        "Lukas Daschner"
+      ],
+      "playerSlug": "lukas-daschner",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "4",
+      "playerName": "Lukáš Hrádecký",
+      "playerNames": [
+        "Lukáš Hrádecký"
+      ],
+      "playerSlug": "lukas-hradecky",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "402",
+      "playerName": "Mads Pedersen",
+      "playerNames": [
+        "Mads Pedersen"
+      ],
+      "playerSlug": "mads-pedersen",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "410",
+      "playerName": "Mahmut Kücüksahin",
+      "playerNames": [
+        "Mahmut Kücüksahin"
+      ],
+      "playerSlug": "mahmut-kucuksahin",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "378",
+      "playerName": "Manuel Riemann",
+      "playerNames": [
+        "Manuel Riemann"
+      ],
+      "playerSlug": "manuel-riemann",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "408",
+      "playerName": "Marcel Łubik",
+      "playerNames": [
+        "Marcel Łubik"
+      ],
+      "playerSlug": "marcel-ubik",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "354",
+      "playerName": "Mario Götze",
+      "playerNames": [
+        "Mario Götze"
+      ],
+      "playerSlug": "mario-gotze",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "26",
+      "playerName": "Marvin Ducksch",
+      "playerNames": [
+        "Marvin Ducksch"
+      ],
+      "playerSlug": "marvin-ducksch",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "17",
+      "playerName": "Matěj Kovář",
+      "playerNames": [
+        "Matěj Kovář"
+      ],
+      "playerSlug": "matej-kovar",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "381",
+      "playerName": "Matúš Bero",
+      "playerNames": [
+        "Matúš Bero"
+      ],
+      "playerSlug": "matus-bero",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "399",
+      "playerName": "Maximilian Bauer",
+      "playerNames": [
+        "Maximilian Bauer"
+      ],
+      "playerSlug": "maximilian-bauer",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "374",
+      "playerName": "Maximilian Wittek",
+      "playerNames": [
+        "Maximilian Wittek"
+      ],
+      "playerSlug": "maximilian-wittek",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "409",
+      "playerName": "Mert Kömür",
+      "playerNames": [
+        "Mert Kömür"
+      ],
+      "playerSlug": "mert-komur",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "28",
+      "playerName": "Michael Zetterer",
+      "playerNames": [
+        "Michael Zetterer"
+      ],
+      "playerSlug": "michael-zetterer",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "344",
+      "playerName": "Mikkel Kaufmann",
+      "playerNames": [
+        "Mikkel Kaufmann"
+      ],
+      "playerSlug": "mikkel-kaufmann",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "22",
+      "playerName": "Milos Veljkovic",
+      "playerNames": [
+        "Milos Veljkovic"
+      ],
+      "playerSlug": "milos-veljkovic",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "23",
+      "playerName": "Mitchell Weiser",
+      "playerNames": [
+        "Mitchell Weiser"
+      ],
+      "playerSlug": "mitchell-weiser",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "390",
+      "playerName": "Moritz Broschinski",
+      "playerNames": [
+        "Moritz Broschinski"
+      ],
+      "playerSlug": "moritz-broschinski",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "371",
+      "playerName": "Nacho Ferri",
+      "playerNames": [
+        "Nacho Ferri",
+        "Ignacio Ferri Julià"
+      ],
+      "playerSlug": "ignacio-ferri-julia",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "16",
+      "playerName": "Nathan Tella",
+      "playerNames": [
+        "Nathan Tella"
+      ],
+      "playerSlug": "nathan-tella",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "32",
+      "playerName": "Nick Woltemade",
+      "playerNames": [
+        "Nick Woltemade"
+      ],
+      "playerSlug": "nick-woltemade",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "366",
+      "playerName": "Niels Nkounkou",
+      "playerNames": [
+        "Niels Nkounkou"
+      ],
+      "playerSlug": "niels-nkounkou",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "396",
+      "playerName": "Niklas Dorsch",
+      "playerNames": [
+        "Niklas Dorsch"
+      ],
+      "playerSlug": "niklas-dorsch",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "388",
+      "playerName": "Noah Loosli",
+      "playerNames": [
+        "Noah Loosli"
+      ],
+      "playerSlug": "noah-loosli",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "8",
+      "playerName": "Odilon Kossonou",
+      "playerNames": [
+        "Odilon Kossonou"
+      ],
+      "playerSlug": "odilon-kossonou",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "29",
+      "playerName": "Olivier Deman",
+      "playerNames": [
+        "Olivier Deman"
+      ],
+      "playerSlug": "olivier-deman",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "364",
+      "playerName": "Omar Marmoush",
+      "playerNames": [
+        "Omar Marmoush"
+      ],
+      "playerSlug": "omar-marmoush",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "389",
+      "playerName": "Patrick Osterhage",
+      "playerNames": [
+        "Patrick Osterhage"
+      ],
+      "playerSlug": "patrick-osterhage",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "2",
+      "playerName": "Patrik Schick",
+      "playerNames": [
+        "Patrik Schick"
+      ],
+      "playerSlug": "patrik-schick",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "340",
+      "playerName": "Paul Jaeckel",
+      "playerNames": [
+        "Paul Jaeckel"
+      ],
+      "playerSlug": "paul-jaeckel",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "401",
+      "playerName": "Pep Mas",
+      "playerNames": [
+        "Pep Mas",
+        "Pep Biel Mas Jaume"
+      ],
+      "playerSlug": "pep-biel-mas-jaume",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "385",
+      "playerName": "Philipp Hofmann",
+      "playerNames": [
+        "Philipp Hofmann"
+      ],
+      "playerSlug": "philipp-hofmann",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "355",
+      "playerName": "Philipp Max",
+      "playerNames": [
+        "Philipp Max"
+      ],
+      "playerSlug": "philipp-max",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "397",
+      "playerName": "Phillip Tietz",
+      "playerNames": [
+        "Phillip Tietz"
+      ],
+      "playerSlug": "phillip-tietz",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "14",
+      "playerName": "Piero Hincapié",
+      "playerNames": [
+        "Piero Hincapié",
+        "Piero Martín Hincapié Reyna"
+      ],
+      "playerSlug": "piero-martin-hincapie-reyna",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "336",
+      "playerName": "Rani Khedira",
+      "playerNames": [
+        "Rani Khedira"
+      ],
+      "playerSlug": "rani-khedira",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "6",
+      "playerName": "Robert Andrich",
+      "playerNames": [
+        "Robert Andrich"
+      ],
+      "playerSlug": "robert-andrich",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "331",
+      "playerName": "Robin Gosens",
+      "playerNames": [
+        "Robin Gosens"
+      ],
+      "playerSlug": "robin-gosens",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "332",
+      "playerName": "Robin Knoche",
+      "playerNames": [
+        "Robin Knoche"
+      ],
+      "playerSlug": "robin-knoche",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "357",
+      "playerName": "Robin Koch",
+      "playerNames": [
+        "Robin Koch"
+      ],
+      "playerSlug": "robin-koch",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "24",
+      "playerName": "Romano Schmid",
+      "playerNames": [
+        "Romano Schmid"
+      ],
+      "playerSlug": "romano-schmid",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "27",
+      "playerName": "Senne Lynen",
+      "playerNames": [
+        "Senne Lynen"
+      ],
+      "playerSlug": "senne-lynen",
+      "teamName": "Werder Bremen",
+      "teamNames": [
+        "Werder Bremen",
+        "werder-bremen-germany"
+      ],
+      "teamSlug": "werder-bremen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "398",
+      "playerName": "Sven Michel",
+      "playerNames": [
+        "Sven Michel"
+      ],
+      "playerSlug": "sven-michel",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "375",
+      "playerName": "Takuma Asano",
+      "playerNames": [
+        "Takuma Asano"
+      ],
+      "playerSlug": "takuma-asano",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "406",
+      "playerName": "Tim Breithaupt",
+      "playerNames": [
+        "Tim Breithaupt"
+      ],
+      "playerSlug": "tim-breithaupt",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "391",
+      "playerName": "Tim Oermann",
+      "playerNames": [
+        "Tim Oermann"
+      ],
+      "playerSlug": "tim-oermann",
+      "teamName": "Bochum",
+      "teamNames": [
+        "Bochum",
+        "bochum-germany"
+      ],
+      "teamSlug": "bochum-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "356",
+      "playerName": "Timothy Chandler",
+      "playerNames": [
+        "Timothy Chandler"
+      ],
+      "playerSlug": "timothy-chandler",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "392",
+      "playerName": "Tomáš Koubek",
+      "playerNames": [
+        "Tomáš Koubek"
+      ],
+      "playerSlug": "tomas-koubek",
+      "teamName": "Augsburg",
+      "teamNames": [
+        "Augsburg",
+        "augsburg-germany"
+      ],
+      "teamSlug": "augsburg-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "361",
+      "playerName": "Tuta",
+      "playerNames": [
+        "Tuta",
+        "Lucas Silva Melo"
+      ],
+      "playerSlug": "lucas-silva-melo",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "11",
+      "playerName": "Victor Boniface",
+      "playerNames": [
+        "Victor Boniface",
+        "Victor Okoh Boniface"
+      ],
+      "playerSlug": "victor-okoh-boniface",
+      "teamName": "Bayer Leverkusen",
+      "teamNames": [
+        "Bayer Leverkusen",
+        "bayer-leverkusen-germany"
+      ],
+      "teamSlug": "bayer-leverkusen-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "365",
+      "playerName": "William Pacho",
+      "playerNames": [
+        "William Pacho",
+        "Willian Joel Pacho Tenorio"
+      ],
+      "playerSlug": "willian-joel-pacho-tenorio",
+      "teamName": "Eintracht Frankfurt",
+      "teamNames": [
+        "Eintracht Frankfurt",
+        "Eintracht Frankfu.",
+        "eintracht-frankfurt-germany"
+      ],
+      "teamSlug": "eintracht-frankfurt-germany"
+    },
+    {
+      "competitionSeasonId": "1",
+      "contractId": "346",
+      "playerName": "Yorbe Vertessen",
+      "playerNames": [
+        "Yorbe Vertessen"
+      ],
+      "playerSlug": "yorbe-vertessen",
+      "teamName": "Union Berlin",
+      "teamNames": [
+        "Union Berlin",
+        "union-berlin-germany"
+      ],
+      "teamSlug": "union-berlin-germany"
+    }
+  ]
+}

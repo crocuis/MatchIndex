@@ -53,7 +53,7 @@ export function FixtureCard({ match, placeholders = [], className }: FixtureCard
             ? showHomeNationFlag && (
               <NationFlag nationId={match.homeTeamId} code={homeNationCode} size="sm" />
             )
-            : <ClubBadge shortName={match.homeTeamCode ?? match.homeTeamName ?? '???'} clubId={match.homeTeamId} logo={match.homeTeamLogo} size="sm" />}
+            : <ClubBadge shortName={match.homeTeamCode ?? match.homeTeamName ?? '???'} clubId={match.homeTeamId} logo={match.homeTeamLogo} size="sm" showText={false} />}
           <div className="min-w-0 text-[13px] font-medium text-text-primary">
             {isNationMatch
               ? homePlaceholder
@@ -68,7 +68,7 @@ export function FixtureCard({ match, placeholders = [], className }: FixtureCard
             ? showAwayNationFlag && (
               <NationFlag nationId={match.awayTeamId} code={awayNationCode} size="sm" />
             )
-            : <ClubBadge shortName={match.awayTeamCode ?? match.awayTeamName ?? '???'} clubId={match.awayTeamId} logo={match.awayTeamLogo} size="sm" />}
+            : <ClubBadge shortName={match.awayTeamCode ?? match.awayTeamName ?? '???'} clubId={match.awayTeamId} logo={match.awayTeamLogo} size="sm" showText={false} />}
           <div className="min-w-0 text-[13px] font-medium text-text-primary">
             {isNationMatch
               ? awayPlaceholder

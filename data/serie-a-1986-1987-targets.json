@@ -1,0 +1,487 @@
+{
+  "competitionSlug": "serie-a",
+  "exportedAt": "2026-03-08T15:31:26.151Z",
+  "seasonSlug": "1986-1987",
+  "targets": [
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12680",
+      "playerName": "Aldo Serena",
+      "playerNames": [
+        "Aldo Serena"
+      ],
+      "playerSlug": "aldo-serena",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12689",
+      "playerName": "Alessandro Renica",
+      "playerNames": [
+        "Alessandro Renica"
+      ],
+      "playerSlug": "alessandro-renica",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12690",
+      "playerName": "Andrea Carnevale",
+      "playerNames": [
+        "Andrea Carnevale"
+      ],
+      "playerSlug": "andrea-carnevale",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12682",
+      "playerName": "Antonio Cabrini",
+      "playerNames": [
+        "Antonio Cabrini"
+      ],
+      "playerSlug": "antonio-cabrini",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12686",
+      "playerName": "Beniamino Vignola",
+      "playerNames": [
+        "Beniamino Vignola"
+      ],
+      "playerSlug": "beniamino-vignola",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12699",
+      "playerName": "Bruno Giordano",
+      "playerNames": [
+        "Bruno Giordano"
+      ],
+      "playerSlug": "bruno-giordano",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12687",
+      "playerName": "Ciro Ferrara",
+      "playerNames": [
+        "Ciro Ferrara"
+      ],
+      "playerSlug": "ciro-ferrara",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12697",
+      "playerName": "Ciro Muro",
+      "playerNames": [
+        "Ciro Muro"
+      ],
+      "playerSlug": "ciro-muro",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12692",
+      "playerName": "Claudio Garella",
+      "playerNames": [
+        "Claudio Garella"
+      ],
+      "playerSlug": "claudio-garella",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12688",
+      "playerName": "Diego Armando Maradona",
+      "playerNames": [
+        "Diego Armando Maradona"
+      ],
+      "playerSlug": "diego-armando-maradona",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12691",
+      "playerName": "Fernando De Napoli",
+      "playerNames": [
+        "Fernando De Napoli"
+      ],
+      "playerSlug": "fernando-de-napoli",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12700",
+      "playerName": "Francesco Romano",
+      "playerNames": [
+        "Francesco Romano"
+      ],
+      "playerSlug": "francesco-romano",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12695",
+      "playerName": "Giuseppe Bruscolotti",
+      "playerNames": [
+        "Giuseppe Bruscolotti"
+      ],
+      "playerSlug": "giuseppe-bruscolotti",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12694",
+      "playerName": "Giuseppe Volpecina",
+      "playerNames": [
+        "Giuseppe Volpecina"
+      ],
+      "playerSlug": "giuseppe-volpecina",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12672",
+      "playerName": "Ivano Bonetti",
+      "playerNames": [
+        "Ivano Bonetti"
+      ],
+      "playerSlug": "ivano-bonetti",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12683",
+      "playerName": "Lionello Manfredonia",
+      "playerNames": [
+        "Lionello Manfredonia"
+      ],
+      "playerSlug": "lionello-manfredonia",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12685",
+      "playerName": "Luciano Bodini",
+      "playerNames": [
+        "Luciano Bodini"
+      ],
+      "playerSlug": "luciano-bodini",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12677",
+      "playerName": "Luciano Favero",
+      "playerNames": [
+        "Luciano Favero"
+      ],
+      "playerSlug": "luciano-favero",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12702",
+      "playerName": "Luciano Sola",
+      "playerNames": [
+        "Luciano Sola"
+      ],
+      "playerSlug": "luciano-sola",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12696",
+      "playerName": "Luigi Caffarelli",
+      "playerNames": [
+        "Luigi Caffarelli"
+      ],
+      "playerSlug": "luigi-caffarelli",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12679",
+      "playerName": "Massimo Bonini",
+      "playerNames": [
+        "Massimo Bonini"
+      ],
+      "playerSlug": "massimo-bonini",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12676",
+      "playerName": "Massimo Mauro",
+      "playerNames": [
+        "Massimo Mauro"
+      ],
+      "playerSlug": "massimo-mauro",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12671",
+      "playerName": "Michael Laudrup",
+      "playerNames": [
+        "Michael Laudrup"
+      ],
+      "playerSlug": "michael-laudrup",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12678",
+      "playerName": "Michel Platini",
+      "playerNames": [
+        "Michel Platini"
+      ],
+      "playerSlug": "michel-platini",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12693",
+      "playerName": "Moreno Ferrario",
+      "playerNames": [
+        "Moreno Ferrario"
+      ],
+      "playerSlug": "moreno-ferrario",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12681",
+      "playerName": "Nicola Caricola",
+      "playerNames": [
+        "Nicola Caricola"
+      ],
+      "playerSlug": "nicola-caricola",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12701",
+      "playerName": "Raffaele Di Fusco",
+      "playerNames": [
+        "Raffaele Di Fusco"
+      ],
+      "playerSlug": "raffaele-di-fusco",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12673",
+      "playerName": "Renato Buso",
+      "playerNames": [
+        "Renato Buso"
+      ],
+      "playerSlug": "renato-buso",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12698",
+      "playerName": "Salvatore Bagni",
+      "playerNames": [
+        "Salvatore Bagni"
+      ],
+      "playerSlug": "salvatore-bagni",
+      "teamName": "Napoli",
+      "teamNames": [
+        "Napoli",
+        "napoli-italy"
+      ],
+      "teamSlug": "napoli-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12674",
+      "playerName": "Sergio Brio",
+      "playerNames": [
+        "Sergio Brio"
+      ],
+      "playerSlug": "sergio-brio",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12684",
+      "playerName": "Stefano Pioli",
+      "playerNames": [
+        "Stefano Pioli"
+      ],
+      "playerSlug": "stefano-pioli",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    },
+    {
+      "competitionSeasonId": "235",
+      "contractId": "12675",
+      "playerName": "Stefano Tacconi",
+      "playerNames": [
+        "Stefano Tacconi"
+      ],
+      "playerSlug": "stefano-tacconi",
+      "teamName": "Juventus",
+      "teamNames": [
+        "Juventus",
+        "juventus-italy"
+      ],
+      "teamSlug": "juventus-italy"
+    }
+  ]
+}

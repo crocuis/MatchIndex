@@ -1,0 +1,35 @@
+{
+  "provider": "fbref",
+  "competition": "1-bundesliga",
+  "season": "2023-2024",
+  "fetchedAt": "2026-03-08T00:00:00Z",
+  "rows": [
+    {
+      "playerSlug": "adam-hlozek",
+      "playerName": "Adam Hložek",
+      "sourceUrl": null,
+      "dateOfBirth": null,
+      "heightCm": null,
+      "weightKg": null,
+      "preferredFoot": null
+    },
+    {
+      "playerSlug": "aissa-bilal-laidouni",
+      "playerName": "Aïssa Laïdouni",
+      "sourceUrl": null,
+      "dateOfBirth": null,
+      "heightCm": null,
+      "weightKg": null,
+      "preferredFoot": null
+    },
+    {
+      "playerSlug": "alexander-schwolow",
+      "playerName": "Alexander Schwolow",
+      "sourceUrl": null,
+      "dateOfBirth": null,
+      "heightCm": null,
+      "weightKg": null,
+      "preferredFoot": null
+    }
+  ]
+}

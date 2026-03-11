@@ -7,7 +7,15 @@ import { SectionCard } from '@/components/ui/SectionCard';
 import { ClubBadge } from '@/components/ui/ClubBadge';
 import { EntityLink } from '@/components/ui/EntityLink';
 import type { League } from '@/data/types';
-import { buildKnockoutStages, buildTournamentGroups, getTournamentChampion } from '@/app/leagues/[id]/tournamentView';
+import {
+  buildLeaguePhaseStandings,
+  buildKnockoutStages,
+  buildLeaguePhaseMatchdays,
+  buildQualifyingStages,
+  buildTournamentGroups,
+  getChampionsLeagueFormat,
+  getTournamentChampion,
+} from '@/app/leagues/[id]/tournamentView';
 import {
   getClubsByLeagueAndSeasonDb,
   getClubsByLeagueDb,
@@ -60,15 +68,42 @@ export async function LeagueDetailSections({
   const scheduledMatches = allMatches.filter((match) => match.status === 'scheduled');
   const recentResults = finishedMatches.slice(0, 10);
   const upcomingFixtures = scheduledMatches.slice(0, 10);
-  const standingsTitle = isTournament ? tLeague('groupStageSnapshot') : tLeague('standings');
+  const championsLeagueFormat = league.id === 'champions-league'
+    ? getChampionsLeagueFormat(selectedSeason?.seasonLabel ?? league.season)
+    : undefined;
+  const standingsTitle = isTournament
+    ? championsLeagueFormat === 'legacy'
+      ? tLeague('groupStageSnapshotLegacy')
+      : tLeague('groupStageSnapshot')
+    : tLeague('standings');
   const clubsTitle = isTournament ? tLeague('participants') : tLeague('clubsList');
   const resultsTitle = isTournament ? tLeague('tournamentResults') : tLeague('recentResults');
   const fixturesTitle = isTournament ? tLeague('tournamentFixtures') : tLeague('upcomingFixtures');
   const topScorersTitle = isTournament ? tLeague('topPerformers') : tLeague('topScorers');
   const participantRows = clubs.slice(0, 8);
-  const tournamentGroups = isTournament ? buildTournamentGroups(allMatches, clubs) : [];
+  const tournamentGroups = isTournament && championsLeagueFormat !== 'league-phase' ? buildTournamentGroups(allMatches, clubs) : [];
+  const qualifyingStages = isTournament && championsLeagueFormat === 'legacy' ? buildQualifyingStages(allMatches) : [];
+  const leaguePhaseStages = isTournament && championsLeagueFormat === 'league-phase' ? buildLeaguePhaseMatchdays(allMatches) : [];
+  const leaguePhaseStandings = isTournament && championsLeagueFormat === 'league-phase'
+    ? buildLeaguePhaseStandings(allMatches, clubs)
+    : standings;
   const knockoutStages = isTournament ? buildKnockoutStages(allMatches) : [];
   const champion = isTournament ? await getTournamentChampion(knockoutStages, locale) : undefined;
+  const formatDetail = championsLeagueFormat === 'legacy'
+    ? tLeague('formatChampionsLeagueLegacyDetail')
+    : championsLeagueFormat === 'league-phase'
+      ? tLeague('formatChampionsLeagueLeaguePhaseDetail')
+      : tLeague('formatTournamentDetail');
+  const trackingMode = championsLeagueFormat === 'legacy'
+    ? tLeague('trackingModeChampionsLeagueLegacy')
+    : championsLeagueFormat === 'league-phase'
+      ? tLeague('trackingModeChampionsLeagueLeaguePhase')
+      : tLeague('trackingModeTournament');
+  const advancingRule = championsLeagueFormat === 'legacy'
+    ? tLeague('advancingRuleLegacy')
+    : championsLeagueFormat === 'league-phase'
+      ? tLeague('advancingRuleLeaguePhase')
+      : tLeague('advancingRule');
 
   return (
     <div className="grid grid-cols-12 gap-4">
@@ -79,7 +114,7 @@ export async function LeagueDetailSections({
               <div className="grid grid-cols-3 gap-3 text-[12px] text-text-secondary">
                 <div>
                   <div className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-text-muted">{tLeague('format')}</div>
-                  <div className="text-[13px] font-medium text-text-primary">{tLeague('formatTournamentDetail')}</div>
+                  <div className="text-[13px] font-medium text-text-primary">{formatDetail}</div>
                 </div>
                 <div>
                   <div className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-text-muted">{tLeague('participants')}</div>
@@ -87,7 +122,7 @@ export async function LeagueDetailSections({
                 </div>
                 <div>
                   <div className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-text-muted">{tLeague('trackingMode')}</div>
-                  <div className="text-[13px] font-medium text-text-primary">{tLeague('trackingModeTournament')}</div>
+                  <div className="text-[13px] font-medium text-text-primary">{trackingMode}</div>
                 </div>
                 {champion ? (
                   <div>
@@ -98,9 +133,28 @@ export async function LeagueDetailSections({
               </div>
             </SectionCard>
 
+            {qualifyingStages.length > 0 ? (
+              <SectionCard title={tLeague('qualifyingRounds')}>
+                <div className="space-y-4">
+                  {qualifyingStages.map((stage) => (
+                    <div key={stage.id}>
+                      <div className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-text-muted">{stage.name}</div>
+                      <div className="space-y-1.5">
+                        {stage.matches.map((match) => (
+                          match.status === 'finished'
+                            ? <MatchCard key={match.id} match={match} />
+                            : <FixtureCard key={match.id} match={match} />
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </SectionCard>
+            ) : null}
+
             {tournamentGroups.length > 0 ? (
               <SectionCard title={tLeague('groupStage')}>
-                <div className="mb-3 text-[12px] text-text-secondary">{tLeague('advancingRule')}</div>
+                <div className="mb-3 text-[12px] text-text-secondary">{advancingRule}</div>
                 <div className="grid grid-cols-2 gap-4">
                   {tournamentGroups.map((group) => (
                     <div key={group.id} className="overflow-hidden rounded border border-border-subtle bg-surface-2">
@@ -108,6 +162,26 @@ export async function LeagueDetailSections({
                         {group.name}
                       </div>
                       <StandingsTable standings={group.standings} compact />
+                    </div>
+                  ))}
+                </div>
+              </SectionCard>
+            ) : null}
+
+            {leaguePhaseStages.length > 0 ? (
+              <SectionCard title={tLeague('leaguePhase')}>
+                <div className="mb-3 text-[12px] text-text-secondary">{advancingRule}</div>
+                <div className="space-y-4">
+                  {leaguePhaseStages.map((stage) => (
+                    <div key={stage.id}>
+                      <div className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-text-muted">{stage.name}</div>
+                      <div className="space-y-1.5">
+                        {stage.matches.map((match) => (
+                          match.status === 'finished'
+                            ? <MatchCard key={match.id} match={match} />
+                            : <FixtureCard key={match.id} match={match} />
+                        ))}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -149,7 +223,7 @@ export async function LeagueDetailSections({
           <div className="col-span-4 space-y-4">
             {tournamentGroups.length === 0 ? (
               <SectionCard title={standingsTitle} noPadding>
-                <StandingsTable standings={standings} compact />
+                <StandingsTable standings={leaguePhaseStandings} compact />
               </SectionCard>
             ) : null}
 
@@ -184,7 +258,7 @@ export async function LeagueDetailSections({
                         <div className="flex flex-col gap-0.5">
                           <EntityLink type="player" id={s.playerId}>{s.playerName}</EntityLink>
                           <div className="flex items-center gap-1.5 text-[11px] text-text-muted">
-                            <ClubBadge shortName={s.clubShortName} clubId={s.clubId} size="sm" />
+                            <ClubBadge shortName={s.clubShortName} clubId={s.clubId} size="sm" showText={false} />
                             <span>{s.clubShortName}</span>
                           </div>
                         </div>
@@ -250,7 +324,7 @@ export async function LeagueDetailSections({
                       <td className="px-3 py-1.5 text-[13px]"><EntityLink type="player" id={s.playerId}>{s.playerName}</EntityLink></td>
                       <td className="px-3 py-1.5 text-[13px] text-center text-text-secondary">
                         <div className="flex items-center justify-center gap-2">
-                          <ClubBadge shortName={s.clubShortName} clubId={s.clubId} size="sm" />
+                          <ClubBadge shortName={s.clubShortName} clubId={s.clubId} size="sm" showText={false} />
                           <span>{s.clubShortName}</span>
                         </div>
                       </td>

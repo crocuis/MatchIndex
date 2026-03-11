@@ -1,0 +1,6131 @@
+{
+  "competitionSlug": "la-liga",
+  "exportedAt": "2026-03-08T15:24:53.325Z",
+  "seasonSlug": "2011-2012",
+  "targets": [
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9734",
+      "playerName": "Abdelaziz Barrada",
+      "playerNames": [
+        "Abdelaziz Barrada"
+      ],
+      "playerSlug": "abdelaziz-barrada",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10029",
+      "playerName": "Abdelkader Mohamed Ghezzal",
+      "playerNames": [
+        "Abdelkader Mohamed Ghezzal"
+      ],
+      "playerSlug": "abdelkader-mohamed-ghezzal",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9647",
+      "playerName": "Abel Gómez",
+      "playerNames": [
+        "Abel Gómez",
+        "Abel Gómez Moreno"
+      ],
+      "playerSlug": "abel-gomez-moreno",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9380",
+      "playerName": "Abraham Minero",
+      "playerNames": [
+        "Abraham Minero",
+        "Abraham Minero Fernández"
+      ],
+      "playerSlug": "abraham-minero-fernandez",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9376",
+      "playerName": "Ádám Pintér",
+      "playerNames": [
+        "Ádám Pintér"
+      ],
+      "playerSlug": "adam-pinter",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9326",
+      "playerName": "Adil Rami",
+      "playerNames": [
+        "Adil Rami"
+      ],
+      "playerSlug": "adil-rami",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9425",
+      "playerName": "Adrián González",
+      "playerNames": [
+        "Adrián González",
+        "Adrián González Morales"
+      ],
+      "playerSlug": "adrian-gonzalez-morales",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9415",
+      "playerName": "Adrián López",
+      "playerNames": [
+        "Adrián López",
+        "Adrián López Álvarez"
+      ],
+      "playerSlug": "adrian-lopez-alvarez",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9358",
+      "playerName": "Adriano",
+      "playerNames": [
+        "Adriano",
+        "Adriano Correia Claro"
+      ],
+      "playerSlug": "adriano-correia-claro",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10019",
+      "playerName": "Aitor Núñez",
+      "playerNames": [
+        "Aitor Núñez",
+        "Aitor Núñez Martín"
+      ],
+      "playerSlug": "aitor-nunez-martin",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9790",
+      "playerName": "Alberto Botía Rabasco",
+      "playerNames": [
+        "Alberto Botía Rabasco"
+      ],
+      "playerSlug": "alberto-botia-rabasco",
+      "teamName": "Sporting Gijón",
+      "teamNames": [
+        "Sporting Gijón",
+        "sporting-gijon-spain"
+      ],
+      "teamSlug": "sporting-gijon-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9716",
+      "playerName": "Alberto de la Bella",
+      "playerNames": [
+        "Alberto de la Bella",
+        "Alberto De La Bella Madureño"
+      ],
+      "playerSlug": "alberto-de-la-bella-madureno",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9850",
+      "playerName": "Alberto Lopo",
+      "playerNames": [
+        "Alberto Lopo",
+        "Alberto Lopo García"
+      ],
+      "playerSlug": "alberto-lopo-garcia",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9788",
+      "playerName": "Alberto Lora",
+      "playerNames": [
+        "Alberto Lora",
+        "Alberto Lora Ramos"
+      ],
+      "playerSlug": "alberto-lora-ramos",
+      "teamName": "Sporting Gijón",
+      "teamNames": [
+        "Sporting Gijón",
+        "sporting-gijon-spain"
+      ],
+      "teamSlug": "sporting-gijon-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9778",
+      "playerName": "Alberto Rivera",
+      "playerNames": [
+        "Alberto Rivera",
+        "Alberto Rivera Pizarro"
+      ],
+      "playerSlug": "alberto-rivera-pizarro",
+      "teamName": "Sporting Gijón",
+      "teamNames": [
+        "Sporting Gijón",
+        "sporting-gijon-spain"
+      ],
+      "teamSlug": "sporting-gijon-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9590",
+      "playerName": "Alejandro Alfaro",
+      "playerNames": [
+        "Alejandro Alfaro",
+        "Alejandro Alfaro Ligero"
+      ],
+      "playerSlug": "alejandro-alfaro-ligero",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9484",
+      "playerName": "Alejandro Arribas",
+      "playerNames": [
+        "Alejandro Arribas",
+        "Alejandro Arribas Garrido"
+      ],
+      "playerSlug": "alejandro-arribas-garrido",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9804",
+      "playerName": "Alejandro Pozuelo",
+      "playerNames": [
+        "Alejandro Pozuelo",
+        "Alejandro Pozuelo Melero"
+      ],
+      "playerSlug": "alejandro-pozuelo-melero",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9661",
+      "playerName": "Alexandros Tziolis",
+      "playerNames": [
+        "Alexandros Tziolis"
+      ],
+      "playerSlug": "alexandros-tziolis",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9645",
+      "playerName": "Álex Geijo",
+      "playerNames": [
+        "Álex Geijo",
+        "Alexandre Geijo Pazos"
+      ],
+      "playerSlug": "alexandre-geijo-pazos",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9728",
+      "playerName": "Alexis Ruano",
+      "playerNames": [
+        "Alexis Ruano",
+        "Alexis Ruano Delgado"
+      ],
+      "playerSlug": "alexis-ruano-delgado",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9340",
+      "playerName": "Alexis Sánchez",
+      "playerNames": [
+        "Alexis Sánchez",
+        "Alexis Alejandro Sánchez Sánchez"
+      ],
+      "playerSlug": "alexis-alejandro-sanchez-sanchez",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9974",
+      "playerName": "Allan Nyom",
+      "playerNames": [
+        "Allan Nyom",
+        "Allan Romeo Nyom"
+      ],
+      "playerSlug": "allan-romeo-nyom",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9631",
+      "playerName": "Álvaro Arbeloa",
+      "playerNames": [
+        "Álvaro Arbeloa",
+        "Álvaro Arbeloa Coca"
+      ],
+      "playerSlug": "alvaro-arbeloa-coca",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9736",
+      "playerName": "Álvaro Arroyo",
+      "playerNames": [
+        "Álvaro Arroyo",
+        "Álvaro Arroyo Martínez"
+      ],
+      "playerSlug": "alvaro-arroyo-martinez",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9882",
+      "playerName": "Álvaro Cejudo",
+      "playerNames": [
+        "Álvaro Cejudo",
+        "Álvaro Cejudo Carmona"
+      ],
+      "playerSlug": "alvaro-cejudo-carmona",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9588",
+      "playerName": "Álvaro Giménez",
+      "playerNames": [
+        "Álvaro Giménez",
+        "Álvaro Giménez Candela"
+      ],
+      "playerSlug": "alvaro-gimenez-candela",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9430",
+      "playerName": "Álvaro González",
+      "playerNames": [
+        "Álvaro González",
+        "Álvaro González Soberón"
+      ],
+      "playerSlug": "alvaro-gonzalez-soberon",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9938",
+      "playerName": "Álvaro Vázquez",
+      "playerNames": [
+        "Álvaro Vázquez",
+        "Álvaro Vázquez García"
+      ],
+      "playerSlug": "alvaro-vazquez-garcia",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9541",
+      "playerName": "Ander Herrera",
+      "playerNames": [
+        "Ander Herrera",
+        "Ander Herrera Agüera"
+      ],
+      "playerSlug": "ander-herrera-aguera",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9543",
+      "playerName": "Ander Iturraspe",
+      "playerNames": [
+        "Ander Iturraspe",
+        "Ander Iturraspe Derteano"
+      ],
+      "playerSlug": "ander-iturraspe-derteano",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9563",
+      "playerName": "Andoni Iraola",
+      "playerNames": [
+        "Andoni Iraola",
+        "Andoni Iraola Sagarna"
+      ],
+      "playerSlug": "andoni-iraola-sagarna",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9794",
+      "playerName": "André Castro",
+      "playerNames": [
+        "André Castro",
+        "André de Castro Pereira"
+      ],
+      "playerSlug": "andre-de-castro-pereira",
+      "teamName": "Sporting Gijón",
+      "teamNames": [
+        "Sporting Gijón",
+        "sporting-gijon-spain"
+      ],
+      "teamSlug": "sporting-gijon-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9860",
+      "playerName": "Andrés Fernández",
+      "playerNames": [
+        "Andrés Fernández",
+        "Andrés Eduardo Fernández Moreno"
+      ],
+      "playerSlug": "andres-eduardo-fernandez-moreno",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9346",
+      "playerName": "Andrés Iniesta",
+      "playerNames": [
+        "Andrés Iniesta",
+        "Andrés Iniesta Luján"
+      ],
+      "playerSlug": "andres-iniesta-lujan",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9892",
+      "playerName": "Andrés Palop",
+      "playerNames": [
+        "Andrés Palop",
+        "Andrés Palop Cervera"
+      ],
+      "playerSlug": "andres-palop-cervera",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9710",
+      "playerName": "Andreu Fontàs",
+      "playerNames": [
+        "Andreu Fontàs",
+        "Andreu Fontàs Prat"
+      ],
+      "playerSlug": "andreu-fontas-prat",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10023",
+      "playerName": "Andrija Delibašić",
+      "playerNames": [
+        "Andrija Delibašić"
+      ],
+      "playerSlug": "andrija-delibasic",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9605",
+      "playerName": "Ángel Di María",
+      "playerNames": [
+        "Ángel Di María",
+        "Ángel Fabián Di María Hernández"
+      ],
+      "playerSlug": "angel-fabian-di-maria-hernandez",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9381",
+      "playerName": "Ángel Lafita",
+      "playerNames": [
+        "Ángel Lafita",
+        "Ángel Lafita Castillo"
+      ],
+      "playerSlug": "angel-lafita-castillo",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9990",
+      "playerName": "Ángel López",
+      "playerNames": [
+        "Ángel López",
+        "Ángel Domingo López Ruano"
+      ],
+      "playerSlug": "angel-domingo-lopez-ruano",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9456",
+      "playerName": "Antoine Griezmann",
+      "playerNames": [
+        "Antoine Griezmann"
+      ],
+      "playerSlug": "antoine-griezmann",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9573",
+      "playerName": "Antonio López",
+      "playerNames": [
+        "Antonio López",
+        "Antonio López Guerrero"
+      ],
+      "playerSlug": "antonio-lopez-guerrero",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9886",
+      "playerName": "Antonio Luna",
+      "playerNames": [
+        "Antonio Luna",
+        "Antonio Manuel Luna Rodríguez"
+      ],
+      "playerSlug": "antonio-manuel-luna-rodriguez",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9417",
+      "playerName": "Arda Turan",
+      "playerNames": [
+        "Arda Turan"
+      ],
+      "playerSlug": "arda-turan",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9706",
+      "playerName": "Arouna Koné",
+      "playerNames": [
+        "Arouna Koné"
+      ],
+      "playerSlug": "arouna-kone",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9702",
+      "playerName": "Asier del Horno",
+      "playerNames": [
+        "Asier del Horno",
+        "Asier del Horno Cosgaya"
+      ],
+      "playerSlug": "asier-del-horno-cosgaya",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9714",
+      "playerName": "Asier Illarramendi",
+      "playerNames": [
+        "Asier Illarramendi",
+        "Asier Illarramendi Andonegi"
+      ],
+      "playerSlug": "asier-illarramendi-andonegi",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9786",
+      "playerName": "Ayoze",
+      "playerNames": [
+        "Ayoze",
+        "Ayoze García Pérez"
+      ],
+      "playerSlug": "ayoze-garcia-perez",
+      "teamName": "Sporting Gijón",
+      "teamNames": [
+        "Sporting Gijón",
+        "sporting-gijon-spain"
+      ],
+      "teamSlug": "sporting-gijon-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9796",
+      "playerName": "Beñat Etxebarria",
+      "playerNames": [
+        "Beñat Etxebarria",
+        "Beñat Etxebarria Urkiaga"
+      ],
+      "playerSlug": "benat-etxebarria-urkiaga",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9427",
+      "playerName": "Bernardo Espinosa",
+      "playerNames": [
+        "Bernardo Espinosa",
+        "Bernardo José Espinosa Zúñiga"
+      ],
+      "playerSlug": "bernardo-jose-espinosa-zuniga",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9663",
+      "playerName": "Bolaño",
+      "playerNames": [
+        "Bolaño",
+        "Christian Fernández Salas"
+      ],
+      "playerSlug": "christian-fernandez-salas",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10033",
+      "playerName": "Borja Ekiza",
+      "playerNames": [
+        "Borja Ekiza",
+        "Borja Ekiza Imaz"
+      ],
+      "playerSlug": "borja-ekiza-imaz",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9659",
+      "playerName": "Borja Gómez",
+      "playerNames": [
+        "Borja Gómez",
+        "Borja Gómez Pérez"
+      ],
+      "playerSlug": "borja-gomez-perez",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9902",
+      "playerName": "Borja Valero",
+      "playerNames": [
+        "Borja Valero",
+        "Borja Valero Iglesias"
+      ],
+      "playerSlug": "borja-valero-iglesias",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9912",
+      "playerName": "Bruno Soriano",
+      "playerNames": [
+        "Bruno Soriano",
+        "Bruno Soriano Llido"
+      ],
+      "playerSlug": "bruno-soriano-llido",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9914",
+      "playerName": "Cani",
+      "playerNames": [
+        "Cani",
+        "Rubén Gracia Calmache"
+      ],
+      "playerSlug": "ruben-gracia-calmache",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9350",
+      "playerName": "Carles Puyol",
+      "playerNames": [
+        "Carles Puyol",
+        "Carles Puyol i Saforcada"
+      ],
+      "playerSlug": "carles-puyol-i-saforcada",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9383",
+      "playerName": "Carlos Aranda",
+      "playerNames": [
+        "Carlos Aranda",
+        "Carlos Reina Aranda"
+      ],
+      "playerSlug": "carlos-reina-aranda",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9766",
+      "playerName": "Carlos Kameni",
+      "playerNames": [
+        "Carlos Kameni",
+        "Idriss Carlos Kameni"
+      ],
+      "playerSlug": "idriss-carlos-kameni",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9908",
+      "playerName": "Carlos Marchena",
+      "playerNames": [
+        "Carlos Marchena",
+        "Carlos Marchena López"
+      ],
+      "playerSlug": "carlos-marchena-lopez",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9472",
+      "playerName": "Carlos Martínez",
+      "playerNames": [
+        "Carlos Martínez",
+        "Carlos Martínez Díez"
+      ],
+      "playerSlug": "carlos-martinez-diez",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9643",
+      "playerName": "Carlos Martins",
+      "playerNames": [
+        "Carlos Martins",
+        "Carlos Jorge Neto Martins"
+      ],
+      "playerSlug": "carlos-jorge-neto-martins",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9458",
+      "playerName": "Carlos Vela",
+      "playerNames": [
+        "Carlos Vela",
+        "Carlos Alberto Vela Garrido"
+      ],
+      "playerSlug": "carlos-alberto-vela-garrido",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9810",
+      "playerName": "Casto",
+      "playerNames": [
+        "Casto",
+        "Casto Espinosa Barriga"
+      ],
+      "playerSlug": "casto-espinosa-barriga",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9746",
+      "playerName": "Cata Díaz",
+      "playerNames": [
+        "Cata Díaz",
+        "Daniel Alberto Díaz"
+      ],
+      "playerSlug": "daniel-alberto-diaz",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9341",
+      "playerName": "Cesc Fàbregas",
+      "playerNames": [
+        "Cesc Fàbregas",
+        "Francesc Fàbregas i Soler"
+      ],
+      "playerSlug": "francesc-fabregas-i-soler",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9802",
+      "playerName": "Chechu Dorado",
+      "playerNames": [
+        "Chechu Dorado",
+        "José Antonio Dorado Ramírez"
+      ],
+      "playerSlug": "jose-antonio-dorado-ramirez",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9599",
+      "playerName": "Chico Flores",
+      "playerNames": [
+        "Chico Flores",
+        "José Manuel Flores Moreno"
+      ],
+      "playerSlug": "jose-manuel-flores-moreno",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9578",
+      "playerName": "Chory Castro",
+      "playerNames": [
+        "Chory Castro",
+        "Gonzalo Castro Irizábal"
+      ],
+      "playerSlug": "gonzalo-castro-irizabal",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9454",
+      "playerName": "Claudio Bravo",
+      "playerNames": [
+        "Claudio Bravo",
+        "Claudio Andrés Bravo Muñoz"
+      ],
+      "playerSlug": "claudio-andres-bravo-munoz",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9362",
+      "playerName": "Coke",
+      "playerNames": [
+        "Coke",
+        "Jorge Andújar Moreno"
+      ],
+      "playerSlug": "jorge-andujar-moreno",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9423",
+      "playerName": "Cristhian Stuani",
+      "playerNames": [
+        "Cristhian Stuani",
+        "Cristhian Ricardo Stuani Curbelo"
+      ],
+      "playerSlug": "cristhian-ricardo-stuani-curbelo",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9940",
+      "playerName": "Cristian Álvarez",
+      "playerNames": [
+        "Cristian Álvarez",
+        "Cristian Darío Álvarez"
+      ],
+      "playerSlug": "cristian-dario-alvarez",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9950",
+      "playerName": "Cristian Gómez",
+      "playerNames": [
+        "Cristian Gómez",
+        "Cristian Gómez García"
+      ],
+      "playerSlug": "cristian-gomez-garcia",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9611",
+      "playerName": "Cristiano Ronaldo",
+      "playerNames": [
+        "Cristiano Ronaldo",
+        "Cristiano Ronaldo dos Santos Aveiro"
+      ],
+      "playerSlug": "cristiano-ronaldo-dos-santos-aveiro",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9349",
+      "playerName": "Cristian Tello",
+      "playerNames": [
+        "Cristian Tello",
+        "Cristian Tello Herrera"
+      ],
+      "playerSlug": "cristian-tello-herrera",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9896",
+      "playerName": "Cristián Zapata",
+      "playerNames": [
+        "Cristián Zapata",
+        "Cristian Eduardo Zapata Valencia"
+      ],
+      "playerSlug": "cristian-eduardo-zapata-valencia",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9874",
+      "playerName": "Damià",
+      "playerNames": [
+        "Damià",
+        "Damià Abella Pérez"
+      ],
+      "playerSlug": "damia-abella-perez",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9354",
+      "playerName": "Dani Alves",
+      "playerNames": [
+        "Dani Alves",
+        "Daniel Alves da Silva"
+      ],
+      "playerSlug": "daniel-alves-da-silva",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9649",
+      "playerName": "Dani Benítez",
+      "playerNames": [
+        "Dani Benítez",
+        "Daniel González Benítez"
+      ],
+      "playerSlug": "daniel-gonzalez-benitez",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9718",
+      "playerName": "Dani Estrada",
+      "playerNames": [
+        "Dani Estrada",
+        "Daniel Estrada Agirrezablaga"
+      ],
+      "playerSlug": "daniel-estrada-agirrezablaga",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10005",
+      "playerName": "Dani Pacheco",
+      "playerNames": [
+        "Dani Pacheco",
+        "Daniel Pacheco Lobato"
+      ],
+      "playerSlug": "daniel-pacheco-lobato",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9336",
+      "playerName": "David Albelda",
+      "playerNames": [
+        "David Albelda",
+        "David Albelda Aliqués"
+      ],
+      "playerSlug": "david-albelda-aliques",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9784",
+      "playerName": "David Barral",
+      "playerNames": [
+        "David Barral",
+        "David Barral Torres"
+      ],
+      "playerSlug": "david-barral-torres",
+      "teamName": "Sporting Gijón",
+      "teamNames": [
+        "Sporting Gijón",
+        "sporting-gijon-spain"
+      ],
+      "teamSlug": "sporting-gijon-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9492",
+      "playerName": "David Cobeño",
+      "playerNames": [
+        "David Cobeño",
+        "David Cobeño Iglesias"
+      ],
+      "playerSlug": "david-cobeno-iglesias",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9639",
+      "playerName": "David Cortés",
+      "playerNames": [
+        "David Cortés",
+        "David Cortés Caballero"
+      ],
+      "playerSlug": "david-cortes-caballero",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9395",
+      "playerName": "David Mateos",
+      "playerNames": [
+        "David Mateos",
+        "David Mateos Ramajo"
+      ],
+      "playerSlug": "david-mateos-ramajo",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9994",
+      "playerName": "David Timor",
+      "playerNames": [
+        "David Timor",
+        "David Timor Copoví"
+      ],
+      "playerSlug": "david-timor-copovi",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9356",
+      "playerName": "David Villa",
+      "playerNames": [
+        "David Villa",
+        "David Villa Sánchez"
+      ],
+      "playerSlug": "david-villa-sanchez",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9712",
+      "playerName": "David Zurutuza",
+      "playerNames": [
+        "David Zurutuza",
+        "David Zurutuza Veillet"
+      ],
+      "playerSlug": "david-zurutuza-veillet",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9864",
+      "playerName": "Dejan Lekić",
+      "playerNames": [
+        "Dejan Lekić"
+      ],
+      "playerSlug": "dejan-lekic",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9774",
+      "playerName": "De las Cuevas",
+      "playerNames": [
+        "De las Cuevas",
+        "Miguel Ángel De las Cuevas Barberá"
+      ],
+      "playerSlug": "miguel-angel-de-las-cuevas-barbera",
+      "teamName": "Sporting Gijón",
+      "teamNames": [
+        "Sporting Gijón",
+        "sporting-gijon-spain"
+      ],
+      "teamSlug": "sporting-gijon-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9553",
+      "playerName": "De Marcos",
+      "playerNames": [
+        "De Marcos",
+        "Óscar de Marcos Arana"
+      ],
+      "playerSlug": "oscar-de-marcos-arana",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9932",
+      "playerName": "Dídac Vilá",
+      "playerNames": [
+        "Dídac Vilá",
+        "Dídac Vilá Rosselló"
+      ],
+      "playerSlug": "didac-vila-rossello",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9571",
+      "playerName": "Diego",
+      "playerNames": [
+        "Diego",
+        "Diego Ribas da Cunha"
+      ],
+      "playerSlug": "diego-ribas-da-cunha",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9337",
+      "playerName": "Diego Alves",
+      "playerNames": [
+        "Diego Alves",
+        "Diego Alves Carreira"
+      ],
+      "playerSlug": "diego-alves-carreira",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10017",
+      "playerName": "Diego Benito",
+      "playerNames": [
+        "Diego Benito",
+        "Diego Benito Rey"
+      ],
+      "playerSlug": "diego-benito-rey",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9768",
+      "playerName": "Diego Buonanotte",
+      "playerNames": [
+        "Diego Buonanotte",
+        "Diego Mario Buonanotte Rende"
+      ],
+      "playerSlug": "diego-mario-buonanotte-rende",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9744",
+      "playerName": "Diego Castro",
+      "playerNames": [
+        "Diego Castro",
+        "Diego Castro Giménez"
+      ],
+      "playerSlug": "diego-castro-gimenez",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10003",
+      "playerName": "Diego Costa",
+      "playerNames": [
+        "Diego Costa",
+        "Diego da Silva Costa"
+      ],
+      "playerSlug": "diego-da-silva-costa",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9403",
+      "playerName": "Diego Godín",
+      "playerNames": [
+        "Diego Godín",
+        "Diego Roberto Godín Leal"
+      ],
+      "playerSlug": "diego-roberto-godin-leal",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9480",
+      "playerName": "Diego Ifrán",
+      "playerNames": [
+        "Diego Ifrán",
+        "Diego Ifrán Sala"
+      ],
+      "playerSlug": "diego-ifran-sala",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9900",
+      "playerName": "Diego López",
+      "playerNames": [
+        "Diego López",
+        "Diego López Rodríguez"
+      ],
+      "playerSlug": "diego-lopez-rodriguez",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9653",
+      "playerName": "Diego Maínz",
+      "playerNames": [
+        "Diego Maínz",
+        "Diego Mainz García"
+      ],
+      "playerSlug": "diego-mainz-garcia",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9890",
+      "playerName": "Diego Perotti",
+      "playerNames": [
+        "Diego Perotti"
+      ],
+      "playerSlug": "diego-perotti",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9442",
+      "playerName": "Domingo Cisma",
+      "playerNames": [
+        "Domingo Cisma",
+        "Domingo Cisma González"
+      ],
+      "playerSlug": "domingo-cisma-gonzalez",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9764",
+      "playerName": "Duda",
+      "playerNames": [
+        "Duda",
+        "Sérgio Paulo Barbosa Valente"
+      ],
+      "playerSlug": "sergio-paulo-barbosa-valente",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9596",
+      "playerName": "Dudú Aouate",
+      "playerNames": [
+        "Dudú Aouate"
+      ],
+      "playerSlug": "dudu-aouate",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9405",
+      "playerName": "Eduardo Salvio",
+      "playerNames": [
+        "Eduardo Salvio",
+        "Eduardo Antonio Salvio"
+      ],
+      "playerSlug": "eduardo-antonio-salvio",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9672",
+      "playerName": "Edu Bedia",
+      "playerNames": [
+        "Edu Bedia",
+        "Eduardo Bedia Peláez"
+      ],
+      "playerSlug": "eduardo-bedia-pelaez",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9389",
+      "playerName": "Efraín Juárez",
+      "playerNames": [
+        "Efraín Juárez",
+        "Efraín Juárez Váldez"
+      ],
+      "playerSlug": "efrain-juarez-valdez",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9525",
+      "playerName": "Eliseu",
+      "playerNames": [
+        "Eliseu",
+        "Eliseu Pereira dos Santos"
+      ],
+      "playerSlug": "eliseu-pereira-dos-santos",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9370",
+      "playerName": "Emiliano Armenteros",
+      "playerNames": [
+        "Emiliano Armenteros",
+        "Emiliano Daniel Armenteros"
+      ],
+      "playerSlug": "emiliano-daniel-armenteros",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9583",
+      "playerName": "Emilio Nsue",
+      "playerNames": [
+        "Emilio Nsue",
+        "Emilio Nsue López"
+      ],
+      "playerSlug": "emilio-nsue-lopez",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9894",
+      "playerName": "Emir Spahić",
+      "playerNames": [
+        "Emir Spahić"
+      ],
+      "playerSlug": "emir-spahic",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9535",
+      "playerName": "Enzo Maresca",
+      "playerNames": [
+        "Enzo Maresca"
+      ],
+      "playerSlug": "enzo-maresca",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9353",
+      "playerName": "Éric Abidal",
+      "playerNames": [
+        "Éric Abidal",
+        "Eric-Sylvain Bilal Abidal"
+      ],
+      "playerSlug": "eric-sylvain-bilal-abidal",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9617",
+      "playerName": "Esteban Granero",
+      "playerNames": [
+        "Esteban Granero",
+        "Esteban Félix Granero Molina"
+      ],
+      "playerSlug": "esteban-felix-granero-molina",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9676",
+      "playerName": "Éver Banega",
+      "playerNames": [
+        "Éver Banega",
+        "Éver Maximiliano David Banega"
+      ],
+      "playerSlug": "ever-maximiliano-david-banega",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9623",
+      "playerName": "Fábio Coentrão",
+      "playerNames": [
+        "Fábio Coentrão",
+        "Fábio Alexandre da Silva Coentrão"
+      ],
+      "playerSlug": "fabio-alexandre-da-silva-coentrao",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9397",
+      "playerName": "Falcao",
+      "playerNames": [
+        "Falcao",
+        "Radamel Falcao García Zárate"
+      ],
+      "playerSlug": "radamel-falcao-garcia-zarate",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9361",
+      "playerName": "Federico Fazio",
+      "playerNames": [
+        "Federico Fazio",
+        "Federico Julián Fazio"
+      ],
+      "playerSlug": "federico-julian-fazio",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9561",
+      "playerName": "Fernando Amorebieta",
+      "playerNames": [
+        "Fernando Amorebieta",
+        "Fernando Amorebieta Mardaras"
+      ],
+      "playerSlug": "fernando-amorebieta-mardaras",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9539",
+      "playerName": "Fernando Llorente",
+      "playerNames": [
+        "Fernando Llorente",
+        "Fernando Llorente Torres"
+      ],
+      "playerSlug": "fernando-llorente-torres",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9390",
+      "playerName": "Fernando Meira",
+      "playerNames": [
+        "Fernando Meira",
+        "Fernando José da Silva Freitas Meira"
+      ],
+      "playerSlug": "fernando-jose-da-silva-freitas-meira",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9365",
+      "playerName": "Fernando Navarro",
+      "playerNames": [
+        "Fernando Navarro",
+        "Fernando Navarro i Corbacho"
+      ],
+      "playerSlug": "fernando-navarro-i-corbacho",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9584",
+      "playerName": "Fernando Tissone",
+      "playerNames": [
+        "Fernando Tissone",
+        "Fernando Damián Tissone"
+      ],
+      "playerSlug": "fernando-damian-tissone",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9409",
+      "playerName": "Filipe Luis",
+      "playerNames": [
+        "Filipe Luis",
+        "Filipe Luís Kasmirski"
+      ],
+      "playerSlug": "filipe-luis-kasmirski",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9444",
+      "playerName": "Francis",
+      "playerNames": [
+        "Francis",
+        "Francisco Jesús Pérez Malia"
+      ],
+      "playerSlug": "francisco-jesus-perez-malia",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9760",
+      "playerName": "Francisco Portillo",
+      "playerNames": [
+        "Francisco Portillo",
+        "Francisco Portillo Soler"
+      ],
+      "playerSlug": "francisco-portillo-soler",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9657",
+      "playerName": "Franco Jara",
+      "playerNames": [
+        "Franco Jara",
+        "Franco Daniel Jara"
+      ],
+      "playerSlug": "franco-daniel-jara",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9375",
+      "playerName": "Franco Zuculini",
+      "playerNames": [
+        "Franco Zuculini"
+      ],
+      "playerSlug": "franco-zuculini",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9980",
+      "playerName": "Fran Rico",
+      "playerNames": [
+        "Fran Rico",
+        "Francisco Manuel Rico Castro"
+      ],
+      "playerSlug": "francisco-manuel-rico-castro",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9368",
+      "playerName": "Frédéric Kanouté",
+      "playerNames": [
+        "Frédéric Kanouté",
+        "Frédéric Oumar Kanouté"
+      ],
+      "playerSlug": "frederic-oumar-kanoute",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9413",
+      "playerName": "Gabi",
+      "playerNames": [
+        "Gabi",
+        "Gabriel Fernández Arenas"
+      ],
+      "playerSlug": "gabriel-fernandez-arenas",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10031",
+      "playerName": "Gaizka Toquero",
+      "playerNames": [
+        "Gaizka Toquero",
+        "Gaizka Toquero Pinedo"
+      ],
+      "playerSlug": "gaizka-toquero-pinedo",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9366",
+      "playerName": "Gary Medel",
+      "playerNames": [
+        "Gary Medel",
+        "Gary Alexis Medel Soto"
+      ],
+      "playerSlug": "gary-alexis-medel-soto",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9962",
+      "playerName": "Gerard Deulofeu",
+      "playerNames": [
+        "Gerard Deulofeu",
+        "Gerard Deulofeu Lázaro"
+      ],
+      "playerSlug": "gerard-deulofeu-lazaro",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9345",
+      "playerName": "Gerard Piqué",
+      "playerNames": [
+        "Gerard Piqué",
+        "Gerard Piqué Bernabéu"
+      ],
+      "playerSlug": "gerard-pique-bernabeu",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9972",
+      "playerName": "Gianni Zuiverloon",
+      "playerNames": [
+        "Gianni Zuiverloon",
+        "Gianni Michel Eugene Zuiverloon"
+      ],
+      "playerSlug": "gianni-michel-eugene-zuiverloon",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9906",
+      "playerName": "Giuseppe Rossi",
+      "playerNames": [
+        "Giuseppe Rossi"
+      ],
+      "playerSlug": "giuseppe-rossi",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9992",
+      "playerName": "Gonzalo Castellani",
+      "playerNames": [
+        "Gonzalo Castellani",
+        "Gonzalo Pablo Castellani"
+      ],
+      "playerSlug": "gonzalo-pablo-castellani",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9440",
+      "playerName": "Gonzalo Colsa",
+      "playerNames": [
+        "Gonzalo Colsa",
+        "Gonzalo Colsa Albendea"
+      ],
+      "playerSlug": "gonzalo-colsa-albendea",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9613",
+      "playerName": "Gonzalo Higuaín",
+      "playerNames": [
+        "Gonzalo Higuaín",
+        "Gonzalo Gerardo Higuaín"
+      ],
+      "playerSlug": "gonzalo-gerardo-higuain",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9916",
+      "playerName": "Gonzalo Rodríguez",
+      "playerNames": [
+        "Gonzalo Rodríguez",
+        "Gonzalo Javier Rodríguez"
+      ],
+      "playerSlug": "gonzalo-javier-rodriguez",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9549",
+      "playerName": "Gorka Iraizoz",
+      "playerNames": [
+        "Gorka Iraizoz",
+        "Gorka Iraizoz Moreno"
+      ],
+      "playerSlug": "gorka-iraizoz-moreno",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9651",
+      "playerName": "Guilherme Siqueira",
+      "playerNames": [
+        "Guilherme Siqueira",
+        "Guilherme Magdalena Siqueira"
+      ],
+      "playerSlug": "guilherme-magdalena-siqueira",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9688",
+      "playerName": "Gustavo Cabral",
+      "playerNames": [
+        "Gustavo Cabral",
+        "Gustavo Daniel Cabral Cáceres"
+      ],
+      "playerSlug": "gustavo-daniel-cabral-caceres",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9700",
+      "playerName": "Gustavo Munúa",
+      "playerNames": [
+        "Gustavo Munúa",
+        "Gustavo Adolfo Munúa Vera"
+      ],
+      "playerSlug": "gustavo-adolfo-munua-vera",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9926",
+      "playerName": "Héctor Moreno",
+      "playerNames": [
+        "Héctor Moreno",
+        "Héctor Alfredo Moreno Herrera"
+      ],
+      "playerSlug": "hector-alfredo-moreno-herrera",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9378",
+      "playerName": "Hélder Postiga",
+      "playerNames": [
+        "Hélder Postiga",
+        "Hélder Manuel Marques Postiga"
+      ],
+      "playerSlug": "helder-manuel-marques-postiga",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9551",
+      "playerName": "Ibai Gómez",
+      "playerNames": [
+        "Ibai Gómez",
+        "Ibai Gómez Pérez"
+      ],
+      "playerSlug": "ibai-gomez-perez",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9866",
+      "playerName": "Ibrahima Baldé",
+      "playerNames": [
+        "Ibrahima Baldé"
+      ],
+      "playerSlug": "ibrahima-balde",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9754",
+      "playerName": "Ibrahim Afellay",
+      "playerNames": [
+        "Ibrahim Afellay"
+      ],
+      "playerSlug": "ibrahim-afellay",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9523",
+      "playerName": "Ignacio Camacho",
+      "playerNames": [
+        "Ignacio Camacho",
+        "Ignacio Camacho Barnola"
+      ],
+      "playerSlug": "ignacio-camacho-barnola",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9638",
+      "playerName": "Ikechukwu Uche",
+      "playerNames": [
+        "Ikechukwu Uche"
+      ],
+      "playerSlug": "ikechukwu-uche",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9621",
+      "playerName": "Iker Casillas",
+      "playerNames": [
+        "Iker Casillas",
+        "Iker Casillas Fernández"
+      ],
+      "playerSlug": "iker-casillas-fernandez",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9555",
+      "playerName": "Iker Muniain",
+      "playerNames": [
+        "Iker Muniain",
+        "Iker Muniain Goñi"
+      ],
+      "playerSlug": "iker-muniain-goni",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9464",
+      "playerName": "Imanol Agirretxe",
+      "playerNames": [
+        "Imanol Agirretxe",
+        "Imanol Agirretxe Arruti"
+      ],
+      "playerSlug": "imanol-agirretxe-arruti",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9982",
+      "playerName": "Íñigo López",
+      "playerNames": [
+        "Íñigo López",
+        "Íñigo López Montaña"
+      ],
+      "playerSlug": "inigo-lopez-montana",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9462",
+      "playerName": "Íñigo Martínez",
+      "playerNames": [
+        "Íñigo Martínez",
+        "Íñigo Martínez Berridi"
+      ],
+      "playerSlug": "inigo-martinez-berridi",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9559",
+      "playerName": "Iñigo Pérez",
+      "playerNames": [
+        "Iñigo Pérez",
+        "Iñigo Pérez Soto"
+      ],
+      "playerSlug": "inigo-perez-soto",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9834",
+      "playerName": "Iriney Santos",
+      "playerNames": [
+        "Iriney Santos",
+        "Iriney Santos Da Silva"
+      ],
+      "playerSlug": "iriney-santos-da-silva",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9388",
+      "playerName": "Isaac Cuenca",
+      "playerNames": [
+        "Isaac Cuenca",
+        "Juan Isaac Cuenca López"
+      ],
+      "playerSlug": "juan-isaac-cuenca-lopez",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9519",
+      "playerName": "Isco",
+      "playerNames": [
+        "Isco",
+        "Francisco Román Alarcón Suárez"
+      ],
+      "playerSlug": "francisco-roman-alarcon-suarez",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9816",
+      "playerName": "Isidoro",
+      "playerNames": [
+        "Isidoro",
+        "José Isidoro Gómez Torres"
+      ],
+      "playerSlug": "jose-isidoro-gomez-torres",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9792",
+      "playerName": "Iván Hernández",
+      "playerNames": [
+        "Iván Hernández",
+        "Iván Hernández Soto"
+      ],
+      "playerSlug": "ivan-hernandez-soto",
+      "teamName": "Sporting Gijón",
+      "teamNames": [
+        "Sporting Gijón",
+        "sporting-gijon-spain"
+      ],
+      "teamSlug": "sporting-gijon-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9379",
+      "playerName": "Ivan Obradović",
+      "playerNames": [
+        "Ivan Obradović"
+      ],
+      "playerSlug": "ivan-obradovic",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9360",
+      "playerName": "Ivan Rakitić",
+      "playerNames": [
+        "Ivan Rakitić"
+      ],
+      "playerSlug": "ivan-rakitic",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9580",
+      "playerName": "Iván Ramis",
+      "playerNames": [
+        "Iván Ramis",
+        "Iván Ramis Barrios"
+      ],
+      "playerSlug": "ivan-ramis-barrios",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9738",
+      "playerName": "Jaime Gavilán",
+      "playerNames": [
+        "Jaime Gavilán",
+        "Jaime Gavilán Martínez"
+      ],
+      "playerSlug": "jaime-gavilan-martinez",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9978",
+      "playerName": "Jaime Romero",
+      "playerNames": [
+        "Jaime Romero",
+        "Jaime Romero Gómez"
+      ],
+      "playerSlug": "jaime-romero-gomez",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9434",
+      "playerName": "Jairo Samperio",
+      "playerNames": [
+        "Jairo Samperio",
+        "Jairo Samperio Bustara"
+      ],
+      "playerSlug": "jairo-samperio-bustara",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9878",
+      "playerName": "Javad Nekounam",
+      "playerNames": [
+        "Javad Nekounam"
+      ],
+      "playerSlug": "javad-nekounam",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9814",
+      "playerName": "Javi Chica",
+      "playerNames": [
+        "Javi Chica",
+        "Francisco Javier Chica Torres"
+      ],
+      "playerSlug": "francisco-javier-chica-torres",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9918",
+      "playerName": "Javier Camuñas",
+      "playerNames": [
+        "Javier Camuñas",
+        "Javier Camuñas Gallego"
+      ],
+      "playerSlug": "javier-camunas-gallego",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9742",
+      "playerName": "Javier Casquero",
+      "playerNames": [
+        "Javier Casquero",
+        "Francisco Javier Casquero Paredes"
+      ],
+      "playerSlug": "francisco-javier-casquero-paredes",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9696",
+      "playerName": "Javier Farinós",
+      "playerNames": [
+        "Javier Farinós",
+        "Francisco Javier Farinós Zapata"
+      ],
+      "playerSlug": "francisco-javier-farinos-zapata",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9355",
+      "playerName": "Javier Mascherano",
+      "playerNames": [
+        "Javier Mascherano",
+        "Javier Alejandro Mascherano"
+      ],
+      "playerSlug": "javier-alejandro-mascherano",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9840",
+      "playerName": "Javier Matilla",
+      "playerNames": [
+        "Javier Matilla",
+        "Javier Magro Matilla"
+      ],
+      "playerSlug": "javier-magro-matilla",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9382",
+      "playerName": "Javier Paredes",
+      "playerNames": [
+        "Javier Paredes",
+        "Javier Paredes Arango"
+      ],
+      "playerSlug": "javier-paredes-arango",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9482",
+      "playerName": "Javi Fuego",
+      "playerNames": [
+        "Javi Fuego",
+        "Javier Fuego Martínez"
+      ],
+      "playerSlug": "javier-fuego-martinez",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9930",
+      "playerName": "Javi López",
+      "playerNames": [
+        "Javi López",
+        "Javier López Rodríguez"
+      ],
+      "playerSlug": "javier-lopez-rodriguez",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9557",
+      "playerName": "Javi Martínez",
+      "playerNames": [
+        "Javi Martínez",
+        "Javier Martínez Aginaga"
+      ],
+      "playerSlug": "javier-martinez-aginaga",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9371",
+      "playerName": "Javi Varas",
+      "playerNames": [
+        "Javi Varas",
+        "Javier Varas Herrera"
+      ],
+      "playerSlug": "javier-varas-herrera",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9694",
+      "playerName": "Javi Venta",
+      "playerNames": [
+        "Javi Venta",
+        "Javier Rodríguez Venta"
+      ],
+      "playerSlug": "javier-rodriguez-venta",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9800",
+      "playerName": "Jefferson Montero",
+      "playerNames": [
+        "Jefferson Montero",
+        "Jefferson Antonio Montero Vite"
+      ],
+      "playerSlug": "jefferson-antonio-montero-vite",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9330",
+      "playerName": "Jérémy Mathieu",
+      "playerNames": [
+        "Jérémy Mathieu"
+      ],
+      "playerSlug": "jeremy-mathieu",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9517",
+      "playerName": "Jesús Gámez",
+      "playerNames": [
+        "Jesús Gámez",
+        "Jesús Gámez Duarte"
+      ],
+      "playerSlug": "jesus-gamez-duarte",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9364",
+      "playerName": "Jesús Navas",
+      "playerNames": [
+        "Jesús Navas",
+        "Jesús Navas González"
+      ],
+      "playerSlug": "jesus-navas-gonzalez",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9922",
+      "playerName": "Joan Oriol",
+      "playerNames": [
+        "Joan Oriol",
+        "Joan Oriol i Gràcia"
+      ],
+      "playerSlug": "joan-oriol-i-gracia",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9944",
+      "playerName": "Joan Verdú",
+      "playerNames": [
+        "Joan Verdú",
+        "Joan Verdú Fernández"
+      ],
+      "playerSlug": "joan-verdu-fernandez",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9407",
+      "playerName": "João Miranda de Souza Filho",
+      "playerNames": [
+        "João Miranda de Souza Filho"
+      ],
+      "playerSlug": "joao-miranda-de-souza-filho",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9968",
+      "playerName": "João Victor",
+      "playerNames": [
+        "João Victor",
+        "João Victor de Albuquerque Bruno"
+      ],
+      "playerSlug": "joao-victor-de-albuquerque-bruno",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10011",
+      "playerName": "Joel Robles",
+      "playerNames": [
+        "Joel Robles",
+        "Joel Robles Blázquez"
+      ],
+      "playerSlug": "joel-robles-blazquez",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9332",
+      "playerName": "Jonas",
+      "playerNames": [
+        "Jonas",
+        "Jonas Gonçalves Oliveira"
+      ],
+      "playerSlug": "jonas-goncalves-oliveira",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9452",
+      "playerName": "Jonathan dos Santos",
+      "playerNames": [
+        "Jonathan dos Santos",
+        "Jonathan dos Santos Ramírez"
+      ],
+      "playerSlug": "jonathan-dos-santos-ramirez",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9808",
+      "playerName": "Jonathan Pereira",
+      "playerNames": [
+        "Jonathan Pereira",
+        "Jonathan Pereira Rodríguez"
+      ],
+      "playerSlug": "jonathan-pereira-rodriguez",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9565",
+      "playerName": "Jon Aurtenetxe",
+      "playerNames": [
+        "Jon Aurtenetxe",
+        "Jon Aurtenetxe Borde"
+      ],
+      "playerSlug": "jon-aurtenetxe-borde",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9327",
+      "playerName": "Jordi Alba",
+      "playerNames": [
+        "Jordi Alba",
+        "Jordi Alba Ramos"
+      ],
+      "playerSlug": "jordi-alba-ramos",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9952",
+      "playerName": "Jordi Amat",
+      "playerNames": [
+        "Jordi Amat",
+        "Jordi Amat Maas"
+      ],
+      "playerSlug": "jordi-amat-maas",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9502",
+      "playerName": "Jordi Figueras",
+      "playerNames": [
+        "Jordi Figueras",
+        "Jordi Figueras Montel"
+      ],
+      "playerSlug": "jordi-figueras-montel",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9830",
+      "playerName": "Jorge Molina",
+      "playerNames": [
+        "Jorge Molina",
+        "Jorge Molina Vidal"
+      ],
+      "playerSlug": "jorge-molina-vidal",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10009",
+      "playerName": "Jorge Pulido",
+      "playerNames": [
+        "Jorge Pulido",
+        "Jorge Pulido Mayoral"
+      ],
+      "playerSlug": "jorge-pulido-mayoral",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9533",
+      "playerName": "Joris Mathijsen",
+      "playerNames": [
+        "Joris Mathijsen"
+      ],
+      "playerSlug": "joris-mathijsen",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9806",
+      "playerName": "José Alberto Cañas",
+      "playerNames": [
+        "José Alberto Cañas",
+        "José Alberto Cañas Ruiz Herrera"
+      ],
+      "playerSlug": "jose-alberto-canas-ruiz-herrera",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9569",
+      "playerName": "José Antonio Reyes",
+      "playerNames": [
+        "José Antonio Reyes",
+        "José Antonio Reyes Calderón"
+      ],
+      "playerSlug": "jose-antonio-reyes-calderon",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9476",
+      "playerName": "Joseba Llorente",
+      "playerNames": [
+        "Joseba Llorente",
+        "Joseba Llorente Etxarri"
+      ],
+      "playerSlug": "joseba-llorente-etxarri",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9619",
+      "playerName": "José Callejón",
+      "playerNames": [
+        "José Callejón",
+        "José María Callejón Bueno"
+      ],
+      "playerSlug": "jose-maria-callejon-bueno",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9363",
+      "playerName": "José Campaña",
+      "playerNames": [
+        "José Campaña",
+        "José Ángel Gómez Campaña"
+      ],
+      "playerSlug": "jose-angel-gomez-campana",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10025",
+      "playerName": "José Javier Barkero",
+      "playerNames": [
+        "José Javier Barkero",
+        "José Javier Barkero Saludes"
+      ],
+      "playerSlug": "jose-javier-barkero-saludes",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9986",
+      "playerName": "Joselu",
+      "playerNames": [
+        "Joselu",
+        "José Luis Moreno Barroso"
+      ],
+      "playerSlug": "jose-luis-moreno-barroso",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9494",
+      "playerName": "José Manuel Casado",
+      "playerNames": [
+        "José Manuel Casado",
+        "José Manuel Casado Bizcocho"
+      ],
+      "playerSlug": "jose-manuel-casado-bizcocho",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9758",
+      "playerName": "José Manuel Pinto",
+      "playerNames": [
+        "José Manuel Pinto",
+        "José Manuel Pinto Colorado"
+      ],
+      "playerSlug": "jose-manuel-pinto-colorado",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9488",
+      "playerName": "José María Movilla",
+      "playerNames": [
+        "José María Movilla",
+        "Jose María Movilla Cubero"
+      ],
+      "playerSlug": "jose-maria-movilla-cubero",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9592",
+      "playerName": "Jose Martí",
+      "playerNames": [
+        "Jose Martí",
+        "Jose Luis Martí Soler"
+      ],
+      "playerSlug": "jose-luis-marti-soler",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9594",
+      "playerName": "José Nunes",
+      "playerNames": [
+        "José Nunes",
+        "José Carlos de Araújo Nunes"
+      ],
+      "playerSlug": "jose-carlos-de-araujo-nunes",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9888",
+      "playerName": "Juan Cala",
+      "playerNames": [
+        "Juan Cala",
+        "Juan Torres Ruiz"
+      ],
+      "playerSlug": "juan-torres-ruiz",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9373",
+      "playerName": "Juan Carlos",
+      "playerNames": [
+        "Juan Carlos",
+        "Juan Carlos Pérez López"
+      ],
+      "playerSlug": "juan-carlos-perez-lopez",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9942",
+      "playerName": "Juan Forlín",
+      "playerNames": [
+        "Juan Forlín",
+        "Juan Daniel Forlín"
+      ],
+      "playerSlug": "juan-daniel-forlin",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9698",
+      "playerName": "Juanfran",
+      "playerNames": [
+        "Juanfran",
+        "Juan Francisco García García"
+      ],
+      "playerSlug": "juan-francisco-garcia-garcia",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9411",
+      "playerName": "Juanfran",
+      "playerNames": [
+        "Juanfran",
+        "Juan Francisco Torres Belén"
+      ],
+      "playerSlug": "juan-francisco-torres-belen",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10027",
+      "playerName": "Juanlu",
+      "playerNames": [
+        "Juanlu",
+        "Juan Luis Gómez López"
+      ],
+      "playerSlug": "juan-luis-gomez-lopez",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9782",
+      "playerName": "Juan Pablo",
+      "playerNames": [
+        "Juan Pablo",
+        "Juan Pablo Colinas Ferreras"
+      ],
+      "playerSlug": "juan-pablo-colinas-ferreras",
+      "teamName": "Sporting Gijón",
+      "teamNames": [
+        "Sporting Gijón",
+        "sporting-gijon-spain"
+      ],
+      "teamSlug": "sporting-gijon-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9740",
+      "playerName": "Juan Rodríguez",
+      "playerNames": [
+        "Juan Rodríguez",
+        "Juan Antonio Rodríguez Villamuela"
+      ],
+      "playerSlug": "juan-antonio-rodriguez-villamuela",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9852",
+      "playerName": "Juan Valera",
+      "playerNames": [
+        "Juan Valera",
+        "Juan Valera Espín"
+      ],
+      "playerSlug": "juan-valera-espin",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9862",
+      "playerName": "Jukka Raitala",
+      "playerNames": [
+        "Jukka Raitala"
+      ],
+      "playerSlug": "jukka-raitala",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9369",
+      "playerName": "Julien Escudé",
+      "playerNames": [
+        "Julien Escudé"
+      ],
+      "playerSlug": "julien-escude",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9655",
+      "playerName": "Júlio César",
+      "playerNames": [
+        "Júlio César",
+        "Júlio César Jacobi"
+      ],
+      "playerSlug": "julio-cesar-jacobi",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9828",
+      "playerName": "Kaká",
+      "playerNames": [
+        "Kaká",
+        "Ricardo Izecson dos Santos Leite"
+      ],
+      "playerSlug": "ricardo-izecson-dos-santos-leite",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9625",
+      "playerName": "Karim Benzema",
+      "playerNames": [
+        "Karim Benzema"
+      ],
+      "playerSlug": "karim-benzema",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9436",
+      "playerName": "Khouma Babacar",
+      "playerNames": [
+        "Khouma Babacar",
+        "Khouma El Hadji Babacar"
+      ],
+      "playerSlug": "khouma-el-hadji-babacar",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9954",
+      "playerName": "Kiko Casilla",
+      "playerNames": [
+        "Kiko Casilla",
+        "Francisco Casilla Cortés"
+      ],
+      "playerSlug": "francisco-casilla-cortes",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9401",
+      "playerName": "Koke",
+      "playerNames": [
+        "Koke",
+        "Jorge Resurrección Merodio"
+      ],
+      "playerSlug": "jorge-resurreccion-merodio",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9486",
+      "playerName": "Lass Bangoura",
+      "playerNames": [
+        "Lass Bangoura",
+        "Alhassane Bangoura"
+      ],
+      "playerSlug": "alhassane-bangoura",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9824",
+      "playerName": "Lass Diarra",
+      "playerNames": [
+        "Lass Diarra",
+        "Lassana Diarra"
+      ],
+      "playerSlug": "lassana-diarra",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9392",
+      "playerName": "Leonardo Ponzio",
+      "playerNames": [
+        "Leonardo Ponzio",
+        "Leonardo Daniel Ponzio"
+      ],
+      "playerSlug": "leonardo-daniel-ponzio",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9470",
+      "playerName": "Liassine Cadamuro",
+      "playerNames": [
+        "Liassine Cadamuro",
+        "Liassine Cadamuro-Bentaïba"
+      ],
+      "playerSlug": "liassine-cadamuro-bentaiba",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9347",
+      "playerName": "Lionel Messi",
+      "playerNames": [
+        "Lionel Messi",
+        "Lionel Andrés Messi Cuccittini"
+      ],
+      "playerSlug": "lionel-andres-messi-cuccittini",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9880",
+      "playerName": "Lolo",
+      "playerNames": [
+        "Lolo",
+        "Manuel Jesús Ortiz Toribio"
+      ],
+      "playerSlug": "manuel-jesus-ortiz-toribio",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9391",
+      "playerName": "Luis García",
+      "playerNames": [
+        "Luis García",
+        "Luis García Fernández"
+      ],
+      "playerSlug": "luis-garcia-fernandez",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9574",
+      "playerName": "Luis Perea",
+      "playerNames": [
+        "Luis Perea",
+        "Luis Amaranto Perea Mosquera"
+      ],
+      "playerSlug": "luis-amaranto-perea-mosquera",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9722",
+      "playerName": "MacDonald Mariga Wanyama",
+      "playerNames": [
+        "MacDonald Mariga Wanyama"
+      ],
+      "playerSlug": "macdonald-mariga-wanyama",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9670",
+      "playerName": "Mamadou Koné",
+      "playerNames": [
+        "Mamadou Koné"
+      ],
+      "playerSlug": "mamadou-kone",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9854",
+      "playerName": "Mané",
+      "playerNames": [
+        "Mané",
+        "José Manuel Jiménez Ortiz"
+      ],
+      "playerSlug": "jose-manuel-jimenez-ortiz",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9367",
+      "playerName": "Manu del Moral",
+      "playerNames": [
+        "Manu del Moral",
+        "Manuel del Moral Fernández"
+      ],
+      "playerSlug": "manuel-del-moral-fernandez",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9446",
+      "playerName": "Manuel Arana",
+      "playerNames": [
+        "Manuel Arana",
+        "Manuel Jesús Arana Rodríguez"
+      ],
+      "playerSlug": "manuel-jesus-arana-rodriguez",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9756",
+      "playerName": "Marc Bartra",
+      "playerNames": [
+        "Marc Bartra",
+        "Marc Bartra Aregall"
+      ],
+      "playerSlug": "marc-bartra-aregall",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9884",
+      "playerName": "Marc Bertrán",
+      "playerNames": [
+        "Marc Bertrán",
+        "Marc Bertrán Vilanova"
+      ],
+      "playerSlug": "marc-bertran-vilanova",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9826",
+      "playerName": "Marcelo",
+      "playerNames": [
+        "Marcelo",
+        "Marcelo Vieira da Silva Júnior"
+      ],
+      "playerSlug": "marcelo-vieira-da-silva-junior",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9724",
+      "playerName": "Marc Muniesa",
+      "playerNames": [
+        "Marc Muniesa",
+        "Marc Muniesa Martínez"
+      ],
+      "playerSlug": "marc-muniesa-martinez",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9989",
+      "playerName": "Marco Ruben",
+      "playerNames": [
+        "Marco Ruben",
+        "Marco Gastón Ruben Rodríguez"
+      ],
+      "playerSlug": "marco-gaston-ruben-rodriguez",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9450",
+      "playerName": "Marcos Gullón",
+      "playerNames": [
+        "Marcos Gullón",
+        "Marcos Gullón Ferrera"
+      ],
+      "playerSlug": "marcos-gullon-ferrera",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9910",
+      "playerName": "Marcos Senna",
+      "playerNames": [
+        "Marcos Senna",
+        "Marcos Antonio Senna da Silva"
+      ],
+      "playerSlug": "marcos-antonio-senna-da-silva",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9667",
+      "playerName": "Marc Torrejón",
+      "playerNames": [
+        "Marc Torrejón",
+        "Marc Torrejón Moya"
+      ],
+      "playerSlug": "marc-torrejon-moya",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9836",
+      "playerName": "Mario Abrante",
+      "playerNames": [
+        "Mario Abrante",
+        "Pedro Mario Álvarez Abrante"
+      ],
+      "playerSlug": "pedro-mario-alvarez-abrante",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9448",
+      "playerName": "Mario Fernández",
+      "playerNames": [
+        "Mario Fernández",
+        "Mario Fernández Cuesta"
+      ],
+      "playerSlug": "mario-fernandez-cuesta",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9567",
+      "playerName": "Mario Suárez",
+      "playerNames": [
+        "Mario Suárez",
+        "Mario Suárez Mata"
+      ],
+      "playerSlug": "mario-suarez-mata",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9460",
+      "playerName": "Markel Bergara",
+      "playerNames": [
+        "Markel Bergara",
+        "Markel Bergara Larrañaga"
+      ],
+      "playerSlug": "markel-bergara-larranaga",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9547",
+      "playerName": "Markel Susaeta",
+      "playerNames": [
+        "Markel Susaeta",
+        "Markel Susaeta Laskurain"
+      ],
+      "playerSlug": "markel-susaeta-laskurain",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9966",
+      "playerName": "Martí Crespí",
+      "playerNames": [
+        "Martí Crespí",
+        "Martí Crespí Pascual"
+      ],
+      "playerSlug": "marti-crespi-pascual",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9359",
+      "playerName": "Martín Cáceres",
+      "playerNames": [
+        "Martín Cáceres",
+        "José Martín Cáceres Silva"
+      ],
+      "playerSlug": "jose-martin-caceres-silva",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9529",
+      "playerName": "Martín Demichelis",
+      "playerNames": [
+        "Martín Demichelis",
+        "Martín Gastón Demichelis"
+      ],
+      "playerSlug": "martin-gaston-demichelis",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9348",
+      "playerName": "Martín Montoya",
+      "playerNames": [
+        "Martín Montoya",
+        "Martín Montoya Torralbo"
+      ],
+      "playerSlug": "martin-montoya-torralbo",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9780",
+      "playerName": "Mate Bilić",
+      "playerNames": [
+        "Mate Bilić"
+      ],
+      "playerSlug": "mate-bilic",
+      "teamName": "Sporting Gijón",
+      "teamNames": [
+        "Sporting Gijón",
+        "sporting-gijon-spain"
+      ],
+      "teamSlug": "sporting-gijon-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9904",
+      "playerName": "Mateo Musacchio",
+      "playerNames": [
+        "Mateo Musacchio",
+        "Mateo Pablo Musacchio"
+      ],
+      "playerSlug": "mateo-pablo-musacchio",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9384",
+      "playerName": "Maurizio Lanzaro",
+      "playerNames": [
+        "Maurizio Lanzaro"
+      ],
+      "playerSlug": "maurizio-lanzaro",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9387",
+      "playerName": "Maxwell",
+      "playerNames": [
+        "Maxwell",
+        "Maxwell Scherrer Cabelino Andrade"
+      ],
+      "playerSlug": "maxwell-scherrer-cabelino-andrade",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9844",
+      "playerName": "Mehdi Lacen",
+      "playerNames": [
+        "Mehdi Lacen"
+      ],
+      "playerSlug": "mehdi-lacen",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9331",
+      "playerName": "Mehmet Topal",
+      "playerNames": [
+        "Mehmet Topal"
+      ],
+      "playerSlug": "mehmet-topal",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9607",
+      "playerName": "Mesut Özil",
+      "playerNames": [
+        "Mesut Özil"
+      ],
+      "playerSlug": "mesut-ozil",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9601",
+      "playerName": "Michaël Pereira",
+      "playerNames": [
+        "Michaël Pereira"
+      ],
+      "playerSlug": "michael-pereira",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9504",
+      "playerName": "Míchel",
+      "playerNames": [
+        "Míchel",
+        "Miguel Ángel Sánchez Muñoz"
+      ],
+      "playerSlug": "miguel-angel-sanchez-munoz",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9847",
+      "playerName": "Míchel",
+      "playerNames": [
+        "Míchel",
+        "Miguel Marcos Madera"
+      ],
+      "playerSlug": "miguel-marcos-madera",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9509",
+      "playerName": "Michu",
+      "playerNames": [
+        "Michu",
+        "Miguel Pérez Cuesta"
+      ],
+      "playerSlug": "miguel-perez-cuesta",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9732",
+      "playerName": "Miguel Ángel Moyá",
+      "playerNames": [
+        "Miguel Ángel Moyá",
+        "Miguel Ángel Moyà Rumbo"
+      ],
+      "playerSlug": "miguel-angel-moya-rumbo",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9870",
+      "playerName": "Miguel Flaño",
+      "playerNames": [
+        "Miguel Flaño",
+        "Miguel Flaño Bezunartea"
+      ],
+      "playerSlug": "miguel-flano-bezunartea",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9335",
+      "playerName": "Miguel Monteiro",
+      "playerNames": [
+        "Miguel Monteiro",
+        "Luís Miguel Brito Garcia Monteiro"
+      ],
+      "playerSlug": "luis-miguel-brito-garcia-monteiro",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9730",
+      "playerName": "Miguel Torres",
+      "playerNames": [
+        "Miguel Torres",
+        "Miguel Torres Gómez"
+      ],
+      "playerSlug": "miguel-torres-gomez",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9478",
+      "playerName": "Mikel Aranburu",
+      "playerNames": [
+        "Mikel Aranburu",
+        "Mikel Aranburu Eizagirre"
+      ],
+      "playerSlug": "mikel-aranburu-eizagirre",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9474",
+      "playerName": "Mikel González",
+      "playerNames": [
+        "Mikel González",
+        "Mikel González de Martín Martínez"
+      ],
+      "playerSlug": "mikel-gonzalez-de-martin-martinez",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9500",
+      "playerName": "Mikel Labaka",
+      "playerNames": [
+        "Mikel Labaka",
+        "Mikel Labaka Zurriarain"
+      ],
+      "playerSlug": "mikel-labaka-zurriarain",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9636",
+      "playerName": "Mikel Rico",
+      "playerNames": [
+        "Mikel Rico",
+        "Mikel Rico Moreno"
+      ],
+      "playerSlug": "mikel-rico-moreno",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9544",
+      "playerName": "Mikel San José",
+      "playerNames": [
+        "Mikel San José",
+        "Mikel San José Domínguez"
+      ],
+      "playerSlug": "mikel-san-jose-dominguez",
+      "teamName": "Athletic Club",
+      "teamNames": [
+        "Athletic Club",
+        "athletic-club-spain"
+      ],
+      "teamSlug": "athletic-club-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9750",
+      "playerName": "Miku Fedor",
+      "playerNames": [
+        "Miku Fedor",
+        "Nicolás Ladislao Fedor Flores"
+      ],
+      "playerSlug": "nicolas-ladislao-fedor-flores",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9641",
+      "playerName": "Moisés Hurtado",
+      "playerNames": [
+        "Moisés Hurtado",
+        "Moisés Hurtado Pérez"
+      ],
+      "playerSlug": "moises-hurtado-perez",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9898",
+      "playerName": "Mubarak Wakaso",
+      "playerNames": [
+        "Mubarak Wakaso"
+      ],
+      "playerSlug": "mubarak-wakaso",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9684",
+      "playerName": "Nabil El Zhar",
+      "playerNames": [
+        "Nabil El Zhar"
+      ],
+      "playerSlug": "nabil-el-zhar",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9812",
+      "playerName": "Nacho",
+      "playerNames": [
+        "Nacho",
+        "Ignacio Pérez Santamaría"
+      ],
+      "playerSlug": "ignacio-perez-santamaria",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9772",
+      "playerName": "Nacho Cases",
+      "playerNames": [
+        "Nacho Cases",
+        "Ignacio Cases Mora"
+      ],
+      "playerSlug": "ignacio-cases-mora",
+      "teamName": "Sporting Gijón",
+      "teamNames": [
+        "Sporting Gijón",
+        "sporting-gijon-spain"
+      ],
+      "teamSlug": "sporting-gijon-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9511",
+      "playerName": "Nacho Monreal",
+      "playerNames": [
+        "Nacho Monreal",
+        "Ignacio Monreal Eraso"
+      ],
+      "playerSlug": "ignacio-monreal-eraso",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9920",
+      "playerName": "Nilmar",
+      "playerNames": [
+        "Nilmar",
+        "Nilmar Honorato da Silva"
+      ],
+      "playerSlug": "nilmar-honorato-da-silva",
+      "teamName": "Villarreal",
+      "teamNames": [
+        "Villarreal",
+        "villarreal-spain"
+      ],
+      "teamSlug": "villarreal-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9868",
+      "playerName": "Nino",
+      "playerNames": [
+        "Nino",
+        "Juan Francisco Martínez Modesto"
+      ],
+      "playerSlug": "juan-francisco-martinez-modesto",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9818",
+      "playerName": "Nono Delgado",
+      "playerNames": [
+        "Nono Delgado",
+        "José Antonio Delgado Villar"
+      ],
+      "playerSlug": "jose-antonio-delgado-villar",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9633",
+      "playerName": "Odion Ighalo",
+      "playerNames": [
+        "Odion Ighalo",
+        "Odion Jude Ighalo"
+      ],
+      "playerSlug": "odion-jude-ighalo",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9770",
+      "playerName": "Óscar Trejo",
+      "playerNames": [
+        "Óscar Trejo",
+        "Óscar Guido Trejo"
+      ],
+      "playerSlug": "oscar-guido-trejo",
+      "teamName": "Sporting Gijón",
+      "teamNames": [
+        "Sporting Gijón",
+        "sporting-gijon-spain"
+      ],
+      "teamSlug": "sporting-gijon-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9393",
+      "playerName": "Pablo Barrera",
+      "playerNames": [
+        "Pablo Barrera",
+        "Pablo Edson Barrera Acosta"
+      ],
+      "playerSlug": "pablo-edson-barrera-acosta",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9603",
+      "playerName": "Pablo Cáceres",
+      "playerNames": [
+        "Pablo Cáceres",
+        "Pablo Domingo Cáceres Rodríguez"
+      ],
+      "playerSlug": "pablo-domingo-caceres-rodriguez",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9674",
+      "playerName": "Pablo Hernández",
+      "playerNames": [
+        "Pablo Hernández",
+        "Pablo Hernández Domínguez"
+      ],
+      "playerSlug": "pablo-hernandez-dominguez",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9329",
+      "playerName": "Pablo Piatti",
+      "playerNames": [
+        "Pablo Piatti",
+        "Pablo Daniel Piatti"
+      ],
+      "playerSlug": "pablo-daniel-piatti",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9842",
+      "playerName": "Pablo Sarabia",
+      "playerNames": [
+        "Pablo Sarabia",
+        "Pablo Sarabia García"
+      ],
+      "playerSlug": "pablo-sarabia-garcia",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9386",
+      "playerName": "Pablo Sebastián Valeira Álvarez",
+      "playerNames": [
+        "Pablo Sebastián Valeira Álvarez"
+      ],
+      "playerSlug": "pablo-sebastian-valeira-alvarez",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9432",
+      "playerName": "Pape Diop",
+      "playerNames": [
+        "Pape Diop",
+        "Papa Kouly Diop"
+      ],
+      "playerSlug": "papa-kouly-diop",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10013",
+      "playerName": "Pape Maly Diamanka",
+      "playerNames": [
+        "Pape Maly Diamanka"
+      ],
+      "playerSlug": "pape-maly-diamanka",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9872",
+      "playerName": "Patxi Puñal",
+      "playerNames": [
+        "Patxi Puñal",
+        "Francisco Puñal Martínez"
+      ],
+      "playerSlug": "francisco-punal-martinez",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9970",
+      "playerName": "Pau Cendrós",
+      "playerNames": [
+        "Pau Cendrós",
+        "Pablo Cendrós López"
+      ],
+      "playerSlug": "pablo-cendros-lopez",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9822",
+      "playerName": "Paulão",
+      "playerNames": [
+        "Paulão",
+        "Paulo Afonso Santos Júnior"
+      ],
+      "playerSlug": "paulo-afonso-santos-junior",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9385",
+      "playerName": "Paulo da Silva",
+      "playerNames": [
+        "Paulo da Silva",
+        "Paulo César Da Silva Barrios"
+      ],
+      "playerSlug": "paulo-cesar-da-silva-barrios",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9342",
+      "playerName": "Pedro",
+      "playerNames": [
+        "Pedro",
+        "Pedro Eliezer Rodríguez Ledesma"
+      ],
+      "playerSlug": "pedro-eliezer-rodriguez-ledesma",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9964",
+      "playerName": "Pedro Bigas",
+      "playerNames": [
+        "Pedro Bigas",
+        "Pedro Bigas Rigo"
+      ],
+      "playerSlug": "pedro-bigas-rigo",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9506",
+      "playerName": "Pedro Botelho",
+      "playerNames": [
+        "Pedro Botelho",
+        "Pedro Roberto Silva Botelho"
+      ],
+      "playerSlug": "pedro-roberto-silva-botelho",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9686",
+      "playerName": "Pedro López",
+      "playerNames": [
+        "Pedro López",
+        "Pedro López Muñoz"
+      ],
+      "playerSlug": "pedro-lopez-munoz",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9438",
+      "playerName": "Pedro Munitis",
+      "playerNames": [
+        "Pedro Munitis",
+        "Pedro Manuel Munitis Álvarez"
+      ],
+      "playerSlug": "pedro-manuel-munitis-alvarez",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9748",
+      "playerName": "Pedro Ríos",
+      "playerNames": [
+        "Pedro Ríos",
+        "Pedro Ríos Maestre"
+      ],
+      "playerSlug": "pedro-rios-maestre",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9627",
+      "playerName": "Pepe",
+      "playerNames": [
+        "Pepe",
+        "Kléper Laveran Lima Ferreira"
+      ],
+      "playerSlug": "kleper-laveran-lima-ferreira",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9924",
+      "playerName": "Philippe Coutinho",
+      "playerNames": [
+        "Philippe Coutinho",
+        "Philippe Coutinho Correia"
+      ],
+      "playerSlug": "philippe-coutinho-correia",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9372",
+      "playerName": "Piotr Trochowski",
+      "playerNames": [
+        "Piotr Trochowski"
+      ],
+      "playerSlug": "piotr-trochowski",
+      "teamName": "Sevilla",
+      "teamNames": [
+        "Sevilla",
+        "sevilla-spain"
+      ],
+      "teamSlug": "sevilla-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9496",
+      "playerName": "Piti",
+      "playerNames": [
+        "Piti",
+        "Francisco Medina Luna"
+      ],
+      "playerSlug": "francisco-medina-luna",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9848",
+      "playerName": "Rafa",
+      "playerNames": [
+        "Rafa",
+        "Rafael López Gómez"
+      ],
+      "playerSlug": "rafael-lopez-gomez",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9498",
+      "playerName": "Rafa García",
+      "playerNames": [
+        "Rafa García",
+        "Rafael García García"
+      ],
+      "playerSlug": "rafael-garcia-garcia",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9946",
+      "playerName": "Raúl Baena",
+      "playerNames": [
+        "Raúl Baena",
+        "José Raúl Baena Urdiales"
+      ],
+      "playerSlug": "jose-raul-baena-urdiales",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9858",
+      "playerName": "Raúl García",
+      "playerNames": [
+        "Raúl García",
+        "Raúl García Escudero"
+      ],
+      "playerSlug": "raul-garcia-escudero",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9948",
+      "playerName": "Raúl Rodríguez",
+      "playerNames": [
+        "Raúl Rodríguez",
+        "Raúl Rodríguez Navarro"
+      ],
+      "playerSlug": "raul-rodriguez-navarro",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9490",
+      "playerName": "Raúl Tamudo",
+      "playerNames": [
+        "Raúl Tamudo",
+        "Raúl Tamudo Montero"
+      ],
+      "playerSlug": "raul-tamudo-montero",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9521",
+      "playerName": "Recio",
+      "playerNames": [
+        "Recio",
+        "José Luis García del Pozo"
+      ],
+      "playerSlug": "jose-luis-garcia-del-pozo",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9334",
+      "playerName": "Ricardo Costa",
+      "playerNames": [
+        "Ricardo Costa",
+        "Ricardo Miguel Moreira da Costa"
+      ],
+      "playerSlug": "ricardo-miguel-moreira-da-costa",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10015",
+      "playerName": "Rober Correa",
+      "playerNames": [
+        "Rober Correa",
+        "Roberto Antonio Correa Silva"
+      ],
+      "playerSlug": "roberto-antonio-correa-silva",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9776",
+      "playerName": "Roberto Canella",
+      "playerNames": [
+        "Roberto Canella",
+        "Roberto Canella Suárez"
+      ],
+      "playerSlug": "roberto-canella-suarez",
+      "teamName": "Sporting Gijón",
+      "teamNames": [
+        "Sporting Gijón",
+        "sporting-gijon-spain"
+      ],
+      "teamSlug": "sporting-gijon-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9984",
+      "playerName": "Roberto Fernández",
+      "playerNames": [
+        "Roberto Fernández",
+        "Roberto Fernández Alvarellos"
+      ],
+      "playerSlug": "roberto-fernandez-alvarellos",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9374",
+      "playerName": "Roberto Jiménez",
+      "playerNames": [
+        "Roberto Jiménez",
+        "Roberto Jiménez Gago"
+      ],
+      "playerSlug": "roberto-jimenez-gago",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9338",
+      "playerName": "Roberto Soldado",
+      "playerNames": [
+        "Roberto Soldado",
+        "Roberto Soldado Rillo"
+      ],
+      "playerSlug": "roberto-soldado-rillo",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10021",
+      "playerName": "Roberto Trashorras",
+      "playerNames": [
+        "Roberto Trashorras",
+        "Roberto Trashorras Gayoso"
+      ],
+      "playerSlug": "roberto-trashorras-gayoso",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9996",
+      "playerName": "Roland Lamah",
+      "playerNames": [
+        "Roland Lamah",
+        "Roland Conde Lamah"
+      ],
+      "playerSlug": "roland-conde-lamah",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9958",
+      "playerName": "Romaric",
+      "playerNames": [
+        "Romaric",
+        "Christian Koffi Romaric N''Dri"
+      ],
+      "playerSlug": "christian-koffi-romaric-n-dri",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9820",
+      "playerName": "Roque Santa Cruz",
+      "playerNames": [
+        "Roque Santa Cruz",
+        "Roque Luis Santa Cruz Cantero"
+      ],
+      "playerSlug": "roque-luis-santa-cruz-cantero",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10001",
+      "playerName": "Rovérsio",
+      "playerNames": [
+        "Rovérsio",
+        "Rovérsio Rodrigues de Barros"
+      ],
+      "playerSlug": "roversio-rodrigues-de-barros",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9798",
+      "playerName": "Rubén Castro",
+      "playerNames": [
+        "Rubén Castro",
+        "Rubén Castro Martín"
+      ],
+      "playerSlug": "ruben-castro-martin",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9998",
+      "playerName": "Rubén González",
+      "playerNames": [
+        "Rubén González",
+        "Rubén González Rocha"
+      ],
+      "playerSlug": "ruben-gonzalez-rocha",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9377",
+      "playerName": "Rúben Micael",
+      "playerNames": [
+        "Rúben Micael",
+        "Rúben Micael Freitas da Ressurreição"
+      ],
+      "playerSlug": "ruben-micael-freitas-da-ressurreicao",
+      "teamName": "Real Zaragoza",
+      "teamNames": [
+        "Real Zaragoza",
+        "real-zaragoza-spain"
+      ],
+      "teamSlug": "real-zaragoza-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9468",
+      "playerName": "Rubén Pardo",
+      "playerNames": [
+        "Rubén Pardo",
+        "Rubén Pardo Gutiérrez"
+      ],
+      "playerSlug": "ruben-pardo-gutierrez",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9726",
+      "playerName": "Rubén Pérez",
+      "playerNames": [
+        "Rubén Pérez",
+        "Rubén Salvador Pérez Del Mármol"
+      ],
+      "playerSlug": "ruben-salvador-perez-del-marmol",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9708",
+      "playerName": "Rubén Suárez",
+      "playerNames": [
+        "Rubén Suárez",
+        "Rubén Suárez Estrada"
+      ],
+      "playerSlug": "ruben-suarez-estrada",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9936",
+      "playerName": "Rui Fonte",
+      "playerNames": [
+        "Rui Fonte",
+        "Rui Pedro da Rocha Fonte"
+      ],
+      "playerSlug": "rui-pedro-da-rocha-fonte",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9531",
+      "playerName": "Ruud van Nistelrooy",
+      "playerNames": [
+        "Ruud van Nistelrooy"
+      ],
+      "playerSlug": "ruud-van-nistelrooy",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9515",
+      "playerName": "Salomón Rondón",
+      "playerNames": [
+        "Salomón Rondón",
+        "José Salomón Rondón Giménez"
+      ],
+      "playerSlug": "jose-salomon-rondon-gimenez",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9832",
+      "playerName": "Salva Sevilla",
+      "playerNames": [
+        "Salva Sevilla",
+        "Salvador Sevilla López"
+      ],
+      "playerSlug": "salvador-sevilla-lopez",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9615",
+      "playerName": "Sami Khedira",
+      "playerNames": [
+        "Sami Khedira"
+      ],
+      "playerSlug": "sami-khedira",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9527",
+      "playerName": "Santi Cazorla",
+      "playerNames": [
+        "Santi Cazorla",
+        "Santiago Cazorla González"
+      ],
+      "playerSlug": "santiago-cazorla-gonzalez",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9537",
+      "playerName": "Sebastián Fernández",
+      "playerNames": [
+        "Sebastián Fernández",
+        "Sebastián Bruno Fernández Miglierina"
+      ],
+      "playerSlug": "sebastian-bruno-fernandez-miglierina",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9876",
+      "playerName": "Sergio",
+      "playerNames": [
+        "Sergio",
+        "Sergio Fernández González"
+      ],
+      "playerSlug": "sergio-fernandez-gonzalez",
+      "teamName": "Osasuna",
+      "teamNames": [
+        "Osasuna",
+        "osasuna-spain"
+      ],
+      "teamSlug": "osasuna-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9704",
+      "playerName": "Sergio Ballesteros",
+      "playerNames": [
+        "Sergio Ballesteros",
+        "Sergio Martínez Ballesteros"
+      ],
+      "playerSlug": "sergio-martinez-ballesteros",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9343",
+      "playerName": "Sergio Busquets",
+      "playerNames": [
+        "Sergio Busquets",
+        "Sergio Busquets i Burgos"
+      ],
+      "playerSlug": "sergio-busquets-i-burgos",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9680",
+      "playerName": "Sergio Canales",
+      "playerNames": [
+        "Sergio Canales",
+        "Sergio Canales Madrazo"
+      ],
+      "playerSlug": "sergio-canales-madrazo",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9956",
+      "playerName": "Sergio García",
+      "playerNames": [
+        "Sergio García",
+        "Sergio García De La Fuente"
+      ],
+      "playerSlug": "sergio-garcia-de-la-fuente",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9609",
+      "playerName": "Sergio Ramos",
+      "playerNames": [
+        "Sergio Ramos",
+        "Sergio Ramos García"
+      ],
+      "playerSlug": "sergio-ramos-garcia",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9762",
+      "playerName": "Sergio Sánchez",
+      "playerNames": [
+        "Sergio Sánchez",
+        "Sergio Sánchez Ortega"
+      ],
+      "playerSlug": "sergio-sanchez-ortega",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9856",
+      "playerName": "Sergi Roberto",
+      "playerNames": [
+        "Sergi Roberto",
+        "Sergi Roberto Carnicer"
+      ],
+      "playerSlug": "sergi-roberto-carnicer",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9357",
+      "playerName": "Seydou Kéita",
+      "playerNames": [
+        "Seydou Kéita"
+      ],
+      "playerSlug": "seydou-keita",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9421",
+      "playerName": "Sílvio",
+      "playerNames": [
+        "Sílvio",
+        "Sílvio Manuel Azevedo Ferreira Sá Pereira"
+      ],
+      "playerSlug": "silvio-manuel-azevedo-ferreira-sa-pereira",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9333",
+      "playerName": "Sofiane Feghouli",
+      "playerNames": [
+        "Sofiane Feghouli"
+      ],
+      "playerSlug": "sofiane-feghouli",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9344",
+      "playerName": "Thiago Alcântara",
+      "playerNames": [
+        "Thiago Alcântara",
+        "Thiago Alcântara do Nascimento"
+      ],
+      "playerSlug": "thiago-alcantara-do-nascimento",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9400",
+      "playerName": "Thibaut Courtois",
+      "playerNames": [
+        "Thibaut Courtois"
+      ],
+      "playerSlug": "thibaut-courtois",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9960",
+      "playerName": "Thievy Bifouma",
+      "playerNames": [
+        "Thievy Bifouma",
+        "Thievy Guivane Bifouma Koulossa"
+      ],
+      "playerSlug": "thievy-guivane-bifouma-koulossa",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9419",
+      "playerName": "Tiago",
+      "playerNames": [
+        "Tiago",
+        "Tiago Cardoso Mendes"
+      ],
+      "playerSlug": "tiago-cardoso-mendes",
+      "teamName": "Atlético Madrid",
+      "teamNames": [
+        "Atlético Madrid",
+        "atletico-madrid-spain"
+      ],
+      "teamSlug": "atletico-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9339",
+      "playerName": "Tino Costa",
+      "playerNames": [
+        "Tino Costa",
+        "Alberto Facundo Costa"
+      ],
+      "playerSlug": "alberto-facundo-costa",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "10007",
+      "playerName": "Tito",
+      "playerNames": [
+        "Tito",
+        "Roberto Román Triguero"
+      ],
+      "playerSlug": "roberto-roman-triguero",
+      "teamName": "Rayo Vallecano",
+      "teamNames": [
+        "Rayo Vallecano",
+        "rayo-vallecano-spain"
+      ],
+      "teamSlug": "rayo-vallecano-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9576",
+      "playerName": "Tomer Hemed",
+      "playerNames": [
+        "Tomer Hemed"
+      ],
+      "playerSlug": "tomer-hemed",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9665",
+      "playerName": "Toño",
+      "playerNames": [
+        "Toño",
+        "Antonio Rodríguez Martínez"
+      ],
+      "playerSlug": "antonio-rodriguez-martinez",
+      "teamName": "Racing Santander",
+      "teamNames": [
+        "Racing Santander",
+        "racing-santander-spain"
+      ],
+      "teamSlug": "racing-santander-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9752",
+      "playerName": "Tsepo Peter Masilela",
+      "playerNames": [
+        "Tsepo Peter Masilela"
+      ],
+      "playerSlug": "tsepo-peter-masilela",
+      "teamName": "Getafe",
+      "teamNames": [
+        "Getafe",
+        "getafe-spain"
+      ],
+      "teamSlug": "getafe-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9838",
+      "playerName": "Ustaritz",
+      "playerNames": [
+        "Ustaritz",
+        "Ustaritz Aldekoaotalora Astarloa"
+      ],
+      "playerSlug": "ustaritz-aldekoaotalora-astarloa",
+      "teamName": "Real Betis",
+      "teamNames": [
+        "Real Betis",
+        "real-betis-spain"
+      ],
+      "teamSlug": "real-betis-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9720",
+      "playerName": "Vadim Demidov",
+      "playerNames": [
+        "Vadim Demidov"
+      ],
+      "playerSlug": "vadim-demidov",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9692",
+      "playerName": "Valdo",
+      "playerNames": [
+        "Valdo",
+        "Valmiro Lópes Rocha"
+      ],
+      "playerSlug": "valmiro-lopes-rocha",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9678",
+      "playerName": "Vicente Guaita",
+      "playerNames": [
+        "Vicente Guaita",
+        "Vicente Guaita Panadero"
+      ],
+      "playerSlug": "vicente-guaita-panadero",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9682",
+      "playerName": "Vicente Iborra",
+      "playerNames": [
+        "Vicente Iborra",
+        "Vicente Iborra De La Fuente"
+      ],
+      "playerSlug": "vicente-iborra-de-la-fuente",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9586",
+      "playerName": "Víctor Casadesús",
+      "playerNames": [
+        "Víctor Casadesús",
+        "Víctor Casadesús Castaño"
+      ],
+      "playerSlug": "victor-casadesus-castano",
+      "teamName": "Mallorca",
+      "teamNames": [
+        "Mallorca",
+        "mallorca-spain"
+      ],
+      "teamSlug": "mallorca-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9328",
+      "playerName": "Víctor Ruíz",
+      "playerNames": [
+        "Víctor Ruíz",
+        "Víctor Ruíz Torre"
+      ],
+      "playerSlug": "victor-ruiz-torre",
+      "teamName": "Valencia",
+      "teamNames": [
+        "Valencia",
+        "valencia-spain"
+      ],
+      "teamSlug": "valencia-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9928",
+      "playerName": "Víctor Sánchez",
+      "playerNames": [
+        "Víctor Sánchez",
+        "Víctor Sánchez Mata"
+      ],
+      "playerSlug": "victor-sanchez-mata",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9352",
+      "playerName": "Víctor Valdés",
+      "playerNames": [
+        "Víctor Valdés",
+        "Víctor Valdés Arribas"
+      ],
+      "playerSlug": "victor-valdes-arribas",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9934",
+      "playerName": "Vladimír Weiss",
+      "playerNames": [
+        "Vladimír Weiss"
+      ],
+      "playerSlug": "vladimir-weiss",
+      "teamName": "Espanyol",
+      "teamNames": [
+        "Espanyol",
+        "espanyol-spain"
+      ],
+      "teamSlug": "espanyol-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9513",
+      "playerName": "Willy Caballero",
+      "playerNames": [
+        "Willy Caballero",
+        "Wilfredo Daniel Caballero"
+      ],
+      "playerSlug": "wilfredo-daniel-caballero",
+      "teamName": "Málaga",
+      "teamNames": [
+        "Málaga",
+        "malaga-spain"
+      ],
+      "teamSlug": "malaga-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9629",
+      "playerName": "Xabi Alonso",
+      "playerNames": [
+        "Xabi Alonso",
+        "Xabier Alonso Olano"
+      ],
+      "playerSlug": "xabier-alonso-olano",
+      "teamName": "Real Madrid",
+      "teamNames": [
+        "Real Madrid",
+        "real-madrid-spain"
+      ],
+      "teamSlug": "real-madrid-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9466",
+      "playerName": "Xabi Prieto",
+      "playerNames": [
+        "Xabi Prieto",
+        "Xabier Prieto Argarate"
+      ],
+      "playerSlug": "xabier-prieto-argarate",
+      "teamName": "Real Sociedad",
+      "teamNames": [
+        "Real Sociedad",
+        "real-sociedad-spain"
+      ],
+      "teamSlug": "real-sociedad-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9351",
+      "playerName": "Xavi",
+      "playerNames": [
+        "Xavi",
+        "Xavier Hernández Creus"
+      ],
+      "playerSlug": "xavier-hernandez-creus",
+      "teamName": "Barcelona",
+      "teamNames": [
+        "Barcelona",
+        "barcelona-spain"
+      ],
+      "teamSlug": "barcelona-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9690",
+      "playerName": "Xavi Torres",
+      "playerNames": [
+        "Xavi Torres",
+        "Xavier Torres Buigues"
+      ],
+      "playerSlug": "xavier-torres-buigues",
+      "teamName": "Levante UD",
+      "teamNames": [
+        "Levante UD",
+        "levante-ud-spain"
+      ],
+      "teamSlug": "levante-ud-spain"
+    },
+    {
+      "competitionSeasonId": "215",
+      "contractId": "9976",
+      "playerName": "Yohan Mollo",
+      "playerNames": [
+        "Yohan Mollo"
+      ],
+      "playerSlug": "yohan-mollo",
+      "teamName": "Granada",
+      "teamNames": [
+        "Granada",
+        "granada-spain"
+      ],
+      "teamSlug": "granada-spain"
+    }
+  ]
+}

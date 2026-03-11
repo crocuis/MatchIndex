@@ -1,0 +1,1180 @@
+{
+  "provider": "capology",
+  "competition": "Spain La Liga",
+  "season": "2016",
+  "fetchedAt": "2026-03-08T15:20:02.199958+00:00",
+  "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+  "currencyCode": "EUR",
+  "rows": [
+    {
+      "playerName": "Lionel Messi",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 38,280,000",
+      "weeklyWage": "€ 736,154",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Lionel Messi",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 736,154",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 38,280,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 45,196,715",
+        "BIO POS.": "F",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Cristiano Ronaldo",
+      "teamName": "Real Madrid",
+      "annualSalary": "€ 33,670,000",
+      "weeklyWage": "€ 647,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Cristiano Ronaldo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 647,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 33,670,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 39,753,746",
+        "BIO POS.": "F",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "Portugal",
+        "CLUB": "Real Madrid"
+      }
+    },
+    {
+      "playerName": "Samuel Umtiti",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 32,000,000",
+      "weeklyWage": "€ 615,385",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Samuel Umtiti",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 615,385",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 32,000,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 37,781,998",
+        "BIO POS.": "D",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "France",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Neymar",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 28,620,000",
+      "weeklyWage": "€ 550,385",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Neymar",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 550,385",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 28,620,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 33,791,274",
+        "BIO POS.": "F",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Gareth Bale",
+      "teamName": "Real Madrid",
+      "annualSalary": "€ 26,740,000",
+      "weeklyWage": "€ 514,231",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Gareth Bale",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 514,231",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 26,740,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 31,571,582",
+        "BIO POS.": "F",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Wales",
+        "CLUB": "Real Madrid"
+      }
+    },
+    {
+      "playerName": "Luis Suárez",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 22,400,000",
+      "weeklyWage": "€ 430,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Luis Suárez",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 430,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 22,400,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 26,447,398",
+        "BIO POS.": "F",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Uruguay",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Toni Kroos",
+      "teamName": "Real Madrid",
+      "annualSalary": "€ 19,140,000",
+      "weeklyWage": "€ 368,077",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Toni Kroos",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 368,077",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 19,140,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 22,598,357",
+        "BIO POS.": "M",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Real Madrid"
+      }
+    },
+    {
+      "playerName": "Sergio Ramos",
+      "teamName": "Real Madrid",
+      "annualSalary": "€ 17,840,000",
+      "weeklyWage": "€ 343,077",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Sergio Ramos",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 343,077",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 17,840,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 21,063,464",
+        "BIO POS.": "D",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Real Madrid"
+      }
+    },
+    {
+      "playerName": "Karim Benzema",
+      "teamName": "Real Madrid",
+      "annualSalary": "€ 15,830,000",
+      "weeklyWage": "€ 304,423",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Karim Benzema",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 304,423",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 15,830,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 18,690,282",
+        "BIO POS.": "F",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "France",
+        "CLUB": "Real Madrid"
+      }
+    },
+    {
+      "playerName": "Andrés Iniesta",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 15,430,000",
+      "weeklyWage": "€ 296,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Andrés Iniesta",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 296,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 15,430,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 18,218,007",
+        "BIO POS.": "M",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Sergio Busquets",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 14,310,000",
+      "weeklyWage": "€ 275,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Sergio Busquets",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 275,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 14,310,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 16,895,637",
+        "BIO POS.": "M",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Gerard Piqué",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 12,190,000",
+      "weeklyWage": "€ 234,423",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Gerard Piqué",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 234,423",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 12,190,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 14,392,580",
+        "BIO POS.": "D",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "James Rodríguez",
+      "teamName": "Real Madrid",
+      "annualSalary": "€ 10,630,000",
+      "weeklyWage": "€ 204,423",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "James Rodríguez",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 204,423",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 10,630,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 12,550,707",
+        "BIO POS.": "M",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Colombia",
+        "CLUB": "Real Madrid"
+      }
+    },
+    {
+      "playerName": "Nani",
+      "teamName": "Valencia",
+      "annualSalary": "€ 10,450,000",
+      "weeklyWage": "€ 200,962",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Nani",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 200,962",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 10,450,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 12,338,184",
+        "BIO POS.": "F",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Portugal",
+        "CLUB": "Valencia"
+      }
+    },
+    {
+      "playerName": "Javier Mascherano",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 10,110,000",
+      "weeklyWage": "€ 194,423",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Javier Mascherano",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 194,423",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 10,110,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 11,936,750",
+        "BIO POS.": "M",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Samir Nasri",
+      "teamName": "Sevilla",
+      "annualSalary": "€ 8,670,000",
+      "weeklyWage": "€ 166,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Samir Nasri",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 166,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 8,670,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 10,236,560",
+        "BIO POS.": "M",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "France",
+        "CLUB": "Sevilla"
+      }
+    },
+    {
+      "playerName": "Arda Turan",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 8,210,000",
+      "weeklyWage": "€ 157,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Arda Turan",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 157,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 8,210,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 9,693,444",
+        "BIO POS.": "F",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Turkey",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Jordi Alba",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 8,210,000",
+      "weeklyWage": "€ 157,885",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Jordi Alba",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 157,885",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 8,210,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 9,693,444",
+        "BIO POS.": "D",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Aymeric Laporte",
+      "teamName": "Athletic Club",
+      "annualSalary": "€ 8,130,000",
+      "weeklyWage": "€ 156,346",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Aymeric Laporte",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 156,346",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 8,130,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 9,598,989",
+        "BIO POS.": "D",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "France",
+        "CLUB": "Athletic Club"
+      }
+    },
+    {
+      "playerName": "Marcelo",
+      "teamName": "Real Madrid",
+      "annualSalary": "€ 7,920,000",
+      "weeklyWage": "€ 152,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Marcelo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 152,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 7,920,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 9,351,044",
+        "BIO POS.": "D",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Real Madrid"
+      }
+    },
+    {
+      "playerName": "Pepe",
+      "teamName": "Real Madrid",
+      "annualSalary": "€ 7,540,000",
+      "weeklyWage": "€ 145,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Pepe",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 145,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 7,540,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 8,902,383",
+        "BIO POS.": "D",
+        "BIO AGE": 33,
+        "BIO COUNTRY": "Portugal",
+        "CLUB": "Real Madrid"
+      }
+    },
+    {
+      "playerName": "Marc-André ter Stegen",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 6,220,000",
+      "weeklyWage": "€ 119,615",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Marc-André ter Stegen",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 119,615",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 6,220,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 7,343,876",
+        "BIO POS.": "K",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Jérémy Mathieu",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 6,220,000",
+      "weeklyWage": "€ 119,615",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Jérémy Mathieu",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 119,615",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 6,220,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 7,343,876",
+        "BIO POS.": "D",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "France",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "André Gomes",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 6,220,000",
+      "weeklyWage": "€ 119,615",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "André Gomes",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 119,615",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 6,220,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 7,343,876",
+        "BIO POS.": "M",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Portugal",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Eliaquim Mangala",
+      "teamName": "Valencia",
+      "annualSalary": "€ 5,780,000",
+      "weeklyWage": "€ 111,154",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Eliaquim Mangala",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 111,154",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 5,780,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 6,824,373",
+        "BIO POS.": "D",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "France",
+        "CLUB": "Valencia"
+      }
+    },
+    {
+      "playerName": "Dani Parejo",
+      "teamName": "Valencia",
+      "annualSalary": "€ 5,280,000",
+      "weeklyWage": "€ 101,538",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Dani Parejo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 101,538",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 5,280,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 6,234,030",
+        "BIO POS.": "M",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Valencia"
+      }
+    },
+    {
+      "playerName": "Enzo Pérez",
+      "teamName": "Valencia",
+      "annualSalary": "€ 5,010,000",
+      "weeklyWage": "€ 96,346",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Enzo Pérez",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 96,346",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 5,010,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,915,244",
+        "BIO POS.": "M",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Valencia"
+      }
+    },
+    {
+      "playerName": "Denis Suárez",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 5,000,000",
+      "weeklyWage": "€ 96,154",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Denis Suárez",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 96,154",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 5,000,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,903,437",
+        "BIO POS.": "M",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Lucas Digne",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 4,790,000",
+      "weeklyWage": "€ 92,115",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Lucas Digne",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 92,115",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,790,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,655,493",
+        "BIO POS.": "D",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "France",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Ezequiel Garay",
+      "teamName": "Valencia",
+      "annualSalary": "€ 4,790,000",
+      "weeklyWage": "€ 92,115",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Ezequiel Garay",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 92,115",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,790,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,655,493",
+        "BIO POS.": "D",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Valencia"
+      }
+    },
+    {
+      "playerName": "Aymen Abdennour",
+      "teamName": "Valencia",
+      "annualSalary": "€ 4,790,000",
+      "weeklyWage": "€ 92,115",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Aymen Abdennour",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 92,115",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,790,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,655,493",
+        "BIO POS.": "D",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Tunisia",
+        "CLUB": "Valencia"
+      }
+    },
+    {
+      "playerName": "Raphaël Varane",
+      "teamName": "Real Madrid",
+      "annualSalary": "€ 4,770,000",
+      "weeklyWage": "€ 91,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Raphaël Varane",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 91,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,770,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,631,879",
+        "BIO POS.": "D",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "France",
+        "CLUB": "Real Madrid"
+      }
+    },
+    {
+      "playerName": "Salvatore Sirigu",
+      "teamName": "Osasuna",
+      "annualSalary": "€ 4,710,000",
+      "weeklyWage": "€ 90,577",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Salvatore Sirigu",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 90,577",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,710,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,561,038",
+        "BIO POS.": "K",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Osasuna"
+      }
+    },
+    {
+      "playerName": "Claudio Bravo",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 4,700,000",
+      "weeklyWage": "€ 90,385",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Claudio Bravo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 90,385",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,700,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,549,231",
+        "BIO POS.": "K",
+        "BIO AGE": 33,
+        "BIO COUNTRY": "Chile",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Vitolo",
+      "teamName": "Sevilla",
+      "annualSalary": "€ 4,640,000",
+      "weeklyWage": "€ 89,231",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Vitolo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 89,231",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,640,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,478,390",
+        "BIO POS.": "F",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Sevilla"
+      }
+    },
+    {
+      "playerName": "Rafinha",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 4,280,000",
+      "weeklyWage": "€ 82,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Rafinha",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 82,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,280,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,053,342",
+        "BIO POS.": "M",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Jasper Cillessen",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 4,280,000",
+      "weeklyWage": "€ 82,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Jasper Cillessen",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 82,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,280,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 5,053,342",
+        "BIO POS.": "K",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Netherlands",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Álvaro Morata",
+      "teamName": "Real Madrid",
+      "annualSalary": "€ 4,200,000",
+      "weeklyWage": "€ 80,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Álvaro Morata",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 80,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,200,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,958,887",
+        "BIO POS.": "F",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Real Madrid"
+      }
+    },
+    {
+      "playerName": "Diego López",
+      "teamName": "Espanyol",
+      "annualSalary": "€ 4,180,000",
+      "weeklyWage": "€ 80,385",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Diego López",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 80,385",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,180,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,935,273",
+        "BIO POS.": "K",
+        "BIO AGE": 34,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Espanyol"
+      }
+    },
+    {
+      "playerName": "Giuseppe Rossi",
+      "teamName": "Celta Vigo",
+      "annualSalary": "€ 4,030,000",
+      "weeklyWage": "€ 77,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Giuseppe Rossi",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 77,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 4,030,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,758,170",
+        "BIO POS.": "F",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Celta Vigo"
+      }
+    },
+    {
+      "playerName": "Danilo",
+      "teamName": "Real Madrid",
+      "annualSalary": "€ 3,910,000",
+      "weeklyWage": "€ 75,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Danilo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 75,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,910,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,616,488",
+        "BIO POS.": "D",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Real Madrid"
+      }
+    },
+    {
+      "playerName": "Keylor Navas",
+      "teamName": "Real Madrid",
+      "annualSalary": "€ 3,910,000",
+      "weeklyWage": "€ 75,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Keylor Navas",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 75,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,910,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,616,488",
+        "BIO POS.": "K",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Costa Rica",
+        "CLUB": "Real Madrid"
+      }
+    },
+    {
+      "playerName": "Lucas Vázquez",
+      "teamName": "Real Madrid",
+      "annualSalary": "€ 3,850,000",
+      "weeklyWage": "€ 74,038",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Lucas Vázquez",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 74,038",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,850,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,545,647",
+        "BIO POS.": "F",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Real Madrid"
+      }
+    },
+    {
+      "playerName": "Guilherme Siqueira",
+      "teamName": "Valencia",
+      "annualSalary": "€ 3,820,000",
+      "weeklyWage": "€ 73,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Guilherme Siqueira",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 73,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,820,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,510,226",
+        "BIO POS.": "D",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Valencia"
+      }
+    },
+    {
+      "playerName": "Paco Alcácer",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 3,820,000",
+      "weeklyWage": "€ 73,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Paco Alcácer",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 73,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,820,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,510,226",
+        "BIO POS.": "F",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Franco Vázquez",
+      "teamName": "Sevilla",
+      "annualSalary": "€ 3,610,000",
+      "weeklyWage": "€ 69,423",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Franco Vázquez",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 69,423",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,610,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,262,282",
+        "BIO POS.": "M",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Sevilla"
+      }
+    },
+    {
+      "playerName": "Raúl García",
+      "teamName": "Athletic Club",
+      "annualSalary": "€ 3,600,000",
+      "weeklyWage": "€ 69,231",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Raúl García",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 69,231",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,600,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,250,475",
+        "BIO POS.": "M",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Athletic Club"
+      }
+    },
+    {
+      "playerName": "Aleix Vidal",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 3,500,000",
+      "weeklyWage": "€ 67,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Aleix Vidal",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 67,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,500,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,132,406",
+        "BIO POS.": "M",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Kiko Casilla",
+      "teamName": "Real Madrid",
+      "annualSalary": "€ 3,500,000",
+      "weeklyWage": "€ 67,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Kiko Casilla",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 67,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,500,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,132,406",
+        "BIO POS.": "K",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Real Madrid"
+      }
+    },
+    {
+      "playerName": "Iñaki Williams",
+      "teamName": "Athletic Club",
+      "annualSalary": "€ 3,400,000",
+      "weeklyWage": "€ 65,385",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Iñaki Williams",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 65,385",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,400,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,014,337",
+        "BIO POS.": "F",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Athletic Club"
+      }
+    },
+    {
+      "playerName": "Adil Rami",
+      "teamName": "Sevilla",
+      "annualSalary": "€ 3,360,000",
+      "weeklyWage": "€ 64,615",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Adil Rami",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 64,615",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,360,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,967,110",
+        "BIO POS.": "D",
+        "BIO AGE": 30,
+        "BIO COUNTRY": "France",
+        "CLUB": "Sevilla"
+      }
+    },
+    {
+      "playerName": "Pablo Piatti",
+      "teamName": "Espanyol",
+      "annualSalary": "€ 3,150,000",
+      "weeklyWage": "€ 60,577",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Pablo Piatti",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 60,577",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,150,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,719,165",
+        "BIO POS.": "F",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Espanyol"
+      }
+    },
+    {
+      "playerName": "Isco",
+      "teamName": "Real Madrid",
+      "annualSalary": "€ 3,120,000",
+      "weeklyWage": "€ 60,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Isco",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 60,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,120,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,683,745",
+        "BIO POS.": "M",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Real Madrid"
+      }
+    },
+    {
+      "playerName": "Sergio Rico",
+      "teamName": "Sevilla",
+      "annualSalary": "€ 3,120,000",
+      "weeklyWage": "€ 60,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Sergio Rico",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 60,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,120,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,683,745",
+        "BIO POS.": "K",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Sevilla"
+      }
+    },
+    {
+      "playerName": "Luciano Vietto",
+      "teamName": "Sevilla",
+      "annualSalary": "€ 3,070,000",
+      "weeklyWage": "€ 59,038",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Luciano Vietto",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 59,038",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,070,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,624,710",
+        "BIO POS.": "F",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Sevilla"
+      }
+    },
+    {
+      "playerName": "Simone Zaza",
+      "teamName": "Valencia",
+      "annualSalary": "€ 3,020,000",
+      "weeklyWage": "€ 58,077",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Simone Zaza",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 58,077",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,020,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,565,676",
+        "BIO POS.": "F",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Italy",
+        "CLUB": "Valencia"
+      }
+    },
+    {
+      "playerName": "Sergi Roberto",
+      "teamName": "Barcelona",
+      "annualSalary": "€ 2,990,000",
+      "weeklyWage": "€ 57,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Sergi Roberto",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 57,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,990,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,530,255",
+        "BIO POS.": "D",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Barcelona"
+      }
+    },
+    {
+      "playerName": "Felipe Caicedo",
+      "teamName": "Espanyol",
+      "annualSalary": "€ 2,990,000",
+      "weeklyWage": "€ 57,500",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Felipe Caicedo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 57,500",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,990,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,530,255",
+        "BIO POS.": "F",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Ecuador",
+        "CLUB": "Espanyol"
+      }
+    },
+    {
+      "playerName": "Cédric Bakambu",
+      "teamName": "Villarreal",
+      "annualSalary": "€ 2,980,000",
+      "weeklyWage": "€ 57,308",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Cédric Bakambu",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 57,308",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,980,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,518,449",
+        "BIO POS.": "F",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Democratic Republic of Congo",
+        "CLUB": "Villarreal"
+      }
+    },
+    {
+      "playerName": "Pablo Sarabia",
+      "teamName": "Sevilla",
+      "annualSalary": "€ 2,890,000",
+      "weeklyWage": "€ 55,577",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Pablo Sarabia",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 55,577",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,890,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,412,187",
+        "BIO POS.": "M",
+        "BIO AGE": 24,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Sevilla"
+      }
+    },
+    {
+      "playerName": "Rodrigo",
+      "teamName": "Valencia",
+      "annualSalary": "€ 2,860,000",
+      "weeklyWage": "€ 55,000",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Rodrigo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 55,000",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,860,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,376,766",
+        "BIO POS.": "F",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Valencia"
+      }
+    },
+    {
+      "playerName": "Mario Suárez",
+      "teamName": "Valencia",
+      "annualSalary": "€ 2,780,000",
+      "weeklyWage": "€ 53,462",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Mario Suárez",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 53,462",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,780,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,282,311",
+        "BIO POS.": "M",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Valencia"
+      }
+    },
+    {
+      "playerName": "Jonathan dos Santos",
+      "teamName": "Villarreal",
+      "annualSalary": "€ 2,770,000",
+      "weeklyWage": "€ 53,269",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Jonathan dos Santos",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 53,269",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,770,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,270,504",
+        "BIO POS.": "M",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Mexico",
+        "CLUB": "Villarreal"
+      }
+    },
+    {
+      "playerName": "Roberto Soldado",
+      "teamName": "Villarreal",
+      "annualSalary": "€ 2,630,000",
+      "weeklyWage": "€ 50,577",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Roberto Soldado",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 50,577",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,630,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,105,208",
+        "BIO POS.": "F",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "Spain",
+        "CLUB": "Villarreal"
+      }
+    },
+    {
+      "playerName": "Nicolás Pareja",
+      "teamName": "Sevilla",
+      "annualSalary": "€ 2,620,000",
+      "weeklyWage": "€ 50,385",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/es/la-liga/salaries/2016-2017/",
+      "raw": {
+        "PLAYER": "Nicolás Pareja",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 50,385",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,620,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 3,093,401",
+        "BIO POS.": "D",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "Argentina",
+        "CLUB": "Sevilla"
+      }
+    }
+  ]
+}

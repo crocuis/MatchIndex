@@ -1,0 +1,442 @@
+{
+  "provider": "capology",
+  "competition": "Germany Bundesliga",
+  "season": "2015",
+  "fetchedAt": "2026-03-08T15:17:27.425641+00:00",
+  "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+  "currencyCode": "EUR",
+  "rows": [
+    {
+      "playerName": "Klaas-Jan Huntelaar",
+      "teamName": "Schalke 04",
+      "annualSalary": "€ 5,560,000",
+      "weeklyWage": "€ 106,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Klaas-Jan Huntelaar",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 106,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 5,560,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 6,807,267",
+        "BIO POS.": "F",
+        "BIO AGE": 31,
+        "BIO COUNTRY": "Netherlands",
+        "CLUB": "Schalke 04"
+      }
+    },
+    {
+      "playerName": "Benedikt Höwedes",
+      "teamName": "Schalke 04",
+      "annualSalary": "€ 3,960,000",
+      "weeklyWage": "€ 76,154",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Benedikt Höwedes",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 76,154",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 3,960,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 4,848,341",
+        "BIO POS.": "D",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Schalke 04"
+      }
+    },
+    {
+      "playerName": "Kevin Volland",
+      "teamName": "Hoffenheim",
+      "annualSalary": "€ 2,380,000",
+      "weeklyWage": "€ 45,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Kevin Volland",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 45,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,380,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,913,902",
+        "BIO POS.": "F",
+        "BIO AGE": 22,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Hoffenheim"
+      }
+    },
+    {
+      "playerName": "Pirmin Schwegler",
+      "teamName": "Hoffenheim",
+      "annualSalary": "€ 2,380,000",
+      "weeklyWage": "€ 45,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Pirmin Schwegler",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 45,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,380,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,913,902",
+        "BIO POS.": "M",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Switzerland",
+        "CLUB": "Hoffenheim"
+      }
+    },
+    {
+      "playerName": "Johannes Geis",
+      "teamName": "Schalke 04",
+      "annualSalary": "€ 2,380,000",
+      "weeklyWage": "€ 45,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Johannes Geis",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 45,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,380,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,913,902",
+        "BIO POS.": "M",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Schalke 04"
+      }
+    },
+    {
+      "playerName": "Ralf Fährmann",
+      "teamName": "Schalke 04",
+      "annualSalary": "€ 2,370,000",
+      "weeklyWage": "€ 45,577",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Ralf Fährmann",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 45,577",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,370,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,901,659",
+        "BIO POS.": "K",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Schalke 04"
+      }
+    },
+    {
+      "playerName": "Oliver Baumann",
+      "teamName": "Hoffenheim",
+      "annualSalary": "€ 2,160,000",
+      "weeklyWage": "€ 41,538",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Oliver Baumann",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 41,538",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 2,160,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,644,550",
+        "BIO POS.": "K",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Hoffenheim"
+      }
+    },
+    {
+      "playerName": "Leroy Sané",
+      "teamName": "Schalke 04",
+      "annualSalary": "€ 1,900,000",
+      "weeklyWage": "€ 36,538",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Leroy Sané",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 36,538",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,900,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,326,224",
+        "BIO POS.": "F",
+        "BIO AGE": 19,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Schalke 04"
+      }
+    },
+    {
+      "playerName": "Roman Neustädter",
+      "teamName": "Schalke 04",
+      "annualSalary": "€ 1,860,000",
+      "weeklyWage": "€ 35,769",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Roman Neustädter",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 35,769",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,860,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 2,277,251",
+        "BIO POS.": "D",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Russia",
+        "CLUB": "Schalke 04"
+      }
+    },
+    {
+      "playerName": "Eduardo Vargas",
+      "teamName": "Hoffenheim",
+      "annualSalary": "€ 1,580,000",
+      "weeklyWage": "€ 30,385",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Eduardo Vargas",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 30,385",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,580,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,934,439",
+        "BIO POS.": "F",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Chile",
+        "CLUB": "Hoffenheim"
+      }
+    },
+    {
+      "playerName": "Dennis Aogo",
+      "teamName": "Schalke 04",
+      "annualSalary": "€ 1,570,000",
+      "weeklyWage": "€ 30,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Dennis Aogo",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 30,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,570,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,922,196",
+        "BIO POS.": "M",
+        "BIO AGE": 28,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Schalke 04"
+      }
+    },
+    {
+      "playerName": "Marco Höger",
+      "teamName": "Schalke 04",
+      "annualSalary": "€ 1,570,000",
+      "weeklyWage": "€ 30,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Marco Höger",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 30,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,570,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,922,196",
+        "BIO POS.": "M",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Schalke 04"
+      }
+    },
+    {
+      "playerName": "Eugen Polanski",
+      "teamName": "Hoffenheim",
+      "annualSalary": "€ 1,570,000",
+      "weeklyWage": "€ 30,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Eugen Polanski",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 30,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,570,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,922,196",
+        "BIO POS.": "M",
+        "BIO AGE": 29,
+        "BIO COUNTRY": "Poland",
+        "CLUB": "Hoffenheim"
+      }
+    },
+    {
+      "playerName": "Júnior Caiçara",
+      "teamName": "Schalke 04",
+      "annualSalary": "€ 1,570,000",
+      "weeklyWage": "€ 30,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Júnior Caiçara",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 30,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,570,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,922,196",
+        "BIO POS.": "D",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Brazil",
+        "CLUB": "Schalke 04"
+      }
+    },
+    {
+      "playerName": "Sebastian Rudy",
+      "teamName": "Hoffenheim",
+      "annualSalary": "€ 1,500,000",
+      "weeklyWage": "€ 28,846",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Sebastian Rudy",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 28,846",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,500,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,836,493",
+        "BIO POS.": "M",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Hoffenheim"
+      }
+    },
+    {
+      "playerName": "Fabian Schär",
+      "teamName": "Hoffenheim",
+      "annualSalary": "€ 1,240,000",
+      "weeklyWage": "€ 23,846",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Fabian Schär",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 23,846",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,240,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,518,167",
+        "BIO POS.": "D",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Switzerland",
+        "CLUB": "Hoffenheim"
+      }
+    },
+    {
+      "playerName": "Eric Maxim Choupo-Moting",
+      "teamName": "Schalke 04",
+      "annualSalary": "€ 1,200,000",
+      "weeklyWage": "€ 23,077",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Eric Maxim Choupo-Moting",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 23,077",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 1,200,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,469,194",
+        "BIO POS.": "F",
+        "BIO AGE": 26,
+        "BIO COUNTRY": "Cameroon",
+        "CLUB": "Schalke 04"
+      }
+    },
+    {
+      "playerName": "Tarik Elyounoussi",
+      "teamName": "Hoffenheim",
+      "annualSalary": "€ 830,000",
+      "weeklyWage": "€ 15,962",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Tarik Elyounoussi",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 15,962",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 830,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 1,016,193",
+        "BIO POS.": "F",
+        "BIO AGE": 27,
+        "BIO COUNTRY": "Norway",
+        "CLUB": "Hoffenheim"
+      }
+    },
+    {
+      "playerName": "Alessandro Schöpf",
+      "teamName": "Schalke 04",
+      "annualSalary": "€ 790,000",
+      "weeklyWage": "€ 15,192",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Alessandro Schöpf",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 15,192",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 790,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 967,220",
+        "BIO POS.": "M",
+        "BIO AGE": 21,
+        "BIO COUNTRY": "Austria",
+        "CLUB": "Schalke 04"
+      }
+    },
+    {
+      "playerName": "Mark Uth",
+      "teamName": "Hoffenheim",
+      "annualSalary": "€ 750,000",
+      "weeklyWage": "€ 14,423",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Mark Uth",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 14,423",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 750,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 918,246",
+        "BIO POS.": "F",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Hoffenheim"
+      }
+    },
+    {
+      "playerName": "Jeremy Toljan",
+      "teamName": "Hoffenheim",
+      "annualSalary": "€ 620,000",
+      "weeklyWage": "€ 11,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jeremy Toljan",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 11,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 620,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 759,084",
+        "BIO POS.": "D",
+        "BIO AGE": 20,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Hoffenheim"
+      }
+    },
+    {
+      "playerName": "Sascha Riether",
+      "teamName": "Schalke 04",
+      "annualSalary": "€ 620,000",
+      "weeklyWage": "€ 11,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Sascha Riether",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 11,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 620,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 759,084",
+        "BIO POS.": "D",
+        "BIO AGE": 32,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Schalke 04"
+      }
+    },
+    {
+      "playerName": "Tobias Strobl",
+      "teamName": "Hoffenheim",
+      "annualSalary": "€ 360,000",
+      "weeklyWage": "€ 6,923",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Tobias Strobl",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,923",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 360,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 440,758",
+        "BIO POS.": "M",
+        "BIO AGE": 25,
+        "BIO COUNTRY": "Germany",
+        "CLUB": "Hoffenheim"
+      }
+    },
+    {
+      "playerName": "Jin-su Kim",
+      "teamName": "Hoffenheim",
+      "annualSalary": "€ 350,000",
+      "weeklyWage": "€ 6,731",
+      "currencyCode": "EUR",
+      "sourceUrl": "https://capology.com/de/1-bundesliga/salaries/2015-2016/",
+      "raw": {
+        "PLAYER": "Jin-su Kim",
+        "EST. BASE SALARY GROSS P/W\n(EUR)": "€ 6,731",
+        "EST. BASE SALARY GROSS P/Y\n(EUR)": "€ 350,000",
+        "EST. BASE SALARY ADJ. GROSS\n(EUR)": "€ 428,515",
+        "BIO POS.": "D",
+        "BIO AGE": 23,
+        "BIO COUNTRY": "South Korea",
+        "CLUB": "Hoffenheim"
+      }
+    }
+  ]
+}
