@@ -5606,7 +5606,7 @@ export async function getScheduledMatchesByLeagueDb(leagueId: string, locale: st
 export async function getStandingsByLeagueDb(leagueId: string, locale: string = 'en'): Promise<StandingRow[]> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'standings-v4', locale, id: leagueId });
+    const key = buildCacheKey({ namespace: 'standings-v5', locale, id: leagueId });
 
     return readThroughCache({
       key,
@@ -5628,6 +5628,108 @@ export async function getStandingsByLeagueDb(leagueId: string, locale: string = 
               s.start_date DESC NULLS LAST,
               s.id DESC
             LIMIT 1
+          ), has_regular_season_matches AS (
+            SELECT EXISTS (
+              SELECT 1
+              FROM matches m
+              JOIN latest_competition_season lcs ON lcs.id = m.competition_season_id
+              WHERE m.stage = 'REGULAR_SEASON'
+            ) AS has_regular_season
+          ), match_results AS (
+            SELECT
+              m.competition_season_id,
+              m.home_team_id AS team_id,
+              CASE
+                WHEN m.home_score > m.away_score THEN 3
+                WHEN m.home_score = m.away_score THEN 1
+                ELSE 0
+              END AS points,
+              CASE WHEN m.home_score > m.away_score THEN 1 ELSE 0 END AS won,
+              CASE WHEN m.home_score = m.away_score THEN 1 ELSE 0 END AS drawn,
+              CASE WHEN m.home_score < m.away_score THEN 1 ELSE 0 END AS lost,
+              m.home_score AS goals_for,
+              m.away_score AS goals_against,
+              m.match_date,
+              m.id AS match_id,
+              CASE
+                WHEN m.home_score > m.away_score THEN 'W'
+                WHEN m.home_score = m.away_score THEN 'D'
+                ELSE 'L'
+              END::TEXT AS form_result
+            FROM matches m
+            JOIN latest_competition_season lcs ON lcs.id = m.competition_season_id
+            CROSS JOIN has_regular_season_matches hrsm
+            WHERE m.status IN ('finished', 'finished_aet', 'finished_pen')
+              AND (hrsm.has_regular_season = FALSE OR m.stage = 'REGULAR_SEASON')
+
+            UNION ALL
+
+            SELECT
+              m.competition_season_id,
+              m.away_team_id AS team_id,
+              CASE
+                WHEN m.away_score > m.home_score THEN 3
+                WHEN m.away_score = m.home_score THEN 1
+                ELSE 0
+              END AS points,
+              CASE WHEN m.away_score > m.home_score THEN 1 ELSE 0 END AS won,
+              CASE WHEN m.away_score = m.home_score THEN 1 ELSE 0 END AS drawn,
+              CASE WHEN m.away_score < m.home_score THEN 1 ELSE 0 END AS lost,
+              m.away_score AS goals_for,
+              m.home_score AS goals_against,
+              m.match_date,
+              m.id AS match_id,
+              CASE
+                WHEN m.away_score > m.home_score THEN 'W'
+                WHEN m.away_score = m.home_score THEN 'D'
+                ELSE 'L'
+              END::TEXT AS form_result
+            FROM matches m
+            JOIN latest_competition_season lcs ON lcs.id = m.competition_season_id
+            CROSS JOIN has_regular_season_matches hrsm
+            WHERE m.status IN ('finished', 'finished_aet', 'finished_pen')
+              AND (hrsm.has_regular_season = FALSE OR m.stage = 'REGULAR_SEASON')
+          ), standings AS (
+            SELECT
+              mr.competition_season_id,
+              mr.team_id,
+              COUNT(*)::INT AS played,
+              SUM(mr.won)::INT AS won,
+              SUM(mr.drawn)::INT AS drawn,
+              SUM(mr.lost)::INT AS lost,
+              SUM(mr.goals_for)::INT AS goals_for,
+              SUM(mr.goals_against)::INT AS goals_against,
+              (SUM(mr.goals_for) - SUM(mr.goals_against))::INT AS goal_difference,
+              SUM(mr.points)::INT AS points,
+              RANK() OVER (
+                PARTITION BY mr.competition_season_id
+                ORDER BY
+                  SUM(mr.points) DESC,
+                  SUM(mr.goals_for) - SUM(mr.goals_against) DESC,
+                  SUM(mr.goals_for) DESC
+              )::INT AS position
+            FROM match_results mr
+            GROUP BY mr.competition_season_id, mr.team_id
+          ), ranked_results AS (
+            SELECT
+              mr.competition_season_id,
+              mr.team_id,
+              mr.form_result,
+              mr.match_date,
+              mr.match_id,
+              ROW_NUMBER() OVER (
+                PARTITION BY mr.competition_season_id, mr.team_id
+                ORDER BY mr.match_date DESC, mr.match_id DESC
+              ) AS recent_rank
+            FROM match_results mr
+          ), team_form AS (
+            SELECT
+              rr.competition_season_id,
+              rr.team_id,
+              ARRAY_AGG(rr.form_result::TEXT ORDER BY rr.match_date DESC, rr.match_id DESC) AS form
+            FROM ranked_results rr
+            WHERE rr.recent_rank <= 5
+            GROUP BY rr.competition_season_id, rr.team_id
           )
           SELECT
             standings.position,
@@ -5637,7 +5739,6 @@ export async function getStandingsByLeagueDb(leagueId: string, locale: string = 
               (SELECT tt.name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = 'en'),
               team.slug
             ) AS club_name,
-            (SELECT tt.name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = 'ko') AS club_korean_name,
             COALESCE(
               (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = ${locale}),
               (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = 'en'),
@@ -5652,13 +5753,12 @@ export async function getStandingsByLeagueDb(leagueId: string, locale: string = 
             standings.goals_against,
             standings.goal_difference,
             standings.points,
-            form.last_five_results AS form
-          FROM mv_standings standings
-          JOIN latest_competition_season lcs ON lcs.id = standings.competition_season_id
+            team_form.form::TEXT[]
+          FROM standings
           JOIN teams team ON team.id = standings.team_id
-          LEFT JOIN mv_team_form form
-            ON form.competition_season_id = standings.competition_season_id
-            AND form.team_id = standings.team_id
+          LEFT JOIN team_form
+            ON team_form.competition_season_id = standings.competition_season_id
+            AND team_form.team_id = standings.team_id
           ORDER BY standings.position ASC
         `;
 
@@ -5862,7 +5962,7 @@ export async function getStandingsByLeagueIdsDb(
 
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'standings-by-league-ids-v3', locale, params: { ids: normalizedIds.join(',') } });
+    const key = buildCacheKey({ namespace: 'standings-by-league-ids-v4', locale, params: { ids: normalizedIds.join(',') } });
 
     return readThroughCache({
       key,
@@ -5888,14 +5988,123 @@ export async function getStandingsByLeagueIdsDb(
             GROUP BY cs.id, cs.competition_id, tc.slug, s.end_date, s.start_date, s.id
             ORDER BY
               cs.competition_id,
-              CASE WHEN COUNT(DISTINCT ts.team_id) > 0 OR COUNT(DISTINCT m.id) > 0 THEN 0 ELSE 1 END,
-              s.end_date DESC NULLS LAST,
-              s.start_date DESC NULLS LAST,
-              s.id DESC
+               CASE WHEN COUNT(DISTINCT ts.team_id) > 0 OR COUNT(DISTINCT m.id) > 0 THEN 0 ELSE 1 END,
+               s.end_date DESC NULLS LAST,
+               s.start_date DESC NULLS LAST,
+               s.id DESC
+          ), has_regular_season_matches AS (
+            SELECT
+              lcs.id AS competition_season_id,
+              lcs.league_id,
+              EXISTS (
+                SELECT 1
+                FROM matches m
+                WHERE m.competition_season_id = lcs.id
+                  AND m.stage = 'REGULAR_SEASON'
+              ) AS has_regular_season
+            FROM latest_competition_seasons lcs
+          ), match_results AS (
+            SELECT
+              hrsm.league_id,
+              m.competition_season_id,
+              m.home_team_id AS team_id,
+              CASE
+                WHEN m.home_score > m.away_score THEN 3
+                WHEN m.home_score = m.away_score THEN 1
+                ELSE 0
+              END AS points,
+              CASE WHEN m.home_score > m.away_score THEN 1 ELSE 0 END AS won,
+              CASE WHEN m.home_score = m.away_score THEN 1 ELSE 0 END AS drawn,
+              CASE WHEN m.home_score < m.away_score THEN 1 ELSE 0 END AS lost,
+              m.home_score AS goals_for,
+              m.away_score AS goals_against,
+              m.match_date,
+              m.id AS match_id,
+              CASE
+                WHEN m.home_score > m.away_score THEN 'W'
+                WHEN m.home_score = m.away_score THEN 'D'
+                ELSE 'L'
+              END::TEXT AS form_result
+            FROM has_regular_season_matches hrsm
+            JOIN matches m ON m.competition_season_id = hrsm.competition_season_id
+            WHERE m.status IN ('finished', 'finished_aet', 'finished_pen')
+              AND (hrsm.has_regular_season = FALSE OR m.stage = 'REGULAR_SEASON')
+
+            UNION ALL
+
+            SELECT
+              hrsm.league_id,
+              m.competition_season_id,
+              m.away_team_id AS team_id,
+              CASE
+                WHEN m.away_score > m.home_score THEN 3
+                WHEN m.away_score = m.home_score THEN 1
+                ELSE 0
+              END AS points,
+              CASE WHEN m.away_score > m.home_score THEN 1 ELSE 0 END AS won,
+              CASE WHEN m.away_score = m.home_score THEN 1 ELSE 0 END AS drawn,
+              CASE WHEN m.away_score < m.home_score THEN 1 ELSE 0 END AS lost,
+              m.away_score AS goals_for,
+              m.home_score AS goals_against,
+              m.match_date,
+              m.id AS match_id,
+              CASE
+                WHEN m.away_score > m.home_score THEN 'W'
+                WHEN m.away_score = m.home_score THEN 'D'
+                ELSE 'L'
+              END::TEXT AS form_result
+            FROM has_regular_season_matches hrsm
+            JOIN matches m ON m.competition_season_id = hrsm.competition_season_id
+            WHERE m.status IN ('finished', 'finished_aet', 'finished_pen')
+              AND (hrsm.has_regular_season = FALSE OR m.stage = 'REGULAR_SEASON')
+          ), standings AS (
+            SELECT
+              mr.league_id,
+              mr.competition_season_id,
+              mr.team_id,
+              COUNT(*)::INT AS played,
+              SUM(mr.won)::INT AS won,
+              SUM(mr.drawn)::INT AS drawn,
+              SUM(mr.lost)::INT AS lost,
+              SUM(mr.goals_for)::INT AS goals_for,
+              SUM(mr.goals_against)::INT AS goals_against,
+              (SUM(mr.goals_for) - SUM(mr.goals_against))::INT AS goal_difference,
+              SUM(mr.points)::INT AS points,
+              RANK() OVER (
+                PARTITION BY mr.league_id, mr.competition_season_id
+                ORDER BY
+                  SUM(mr.points) DESC,
+                  SUM(mr.goals_for) - SUM(mr.goals_against) DESC,
+                  SUM(mr.goals_for) DESC
+              )::INT AS position
+            FROM match_results mr
+            GROUP BY mr.league_id, mr.competition_season_id, mr.team_id
+          ), ranked_results AS (
+            SELECT
+              mr.league_id,
+              mr.competition_season_id,
+              mr.team_id,
+              mr.form_result,
+              mr.match_date,
+              mr.match_id,
+              ROW_NUMBER() OVER (
+                PARTITION BY mr.league_id, mr.competition_season_id, mr.team_id
+                ORDER BY mr.match_date DESC, mr.match_id DESC
+              ) AS recent_rank
+            FROM match_results mr
+          ), team_form AS (
+            SELECT
+              rr.league_id,
+              rr.competition_season_id,
+              rr.team_id,
+              ARRAY_AGG(rr.form_result::TEXT ORDER BY rr.match_date DESC, rr.match_id DESC) AS form
+            FROM ranked_results rr
+            WHERE rr.recent_rank <= 5
+            GROUP BY rr.league_id, rr.competition_season_id, rr.team_id
           )
           SELECT
-            lcs.league_id,
             standings.position,
+            standings.league_id,
             team.slug AS club_id,
             COALESCE(
               (SELECT tt.name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = ${locale}),
@@ -5916,14 +6125,14 @@ export async function getStandingsByLeagueIdsDb(
             standings.goals_against,
             standings.goal_difference,
             standings.points,
-            form.last_five_results AS form
-          FROM latest_competition_seasons lcs
-          JOIN mv_standings standings ON standings.competition_season_id = lcs.id
+            team_form.form::TEXT[]
+          FROM standings
           JOIN teams team ON team.id = standings.team_id
-          LEFT JOIN mv_team_form form
-            ON form.competition_season_id = standings.competition_season_id
-            AND form.team_id = standings.team_id
-          ORDER BY lcs.league_id ASC, standings.position ASC
+          LEFT JOIN team_form
+            ON team_form.league_id = standings.league_id
+            AND team_form.competition_season_id = standings.competition_season_id
+            AND team_form.team_id = standings.team_id
+          ORDER BY standings.league_id ASC, standings.position ASC
         `;
 
         return rows.reduce<Record<string, StandingRow[]>>((acc, row) => {
@@ -5943,7 +6152,7 @@ export async function getStandingsByLeagueAndSeasonDb(
 ): Promise<StandingRow[]> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'standings-by-season-v3', locale, id: leagueId, params: { season: seasonId } });
+    const key = buildCacheKey({ namespace: 'standings-by-season-v4', locale, id: leagueId, params: { season: seasonId } });
 
     return readThroughCache({
       key,
@@ -5957,6 +6166,13 @@ export async function getStandingsByLeagueAndSeasonDb(
             JOIN seasons s ON s.id = cs.season_id
             WHERE c.slug = ${leagueId}
               AND s.slug = ${seasonId}
+          ), has_regular_season_matches AS (
+            SELECT EXISTS (
+              SELECT 1
+              FROM matches m
+              JOIN target_competition_season tcs ON tcs.id = m.competition_season_id
+              WHERE m.stage = 'REGULAR_SEASON'
+            ) AS has_regular_season
           ), match_results AS (
             SELECT
               m.competition_season_id,
@@ -5980,7 +6196,9 @@ export async function getStandingsByLeagueAndSeasonDb(
               END::TEXT AS form_result
             FROM matches m
             JOIN target_competition_season tcs ON tcs.id = m.competition_season_id
+            CROSS JOIN has_regular_season_matches hrsm
             WHERE m.status IN ('finished', 'finished_aet', 'finished_pen')
+              AND (hrsm.has_regular_season = FALSE OR m.stage = 'REGULAR_SEASON')
 
             UNION ALL
 
@@ -6006,7 +6224,9 @@ export async function getStandingsByLeagueAndSeasonDb(
               END::TEXT AS form_result
             FROM matches m
             JOIN target_competition_season tcs ON tcs.id = m.competition_season_id
+            CROSS JOIN has_regular_season_matches hrsm
             WHERE m.status IN ('finished', 'finished_aet', 'finished_pen')
+              AND (hrsm.has_regular_season = FALSE OR m.stage = 'REGULAR_SEASON')
           ), standings AS (
             SELECT
               mr.competition_season_id,
