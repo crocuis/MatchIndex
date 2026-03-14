@@ -1,8 +1,10 @@
-import Redis from 'ioredis';
 import postgres from 'postgres';
 import { loadProjectEnv } from './load-project-env.mts';
 import { loadCountryCodeResolver } from '../src/data/countryCodeResolver.ts';
+import { upsertCompetitionTranslationCandidate } from './competition-translation-candidates.mts';
+import { upsertCountryTranslationCandidate } from './country-translation-candidates.mts';
 import { COMPETITION_NAMES_KO, COUNTRY_TRANSLATIONS, TEAM_NAMES_KO } from './ko-localization-data.mts';
+import { upsertTeamTranslationCandidate } from './team-translation-candidates.mts';
 
 interface CliOptions {
   dryRun: boolean;
@@ -37,7 +39,6 @@ interface SummaryEntry {
   after: string;
 }
 
-const GOOGLE_TRANSLATE_URL = 'https://translate.googleapis.com/translate_a/single';
 const TARGET_LOCALE = 'ko';
 
 function parseArgs(argv: string[]): CliOptions {
@@ -82,19 +83,6 @@ function getSql() {
   });
 }
 
-function getRedis() {
-  const redisUrl = process.env.REDIS_URL?.trim();
-  if (!redisUrl) {
-    return null;
-  }
-
-  return new Redis(redisUrl, {
-    lazyConnect: true,
-    maxRetriesPerRequest: 1,
-    enableOfflineQueue: false,
-  });
-}
-
 function containsLatin(value: string | null | undefined) {
   return /[A-Za-z]/.test(value ?? '');
 }
@@ -110,69 +98,6 @@ function hasLocalizedGap(localized: string | null | undefined, english: string) 
   }
 
   return containsLatin(trimmed) && trimmed.toLowerCase() === english.trim().toLowerCase();
-}
-
-function shouldTranslateShortName(value: string | null | undefined) {
-  const trimmed = value?.trim();
-  if (!trimmed) {
-    return false;
-  }
-
-  return !/^[A-Z0-9.&/+' -]{1,6}$/.test(trimmed);
-}
-
-function normalizeTranslatedText(value: string) {
-  return value
-    .replace(/\s+/g, ' ')
-    .replace(/\s+([&/+-])/g, '$1')
-    .replace(/([&/+-])\s+/g, '$1')
-    .trim();
-}
-
-function parseTranslatedText(payload: unknown) {
-  if (!Array.isArray(payload) || !Array.isArray(payload[0])) {
-    return null;
-  }
-
-  const parts = payload[0]
-    .filter((entry): entry is unknown[] => Array.isArray(entry))
-    .map((entry) => typeof entry[0] === 'string' ? entry[0] : '')
-    .join('');
-
-  const translated = normalizeTranslatedText(parts);
-  return translated || null;
-}
-
-async function translateText(text: string, cache: Map<string, string>) {
-  const normalized = text.trim();
-  if (!normalized) {
-    return normalized;
-  }
-
-  const cached = cache.get(normalized);
-  if (cached) {
-    return cached;
-  }
-
-  const url = new URL(GOOGLE_TRANSLATE_URL);
-  url.searchParams.set('client', 'gtx');
-  url.searchParams.set('sl', 'auto');
-  url.searchParams.set('tl', TARGET_LOCALE);
-  url.searchParams.set('dt', 't');
-  url.searchParams.set('q', normalized);
-
-  const response = await fetch(url, {
-    headers: { Accept: 'application/json' },
-    redirect: 'follow',
-  });
-
-  if (!response.ok) {
-    throw new Error(`translate failed for "${normalized}": HTTP ${response.status}`);
-  }
-
-  const translated = parseTranslatedText(await response.json()) ?? normalized;
-  cache.set(normalized, translated);
-  return translated;
 }
 
 async function mapWithConcurrency<T, R>(items: T[], limit: number, mapper: (item: T) => Promise<R>) {
@@ -270,27 +195,6 @@ async function getCountryGaps(sql: postgres.Sql<Record<string, never>>) {
   `;
 }
 
-async function invalidateCaches() {
-  const redis = getRedis();
-  if (!redis) {
-    return 0;
-  }
-
-  try {
-    await redis.connect();
-    return redis.del(
-      'leagues:locale:ko',
-      'clubs:locale:ko',
-      'nations:locale:ko',
-      'nations-women:locale:ko',
-    );
-  } catch {
-    return 0;
-  } finally {
-    redis.disconnect();
-  }
-}
-
 async function main() {
   loadProjectEnv();
 
@@ -302,7 +206,6 @@ async function main() {
 
     const sql = getSql();
     const countryCodeResolver = await loadCountryCodeResolver(sql);
-    const translationCache = new Map<string, string>();
 
   try {
     const [competitionRows, teamRows, countryRows] = await Promise.all([
@@ -317,86 +220,113 @@ async function main() {
 
     const competitionRepairs = await mapWithConcurrency(competitionTargets, 4, async (row) => {
       const manual = COMPETITION_NAMES_KO[row.slug];
-      const name = manual?.name ?? await translateText(row.en_name, translationCache);
-      const shortName = manual?.shortName
-        ?? (shouldTranslateShortName(row.en_short_name)
-          ? await translateText(row.en_short_name, translationCache)
-          : row.en_short_name);
+      if (!manual) {
+        return null;
+      }
+
+      const name = manual.name;
+      const shortName = manual.shortName;
 
       return { row, name, shortName };
     });
+    const approvedCompetitionRepairs = competitionRepairs.filter((repair): repair is NonNullable<typeof repair> => Boolean(repair));
 
     const teamRepairs = await mapWithConcurrency(teamTargets, 6, async (row) => {
       const manual = TEAM_NAMES_KO[row.slug];
-      const name = manual?.name ?? await translateText(row.en_name, translationCache);
-      const shortName = manual?.shortName
-        ?? (shouldTranslateShortName(row.en_short_name)
-          ? await translateText(row.en_short_name, translationCache)
-          : row.en_short_name);
+      if (!manual) {
+        return null;
+      }
+
+      const name = manual.name;
+      const shortName = manual.shortName;
 
       return { row, name, shortName };
     });
+    const approvedTeamRepairs = teamRepairs.filter((repair): repair is NonNullable<typeof repair> => Boolean(repair));
 
     const countryRepairs = await mapWithConcurrency(countryTargets, 6, async (row) => {
       const canonicalCode = countryCodeResolver.resolve(row.code_alpha3) ?? row.code_alpha3;
       const manual = COUNTRY_TRANSLATIONS[canonicalCode] ?? COUNTRY_TRANSLATIONS[row.code_alpha3];
-      const name = manual?.ko ?? await translateText(row.en_name, translationCache);
+      if (!manual?.ko) {
+        return null;
+      }
+
+      const name = manual.ko;
       return { row, name };
     });
+    const approvedCountryRepairs = countryRepairs.filter((repair): repair is NonNullable<typeof repair> => Boolean(repair));
 
     if (!options.dryRun) {
-      for (const repair of competitionRepairs) {
-        await sql`
-          INSERT INTO competition_translations (competition_id, locale, name, short_name)
-          VALUES ((SELECT id FROM competitions WHERE slug = ${repair.row.slug}), ${TARGET_LOCALE}, ${repair.name}, ${repair.shortName})
-          ON CONFLICT (competition_id, locale)
-          DO UPDATE SET name = EXCLUDED.name, short_name = EXCLUDED.short_name
-        `;
+      for (const repair of approvedCompetitionRepairs) {
+        await upsertCompetitionTranslationCandidate(sql, {
+          competitionSlug: repair.row.slug,
+          locale: TARGET_LOCALE,
+          proposedName: repair.name,
+          proposedShortName: repair.shortName,
+          reviewedAt: new Date().toISOString(),
+          reviewedBy: 'repair-tab-localizations',
+          sourceLabel: 'Legacy reviewed competition localization',
+          sourceRef: 'scripts/ko-localization-data.mts',
+          sourceType: 'legacy',
+          status: 'approved',
+        });
       }
 
-      for (const repair of teamRepairs) {
-        await sql`
-          INSERT INTO team_translations (team_id, locale, name, short_name)
-          VALUES ((SELECT id FROM teams WHERE slug = ${repair.row.slug}), ${TARGET_LOCALE}, ${repair.name}, ${repair.shortName})
-          ON CONFLICT (team_id, locale)
-          DO UPDATE SET name = EXCLUDED.name, short_name = EXCLUDED.short_name
-        `;
+      for (const repair of approvedTeamRepairs) {
+        await upsertTeamTranslationCandidate(sql, {
+          locale: TARGET_LOCALE,
+          proposedName: repair.name,
+          proposedShortName: repair.shortName,
+          reviewedAt: new Date().toISOString(),
+          reviewedBy: 'repair-tab-localizations',
+          sourceLabel: 'Legacy reviewed team localization',
+          sourceRef: 'scripts/ko-localization-data.mts',
+          sourceType: 'legacy',
+          status: 'approved',
+          teamSlug: repair.row.slug,
+        });
       }
 
-      for (const repair of countryRepairs) {
-        await sql`
-          INSERT INTO country_translations (country_id, locale, name)
-          VALUES ((SELECT id FROM countries WHERE code_alpha3 = ${repair.row.code_alpha3}), ${TARGET_LOCALE}, ${repair.name})
-          ON CONFLICT (country_id, locale)
-          DO UPDATE SET name = EXCLUDED.name
-        `;
+      for (const repair of approvedCountryRepairs) {
+        await upsertCountryTranslationCandidate(sql, {
+          countryCode: repair.row.code_alpha3,
+          locale: TARGET_LOCALE,
+          proposedName: repair.name,
+          reviewedAt: new Date().toISOString(),
+          reviewedBy: 'repair-tab-localizations',
+          sourceLabel: 'Legacy reviewed country localization',
+          sourceRef: 'scripts/ko-localization-data.mts',
+          sourceType: 'legacy',
+          status: 'approved',
+        });
       }
     }
 
-    const invalidatedCacheKeys = !options.dryRun && (competitionRepairs.length > 0 || teamRepairs.length > 0 || countryRepairs.length > 0)
-      ? await invalidateCaches()
-      : 0;
+    const invalidatedCacheKeys = 0;
 
     console.log(JSON.stringify({
       dryRun: options.dryRun,
       invalidatedCacheKeys,
-      repaired: {
-        competitions: competitionRepairs.length,
-        teams: teamRepairs.length,
-        countries: countryRepairs.length,
-      },
+        repaired: {
+          competitionCandidatesApproved: approvedCompetitionRepairs.length,
+          competitionsSkippedWithoutManualReview: competitionTargets.length - approvedCompetitionRepairs.length,
+          teamCandidatesApproved: approvedTeamRepairs.length,
+          teamsSkippedWithoutManualReview: teamTargets.length - approvedTeamRepairs.length,
+          countryCandidatesApproved: approvedCountryRepairs.length,
+          countriesSkippedWithoutManualReview: countryTargets.length - approvedCountryRepairs.length,
+        },
       preview: {
-        competitions: competitionRepairs.slice(0, 10).map<SummaryEntry>((repair) => ({
+        competitions: approvedCompetitionRepairs.slice(0, 10).map<SummaryEntry>((repair) => ({
           id: repair.row.slug,
           before: repair.row.ko_name,
           after: repair.name,
         })),
-        teams: teamRepairs.slice(0, 10).map<SummaryEntry>((repair) => ({
+        teams: approvedTeamRepairs.slice(0, 10).map<SummaryEntry>((repair) => ({
           id: repair.row.slug,
           before: repair.row.ko_name,
           after: repair.name,
         })),
-        countries: countryRepairs.slice(0, 10).map<SummaryEntry>((repair) => ({
+        countries: approvedCountryRepairs.slice(0, 10).map<SummaryEntry>((repair) => ({
           id: repair.row.code_alpha3,
           before: repair.row.ko_name,
           after: repair.name,

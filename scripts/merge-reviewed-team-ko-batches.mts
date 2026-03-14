@@ -1,18 +1,36 @@
-import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
-import type { NamedLocalizationEntry } from './ko-localization-data.mts';
+import postgres from 'postgres';
+import { loadProjectEnv } from './load-project-env.mts';
+import { upsertTeamTranslationCandidate } from './team-translation-candidates.mts';
+
+interface CliOptions {
+  dryRun: boolean;
+}
 
 interface MissingTeamRow {
   slug: string;
-  en_name: string;
-  ko_name: string | null;
-  ko_short_name: string | null;
 }
 
 interface ReviewedTeamRow {
   slug: string;
   name: string;
   shortName: string;
+}
+
+function parseArgs(argv: string[]): CliOptions {
+  return {
+    dryRun: argv.includes('--dry-run'),
+  };
+}
+
+function getSql() {
+  const connectionString = process.env.DATABASE_URL;
+  if (!connectionString) {
+    throw new Error('DATABASE_URL is not set');
+  }
+
+  return postgres(connectionString, { max: 1, prepare: false, idle_timeout: 5 });
 }
 
 function readJsonFile<T>(filePath: string): T {
@@ -33,12 +51,13 @@ function assertReviewedRow(row: ReviewedTeamRow, filePath: string, index: number
   }
 }
 
-function main() {
+async function main() {
+  loadProjectEnv();
+  const options = parseArgs(process.argv.slice(2));
   const root = process.cwd();
   const reviewDir = path.join(root, '.sisyphus', 'team-ko-review');
   const resultsDir = path.join(reviewDir, 'results');
-  const sourcePath = path.join(reviewDir, 'latest-team-ko-missing.json');
-  const outputPath = path.join(root, 'scripts', 'ko-team-names.generated.json');
+  const sourcePath = path.join(reviewDir, 'latest-team-ko-missing.full.json');
 
   if (!existsSync(sourcePath)) {
     throw new Error(`Missing source file: ${sourcePath}`);
@@ -85,43 +104,47 @@ function main() {
   }
 
   const missingSlugs = expectedSlugs.filter((slug) => !seenSlugs.has(slug));
-
   if (duplicateSlugs.length > 0 || unexpectedSlugs.length > 0 || missingSlugs.length > 0) {
-    throw new Error(
-      JSON.stringify(
-        {
-          duplicateSlugs,
-          unexpectedSlugs,
-          missingSlugs,
-        },
-        null,
-        2,
-      ),
-    );
+    throw new Error(JSON.stringify({ duplicateSlugs, unexpectedSlugs, missingSlugs }, null, 2));
   }
 
-  const output: Record<string, NamedLocalizationEntry> = {};
-  for (const row of reviewedRows) {
-    output[row.slug] = {
-      name: normalizeValue(row.name),
-      shortName: normalizeValue(row.shortName),
-    };
+  if (options.dryRun) {
+    console.log(JSON.stringify({
+      dryRun: true,
+      sourceCount: expectedSlugs.length,
+      resultFileCount: resultFiles.length,
+      candidateCount: reviewedRows.length,
+    }, null, 2));
+    return;
   }
 
-  writeFileSync(outputPath, `${JSON.stringify(output, null, 2)}\n`);
+  const sql = getSql();
 
-  console.log(
-    JSON.stringify(
-      {
-        sourceCount: expectedSlugs.length,
-        resultFileCount: resultFiles.length,
-        generatedCount: reviewedRows.length,
-        outputPath,
-      },
-      null,
-      2,
-    ),
-  );
+  try {
+    for (const row of reviewedRows) {
+      await upsertTeamTranslationCandidate(sql, {
+        locale: 'ko',
+        proposedName: normalizeValue(row.name),
+        proposedShortName: normalizeValue(row.shortName),
+        reviewedAt: new Date().toISOString(),
+        reviewedBy: 'merge-reviewed-team-ko-batches',
+        sourceLabel: 'Reviewed team ko batch',
+        sourceRef: `review:${row.slug}`,
+        sourceType: 'manual',
+        status: 'approved',
+        teamSlug: normalizeValue(row.slug),
+      });
+    }
+
+    console.log(JSON.stringify({
+      dryRun: false,
+      sourceCount: expectedSlugs.length,
+      resultFileCount: resultFiles.length,
+      candidateCount: reviewedRows.length,
+    }, null, 2));
+  } finally {
+    await sql.end({ timeout: 5 });
+  }
 }
 
-main();
+void main();

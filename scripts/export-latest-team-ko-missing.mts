@@ -43,7 +43,12 @@ async function main() {
       JOIN countries c ON c.id = t.country_id
       LEFT JOIN team_translations en ON en.team_id = t.id AND en.locale = 'en'
       LEFT JOIN team_translations ko ON ko.team_id = t.id AND ko.locale = 'ko'
+      LEFT JOIN team_translation_candidates ttc
+        ON ttc.team_id = t.id
+        AND ttc.locale = 'ko'
+        AND ttc.status IN ('pending', 'approved')
       WHERE ko.name IS NULL
+        AND ttc.id IS NULL
       ORDER BY t.slug ASC
     `;
 
