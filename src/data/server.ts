@@ -8,6 +8,7 @@ export {
   getClubNameDb,
   getClubShortNameDb,
   getClubByIdDb,
+  getTeamTranslationSnapshotDb,
   getClubLinksByNamesDb,
   getClubsByIdsDb,
   getClubSeasonHistoryDb,

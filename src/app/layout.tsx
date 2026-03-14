@@ -5,6 +5,7 @@ import { getLocale, getMessages } from 'next-intl/server';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { TopBar } from '@/components/layout/TopBar';
 import { APP_VERSION } from '@/config/app';
+import { getTeamTranslationSnapshotDb } from '@/data/server';
 import './globals.css';
 
 const geistSans = Geist({
@@ -30,6 +31,10 @@ export default async function RootLayout({
   const locale = await getLocale();
   const messages = await getMessages();
   const hasDatabase = Boolean(process.env.DATABASE_URL);
+
+  if (hasDatabase) {
+    await getTeamTranslationSnapshotDb(locale);
+  }
 
   return (
     <html lang={locale} className="dark">

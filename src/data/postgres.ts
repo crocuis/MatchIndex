@@ -76,6 +76,13 @@ interface ClubRepresentativeRow extends ClubListRow {
   season_end_date: string | null;
 }
 
+interface TeamTranslationSnapshotRow {
+  id: string;
+  name: string;
+  short_name: string;
+  korean_name: string | null;
+}
+
 interface ClubSeasonMetaRow {
   coach_name: string | null;
 }
@@ -762,6 +769,46 @@ function getLocalizedClubName(_id: string, name: string, _locale: string): strin
   void _id;
   void _locale;
   return name;
+}
+
+export async function getTeamTranslationSnapshotDb(locale: string = 'en') {
+  return withFallback(async () => {
+    const sql = getDb();
+    const [{ version }] = await sql<{ version: string }[]>`
+      SELECT GREATEST(
+        COALESCE((SELECT MAX(t.updated_at) FROM teams t WHERE t.is_national = FALSE), TIMESTAMPTZ 'epoch'),
+        COALESCE((SELECT MAX(tt.updated_at) FROM team_translations tt WHERE tt.locale IN (${locale}, 'en', 'ko')), TIMESTAMPTZ 'epoch')
+      )::TEXT AS version
+    `;
+    const key = buildCacheKey({ namespace: 'team-translation-snapshot-v1', locale, params: { version } });
+
+    return readThroughCache({
+      key,
+      tier: 'master',
+      policySlug: 'master.teams',
+      loader: async () => {
+        const rows = await sql<TeamTranslationSnapshotRow[]>`
+          SELECT
+            t.slug AS id,
+            COALESCE(tt_locale.name, tt_en.name, t.slug) AS name,
+            COALESCE(tt_locale.short_name, tt_en.short_name, COALESCE(tt_locale.name, tt_en.name, t.slug)) AS short_name,
+            tt_ko.name AS korean_name
+          FROM teams t
+          LEFT JOIN team_translations tt_locale ON tt_locale.team_id = t.id AND tt_locale.locale = ${locale}
+          LEFT JOIN team_translations tt_en ON tt_en.team_id = t.id AND tt_en.locale = 'en'
+          LEFT JOIN team_translations tt_ko ON tt_ko.team_id = t.id AND tt_ko.locale = 'ko'
+          WHERE t.is_national = FALSE
+            AND t.is_active = TRUE
+        `;
+
+        return Object.fromEntries(rows.map((row) => [row.id, {
+          name: row.name,
+          shortName: row.short_name,
+          koreanName: row.korean_name,
+        }]));
+      },
+    });
+  }, () => ({} as Record<string, { koreanName: string | null; name: string; shortName: string }>));
 }
 
 function getClubRepresentativeTimestamp(row: Pick<ClubRepresentativeRow, 'season_end_date' | 'season_start_date'>) {
@@ -2704,11 +2751,23 @@ export async function getClubsByLeagueDb(leagueId: string, locale: string = 'en'
 }
 
 export async function getClubNameDb(id: string, locale: string = 'en'): Promise<string> {
+  const snapshot = await getTeamTranslationSnapshotDb(locale);
+  const entry = snapshot[id];
+  if (entry) {
+    return entry.name;
+  }
+
   const club = await getClubByIdDb(id, locale);
   return club ? getLocalizedClubName(club.id, club.name, locale) : 'Unknown';
 }
 
 export async function getClubShortNameDb(id: string, locale: string = 'en'): Promise<string> {
+  const snapshot = await getTeamTranslationSnapshotDb(locale);
+  const entry = snapshot[id];
+  if (entry) {
+    return entry.shortName;
+  }
+
   const club = await getClubByIdDb(id, locale);
   return club?.shortName ?? '???';
 }
