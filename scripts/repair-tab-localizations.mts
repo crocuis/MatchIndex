@@ -1,42 +1,19 @@
 import postgres from 'postgres';
 import { loadProjectEnv } from './load-project-env.mts';
-import { loadCountryCodeResolver } from '../src/data/countryCodeResolver.ts';
-import { upsertCompetitionTranslationCandidate } from './competition-translation-candidates.mts';
-import { upsertCountryTranslationCandidate } from './country-translation-candidates.mts';
-import { COMPETITION_NAMES_KO, COUNTRY_TRANSLATIONS, TEAM_NAMES_KO } from './ko-localization-data.mts';
-import { upsertTeamTranslationCandidate } from './team-translation-candidates.mts';
+import {
+  promoteApprovedCompetitionTranslationCandidates,
+  promoteApprovedCountryTranslationCandidates,
+  promoteApprovedTeamTranslationCandidates,
+} from './promote-translation-candidates.mts';
 
 interface CliOptions {
   dryRun: boolean;
   help: boolean;
 }
 
-interface CompetitionGapRow {
-  en_name: string;
-  en_short_name: string;
-  ko_name: string | null;
-  ko_short_name: string | null;
-  slug: string;
-}
-
-interface TeamGapRow {
-  en_name: string;
-  en_short_name: string;
-  ko_name: string | null;
-  ko_short_name: string | null;
-  slug: string;
-}
-
-interface CountryGapRow {
-  code_alpha3: string;
-  en_name: string;
-  ko_name: string | null;
-}
-
-interface SummaryEntry {
-  id: string;
-  before?: string | null;
-  after: string;
+interface GapSummary {
+  missingOrEnglish: number;
+  approvedUnpromoted: number;
 }
 
 const TARGET_LOCALE = 'ko';
@@ -65,7 +42,7 @@ function printHelp() {
   console.log(`Usage: node --experimental-strip-types scripts/repair-tab-localizations.mts [options]
 
 Options:
-  --dry-run   Detect and preview localization repairs without writing
+  --dry-run   Detect localization gaps and preview DB-backed repairs without writing
   --help, -h  Show this help message
 `);
 }
@@ -100,24 +77,8 @@ function hasLocalizedGap(localized: string | null | undefined, english: string) 
   return containsLatin(trimmed) && trimmed.toLowerCase() === english.trim().toLowerCase();
 }
 
-async function mapWithConcurrency<T, R>(items: T[], limit: number, mapper: (item: T) => Promise<R>) {
-  const results: R[] = new Array(items.length);
-  let nextIndex = 0;
-
-  async function worker() {
-    while (nextIndex < items.length) {
-      const currentIndex = nextIndex;
-      nextIndex += 1;
-      results[currentIndex] = await mapper(items[currentIndex]);
-    }
-  }
-
-  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, () => worker()));
-  return results;
-}
-
-async function getCompetitionGaps(sql: postgres.Sql<Record<string, never>>) {
-  return sql<CompetitionGapRow[]>`
+async function getCompetitionGapCount(sql: postgres.Sql<Record<string, never>>) {
+  const rows = await sql<Array<{ en_name: string; ko_name: string | null }>>`
     WITH latest_competition_seasons AS (
       SELECT DISTINCT ON (cs.competition_id)
         cs.competition_id
@@ -126,26 +87,20 @@ async function getCompetitionGaps(sql: postgres.Sql<Record<string, never>>) {
       ORDER BY cs.competition_id, s.end_date DESC NULLS LAST, s.start_date DESC NULLS LAST, s.id DESC
     )
     SELECT
-      c.slug,
       COALESCE(
         (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = 'en'),
         c.slug
       ) AS en_name,
-      COALESCE(
-        (SELECT ct.short_name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = 'en'),
-        (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = 'en'),
-        c.slug
-      ) AS en_short_name,
-      (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = ${TARGET_LOCALE}) AS ko_name,
-      (SELECT ct.short_name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = ${TARGET_LOCALE}) AS ko_short_name
+      (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = ${TARGET_LOCALE}) AS ko_name
     FROM competitions c
     JOIN latest_competition_seasons lcs ON lcs.competition_id = c.id
-    ORDER BY c.slug ASC
   `;
+
+  return rows.filter((row) => hasLocalizedGap(row.ko_name, row.en_name)).length;
 }
 
-async function getTeamGaps(sql: postgres.Sql<Record<string, never>>) {
-  return sql<TeamGapRow[]>`
+async function getTeamGapCount(sql: postgres.Sql<Record<string, never>>) {
+  const rows = await sql<Array<{ en_name: string; ko_name: string | null }>>`
     WITH latest_team_seasons AS (
       SELECT DISTINCT ON (ts.team_id)
         ts.team_id
@@ -155,28 +110,21 @@ async function getTeamGaps(sql: postgres.Sql<Record<string, never>>) {
       ORDER BY ts.team_id, s.end_date DESC NULLS LAST, s.start_date DESC NULLS LAST, cs.id DESC
     )
     SELECT
-      t.slug,
       COALESCE(
         (SELECT tt.name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = 'en'),
         t.slug
       ) AS en_name,
-      COALESCE(
-        (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = 'en'),
-        (SELECT tt.name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = 'en'),
-        t.slug
-      ) AS en_short_name,
-      (SELECT tt.name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = ${TARGET_LOCALE}) AS ko_name,
-      (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = ${TARGET_LOCALE}) AS ko_short_name
+      (SELECT tt.name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = ${TARGET_LOCALE}) AS ko_name
     FROM teams t
     JOIN latest_team_seasons lts ON lts.team_id = t.id
-    ORDER BY t.slug ASC
   `;
+
+  return rows.filter((row) => hasLocalizedGap(row.ko_name, row.en_name)).length;
 }
 
-async function getCountryGaps(sql: postgres.Sql<Record<string, never>>) {
-  return sql<CountryGapRow[]>`
+async function getCountryGapCount(sql: postgres.Sql<Record<string, never>>) {
+  const rows = await sql<Array<{ en_name: string; ko_name: string | null }>>`
     SELECT
-      c.code_alpha3,
       COALESCE(
         (SELECT ct.name FROM country_translations ct WHERE ct.country_id = c.id AND ct.locale = 'en'),
         c.code_alpha3
@@ -191,8 +139,55 @@ async function getCountryGaps(sql: postgres.Sql<Record<string, never>>) {
         OR c.flag_url IS NOT NULL
         OR c.crest_url IS NOT NULL
       )
-    ORDER BY c.code_alpha3 ASC
   `;
+
+  return rows.filter((row) => hasLocalizedGap(row.ko_name, row.en_name)).length;
+}
+
+async function getApprovedUnpromotedCount(sql: postgres.Sql<Record<string, never>>, tableName: 'country_translation_candidates' | 'competition_translation_candidates' | 'team_translation_candidates', idColumn: 'country_id' | 'competition_id' | 'team_id') {
+  const rows = await sql<{ count: number }[]>`
+    SELECT COUNT(*)::INT AS count
+    FROM (
+      SELECT DISTINCT ON (${sql(idColumn)}, locale) id
+      FROM ${sql(tableName)}
+      WHERE locale = ${TARGET_LOCALE}
+        AND status = 'approved'
+        AND promoted_at IS NULL
+      ORDER BY
+        ${sql(idColumn)},
+        locale,
+        CASE source_type
+          WHEN 'manual' THEN 5
+          WHEN 'imported' THEN 4
+          WHEN 'legacy' THEN 3
+          WHEN 'merge_derived' THEN 2
+          WHEN 'historical_rule' THEN 1
+          ELSE 0
+        END DESC,
+        COALESCE(reviewed_at, created_at) DESC,
+        created_at DESC,
+        id DESC
+    ) candidates
+  `;
+
+  return rows[0]?.count ?? 0;
+}
+
+async function collectSummary(sql: postgres.Sql<Record<string, never>>) {
+  const [competitionMissing, teamMissing, countryMissing, competitionApproved, teamApproved, countryApproved] = await Promise.all([
+    getCompetitionGapCount(sql),
+    getTeamGapCount(sql),
+    getCountryGapCount(sql),
+    getApprovedUnpromotedCount(sql, 'competition_translation_candidates', 'competition_id'),
+    getApprovedUnpromotedCount(sql, 'team_translation_candidates', 'team_id'),
+    getApprovedUnpromotedCount(sql, 'country_translation_candidates', 'country_id'),
+  ]);
+
+  return {
+    competitions: { missingOrEnglish: competitionMissing, approvedUnpromoted: competitionApproved } satisfies GapSummary,
+    teams: { missingOrEnglish: teamMissing, approvedUnpromoted: teamApproved } satisfies GapSummary,
+    countries: { missingOrEnglish: countryMissing, approvedUnpromoted: countryApproved } satisfies GapSummary,
+  };
 }
 
 async function main() {
@@ -204,134 +199,34 @@ async function main() {
     return;
   }
 
-    const sql = getSql();
-    const countryCodeResolver = await loadCountryCodeResolver(sql);
+  const sql = getSql();
 
   try {
-    const [competitionRows, teamRows, countryRows] = await Promise.all([
-      getCompetitionGaps(sql),
-      getTeamGaps(sql),
-      getCountryGaps(sql),
-    ]);
+    const before = await collectSummary(sql);
 
-    const competitionTargets = competitionRows.filter((row) => hasLocalizedGap(row.ko_name, row.en_name) || !row.ko_short_name?.trim());
-    const teamTargets = teamRows.filter((row) => hasLocalizedGap(row.ko_name, row.en_name) || !row.ko_short_name?.trim());
-    const countryTargets = countryRows.filter((row) => hasLocalizedGap(row.ko_name, row.en_name));
-
-    const competitionRepairs = await mapWithConcurrency(competitionTargets, 4, async (row) => {
-      const manual = COMPETITION_NAMES_KO[row.slug];
-      if (!manual) {
-        return null;
-      }
-
-      const name = manual.name;
-      const shortName = manual.shortName;
-
-      return { row, name, shortName };
-    });
-    const approvedCompetitionRepairs = competitionRepairs.filter((repair): repair is NonNullable<typeof repair> => Boolean(repair));
-
-    const teamRepairs = await mapWithConcurrency(teamTargets, 6, async (row) => {
-      const manual = TEAM_NAMES_KO[row.slug];
-      if (!manual) {
-        return null;
-      }
-
-      const name = manual.name;
-      const shortName = manual.shortName;
-
-      return { row, name, shortName };
-    });
-    const approvedTeamRepairs = teamRepairs.filter((repair): repair is NonNullable<typeof repair> => Boolean(repair));
-
-    const countryRepairs = await mapWithConcurrency(countryTargets, 6, async (row) => {
-      const canonicalCode = countryCodeResolver.resolve(row.code_alpha3) ?? row.code_alpha3;
-      const manual = COUNTRY_TRANSLATIONS[canonicalCode] ?? COUNTRY_TRANSLATIONS[row.code_alpha3];
-      if (!manual?.ko) {
-        return null;
-      }
-
-      const name = manual.ko;
-      return { row, name };
-    });
-    const approvedCountryRepairs = countryRepairs.filter((repair): repair is NonNullable<typeof repair> => Boolean(repair));
-
-    if (!options.dryRun) {
-      for (const repair of approvedCompetitionRepairs) {
-        await upsertCompetitionTranslationCandidate(sql, {
-          competitionSlug: repair.row.slug,
-          locale: TARGET_LOCALE,
-          proposedName: repair.name,
-          proposedShortName: repair.shortName,
-          reviewedAt: new Date().toISOString(),
-          reviewedBy: 'repair-tab-localizations',
-          sourceLabel: 'Legacy reviewed competition localization',
-          sourceRef: 'scripts/ko-localization-data.mts',
-          sourceType: 'legacy',
-          status: 'approved',
-        });
-      }
-
-      for (const repair of approvedTeamRepairs) {
-        await upsertTeamTranslationCandidate(sql, {
-          locale: TARGET_LOCALE,
-          proposedName: repair.name,
-          proposedShortName: repair.shortName,
-          reviewedAt: new Date().toISOString(),
-          reviewedBy: 'repair-tab-localizations',
-          sourceLabel: 'Legacy reviewed team localization',
-          sourceRef: 'scripts/ko-localization-data.mts',
-          sourceType: 'legacy',
-          status: 'approved',
-          teamSlug: repair.row.slug,
-        });
-      }
-
-      for (const repair of approvedCountryRepairs) {
-        await upsertCountryTranslationCandidate(sql, {
-          countryCode: repair.row.code_alpha3,
-          locale: TARGET_LOCALE,
-          proposedName: repair.name,
-          reviewedAt: new Date().toISOString(),
-          reviewedBy: 'repair-tab-localizations',
-          sourceLabel: 'Legacy reviewed country localization',
-          sourceRef: 'scripts/ko-localization-data.mts',
-          sourceType: 'legacy',
-          status: 'approved',
-        });
-      }
+    if (options.dryRun) {
+      console.log(JSON.stringify({
+        dryRun: true,
+        locale: TARGET_LOCALE,
+        before,
+      }, null, 2));
+      return;
     }
 
-    const invalidatedCacheKeys = 0;
+    const promoted = {
+      competitions: await promoteApprovedCompetitionTranslationCandidates(sql, TARGET_LOCALE, 'repair-tab-localizations'),
+      teams: await promoteApprovedTeamTranslationCandidates(sql, TARGET_LOCALE, 'repair-tab-localizations'),
+      countries: await promoteApprovedCountryTranslationCandidates(sql, TARGET_LOCALE, 'repair-tab-localizations'),
+    };
+
+    const after = await collectSummary(sql);
 
     console.log(JSON.stringify({
-      dryRun: options.dryRun,
-      invalidatedCacheKeys,
-        repaired: {
-          competitionCandidatesApproved: approvedCompetitionRepairs.length,
-          competitionsSkippedWithoutManualReview: competitionTargets.length - approvedCompetitionRepairs.length,
-          teamCandidatesApproved: approvedTeamRepairs.length,
-          teamsSkippedWithoutManualReview: teamTargets.length - approvedTeamRepairs.length,
-          countryCandidatesApproved: approvedCountryRepairs.length,
-          countriesSkippedWithoutManualReview: countryTargets.length - approvedCountryRepairs.length,
-        },
-      preview: {
-        competitions: approvedCompetitionRepairs.slice(0, 10).map<SummaryEntry>((repair) => ({
-          id: repair.row.slug,
-          before: repair.row.ko_name,
-          after: repair.name,
-        })),
-        teams: approvedTeamRepairs.slice(0, 10).map<SummaryEntry>((repair) => ({
-          id: repair.row.slug,
-          before: repair.row.ko_name,
-          after: repair.name,
-        })),
-        countries: approvedCountryRepairs.slice(0, 10).map<SummaryEntry>((repair) => ({
-          id: repair.row.code_alpha3,
-          before: repair.row.ko_name,
-          after: repair.name,
-        })),
-      },
+      dryRun: false,
+      locale: TARGET_LOCALE,
+      promoted,
+      before,
+      after,
     }, null, 2));
   } finally {
     await sql.end({ timeout: 5 });
