@@ -1,5 +1,5 @@
 import type { Sql } from 'postgres';
-import { COUNTRY_CODE_ALIASES, COUNTRY_CODE_SKIP } from './countryCodeAliasSeeds';
+import { COUNTRY_CODE_ALIASES, COUNTRY_CODE_SKIP } from './countryCodeAliasSeeds.ts';
 
 interface CountryAliasRow {
   canonical_code: string;

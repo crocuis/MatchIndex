@@ -214,6 +214,44 @@ async function withTransaction(sql: DbSql, callback: (tx: TxSql) => Promise<void
   }
 }
 
+async function moveCompetitionTranslationCandidates(sql: DbSql | TxSql, canonicalId: number, aliasId: number) {
+  await sql`
+    DELETE FROM competition_translation_candidates alias_ctc
+    USING competition_translation_candidates canonical_ctc
+    WHERE alias_ctc.competition_id = ${aliasId}
+      AND canonical_ctc.competition_id = ${canonicalId}
+      AND alias_ctc.locale = canonical_ctc.locale
+      AND alias_ctc.proposed_name_normalized = canonical_ctc.proposed_name_normalized
+      AND alias_ctc.source_key = canonical_ctc.source_key
+  `;
+
+  await sql`
+    UPDATE competition_translation_candidates
+    SET competition_id = ${canonicalId},
+        updated_at = NOW()
+    WHERE competition_id = ${aliasId}
+  `;
+}
+
+async function moveTeamTranslationCandidates(sql: DbSql | TxSql, canonicalId: number, aliasId: number) {
+  await sql`
+    DELETE FROM team_translation_candidates alias_ttc
+    USING team_translation_candidates canonical_ttc
+    WHERE alias_ttc.team_id = ${aliasId}
+      AND canonical_ttc.team_id = ${canonicalId}
+      AND alias_ttc.locale = canonical_ttc.locale
+      AND alias_ttc.proposed_name_normalized = canonical_ttc.proposed_name_normalized
+      AND alias_ttc.source_key = canonical_ttc.source_key
+  `;
+
+  await sql`
+    UPDATE team_translation_candidates
+    SET team_id = ${canonicalId},
+        updated_at = NOW()
+    WHERE team_id = ${aliasId}
+  `;
+}
+
 async function mergeCompetition(sql: ReturnType<typeof getSql>, pair: MergePair, dryRun: boolean): Promise<MergeResult> {
   const canonical = await getEntityRow(sql, 'competitions', pair.canonicalSlug);
   const alias = await getEntityRow(sql, 'competitions', pair.aliasSlug);
@@ -259,6 +297,8 @@ async function mergeCompetition(sql: ReturnType<typeof getSql>, pair: MergePair,
       DO UPDATE SET
         short_name = COALESCE(competition_translations.short_name, EXCLUDED.short_name)
     `;
+
+    await moveCompetitionTranslationCandidates(tx, canonical.id, alias.id);
 
     await copyCompetitionAliases(tx, canonical.id, alias.id, alias.slug);
 
@@ -339,6 +379,8 @@ async function mergeTeam(sql: ReturnType<typeof getSql>, pair: MergePair, option
       DO UPDATE SET
         short_name = COALESCE(team_translations.short_name, EXCLUDED.short_name)
     `;
+
+    await moveTeamTranslationCandidates(tx, canonical.id, alias.id);
 
     await copyTeamAliases(tx, canonical.id, alias.id, alias.slug);
 
@@ -467,6 +509,8 @@ async function mergeTeamsBulk(sql: DbSql, pairs: MergePair[], options: CliOption
         DO UPDATE SET
           short_name = COALESCE(team_translations.short_name, EXCLUDED.short_name)
       `;
+
+      await moveTeamTranslationCandidates(tx, canonical.id, alias.id);
 
       await copyTeamAliases(tx, canonical.id, alias.id, alias.slug);
 

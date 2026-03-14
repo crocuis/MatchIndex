@@ -50,6 +50,23 @@ async function mergeAlias(sql: ReturnType<typeof getSql>, aliasCode: string, can
   `;
 
   await sql`
+    DELETE FROM country_translation_candidates alias_ctc
+    USING country_translation_candidates canonical_ctc
+    WHERE alias_ctc.country_id = ${aliasRow.id}
+      AND canonical_ctc.country_id = ${canonicalRow.id}
+      AND alias_ctc.locale = canonical_ctc.locale
+      AND alias_ctc.proposed_name_normalized = canonical_ctc.proposed_name_normalized
+      AND alias_ctc.source_key = canonical_ctc.source_key
+  `;
+
+  await sql`
+    UPDATE country_translation_candidates
+    SET country_id = ${canonicalRow.id},
+        updated_at = NOW()
+    WHERE country_id = ${aliasRow.id}
+  `;
+
+  await sql`
     INSERT INTO ranking_history (country_id, ranking_date, fifa_ranking, source)
     SELECT ${canonicalRow.id}, ranking_date, fifa_ranking, source
     FROM ranking_history
