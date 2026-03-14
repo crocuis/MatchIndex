@@ -1,18 +1,11 @@
 import postgres from 'postgres';
 import { loadProjectEnv } from './load-project-env.mts';
+import { promoteApprovedCompetitionTranslationCandidates } from './promote-translation-candidates.mts';
 
 interface CliOptions {
   dryRun: boolean;
   locale: string;
   promotedBy: string;
-}
-
-interface CandidateRow {
-  id: number;
-  locale: string;
-  proposed_name: string;
-  proposed_short_name: string | null;
-  competition_id: number;
 }
 
 function parseArgs(argv: string[]): CliOptions {
@@ -41,51 +34,34 @@ async function main() {
   const sql = getSql();
 
   try {
-    const candidates = await sql<CandidateRow[]>`
-      SELECT DISTINCT ON (ctc.competition_id, ctc.locale)
-        ctc.id,
-        ctc.competition_id,
-        ctc.locale,
-        ctc.proposed_name,
-        ctc.proposed_short_name
-      FROM competition_translation_candidates ctc
-      WHERE ctc.locale = ${options.locale}
-        AND ctc.status = 'approved'
-        AND ctc.promoted_at IS NULL
-      ORDER BY
-        ctc.competition_id,
-        ctc.locale,
-        CASE ctc.source_type
-          WHEN 'manual' THEN 5
-          WHEN 'imported' THEN 4
-          WHEN 'legacy' THEN 3
-          WHEN 'merge_derived' THEN 2
-          WHEN 'historical_rule' THEN 1
-          ELSE 0
-        END DESC,
-        COALESCE(ctc.reviewed_at, ctc.created_at) DESC,
-        ctc.created_at DESC,
-        ctc.id DESC
-    `;
+    const promotedCount = options.dryRun
+      ? (await sql<{ count: number }[]>`
+          SELECT COUNT(*)::INT AS count
+          FROM (
+            SELECT DISTINCT ON (ctc.competition_id, ctc.locale) ctc.id
+            FROM competition_translation_candidates ctc
+            WHERE ctc.locale = ${options.locale}
+              AND ctc.status = 'approved'
+              AND ctc.promoted_at IS NULL
+            ORDER BY
+              ctc.competition_id,
+              ctc.locale,
+              CASE ctc.source_type
+                WHEN 'manual' THEN 5
+                WHEN 'imported' THEN 4
+                WHEN 'legacy' THEN 3
+                WHEN 'merge_derived' THEN 2
+                WHEN 'historical_rule' THEN 1
+                ELSE 0
+              END DESC,
+              COALESCE(ctc.reviewed_at, ctc.created_at) DESC,
+              ctc.created_at DESC,
+              ctc.id DESC
+          ) candidates
+        `)[0]?.count ?? 0
+      : await promoteApprovedCompetitionTranslationCandidates(sql, options.locale, options.promotedBy);
 
-    if (!options.dryRun) {
-      for (const candidate of candidates) {
-        await sql`
-          INSERT INTO competition_translations (competition_id, locale, name, short_name)
-          VALUES (${candidate.competition_id}, ${candidate.locale}, ${candidate.proposed_name}, ${candidate.proposed_short_name})
-          ON CONFLICT (competition_id, locale)
-          DO UPDATE SET name = EXCLUDED.name, short_name = EXCLUDED.short_name
-        `;
-
-        await sql`
-          UPDATE competition_translation_candidates
-          SET promoted_at = NOW(), promoted_by = ${options.promotedBy}, updated_at = NOW()
-          WHERE id = ${candidate.id}
-        `;
-      }
-    }
-
-    console.log(JSON.stringify({ dryRun: options.dryRun, locale: options.locale, promotedCount: candidates.length }, null, 2));
+    console.log(JSON.stringify({ dryRun: options.dryRun, locale: options.locale, promotedCount }, null, 2));
   } finally {
     await sql.end({ timeout: 5 });
   }
