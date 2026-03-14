@@ -331,6 +331,12 @@ interface SearchRow {
   player_position: Player['position'] | null;
 }
 
+const CANONICAL_SEARCH_CLUB_ID_MAP: Record<string, string> = {
+  'borussia-mo-nchengladbach': 'borussia-mo-nchengladbach-germany',
+  'borussia-monchengladbach': 'borussia-mo-nchengladbach-germany',
+  'borussia-monchengladbach-germany': 'borussia-mo-nchengladbach-germany',
+};
+
 interface MatchEventRowDb {
   source_event_id: string;
   minute: number;
@@ -2216,7 +2222,158 @@ function buildClubLookupKeys(value: string | null | undefined) {
     .replace(/\s+/g, ' ')
     .trim();
 
-  return [...new Set([normalized, compact].filter(Boolean))];
+  const squashed = normalized.replace(/\s+/g, '');
+  const compactSquashed = compact.replace(/\s+/g, '');
+
+  return [...new Set([normalized, compact, squashed, compactSquashed].filter(Boolean))];
+}
+
+function getClubSearchIdentityKey(row: Pick<ClubRepresentativeRow, 'id' | 'name' | 'short_name' | 'country'>) {
+  const clubKey = buildClubLookupKeys(row.name)[0]
+    ?? buildClubLookupKeys(row.short_name)[0]
+    ?? buildClubLookupKeys(row.id)[0]
+    ?? row.name.trim().toLowerCase();
+  const countryKey = buildClubLookupKeys(row.country)[0] ?? row.country.trim().toLowerCase();
+
+  return [clubKey, countryKey].join('::');
+}
+
+function getClubSearchDisplayName(row: Pick<ClubRepresentativeRow, 'name' | 'korean_name'>, locale: string) {
+  if (locale === 'ko') {
+    return row.korean_name || row.name;
+  }
+
+  return row.name;
+}
+
+async function deduplicateClubSearchResults(results: SearchResult[], locale: string) {
+  const clubResults = results
+    .filter((result) => result.type === 'club')
+    .map((result) => ({
+      ...result,
+      id: CANONICAL_SEARCH_CLUB_ID_MAP[result.id] ?? result.id,
+    }));
+
+  if (clubResults.length < 2) {
+    return results;
+  }
+
+  const representativeRows = await Promise.all(
+    Array.from(new Set(clubResults.map((result) => result.id))).map(async (id) => {
+      const row = await getClubRepresentativeRowBySlugDb(id, 'en');
+      return row ? [id, row] as const : null;
+    })
+  );
+
+  const representativeRowById = new Map(
+    representativeRows.filter((entry): entry is readonly [string, ClubRepresentativeRow] => entry !== null)
+  );
+
+  const grouped = new Map<string, {
+    chosenId: string;
+    chosenRepresentativeRow: ClubRepresentativeRow;
+    firstResult: SearchResult;
+    order: number;
+  }>();
+
+  clubResults.forEach((result, index) => {
+    const representativeRow = representativeRowById.get(result.id);
+
+    if (!representativeRow) {
+      grouped.set(`id::${result.id}`, {
+        chosenId: result.id,
+        chosenRepresentativeRow: {
+          id: result.id,
+          name: result.name,
+          korean_name: result.name,
+          short_name: result.shortName ?? result.name,
+          country: '',
+          gender: result.gender,
+          founded: 0,
+          stadium: '',
+          stadium_capacity: 0,
+          league_id: '',
+          league_comp_type: 'league',
+          league_name: '',
+          crest_url: result.imageUrl ?? null,
+          season_start_date: null,
+          season_end_date: null,
+        },
+        firstResult: result,
+        order: index,
+      });
+      return;
+    }
+
+    const key = getClubSearchIdentityKey(representativeRow);
+    const existing = grouped.get(key);
+
+    if (!existing) {
+      grouped.set(key, {
+        chosenId: result.id,
+        chosenRepresentativeRow: representativeRow,
+        firstResult: result,
+        order: index,
+      });
+      return;
+    }
+
+    if (compareClubRepresentativeRows(representativeRow, existing.chosenRepresentativeRow) < 0) {
+      existing.chosenId = result.id;
+      existing.chosenRepresentativeRow = representativeRow;
+    }
+  });
+
+  if (grouped.size === clubResults.length) {
+    return results;
+  }
+
+  const localizedRepresentativeRows = await Promise.all(
+    Array.from(grouped.values()).map(async (entry) => {
+      const row = await getClubRepresentativeRowBySlugDb(entry.chosenId, locale);
+      return [entry.chosenId, row] as const;
+    })
+  );
+
+  const localizedRepresentativeRowById = new Map(
+    localizedRepresentativeRows.filter((entry): entry is readonly [string, ClubRepresentativeRow] => Boolean(entry[1]))
+  );
+
+  const deduplicatedClubResults = Array.from(grouped.values())
+    .sort((left, right) => left.order - right.order)
+    .map((entry) => {
+      const localizedRow = localizedRepresentativeRowById.get(entry.chosenId);
+
+      if (!localizedRow) {
+        return entry.firstResult;
+      }
+
+      return {
+        ...entry.firstResult,
+        id: entry.chosenId,
+        name: getClubSearchDisplayName(localizedRow, locale),
+        shortName: localizedRow.short_name,
+        imageUrl: clubLogoMap[entry.chosenId] ?? localizedRow.crest_url ?? entry.firstResult.imageUrl,
+        gender: localizedRow.gender ?? entry.firstResult.gender,
+      } satisfies SearchResult;
+    });
+
+  const deduplicatedResults: SearchResult[] = [];
+  let insertedClubResults = false;
+
+  for (const result of results) {
+    if (result.type !== 'club') {
+      deduplicatedResults.push(result);
+      continue;
+    }
+
+    if (!insertedClubResults) {
+      deduplicatedResults.push(...deduplicatedClubResults);
+      insertedClubResults = true;
+    }
+  }
+
+  return deduplicatedResults;
 }
 
 export async function getClubLinksByNamesDb(names: string[], locale: string = 'en'): Promise<Array<Pick<Club, 'id' | 'name' | 'shortName'>>> {
@@ -6420,7 +6577,7 @@ export async function searchAllDb(
 
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'search-v2', locale, params: { q: normalizedQuery, gender: gender ?? 'all' } });
+    const key = buildCacheKey({ namespace: 'search-v4', locale, params: { q: normalizedQuery, gender: gender ?? 'all' } });
 
     return readThroughCache({
       key,
@@ -6515,7 +6672,7 @@ export async function searchAllDb(
           FROM matched
         `;
 
-        return rows
+        const filteredResults = rows
           .map((row) => ({
             type: row.result_type,
             id: row.result_id,
@@ -6546,6 +6703,8 @@ export async function searchAllDb(
 
             return row.gender === gender;
           });
+
+        return deduplicateClubSearchResults(filteredResults, locale);
       },
     });
   }, () => []);

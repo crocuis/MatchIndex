@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 import { isTournamentCompetition } from '@/data/competitionTypes';
 import type { League, Match, StandingRow } from '@/data/types';
 import {
+  getClubsByIdsDb,
   getDashboardTournamentSummaryDb,
   getLeagueCountDb,
   getLeaguesByIdsDb,
@@ -226,6 +227,22 @@ export default async function DashboardPage({
       : Promise.resolve({ recentResults: [], upcomingFixtures: [], stageTrail: [] }),
   ]);
   const upcomingFixtureDateGroups = buildDashboardFixtureDateGroups(upcomingFixtures, locale);
+  const representativeClubs = await getClubsByIdsDb(standings.map((row) => row.clubId), locale);
+  const representativeClubById = new Map(representativeClubs.map((club) => [club.id, club]));
+  const localizedStandings = standings.map((row) => {
+    const club = representativeClubById.get(row.clubId);
+
+    if (!club) {
+      return row;
+    }
+
+    return {
+      ...row,
+      clubName: locale === 'ko' ? club.koreanName : club.name,
+      clubShortName: club.shortName,
+      clubLogo: club.logo ?? row.clubLogo,
+    };
+  });
   const availableFixtureDateGroups = upcomingFixtureDateGroups.slice(0, DASHBOARD_UPCOMING_DATE_TAB_LIMIT);
   const selectedFixtureDate = availableFixtureDateGroups.some((group) => group.date === fixtureDate)
     ? fixtureDate
@@ -339,7 +356,7 @@ export default async function DashboardPage({
         {selectedLeagueIsTournament ? (
           <DashboardTournamentPanel
             league={selectedLeague}
-            standings={standings}
+            standings={localizedStandings}
             recentResults={tournamentSummary.recentResults}
             upcomingFixtures={tournamentSummary.upcomingFixtures}
             stageTrail={tournamentSummary.stageTrail}
@@ -366,7 +383,7 @@ export default async function DashboardPage({
                 }
                 noPadding
               >
-                <StandingsTable standings={standings} compact />
+                <StandingsTable standings={localizedStandings} compact />
               </SectionCard>
             </div>
             <div className="lg:col-span-4">

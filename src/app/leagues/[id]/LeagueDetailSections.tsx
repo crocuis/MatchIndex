@@ -19,6 +19,7 @@ import {
   getTournamentChampion,
 } from '@/app/leagues/[id]/tournamentView';
 import {
+  getClubsByIdsDb,
   getClubsByLeagueAndSeasonDb,
   getClubsByLeagueDb,
   getMatchesByLeagueAndSeasonDb,
@@ -547,7 +548,7 @@ export async function LeagueDetailSections({
   viewTab,
 }: LeagueDetailSectionsProps) {
   const clubDataLocale = locale;
-  const [tLeague, tTable, standings, clubs, allMatches, topScorerRows] = await Promise.all([
+  const [tLeague, tTable, standings, seasonClubs, allMatches, topScorerRows] = await Promise.all([
     getTranslations('league'),
     getTranslations('table'),
     isNonDefaultSeason && selectedSeason
@@ -563,7 +564,38 @@ export async function LeagueDetailSections({
       ? getTopScorerRowsBySeasonDb(league.id, selectedSeason.seasonId, clubDataLocale, 10)
       : getTopScorerRowsDb(league.id, clubDataLocale, 10),
   ]);
-  const displayClubs = clubs;
+  const representativeClubs = await getClubsByIdsDb(seasonClubs.map((club) => club.id), clubDataLocale);
+  const representativeClubById = new Map(representativeClubs.map((club) => [club.id, club]));
+  const displayClubs = seasonClubs.map((club) => {
+    const representativeClub = representativeClubById.get(club.id);
+
+    if (!representativeClub) {
+      return club;
+    }
+
+    return {
+      ...club,
+      name: representativeClub.name,
+      koreanName: representativeClub.koreanName,
+      shortName: representativeClub.shortName,
+      logo: representativeClub.logo ?? club.logo,
+    };
+  });
+  const clubById = new Map(displayClubs.map((club) => [club.id, club]));
+  const localizedStandings = standings.map((row) => {
+    const club = clubById.get(row.clubId);
+
+    if (!club) {
+      return row;
+    }
+
+    return {
+      ...row,
+      clubName: getClubDisplayName(club, locale),
+      clubShortName: club.shortName,
+      clubLogo: club.logo ?? row.clubLogo,
+    };
+  });
 
   const finishedMatches = allMatches.filter((match) => match.status === 'finished');
   const scheduledMatches = allMatches.filter((match) => match.status === 'scheduled');
@@ -572,7 +604,7 @@ export async function LeagueDetailSections({
   const championsLeagueFormat = league.id === 'champions-league'
     ? getChampionsLeagueFormat(selectedSeason?.seasonLabel ?? league.season)
     : undefined;
-  const tournamentGroups = isTournament && championsLeagueFormat !== 'league-phase' ? buildTournamentGroups(allMatches, clubs) : [];
+  const tournamentGroups = isTournament && championsLeagueFormat !== 'league-phase' ? buildTournamentGroups(allMatches, displayClubs) : [];
   const qualifyingStages = isTournament && championsLeagueFormat === 'legacy' ? buildQualifyingStages(allMatches) : [];
   const leaguePhaseStages = isTournament && championsLeagueFormat === 'league-phase' ? buildLeaguePhaseMatchdays(allMatches) : [];
   const legacyGroupStageMatches = isTournament && championsLeagueFormat === 'legacy' ? buildGroupStageMatches(allMatches) : undefined;
@@ -592,8 +624,8 @@ export async function LeagueDetailSections({
   const topScorersTitle = isTournament ? tLeague('topPerformers') : tLeague('topScorers');
   const participantRows = displayClubs.slice(0, 8);
   const leaguePhaseStandings = isTournament && championsLeagueFormat === 'league-phase'
-    ? buildLeaguePhaseStandings(allMatches, clubs)
-    : standings;
+    ? buildLeaguePhaseStandings(allMatches, displayClubs)
+    : localizedStandings;
   const knockoutStages = isTournament ? buildKnockoutStages(allMatches) : [];
   const bracketStageNames = new Set(['round of 16', 'quarter-finals', 'semi-finals', 'final']);
   const bracketStages = knockoutStages.filter((stage) => bracketStageNames.has(stage.name.toLowerCase()));
@@ -819,7 +851,7 @@ export async function LeagueDetailSections({
           <div className={showStats ? 'col-span-12 space-y-4' : 'col-span-8 space-y-4'}>
             {showOverview ? (
               <SectionCard title={standingsTitle} noPadding>
-              <StandingsTable standings={standings} />
+              <StandingsTable standings={localizedStandings} />
               </SectionCard>
             ) : null}
 
