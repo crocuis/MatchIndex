@@ -1,8 +1,10 @@
 import { cn } from '@/lib/utils';
+import type { League } from '@/data/types';
 
 interface LeagueLogoProps {
   leagueId: string;
   name: string;
+  competitionType?: League['competitionType'];
   logo?: string;
   size?: 'sm' | 'md' | 'lg';
   className?: string;
@@ -16,11 +18,13 @@ const leagueColorMap: Record<string, { primary: string; accent: string }> = {
 const defaultColors = { primary: '#374151', accent: '#9ca3af' };
 
 const sizeClasses = { sm: 'h-6 w-6', md: 'h-8 w-8', lg: 'h-12 w-12' };
+const tournamentFramePadding = { sm: 'p-1', md: 'p-1.5', lg: 'p-2' };
 const svgSizes = { sm: 24, md: 32, lg: 48 };
 const fontSizes = { sm: 6, md: 8, lg: 11 };
 
-export function LeagueLogo({ leagueId, name, logo, size = 'md', className }: LeagueLogoProps) {
+export function LeagueLogo({ leagueId, name, competitionType, logo, size = 'md', className }: LeagueLogoProps) {
   const colors = leagueColorMap[leagueId] ?? defaultColors;
+  const isTournament = competitionType === 'tournament';
   const sz = svgSizes[size];
   const fs = fontSizes[size];
   const cx = sz / 2;
@@ -30,7 +34,19 @@ export function LeagueLogo({ leagueId, name, logo, size = 'md', className }: Lea
 
   if (logo) {
     return (
-      <div className={cn(sizeClasses[size], 'shrink-0 overflow-hidden', className)}>
+      <div
+        className={cn(
+          sizeClasses[size],
+          'shrink-0 overflow-hidden',
+          isTournament && [
+            'rounded-md border border-border bg-surface-0 shadow-sm',
+            'ring-1 ring-white/5',
+            'bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.14),_transparent_42%),linear-gradient(145deg,_rgba(15,23,42,0.98),_rgba(17,24,39,0.96)_55%,_rgba(3,7,18,0.98))]',
+            tournamentFramePadding[size],
+          ],
+          className,
+        )}
+      >
         <img
           src={logo}
           alt={`${name} logo`}

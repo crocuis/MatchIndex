@@ -5,12 +5,13 @@ import { FixtureCard } from '@/components/data/FixtureCard';
 import { MatchCard } from '@/components/data/MatchCard';
 import { SectionCard } from '@/components/ui/SectionCard';
 import { StatPanel } from '@/components/data/StatPanel';
+import { DetailTabNav } from '@/components/ui/DetailTabNav';
 import { ClubBadge } from '@/components/ui/ClubBadge';
 import { EntityLink } from '@/components/ui/EntityLink';
 import { NationBadge } from '@/components/ui/NationBadge';
 import { NationFlag } from '@/components/ui/NationFlag';
 import { PlayerAvatar } from '@/components/ui/PlayerAvatar';
-import { getPositionColor, cn } from '@/lib/utils';
+import { cn, getClubDisplayName, getPositionColor } from '@/lib/utils';
 import {
   getClubsByIdsDb,
   getFinishedMatchesByNationDb,
@@ -51,10 +52,13 @@ function formatRankingChange(change?: number) {
 
 export default async function NationPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ tab?: string }>;
 }) {
   const { id } = await params;
+  const { tab } = await searchParams;
   const locale = await getLocale();
   const nation = await getNationByIdDb(id, locale);
   if (!nation) notFound();
@@ -69,6 +73,12 @@ export default async function NationPage({
   const tNation = await getTranslations('nation');
   const tTable = await getTranslations('table');
   const tCommon = await getTranslations('common');
+  const detailTabs = [
+    { key: 'overview', label: tCommon('tabOverview') },
+    { key: 'squad', label: tCommon('tabSquad') },
+    { key: 'matches', label: tCommon('tabMatches') },
+  ] as const;
+  const activeTab = (tab && detailTabs.some((entry) => entry.key === tab) ? tab : 'overview') as 'overview' | 'squad' | 'matches';
 
   return (
     <div>
@@ -98,9 +108,17 @@ export default async function NationPage({
         className="mb-4"
       />
 
+      <DetailTabNav
+        activeTab={activeTab}
+        basePath={`/nations/${id}`}
+        className="mb-4"
+        tabs={detailTabs.map((entry) => ({ ...entry }))}
+      />
+
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-8 space-y-4">
-          <SectionCard title={tNation('recentTournaments')} noPadding>
+          {activeTab === 'overview' ? (
+            <SectionCard title={tNation('recentTournaments')} noPadding>
             <table className="w-full">
               <thead>
                 <tr className="border-b border-border">
@@ -119,10 +137,11 @@ export default async function NationPage({
                 ))}
               </tbody>
             </table>
-          </SectionCard>
+            </SectionCard>
+          ) : null}
 
-          {/* Squad */}
-          <SectionCard title={`${tNation('players')} (${nationalPlayers.length})`} noPadding>
+          {activeTab === 'squad' ? (
+            <SectionCard title={`${tNation('players')} (${nationalPlayers.length})`} noPadding>
             <table className="w-full">
               <thead>
                 <tr className="border-b border-border">
@@ -164,7 +183,7 @@ export default async function NationPage({
                           {club ? (
                             <EntityLink type="club" id={club.id} className="flex items-center gap-2 text-text-secondary">
                               <ClubBadge shortName={club.shortName} clubId={club.id} logo={club.logo} size="sm" />
-                              <span>{club.name}</span>
+                              <span>{getClubDisplayName(club, locale)}</span>
                             </EntityLink>
                           ) : (
                             <span className="text-text-muted">{tCommon('freeAgent')}</span>
@@ -187,25 +206,30 @@ export default async function NationPage({
                   })}
               </tbody>
             </table>
-          </SectionCard>
+            </SectionCard>
+          ) : null}
         </div>
 
         <div className="col-span-4 space-y-4">
-          <SectionCard title={tNation('recentMatches')}>
+          {activeTab === 'matches' ? (
+            <SectionCard title={tNation('recentMatches')}>
             <div className="space-y-1.5">
               {recentMatches.length > 0 ? recentMatches.map((match) => <MatchCard key={match.id} match={match} />) : (
                 <div className="text-[13px] text-text-muted">{tCommon('unknown')}</div>
               )}
             </div>
-          </SectionCard>
+            </SectionCard>
+          ) : null}
 
-          <SectionCard title={tNation('upcomingFixtures')}>
+          {activeTab === 'matches' ? (
+            <SectionCard title={tNation('upcomingFixtures')}>
             <div className="space-y-1.5">
               {upcomingFixtures.length > 0 ? upcomingFixtures.map((match) => <FixtureCard key={match.id} match={match} />) : (
                 <div className="text-[13px] text-text-muted">{tCommon('unknown')}</div>
               )}
             </div>
-          </SectionCard>
+            </SectionCard>
+          ) : null}
         </div>
       </div>
     </div>

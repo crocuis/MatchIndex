@@ -301,10 +301,16 @@ async function refreshDerivedViews(sql: Sql) {
 
 async function upsertEntityAlias(sql: Sql, entityType: AliasEntityType, entityIdSql: ReturnType<Sql>, alias: string) {
   await sql`
-    INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary)
-    VALUES (${entityType}, (${entityIdSql}), ${alias}, 'en', 'common', TRUE)
+    INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+    VALUES (${entityType}, (${entityIdSql}), ${alias}, 'en', 'common', TRUE, 'pending', 'imported', 'statsbomb_open_data')
     ON CONFLICT (entity_type, entity_id, alias_normalized)
-    DO UPDATE SET locale = EXCLUDED.locale, alias_kind = EXCLUDED.alias_kind, is_primary = EXCLUDED.is_primary
+    DO UPDATE SET
+      locale = EXCLUDED.locale,
+      alias_kind = EXCLUDED.alias_kind,
+      is_primary = EXCLUDED.is_primary,
+      status = EXCLUDED.status,
+      source_type = EXCLUDED.source_type,
+      source_ref = EXCLUDED.source_ref
   `;
 }
 

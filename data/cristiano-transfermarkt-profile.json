@@ -1,0 +1,35 @@
+{
+  "provider": "transfermarkt",
+  "competition": null,
+  "season": null,
+  "fetchedAt": "2026-03-14T00:37:49.582348+00:00",
+  "rows": [
+    {
+      "playerSlug": "cristiano-ronaldo-dos-santos-aveiro",
+      "playerName": "Cristiano Ronaldo",
+      "age": 41,
+      "dateOfBirth": "1985-02-05",
+      "heightCm": 188,
+      "preferredFoot": null,
+      "contractStartDate": "2023-01-01",
+      "contractEndDate": "2027-06-30",
+      "marketValue": 12000000,
+      "nationalities": [
+        "Portugal"
+      ],
+      "photoUrl": "https://img.a.transfermarkt.technology/portrait/big/8198-1748102259.jpg?lm=1",
+      "position": "Centre-Forward",
+      "sourceUrl": "https://www.transfermarkt.com/-/profil/spieler/8198",
+      "teamName": "Al-Nassr FC",
+      "raw": {
+        "dateOfBirthText": "05/02/1985 (41)",
+        "description": "Cristiano Ronaldo, 41, from Portugal \u27a4 Al-Nassr FC, since 2022 \u27a4 Centre-Forward \u27a4 Market value: \u20ac12.00m \u27a4 * 05/02/1985 in Funchal, Portugal",
+        "footText": null,
+        "heightText": "1,88 m",
+        "keywords": "Cristiano Ronaldo,Al-Nasr Riad,Saudi Pro League,Portugal",
+        "joinedText": "01/01/2023",
+        "contractExpiresText": "30/06/2027"
+      }
+    }
+  ]
+}

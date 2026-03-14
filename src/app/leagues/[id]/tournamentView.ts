@@ -87,6 +87,14 @@ function sortMatchesAscending(matches: Match[]) {
   });
 }
 
+function sortMatchesDescending(matches: Match[]) {
+  return [...matches].sort((left, right) => {
+    const leftValue = `${left.date}T${left.time || '00:00'}`;
+    const rightValue = `${right.date}T${right.time || '00:00'}`;
+    return rightValue.localeCompare(leftValue);
+  });
+}
+
 export function buildLeaguePhaseStandings(matches: Match[], clubs: Club[]): StandingRow[] {
   const clubMap = new Map(clubs.map((club) => [club.id, club]));
   const rows = new Map<string, GroupStandingAccumulator>();
@@ -326,8 +334,22 @@ export function buildLeaguePhaseMatchdays(matches: Match[]): TournamentMatchStag
     .map(([matchWeek, stageMatches]) => ({
       id: `matchday-${matchWeek}`,
       name: `Matchday ${matchWeek}`,
-      matches: sortMatchesAscending(stageMatches),
+      matches: sortMatchesDescending(stageMatches),
     }));
+}
+
+export function buildGroupStageMatches(matches: Match[]): TournamentMatchStageView | undefined {
+  const groupStageMatches = matches.filter((match) => match.groupName || isGroupStageMatch(match));
+
+  if (groupStageMatches.length === 0) {
+    return undefined;
+  }
+
+  return {
+    id: 'group-stage',
+    name: 'Group Stage',
+    matches: sortMatchesDescending(groupStageMatches),
+  };
 }
 
 export function buildQualifyingStages(matches: Match[]): TournamentMatchStageView[] {
@@ -351,7 +373,7 @@ export function buildQualifyingStages(matches: Match[]): TournamentMatchStageVie
     .map(([name, stageMatches]) => ({
       id: name.toLowerCase().replace(/\s+/g, '-'),
       name,
-      matches: sortMatchesAscending(stageMatches),
+      matches: sortMatchesDescending(stageMatches),
     }));
 }
 

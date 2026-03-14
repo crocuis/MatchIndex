@@ -8,6 +8,7 @@ import postgres from 'postgres';
 interface CliOptions {
   dryRun: boolean;
   help: boolean;
+  writeDb: boolean;
 }
 
 interface LogoIndexEntry {
@@ -47,30 +48,116 @@ const HASH_START_BY_DIMENSION: Record<number, number> = {
 };
 
 const CLUB_ID_OVERRIDES: Record<string, string> = {
+  '1-fc-ko-ln-germany': 'koln',
+  '1-fsv-mainz-05-germany': 'mainz-05',
+  'ac-sparta-praha-czech-republic': 'sparta-praha',
+  'arsenal-wfc-england': 'arsenal',
+  'as-roma-italy': 'roma',
   bayern: 'bayern-munchen',
   'bayern-ucl': 'bayern-munchen',
+  'birmingham-city-wfc-england': 'birmingham',
+  'brighton-and-hove-albion-wfc-england': 'brighton',
+  'bristol-city-wfc-england': 'bristol-city',
+  'bsc-young-boys-switzerland': 'young-boys',
+  'caen-france': 'stade-malherbe-caen',
+  'celtic-fc-scotland': 'celtic',
+  'chelsea-fcw-england': 'chelsea',
+  'club-atle-tico-de-madrid-spain': 'atletico-madrid',
+  'darmstadt-98-germany': 'darmstadt',
+  'everton-lfc-england': 'everton',
+  'fc-red-bull-salzburg-austria': 'salzburg',
+  'feyenoord-rotterdam-netherlands': 'feyenoord',
+  'fk-crvena-zvezda-serbia': 'crvena-zvezda',
+  'fk-shakhtar-donetsk-ukraine': 'shakhtar',
+  'gnk-dinamo-zagreb-croatia': 'dinamo-zagreb',
+  'gimnastic-tarragona-spain': 'gimnastic-de-tarragona',
+  'hertha-berlin-germany': 'hertha-bsc',
+  'juventus-fc-italy': 'juventus',
+  'lens-france': 'rc-lens',
+  'liverpool-wfc-england': 'liverpool',
   mancity: 'manchester-city',
+  'manchester-city-wfc-england': 'manchester-city',
   manutd: 'manchester-united',
   monaco: 'as-monaco',
+  'paris-saint-germain-fc-france': 'paris-saint-germain',
   psg: 'paris-saint-germain',
+  'psv-netherlands': 'psv',
+  'rc-deportivo-la-coruna-spain': 'deportivo-la-coruna',
+  'reading-wfc-england': 'reading',
+  's-k-slovan-bratislava-slovakia': 's-bratislava',
+  'saint-etienne-france': 'as-saint-etienne',
+  'sk-sturm-graz-austria': 'sturm-graz',
+  'sport-lisboa-e-benfica-portugal': 'benfica',
+  'sporting-clube-de-portugal-portugal': 'sporting-cp',
+  'sv-werder-bremen-germany': 'werder-bremen',
+  'vfl-bochum-1848-germany': 'vfl-bochum',
+  'west-ham-united-lfc-england': 'west-ham',
+  'yeovil-town-lfc-england': 'yeovil',
+  'cd-numancia-de-soria-spain': 'numancia',
+  'deportivo-alave-s-spain': 'deportivo',
+  'fk-bod-glimt-norway': 'bodo-glimt',
+  'fk-kairat-kazakhstan': 'kairat',
+  'galatasaray-sk-turkey': 'galatasaray',
+  'pae-olympiakos-sfp-greece': 'olympiacos',
+  'qarabag-ag-dam-fk-azerbaijan': 'qarabag',
+  'royale-union-saint-gilloise-belgium': 'union-saint-gilloise',
+  'sk-slavia-praha-czech-republic': 'slavia-praha',
+};
+
+const CLUB_URL_OVERRIDES: Record<string, string> = {
+  'atk-mohun-bagan-india': 'https://r2.thesportsdb.com/images/media/team/badge/g3zmfx1694438403.png',
+  'chicago-red-stars-united-states-of-america': 'https://r2.thesportsdb.com/images/media/team/badge/3i6e7g1737568807.png',
+  'fc-k-benhavn-denmark': 'https://r2.thesportsdb.com/images/media/team/badge/styqtr1473535513.png',
+  'gazelec-ajaccio-france': 'https://r2.thesportsdb.com/images/media/team/badge/ytpxsx1426871600.png',
+  'houston-dash-united-states-of-america': 'https://r2.thesportsdb.com/images/media/team/badge/192hte1625386917.png',
+  'nj-ny-gotham-fc-united-states-of-america': 'https://r2.thesportsdb.com/images/media/team/badge/2hwsdv1626550551.png',
+  'north-carolina-courage-united-states-of-america': 'https://r2.thesportsdb.com/images/media/team/badge/8cc1sp1552136867.png',
+  'ny-cosmos-united-states-of-america': 'https://r2.thesportsdb.com/images/media/team/badge/3i15tm1765558192.png',
+  'ol-reign-united-states-of-america': 'https://r2.thesportsdb.com/images/media/team/badge/tk2m741710444921.png',
+  'orlando-pride-united-states-of-america': 'https://r2.thesportsdb.com/images/media/team/badge/ypzbo01552137162.png',
+  'paphos-fc-cyprus': 'https://r2.thesportsdb.com/images/media/team/badge/xom9xf1579036010.png',
+  'portland-thorns-united-states-of-america': 'https://r2.thesportsdb.com/images/media/team/badge/a6v95r1625387014.png',
+  'recreativo-huelva-spain': 'https://r2.thesportsdb.com/images/media/team/badge/s2pii11626207918.png',
+  'utah-royals-united-states-of-america': 'https://r2.thesportsdb.com/images/media/team/badge/3zosf11700302357.png',
+  'washington-spirit-united-states-of-america': 'https://r2.thesportsdb.com/images/media/team/badge/mbldcf1703410479.png',
+  'xerez-spain': 'https://r2.thesportsdb.com/images/media/team/badge/cxpzkp1511516976.png',
 };
 
 const LEAGUE_ID_OVERRIDES: Record<string, string> = {
+  'african-cup-of-nations-international': 'africa-cup-of-nations-2025',
+  'champions-league': 'uefa-champions-league',
+  'copa-america-international': 'conmebol-copa-america-2024',
   pl: 'english-premier-league',
+  'major-league-soccer': 'mls',
   laliga: 'la-liga',
   championship: 'efl-championship',
   ucl: 'uefa-champions-league',
   uel: 'uefa-europa-league',
+  'uefa-euro-international': 'uefa-euro-2024',
   cwc: 'fifa-club-world-cup',
 };
 
+const LEAGUE_URL_OVERRIDES: Record<string, string> = {
+  'fa-women-s-super-league-women': 'https://r2.thesportsdb.com/images/media/league/badge/lpsm6p1751723311.png',
+  'fifa-u20-world-cup-international-youth': 'https://images.seeklogo.com/logo-png/61/1/fifa-u-20-world-cup-chile-2025-logo-png_seeklogo-612638.png',
+  'liga-profesional': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Logo_de_la_Liga_Profesional_de_F%C3%BAtbol_de_Argentina.svg/1280px-Logo_de_la_Liga_Profesional_de_F%C3%BAtbol_de_Argentina.svg.png',
+  'north-american-league': 'https://images.seeklogo.com/logo-png/23/1/north-american-soccer-league-logo-png_seeklogo-230682.png',
+  'nwsl-women': 'https://r2.thesportsdb.com/images/media/league/badge/ucoihf1770674182.png',
+  'uefa-women-s-euro-international-women': 'https://images.seeklogo.com/logo-png/61/1/uefa-womens-euro-2025-logo-png_seeklogo-617748.png',
+  'women-s-world-cup-international-women': 'https://images.seeklogo.com/logo-png/44/2/fifa-womens-world-cup-2023-logo-png_seeklogo-449697.png',
+};
+
 const NATION_FLAG_CODE_MAP: Record<string, string> = {
+  AFR: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Flag_of_the_African_Union.svg',
   ENG: 'gb-eng',
+  EUR: 'eu',
   ESP: 'es',
   FRA: 'fr',
   BRA: 'br',
   GER: 'de',
+  INT: 'un',
   ITA: 'it',
+  MON: 'mc',
   NED: 'nl',
   POR: 'pt',
   KSA: 'sa',
@@ -80,6 +167,7 @@ function parseArgs(argv: string[]): CliOptions {
   return {
     dryRun: argv.includes('--dry-run'),
     help: argv.includes('--help') || argv.includes('-h'),
+    writeDb: argv.includes('--write-db'),
   };
 }
 
@@ -88,6 +176,7 @@ function printHelp() {
 
 Options:
   --dry-run   Preview generated output without writing the file
+  --write-db  Backfill missing team crest_url values in the database
   --help, -h  Show this help message
 `);
 }
@@ -163,7 +252,17 @@ function scoreEntry(entity: MatchableEntity, entry: LogoIndexEntry, expectedCate
 
 function findBestEntry(entries: LogoIndexEntry[], entity: MatchableEntity, expectedCategory?: string, overrideId?: string) {
   if (overrideId) {
-    return entries.find((entry) => entry.id === overrideId) ?? null;
+    const overrideMatches = entries.filter((entry) => entry.id === overrideId);
+    if (overrideMatches.length === 0) {
+      return null;
+    }
+
+    const normalizedCategory = expectedCategory ? normalizeText(expectedCategory) : null;
+    return (
+      overrideMatches.find(
+        (entry) => normalizedCategory && normalizeText(entry.categoryName) === normalizedCategory
+      ) ?? overrideMatches[0]
+    );
   }
 
   const scoredEntries = entries
@@ -255,6 +354,15 @@ async function loadDatabaseData() {
   }
 }
 
+function getDatabaseClient() {
+  const databaseUrl = process.env.DATABASE_URL?.trim();
+  if (!databaseUrl) {
+    return null;
+  }
+
+  return postgres(databaseUrl, { prepare: false, max: 1, idle_timeout: 5 });
+}
+
 function mergeEntities(primary: MatchableEntity[], secondary: MatchableEntity[]) {
   const merged = new Map<string, MatchableEntity>();
 
@@ -273,6 +381,12 @@ function buildClubLogoMap(entries: LogoIndexEntry[], baseClubs: MatchableEntity[
   const map: Record<string, string> = {};
 
   for (const club of baseClubs) {
+    const directUrl = CLUB_URL_OVERRIDES[club.id];
+    if (directUrl) {
+      map[club.id] = directUrl;
+      continue;
+    }
+
     const entry = findBestEntry(entries, club, club.country, CLUB_ID_OVERRIDES[club.id]);
     const assetUrl = entry ? getAssetUrl(entry) : null;
 
@@ -291,6 +405,12 @@ function buildLeagueLogoMap(entries: LogoIndexEntry[], baseLeagues: MatchableEnt
   const map: Record<string, string> = {};
 
   for (const league of baseLeagues) {
+    const directUrl = LEAGUE_URL_OVERRIDES[league.id];
+    if (directUrl) {
+      map[league.id] = directUrl;
+      continue;
+    }
+
     const entry = findBestEntry(entries, league, league.country, LEAGUE_ID_OVERRIDES[league.id]);
     const assetUrl = entry ? getAssetUrl(entry) : null;
 
@@ -324,7 +444,7 @@ function buildNationFlagMap(baseNations: MatchableEntity[]) {
       continue;
     }
 
-    map[nation.id] = `https://flagcdn.com/${code}.svg`;
+    map[nation.id] = code.startsWith('http') ? code : `https://flagcdn.com/${code}.svg`;
   }
 
   return map;
@@ -350,6 +470,44 @@ function buildOutputFile(clubLogoMap: Record<string, string>, leagueLogoMap: Rec
     formatMap('nationFlagMap', nationFlagMap),
     '',
   ].join('\n');
+}
+
+async function backfillDatabaseClubCrests(clubLogoMap: Record<string, string>) {
+  const sql = getDatabaseClient();
+  if (!sql) {
+    console.warn('[entity-images] skipping DB backfill because DATABASE_URL is not set');
+    return 0;
+  }
+
+  const updates = Object.entries(clubLogoMap).map(([slug, crestUrl]) => ({ slug, crestUrl }));
+  if (updates.length === 0) {
+    await sql.end({ timeout: 1 });
+    return 0;
+  }
+
+  try {
+    let updatedCount = 0;
+
+    for (const update of updates) {
+      const result = await sql<Array<{ slug: string }>>`
+        UPDATE teams
+        SET crest_url = ${update.crestUrl},
+            updated_at = NOW()
+        WHERE slug = ${update.slug}
+          AND is_national = FALSE
+          AND is_active = TRUE
+          AND slug NOT LIKE 'archived-team-%'
+          AND (crest_url IS NULL OR crest_url = '')
+        RETURNING slug
+      `;
+
+      updatedCount += result.length;
+    }
+
+    return updatedCount;
+  } finally {
+    await sql.end({ timeout: 1 });
+  }
 }
 
 async function main() {
@@ -387,6 +545,11 @@ async function main() {
 
   await writeFile(OUTPUT_PATH, output, 'utf8');
   console.log(`[entity-images] wrote ${OUTPUT_PATH}`);
+
+  if (options.writeDb) {
+    const updated = await backfillDatabaseClubCrests(clubLogoMap);
+    console.log(`[entity-images] updated ${updated} database club crests`);
+  }
 }
 
 await main();

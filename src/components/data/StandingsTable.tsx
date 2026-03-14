@@ -1,7 +1,5 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 import type { StandingRow } from '@/data/types';
 import { ClubBadge } from '@/components/ui/ClubBadge';
 import { FormIndicator } from '@/components/ui/FormIndicator';
@@ -13,9 +11,8 @@ interface StandingsTableProps {
   className?: string;
 }
 
-export function StandingsTable({ standings, compact = false, className }: StandingsTableProps) {
-  const router = useRouter();
-  const tStandings = useTranslations('standings');
+export async function StandingsTable({ standings, compact = false, className }: StandingsTableProps) {
+  const tStandings = await getTranslations('standings');
 
   return (
     <div className={cn('overflow-x-auto', className)}>
@@ -41,48 +38,58 @@ export function StandingsTable({ standings, compact = false, className }: Standi
         </thead>
         <tbody className="divide-y divide-border-subtle">
           {standings.map((row) => (
-            <tr
-              key={row.clubId}
-              className="hover:bg-surface-2 cursor-pointer transition-colors"
-              onClick={() => router.push(`/clubs/${row.clubId}`)}
-            >
-              <td className="px-2 py-1.5 text-center text-[13px] tabular-nums text-text-muted">
-                {row.position}
+            <tr key={row.clubId} className="transition-colors hover:bg-surface-2">
+              <td className="p-0 text-center text-[13px] tabular-nums text-text-muted">
+                <Link href={`/clubs/${row.clubId}`} className="block px-2 py-1.5">
+                  {row.position}
+                </Link>
               </td>
-              <td className="px-3 py-1.5 text-[13px] font-medium text-text-primary">
-                <div className="flex items-center gap-2">
-                  <ClubBadge
-                    shortName={row.clubShortName ?? row.clubId.slice(0, 3).toUpperCase()}
-                    clubId={row.clubId}
-                    logo={row.clubLogo}
-                    size="sm"
-                    showText={false}
-                  />
-                  <span>{compact ? (row.clubShortName ?? row.clubId) : (row.clubName ?? row.clubId)}</span>
-                </div>
+              <td className="p-0 text-[13px] font-medium text-text-primary">
+                <Link href={`/clubs/${row.clubId}`} className="block px-3 py-1.5 text-text-primary transition-colors hover:text-accent-emerald">
+                  <div className="flex items-center gap-2">
+                    <ClubBadge
+                      shortName={row.clubShortName ?? row.clubName ?? row.clubId}
+                      clubId={row.clubId}
+                      logo={row.clubLogo}
+                      size="sm"
+                      showText={false}
+                    />
+                    <span>{compact ? (row.clubShortName ?? row.clubId) : (row.clubName ?? row.clubId)}</span>
+                  </div>
+                </Link>
               </td>
-              <td className="px-2 py-1.5 text-center text-[13px] tabular-nums">{row.played}</td>
+              <td className="p-0 text-center text-[13px] tabular-nums">
+                <Link href={`/clubs/${row.clubId}`} className="block px-2 py-1.5 text-inherit">
+                  {row.played}
+                </Link>
+              </td>
               {!compact && (
                 <>
-                  <td className="px-2 py-1.5 text-center text-[13px] tabular-nums">{row.won}</td>
-                  <td className="px-2 py-1.5 text-center text-[13px] tabular-nums">{row.drawn}</td>
-                  <td className="px-2 py-1.5 text-center text-[13px] tabular-nums">{row.lost}</td>
+                  <td className="p-0 text-center text-[13px] tabular-nums"><Link href={`/clubs/${row.clubId}`} className="block px-2 py-1.5 text-inherit">{row.won}</Link></td>
+                  <td className="p-0 text-center text-[13px] tabular-nums"><Link href={`/clubs/${row.clubId}`} className="block px-2 py-1.5 text-inherit">{row.drawn}</Link></td>
+                  <td className="p-0 text-center text-[13px] tabular-nums"><Link href={`/clubs/${row.clubId}`} className="block px-2 py-1.5 text-inherit">{row.lost}</Link></td>
                 </>
               )}
-              <td className="px-2 py-1.5 text-center text-[13px] tabular-nums">{row.goalsFor}</td>
-              <td className="px-2 py-1.5 text-center text-[13px] tabular-nums">{row.goalsAgainst}</td>
+              <td className="p-0 text-center text-[13px] tabular-nums"><Link href={`/clubs/${row.clubId}`} className="block px-2 py-1.5 text-inherit">{row.goalsFor}</Link></td>
+              <td className="p-0 text-center text-[13px] tabular-nums"><Link href={`/clubs/${row.clubId}`} className="block px-2 py-1.5 text-inherit">{row.goalsAgainst}</Link></td>
               <td className={cn(
-                'px-2 py-1.5 text-center text-[13px] tabular-nums font-medium',
+                'p-0 text-center text-[13px] tabular-nums font-medium',
                 row.goalDifference > 0 ? 'text-emerald-400' : row.goalDifference < 0 ? 'text-red-400' : 'text-text-secondary'
               )}>
-                {row.goalDifference > 0 ? `+${row.goalDifference}` : row.goalDifference}
+                <Link href={`/clubs/${row.clubId}`} className="block px-2 py-1.5 text-inherit">
+                  {row.goalDifference > 0 ? `+${row.goalDifference}` : row.goalDifference}
+                </Link>
               </td>
-              <td className="px-2 py-1.5 text-center text-[13px] tabular-nums font-bold text-text-primary">
-                {row.points}
+              <td className="p-0 text-center text-[13px] tabular-nums font-bold text-text-primary">
+                <Link href={`/clubs/${row.clubId}`} className="block px-2 py-1.5 text-inherit">
+                  {row.points}
+                </Link>
               </td>
               {!compact && (
-                <td className="px-2 py-1.5">
-                  <FormIndicator form={row.form} />
+                <td className="p-0">
+                  <Link href={`/clubs/${row.clubId}`} className="block px-2 py-1.5 text-inherit">
+                    <FormIndicator form={row.form} />
+                  </Link>
                 </td>
               )}
             </tr>

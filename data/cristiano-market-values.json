@@ -1,0 +1,1259 @@
+{
+  "fetchedAt": "2026-03-13T23:37:09.478Z",
+  "playerExternalId": "8198",
+  "playerName": "Cristiano Ronaldo",
+  "provider": "transfermarkt",
+  "rows": [
+    {
+      "age": 19,
+      "clubExternalId": "985",
+      "clubName": "Manchester United",
+      "currencyCode": "EUR",
+      "marketValue": 18000000,
+      "observedAt": "2004-10-04",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "985",
+        "age": 19,
+        "marketValue": {
+          "value": 18000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "18.00",
+            "suffix": "M"
+          },
+          "determined": "2004-10-04"
+        }
+      }
+    },
+    {
+      "age": 20,
+      "clubExternalId": "985",
+      "clubName": "Manchester United",
+      "currencyCode": "EUR",
+      "marketValue": 22800000,
+      "observedAt": "2005-02-11",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "985",
+        "age": 20,
+        "marketValue": {
+          "value": 22800000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "22.00",
+            "suffix": "M"
+          },
+          "determined": "2005-02-11"
+        }
+      }
+    },
+    {
+      "age": 20,
+      "clubExternalId": "985",
+      "clubName": "Manchester United",
+      "currencyCode": "EUR",
+      "marketValue": 26500000,
+      "observedAt": "2005-10-18",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "985",
+        "age": 20,
+        "marketValue": {
+          "value": 26500000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "26.00",
+            "suffix": "M"
+          },
+          "determined": "2005-10-18"
+        }
+      }
+    },
+    {
+      "age": 21,
+      "clubExternalId": "985",
+      "clubName": "Manchester United",
+      "currencyCode": "EUR",
+      "marketValue": 25000000,
+      "observedAt": "2006-06-14",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "985",
+        "age": 21,
+        "marketValue": {
+          "value": 25000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "25.00",
+            "suffix": "M"
+          },
+          "determined": "2006-06-14"
+        }
+      }
+    },
+    {
+      "age": 22,
+      "clubExternalId": "985",
+      "clubName": "Manchester United",
+      "currencyCode": "EUR",
+      "marketValue": 34000000,
+      "observedAt": "2007-04-25",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "985",
+        "age": 22,
+        "marketValue": {
+          "value": 34000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "34.00",
+            "suffix": "M"
+          },
+          "determined": "2007-04-25"
+        }
+      }
+    },
+    {
+      "age": 22,
+      "clubExternalId": "985",
+      "clubName": "Manchester United",
+      "currencyCode": "EUR",
+      "marketValue": 50000000,
+      "observedAt": "2008-02-04",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "985",
+        "age": 22,
+        "marketValue": {
+          "value": 50000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "50.00",
+            "suffix": "M"
+          },
+          "determined": "2008-02-04"
+        }
+      }
+    },
+    {
+      "age": 23,
+      "clubExternalId": "985",
+      "clubName": "Manchester United",
+      "currencyCode": "EUR",
+      "marketValue": 55000000,
+      "observedAt": "2008-04-08",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "985",
+        "age": 23,
+        "marketValue": {
+          "value": 55000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "55.00",
+            "suffix": "M"
+          },
+          "determined": "2008-04-08"
+        }
+      }
+    },
+    {
+      "age": 23,
+      "clubExternalId": "985",
+      "clubName": "Manchester United",
+      "currencyCode": "EUR",
+      "marketValue": 60000000,
+      "observedAt": "2008-07-04",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "985",
+        "age": 23,
+        "marketValue": {
+          "value": 60000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "60.00",
+            "suffix": "M"
+          },
+          "determined": "2008-07-04"
+        }
+      }
+    },
+    {
+      "age": 24,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 70000000,
+      "observedAt": "2009-07-22",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 24,
+        "marketValue": {
+          "value": 70000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "70.00",
+            "suffix": "M"
+          },
+          "determined": "2009-07-22"
+        }
+      }
+    },
+    {
+      "age": 24,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 70000000,
+      "observedAt": "2009-12-03",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 24,
+        "marketValue": {
+          "value": 70000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "70.00",
+            "suffix": "M"
+          },
+          "determined": "2009-12-03"
+        }
+      }
+    },
+    {
+      "age": 24,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 75000000,
+      "observedAt": "2010-01-07",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 24,
+        "marketValue": {
+          "value": 75000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "75.00",
+            "suffix": "M"
+          },
+          "determined": "2010-01-07"
+        }
+      }
+    },
+    {
+      "age": 25,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 75000000,
+      "observedAt": "2010-04-12",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 25,
+        "marketValue": {
+          "value": 75000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "75.00",
+            "suffix": "M"
+          },
+          "determined": "2010-04-12"
+        }
+      }
+    },
+    {
+      "age": 25,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 90000000,
+      "observedAt": "2010-08-27",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 25,
+        "marketValue": {
+          "value": 90000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "90.00",
+            "suffix": "M"
+          },
+          "determined": "2010-08-27"
+        }
+      }
+    },
+    {
+      "age": 25,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 90000000,
+      "observedAt": "2011-02-04",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 25,
+        "marketValue": {
+          "value": 90000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "90.00",
+            "suffix": "M"
+          },
+          "determined": "2011-02-04"
+        }
+      }
+    },
+    {
+      "age": 26,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 90000000,
+      "observedAt": "2011-07-29",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 26,
+        "marketValue": {
+          "value": 90000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "90.00",
+            "suffix": "M"
+          },
+          "determined": "2011-07-29"
+        }
+      }
+    },
+    {
+      "age": 26,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 90000000,
+      "observedAt": "2012-02-03",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 26,
+        "marketValue": {
+          "value": 90000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "90.00",
+            "suffix": "M"
+          },
+          "determined": "2012-02-03"
+        }
+      }
+    },
+    {
+      "age": 27,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 100000000,
+      "observedAt": "2012-08-07",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 27,
+        "marketValue": {
+          "value": 100000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "100.00",
+            "suffix": "M"
+          },
+          "determined": "2012-08-07"
+        }
+      }
+    },
+    {
+      "age": 27,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 100000000,
+      "observedAt": "2013-01-10",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 27,
+        "marketValue": {
+          "value": 100000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "100.00",
+            "suffix": "M"
+          },
+          "determined": "2013-01-10"
+        }
+      }
+    },
+    {
+      "age": 28,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 100000000,
+      "observedAt": "2013-06-12",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 28,
+        "marketValue": {
+          "value": 100000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "100.00",
+            "suffix": "M"
+          },
+          "determined": "2013-06-12"
+        }
+      }
+    },
+    {
+      "age": 28,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 100000000,
+      "observedAt": "2014-01-23",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 28,
+        "marketValue": {
+          "value": 100000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "100.00",
+            "suffix": "M"
+          },
+          "determined": "2014-01-23"
+        }
+      }
+    },
+    {
+      "age": 29,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 100000000,
+      "observedAt": "2014-07-20",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 29,
+        "marketValue": {
+          "value": 100000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "100.00",
+            "suffix": "M"
+          },
+          "determined": "2014-07-20"
+        }
+      }
+    },
+    {
+      "age": 29,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 120000000,
+      "observedAt": "2014-10-22",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 29,
+        "marketValue": {
+          "value": 120000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "120.00",
+            "suffix": "M"
+          },
+          "determined": "2014-10-22"
+        }
+      }
+    },
+    {
+      "age": 29,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 120000000,
+      "observedAt": "2015-01-23",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 29,
+        "marketValue": {
+          "value": 120000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "120.00",
+            "suffix": "M"
+          },
+          "determined": "2015-01-23"
+        }
+      }
+    },
+    {
+      "age": 30,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 120000000,
+      "observedAt": "2015-07-01",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 30,
+        "marketValue": {
+          "value": 120000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "120.00",
+            "suffix": "M"
+          },
+          "determined": "2015-07-01"
+        }
+      }
+    },
+    {
+      "age": 30,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 110000000,
+      "observedAt": "2015-11-22",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 30,
+        "marketValue": {
+          "value": 110000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "110.00",
+            "suffix": "M"
+          },
+          "determined": "2015-11-22"
+        }
+      }
+    },
+    {
+      "age": 31,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 110000000,
+      "observedAt": "2016-02-22",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 31,
+        "marketValue": {
+          "value": 110000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "110.00",
+            "suffix": "M"
+          },
+          "determined": "2016-02-22"
+        }
+      }
+    },
+    {
+      "age": 31,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 110000000,
+      "observedAt": "2016-06-01",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 31,
+        "marketValue": {
+          "value": 110000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "110.00",
+            "suffix": "M"
+          },
+          "determined": "2016-06-01"
+        }
+      }
+    },
+    {
+      "age": 31,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 110000000,
+      "observedAt": "2016-07-15",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 31,
+        "marketValue": {
+          "value": 110000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "110.00",
+            "suffix": "M"
+          },
+          "determined": "2016-07-15"
+        }
+      }
+    },
+    {
+      "age": 31,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 100000000,
+      "observedAt": "2017-01-24",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 31,
+        "marketValue": {
+          "value": 100000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "100.00",
+            "suffix": "M"
+          },
+          "determined": "2017-01-24"
+        }
+      }
+    },
+    {
+      "age": 32,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 100000000,
+      "observedAt": "2017-06-05",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 32,
+        "marketValue": {
+          "value": 100000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "100.00",
+            "suffix": "M"
+          },
+          "determined": "2017-06-05"
+        }
+      }
+    },
+    {
+      "age": 32,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 120000000,
+      "observedAt": "2018-01-01",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 32,
+        "marketValue": {
+          "value": 120000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "120.00",
+            "suffix": "M"
+          },
+          "determined": "2018-01-01"
+        }
+      }
+    },
+    {
+      "age": 33,
+      "clubExternalId": "418",
+      "clubName": "Real Madrid",
+      "currencyCode": "EUR",
+      "marketValue": 100000000,
+      "observedAt": "2018-05-30",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "418",
+        "age": 33,
+        "marketValue": {
+          "value": 100000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "100.00",
+            "suffix": "M"
+          },
+          "determined": "2018-05-30"
+        }
+      }
+    },
+    {
+      "age": 33,
+      "clubExternalId": "506",
+      "clubName": "Juventus FC",
+      "currencyCode": "EUR",
+      "marketValue": 100000000,
+      "observedAt": "2018-12-20",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "506",
+        "age": 33,
+        "marketValue": {
+          "value": 100000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "100.00",
+            "suffix": "M"
+          },
+          "determined": "2018-12-20"
+        }
+      }
+    },
+    {
+      "age": 34,
+      "clubExternalId": "506",
+      "clubName": "Juventus FC",
+      "currencyCode": "EUR",
+      "marketValue": 90000000,
+      "observedAt": "2019-06-06",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "506",
+        "age": 34,
+        "marketValue": {
+          "value": 90000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "90.00",
+            "suffix": "M"
+          },
+          "determined": "2019-06-06"
+        }
+      }
+    },
+    {
+      "age": 34,
+      "clubExternalId": "506",
+      "clubName": "Juventus FC",
+      "currencyCode": "EUR",
+      "marketValue": 75000000,
+      "observedAt": "2019-12-12",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "506",
+        "age": 34,
+        "marketValue": {
+          "value": 75000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "75.00",
+            "suffix": "M"
+          },
+          "determined": "2019-12-12"
+        }
+      }
+    },
+    {
+      "age": 35,
+      "clubExternalId": "506",
+      "clubName": "Juventus FC",
+      "currencyCode": "EUR",
+      "marketValue": 60000000,
+      "observedAt": "2020-04-08",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "506",
+        "age": 35,
+        "marketValue": {
+          "value": 60000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "60.00",
+            "suffix": "M"
+          },
+          "determined": "2020-04-08"
+        }
+      }
+    },
+    {
+      "age": 35,
+      "clubExternalId": "506",
+      "clubName": "Juventus FC",
+      "currencyCode": "EUR",
+      "marketValue": 60000000,
+      "observedAt": "2020-08-25",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "506",
+        "age": 35,
+        "marketValue": {
+          "value": 60000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "60.00",
+            "suffix": "M"
+          },
+          "determined": "2020-08-25"
+        }
+      }
+    },
+    {
+      "age": 35,
+      "clubExternalId": "506",
+      "clubName": "Juventus FC",
+      "currencyCode": "EUR",
+      "marketValue": 60000000,
+      "observedAt": "2020-12-29",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "506",
+        "age": 35,
+        "marketValue": {
+          "value": 60000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "60.00",
+            "suffix": "M"
+          },
+          "determined": "2020-12-29"
+        }
+      }
+    },
+    {
+      "age": 36,
+      "clubExternalId": "506",
+      "clubName": "Juventus FC",
+      "currencyCode": "EUR",
+      "marketValue": 50000000,
+      "observedAt": "2021-03-23",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "506",
+        "age": 36,
+        "marketValue": {
+          "value": 50000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "50.00",
+            "suffix": "M"
+          },
+          "determined": "2021-03-23"
+        }
+      }
+    },
+    {
+      "age": 36,
+      "clubExternalId": "506",
+      "clubName": "Juventus FC",
+      "currencyCode": "EUR",
+      "marketValue": 45000000,
+      "observedAt": "2021-06-01",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "506",
+        "age": 36,
+        "marketValue": {
+          "value": 45000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "45.00",
+            "suffix": "M"
+          },
+          "determined": "2021-06-01"
+        }
+      }
+    },
+    {
+      "age": 36,
+      "clubExternalId": "985",
+      "clubName": "Manchester United",
+      "currencyCode": "EUR",
+      "marketValue": 35000000,
+      "observedAt": "2021-12-23",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "985",
+        "age": 36,
+        "marketValue": {
+          "value": 35000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "35.00",
+            "suffix": "M"
+          },
+          "determined": "2021-12-23"
+        }
+      }
+    },
+    {
+      "age": 37,
+      "clubExternalId": "985",
+      "clubName": "Manchester United",
+      "currencyCode": "EUR",
+      "marketValue": 30000000,
+      "observedAt": "2022-06-15",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "985",
+        "age": 37,
+        "marketValue": {
+          "value": 30000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "30.00",
+            "suffix": "M"
+          },
+          "determined": "2022-06-15"
+        }
+      }
+    },
+    {
+      "age": 37,
+      "clubExternalId": "985",
+      "clubName": "Manchester United",
+      "currencyCode": "EUR",
+      "marketValue": 20000000,
+      "observedAt": "2022-09-15",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "985",
+        "age": 37,
+        "marketValue": {
+          "value": 20000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "20.00",
+            "suffix": "M"
+          },
+          "determined": "2022-09-15"
+        }
+      }
+    },
+    {
+      "age": 37,
+      "clubExternalId": "985",
+      "clubName": "Manchester United",
+      "currencyCode": "EUR",
+      "marketValue": 20000000,
+      "observedAt": "2022-11-03",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "985",
+        "age": 37,
+        "marketValue": {
+          "value": 20000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "20.00",
+            "suffix": "M"
+          },
+          "determined": "2022-11-03"
+        }
+      }
+    },
+    {
+      "age": 38,
+      "clubExternalId": "18544",
+      "clubName": "Al-Nassr FC",
+      "currencyCode": "EUR",
+      "marketValue": 15000000,
+      "observedAt": "2023-06-12",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "18544",
+        "age": 38,
+        "marketValue": {
+          "value": 15000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "15.00",
+            "suffix": "M"
+          },
+          "determined": "2023-06-12"
+        }
+      }
+    },
+    {
+      "age": 38,
+      "clubExternalId": "18544",
+      "clubName": "Al-Nassr FC",
+      "currencyCode": "EUR",
+      "marketValue": 15000000,
+      "observedAt": "2023-12-15",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "18544",
+        "age": 38,
+        "marketValue": {
+          "value": 15000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "15.00",
+            "suffix": "M"
+          },
+          "determined": "2023-12-15"
+        }
+      }
+    },
+    {
+      "age": 39,
+      "clubExternalId": "18544",
+      "clubName": "Al-Nassr FC",
+      "currencyCode": "EUR",
+      "marketValue": 15000000,
+      "observedAt": "2024-06-04",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "18544",
+        "age": 39,
+        "marketValue": {
+          "value": 15000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "15.00",
+            "suffix": "M"
+          },
+          "determined": "2024-06-04"
+        }
+      }
+    },
+    {
+      "age": 39,
+      "clubExternalId": "18544",
+      "clubName": "Al-Nassr FC",
+      "currencyCode": "EUR",
+      "marketValue": 12000000,
+      "observedAt": "2024-12-13",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "18544",
+        "age": 39,
+        "marketValue": {
+          "value": 12000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "12.00",
+            "suffix": "M"
+          },
+          "determined": "2024-12-13"
+        }
+      }
+    },
+    {
+      "age": 40,
+      "clubExternalId": "18544",
+      "clubName": "Al-Nassr FC",
+      "currencyCode": "EUR",
+      "marketValue": 12000000,
+      "observedAt": "2025-05-27",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "18544",
+        "age": 40,
+        "marketValue": {
+          "value": 12000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "12.00",
+            "suffix": "M"
+          },
+          "determined": "2025-05-27"
+        }
+      }
+    },
+    {
+      "age": 40,
+      "clubExternalId": "18544",
+      "clubName": "Al-Nassr FC",
+      "currencyCode": "EUR",
+      "marketValue": 12000000,
+      "observedAt": "2025-12-18",
+      "playerExternalId": "8198",
+      "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198",
+      "raw": {
+        "playerId": "8198",
+        "clubId": "18544",
+        "age": 40,
+        "marketValue": {
+          "value": 12000000,
+          "currency": "EUR",
+          "compact": {
+            "prefix": "€",
+            "content": "12.00",
+            "suffix": "M"
+          },
+          "determined": "2025-12-18"
+        }
+      }
+    }
+  ],
+  "sourceUrl": "https://www.transfermarkt.com/cristiano-ronaldo/marktwertverlauf/spieler/8198"
+}

@@ -13,6 +13,7 @@ import { NationFlag } from '@/components/ui/NationFlag';
 import { WorldCupPlaceholderLink } from '@/components/ui/WorldCupPlaceholderLink';
 import {
   cn,
+  formatNumber,
   formatMatchDateForTimeZone,
   formatMatchDateTimeForTimeZone,
   formatMatchTimeForTimeZone,
@@ -20,6 +21,8 @@ import {
 } from '@/lib/utils';
 import {
   getMatchByIdDb,
+  getMatchStatsDb,
+  getMatchTimelineDb,
 } from '@/data/server';
 
 export const dynamic = 'force-dynamic';
@@ -31,7 +34,11 @@ export default async function MatchPage({
 }) {
   const locale = await getLocale();
   const { id } = await params;
-  const match = await getMatchByIdDb(id, locale);
+  const [match, timelineEvents, dbMatchStats] = await Promise.all([
+    getMatchByIdDb(id, locale),
+    getMatchTimelineDb(id, locale),
+    getMatchStatsDb(id),
+  ]);
   if (!match) notFound();
   const isNationMatch = match.teamType === 'nation';
 
@@ -40,8 +47,7 @@ export default async function MatchPage({
   const tMatchStatus = await getTranslations('matchStatus');
   const statusText = tMatchStatus(match.status);
   const isWorldCupMatch = match.id.startsWith('m-wc26-');
-  const timelineEvents = match.events ?? [];
-  const matchStats = match.stats;
+  const matchStats = match.stats ?? dbMatchStats;
   const sourceOffsetMinutes = getMatchSourceOffsetMinutes({ id: match.id, venue: match.venue });
   const matchDateText = formatMatchDateForTimeZone(match.date, match.time, locale, 'UTC', sourceOffsetMinutes);
   const matchTimeText = formatMatchTimeForTimeZone(match.date, match.time, locale, 'UTC', sourceOffsetMinutes);
@@ -54,6 +60,9 @@ export default async function MatchPage({
   const goalSummary = timelineEvents.filter((event) => event.type === 'goal');
   const homeGoals = goalSummary.filter((event) => event.teamId === match.homeTeamId);
   const awayGoals = goalSummary.filter((event) => event.teamId === match.awayTeamId);
+  const formationText = match.homeFormation && match.awayFormation
+    ? `${homeCode ?? homeLabel} ${match.homeFormation} / ${awayCode ?? awayLabel} ${match.awayFormation}`
+    : undefined;
   const homeResolvedNationId = isNationMatch
     ? (match.homeParticipant?.status === 'resolved' ? match.homeParticipant.entityId : match.homeTeamId)
     : undefined;
@@ -90,6 +99,67 @@ export default async function MatchPage({
     return detail;
   }
 
+  function getStatBarWidth(values: [number, number], index: 0 | 1) {
+    const total = values[0] + values[1];
+
+    if (total === 0) {
+      return '50%';
+    }
+
+    return `${(values[index] / total) * 100}%`;
+  }
+
+  const rawStatRows: Array<{
+    label: string;
+    values?: [number, number];
+    suffix?: string;
+    precision?: number;
+  }> = [
+    { label: tMatch('expectedGoals'), values: matchStats?.expectedGoals, precision: 2 },
+    { label: tMatch('possession'), values: matchStats?.possession, suffix: '%' },
+    { label: tMatch('passAccuracy'), values: matchStats?.passAccuracy, suffix: '%' },
+    { label: tMatch('totalPasses'), values: matchStats?.totalPasses },
+    { label: tMatch('accuratePasses'), values: matchStats?.accuratePasses },
+    { label: tMatch('shots'), values: matchStats?.shots },
+    { label: tMatch('shotsOnTarget'), values: matchStats?.shotsOnTarget },
+    { label: tMatch('corners'), values: matchStats?.corners },
+    { label: tMatch('fouls'), values: matchStats?.fouls },
+    { label: tMatch('offsides'), values: matchStats?.offsides },
+    { label: tMatch('saves'), values: matchStats?.saves },
+  ];
+
+  const statRows: Array<{
+    label: string;
+    values: [number, number];
+    suffix?: string;
+    precision?: number;
+  }> = rawStatRows.flatMap((stat) => {
+    if (!stat.values) {
+      return [];
+    }
+
+    return [{
+      label: stat.label,
+      values: stat.values,
+      suffix: stat.suffix,
+      precision: stat.precision,
+    }];
+  });
+
+  function renderPlayerName(playerId?: string, playerName?: string, className?: string) {
+    const label = playerName ?? tCommon('unknown');
+
+    if (!playerId) {
+      return <span className={className}>{label}</span>;
+    }
+
+    return (
+      <EntityLink type="player" id={playerId} className={className}>
+        <span>{label}</span>
+      </EntityLink>
+    );
+  }
+
   return (
     <div>
       <PageHeader
@@ -105,9 +175,9 @@ export default async function MatchPage({
             {isNationMatch ? (
               homeResolvedNationId ? (
                 <EntityLink type="nation" id={homeResolvedNationId} className="inline-flex items-center gap-2">
+                  <span className="text-lg font-bold text-text-primary">{homeLabel}</span>
                   {homeCode && <NationBadge nationId={homeResolvedNationId} code={homeCode} crest={match.homeTeamLogo} size="lg" />}
                   {homeCode && <NationFlag nationId={homeResolvedNationId} code={homeCode} size="lg" />}
-                  <span className="text-lg font-bold text-text-primary">{homeLabel}</span>
                 </EntityLink>
               ) : match.homeParticipant?.slot ? (
                 <div className="inline-flex items-center gap-2">
@@ -118,8 +188,8 @@ export default async function MatchPage({
               )
             ) : (
               <EntityLink type="club" id={match.homeTeamId} className="inline-flex items-center gap-2">
-                <ClubBadge shortName={homeCode ?? '???'} clubId={match.homeTeamId} logo={match.homeTeamLogo} size="lg" />
                 <span className="text-lg font-bold text-text-primary">{homeLabel}</span>
+                <ClubBadge shortName={homeCode ?? '???'} clubId={match.homeTeamId} logo={match.homeTeamLogo} size="lg" />
               </EntityLink>
             )}
              <div className="text-[11px] text-text-muted mt-0.5">{homeCode}</div>
@@ -201,9 +271,7 @@ export default async function MatchPage({
                       </div>
                       <div className="flex items-center justify-end gap-2 text-[13px] font-medium text-text-primary">
                         {specialTag && <span className="text-[10px] uppercase text-amber-400">{specialTag}</span>}
-                        <EntityLink type="player" id={event.playerId} className="truncate">
-                          <span>{event.playerName ?? tCommon('unknown')}</span>
-                        </EntityLink>
+                        {renderPlayerName(event.playerId, event.playerName, 'truncate')}
                         <span className="tabular-nums text-text-muted">{event.minute}&apos;</span>
                       </div>
                       {event.assistPlayerId && event.assistPlayerName && (
@@ -240,9 +308,7 @@ export default async function MatchPage({
                       </div>
                       <div className="flex items-center gap-2 text-[13px] font-medium text-text-primary">
                         <span className="tabular-nums text-text-muted">{event.minute}&apos;</span>
-                        <EntityLink type="player" id={event.playerId} className="truncate">
-                          <span>{event.playerName ?? tCommon('unknown')}</span>
-                        </EntityLink>
+                        {renderPlayerName(event.playerId, event.playerName, 'truncate')}
                         {specialTag && <span className="text-[10px] uppercase text-amber-400">{specialTag}</span>}
                       </div>
                       {event.assistPlayerId && event.assistPlayerName && (
@@ -265,7 +331,7 @@ export default async function MatchPage({
           <Suspense
             fallback={
               <SectionCard title={tMatch('lineups')}>
-                <div className="py-8 text-center text-[13px] text-text-muted">{tMatch('loading')}</div>
+                <div className="py-8 text-center text-[13px] text-text-muted">{tCommon('loading')}</div>
               </SectionCard>
             }
           >
@@ -301,9 +367,7 @@ export default async function MatchPage({
                       )}>
                         {getEventTypeLabel(event.type)}
                       </span>
-                      <EntityLink type="player" id={event.playerId} className="text-[13px] font-medium">
-                        <span>{event.playerName ?? tCommon('unknown')}</span>
-                      </EntityLink>
+                      {renderPlayerName(event.playerId, event.playerName, 'text-[13px] font-medium')}
                       {event.detail && (
                         <span className="text-[11px] text-text-muted">({getLocalizedEventDetail(event.detail, event.type)})</span>
                       )}
@@ -318,41 +382,40 @@ export default async function MatchPage({
           {matchStats && (
             <SectionCard title={tMatch('matchStats')}>
               <div className="space-y-3">
-                {[
-                  { label: tMatch('possession'), values: matchStats.possession, suffix: '%' },
-                  { label: tMatch('shots'), values: matchStats.shots },
-                  { label: tMatch('shotsOnTarget'), values: matchStats.shotsOnTarget },
-                  { label: tMatch('corners'), values: matchStats.corners },
-                  { label: tMatch('fouls'), values: matchStats.fouls },
-                ].map((stat) => (
+                {statRows.map((stat) => {
+                  const leftValue = Number(stat.values[0]);
+                  const rightValue = Number(stat.values[1]);
+                  const values: [number, number] = [leftValue, rightValue];
+
+                  return (
                   <div key={stat.label} className="flex items-center gap-3">
                     <span className={cn(
                       'text-[13px] tabular-nums w-10 text-right font-semibold',
-                      stat.values[0] > stat.values[1] ? 'text-text-primary' : 'text-text-secondary'
+                      leftValue > rightValue ? 'text-text-primary' : 'text-text-secondary'
                     )}>
-                      {stat.values[0]}{stat.suffix ?? ''}
+                      {stat.precision ? leftValue.toFixed(stat.precision) : leftValue}{stat.suffix ?? ''}
                     </span>
                     <div className="flex-1">
                       <div className="text-[11px] text-text-muted text-center mb-1">{stat.label}</div>
                       <div className="flex h-1.5 rounded-full overflow-hidden bg-surface-3">
                         <div
                           className="bg-accent-emerald rounded-l-full"
-                          style={{ width: `${(stat.values[0] / (stat.values[0] + stat.values[1])) * 100}%` }}
+                          style={{ width: getStatBarWidth(values, 0) }}
                         />
                         <div
                           className="bg-accent-blue rounded-r-full"
-                          style={{ width: `${(stat.values[1] / (stat.values[0] + stat.values[1])) * 100}%` }}
+                          style={{ width: getStatBarWidth(values, 1) }}
                         />
                       </div>
                     </div>
                     <span className={cn(
                       'text-[13px] tabular-nums w-10 font-semibold',
-                      stat.values[1] > stat.values[0] ? 'text-text-primary' : 'text-text-secondary'
+                      rightValue > leftValue ? 'text-text-primary' : 'text-text-secondary'
                     )}>
-                      {stat.values[1]}{stat.suffix ?? ''}
+                      {stat.precision ? rightValue.toFixed(stat.precision) : rightValue}{stat.suffix ?? ''}
                     </span>
                   </div>
-                ))}
+                )})}
               </div>
             </SectionCard>
           )}
@@ -360,7 +423,7 @@ export default async function MatchPage({
           <Suspense
             fallback={
               <SectionCard title={tMatch('analysis')}>
-                <div className="py-8 text-center text-[13px] text-text-muted">{tMatch('loading')}</div>
+                <div className="py-8 text-center text-[13px] text-text-muted">{tCommon('loading')}</div>
               </SectionCard>
             }
           >
@@ -387,6 +450,9 @@ export default async function MatchPage({
                     }]
                   : []),
                 { label: tMatch('venue'), value: match.venue },
+                ...(match.referee ? [{ label: tMatch('referee'), value: match.referee }] : []),
+                ...(match.attendance ? [{ label: tMatch('attendance'), value: formatNumber(match.attendance) }] : []),
+                ...(formationText ? [{ label: tMatch('formations'), value: formationText }] : []),
                 { label: tMatch('status'), value: statusText },
               ].map(({ label, value }) => (
                 <div key={label} className="flex justify-between">

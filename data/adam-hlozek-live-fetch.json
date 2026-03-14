@@ -1,0 +1,35 @@
+{
+  "provider": "transfermarkt",
+  "competition": "1-bundesliga",
+  "season": "2023-2024",
+  "fetchedAt": "2026-03-13T22:51:29.338278+00:00",
+  "rows": [
+    {
+      "playerSlug": "adam-hlozek",
+      "playerName": "Adam Hlo\u017eek",
+      "age": 23,
+      "dateOfBirth": "2002-07-25",
+      "heightCm": 188,
+      "preferredFoot": null,
+      "contractStartDate": "2024-08-17",
+      "contractEndDate": "2029-06-30",
+      "marketValue": 15000000,
+      "nationalities": [
+        "Czech Republic"
+      ],
+      "photoUrl": "https://img.a.transfermarkt.technology/portrait/big/552057-1755092070.jpg?lm=1",
+      "position": "Centre-Forward",
+      "sourceUrl": "https://www.transfermarkt.com/adam-hlozek/profil/spieler/552057",
+      "teamName": "Bayer Leverkusen",
+      "raw": {
+        "dateOfBirthText": "25/07/2002 (23)",
+        "description": "Adam Hlozek, 23, from Czech Republic \u27a4 TSG 1899 Hoffenheim, since 2024 \u27a4 Centre-Forward \u27a4 Market value: \u20ac15.00m \u27a4 * 25/07/2002 in Ivan\u010dice, Czech Republic",
+        "footText": null,
+        "heightText": "1,88 m",
+        "keywords": "Adam Hlozek,TSG 1899 Hoffenheim,Bundesliga,Czech Republic",
+        "joinedText": "17/08/2024",
+        "contractExpiresText": "30/06/2029"
+      }
+    }
+  ]
+}

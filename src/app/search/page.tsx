@@ -10,13 +10,7 @@ import { LeagueLogo } from '@/components/ui/LeagueLogo';
 import { NationFlag } from '@/components/ui/NationFlag';
 import { PlayerAvatar } from '@/components/ui/PlayerAvatar';
 import { ListSearchForm } from '@/components/ui/ListSearchForm';
-import {
-  getClubByIdDb,
-  getLeagueByIdDb,
-  getNationByIdDb,
-  getPlayerByIdDb,
-  searchAllDb,
-} from '@/data/server';
+import { searchAllDb } from '@/data/server';
 import type { EntityType, SearchResult } from '@/data/types';
 
 const typeBadgeVariants: Record<EntityType, 'default' | 'success' | 'info' | 'warning'> = {
@@ -26,34 +20,27 @@ const typeBadgeVariants: Record<EntityType, 'default' | 'success' | 'info' | 'wa
   nation: 'info',
 };
 
-async function getResultImage(item: SearchResult, locale: string) {
+function getResultImage(item: SearchResult) {
   if (item.type === 'player') {
-    const player = await getPlayerByIdDb(item.id, locale);
     return (
       <PlayerAvatar
-        name={player?.name ?? item.name}
-        position={player?.position ?? 'MID'}
-        imageUrl={player?.photoUrl}
+        name={item.name}
+        position={item.playerPosition ?? 'MID'}
+        imageUrl={item.imageUrl}
         size="sm"
       />
     );
   }
 
   if (item.type === 'club') {
-    const club = await getClubByIdDb(item.id, locale);
-    if (!club) return null;
-    return <ClubBadge shortName={club.shortName} clubId={club.id} logo={club.logo} size="sm" />;
+    return <ClubBadge shortName={item.shortName ?? item.name} clubId={item.id} logo={item.imageUrl} size="sm" />;
   }
 
   if (item.type === 'league') {
-    const league = await getLeagueByIdDb(item.id, locale);
-    if (!league) return null;
-    return <LeagueLogo leagueId={league.id} name={league.name} logo={league.logo} size="sm" />;
+    return <LeagueLogo leagueId={item.id} name={item.name} logo={item.imageUrl} size="sm" />;
   }
 
-  const nation = await getNationByIdDb(item.id, locale);
-  if (!nation) return null;
-  return <NationFlag nationId={nation.id} code={nation.code} flag={nation.flag} size="sm" />;
+  return <NationFlag nationId={item.id} code={item.nationCode ?? item.id} flag={item.imageUrl} size="sm" />;
 }
 
 function formatSearchSubtitle(item: SearchResult, womenLabel: string) {
@@ -93,15 +80,13 @@ export default async function SearchPage({
     return acc;
   }, {} as Record<EntityType, SearchResult[]>);
 
-  const groupedEntries = await Promise.all(
-    (Object.entries(grouped) as [EntityType, SearchResult[]][]).map(async ([type, items]) => ({
-      type,
-        items: await Promise.all(items.map(async (item) => ({
-          item,
-          image: await getResultImage(item, locale),
-        }))),
-    }))
-  );
+  const groupedEntries = (Object.entries(grouped) as [EntityType, SearchResult[]][]).map(([type, items]) => ({
+    type,
+    items: items.map((item) => ({
+      item,
+      image: getResultImage(item),
+    })),
+  }));
 
   return (
     <div>

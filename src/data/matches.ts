@@ -483,7 +483,9 @@ export const matches: Match[] = [
     date: '2026-03-10',
     time: '21:00',
     venue: 'Santiago Bernabeu',
-    leagueId: 'ucl',
+    leagueId: 'champions-league',
+    stage: 'LAST_16',
+    matchWeek: 1,
     status: 'finished',
     events: [
       { minute: 25, type: 'goal', playerId: 'p-rma-ucl-1', teamId: 'realmadrid-ucl', detail: 'Counter attack' },
@@ -501,7 +503,9 @@ export const matches: Match[] = [
     date: '2026-03-18',
     time: '21:00',
     venue: 'Allianz Arena',
-    leagueId: 'ucl',
+    leagueId: 'champions-league',
+    stage: 'LAST_16',
+    matchWeek: 2,
     status: 'scheduled',
   },
   {

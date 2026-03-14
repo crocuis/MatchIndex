@@ -277,7 +277,21 @@ export function createCountryCode(value: string) {
   return normalized.slice(0, 3).toUpperCase().padEnd(3, 'X');
 }
 
+function getCanonicalCompetitionSlug(name: string) {
+  const normalizedName = name.trim().toLowerCase();
+  const canonicalSlugMap: Record<string, string> = {
+    'uefa champions league': 'champions-league',
+    'uefa europa league': 'europa-league',
+  };
+  return canonicalSlugMap[normalizedName];
+}
+
 export function createCompetitionSlug(entry: Pick<StatsBombCompetitionEntry, 'competition_name' | 'competition_gender' | 'competition_youth' | 'competition_international'>) {
+  const canonicalSlug = getCanonicalCompetitionSlug(entry.competition_name);
+  if (canonicalSlug && entry.competition_gender !== 'female' && !entry.competition_youth) {
+    return canonicalSlug;
+  }
+
   const parts = [entry.competition_name];
 
   if (entry.competition_international) {
@@ -350,7 +364,8 @@ export function buildMatchManifest(entry: StatsBombMatchEntry): StatsBombMatchMa
     sourceSeasonId: String(entry.season.season_id),
     sourceHomeTeamId: String(entry.home_team.home_team_id),
     sourceAwayTeamId: String(entry.away_team.away_team_id),
-    competitionSlug: createStatsBombSlug(entry.competition.competition_name),
+    competitionSlug: getCanonicalCompetitionSlug(entry.competition.competition_name)
+      ?? createStatsBombSlug(entry.competition.competition_name),
     seasonSlug: createSeasonSlug(entry.season.season_name, entry.season.season_id),
     homeTeamSlug: createTeamSlug(entry.home_team.home_team_name, entry.home_team.country?.name),
     awayTeamSlug: createTeamSlug(entry.away_team.away_team_name, entry.away_team.country?.name),

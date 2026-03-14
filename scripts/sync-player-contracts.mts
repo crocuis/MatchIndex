@@ -1,6 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import postgres, { type Sql } from 'postgres';
+import type { CountryCodeResolver } from '../src/data/countryCodeResolver.ts';
+import { loadCountryCodeResolver } from '../src/data/countryCodeResolver.ts';
 import { loadProjectEnv } from './load-project-env.mts';
 
 interface CliOptions {
@@ -24,6 +26,7 @@ interface ContractSyncPayload {
 }
 
 interface ContractSyncRow {
+  age?: number | string | null;
   annualSalary?: number | string | null;
   dateOfBirth?: string | null;
   contractEndDate?: string | null;
@@ -31,8 +34,12 @@ interface ContractSyncRow {
   currencyCode?: string | null;
   heightCm?: number | string | null;
   isEstimated?: boolean | null;
+  marketValue?: number | string | null;
+  nationalities?: string[] | null;
   playerName?: string | null;
   playerSlug?: string | null;
+  photoUrl?: string | null;
+  position?: string | null;
   preferredFoot?: string | null;
   raw?: unknown;
   sourceUrl?: string | null;
@@ -76,6 +83,38 @@ interface SourceRow {
 interface SyncRunRow {
   id: number;
 }
+
+interface CountryLookupRow {
+  id: number;
+  code_alpha2: string | null;
+  code_alpha3: string;
+  translation_name: string | null;
+}
+
+const COUNTRY_NAME_ALIASES: Record<string, string> = {
+  'bosnia herzegovina': 'BIH',
+  'cape verde': 'CPV',
+  'congo dr': 'COD',
+  'cote d ivoire': 'CIV',
+  'curacao': 'CUW',
+  'dr congo': 'COD',
+  england: 'ENG',
+  'ivory coast': 'CIV',
+  'korea republic': 'KOR',
+  'korea south': 'KOR',
+  'north ireland': 'NIR',
+  'north macedonia': 'MKD',
+  'republic of ireland': 'IRL',
+  scotland: 'SCO',
+  'south korea': 'KOR',
+  syria: 'SYR',
+  'the gambia': 'GAM',
+  'trinidad tobago': 'TRI',
+  'u s a': 'USA',
+  'united states': 'USA',
+  'united states of america': 'USA',
+  wales: 'WAL',
+};
 
 function parsePositiveInt(value: string | undefined) {
   if (!value) {
@@ -135,7 +174,7 @@ function printHelp() {
   console.log(`Usage: node --experimental-strip-types scripts/sync-player-contracts.mts --input=<path> --competition=<slug> --season=<slug> [options]
 
 Options:
-  --input=<path>        Normalized JSON file produced by fetch-player-contracts-scraperfc.py
+  --input=<path>        Normalized JSON file produced by fetch-player-contracts-transfermarkt.py or fetch-player-contracts-scraperfc.py
   --competition=<slug>  Internal competition slug (e.g. premier-league)
   --season=<slug>       Internal season slug (e.g. 2025-2026)
   --player=<slug>       Restrict sync to one internal player slug
@@ -292,11 +331,12 @@ function parseDateValue(value: string | null | undefined, boundary: 'start' | 'e
 }
 
 async function ensureDataSource(sql: Sql, provider: string) {
-  const sourceName = provider === 'capology' ? 'Capology via ScraperFC' : provider === 'transfermarkt' ? 'Transfermarkt via ScraperFC' : provider;
-  const baseUrl = provider === 'capology' ? 'https://www.capology.com' : provider === 'transfermarkt' ? 'https://www.transfermarkt.us' : null;
+  const slug = provider === 'transfermarkt' ? 'transfermarkt' : `${provider}_scraperfc`;
+  const sourceName = provider === 'capology' ? 'Capology via ScraperFC' : provider === 'transfermarkt' ? 'Transfermarkt Player Profiles' : provider;
+  const baseUrl = provider === 'capology' ? 'https://www.capology.com' : provider === 'transfermarkt' ? 'https://www.transfermarkt.com' : null;
   const rows = await sql<SourceRow[]>`
     INSERT INTO data_sources (slug, name, base_url, source_kind, upstream_ref, priority)
-    VALUES (${`${provider}_scraperfc`}, ${sourceName}, ${baseUrl}, 'scraper', 'scraperfc', 3)
+    VALUES (${slug}, ${sourceName}, ${baseUrl}, 'scraper', 'scraperfc', 3)
     ON CONFLICT (slug)
     DO UPDATE SET
       name = EXCLUDED.name,
@@ -358,7 +398,7 @@ async function insertRawPayload(
     VALUES (
       ${params.sourceId},
       ${params.syncRunId},
-      ${`${params.provider}:player_contract`},
+      ${`${params.provider}:player_profile`},
       'player',
       ${params.playerSlug},
       ${params.seasonSlug},
@@ -425,6 +465,82 @@ async function loadTargets(sql: Sql, competitionSlug: string, seasonSlug: string
   }));
 }
 
+function normalizeCountryKey(value: string) {
+  return value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/&/g, ' and ')
+    .replace(/[^a-zA-Z0-9]+/g, ' ')
+    .trim()
+    .replace(/\s+/g, ' ')
+    .toLowerCase();
+}
+
+async function loadCountryRows(sql: Sql) {
+  return sql<CountryLookupRow[]>`
+    SELECT
+      c.id,
+      c.code_alpha2,
+      c.code_alpha3,
+      ct.name AS translation_name
+    FROM countries c
+    LEFT JOIN country_translations ct ON ct.country_id = c.id AND ct.locale = 'en'
+  `;
+}
+
+function buildCountryResolver(rows: CountryLookupRow[], countryCodeResolver: CountryCodeResolver) {
+  const countryIdByKey = new Map<string, number>();
+  const countryIdByCode = new Map<string, number>();
+  const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+
+  for (const row of rows) {
+    countryIdByCode.set(countryCodeResolver.resolve(row.code_alpha3) ?? row.code_alpha3, row.id);
+
+    const displayName = row.code_alpha2 ? regionNames.of(row.code_alpha2.toUpperCase()) : undefined;
+    for (const candidate of [row.code_alpha2, row.code_alpha3, row.translation_name, displayName]) {
+      if (!candidate) {
+        continue;
+      }
+      countryIdByKey.set(normalizeCountryKey(candidate), row.id);
+    }
+  }
+
+  for (const [alias, code] of Object.entries(COUNTRY_NAME_ALIASES)) {
+    const countryId = countryIdByCode.get(countryCodeResolver.resolve(code) ?? code);
+    if (countryId) {
+      countryIdByKey.set(alias, countryId);
+    }
+  }
+
+  return {
+    resolve(values: string[] | null | undefined) {
+      for (const value of values ?? []) {
+        const normalized = normalizeCountryKey(value);
+        if (!normalized) {
+          continue;
+        }
+
+        const directMatch = countryIdByKey.get(normalized);
+        if (directMatch) {
+          return directMatch;
+        }
+
+        const aliasCode = COUNTRY_NAME_ALIASES[normalized];
+        if (!aliasCode) {
+          continue;
+        }
+
+        const aliasMatch = countryIdByCode.get(countryCodeResolver.resolve(aliasCode) ?? aliasCode);
+        if (aliasMatch) {
+          return aliasMatch;
+        }
+      }
+
+      return undefined;
+    },
+  };
+}
+
 function matchTarget(row: ContractSyncRow, targets: SyncTarget[]) {
   if (row.playerSlug) {
     const slugMatch = targets.find((target) => target.playerSlug === row.playerSlug);
@@ -448,6 +564,53 @@ function matchTarget(row: ContractSyncRow, targets: SyncTarget[]) {
   return playerMatches.length === 1 ? playerMatches[0] : null;
 }
 
+function isTransfermarktProfileSync(provider: string) {
+  return provider === 'transfermarkt';
+}
+
+function parsePosition(value: string | null | undefined): 'GK' | 'DEF' | 'MID' | 'FWD' | undefined {
+  const normalized = value?.trim().toLowerCase();
+  if (!normalized) {
+    return undefined;
+  }
+
+  if (normalized.includes('goalkeeper')) {
+    return 'GK';
+  }
+  if (
+    normalized.includes('back')
+    || normalized.includes('defender')
+    || normalized.includes('sweeper')
+    || normalized.includes('full-back')
+    || normalized.includes('centre-back')
+    || normalized.includes('center-back')
+    || normalized.includes('full back')
+  ) {
+    return 'DEF';
+  }
+  if (
+    normalized.includes('winger')
+    || normalized.includes('forward')
+    || normalized.includes('striker')
+    || normalized.includes('second striker')
+    || normalized.includes('centre-forward')
+    || normalized.includes('center-forward')
+  ) {
+    return 'FWD';
+  }
+  if (
+    normalized.includes('midfield')
+    || normalized.includes('midfielder')
+    || normalized.includes('attacking mid')
+    || normalized.includes('defensive mid')
+    || normalized.includes('central mid')
+  ) {
+    return 'MID';
+  }
+
+  return undefined;
+}
+
 async function updateContract(
   sql: Sql,
   params: {
@@ -459,10 +622,12 @@ async function updateContract(
   const contractStartDate = parseDateValue(params.row.contractStartDate ?? undefined, 'start');
   const contractEndDate = parseDateValue(params.row.contractEndDate ?? undefined, 'end');
   const annualSalary = parseMoneyValue(params.row.annualSalary);
+  const marketValue = parseMoneyValue(params.row.marketValue);
   const weeklyWage = parseMoneyValue(params.row.weeklyWage);
   const currencyCode = params.row.currencyCode?.trim() || undefined;
   const sourceUrl = params.row.sourceUrl?.trim() || undefined;
   const hasSalaryData = annualSalary !== undefined || weeklyWage !== undefined;
+  const hasMarketValueData = marketValue !== undefined;
 
   if (hasSalaryData) {
     await sql`
@@ -477,6 +642,26 @@ async function updateContract(
         salary_source_url = COALESCE(${sourceUrl ?? null}, salary_source_url),
         salary_is_estimated = COALESCE(${params.row.isEstimated ?? null}, salary_is_estimated),
         salary_updated_at = NOW(),
+        market_value_eur = COALESCE(${marketValue ?? null}, market_value_eur),
+        market_value_source = CASE WHEN ${marketValue ?? null} IS NOT NULL THEN ${params.provider} ELSE market_value_source END,
+        market_value_source_url = COALESCE(${sourceUrl ?? null}, market_value_source_url),
+        market_value_updated_at = CASE WHEN ${marketValue ?? null} IS NOT NULL THEN NOW() ELSE market_value_updated_at END,
+        updated_at = NOW()
+      WHERE id = ${params.contractId}
+    `;
+    return;
+  }
+
+  if (hasMarketValueData) {
+    await sql`
+      UPDATE player_contracts
+      SET
+        contract_start_date = COALESCE(${contractStartDate ?? null}, contract_start_date),
+        contract_end_date = COALESCE(${contractEndDate ?? null}, contract_end_date),
+        market_value_eur = COALESCE(${marketValue ?? null}, market_value_eur),
+        market_value_source = ${params.provider},
+        market_value_source_url = COALESCE(${sourceUrl ?? null}, market_value_source_url),
+        market_value_updated_at = NOW(),
         updated_at = NOW()
       WHERE id = ${params.contractId}
     `;
@@ -497,6 +682,8 @@ async function updatePlayerProfile(
   sql: Sql,
   params: {
     contractId: number;
+    countryId?: number;
+    provider: string;
     row: ContractSyncRow;
   }
 ) {
@@ -515,8 +702,11 @@ async function updatePlayerProfile(
       : normalizedPreferredFoot?.startsWith('both') || normalizedPreferredFoot?.startsWith('either')
         ? 'Both'
         : undefined;
+  const position = parsePosition(params.row.position);
+  const photoUrl = params.row.photoUrl?.trim() || undefined;
+  const externalId = params.row.sourceUrl?.match(/\/spieler\/(\d+)/)?.[1] ?? null;
 
-  if (!dateOfBirth && heightCm === undefined && !preferredFoot) {
+  if (!dateOfBirth && heightCm === undefined && !preferredFoot && !position && !photoUrl && !params.countryId) {
     return;
   }
 
@@ -524,11 +714,17 @@ async function updatePlayerProfile(
     UPDATE players p
     SET
       date_of_birth = COALESCE(p.date_of_birth, ${dateOfBirth ?? null}::date),
+      country_id = COALESCE(p.country_id, ${params.countryId ?? null}::bigint),
       height_cm = COALESCE(p.height_cm, ${heightCm ?? null}::integer),
+      position = COALESCE(p.position, ${position ?? null}::position_type),
+      photo_url = COALESCE(p.photo_url, ${photoUrl ?? null}),
       preferred_foot = COALESCE(p.preferred_foot, ${preferredFoot ?? null}::preferred_foot),
       updated_at = CASE
         WHEN (${dateOfBirth ?? null}::date IS NOT NULL AND p.date_of_birth IS NULL)
+          OR (${params.countryId ?? null}::bigint IS NOT NULL AND p.country_id IS NULL)
           OR (${heightCm ?? null}::integer IS NOT NULL AND p.height_cm IS NULL)
+          OR (${position ?? null}::position_type IS NOT NULL AND p.position IS NULL)
+          OR (${photoUrl ?? null}::text IS NOT NULL AND p.photo_url IS NULL)
           OR (${preferredFoot ?? null}::preferred_foot IS NOT NULL AND p.preferred_foot IS NULL)
         THEN NOW()
         ELSE p.updated_at
@@ -537,6 +733,65 @@ async function updatePlayerProfile(
     WHERE pc.id = ${params.contractId}
       AND pc.player_id = p.id
   `;
+
+  if (photoUrl) {
+    await sql`
+      INSERT INTO player_photo_sources (
+        player_id,
+        data_source_id,
+        external_id,
+        source_url,
+        mirrored_url,
+        status,
+        matched_by,
+        last_checked_at,
+        last_synced_at,
+        failure_count,
+        updated_at
+      )
+      VALUES (
+        (SELECT player_id FROM player_contracts WHERE id = ${params.contractId}),
+        (SELECT id FROM data_sources WHERE slug = ${params.provider}),
+        ${externalId},
+        ${photoUrl},
+        NULL,
+        'active',
+        'transfermarkt_profile',
+        NOW(),
+        NOW(),
+        0,
+        NOW()
+      )
+      ON CONFLICT (player_id, data_source_id)
+      DO UPDATE SET
+        external_id = COALESCE(EXCLUDED.external_id, player_photo_sources.external_id),
+        source_url = EXCLUDED.source_url,
+        status = 'active',
+        matched_by = EXCLUDED.matched_by,
+        last_checked_at = EXCLUDED.last_checked_at,
+        last_synced_at = EXCLUDED.last_synced_at,
+        failure_count = 0,
+        last_error = NULL,
+        updated_at = NOW()
+    `;
+  }
+
+  if (externalId) {
+    await sql`
+      INSERT INTO source_entity_mapping (entity_type, entity_id, source_id, external_id, metadata)
+      VALUES (
+        'player',
+        (SELECT player_id FROM player_contracts WHERE id = ${params.contractId}),
+        (SELECT id FROM data_sources WHERE slug = ${params.provider}),
+        ${externalId},
+        ${JSON.stringify({ sourceUrl: params.row.sourceUrl ?? null })}::jsonb
+      )
+      ON CONFLICT (entity_type, source_id, external_id)
+      DO UPDATE SET
+        metadata = COALESCE(source_entity_mapping.metadata, '{}'::jsonb) || EXCLUDED.metadata,
+        updated_at = NOW()
+    `;
+  }
 }
 
 function printSummary(summary: Record<string, unknown>) {
@@ -563,7 +818,9 @@ async function main() {
 
   let syncRunId: number | null = null;
   try {
+    const countryCodeResolver = await loadCountryCodeResolver(sql);
     const targets = await loadTargets(sql, options.competitionSlug, options.seasonSlug, options.playerSlug);
+    const countryResolver = buildCountryResolver(await loadCountryRows(sql), countryCodeResolver);
     const sourceId = options.dryRun ? null : await ensureDataSource(sql, provider);
 
     if (!options.dryRun && sourceId !== null) {
@@ -593,10 +850,19 @@ async function main() {
 
       matched += 1;
       const hasAnyValue = Boolean(
+        parseDateValue(row.dateOfBirth ?? undefined, 'start')
+        ||
         parseDateValue(row.contractStartDate ?? undefined, 'start')
         || parseDateValue(row.contractEndDate ?? undefined, 'end')
         || parseMoneyValue(row.annualSalary)
+        || parseMoneyValue(row.marketValue)
         || parseMoneyValue(row.weeklyWage)
+        || (typeof row.heightCm === 'number' && Number.isFinite(row.heightCm))
+        || (typeof row.heightCm === 'string' && row.heightCm.trim())
+        || row.photoUrl?.trim()
+        || row.position?.trim()
+        || row.preferredFoot?.trim()
+        || row.nationalities?.length
       );
 
       if (!hasAnyValue) {
@@ -607,18 +873,22 @@ async function main() {
       if (!options.dryRun) {
         await updatePlayerProfile(sql, {
           contractId: target.contractId,
+          countryId: countryResolver.resolve(row.nationalities),
+          provider,
           row,
         });
 
-        await updateContract(sql, {
-          contractId: target.contractId,
-          provider,
-          row: {
-            ...row,
-            currencyCode: row.currencyCode ?? payload.currencyCode ?? undefined,
-            sourceUrl: row.sourceUrl ?? payload.sourceUrl ?? undefined,
-          },
-        });
+        if (!isTransfermarktProfileSync(provider)) {
+          await updateContract(sql, {
+            contractId: target.contractId,
+            provider,
+            row: {
+              ...row,
+              currencyCode: row.currencyCode ?? payload.currencyCode ?? undefined,
+              sourceUrl: row.sourceUrl ?? payload.sourceUrl ?? undefined,
+            },
+          });
+        }
 
         if (sourceId !== null && syncRunId !== null) {
           await insertRawPayload(sql, {

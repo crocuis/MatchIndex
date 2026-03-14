@@ -1,0 +1,5422 @@
+{
+  "1874-northwich": {
+    "name": "1874 노스위치",
+    "shortName": "1874 노스위치"
+  },
+  "1-fc-kaiserslautern": {
+    "name": "1 FC 카이제르슬라우테른",
+    "shortName": "FC 카이제르슬라우테른"
+  },
+  "1-fc-magdeburg": {
+    "name": "1 FC 마크데부르크",
+    "shortName": "FC 마크데부르크"
+  },
+  "1-fc-nu-rnberg": {
+    "name": "1 FC 뉘른베르크",
+    "shortName": "FC 뉘른베르크"
+  },
+  "abbey-hey": {
+    "name": "아베이 헤이",
+    "shortName": "아베이 헤이"
+  },
+  "abbey-rangers": {
+    "name": "아베이 레인저스",
+    "shortName": "아베이 레인저스"
+  },
+  "aberdeen": {
+    "name": "애버딘",
+    "shortName": "애버딘"
+  },
+  "accrington-st": {
+    "name": "아크링그톤 세인트",
+    "shortName": "아크링그톤 세인트"
+  },
+  "ac-monza-italy": {
+    "name": "AC 몬차",
+    "shortName": "몬차"
+  },
+  "ac-paris-15": {
+    "name": "AC 파리스 15",
+    "shortName": "파리스 15"
+  },
+  "ac-sparta-praha-czech-republic": {
+    "name": "AC 스파르타 프라하",
+    "shortName": "스파르타 프라하"
+  },
+  "ad-ceuta-fc": {
+    "name": "AD 세우타 FC",
+    "shortName": "AD 세우타"
+  },
+  "aek-athens-fc": {
+    "name": "AEK 아테네",
+    "shortName": "AEK 아테네"
+  },
+  "afc-croydon-athletic": {
+    "name": "AFC 크로이돈 애슬레틱",
+    "shortName": "크로이돈 애슬레틱"
+  },
+  "afc-dunstable": {
+    "name": "AFC 둔스타블레",
+    "shortName": "둔스타블레"
+  },
+  "afc-emley": {
+    "name": "AFC 엠레이",
+    "shortName": "엠레이"
+  },
+  "afc-fylde": {
+    "name": "AFC 필데",
+    "shortName": "필데"
+  },
+  "afc-hornchurch": {
+    "name": "AFC 혼처치",
+    "shortName": "혼처치"
+  },
+  "afc-kempston-rovers": {
+    "name": "AFC 켐프스톤 로버스",
+    "shortName": "켐프스톤 로버스"
+  },
+  "afc-mansfield": {
+    "name": "AFC 만스피엘드",
+    "shortName": "만스피엘드"
+  },
+  "afc-portchester": {
+    "name": "AFC 포르트케스테르",
+    "shortName": "포르트케스테르"
+  },
+  "afc-rushden-and-diamonds": {
+    "name": "AFC 러시든 앤드 다이아몬즈",
+    "shortName": "러시든 앤드 다이아몬즈"
+  },
+  "afc-stoneham": {
+    "name": "AFC 스토네함",
+    "shortName": "스토네함"
+  },
+  "afc-sudbury": {
+    "name": "AFC 수드베리",
+    "shortName": "수드베리"
+  },
+  "afc-telford-united": {
+    "name": "AFC 텔포르드 유나이티드",
+    "shortName": "텔포르드 유나이티드"
+  },
+  "afc-totton": {
+    "name": "AFC 토턴",
+    "shortName": "토턴"
+  },
+  "afc-whyteleafe": {
+    "name": "AFC 화이트리프",
+    "shortName": "화이트리프"
+  },
+  "afc-wimbledon": {
+    "name": "AFC 윔블던",
+    "shortName": "윔블던"
+  },
+  "afc-wulfrunians": {
+    "name": "AFC 불프루니안스",
+    "shortName": "불프루니안스"
+  },
+  "ag-caennaise": {
+    "name": "AG 카인나이세",
+    "shortName": "AG 카인나이세"
+  },
+  "agde": {
+    "name": "아그데",
+    "shortName": "아그데"
+  },
+  "a-guilas": {
+    "name": "아길라스",
+    "shortName": "아길라스"
+  },
+  "aigles-dor-de-mana": {
+    "name": "아이글레스 드'오르 데 마나",
+    "shortName": "아이글레스 드'오르 데 마나"
+  },
+  "ajaccio": {
+    "name": "아야키오",
+    "shortName": "아야키오"
+  },
+  "albion-sports": {
+    "name": "앨비언 스포르트스",
+    "shortName": "앨비언 스포르트스"
+  },
+  "alcorcon": {
+    "name": "알코르콘",
+    "shortName": "알코르콘"
+  },
+  "aldershot-town": {
+    "name": "알데르스호트 타운",
+    "shortName": "알데르스호트 타운"
+  },
+  "alemannia-aachen": {
+    "name": "알레마니아 아헨",
+    "shortName": "알레마니아 아헨"
+  },
+  "alenc-on": {
+    "name": "알렝콘",
+    "shortName": "알렝콘"
+  },
+  "alfaro": {
+    "name": "알파로",
+    "shortName": "알파로"
+  },
+  "alfreton-town": {
+    "name": "알프레톤 타운",
+    "shortName": "알프레톤 타운"
+  },
+  "allobroges-asafia": {
+    "name": "알로브로게스 아사피아",
+    "shortName": "알로브로게스 아사피아"
+  },
+  "almeria": {
+    "name": "알메리아",
+    "shortName": "알메리아"
+  },
+  "alton-town": {
+    "name": "알톤 타운",
+    "shortName": "알톤 타운"
+  },
+  "altrincham": {
+    "name": "알트링캄",
+    "shortName": "알트링캄"
+  },
+  "alvechurch": {
+    "name": "알베쿠르크",
+    "shortName": "알베쿠르크"
+  },
+  "amersham-town": {
+    "name": "아메르스함 타운",
+    "shortName": "아메르스함 타운"
+  },
+  "amiens": {
+    "name": "아미엔스",
+    "shortName": "아미엔스"
+  },
+  "amorebieta": {
+    "name": "아모레비에타",
+    "shortName": "아모레비에타"
+  },
+  "andover-new-street": {
+    "name": "앤도버 뉴 스트리트",
+    "shortName": "앤도버 뉴 스트리트"
+  },
+  "andratx": {
+    "name": "안드라트x",
+    "shortName": "안드라트x"
+  },
+  "anduzien": {
+    "name": "안두지엔",
+    "shortName": "안두지엔"
+  },
+  "angoule-me": {
+    "name": "앙고울레메",
+    "shortName": "앙고울레메"
+  },
+  "annecy": {
+    "name": "안네키",
+    "shortName": "안네키"
+  },
+  "anstey-nomads": {
+    "name": "안스테이 노마드스",
+    "shortName": "안스테이 노마드스"
+  },
+  "antequera": {
+    "name": "안테케라",
+    "shortName": "안테케라"
+  },
+  "antoniano": {
+    "name": "안토니아노",
+    "shortName": "안토니아노"
+  },
+  "antwerp": {
+    "name": "안트베르펜",
+    "shortName": "안트베르펜"
+  },
+  "apm-metz": {
+    "name": "APM 메츠",
+    "shortName": "APM 메츠"
+  },
+  "arandina": {
+    "name": "아란디나",
+    "shortName": "아란디나"
+  },
+  "ardley-united": {
+    "name": "아르들레이 유나이티드",
+    "shortName": "아르들레이 유나이티드"
+  },
+  "arenteiro": {
+    "name": "아렌테이로",
+    "shortName": "아렌테이로"
+  },
+  "aris": {
+    "name": "아리스",
+    "shortName": "아리스"
+  },
+  "arles": {
+    "name": "아를레스",
+    "shortName": "아를레스"
+  },
+  "arlesey-town": {
+    "name": "아를레세이 타운",
+    "shortName": "아를레세이 타운"
+  },
+  "arminia-bielefeld": {
+    "name": "아르미니아 빌레펠트",
+    "shortName": "아르미니아 빌레펠트"
+  },
+  "arosa": {
+    "name": "아로사",
+    "shortName": "아로사"
+  },
+  "arras": {
+    "name": "아라스",
+    "shortName": "아라스"
+  },
+  "ascoli": {
+    "name": "아스콜리",
+    "shortName": "아스콜리"
+  },
+  "ascot-united": {
+    "name": "아스코트 유나이티드",
+    "shortName": "아스코트 유나이티드"
+  },
+  "ashby-ivanhoe": {
+    "name": "애시비 이반호이",
+    "shortName": "애시비 이반호이"
+  },
+  "ashford-town-middlesex": {
+    "name": "애슈퍼드 타운 미들레섹스",
+    "shortName": "애슈퍼드 타운 미들레섹스"
+  },
+  "ashford-united": {
+    "name": "애슈퍼드 유나이티드",
+    "shortName": "애슈퍼드 유나이티드"
+  },
+  "ashington-afc": {
+    "name": "아스힝그톤 AFC",
+    "shortName": "아스힝그톤"
+  },
+  "ashton-united": {
+    "name": "애슈턴 유나이티드",
+    "shortName": "애슈턴 유나이티드"
+  },
+  "asptt-dijon": {
+    "name": "ASPTT 디욘",
+    "shortName": "ASPTT 디욘"
+  },
+  "as-saint-e-tienne-france": {
+    "name": "AS 사인트-에티엔네",
+    "shortName": "사인트-에티엔네"
+  },
+  "ass-still-mutzig": {
+    "name": "ASS 스틸 무트지그",
+    "shortName": "ASS 스틸 무트지그"
+  },
+  "aston-villa": {
+    "name": "아스톤 빌라",
+    "shortName": "아스톤 빌라"
+  },
+  "astur": {
+    "name": "아스투르",
+    "shortName": "아스투르"
+  },
+  "atalanta": {
+    "name": "아탈란타",
+    "shortName": "아탈란타"
+  },
+  "atherstone-town": {
+    "name": "아테르스토네 타운",
+    "shortName": "아테르스토네 타운"
+  },
+  "atherton-collieries": {
+    "name": "아테르톤 콜리에리에스",
+    "shortName": "아테르톤 콜리에리에스"
+  },
+  "athletic-newham": {
+    "name": "애슬레틱 네밤",
+    "shortName": "애슬레틱 네밤"
+  },
+  "atlas-delmenhorst": {
+    "name": "아틀라스 델멘호르스트",
+    "shortName": "아틀라스 델멘호르스트"
+  },
+  "atle-tic-club-descaldes": {
+    "name": "아틀레틱 클럽 드'에스칼데스",
+    "shortName": "아틀레틱 클럽 드'에스칼데스"
+  },
+  "atle-tico-astorga": {
+    "name": "아틀레티코 아스토르가",
+    "shortName": "아틀레티코 아스토르가"
+  },
+  "atle-tico-lugones": {
+    "name": "아틀레티코 루고네스",
+    "shortName": "아틀레티코 루고네스"
+  },
+  "atletico-madrid": {
+    "name": "아틀레티코 마드리드",
+    "shortName": "아틀레티코"
+  },
+  "atle-tico-paso": {
+    "name": "아틀레티코 파소",
+    "shortName": "아틀레티코 파소"
+  },
+  "atzeneta": {
+    "name": "아트세네타",
+    "shortName": "아트세네타"
+  },
+  "aubagne": {
+    "name": "아우바그네",
+    "shortName": "아우바그네"
+  },
+  "aubervilliers": {
+    "name": "아우베르빌리에르스",
+    "shortName": "아우베르빌리에르스"
+  },
+  "auch": {
+    "name": "아우크",
+    "shortName": "아우크"
+  },
+  "aunis-avenir": {
+    "name": "아우니스 아베니르",
+    "shortName": "아우니스 아베니르"
+  },
+  "aurrera-vitoria": {
+    "name": "아우레라 비토리아",
+    "shortName": "아우레라 비토리아"
+  },
+  "aveley": {
+    "name": "아벨레이",
+    "shortName": "아벨레이"
+  },
+  "avellino": {
+    "name": "아벨리노",
+    "shortName": "아벨리노"
+  },
+  "avenir-mourenxois": {
+    "name": "아베니르 모우렝크소이스",
+    "shortName": "아베니르 모우렝크소이스"
+  },
+  "avoine-occ": {
+    "name": "아보이네 OCC",
+    "shortName": "아보이네 OCC"
+  },
+  "avranches": {
+    "name": "아우랑케스",
+    "shortName": "아우랑케스"
+  },
+  "avro": {
+    "name": "아우로",
+    "shortName": "아우로"
+  },
+  "aylesbury-united": {
+    "name": "아일레스베리 유나이티드",
+    "shortName": "아일레스베리 유나이티드"
+  },
+  "aylesbury-vale-dynamos": {
+    "name": "아일레스베리 발레 디나모스",
+    "shortName": "아일레스베리 발레 디나모스"
+  },
+  "aylestone-park": {
+    "name": "아일레스토네 파르크",
+    "shortName": "아일레스토네 파르크"
+  },
+  "azuaga": {
+    "name": "아수아가",
+    "shortName": "아수아가"
+  },
+  "badalona": {
+    "name": "바달로나",
+    "shortName": "바달로나"
+  },
+  "badshot-lea": {
+    "name": "바드스호트 레아",
+    "shortName": "바드스호트 레아"
+  },
+  "baffins-milton-rovers": {
+    "name": "바핀스 밀톤 로버스",
+    "shortName": "바핀스 밀톤 로버스"
+  },
+  "baldock-town": {
+    "name": "발도크 타운",
+    "shortName": "발도크 타운"
+  },
+  "balham": {
+    "name": "발함",
+    "shortName": "발함"
+  },
+  "balingen": {
+    "name": "발링겐",
+    "shortName": "발링겐"
+  },
+  "ballkani": {
+    "name": "발카니",
+    "shortName": "발카니"
+  },
+  "bamber-bridge": {
+    "name": "밤베르 브리드게",
+    "shortName": "밤베르 브리드게"
+  },
+  "banbury-united": {
+    "name": "반베리 유나이티드",
+    "shortName": "반베리 유나이티드"
+  },
+  "barakaldo": {
+    "name": "바라칼도",
+    "shortName": "바라칼도"
+  },
+  "barbastro": {
+    "name": "바르바스트로",
+    "shortName": "바르바스트로"
+  },
+  "bari": {
+    "name": "바리",
+    "shortName": "바리"
+  },
+  "barking": {
+    "name": "바르킹그",
+    "shortName": "바르킹그"
+  },
+  "barnet": {
+    "name": "바르네트",
+    "shortName": "바르네트"
+  },
+  "barnoldswick-town": {
+    "name": "바르놀드스비크 타운",
+    "shortName": "바르놀드스비크 타운"
+  },
+  "barnsley": {
+    "name": "반슬리",
+    "shortName": "반슬리"
+  },
+  "barnstaple-town": {
+    "name": "바른스타플레 타운",
+    "shortName": "바른스타플레 타운"
+  },
+  "barrow": {
+    "name": "배로",
+    "shortName": "배로"
+  },
+  "barton-rovers": {
+    "name": "바르톤 로버스",
+    "shortName": "바르톤 로버스"
+  },
+  "barton-town-old-boys": {
+    "name": "바르톤 타운 올드 보이스",
+    "shortName": "바르톤 타운 올드 보이스"
+  },
+  "barwell": {
+    "name": "바르벨",
+    "shortName": "바르벨"
+  },
+  "basford-united": {
+    "name": "바스포르드 유나이티드",
+    "shortName": "바스포르드 유나이티드"
+  },
+  "bashley": {
+    "name": "바스흘레이",
+    "shortName": "바스흘레이"
+  },
+  "basildon-united": {
+    "name": "바실돈 유나이티드",
+    "shortName": "바실돈 유나이티드"
+  },
+  "basingstoke-town": {
+    "name": "바싱그스토케 타운",
+    "shortName": "바싱그스토케 타운"
+  },
+  "bassin-darcachon-sud": {
+    "name": "바신 드'아르카콘 수드",
+    "shortName": "바신 드'아르카콘 수드"
+  },
+  "bate-borisov": {
+    "name": "바테 보리소프",
+    "shortName": "바테"
+  },
+  "bath-city": {
+    "name": "바트 시티",
+    "shortName": "바트 시티"
+  },
+  "bayern-mu-nchen": {
+    "name": "바이에른 뮌헨",
+    "shortName": "바이에른 뮌헨"
+  },
+  "bayern-munich": {
+    "name": "바이에른 무니히",
+    "shortName": "바이에른 무니히"
+  },
+  "bayonne": {
+    "name": "바이온네",
+    "shortName": "바이온네"
+  },
+  "bazta-n": {
+    "name": "바스탄",
+    "shortName": "바스탄"
+  },
+  "beaconsfield-town": {
+    "name": "베아콘스피엘드 타운",
+    "shortName": "베아콘스피엘드 타운"
+  },
+  "bearsted": {
+    "name": "베아르스테드",
+    "shortName": "베아르스테드"
+  },
+  "beasain": {
+    "name": "베아사인",
+    "shortName": "베아사인"
+  },
+  "beaumont-saint-cyr": {
+    "name": "베아우몬트 사인트-키르",
+    "shortName": "베아우몬트 사인트-키르"
+  },
+  "beauvais": {
+    "name": "베아우바이스",
+    "shortName": "베아우바이스"
+  },
+  "beckenham-town": {
+    "name": "베켄함 타운",
+    "shortName": "베켄함 타운"
+  },
+  "bedfont-sports": {
+    "name": "베드폰트 스포르트스",
+    "shortName": "베드폰트 스포르트스"
+  },
+  "bedford-town": {
+    "name": "베드포르드 타운",
+    "shortName": "베드포르드 타운"
+  },
+  "bedworth-united": {
+    "name": "베드보르트 유나이티드",
+    "shortName": "베드보르트 유나이티드"
+  },
+  "belper-town": {
+    "name": "벨페르 타운",
+    "shortName": "벨페르 타운"
+  },
+  "belper-united": {
+    "name": "벨페르 유나이티드",
+    "shortName": "벨페르 유나이티드"
+  },
+  "bemerton-heath-harleq": {
+    "name": "베메르톤 헤아트 하를레크",
+    "shortName": "베메르톤 헤아트 하를레크"
+  },
+  "benfleet": {
+    "name": "벤플레에트",
+    "shortName": "벤플레에트"
+  },
+  "bergantin-os": {
+    "name": "베르간티뇨스",
+    "shortName": "베르간티뇨스"
+  },
+  "bergerac": {
+    "name": "베르게라크",
+    "shortName": "베르게라크"
+  },
+  "berkhamsted": {
+    "name": "베르캄스테드",
+    "shortName": "베르캄스테드"
+  },
+  "berks-county": {
+    "name": "베르크스 카운티",
+    "shortName": "베르크스 카운티"
+  },
+  "bersenbru-ck": {
+    "name": "베르젠브뤼크",
+    "shortName": "베르젠브뤼크"
+  },
+  "beverley-town": {
+    "name": "베베를레이 타운",
+    "shortName": "베베를레이 타운"
+  },
+  "bewdley-town": {
+    "name": "베브들레이 타운",
+    "shortName": "베브들레이 타운"
+  },
+  "bexhill-united": {
+    "name": "벡스힐 유나이티드",
+    "shortName": "벡스힐 유나이티드"
+  },
+  "biars-bretenoux": {
+    "name": "비아르스-브레테노욱스",
+    "shortName": "비아르스-브레테노욱스"
+  },
+  "bideford": {
+    "name": "비데포르드",
+    "shortName": "비데포르드"
+  },
+  "biesheim": {
+    "name": "비에스헤임",
+    "shortName": "비에스헤임"
+  },
+  "biggleswade": {
+    "name": "비글레스바데",
+    "shortName": "비글레스바데"
+  },
+  "biggleswade-united": {
+    "name": "비글레스바데 유나이티드",
+    "shortName": "비글레스바데 유나이티드"
+  },
+  "billericay-town": {
+    "name": "빌레리카이 타운",
+    "shortName": "빌레리카이 타운"
+  },
+  "binfield": {
+    "name": "빈피엘드",
+    "shortName": "빈피엘드"
+  },
+  "birmingham": {
+    "name": "비르밍그함",
+    "shortName": "비르밍그함"
+  },
+  "birtley-town": {
+    "name": "비르틀레이 타운",
+    "shortName": "비르틀레이 타운"
+  },
+  "bishop-auckland": {
+    "name": "비스호프 아우클란드",
+    "shortName": "비스호프 아우클란드"
+  },
+  "bishops-cleeve": {
+    "name": "비스호프'스 클레에베",
+    "shortName": "비스호프'스 클레에베"
+  },
+  "bishops-stortford": {
+    "name": "비스호프'스 스토르트포르드",
+    "shortName": "비스호프'스 스토르트포르드"
+  },
+  "bk-hacken": {
+    "name": "BK 헤켄",
+    "shortName": "헤켄"
+  },
+  "blackburn": {
+    "name": "블라크부른",
+    "shortName": "블라크부른"
+  },
+  "blackfield-and-langley": {
+    "name": "블락피엘드 앤드 랑글레이",
+    "shortName": "블락피엘드 앤드 랑글레이"
+  },
+  "blackpool": {
+    "name": "블락포올",
+    "shortName": "블락포올"
+  },
+  "blagnac": {
+    "name": "블라그나크",
+    "shortName": "블라그나크"
+  },
+  "blenod": {
+    "name": "블레노드",
+    "shortName": "블레노드"
+  },
+  "ble-riot-plage": {
+    "name": "블레리오트-플라게",
+    "shortName": "블레리오트-플라게"
+  },
+  "blyth-spartans": {
+    "name": "블리트 스파르탄스",
+    "shortName": "블리트 스파르탄스"
+  },
+  "blyth-town": {
+    "name": "블리트 타운",
+    "shortName": "블리트 타운"
+  },
+  "bobigny": {
+    "name": "보비그니",
+    "shortName": "보비그니"
+  },
+  "bognor-regis-town": {
+    "name": "보그노르 레기스 타운",
+    "shortName": "보그노르 레기스 타운"
+  },
+  "boiro": {
+    "name": "보이로",
+    "shortName": "보이로"
+  },
+  "bolbec": {
+    "name": "볼베크",
+    "shortName": "볼베크"
+  },
+  "boldmere-st-michaels": {
+    "name": "볼드메레 세인트 미카일스",
+    "shortName": "볼드메레 세인트 미카일스"
+  },
+  "bolton": {
+    "name": "볼톤",
+    "shortName": "볼톤"
+  },
+  "bondues": {
+    "name": "본두에스",
+    "shortName": "본두에스"
+  },
+  "bootle": {
+    "name": "부틀",
+    "shortName": "부틀"
+  },
+  "boreham-wood": {
+    "name": "보어럼 우드",
+    "shortName": "보어럼 우드"
+  },
+  "boro-rangers": {
+    "name": "보로 레인저스",
+    "shortName": "보로 레인저스"
+  },
+  "borussia-hildesheim": {
+    "name": "보루시아 힐데스하임",
+    "shortName": "보루시아 힐데스하임"
+  },
+  "borussia-mo-nchengladbach": {
+    "name": "보루시아 묀헹글라트바흐",
+    "shortName": "보루시아 묀헹글라트바흐"
+  },
+  "boston-town": {
+    "name": "보스톤 타운",
+    "shortName": "보스톤 타운"
+  },
+  "boston-united": {
+    "name": "보스톤 유나이티드",
+    "shortName": "보스톤 유나이티드"
+  },
+  "bottesford-town": {
+    "name": "보테스포르드 타운",
+    "shortName": "보테스포르드 타운"
+  },
+  "boulay": {
+    "name": "보울라이",
+    "shortName": "보울라이"
+  },
+  "boulogne": {
+    "name": "보울로그네",
+    "shortName": "보울로그네"
+  },
+  "bourg-en-bresse-01": {
+    "name": "보우르그-엔-브레세 01",
+    "shortName": "보우르그-엔-브레세 01"
+  },
+  "bourgoin-jallieu": {
+    "name": "보우르고인-이알리에우",
+    "shortName": "보우르고인-이알리에우"
+  },
+  "bourne-town": {
+    "name": "보우르네 타운",
+    "shortName": "보우르네 타운"
+  },
+  "bowers-and-pitsea": {
+    "name": "보베르스 앤드 피트세아",
+    "shortName": "보베르스 앤드 피트세아"
+  },
+  "brackley-town": {
+    "name": "브라클레이 타운",
+    "shortName": "브라클레이 타운"
+  },
+  "bracknell-town": {
+    "name": "브라크넬 타운",
+    "shortName": "브라크넬 타운"
+  },
+  "bradford": {
+    "name": "브라드포르드",
+    "shortName": "브라드포르드"
+  },
+  "bradford-park-avenue": {
+    "name": "브라드포르드 파르크 아벤베",
+    "shortName": "브라드포르드 파르크 아벤베"
+  },
+  "braintree": {
+    "name": "브레인트리",
+    "shortName": "브레인트리"
+  },
+  "brantham-athletic": {
+    "name": "브란탐 애슬레틱",
+    "shortName": "브란탐 애슬레틱"
+  },
+  "breidablik": {
+    "name": "브레이다블리크",
+    "shortName": "브레이다블리크"
+  },
+  "bremer-sv": {
+    "name": "브레머 SV",
+    "shortName": "브레머 SV"
+  },
+  "brentwood-town": {
+    "name": "브렌트우드 타운",
+    "shortName": "브렌트우드 타운"
+  },
+  "brescia": {
+    "name": "브레시아",
+    "shortName": "브레시아"
+  },
+  "bressuire": {
+    "name": "브레수이레",
+    "shortName": "브레수이레"
+  },
+  "bre-tigny-foot": {
+    "name": "브레티그니 포오트",
+    "shortName": "브레티그니 포오트"
+  },
+  "bridgwater-town": {
+    "name": "브리드그바테르 타운",
+    "shortName": "브리드그바테르 타운"
+  },
+  "bridlington-town": {
+    "name": "브리들링그톤 타운",
+    "shortName": "브리들링그톤 타운"
+  },
+  "brighouse-town": {
+    "name": "브리그호우세 타운",
+    "shortName": "브리그호우세 타운"
+  },
+  "brightlingsea-regent": {
+    "name": "브리그흐틀링그세아 레겐트",
+    "shortName": "브리그흐틀링그세아 레겐트"
+  },
+  "brighton": {
+    "name": "브리그흐톤",
+    "shortName": "브리그흐톤"
+  },
+  "brimscombe-and-thrupp": {
+    "name": "브림스콤베 앤드 트루프",
+    "shortName": "브림스콤베 앤드 트루프"
+  },
+  "brislington": {
+    "name": "브리슬링그톤",
+    "shortName": "브리슬링그톤"
+  },
+  "brissac": {
+    "name": "브리사크",
+    "shortName": "브리사크"
+  },
+  "bristol-city": {
+    "name": "브리스톨 시티",
+    "shortName": "브리스톨 시티"
+  },
+  "bristol-manor-farm": {
+    "name": "브리스톨 마노르 파름",
+    "shortName": "브리스톨 마노르 파름"
+  },
+  "bristol-rovers": {
+    "name": "브리스톨 로버스",
+    "shortName": "브리스톨 로버스"
+  },
+  "british-airways": {
+    "name": "브리티스흐 아이르바이스",
+    "shortName": "브리티스흐 아이르바이스"
+  },
+  "brixham": {
+    "name": "브릭스함",
+    "shortName": "브릭스함"
+  },
+  "broadbridge-heath": {
+    "name": "브로아드브리드게 헤아트",
+    "shortName": "브로아드브리드게 헤아트"
+  },
+  "broadfields-united": {
+    "name": "브로아드피엘드스 유나이티드",
+    "shortName": "브로아드피엘드스 유나이티드"
+  },
+  "brockenhurst": {
+    "name": "브로켄후르스트",
+    "shortName": "브로켄후르스트"
+  },
+  "brocton": {
+    "name": "브록톤",
+    "shortName": "브록톤"
+  },
+  "bromley": {
+    "name": "브롬레이",
+    "shortName": "브롬레이"
+  },
+  "bromsgrove-sporting": {
+    "name": "브롬스그로베 스포르팅",
+    "shortName": "브롬스그로베 스포르팅"
+  },
+  "bsc-young-boys": {
+    "name": "BSC 영 보이스",
+    "shortName": "BSC 영 보이스"
+  },
+  "bsc-young-boys-switzerland": {
+    "name": "BSC 영 보이스",
+    "shortName": "BSC 영 보이스"
+  },
+  "buckhurst-hill": {
+    "name": "부쿠르스트 힐",
+    "shortName": "부쿠르스트 힐"
+  },
+  "buckland-athletic": {
+    "name": "부클란드 애슬레틱",
+    "shortName": "부클란드 애슬레틱"
+  },
+  "buducnost-podgorica": {
+    "name": "부두치노스트 포드고리차",
+    "shortName": "부두치노스트"
+  },
+  "bugbrooke-st-michaels": {
+    "name": "부그브로오케 세인트 미카일스",
+    "shortName": "부그브로오케 세인트 미카일스"
+  },
+  "bun-ol": {
+    "name": "부뇰",
+    "shortName": "부뇰"
+  },
+  "burgess-hill-town": {
+    "name": "부르게스 힐 타운",
+    "shortName": "부르게스 힐 타운"
+  },
+  "burgos": {
+    "name": "부르고스",
+    "shortName": "부르고스"
+  },
+  "burnham": {
+    "name": "부른함",
+    "shortName": "부른함"
+  },
+  "burscough": {
+    "name": "부르스코프",
+    "shortName": "부르스코프"
+  },
+  "burton-albion": {
+    "name": "부르톤 앨비언",
+    "shortName": "부르톤 앨비언"
+  },
+  "bury-town": {
+    "name": "베리 타운",
+    "shortName": "베리 타운"
+  },
+  "buxton": {
+    "name": "북스톤",
+    "shortName": "북스톤"
+  },
+  "caceren-o": {
+    "name": "카세레뇨",
+    "shortName": "카세레뇨"
+  },
+  "cagliari": {
+    "name": "칼리아리",
+    "shortName": "칼리아리"
+  },
+  "calais-beau-marais": {
+    "name": "칼라이스 베아우-마라이스",
+    "shortName": "칼라이스 베아우-마라이스"
+  },
+  "camberley-town": {
+    "name": "캄베를레이 타운",
+    "shortName": "캄베를레이 타운"
+  },
+  "cambridge-city": {
+    "name": "캄브리드게 시티",
+    "shortName": "캄브리드게 시티"
+  },
+  "cambridge-united": {
+    "name": "캄브리드게 유나이티드",
+    "shortName": "캄브리드게 유나이티드"
+  },
+  "camon": {
+    "name": "카몬",
+    "shortName": "카몬"
+  },
+  "campion": {
+    "name": "캄피온",
+    "shortName": "캄피온"
+  },
+  "canet-roussillon": {
+    "name": "카네트 로우실론",
+    "shortName": "카네트 로우실론"
+  },
+  "cannes": {
+    "name": "칸네스",
+    "shortName": "칸네스"
+  },
+  "cannet-rocheville": {
+    "name": "칸네트 로케빌레",
+    "shortName": "칸네트 로케빌레"
+  },
+  "canvey-island": {
+    "name": "칸베이 이슬란드",
+    "shortName": "칸베이 이슬란드"
+  },
+  "cardiff": {
+    "name": "카르디프",
+    "shortName": "카르디프"
+  },
+  "carlisle": {
+    "name": "카를리슬레",
+    "shortName": "카를리슬레"
+  },
+  "carlisle-city": {
+    "name": "카를리슬레 시티",
+    "shortName": "카를리슬레 시티"
+  },
+  "carlton-town": {
+    "name": "카를톤 타운",
+    "shortName": "카를톤 타운"
+  },
+  "carl-zeiss-jena": {
+    "name": "카를 차이스 예나",
+    "shortName": "카를 차이스 예나"
+  },
+  "carnoux": {
+    "name": "카르노욱스",
+    "shortName": "카르노욱스"
+  },
+  "carrarese": {
+    "name": "카라레세",
+    "shortName": "카라레세"
+  },
+  "carshalton-athletic": {
+    "name": "카르스할톤 애슬레틱",
+    "shortName": "카르스할톤 애슬레틱"
+  },
+  "castanet": {
+    "name": "카스타네트",
+    "shortName": "카스타네트"
+  },
+  "castello-n": {
+    "name": "카스테욘",
+    "shortName": "카스테욘"
+  },
+  "catania": {
+    "name": "카타니아",
+    "shortName": "카타니아"
+  },
+  "catanzaro": {
+    "name": "카탄차로",
+    "shortName": "카탄차로"
+  },
+  "cayo-n": {
+    "name": "카욘",
+    "shortName": "카욘"
+  },
+  "c-chartres": {
+    "name": "C 카르트레스",
+    "shortName": "C 카르트레스"
+  },
+  "cd-coria": {
+    "name": "CD 코리아",
+    "shortName": "코리아"
+  },
+  "celtic": {
+    "name": "셀틱",
+    "shortName": "셀틱"
+  },
+  "celtic-fc-scotland": {
+    "name": "켈티크 FC",
+    "shortName": "켈티크"
+  },
+  "cesena": {
+    "name": "체세나",
+    "shortName": "체세나"
+  },
+  "cesson": {
+    "name": "케손",
+    "shortName": "케손"
+  },
+  "ceuta-6-de-junio": {
+    "name": "세우타 6 데 후니오",
+    "shortName": "세우타 6 데 후니오"
+  },
+  "cf-talavera": {
+    "name": "CF 탈라베라",
+    "shortName": "CF 탈라베라"
+  },
+  "chadderton": {
+    "name": "카데르톤",
+    "shortName": "카데르톤"
+  },
+  "chalfont-st-peter": {
+    "name": "칼폰트 세인트 페테르",
+    "shortName": "칼폰트 세인트 페테르"
+  },
+  "challans": {
+    "name": "칼란스",
+    "shortName": "칼란스"
+  },
+  "chambe-ry": {
+    "name": "캄베리",
+    "shortName": "캄베리"
+  },
+  "chambly-thelle-fc": {
+    "name": "캄블리 텔레 FC",
+    "shortName": "캄블리 텔레"
+  },
+  "chantilly": {
+    "name": "칸틸리",
+    "shortName": "칸틸리"
+  },
+  "chaponnay-marennes": {
+    "name": "카폰나이-마렌네스",
+    "shortName": "카폰나이-마렌네스"
+  },
+  "charlton": {
+    "name": "카를톤",
+    "shortName": "카를톤"
+  },
+  "charnock-richard": {
+    "name": "카르노크 리카르드",
+    "shortName": "카르노크 리카르드"
+  },
+  "chasetown": {
+    "name": "카세토븐",
+    "shortName": "카세토븐"
+  },
+  "chasselay-mda": {
+    "name": "카셀라이 MDA",
+    "shortName": "카셀라이 MDA"
+  },
+  "cha-teaugiron": {
+    "name": "카테아우기론",
+    "shortName": "카테아우기론"
+  },
+  "chateauroux": {
+    "name": "카테아우로욱스",
+    "shortName": "카테아우로욱스"
+  },
+  "chatham-town": {
+    "name": "카탐 타운",
+    "shortName": "카탐 타운"
+  },
+  "chaumont": {
+    "name": "카우몬트",
+    "shortName": "카우몬트"
+  },
+  "chauray": {
+    "name": "카우라이",
+    "shortName": "카우라이"
+  },
+  "cheadle-town": {
+    "name": "케아들레 타운",
+    "shortName": "케아들레 타운"
+  },
+  "chelmsford-city": {
+    "name": "켈름스포르드 시티",
+    "shortName": "켈름스포르드 시티"
+  },
+  "cheltenham": {
+    "name": "켈텐함",
+    "shortName": "켈텐함"
+  },
+  "chertsey-town": {
+    "name": "케르트세이 타운",
+    "shortName": "케르트세이 타운"
+  },
+  "chesham-united": {
+    "name": "케스함 유나이티드",
+    "shortName": "케스함 유나이티드"
+  },
+  "cheshunt": {
+    "name": "케스훈트",
+    "shortName": "케스훈트"
+  },
+  "chester": {
+    "name": "케스테르",
+    "shortName": "케스테르"
+  },
+  "chesterfield": {
+    "name": "케스테르피엘드",
+    "shortName": "케스테르피엘드"
+  },
+  "chichester-city": {
+    "name": "키케스테르 시티",
+    "shortName": "키케스테르 시티"
+  },
+  "chiclana": {
+    "name": "치클라나",
+    "shortName": "치클라나"
+  },
+  "chippenham-town": {
+    "name": "키펜함 타운",
+    "shortName": "키펜함 타운"
+  },
+  "chipstead": {
+    "name": "킵스테아드",
+    "shortName": "킵스테아드"
+  },
+  "choisy-au-bac": {
+    "name": "코이시 아우 바크",
+    "shortName": "코이시 아우 바크"
+  },
+  "cholet": {
+    "name": "콜레트",
+    "shortName": "콜레트"
+  },
+  "chorley": {
+    "name": "코를레이",
+    "shortName": "코를레이"
+  },
+  "christchurch": {
+    "name": "크리스트쿠르크",
+    "shortName": "크리스트쿠르크"
+  },
+  "cinderford-town": {
+    "name": "킨데르포르드 타운",
+    "shortName": "킨데르포르드 타운"
+  },
+  "cirencester-town": {
+    "name": "키렝케스테르 타운",
+    "shortName": "키렝케스테르 타운"
+  },
+  "cittadella": {
+    "name": "치타델라",
+    "shortName": "치타델라"
+  },
+  "city-of-liverpool": {
+    "name": "시티 오프 리베르포올",
+    "shortName": "시티 오프 리베르포올"
+  },
+  "ciudad-de-lucena": {
+    "name": "시우다드 데 루세나",
+    "shortName": "시우다드 데 루세나"
+  },
+  "clacton": {
+    "name": "클락톤",
+    "shortName": "클락톤"
+  },
+  "cleethorpes-town": {
+    "name": "클리소프스 타운",
+    "shortName": "클리소프스 타운"
+  },
+  "clevedon-town": {
+    "name": "클레베돈 타운",
+    "shortName": "클레베돈 타운"
+  },
+  "clitheroe": {
+    "name": "클리테로이",
+    "shortName": "클리테로이"
+  },
+  "club-brugge-kv": {
+    "name": "클럽 브뤼허 KV",
+    "shortName": "클럽 브뤼허"
+  },
+  "cluses-scionzier": {
+    "name": "클루세스-스키온지에르",
+    "shortName": "클루세스-스키온지에르"
+  },
+  "coalville-town": {
+    "name": "코알빌레 타운",
+    "shortName": "코알빌레 타운"
+  },
+  "cobham": {
+    "name": "코브함",
+    "shortName": "코브함"
+  },
+  "cockfosters": {
+    "name": "콕포스테르스",
+    "shortName": "콕포스테르스"
+  },
+  "cogenhoe-united": {
+    "name": "코겐호이 유나이티드",
+    "shortName": "코겐호이 유나이티드"
+  },
+  "coggeshall-town": {
+    "name": "코게스할 타운",
+    "shortName": "코게스할 타운"
+  },
+  "colchester": {
+    "name": "콜케스테르",
+    "shortName": "콜케스테르"
+  },
+  "coleshill-town": {
+    "name": "콜레스힐 타운",
+    "shortName": "콜레스힐 타운"
+  },
+  "colliers-wood-united": {
+    "name": "콜리에르스 우드 유나이티드",
+    "shortName": "콜리에르스 우드 유나이티드"
+  },
+  "colmar": {
+    "name": "콜마르",
+    "shortName": "콜마르"
+  },
+  "colne": {
+    "name": "콜네",
+    "shortName": "콜네"
+  },
+  "colney-heath": {
+    "name": "콜네이 헤아트",
+    "shortName": "콜네이 헤아트"
+  },
+  "colomiers": {
+    "name": "콜로미에르스",
+    "shortName": "콜로미에르스"
+  },
+  "como": {
+    "name": "코모",
+    "shortName": "코모"
+  },
+  "compostela": {
+    "name": "콤포스텔라",
+    "shortName": "콤포스텔라"
+  },
+  "comtal": {
+    "name": "콤탈",
+    "shortName": "콤탈"
+  },
+  "concarneau": {
+    "name": "콩카르네아우",
+    "shortName": "콩카르네아우"
+  },
+  "concord-rangers": {
+    "name": "콩코르드 레인저스",
+    "shortName": "콩코르드 레인저스"
+  },
+  "congleton-town": {
+    "name": "콩글레톤 타운",
+    "shortName": "콩글레톤 타운"
+  },
+  "conquense": {
+    "name": "콩켄세",
+    "shortName": "콩켄세"
+  },
+  "consett": {
+    "name": "콘세트",
+    "shortName": "콘세트"
+  },
+  "corby-town": {
+    "name": "코르비 타운",
+    "shortName": "코르비 타운"
+  },
+  "corinthian": {
+    "name": "코린티안",
+    "shortName": "코린티안"
+  },
+  "corinthian-casuals": {
+    "name": "코린티안-카수알스",
+    "shortName": "코린티안-카수알스"
+  },
+  "cornard-united": {
+    "name": "코르나르드 유나이티드",
+    "shortName": "코르나르드 유나이티드"
+  },
+  "corsham-town": {
+    "name": "코르스함 타운",
+    "shortName": "코르스함 타운"
+  },
+  "corte": {
+    "name": "코르테",
+    "shortName": "코르테"
+  },
+  "cortes": {
+    "name": "코르테스",
+    "shortName": "코르테스"
+  },
+  "cosenza": {
+    "name": "코센차",
+    "shortName": "코센차"
+  },
+  "coulaines": {
+    "name": "코울라이네스",
+    "shortName": "코울라이네스"
+  },
+  "couzeix-chaptelat": {
+    "name": "코우제익스-캅텔라트",
+    "shortName": "코우제익스-캅텔라트"
+  },
+  "covadonga": {
+    "name": "코바동가",
+    "shortName": "코바동가"
+  },
+  "coventry": {
+    "name": "코벤트리",
+    "shortName": "코벤트리"
+  },
+  "coventry-sphinx": {
+    "name": "코벤트리 스핑크스",
+    "shortName": "코벤트리 스핑크스"
+  },
+  "coventry-united": {
+    "name": "코벤트리 유나이티드",
+    "shortName": "코벤트리 유나이티드"
+  },
+  "cowes-sports": {
+    "name": "코베스 스포르트스",
+    "shortName": "코베스 스포르트스"
+  },
+  "crawley-down-gatwick": {
+    "name": "크라블레이 도븐 가트비크",
+    "shortName": "크라블레이 도븐 가트비크"
+  },
+  "crawley-green": {
+    "name": "크라블레이 그레엔",
+    "shortName": "크라블레이 그레엔"
+  },
+  "crawley-town": {
+    "name": "크라블레이 타운",
+    "shortName": "크라블레이 타운"
+  },
+  "cray-valley-pm": {
+    "name": "크라이 발레이 PM",
+    "shortName": "크라이 발레이 PM"
+  },
+  "cray-wanderers": {
+    "name": "크라이 원더러스",
+    "shortName": "크라이 원더러스"
+  },
+  "cremonese": {
+    "name": "크레모네세",
+    "shortName": "크레모네세"
+  },
+  "cre-py-en-valois": {
+    "name": "크레피-엔-우알로이스",
+    "shortName": "크레피-엔-우알로이스"
+  },
+  "crewe": {
+    "name": "크레베",
+    "shortName": "크레베"
+  },
+  "cribbs": {
+    "name": "크립스",
+    "shortName": "크립스"
+  },
+  "croix-football-ic": {
+    "name": "크로익스 포오트발 IC",
+    "shortName": "크로익스 포오트발 IC"
+  },
+  "crook-town-afc": {
+    "name": "크로오크 타운 AFC",
+    "shortName": "크로오크 타운"
+  },
+  "crotone": {
+    "name": "크로토네",
+    "shortName": "크로토네"
+  },
+  "crowborough-athletic": {
+    "name": "크로브보로 애슬레틱",
+    "shortName": "크로브보로 애슬레틱"
+  },
+  "cuarte": {
+    "name": "쿠아르테",
+    "shortName": "쿠아르테"
+  },
+  "cukaricki": {
+    "name": "추카리치키",
+    "shortName": "추카리치키"
+  },
+  "cultural-leonesa": {
+    "name": "쿨투랄 레오네사",
+    "shortName": "쿨투랄 레오네사"
+  },
+  "curzon-ashton": {
+    "name": "쿠르존 애슈턴",
+    "shortName": "쿠르존 애슈턴"
+  },
+  "dagenham-and-redbridge": {
+    "name": "다겐함 앤드 레드브리드게",
+    "shortName": "다겐함 앤드 레드브리드게"
+  },
+  "darlaston-town": {
+    "name": "다를라스톤 타운",
+    "shortName": "다를라스톤 타운"
+  },
+  "darlington-1883": {
+    "name": "다를링그톤 1883",
+    "shortName": "다를링그톤 1883"
+  },
+  "dartford": {
+    "name": "다르트포르드",
+    "shortName": "다르트포르드"
+  },
+  "daventry-town": {
+    "name": "다벤트리 타운",
+    "shortName": "다벤트리 타운"
+  },
+  "deal-town": {
+    "name": "데알 타운",
+    "shortName": "데알 타운"
+  },
+  "dec-ic": {
+    "name": "데치치",
+    "shortName": "데치치"
+  },
+  "deeping-rangers": {
+    "name": "데에핑그 레인저스",
+    "shortName": "데에핑그 레인저스"
+  },
+  "deportiva-minera": {
+    "name": "데포르티바 미네라",
+    "shortName": "데포르티바 미네라"
+  },
+  "deportivo-la-coruna": {
+    "name": "데포르티보 라 코루나",
+    "shortName": "데포르티보 라 코루나"
+  },
+  "deportivo-murcia": {
+    "name": "데포르티보 무르시아",
+    "shortName": "데포르티보 무르시아"
+  },
+  "derby": {
+    "name": "데르비",
+    "shortName": "데르비"
+  },
+  "dereham-town": {
+    "name": "데레함 타운",
+    "shortName": "데레함 타운"
+  },
+  "desborough-town": {
+    "name": "데스보로 타운",
+    "shortName": "데스보로 타운"
+  },
+  "diables-noirs": {
+    "name": "디아블레스 노이르스",
+    "shortName": "디아블레스 노이르스"
+  },
+  "didcot-town": {
+    "name": "디드코트 타운",
+    "shortName": "디드코트 타운"
+  },
+  "dieppe": {
+    "name": "디에페",
+    "shortName": "디에페"
+  },
+  "dijon": {
+    "name": "디욘",
+    "shortName": "디욘"
+  },
+  "dinamo-batumi": {
+    "name": "디나모 바투미",
+    "shortName": "디나모 바투미"
+  },
+  "dinamo-tbilisi": {
+    "name": "디나모 트빌리시",
+    "shortName": "디나모 트빌리시"
+  },
+  "dinan-le-hon": {
+    "name": "디난 레혼",
+    "shortName": "디난 레혼"
+  },
+  "dives-cabourg": {
+    "name": "디베스-카보우르그",
+    "shortName": "디베스-카보우르그"
+  },
+  "dnipro-1": {
+    "name": "드니프로-1",
+    "shortName": "드니프로-1"
+  },
+  "dolorense": {
+    "name": "돌로렌세",
+    "shortName": "돌로렌세"
+  },
+  "domerat": {
+    "name": "도메라트",
+    "shortName": "도메라트"
+  },
+  "don-benito": {
+    "name": "돈 베니토",
+    "shortName": "돈 베니토"
+  },
+  "doncaster": {
+    "name": "동카스테르",
+    "shortName": "동카스테르"
+  },
+  "dorchester-town": {
+    "name": "도르케스테르 타운",
+    "shortName": "도르케스테르 타운"
+  },
+  "dorking-wanderers": {
+    "name": "도르킹그 원더러스",
+    "shortName": "도르킹그 원더러스"
+  },
+  "doullens": {
+    "name": "도울렌스",
+    "shortName": "도울렌스"
+  },
+  "dover": {
+    "name": "도베르",
+    "shortName": "도베르"
+  },
+  "downham-town": {
+    "name": "도븐함 타운",
+    "shortName": "도븐함 타운"
+  },
+  "downton": {
+    "name": "도븐톤",
+    "shortName": "도븐톤"
+  },
+  "dragon": {
+    "name": "드라곤",
+    "shortName": "드라곤"
+  },
+  "drancy": {
+    "name": "드랑키",
+    "shortName": "드랑키"
+  },
+  "drapeau-fouge-res": {
+    "name": "드라페아우 포우게레스",
+    "shortName": "드라페아우 포우게레스"
+  },
+  "dudley-town": {
+    "name": "두들레이 타운",
+    "shortName": "두들레이 타운"
+  },
+  "dulwich-hamlet": {
+    "name": "둘비크 함레트",
+    "shortName": "둘비크 함레트"
+  },
+  "dunkerque": {
+    "name": "둥케르퀘",
+    "shortName": "둥케르퀘"
+  },
+  "dunston-uts": {
+    "name": "둔스톤 UTS",
+    "shortName": "둔스톤 UTS"
+  },
+  "dynamo-dresden": {
+    "name": "뒤나모 드레스덴",
+    "shortName": "뒤나모 드레스덴"
+  },
+  "easington-colliery": {
+    "name": "에아싱그톤 콜리에리",
+    "shortName": "에아싱그톤 콜리에리"
+  },
+  "easington-sports": {
+    "name": "에아싱그톤 스포르트스",
+    "shortName": "에아싱그톤 스포르트스"
+  },
+  "eastbourne-borough": {
+    "name": "이스트본 보로",
+    "shortName": "이스트본 보로"
+  },
+  "eastbourne-town": {
+    "name": "이스트본 타운",
+    "shortName": "이스트본 타운"
+  },
+  "eastbourne-united": {
+    "name": "이스트본 유나이티드",
+    "shortName": "이스트본 유나이티드"
+  },
+  "east-grinstead-town": {
+    "name": "에아스트 그린스테아드 타운",
+    "shortName": "에아스트 그린스테아드 타운"
+  },
+  "eastleigh": {
+    "name": "에아스틀리",
+    "shortName": "에아스틀리"
+  },
+  "east-thurrock-united": {
+    "name": "에아스트 투로크 유나이티드",
+    "shortName": "에아스트 투로크 유나이티드"
+  },
+  "eastwood-community": {
+    "name": "이스트우드 콤무니티",
+    "shortName": "이스트우드 콤무니티"
+  },
+  "ebbsfleet-united": {
+    "name": "앱스플리트 유나이티드",
+    "shortName": "앱스플리트 유나이티드"
+  },
+  "eccleshill-united": {
+    "name": "에클레스힐 유나이티드",
+    "shortName": "에클레스힐 유나이티드"
+  },
+  "edgware-town": {
+    "name": "에드그바레 타운",
+    "shortName": "에드그바레 타운"
+  },
+  "egham-town": {
+    "name": "에그함 타운",
+    "shortName": "에그함 타운"
+  },
+  "egnatia-rrogozhine": {
+    "name": "에그나티아 로고지너",
+    "shortName": "에그나티아"
+  },
+  "eintracht-braunschweig": {
+    "name": "아인트라흐트 브라운슈바이크",
+    "shortName": "아인트라흐트 브라운슈바이크"
+  },
+  "ejea": {
+    "name": "에헤아",
+    "shortName": "에헤아"
+  },
+  "eldense": {
+    "name": "엘덴세",
+    "shortName": "엘덴세"
+  },
+  "ely-city": {
+    "name": "엘리 시티",
+    "shortName": "엘리 시티"
+  },
+  "empoli-fc-italy": {
+    "name": "엠폴리 FC",
+    "shortName": "엠폴리"
+  },
+  "energie-cottbus": {
+    "name": "에네르기 코트부스",
+    "shortName": "에네르기 코트부스"
+  },
+  "enfield-1893": {
+    "name": "엔피엘드 1893",
+    "shortName": "엔피엘드 1893"
+  },
+  "enfield-town": {
+    "name": "엔피엘드 타운",
+    "shortName": "엔피엘드 타운"
+  },
+  "entente-itancourt-neu": {
+    "name": "엔텐테 이탕코우르트-네우",
+    "shortName": "엔텐테 이탕코우르트-네우"
+  },
+  "entente-s-st-gratien": {
+    "name": "엔텐테 S 세인트 그라티엔",
+    "shortName": "엔텐테 S 세인트 그라티엔"
+  },
+  "epinal": {
+    "name": "에피날",
+    "shortName": "에피날"
+  },
+  "epsom-and-ewell-fc": {
+    "name": "엡솜 앤드 에벨 FC",
+    "shortName": "엡솜 앤드 에벨"
+  },
+  "ergue-gaberic": {
+    "name": "에르궤-가베리크",
+    "shortName": "에르궤-가베리크"
+  },
+  "erith-and-belvedere": {
+    "name": "에리트 앤드 벨베데레",
+    "shortName": "에리트 앤드 벨베데레"
+  },
+  "erith-town": {
+    "name": "에리트 타운",
+    "shortName": "에리트 타운"
+  },
+  "erzgebirge-aue": {
+    "name": "에르츠게비르게 아우에",
+    "shortName": "에르츠게비르게 아우에"
+  },
+  "escobedo": {
+    "name": "에스코베도",
+    "shortName": "에스코베도"
+  },
+  "espaly-saint-marcel": {
+    "name": "에스팔리-사인트-마르켈",
+    "shortName": "에스팔리-사인트-마르켈"
+  },
+  "espanyol": {
+    "name": "에스파니올",
+    "shortName": "에스파니올"
+  },
+  "estac-troyes": {
+    "name": "에스타크 트로이에스",
+    "shortName": "에스타크 트로이에스"
+  },
+  "estepona": {
+    "name": "에스테포나",
+    "shortName": "에스테포나"
+  },
+  "etc-anstaing-che-reng": {
+    "name": "ETC 안스타잉그 케렝그",
+    "shortName": "ETC 안스타잉그 케렝그"
+  },
+  "e-toile-maritime": {
+    "name": "에토일레 마리티메",
+    "shortName": "에토일레 마리티메"
+  },
+  "etoile-matoury": {
+    "name": "에토일레 마토우리",
+    "shortName": "에토일레 마토우리"
+  },
+  "europa-fc": {
+    "name": "에우로파 FC",
+    "shortName": "에우로파"
+  },
+  "evesham-united": {
+    "name": "에베스함 유나이티드",
+    "shortName": "에베스함 유나이티드"
+  },
+  "exeter-city": {
+    "name": "엑세테르 시티",
+    "shortName": "엑세테르 시티"
+  },
+  "exmouth": {
+    "name": "엑스무트",
+    "shortName": "엑스무트"
+  },
+  "extremadura-1924": {
+    "name": "엑스트레마두라 1924",
+    "shortName": "엑스트레마두라 1924"
+  },
+  "eynesbury-rovers": {
+    "name": "에이네스베리 로버스",
+    "shortName": "에이네스베리 로버스"
+  },
+  "fabre-gues": {
+    "name": "파브레궤스",
+    "shortName": "파브레궤스"
+  },
+  "fairford-town": {
+    "name": "파이르포르드 타운",
+    "shortName": "파이르포르드 타운"
+  },
+  "fakenham-town": {
+    "name": "파켄함 타운",
+    "shortName": "파켄함 타운"
+  },
+  "falmouth-town": {
+    "name": "팔무트 타운",
+    "shortName": "팔무트 타운"
+  },
+  "fareham-town": {
+    "name": "파레함 타운",
+    "shortName": "파레함 타운"
+  },
+  "farnborough": {
+    "name": "파른보로",
+    "shortName": "파른보로"
+  },
+  "farnham-town": {
+    "name": "파른함 타운",
+    "shortName": "파른함 타운"
+  },
+  "farsley-celtic-fc": {
+    "name": "파르슬리 켈티크 FC",
+    "shortName": "파르슬리 켈티크"
+  },
+  "farul-constanta": {
+    "name": "파룰 콘스탄차",
+    "shortName": "파룰"
+  },
+  "faversham-town": {
+    "name": "파베르스함 타운",
+    "shortName": "파베르스함 타운"
+  },
+  "fc-08-homburg": {
+    "name": "FC 08 홈부르크",
+    "shortName": "08 홈부르크"
+  },
+  "fc-08-villingen": {
+    "name": "FC 08 필링겐",
+    "shortName": "08 필링겐"
+  },
+  "fc-andorra": {
+    "name": "FC 안도라",
+    "shortName": "안도라"
+  },
+  "fc-astana": {
+    "name": "FC 아스타나",
+    "shortName": "아스타나"
+  },
+  "fc-astoria-walldorf": {
+    "name": "FC 아스토리아 발도르프",
+    "shortName": "아스토리아 발도르프"
+  },
+  "fc-cartagena": {
+    "name": "FC 카르타헤나",
+    "shortName": "카르타헤나"
+  },
+  "fc-copenhagen": {
+    "name": "FC 코펜하겐",
+    "shortName": "코펜하겐"
+  },
+  "fc-differdange-03": {
+    "name": "FC 디페르당주 03",
+    "shortName": "디페르당주"
+  },
+  "fc-equeurdreville": {
+    "name": "FC 에케르드르빌",
+    "shortName": "에케르드르빌"
+  },
+  "fc-gutersloh": {
+    "name": "FC 구테르슬로",
+    "shortName": "구테르슬로"
+  },
+  "fc-halifax-town": {
+    "name": "FC 할리팍스 타운",
+    "shortName": "할리팍스 타운"
+  },
+  "fc-heidenheim": {
+    "name": "FC 하이덴하임",
+    "shortName": "하이덴하임"
+  },
+  "fc-ingolstadt-04": {
+    "name": "FC 잉골슈타트 04",
+    "shortName": "잉골슈타트 04"
+  },
+  "fc-kaiserslautern": {
+    "name": "FC 카이제르슬라우테른",
+    "shortName": "카이제르슬라우테른"
+  },
+  "fc-magdeburg": {
+    "name": "FC 마크데부르크",
+    "shortName": "마크데부르크"
+  },
+  "fc-nurnberg": {
+    "name": "FC 누른베르크",
+    "shortName": "누른베르크"
+  },
+  "fc-red-bull-salzburg-austria": {
+    "name": "FC 레드불 잘츠부르크",
+    "shortName": "레드불 잘츠부르크"
+  },
+  "fc-saarbru-cken": {
+    "name": "FC 자르브뤼켄",
+    "shortName": "자르브뤼켄"
+  },
+  "fcsr-obernai": {
+    "name": "FCSR 오베르나이",
+    "shortName": "FCSR 오베르나이"
+  },
+  "fc-st-pauli": {
+    "name": "FC 세인트 파울리",
+    "shortName": "세인트 파울리"
+  },
+  "fc-urartu": {
+    "name": "FC 우라르투",
+    "shortName": "우라르투"
+  },
+  "fc-viktoria-koln": {
+    "name": "FC 빅토리아 콜른",
+    "shortName": "빅토리아 콜른"
+  },
+  "feignies-aulnoye": {
+    "name": "페이그니에스-아울노이에",
+    "shortName": "페이그니에스-아울노이에"
+  },
+  "felixstowe-and-walton-utd": {
+    "name": "펠릭스토베 앤드 발톤 우트드",
+    "shortName": "펠릭스토베 앤드 발톤 우트드"
+  },
+  "feralpisalo": {
+    "name": "페랄피살로",
+    "shortName": "페랄피살로"
+  },
+  "feurs": {
+    "name": "페우르스",
+    "shortName": "페우르스"
+  },
+  "feyenoord-rotterdam-netherlands": {
+    "name": "페이에노르트 로테르담",
+    "shortName": "페이에노르트 로테르담"
+  },
+  "feytiat": {
+    "name": "페이티아트",
+    "shortName": "페이티아트"
+  },
+  "fief-geste": {
+    "name": "피에프-게스테",
+    "shortName": "피에프-게스테"
+  },
+  "fisher": {
+    "name": "피스헤르",
+    "shortName": "피스헤르"
+  },
+  "fk-crvena-zvezda": {
+    "name": "FK 치르베나 즈베즈다",
+    "shortName": "치르베나 즈베즈다"
+  },
+  "fk-crvena-zvezda-serbia": {
+    "name": "FK 치르베나 즈베즈다",
+    "shortName": "치르베나 즈베즈다"
+  },
+  "fk-shakhtar-donetsk-ukraine": {
+    "name": "FK 샤흐타르 도네츠크",
+    "shortName": "샤흐타르 도네츠크"
+  },
+  "fk-zalgiris-vilnius": {
+    "name": "FK 잘기리스 빌뉴스",
+    "shortName": "잘기리스"
+  },
+  "flackwell-heath": {
+    "name": "플라크벨 헤아트",
+    "shortName": "플라크벨 헤아트"
+  },
+  "fleet-town": {
+    "name": "플리트 타운",
+    "shortName": "플리트 타운"
+  },
+  "fleetwood-town": {
+    "name": "플리트우드 타운",
+    "shortName": "플리트우드 타운"
+  },
+  "flers": {
+    "name": "플레르스",
+    "shortName": "플레르스"
+  },
+  "fleury-91": {
+    "name": "플레우리 91",
+    "shortName": "플레우리 91"
+  },
+  "flora-tallinn": {
+    "name": "플로라 탈린",
+    "shortName": "플로라 탈린"
+  },
+  "foggia": {
+    "name": "포자",
+    "shortName": "포자"
+  },
+  "folkestone-invicta": {
+    "name": "폴케스토네 인빅타",
+    "shortName": "폴케스토네 인빅타"
+  },
+  "forbach": {
+    "name": "포르바크",
+    "shortName": "포르바크"
+  },
+  "forest-green": {
+    "name": "포리스트 그레엔",
+    "shortName": "포리스트 그레엔"
+  },
+  "foron": {
+    "name": "포론",
+    "shortName": "포론"
+  },
+  "fortuna-dusseldorf": {
+    "name": "포르투나 두셀도르프",
+    "shortName": "포르투나 두셀도르프"
+  },
+  "fos": {
+    "name": "포스",
+    "shortName": "포스"
+  },
+  "france-aizenay": {
+    "name": "프랑케 아이제나이",
+    "shortName": "프랑케 아이제나이"
+  },
+  "frenford": {
+    "name": "프렌포르드",
+    "shortName": "프렌포르드"
+  },
+  "freyming": {
+    "name": "프레이밍그",
+    "shortName": "프레이밍그"
+  },
+  "frickley-athletic": {
+    "name": "프리클레이 애슬레틱",
+    "shortName": "프리클레이 애슬레틱"
+  },
+  "frome-town": {
+    "name": "프로메 타운",
+    "shortName": "프로메 타운"
+  },
+  "fsv-frankfurt": {
+    "name": "FSV 프랑크푸르트",
+    "shortName": "프랑크푸르트"
+  },
+  "fsv-mainz-05": {
+    "name": "FSV 마인츠 05",
+    "shortName": "마인츠 05"
+  },
+  "furiani-agliani": {
+    "name": "푸리아니-아글리아니",
+    "shortName": "푸리아니-아글리아니"
+  },
+  "gainsborough-trinity": {
+    "name": "가인스보로 트리니티",
+    "shortName": "가인스보로 트리니티"
+  },
+  "gallia-lucciana": {
+    "name": "갈리아 루키아나",
+    "shortName": "갈리아 루키아나"
+  },
+  "garforth-town": {
+    "name": "가르포르트 타운",
+    "shortName": "가르포르트 타운"
+  },
+  "gateshead": {
+    "name": "가테스헤아드",
+    "shortName": "가테스헤아드"
+  },
+  "geispolsheim": {
+    "name": "게이스폴스헤임",
+    "shortName": "게이스폴스헤임"
+  },
+  "genk": {
+    "name": "헹크",
+    "shortName": "헹크"
+  },
+  "gernika": {
+    "name": "헤르니카",
+    "shortName": "헤르니카"
+  },
+  "ge-vora": {
+    "name": "헤보라",
+    "shortName": "헤보라"
+  },
+  "gillingham": {
+    "name": "길링그함",
+    "shortName": "길링그함"
+  },
+  "gimnastic": {
+    "name": "힘나스틱",
+    "shortName": "힘나스틱"
+  },
+  "gimna-stica-segoviana": {
+    "name": "힘나스티카 세고비아나",
+    "shortName": "힘나스티카 세고비아나"
+  },
+  "ginglin-cesson": {
+    "name": "깅글린 케손",
+    "shortName": "깅글린 케손"
+  },
+  "girona": {
+    "name": "히로나",
+    "shortName": "히로나"
+  },
+  "glebe": {
+    "name": "글레베",
+    "shortName": "글레베"
+  },
+  "glossop-north-end": {
+    "name": "글로소프 노르트 엔드",
+    "shortName": "글로소프 노르트 엔드"
+  },
+  "gloucester-city": {
+    "name": "글로우케스테르 시티",
+    "shortName": "글로우케스테르 시티"
+  },
+  "gnk-dinamo-zagreb-croatia": {
+    "name": "GNK 디나모 자그레브",
+    "shortName": "GNK 디나모 자그레브"
+  },
+  "godmanchester-rovers": {
+    "name": "고드망케스테르 로버스",
+    "shortName": "고드망케스테르 로버스"
+  },
+  "golcar-united": {
+    "name": "골카르 유나이티드",
+    "shortName": "골카르 유나이티드"
+  },
+  "golden-lion": {
+    "name": "골덴 리온",
+    "shortName": "골덴 리온"
+  },
+  "goole": {
+    "name": "고올레",
+    "shortName": "고올레"
+  },
+  "gorleston": {
+    "name": "고를레스톤",
+    "shortName": "고를레스톤"
+  },
+  "gosport-borough": {
+    "name": "고스포르트 보로",
+    "shortName": "고스포르트 보로"
+  },
+  "grandvillars": {
+    "name": "그란두일라르스",
+    "shortName": "그란두일라르스"
+  },
+  "grantham-town": {
+    "name": "그란탐 타운",
+    "shortName": "그란탐 타운"
+  },
+  "grau-du-roi": {
+    "name": "그라우-두-로이",
+    "shortName": "그라우-두-로이"
+  },
+  "grays-athletic": {
+    "name": "그라이스 애슬레틱",
+    "shortName": "그라이스 애슬레틱"
+  },
+  "great-wakering-rovers": {
+    "name": "그레아트 바케링그 로버스",
+    "shortName": "그레아트 바케링그 로버스"
+  },
+  "great-yarmouth-town": {
+    "name": "그레아트 이아르무트 타운",
+    "shortName": "그레아트 이아르무트 타운"
+  },
+  "greifswalder-fc": {
+    "name": "그라이프스발더 FC",
+    "shortName": "그라이프스발더"
+  },
+  "grenoble": {
+    "name": "그레노블레",
+    "shortName": "그레노블레"
+  },
+  "gresley": {
+    "name": "그레슬리",
+    "shortName": "그레슬리"
+  },
+  "grimsby": {
+    "name": "그림스비",
+    "shortName": "그림스비"
+  },
+  "grimsby-borough": {
+    "name": "그림스비 보로",
+    "shortName": "그림스비 보로"
+  },
+  "gue-reins-genouilleux": {
+    "name": "궤레인스 게노빌레욱스",
+    "shortName": "궤레인스 게노빌레욱스"
+  },
+  "gueugnon": {
+    "name": "궤우그논",
+    "shortName": "궤우그논"
+  },
+  "guijuelo": {
+    "name": "기후엘로",
+    "shortName": "기후엘로"
+  },
+  "guildford-city": {
+    "name": "귈드포르드 시티",
+    "shortName": "귈드포르드 시티"
+  },
+  "guisborough-town": {
+    "name": "귀스보로 타운",
+    "shortName": "귀스보로 타운"
+  },
+  "guiseley-afc": {
+    "name": "귀셀레이 AFC",
+    "shortName": "귀셀레이"
+  },
+  "hadleigh-united": {
+    "name": "하들리 유나이티드",
+    "shortName": "하들리 유나이티드"
+  },
+  "hadley": {
+    "name": "하들레이",
+    "shortName": "하들레이"
+  },
+  "haguenau": {
+    "name": "하궤나우",
+    "shortName": "하궤나우"
+  },
+  "halesowen-town": {
+    "name": "할레소벤 타운",
+    "shortName": "할레소벤 타운"
+  },
+  "hallam": {
+    "name": "할람",
+    "shortName": "할람"
+  },
+  "hallescher-fc": {
+    "name": "할레셔 FC",
+    "shortName": "할레셔"
+  },
+  "halstead-town": {
+    "name": "할스테아드 타운",
+    "shortName": "할스테아드 타운"
+  },
+  "hamble-club": {
+    "name": "함블레 클럽",
+    "shortName": "함블레 클럽"
+  },
+  "hampton-and-richmond": {
+    "name": "함프톤 앤드 리크몬드",
+    "shortName": "함프톤 앤드 리크몬드"
+  },
+  "hamrun-spartans": {
+    "name": "함룬 스파르탄스",
+    "shortName": "함룬"
+  },
+  "hamworthy-recreation": {
+    "name": "함보르티 레크레아티온",
+    "shortName": "함보르티 레크레아티온"
+  },
+  "hamworthy-united": {
+    "name": "함보르티 유나이티드",
+    "shortName": "함보르티 유나이티드"
+  },
+  "handsworth-parramore": {
+    "name": "한드스보르트 파라모레",
+    "shortName": "한드스보르트 파라모레"
+  },
+  "hanley-town": {
+    "name": "한레이 타운",
+    "shortName": "한레이 타운"
+  },
+  "hansa-rostock": {
+    "name": "한자 로스토크",
+    "shortName": "한자 로스토크"
+  },
+  "hanwell-town": {
+    "name": "한벨 타운",
+    "shortName": "한벨 타운"
+  },
+  "hanworth-villa": {
+    "name": "한보르트 빌라",
+    "shortName": "한보르트 빌라"
+  },
+  "harborough-town": {
+    "name": "하르보로 타운",
+    "shortName": "하르보로 타운"
+  },
+  "harefield-united": {
+    "name": "하레피엘드 유나이티드",
+    "shortName": "하레피엘드 유나이티드"
+  },
+  "haringey-borough": {
+    "name": "하링게이 보로",
+    "shortName": "하링게이 보로"
+  },
+  "harleston-town": {
+    "name": "하를레스톤 타운",
+    "shortName": "하를레스톤 타운"
+  },
+  "harpenden-town": {
+    "name": "하르펜덴 타운",
+    "shortName": "하르펜덴 타운"
+  },
+  "harrogate-town": {
+    "name": "하로가테 타운",
+    "shortName": "하로가테 타운"
+  },
+  "harrow-borough": {
+    "name": "하로브 보로",
+    "shortName": "하로브 보로"
+  },
+  "harrowby-united": {
+    "name": "하로브비 유나이티드",
+    "shortName": "하로브비 유나이티드"
+  },
+  "hartlepool": {
+    "name": "하르틀레포올",
+    "shortName": "하르틀레포올"
+  },
+  "hartley-wintney": {
+    "name": "하르틀레이 빈트네이",
+    "shortName": "하르틀레이 빈트네이"
+  },
+  "hartpury-university": {
+    "name": "하르트푸리 우니베르시티",
+    "shortName": "하르트푸리 우니베르시티"
+  },
+  "hashtag-united": {
+    "name": "해시태그 유나이티드",
+    "shortName": "해시태그 유나이티드"
+  },
+  "hassocks": {
+    "name": "하속스",
+    "shortName": "하속스"
+  },
+  "hastings-united": {
+    "name": "하스팅그스 유나이티드",
+    "shortName": "하스팅그스 유나이티드"
+  },
+  "haubourdin": {
+    "name": "하우보우르딘",
+    "shortName": "하우보우르딘"
+  },
+  "hauts-lyonnais": {
+    "name": "하우트스 리온나이스",
+    "shortName": "하우트스 리온나이스"
+  },
+  "havant-and-wville": {
+    "name": "하반트 앤드 부일레",
+    "shortName": "하반트 앤드 부일레"
+  },
+  "hayes-and-yeading-united": {
+    "name": "하이에스 앤드 이에아딩그 유나이티드",
+    "shortName": "하이에스 앤드 이에아딩그 유나이티드"
+  },
+  "haywards-heath-town": {
+    "name": "하이바르드스 헤아트 타운",
+    "shortName": "하이바르드스 헤아트 타운"
+  },
+  "heacham": {
+    "name": "헤아캄",
+    "shortName": "헤아캄"
+  },
+  "heanor-town": {
+    "name": "헤아노르 타운",
+    "shortName": "헤아노르 타운"
+  },
+  "heaton-stannington": {
+    "name": "헤아톤 스탄닝그톤",
+    "shortName": "헤아톤 스탄닝그톤"
+  },
+  "hebburn-town": {
+    "name": "헤부른 타운",
+    "shortName": "헤부른 타운"
+  },
+  "hednesford-town": {
+    "name": "헤드네스포르드 타운",
+    "shortName": "헤드네스포르드 타운"
+  },
+  "helston-athletic": {
+    "name": "헬스톤 애슬레틱",
+    "shortName": "헬스톤 애슬레틱"
+  },
+  "hemel-hempstead-town": {
+    "name": "헤멜 헴프스테아드 타운",
+    "shortName": "헤멜 헴프스테아드 타운"
+  },
+  "hendon": {
+    "name": "헨돈",
+    "shortName": "헨돈"
+  },
+  "hereford": {
+    "name": "헤레포르드",
+    "shortName": "헤레포르드"
+  },
+  "hereford-lads-club": {
+    "name": "헤레포르드 라드스 클럽",
+    "shortName": "헤레포르드 라드스 클럽"
+  },
+  "hereford-pegasus": {
+    "name": "헤레포르드 페가수스",
+    "shortName": "헤레포르드 페가수스"
+  },
+  "herna-n-corte-s": {
+    "name": "에르난 코르테스",
+    "shortName": "에르난 코르테스"
+  },
+  "herne-bay": {
+    "name": "헤르네 바이",
+    "shortName": "헤르네 바이"
+  },
+  "hertford-town": {
+    "name": "헤르트포르드 타운",
+    "shortName": "헤르트포르드 타운"
+  },
+  "hertha-berlin": {
+    "name": "헤르타 베를린",
+    "shortName": "헤르타 베를린"
+  },
+  "hertha-bsc": {
+    "name": "헤르타 BSC",
+    "shortName": "헤르타 BSC"
+  },
+  "hettange-grande": {
+    "name": "헤탕게-그란데",
+    "shortName": "헤탕게-그란데"
+  },
+  "heybridge-swifts": {
+    "name": "헤이브리드게 스비프트스",
+    "shortName": "헤이브리드게 스비프트스"
+  },
+  "hienghe-ne-sport": {
+    "name": "히엥그헤네 스포르트",
+    "shortName": "히엥그헤네 스포르트"
+  },
+  "highgate-united": {
+    "name": "히그흐가테 유나이티드",
+    "shortName": "히그흐가테 유나이티드"
+  },
+  "highworth-town": {
+    "name": "히그흐보르트 타운",
+    "shortName": "히그흐보르트 타운"
+  },
+  "hilltop": {
+    "name": "힐토프",
+    "shortName": "힐토프"
+  },
+  "hinckley-afc": {
+    "name": "힝클레이 AFC",
+    "shortName": "힝클레이"
+  },
+  "histon": {
+    "name": "히스톤",
+    "shortName": "히스톤"
+  },
+  "hitchin-town": {
+    "name": "히트킨 타운",
+    "shortName": "히트킨 타운"
+  },
+  "hjk-helsinki": {
+    "name": "HJK 헬싱키",
+    "shortName": "헬싱키"
+  },
+  "hollands-and-blair": {
+    "name": "홀란드스 앤드 블라이르",
+    "shortName": "홀란드스 앤드 블라이르"
+  },
+  "holmesdale": {
+    "name": "홀메스달레",
+    "shortName": "홀메스달레"
+  },
+  "holstein-kiel-germany": {
+    "name": "홀슈타인 킬",
+    "shortName": "홀슈타인 킬"
+  },
+  "holyport": {
+    "name": "홀리포르트",
+    "shortName": "홀리포르트"
+  },
+  "hombourg-haut": {
+    "name": "홈보우르그-하우트",
+    "shortName": "홈보우르그-하우트"
+  },
+  "horley-town": {
+    "name": "호를레이 타운",
+    "shortName": "호를레이 타운"
+  },
+  "horndean": {
+    "name": "호른데안",
+    "shortName": "호른데안"
+  },
+  "horsham": {
+    "name": "호르스함",
+    "shortName": "호르스함"
+  },
+  "horsham-ymca": {
+    "name": "호르스함 YMCA",
+    "shortName": "호르스함 YMCA"
+  },
+  "houilles": {
+    "name": "호빌레스",
+    "shortName": "호빌레스"
+  },
+  "hucknall-town": {
+    "name": "후크날 타운",
+    "shortName": "후크날 타운"
+  },
+  "huddersfield": {
+    "name": "후데르스피엘드",
+    "shortName": "후데르스피엘드"
+  },
+  "hullbridge-sports": {
+    "name": "훌브리드게 스포르트스",
+    "shortName": "훌브리드게 스포르트스"
+  },
+  "hull-city": {
+    "name": "훌 시티",
+    "shortName": "훌 시티"
+  },
+  "hungerford-town": {
+    "name": "훙게르포르드 타운",
+    "shortName": "훙게르포르드 타운"
+  },
+  "hyde-united": {
+    "name": "히데 유나이티드",
+    "shortName": "히데 유나이티드"
+  },
+  "hye-res": {
+    "name": "히에레스",
+    "shortName": "히에레스"
+  },
+  "hythe-and-dibden": {
+    "name": "히테 앤드 디브덴",
+    "shortName": "히테 앤드 디브덴"
+  },
+  "hythe-town": {
+    "name": "히테 타운",
+    "shortName": "히테 타운"
+  },
+  "ibiza": {
+    "name": "이비사",
+    "shortName": "이비사"
+  },
+  "ibiza-islas-pitiusas": {
+    "name": "이비사 이슬라스 피티우사스",
+    "shortName": "이비사 이슬라스 피티우사스"
+  },
+  "ilford": {
+    "name": "일포르드",
+    "shortName": "일포르드"
+  },
+  "ilfracombe-town": {
+    "name": "일프라콤베 타운",
+    "shortName": "일프라콤베 타운"
+  },
+  "ilkeston-town": {
+    "name": "일케스톤 타운",
+    "shortName": "일케스톤 타운"
+  },
+  "illertissen": {
+    "name": "일레르티센",
+    "shortName": "일레르티센"
+  },
+  "illkirch-graffenstaden": {
+    "name": "일키르크 그라펜스타덴",
+    "shortName": "일키르크 그라펜스타덴"
+  },
+  "ipswich-town-fc-england": {
+    "name": "입스비크 타운 FC",
+    "shortName": "입스비크 타운"
+  },
+  "ipswich-wanderers": {
+    "name": "입스비크 원더러스",
+    "shortName": "입스비크 원더러스"
+  },
+  "irlam": {
+    "name": "이를람",
+    "shortName": "이를람"
+  },
+  "isle": {
+    "name": "이슬레",
+    "shortName": "이슬레"
+  },
+  "istres": {
+    "name": "이스트레스",
+    "shortName": "이스트레스"
+  },
+  "ivybridge-town": {
+    "name": "이비브리드게 타운",
+    "shortName": "이비브리드게 타운"
+  },
+  "jahn-regensburg": {
+    "name": "얀 레겐스부르크",
+    "shortName": "얀 레겐스부르크"
+  },
+  "jarville": {
+    "name": "야르빌레",
+    "shortName": "야르빌레"
+  },
+  "jersey-bulls": {
+    "name": "예르세이 불스",
+    "shortName": "예르세이 불스"
+  },
+  "jeunesse-evolution": {
+    "name": "예우네세 에볼루티온",
+    "shortName": "예우네세 에볼루티온"
+  },
+  "jove-espan-ol": {
+    "name": "호베 에스파뇰",
+    "shortName": "호베 에스파뇰"
+  },
+  "js-douvres": {
+    "name": "JS 도우우레스",
+    "shortName": "JS 도우우레스"
+  },
+  "jura-dolois": {
+    "name": "유라 돌로이스",
+    "shortName": "유라 돌로이스"
+  },
+  "jura-sud-foot": {
+    "name": "유라 수드 포오트",
+    "shortName": "유라 수드 포오트"
+  },
+  "juventud-torremolinos": {
+    "name": "후벤투드 토레몰리노스",
+    "shortName": "후벤투드 토레몰리노스"
+  },
+  "juve-stabia": {
+    "name": "유베 스타비아",
+    "shortName": "유베 스타비아"
+  },
+  "karlsruher-sc": {
+    "name": "카를스루어 SC",
+    "shortName": "카를스루어"
+  },
+  "kendal-town": {
+    "name": "켄달 타운",
+    "shortName": "켄달 타운"
+  },
+  "kennington": {
+    "name": "켄닝그톤",
+    "shortName": "켄닝그톤"
+  },
+  "kettering-town": {
+    "name": "케테링그 타운",
+    "shortName": "케테링그 타운"
+  },
+  "kickers-offenbach": {
+    "name": "키케르스 오펜바흐",
+    "shortName": "키케르스 오펜바흐"
+  },
+  "kidderminster-harriers": {
+    "name": "키데르민스테르 하리에르스",
+    "shortName": "키데르민스테르 하리에르스"
+  },
+  "kidlington": {
+    "name": "키들링그톤",
+    "shortName": "키들링그톤"
+  },
+  "kidsgrove-athletic": {
+    "name": "키드스그로베 애슬레틱",
+    "shortName": "키드스그로베 애슬레틱"
+  },
+  "kimberley-miners-welfare": {
+    "name": "킴베를레이 미네르스 벨파레",
+    "shortName": "킴베를레이 미네르스 벨파레"
+  },
+  "kings-langley": {
+    "name": "킹그스 랑글레이",
+    "shortName": "킹그스 랑글레이"
+  },
+  "kings-lynn-town": {
+    "name": "킹그'스 리는 타운",
+    "shortName": "킹그'스 리는 타운"
+  },
+  "kingstonian": {
+    "name": "킹그스토니안",
+    "shortName": "킹그스토니안"
+  },
+  "kirkley-and-pakefield": {
+    "name": "키르클레이 앤드 파케피엘드",
+    "shortName": "키르클레이 앤드 파케피엘드"
+  },
+  "knaphill": {
+    "name": "크나필",
+    "shortName": "크나필"
+  },
+  "knaresborough-town": {
+    "name": "크나레스보로 타운",
+    "shortName": "크나레스보로 타운"
+  },
+  "labourse": {
+    "name": "라보우르세",
+    "shortName": "라보우르세"
+  },
+  "lakenheath": {
+    "name": "라켄헤아트",
+    "shortName": "라켄헤아트"
+  },
+  "lancaster-city": {
+    "name": "랑카스테르 시티",
+    "shortName": "랑카스테르 시티"
+  },
+  "lancing": {
+    "name": "랑킹그",
+    "shortName": "랑킹그"
+  },
+  "langreo": {
+    "name": "랑그레오",
+    "shortName": "랑그레오"
+  },
+  "lanzarote": {
+    "name": "란사로테",
+    "shortName": "란사로테"
+  },
+  "laredo": {
+    "name": "라레도",
+    "shortName": "라레도"
+  },
+  "larkfield-and-new-hythe": {
+    "name": "라르크피엘드 앤드 네브 히테",
+    "shortName": "라르크피엘드 앤드 네브 히테"
+  },
+  "larkhall-athletic": {
+    "name": "라르칼 애슬레틱",
+    "shortName": "라르칼 애슬레틱"
+  },
+  "larne": {
+    "name": "라른",
+    "shortName": "라른"
+  },
+  "la-roche-sur-yon": {
+    "name": "라 로케 수르 이온",
+    "shortName": "라 로케 수르 이온"
+  },
+  "la-roche-vf": {
+    "name": "라 로케 VF",
+    "shortName": "라 로케 VF"
+  },
+  "las-rozas": {
+    "name": "라스 로사스",
+    "shortName": "라스 로사스"
+  },
+  "laval": {
+    "name": "라발",
+    "shortName": "라발"
+  },
+  "lavernose-lherm": {
+    "name": "라베르노세 르헤름",
+    "shortName": "라베르노세 르헤름"
+  },
+  "laverstock-and-ford": {
+    "name": "라베르스토크 앤드 포르드",
+    "shortName": "라베르스토크 앤드 포르드"
+  },
+  "leamington": {
+    "name": "레아밍그톤",
+    "shortName": "레아밍그톤"
+  },
+  "leatherhead": {
+    "name": "레아테르헤아드",
+    "shortName": "레아테르헤아드"
+  },
+  "lecce": {
+    "name": "레체",
+    "shortName": "레체"
+  },
+  "leeds": {
+    "name": "리즈",
+    "shortName": "리즈"
+  },
+  "leek-town": {
+    "name": "레에크 타운",
+    "shortName": "레에크 타운"
+  },
+  "leganes": {
+    "name": "레가네스",
+    "shortName": "레가네스"
+  },
+  "le-geldar": {
+    "name": "레 겔다르",
+    "shortName": "레 겔다르"
+  },
+  "le-havre": {
+    "name": "레 하우레",
+    "shortName": "레 하우레"
+  },
+  "leicester": {
+    "name": "레이케스테르",
+    "shortName": "레이케스테르"
+  },
+  "leicester-nirvana": {
+    "name": "레이케스테르 니르바나",
+    "shortName": "레이케스테르 니르바나"
+  },
+  "leicester-road": {
+    "name": "레이케스테르 로아드",
+    "shortName": "레이케스테르 로아드"
+  },
+  "leighton-town": {
+    "name": "리톤 타운",
+    "shortName": "리톤 타운"
+  },
+  "leiston": {
+    "name": "레이스톤",
+    "shortName": "레이스톤"
+  },
+  "le-mans": {
+    "name": "레 만스",
+    "shortName": "레 만스"
+  },
+  "lempdes": {
+    "name": "렘프데스",
+    "shortName": "렘프데스"
+  },
+  "le-pays-du-valois": {
+    "name": "레 파이스 두 발로이스",
+    "shortName": "레 파이스 두 발로이스"
+  },
+  "le-poire-sur-vie": {
+    "name": "레 포이레 수르 비에",
+    "shortName": "레 포이레 수르 비에"
+  },
+  "le-puy-foot": {
+    "name": "레 푸이 포오트",
+    "shortName": "레 푸이 포오트"
+  },
+  "le-quesnoy": {
+    "name": "레 퀘스노이",
+    "shortName": "레 퀘스노이"
+  },
+  "les-herbiers": {
+    "name": "레스 헤르비에르스",
+    "shortName": "레스 헤르비에르스"
+  },
+  "les-ulis": {
+    "name": "레스 울리스",
+    "shortName": "레스 울리스"
+  },
+  "le-touquet": {
+    "name": "레 토우퀘트",
+    "shortName": "레 토우퀘트"
+  },
+  "levante": {
+    "name": "레반테",
+    "shortName": "레반테"
+  },
+  "leverstock-green": {
+    "name": "레베르스토크 그레엔",
+    "shortName": "레베르스토크 그레엔"
+  },
+  "lewes": {
+    "name": "레베스",
+    "shortName": "레베스"
+  },
+  "leyton-orient": {
+    "name": "레이톤 오리엔트",
+    "shortName": "레이톤 오리엔트"
+  },
+  "lhospitalet": {
+    "name": "르'오스피탈레트",
+    "shortName": "르'오스피탈레트"
+  },
+  "liancourt-clermont": {
+    "name": "리앙코우르트 클레르몬트",
+    "shortName": "리앙코우르트 클레르몬트"
+  },
+  "libourne": {
+    "name": "리보우르네",
+    "shortName": "리보우르네"
+  },
+  "lichfield-city": {
+    "name": "릭피엘드 시티",
+    "shortName": "릭피엘드 시티"
+  },
+  "liffre": {
+    "name": "리프레",
+    "shortName": "리프레"
+  },
+  "lille": {
+    "name": "릴레",
+    "shortName": "릴레"
+  },
+  "limonest": {
+    "name": "리모네스트",
+    "shortName": "리모네스트"
+  },
+  "linares-deportivo": {
+    "name": "리나레스 데포르티보",
+    "shortName": "리나레스 데포르티보"
+  },
+  "linas-montlhery": {
+    "name": "리나스-몬틀헤리",
+    "shortName": "리나스-몬틀헤리"
+  },
+  "lincoln": {
+    "name": "링콜른",
+    "shortName": "링콜른"
+  },
+  "lincoln-united": {
+    "name": "링콜른 유나이티드",
+    "shortName": "링콜른 유나이티드"
+  },
+  "lingfield": {
+    "name": "링그피엘드",
+    "shortName": "링그피엘드"
+  },
+  "liskeard-athletic": {
+    "name": "리스케아르드 애슬레틱",
+    "shortName": "리스케아르드 애슬레틱"
+  },
+  "litherland-remyca": {
+    "name": "리테를란드 레미카",
+    "shortName": "리테를란드 레미카"
+  },
+  "little-common": {
+    "name": "리틀레 콤몬",
+    "shortName": "리틀레 콤몬"
+  },
+  "littlehampton-town": {
+    "name": "리틀레함프톤 타운",
+    "shortName": "리틀레함프톤 타운"
+  },
+  "little-oakley": {
+    "name": "리틀레 오아클레이",
+    "shortName": "리틀레 오아클레이"
+  },
+  "liversedge": {
+    "name": "리베르세드게",
+    "shortName": "리베르세드게"
+  },
+  "llanera": {
+    "name": "야네라",
+    "shortName": "야네라"
+  },
+  "lleida-esportiu": {
+    "name": "예이다 에스포르티우",
+    "shortName": "예이다 에스포르티우"
+  },
+  "llerenense": {
+    "name": "예레넨세",
+    "shortName": "예레넨세"
+  },
+  "lokomotive-leipzig": {
+    "name": "로코모티페 라이프치히",
+    "shortName": "로코모티페 라이프치히"
+  },
+  "london-lions": {
+    "name": "론돈 리온스",
+    "shortName": "론돈 리온스"
+  },
+  "long-eaton-united": {
+    "name": "롱그 에아톤 유나이티드",
+    "shortName": "롱그 에아톤 유나이티드"
+  },
+  "longlevens": {
+    "name": "롱글레벤스",
+    "shortName": "롱글레벤스"
+  },
+  "long-melford": {
+    "name": "롱그 멜포르드",
+    "shortName": "롱그 멜포르드"
+  },
+  "longridge-town": {
+    "name": "롱그리드게 타운",
+    "shortName": "롱그리드게 타운"
+  },
+  "longueau": {
+    "name": "롱궤아우",
+    "shortName": "롱궤아우"
+  },
+  "loon-plage": {
+    "name": "로온-플라게",
+    "shortName": "로온-플라게"
+  },
+  "lorca-deportiva": {
+    "name": "로르카 데포르티바",
+    "shortName": "로르카 데포르티바"
+  },
+  "lordswood": {
+    "name": "로르드스보오드",
+    "shortName": "로르드스보오드"
+  },
+  "loughborough-dynamo": {
+    "name": "로프보로 디나모",
+    "shortName": "로프보로 디나모"
+  },
+  "loughborough-university": {
+    "name": "로프보로 우니베르시티",
+    "shortName": "로프보로 우니베르시티"
+  },
+  "louhans-cuiseaux": {
+    "name": "로우한스-쿠이세아욱스",
+    "shortName": "로우한스-쿠이세아욱스"
+  },
+  "lower-breck": {
+    "name": "로베르 브레크",
+    "shortName": "로베르 브레크"
+  },
+  "lowestoft-town": {
+    "name": "로베스토프트 타운",
+    "shortName": "로베스토프트 타운"
+  },
+  "loxwood": {
+    "name": "록스보오드",
+    "shortName": "록스보오드"
+  },
+  "lugo": {
+    "name": "루고",
+    "shortName": "루고"
+  },
+  "lune-ville": {
+    "name": "루네빌레",
+    "shortName": "루네빌레"
+  },
+  "luton-town-england": {
+    "name": "루톤 타운",
+    "shortName": "루톤 타운"
+  },
+  "lutterworth-town": {
+    "name": "루테르보르트 타운",
+    "shortName": "루테르보르트 타운"
+  },
+  "lydd-town": {
+    "name": "리드 타운",
+    "shortName": "리드 타운"
+  },
+  "lydney-town": {
+    "name": "리드네이 타운",
+    "shortName": "리드네이 타운"
+  },
+  "lye-town": {
+    "name": "리에 타운",
+    "shortName": "리에 타운"
+  },
+  "lymington-town": {
+    "name": "리밍그톤 타운",
+    "shortName": "리밍그톤 타운"
+  },
+  "lyon-duchere": {
+    "name": "리온 두케레",
+    "shortName": "리온 두케레"
+  },
+  "maccabi-haifa": {
+    "name": "마카비 하이파",
+    "shortName": "마카비 하이파"
+  },
+  "macclesfield": {
+    "name": "마클레스피엘드",
+    "shortName": "마클레스피엘드"
+  },
+  "ma-con": {
+    "name": "마콘",
+    "shortName": "마콘"
+  },
+  "maidenhead": {
+    "name": "마이덴헤아드",
+    "shortName": "마이덴헤아드"
+  },
+  "maidstone-utd": {
+    "name": "마이드스토네 우트드",
+    "shortName": "마이드스토네 우트드"
+  },
+  "makkabi": {
+    "name": "마크카비",
+    "shortName": "마크카비"
+  },
+  "maladrerie": {
+    "name": "말라드레리에",
+    "shortName": "말라드레리에"
+  },
+  "maldon-and-tiptree": {
+    "name": "말돈 앤드 팁트레에",
+    "shortName": "말돈 앤드 팁트레에"
+  },
+  "malmesbury-victoria": {
+    "name": "말메스베리 빅토리아",
+    "shortName": "말메스베리 빅토리아"
+  },
+  "maltby-main": {
+    "name": "말트비 마인",
+    "shortName": "말트비 마인"
+  },
+  "malvern-town": {
+    "name": "말베른 타운",
+    "shortName": "말베른 타운"
+  },
+  "manacor": {
+    "name": "마나코르",
+    "shortName": "마나코르"
+  },
+  "manchego": {
+    "name": "만체고",
+    "shortName": "만체고"
+  },
+  "manchester-city": {
+    "name": "망케스테르 시티",
+    "shortName": "망케스테르 시티"
+  },
+  "mangotsfield-united": {
+    "name": "망고트스피엘드 유나이티드",
+    "shortName": "망고트스피엘드 유나이티드"
+  },
+  "manises": {
+    "name": "마니세스",
+    "shortName": "마니세스"
+  },
+  "manresa": {
+    "name": "만레사",
+    "shortName": "만레사"
+  },
+  "mantova": {
+    "name": "만토바",
+    "shortName": "만토바"
+  },
+  "marbella": {
+    "name": "마르베야",
+    "shortName": "마르베야"
+  },
+  "marboz": {
+    "name": "마르보즈",
+    "shortName": "마르보즈"
+  },
+  "march-town-united": {
+    "name": "마르크 타운 유나이티드",
+    "shortName": "마르크 타운 유나이티드"
+  },
+  "margate": {
+    "name": "마르가테",
+    "shortName": "마르가테"
+  },
+  "marignane": {
+    "name": "마리그나네",
+    "shortName": "마리그나네"
+  },
+  "marine": {
+    "name": "마리네",
+    "shortName": "마리네"
+  },
+  "marlow": {
+    "name": "마를로브",
+    "shortName": "마를로브"
+  },
+  "marmande": {
+    "name": "마르만데",
+    "shortName": "마르만데"
+  },
+  "marske-united": {
+    "name": "마르스케 유나이티드",
+    "shortName": "마르스케 유나이티드"
+  },
+  "martigues": {
+    "name": "마르티궤스",
+    "shortName": "마르티궤스"
+  },
+  "matlock-town": {
+    "name": "마틀로크 타운",
+    "shortName": "마틀로크 타운"
+  },
+  "melilla": {
+    "name": "멜리야",
+    "shortName": "멜리야"
+  },
+  "melilla-cd": {
+    "name": "멜리야 CD",
+    "shortName": "멜리야 CD"
+  },
+  "melksham-town": {
+    "name": "멜크스함 타운",
+    "shortName": "멜크스함 타운"
+  },
+  "melton-town": {
+    "name": "멜톤 타운",
+    "shortName": "멜톤 타운"
+  },
+  "mensajero": {
+    "name": "멘사헤로",
+    "shortName": "멘사헤로"
+  },
+  "me-rignac-arlac": {
+    "name": "메리그나크-아를라크",
+    "shortName": "메리그나크-아를라크"
+  },
+  "merstham": {
+    "name": "메르스탐",
+    "shortName": "메르스탐"
+  },
+  "merthyr-town": {
+    "name": "메르티르 타운",
+    "shortName": "메르티르 타운"
+  },
+  "me-tropole-troyenne": {
+    "name": "메트로폴레 트로이엔네",
+    "shortName": "메트로폴레 트로이엔네"
+  },
+  "metropolitan-police": {
+    "name": "메트로폴리탄 폴리케",
+    "shortName": "메트로폴리탄 폴리케"
+  },
+  "mickleover-sports": {
+    "name": "미클레오베르 스포르트스",
+    "shortName": "미클레오베르 스포르트스"
+  },
+  "midhurst-and-easebourne": {
+    "name": "미드후르스트 앤드 에아세보우르네",
+    "shortName": "미드후르스트 앤드 에아세보우르네"
+  },
+  "mijas-las-lagunas": {
+    "name": "미하스 라스 라구나스",
+    "shortName": "미하스 라스 라구나스"
+  },
+  "mildenhall-town": {
+    "name": "밀덴할 타운",
+    "shortName": "밀덴할 타운"
+  },
+  "millbrook": {
+    "name": "밀브로오크",
+    "shortName": "밀브로오크"
+  },
+  "millwall": {
+    "name": "밀발",
+    "shortName": "밀발"
+  },
+  "milton-keynes-dons": {
+    "name": "밀톤 케이네스 돈스",
+    "shortName": "밀톤 케이네스 돈스"
+  },
+  "milton-keynes-irish": {
+    "name": "밀톤 케이네스 이리스흐",
+    "shortName": "밀톤 케이네스 이리스흐"
+  },
+  "milton-united": {
+    "name": "밀톤 유나이티드",
+    "shortName": "밀톤 유나이티드"
+  },
+  "mirandes": {
+    "name": "미란데스",
+    "shortName": "미란데스"
+  },
+  "modena": {
+    "name": "모데나",
+    "shortName": "모데나"
+  },
+  "moneyfields": {
+    "name": "모네이피엘드스",
+    "shortName": "모네이피엘드스"
+  },
+  "monnaie": {
+    "name": "몬나이에",
+    "shortName": "몬나이에"
+  },
+  "montagnarde": {
+    "name": "몬타그나르데",
+    "shortName": "몬타그나르데"
+  },
+  "montdidier": {
+    "name": "몬트디디에르",
+    "shortName": "몬트디디에르"
+  },
+  "monte": {
+    "name": "몬테",
+    "shortName": "몬테"
+  },
+  "montferrand": {
+    "name": "몬트페란드",
+    "shortName": "몬트페란드"
+  },
+  "montlouis": {
+    "name": "몬틀로비스",
+    "shortName": "몬틀로비스"
+  },
+  "montpellier-hsc-france": {
+    "name": "몬트펠리에르 HSC",
+    "shortName": "몬트펠리에르 HSC"
+  },
+  "monza": {
+    "name": "몬차",
+    "shortName": "몬차"
+  },
+  "morecambe": {
+    "name": "모레캄베",
+    "shortName": "모레캄베"
+  },
+  "morlaas-est-bearn": {
+    "name": "모를라아스 에스트-베아른",
+    "shortName": "모를라아스 에스트-베아른"
+  },
+  "morpeth-town": {
+    "name": "모르페트 타운",
+    "shortName": "모르페트 타운"
+  },
+  "mossley": {
+    "name": "모슬리",
+    "shortName": "모슬리"
+  },
+  "mo-stoles": {
+    "name": "모스톨레스",
+    "shortName": "모스톨레스"
+  },
+  "moulien": {
+    "name": "모울리엔",
+    "shortName": "모울리엔"
+  },
+  "mousehole": {
+    "name": "모우세홀레",
+    "shortName": "모우세홀레"
+  },
+  "mulbarton-wanderers": {
+    "name": "물바르톤 원더러스",
+    "shortName": "물바르톤 원더러스"
+  },
+  "mulhouse": {
+    "name": "물호우세",
+    "shortName": "물호우세"
+  },
+  "nailsea-and-tickenham": {
+    "name": "나일세아 앤드 티켄함",
+    "shortName": "나일세아 앤드 티켄함"
+  },
+  "nancy": {
+    "name": "낭키",
+    "shortName": "낭키"
+  },
+  "nantwich-town": {
+    "name": "난트비크 타운",
+    "shortName": "난트비크 타운"
+  },
+  "navalcarnero": {
+    "name": "나발카르네로",
+    "shortName": "나발카르네로"
+  },
+  "na-xara": {
+    "name": "낙사라",
+    "shortName": "낙사라"
+  },
+  "needham-market": {
+    "name": "네에드함 마르케트",
+    "shortName": "네에드함 마르케트"
+  },
+  "neuilly-sur-marne": {
+    "name": "네빌리 수르 마르네",
+    "shortName": "네빌리 수르 마르네"
+  },
+  "neuville": {
+    "name": "네우빌레",
+    "shortName": "네우빌레"
+  },
+  "newark-flowserve": {
+    "name": "네바르크 플로브세르베",
+    "shortName": "네바르크 플로브세르베"
+  },
+  "newark-town": {
+    "name": "네바르크 타운",
+    "shortName": "네바르크 타운"
+  },
+  "newcastle-benfield": {
+    "name": "네브카스틀레 벤피엘드",
+    "shortName": "네브카스틀레 벤피엘드"
+  },
+  "newcastle-blue-star": {
+    "name": "네브카스틀레 블루에 스타르",
+    "shortName": "네브카스틀레 블루에 스타르"
+  },
+  "newhaven": {
+    "name": "네바벤",
+    "shortName": "네바벤"
+  },
+  "newmarket-town": {
+    "name": "네브마르케트 타운",
+    "shortName": "네브마르케트 타운"
+  },
+  "newport-county": {
+    "name": "네브포르트 카운티",
+    "shortName": "네브포르트 카운티"
+  },
+  "newport-pagnell-town": {
+    "name": "네브포르트 파그넬 타운",
+    "shortName": "네브포르트 파그넬 타운"
+  },
+  "new-salamis": {
+    "name": "네브 살라미스",
+    "shortName": "네브 살라미스"
+  },
+  "newton-aycliffe": {
+    "name": "네브톤 아이클리페",
+    "shortName": "네브톤 아이클리페"
+  },
+  "nimes": {
+    "name": "니메스",
+    "shortName": "니메스"
+  },
+  "niort": {
+    "name": "니오르트",
+    "shortName": "니오르트"
+  },
+  "noisy-le-sec": {
+    "name": "노이시-을레-세크",
+    "shortName": "노이시-을레-세크"
+  },
+  "northallerton-town": {
+    "name": "노르탈레르톤 타운",
+    "shortName": "노르탈레르톤 타운"
+  },
+  "northampton": {
+    "name": "노르탐프톤",
+    "shortName": "노르탐프톤"
+  },
+  "northampton-on-chenecks": {
+    "name": "노르탐프톤 ON 케넥스",
+    "shortName": "노르탐프톤 ON 케넥스"
+  },
+  "north-ferriby": {
+    "name": "노르트 페리비",
+    "shortName": "노르트 페리비"
+  },
+  "north-greenford-united": {
+    "name": "노르트 그레엔포르드 유나이티드",
+    "shortName": "노르트 그레엔포르드 유나이티드"
+  },
+  "north-leigh": {
+    "name": "노르트 리",
+    "shortName": "노르트 리"
+  },
+  "north-shields": {
+    "name": "노르트 스히엘드스",
+    "shortName": "노르트 스히엘드스"
+  },
+  "northwich-victoria": {
+    "name": "노스위치 빅토리아",
+    "shortName": "노스위치 빅토리아"
+  },
+  "northwood": {
+    "name": "노스우드",
+    "shortName": "노스우드"
+  },
+  "norwich": {
+    "name": "노리치",
+    "shortName": "노리치"
+  },
+  "norwich-united": {
+    "name": "노리치 유나이티드",
+    "shortName": "노리치 유나이티드"
+  },
+  "notts-county": {
+    "name": "노트스 카운티",
+    "shortName": "노트스 카운티"
+  },
+  "nousseviller": {
+    "name": "노우세빌레르",
+    "shortName": "노우세빌레르"
+  },
+  "noyelles-sous-lens": {
+    "name": "노이엘레스 소우스 렌스",
+    "shortName": "노이엘레스 소우스 렌스"
+  },
+  "numancia": {
+    "name": "누만시아",
+    "shortName": "누만시아"
+  },
+  "nuneaton-town": {
+    "name": "누네아톤 타운",
+    "shortName": "누네아톤 타운"
+  },
+  "n-ux-les-mines": {
+    "name": "눅스-을레스-미네스",
+    "shortName": "눅스-을레스-미네스"
+  },
+  "oadby-town": {
+    "name": "오아드비 타운",
+    "shortName": "오아드비 타운"
+  },
+  "oberachern": {
+    "name": "오베라헤른",
+    "shortName": "오베라헤른"
+  },
+  "oberneuland": {
+    "name": "오베르노일란트",
+    "shortName": "오베르노일란트"
+  },
+  "ocpam": {
+    "name": "OCPAM",
+    "shortName": "OCPAM"
+  },
+  "ojm-black-country": {
+    "name": "OJM 블라크 코운트리",
+    "shortName": "OJM 블라크 코운트리"
+  },
+  "okehampton-argyle": {
+    "name": "오케함프톤 아르길레",
+    "shortName": "오케함프톤 아르길레"
+  },
+  "oldham": {
+    "name": "올드함",
+    "shortName": "올드함"
+  },
+  "oldland-abbotonians": {
+    "name": "올들란드 아보토니안스",
+    "shortName": "올들란드 아보토니안스"
+  },
+  "olimpija-ljubljana": {
+    "name": "올림피야 류블랴나",
+    "shortName": "올림피야"
+  },
+  "olot": {
+    "name": "올로트",
+    "shortName": "올로트"
+  },
+  "olympique-cazaux": {
+    "name": "올랭피크 카자욱스",
+    "shortName": "올랭피크 카자욱스"
+  },
+  "olympique-dale-s": {
+    "name": "올랭피크 드'알레스",
+    "shortName": "올랭피크 드'알레스"
+  },
+  "olympique-de-valence": {
+    "name": "올랭피크 데 발렝케",
+    "shortName": "데 발렝케"
+  },
+  "ontin-ena": {
+    "name": "온티녜나",
+    "shortName": "온티녜나"
+  },
+  "ordabasy": {
+    "name": "오르다바시",
+    "shortName": "오르다바시"
+  },
+  "orihuela": {
+    "name": "오리우엘라",
+    "shortName": "오리우엘라"
+  },
+  "orleans": {
+    "name": "오를레안스",
+    "shortName": "오를레안스"
+  },
+  "ossett-united": {
+    "name": "오세트 유나이티드",
+    "shortName": "오세트 유나이티드"
+  },
+  "ourense-cf": {
+    "name": "오우렌세 CF",
+    "shortName": "오우렌세"
+  },
+  "oviedo": {
+    "name": "오비에도",
+    "shortName": "오비에도"
+  },
+  "oxford-city": {
+    "name": "옥스포르드 시티",
+    "shortName": "옥스포르드 시티"
+  },
+  "oxford-united": {
+    "name": "옥스포르드 유나이티드",
+    "shortName": "옥스포르드 유나이티드"
+  },
+  "padiham": {
+    "name": "파디함",
+    "shortName": "파디함"
+  },
+  "padova": {
+    "name": "파도바",
+    "shortName": "파도바"
+  },
+  "pagham": {
+    "name": "파그함",
+    "shortName": "파그함"
+  },
+  "paimpol": {
+    "name": "파임폴",
+    "shortName": "파임폴"
+  },
+  "panazol": {
+    "name": "파나졸",
+    "shortName": "파나졸"
+  },
+  "parkgate": {
+    "name": "파르크가테",
+    "shortName": "파르크가테"
+  },
+  "parla-escuela": {
+    "name": "파를라 에스쿠엘라",
+    "shortName": "파를라 에스쿠엘라"
+  },
+  "parma": {
+    "name": "파르마",
+    "shortName": "파르마"
+  },
+  "partizani": {
+    "name": "파르티자니",
+    "shortName": "파르티자니"
+  },
+  "pau": {
+    "name": "PAU",
+    "shortName": "PAU"
+  },
+  "paulton-rovers": {
+    "name": "파울톤 로버스",
+    "shortName": "파울톤 로버스"
+  },
+  "pays-de-cassel": {
+    "name": "파이스 데 카셀",
+    "shortName": "파이스 데 카셀"
+  },
+  "peacehaven-and-telscombe": {
+    "name": "페아케하벤 앤드 텔스콤베",
+    "shortName": "페아케하벤 앤드 텔스콤베"
+  },
+  "pen-a-deportiva": {
+    "name": "페냐 데포르티바",
+    "shortName": "페냐 데포르티바"
+  },
+  "penistone-church": {
+    "name": "페니스토네 쿠르크",
+    "shortName": "페니스토네 쿠르크"
+  },
+  "penrith-afc": {
+    "name": "펜리트 AFC",
+    "shortName": "펜리트"
+  },
+  "pershore-town": {
+    "name": "페르스호레 타운",
+    "shortName": "페르스호레 타운"
+  },
+  "pescara": {
+    "name": "페스카라",
+    "shortName": "페스카라"
+  },
+  "peterborough": {
+    "name": "페테르보로",
+    "shortName": "페테르보로"
+  },
+  "peterborough-sports": {
+    "name": "페테르보로 스포르트스",
+    "shortName": "페테르보로 스포르트스"
+  },
+  "petersfield-town": {
+    "name": "페테르스피엘드 타운",
+    "shortName": "페테르스피엘드 타운"
+  },
+  "phoenix-sports": {
+    "name": "포이닉스 스포르트스",
+    "shortName": "포이닉스 스포르트스"
+  },
+  "pho-nix-lu-beck": {
+    "name": "푀닉스 뤼베크",
+    "shortName": "푀닉스 뤼베크"
+  },
+  "pickering-town": {
+    "name": "피케링그 타운",
+    "shortName": "피케링그 타운"
+  },
+  "pilkington": {
+    "name": "필킹그톤",
+    "shortName": "필킹그톤"
+  },
+  "pinchbeck-united": {
+    "name": "핑크베크 유나이티드",
+    "shortName": "핑크베크 유나이티드"
+  },
+  "pirae": {
+    "name": "피라이",
+    "shortName": "피라이"
+  },
+  "pisa": {
+    "name": "피사",
+    "shortName": "피사"
+  },
+  "playas-sotavento": {
+    "name": "플라야스 소타벤토",
+    "shortName": "플라야스 소타벤토"
+  },
+  "plessis-robinson-92": {
+    "name": "플레시스 로빈손 92",
+    "shortName": "플레시스 로빈손 92"
+  },
+  "plougastel": {
+    "name": "플로우가스텔",
+    "shortName": "플로우가스텔"
+  },
+  "plymouth": {
+    "name": "플리무트",
+    "shortName": "플리무트"
+  },
+  "plymouth-parkway": {
+    "name": "플리무트 파르크바이",
+    "shortName": "플리무트 파르크바이"
+  },
+  "poblense": {
+    "name": "포블렌세",
+    "shortName": "포블렌세"
+  },
+  "poitiers": {
+    "name": "포이티에르스",
+    "shortName": "포이티에르스"
+  },
+  "ponferradina": {
+    "name": "폰페라디나",
+    "shortName": "폰페라디나"
+  },
+  "pontarlier": {
+    "name": "폰타를리에르",
+    "shortName": "폰타를리에르"
+  },
+  "pontefract-collieries": {
+    "name": "폰테프락트 콜리에리에스",
+    "shortName": "폰테프락트 콜리에리에스"
+  },
+  "pontevedra": {
+    "name": "폰테베드라",
+    "shortName": "폰테베드라"
+  },
+  "pontivy-gsi": {
+    "name": "폰티비 GSI",
+    "shortName": "폰티비 GSI"
+  },
+  "poole-town": {
+    "name": "포올레 타운",
+    "shortName": "포올레 타운"
+  },
+  "portishead-town": {
+    "name": "포르티스헤아드 타운",
+    "shortName": "포르티스헤아드 타운"
+  },
+  "portland-united": {
+    "name": "포르틀란드 유나이티드",
+    "shortName": "포르틀란드 유나이티드"
+  },
+  "porto-portugais-amiens": {
+    "name": "포르토 포르투가이스 아미엔스",
+    "shortName": "포르토 포르투가이스 아미엔스"
+  },
+  "port-vale": {
+    "name": "포르트 발레",
+    "shortName": "포르트 발레"
+  },
+  "potters-bar-town": {
+    "name": "포테르스 바르 타운",
+    "shortName": "포테르스 바르 타운"
+  },
+  "potton-united": {
+    "name": "포톤 유나이티드",
+    "shortName": "포톤 유나이티드"
+  },
+  "pradejo-n": {
+    "name": "프라데혼",
+    "shortName": "프라데혼"
+  },
+  "prescot-cables": {
+    "name": "프레스코트 카블레스",
+    "shortName": "프레스코트 카블레스"
+  },
+  "preston": {
+    "name": "프레스톤",
+    "shortName": "프레스톤"
+  },
+  "prestwich-heys": {
+    "name": "프레스트비크 헤이스",
+    "shortName": "프레스트비크 헤이스"
+  },
+  "preu-en-mu-nster": {
+    "name": "프로이센 뮌슈터",
+    "shortName": "프로이센 뮌슈터"
+  },
+  "preussen-munster": {
+    "name": "프로이센 문슈터",
+    "shortName": "프로이센 문슈터"
+  },
+  "promesas-edf": {
+    "name": "프로메사스 EDF",
+    "shortName": "프로메사스 EDF"
+  },
+  "provin": {
+    "name": "프로빈",
+    "shortName": "프로빈"
+  },
+  "punjab-united": {
+    "name": "푸니아브 유나이티드",
+    "shortName": "푸니아브 유나이티드"
+  },
+  "pyunik-yerevan": {
+    "name": "퓌니크 예레반",
+    "shortName": "퓌니크"
+  },
+  "qpr": {
+    "name": "QPR",
+    "shortName": "QPR"
+  },
+  "quevilly": {
+    "name": "퀘빌리",
+    "shortName": "퀘빌리"
+  },
+  "quintanar": {
+    "name": "킨타나르",
+    "shortName": "킨타나르"
+  },
+  "quorn": {
+    "name": "쿠오른",
+    "shortName": "쿠오른"
+  },
+  "racing-club-warwick": {
+    "name": "라킹그 클럽 바르비크",
+    "shortName": "라킹그 클럽 바르비크"
+  },
+  "racing-colombes-92": {
+    "name": "라킹그 콜롬베스 92",
+    "shortName": "라킹그 콜롬베스 92"
+  },
+  "racing-ferrol": {
+    "name": "라싱그 페롤",
+    "shortName": "라싱그 페롤"
+  },
+  "radcliffe": {
+    "name": "라드클리페",
+    "shortName": "라드클리페"
+  },
+  "raismes": {
+    "name": "라이스메스",
+    "shortName": "라이스메스"
+  },
+  "rako-w-cze-stochowa": {
+    "name": "라쿠프 쳉스토호바",
+    "shortName": "라쿠프"
+  },
+  "ramsbottom-united": {
+    "name": "람스보톰 유나이티드",
+    "shortName": "람스보톰 유나이티드"
+  },
+  "ramsgate": {
+    "name": "람스가테",
+    "shortName": "람스가테"
+  },
+  "raon-letape": {
+    "name": "라온 르'에타페",
+    "shortName": "라온 르'에타페"
+  },
+  "rayners-lane": {
+    "name": "라이네르스 라네",
+    "shortName": "라이네르스 라네"
+  },
+  "raynes-park-vale": {
+    "name": "라이네스 파르크 발레",
+    "shortName": "라이네스 파르크 발레"
+  },
+  "rc-calais": {
+    "name": "RC 칼라이스",
+    "shortName": "칼라이스"
+  },
+  "rc-saint-joseph": {
+    "name": "RC 생 요세프",
+    "shortName": "생 요세프"
+  },
+  "reading": {
+    "name": "레아딩그",
+    "shortName": "레아딩그"
+  },
+  "reading-city": {
+    "name": "레아딩그 시티",
+    "shortName": "레아딩그 시티"
+  },
+  "real-a-vila": {
+    "name": "레알 아빌라",
+    "shortName": "레알 아빌라"
+  },
+  "real-avile-s": {
+    "name": "레알 아빌레스",
+    "shortName": "레알 아빌레스"
+  },
+  "real-bedford": {
+    "name": "레알 베드포르드",
+    "shortName": "레알 베드포르드"
+  },
+  "real-jae-n": {
+    "name": "레알 하엔",
+    "shortName": "레알 하엔"
+  },
+  "real-madrid": {
+    "name": "레알 마드리드",
+    "shortName": "레알 마드리드"
+  },
+  "redbridge": {
+    "name": "레드브리드게",
+    "shortName": "레드브리드게"
+  },
+  "red-bull-salzburg": {
+    "name": "레드불 잘츠부르크",
+    "shortName": "잘츠부르크"
+  },
+  "redcar-athletic": {
+    "name": "레드카르 애슬레틱",
+    "shortName": "레드카르 애슬레틱"
+  },
+  "redditch-united": {
+    "name": "레디트크 유나이티드",
+    "shortName": "레디트크 유나이티드"
+  },
+  "redhill": {
+    "name": "레드힐",
+    "shortName": "레드힐"
+  },
+  "red-star-fc-93": {
+    "name": "레드 스타르 FC 93",
+    "shortName": "레드 스타르 FC 93"
+  },
+  "reggiana": {
+    "name": "레자나",
+    "shortName": "레자나"
+  },
+  "reims": {
+    "name": "레임스",
+    "shortName": "레임스"
+  },
+  "reims-sainte-anne": {
+    "name": "레임스 사인테-안네",
+    "shortName": "레임스 사인테-안네"
+  },
+  "revel": {
+    "name": "레벨",
+    "shortName": "레벨"
+  },
+  "risborough-rangers": {
+    "name": "리스보로 레인저스",
+    "shortName": "리스보로 레인저스"
+  },
+  "roannais-foot": {
+    "name": "로안나이스 포오트",
+    "shortName": "로안나이스 포오트"
+  },
+  "rochdale": {
+    "name": "로크달레",
+    "shortName": "로크달레"
+  },
+  "roche-saint-genest": {
+    "name": "로케 사인트-게네스트",
+    "shortName": "로케 사인트-게네스트"
+  },
+  "rodez": {
+    "name": "로데즈",
+    "shortName": "로데즈"
+  },
+  "roffey": {
+    "name": "로페이",
+    "shortName": "로페이"
+  },
+  "roman-glass-st-george": {
+    "name": "로만 글라스 세인트 게오르게",
+    "shortName": "로만 글라스 세인트 게오르게"
+  },
+  "romford": {
+    "name": "롬포르드",
+    "shortName": "롬포르드"
+  },
+  "romorantin": {
+    "name": "로모란틴",
+    "shortName": "로모란틴"
+  },
+  "romulus": {
+    "name": "로물루스",
+    "shortName": "로물루스"
+  },
+  "rosador": {
+    "name": "로사도르",
+    "shortName": "로사도르"
+  },
+  "rossington-main": {
+    "name": "로싱그톤 마인",
+    "shortName": "로싱그톤 마인"
+  },
+  "rostocker-fc": {
+    "name": "로스토커 FC",
+    "shortName": "로스토커"
+  },
+  "rotherham": {
+    "name": "로테르함",
+    "shortName": "로테르함"
+  },
+  "rotlet-molinar": {
+    "name": "로틀레트 몰리나르",
+    "shortName": "로틀레트 몰리나르"
+  },
+  "rot-wei-essen": {
+    "name": "로트-바이스 에센",
+    "shortName": "로트-바이스 에센"
+  },
+  "rot-weiss-essen": {
+    "name": "로트-바이스 에센",
+    "shortName": "로트-바이스 에센"
+  },
+  "roubaix": {
+    "name": "로우바익스",
+    "shortName": "로우바익스"
+  },
+  "rouen": {
+    "name": "로벤",
+    "shortName": "로벤"
+  },
+  "royal-wootton": {
+    "name": "로열 우턴",
+    "shortName": "로열 우턴"
+  },
+  "royston-town": {
+    "name": "로이스톤 타운",
+    "shortName": "로이스톤 타운"
+  },
+  "rubi": {
+    "name": "루비",
+    "shortName": "루비"
+  },
+  "ruffiac-malestroit": {
+    "name": "루피아크 말레스트로이트",
+    "shortName": "루피아크 말레스트로이트"
+  },
+  "rugby-borough": {
+    "name": "루그비 보로",
+    "shortName": "루그비 보로"
+  },
+  "rugby-town": {
+    "name": "루그비 타운",
+    "shortName": "루그비 타운"
+  },
+  "rumilly-vallie-res": {
+    "name": "루밀리 발리에레스",
+    "shortName": "루밀리 발리에레스"
+  },
+  "runcorn-linnets": {
+    "name": "룽코른 린네트스",
+    "shortName": "룽코른 린네트스"
+  },
+  "rushall-olympic": {
+    "name": "루스할 올림피크",
+    "shortName": "루스할 올림피크"
+  },
+  "rusthall": {
+    "name": "루스탈",
+    "shortName": "루스탈"
+  },
+  "rylands": {
+    "name": "릴란드스",
+    "shortName": "릴란드스"
+  },
+  "sable": {
+    "name": "사블레",
+    "shortName": "사블레"
+  },
+  "saffron-walden-town": {
+    "name": "사프론 발덴 타운",
+    "shortName": "사프론 발덴 타운"
+  },
+  "saint-brieuc": {
+    "name": "사인트-브리에우크",
+    "shortName": "사인트-브리에우크"
+  },
+  "saint-colomban-locmine": {
+    "name": "사인트-콜롬반 로크미네",
+    "shortName": "사인트-콜롬반 로크미네"
+  },
+  "saint-cyr-collonges": {
+    "name": "사인트-키르 콜롱게스",
+    "shortName": "사인트-키르 콜롱게스"
+  },
+  "saint-denis": {
+    "name": "사인트-데니스",
+    "shortName": "사인트-데니스"
+  },
+  "saint-lo-manche": {
+    "name": "사인트-을로 망케",
+    "shortName": "사인트-을로 망케"
+  },
+  "saint-malo": {
+    "name": "사인트-말로",
+    "shortName": "사인트-말로"
+  },
+  "saint-meziery": {
+    "name": "사인트-메지에리",
+    "shortName": "사인트-메지에리"
+  },
+  "saint-michel-91": {
+    "name": "사인트-미켈 91",
+    "shortName": "사인트-미켈 91"
+  },
+  "saint-omer": {
+    "name": "사인트-오메르",
+    "shortName": "사인트-오메르"
+  },
+  "saint-pierre-milizac": {
+    "name": "사인트-피에레 밀리자크",
+    "shortName": "사인트-피에레 밀리자크"
+  },
+  "saint-pierroise": {
+    "name": "사인트-피에로이세",
+    "shortName": "사인트-피에로이세"
+  },
+  "saint-priest": {
+    "name": "사인트-프리에스트",
+    "shortName": "사인트-프리에스트"
+  },
+  "saint-renan": {
+    "name": "사인트-레난",
+    "shortName": "사인트-레난"
+  },
+  "salamanca-uds": {
+    "name": "살라망카 UDS",
+    "shortName": "살라망카 UDS"
+  },
+  "salernitana": {
+    "name": "살레르니타나",
+    "shortName": "살레르니타나"
+  },
+  "salford-city": {
+    "name": "살포르드 시티",
+    "shortName": "살포르드 시티"
+  },
+  "salisbury": {
+    "name": "살리스베리",
+    "shortName": "살리스베리"
+  },
+  "saltash-united": {
+    "name": "살타스흐 유나이티드",
+    "shortName": "살타스흐 유나이티드"
+  },
+  "saltdean-united": {
+    "name": "살트데안 유나이티드",
+    "shortName": "살트데안 유나이티드"
+  },
+  "samaritaine": {
+    "name": "사마리타이네",
+    "shortName": "사마리타이네"
+  },
+  "sa-me-rignac": {
+    "name": "SA 메리그나크",
+    "shortName": "SA 메리그나크"
+  },
+  "sandhurst-town": {
+    "name": "산드후르스트 타운",
+    "shortName": "산드후르스트 타운"
+  },
+  "sanluquen-o": {
+    "name": "산루케뇨",
+    "shortName": "산루케뇨"
+  },
+  "san-roque-lepe": {
+    "name": "산 로케 레페",
+    "shortName": "산 로케 레페"
+  },
+  "sant-andreu": {
+    "name": "산트 안드레우",
+    "shortName": "산트 안드레우"
+  },
+  "san-tirso": {
+    "name": "산 티르소",
+    "shortName": "산 티르소"
+  },
+  "santurtzi": {
+    "name": "산투르트시",
+    "shortName": "산투르트시"
+  },
+  "sarreguemines": {
+    "name": "사레궤미네스",
+    "shortName": "사레궤미네스"
+  },
+  "sarre-union": {
+    "name": "사레 우니온",
+    "shortName": "사레 우니온"
+  },
+  "saumur": {
+    "name": "사우무르",
+    "shortName": "사우무르"
+  },
+  "sauveteurs-brivois": {
+    "name": "사우베테우르스 브리보이스",
+    "shortName": "사우베테우르스 브리보이스"
+  },
+  "sauzal": {
+    "name": "사우살",
+    "shortName": "사우살"
+  },
+  "sawbridgeworth-town": {
+    "name": "사브브리드게보르트 타운",
+    "shortName": "사브브리드게보르트 타운"
+  },
+  "scarborough-athletic": {
+    "name": "스카르보로 애슬레틱",
+    "shortName": "스카르보로 애슬레틱"
+  },
+  "sc-freiburg": {
+    "name": "SC 프라이부르크",
+    "shortName": "프라이부르크"
+  },
+  "schott-mainz": {
+    "name": "쇼트 마인츠",
+    "shortName": "쇼트 마인츠"
+  },
+  "schweighouse-s-moder": {
+    "name": "스크베이그호우세 스 모데르",
+    "shortName": "스크베이그호우세 스 모데르"
+  },
+  "sc-paderborn-07": {
+    "name": "SC 파데르보른 07",
+    "shortName": "파데르보른 07"
+  },
+  "scunthorpe": {
+    "name": "스쿤토르페",
+    "shortName": "스쿤토르페"
+  },
+  "seaham-red-star": {
+    "name": "세아함 레드 스타르",
+    "shortName": "세아함 레드 스타르"
+  },
+  "selaya": {
+    "name": "셀라야",
+    "shortName": "셀라야"
+  },
+  "serquigny-nassandres": {
+    "name": "세르퀴그니 나산드레스",
+    "shortName": "세르퀴그니 나산드레스"
+  },
+  "sestao-river": {
+    "name": "세스타오 리베르",
+    "shortName": "세스타오 리베르"
+  },
+  "sevenoaks-town": {
+    "name": "세베노악스 타운",
+    "shortName": "세베노악스 타운"
+  },
+  "seyssins": {
+    "name": "세이신스",
+    "shortName": "세이신스"
+  },
+  "shaftesbury-town": {
+    "name": "스하프테스베리 타운",
+    "shortName": "스하프테스베리 타운"
+  },
+  "sheerwater": {
+    "name": "스헤에르바테르",
+    "shortName": "스헤에르바테르"
+  },
+  "sheffield": {
+    "name": "스헤피엘드",
+    "shortName": "스헤피엘드"
+  },
+  "sheffield-united-england": {
+    "name": "스헤피엘드 유나이티드",
+    "shortName": "스헤피엘드 유나이티드"
+  },
+  "sheffield-wednesday": {
+    "name": "스헤피엘드 베드네스다이",
+    "shortName": "스헤피엘드 베드네스다이"
+  },
+  "shefford-town-and-campton": {
+    "name": "스헤포르드 타운 앤드 캄프톤",
+    "shortName": "스헤포르드 타운 앤드 캄프톤"
+  },
+  "sheppey-united": {
+    "name": "스헤페이 유나이티드",
+    "shortName": "스헤페이 유나이티드"
+  },
+  "shepshed-dynamo": {
+    "name": "스헵스헤드 디나모",
+    "shortName": "스헵스헤드 디나모"
+  },
+  "shepton-mallet": {
+    "name": "스헵톤 말레트",
+    "shortName": "스헵톤 말레트"
+  },
+  "sherborne-town": {
+    "name": "스헤르보르네 타운",
+    "shortName": "스헤르보르네 타운"
+  },
+  "sheringham": {
+    "name": "스헤링그함",
+    "shortName": "스헤링그함"
+  },
+  "sherwood-colliery": {
+    "name": "스헤르보오드 콜리에리",
+    "shortName": "스헤르보오드 콜리에리"
+  },
+  "shifnal-town-fc": {
+    "name": "스히프날 타운 FC",
+    "shortName": "스히프날 타운"
+  },
+  "shildon-afc": {
+    "name": "스힐돈 AFC",
+    "shortName": "스힐돈"
+  },
+  "shirebrook-town": {
+    "name": "스히레브로오크 타운",
+    "shortName": "스히레브로오크 타운"
+  },
+  "sholing": {
+    "name": "스홀링그",
+    "shortName": "스홀링그"
+  },
+  "shoreham": {
+    "name": "스호레함",
+    "shortName": "스호레함"
+  },
+  "shrewsbury": {
+    "name": "슈루즈버리",
+    "shortName": "슈루즈버리"
+  },
+  "sileby-rangers": {
+    "name": "실레비 레인저스",
+    "shortName": "실레비 레인저스"
+  },
+  "silsden": {
+    "name": "실스덴",
+    "shortName": "실스덴"
+  },
+  "sittingbourne": {
+    "name": "시팅그보우르네",
+    "shortName": "시팅그보우르네"
+  },
+  "skegness-town": {
+    "name": "스케그네스 타운",
+    "shortName": "스케그네스 타운"
+  },
+  "skelmersdale-united": {
+    "name": "스켈메르스달레 유나이티드",
+    "shortName": "스켈메르스달레 유나이티드"
+  },
+  "s-k-slovan-bratislava-slovakia": {
+    "name": "SK 슬로반 브라티슬라바",
+    "shortName": "슬로반 브라티슬라바"
+  },
+  "sk-sturm-graz-austria": {
+    "name": "SK 슈투름 그라츠",
+    "shortName": "슈투름 그라츠"
+  },
+  "sleaford-town": {
+    "name": "슬레아포르드 타운",
+    "shortName": "슬레아포르드 타운"
+  },
+  "slimbridge": {
+    "name": "슬림브리드게",
+    "shortName": "슬림브리드게"
+  },
+  "slough-town": {
+    "name": "슬로프 타운",
+    "shortName": "슬로프 타운"
+  },
+  "snodland-town": {
+    "name": "스노들란드 타운",
+    "shortName": "스노들란드 타운"
+  },
+  "sochaux": {
+    "name": "소카욱스",
+    "shortName": "소카욱스"
+  },
+  "soham-town-rangers": {
+    "name": "소함 타운 레인저스",
+    "shortName": "소함 타운 레인저스"
+  },
+  "solihull-moors": {
+    "name": "솔리훌 모오르스",
+    "shortName": "솔리훌 모오르스"
+  },
+  "sonseca": {
+    "name": "손세카",
+    "shortName": "손세카"
+  },
+  "southall": {
+    "name": "소우탈",
+    "shortName": "소우탈"
+  },
+  "southend": {
+    "name": "소우텐드",
+    "shortName": "소우텐드"
+  },
+  "south-liverpool": {
+    "name": "소우트 리베르포올",
+    "shortName": "소우트 리베르포올"
+  },
+  "south-park": {
+    "name": "소우트 파르크",
+    "shortName": "소우트 파르크"
+  },
+  "southport": {
+    "name": "소우트포르트",
+    "shortName": "소우트포르트"
+  },
+  "south-shields": {
+    "name": "소우트 스히엘드스",
+    "shortName": "소우트 스히엘드스"
+  },
+  "spalding-united": {
+    "name": "스팔딩그 유나이티드",
+    "shortName": "스팔딩그 유나이티드"
+  },
+  "spelthorne-sports": {
+    "name": "스펠토르네 스포르트스",
+    "shortName": "스펠토르네 스포르트스"
+  },
+  "spennymoor-town": {
+    "name": "스펜니모오르 타운",
+    "shortName": "스펜니모오르 타운"
+  },
+  "spezia": {
+    "name": "스페치아",
+    "shortName": "스페치아"
+  },
+  "sportfreunde-lotte": {
+    "name": "슈포르트프로인데 로테",
+    "shortName": "슈포르트프로인데 로테"
+  },
+  "sporting-bengal-united": {
+    "name": "스포르팅 벵갈 유나이티드",
+    "shortName": "스포르팅 벵갈 유나이티드"
+  },
+  "sporting-club-inkberrow": {
+    "name": "스포르팅 클럽 잉크베로브",
+    "shortName": "스포르팅 클럽 잉크베로브"
+  },
+  "sporting-khalsa": {
+    "name": "스포르팅 칼사",
+    "shortName": "스포르팅 칼사"
+  },
+  "sporting-maho-n": {
+    "name": "스포르팅 마온",
+    "shortName": "스포르팅 마온"
+  },
+  "spvgg-greuther-furth": {
+    "name": "스프프그 그로이터 푸르트",
+    "shortName": "스프프그 그로이터 푸르트"
+  },
+  "spvgg-unterhaching": {
+    "name": "스프프그 운테르하힝",
+    "shortName": "스프프그 운테르하힝"
+  },
+  "squadra-valincu-arr": {
+    "name": "스콰드라 발링쿠 ARR",
+    "shortName": "스콰드라 발링쿠 ARR"
+  },
+  "squires-gate": {
+    "name": "스퀴레스 가테",
+    "shortName": "스퀴레스 가테"
+  },
+  "ss-reyes": {
+    "name": "SS 레예스",
+    "shortName": "SS 레예스"
+  },
+  "ssv-jahn-regensburg": {
+    "name": "SSV 얀 레겐스부르크",
+    "shortName": "SSV 얀 레겐스부르크"
+  },
+  "ssv-ulm-1846": {
+    "name": "SSV 울름 1846",
+    "shortName": "SSV 울름 1846"
+  },
+  "stade-beaucairois": {
+    "name": "스타데 베아우카이로이스",
+    "shortName": "스타데 베아우카이로이스"
+  },
+  "stade-be-thunois": {
+    "name": "스타데 베투노이스",
+    "shortName": "스타데 베투노이스"
+  },
+  "stade-briochin": {
+    "name": "스타데 브리오킨",
+    "shortName": "스타데 브리오킨"
+  },
+  "stade-mayennais": {
+    "name": "스타데 마이엔나이스",
+    "shortName": "스타데 마이엔나이스"
+  },
+  "stade-plabennec": {
+    "name": "스타데 플라벤네크",
+    "shortName": "스타데 플라벤네크"
+  },
+  "stade-pontivy": {
+    "name": "스타데 폰티비",
+    "shortName": "스타데 폰티비"
+  },
+  "stafford-rangers": {
+    "name": "스타포르드 레인저스",
+    "shortName": "스타포르드 레인저스"
+  },
+  "st-albans-city": {
+    "name": "세인트 알반스 시티",
+    "shortName": "세인트 알반스 시티"
+  },
+  "stalybridge-celtic": {
+    "name": "스탈리브리드게 켈티크",
+    "shortName": "스탈리브리드게 켈티크"
+  },
+  "stamford": {
+    "name": "스탐포르드",
+    "shortName": "스탐포르드"
+  },
+  "stansfeld": {
+    "name": "스탄스펠드",
+    "shortName": "스탄스펠드"
+  },
+  "stansted": {
+    "name": "스탄스테드",
+    "shortName": "스탄스테드"
+  },
+  "stanway-rovers": {
+    "name": "스탄바이 로버스",
+    "shortName": "스탄바이 로버스"
+  },
+  "st-aubin-gue-rande": {
+    "name": "스트-아우빈 궤란데",
+    "shortName": "스트-아우빈 궤란데"
+  },
+  "st-austell": {
+    "name": "세인트 아우스텔",
+    "shortName": "세인트 아우스텔"
+  },
+  "st-blazey": {
+    "name": "세인트 블라제이",
+    "shortName": "세인트 블라제이"
+  },
+  "stevenage": {
+    "name": "스테베나게",
+    "shortName": "스테베나게"
+  },
+  "steyning-town": {
+    "name": "스테이닝그 타운",
+    "shortName": "스테이닝그 타운"
+  },
+  "st-helens": {
+    "name": "세인트 헬렌스",
+    "shortName": "세인트 헬렌스"
+  },
+  "st-ives-town": {
+    "name": "세인트 이베스 타운",
+    "shortName": "세인트 이베스 타운"
+  },
+  "st-just-st-rambert": {
+    "name": "스트-이우스트 스트-람베르트",
+    "shortName": "스트-이우스트 스트-람베르트"
+  },
+  "st-neots-town": {
+    "name": "세인트 네오트스 타운",
+    "shortName": "세인트 네오트스 타운"
+  },
+  "stockport-county": {
+    "name": "스톡포르트 카운티",
+    "shortName": "스톡포르트 카운티"
+  },
+  "stockport-town": {
+    "name": "스톡포르트 타운",
+    "shortName": "스톡포르트 타운"
+  },
+  "stocksbridge-park-steels": {
+    "name": "스톡스브리드게 파르크 스테엘스",
+    "shortName": "스톡스브리드게 파르크 스테엘스"
+  },
+  "stockton-town": {
+    "name": "스톡톤 타운",
+    "shortName": "스톡톤 타운"
+  },
+  "stone-old-alleynians": {
+    "name": "스토네 올드 알레이니안스",
+    "shortName": "스토네 올드 알레이니안스"
+  },
+  "stotfold": {
+    "name": "스토트폴드",
+    "shortName": "스토트폴드"
+  },
+  "stourbridge": {
+    "name": "스토우르브리드게",
+    "shortName": "스토우르브리드게"
+  },
+  "stourport-swifts": {
+    "name": "스토우르포르트 스비프트스",
+    "shortName": "스토우르포르트 스비프트스"
+  },
+  "stowmarket-town": {
+    "name": "스토브마르케트 타운",
+    "shortName": "스토브마르케트 타운"
+  },
+  "st-panteleimon": {
+    "name": "세인트 판텔레이몬",
+    "shortName": "세인트 판텔레이몬"
+  },
+  "st-philbert-gd-lieu": {
+    "name": "스트-필베르트 그드 리에우",
+    "shortName": "스트-필베르트 그드 리에우"
+  },
+  "st-philbert-re-orthe-ja": {
+    "name": "스트-필베르트 레오르테 JA",
+    "shortName": "스트-필베르트 레오르테 JA"
+  },
+  "strasbourg": {
+    "name": "스트라스부르",
+    "shortName": "스트라스부르"
+  },
+  "stratford-town": {
+    "name": "스트라트포르드 타운",
+    "shortName": "스트라트포르드 타운"
+  },
+  "street": {
+    "name": "스트리트",
+    "shortName": "스트리트"
+  },
+  "struga": {
+    "name": "스트루가",
+    "shortName": "스트루가"
+  },
+  "studley": {
+    "name": "스투들레이",
+    "shortName": "스투들레이"
+  },
+  "sudtirol": {
+    "name": "수드티롤",
+    "shortName": "수드티롤"
+  },
+  "sunderland-rca": {
+    "name": "순데를란드 RCA",
+    "shortName": "순데를란드 RCA"
+  },
+  "sutton-athletic": {
+    "name": "수톤 애슬레틱",
+    "shortName": "수톤 애슬레틱"
+  },
+  "sutton-coldfield-town": {
+    "name": "수톤 콜드피엘드 타운",
+    "shortName": "수톤 콜드피엘드 타운"
+  },
+  "sutton-common-rovers": {
+    "name": "수톤 콤몬 로버스",
+    "shortName": "수톤 콤몬 로버스"
+  },
+  "sutton-utd": {
+    "name": "수톤 우트드",
+    "shortName": "수톤 우트드"
+  },
+  "sv-darmstadt-98-germany": {
+    "name": "SV 다름슈타트 98",
+    "shortName": "다름슈타트 98"
+  },
+  "sv-elversberg": {
+    "name": "SV 엘페르스베르크",
+    "shortName": "엘페르스베르크"
+  },
+  "sv-meppen": {
+    "name": "SV 메펜",
+    "shortName": "메펜"
+  },
+  "sv-sandhausen": {
+    "name": "SV 잔트하우젠",
+    "shortName": "잔트하우젠"
+  },
+  "sv-wehen": {
+    "name": "SV 벤",
+    "shortName": "벤"
+  },
+  "swansea": {
+    "name": "스반세아",
+    "shortName": "스반세아"
+  },
+  "swift-hesperange": {
+    "name": "스위프트 에스페랑주",
+    "shortName": "스위프트"
+  },
+  "swindon-supermarine": {
+    "name": "스빈돈 수페르마리네",
+    "shortName": "스빈돈 수페르마리네"
+  },
+  "swindon-town": {
+    "name": "스빈돈 타운",
+    "shortName": "스빈돈 타운"
+  },
+  "tadcaster-albion": {
+    "name": "타드카스테르 앨비언",
+    "shortName": "타드카스테르 앨비언"
+  },
+  "tadley-calleva": {
+    "name": "타들레이 칼레바",
+    "shortName": "타들레이 칼레바"
+  },
+  "takeley": {
+    "name": "타켈레이",
+    "shortName": "타켈레이"
+  },
+  "tamworth": {
+    "name": "탐보르트",
+    "shortName": "탐보르트"
+  },
+  "tarazona": {
+    "name": "타라소나",
+    "shortName": "타라소나"
+  },
+  "tardienta": {
+    "name": "타르디엔타",
+    "shortName": "타르디엔타"
+  },
+  "ta-rennes": {
+    "name": "TA 렌네스",
+    "shortName": "TA 렌네스"
+  },
+  "taunton-town": {
+    "name": "타운톤 타운",
+    "shortName": "타운톤 타운"
+  },
+  "tavistock": {
+    "name": "타비스토크",
+    "shortName": "타비스토크"
+  },
+  "ternana": {
+    "name": "테르나나",
+    "shortName": "테르나나"
+  },
+  "terrassa": {
+    "name": "테라사",
+    "shortName": "테라사"
+  },
+  "teruel": {
+    "name": "테루엘",
+    "shortName": "테루엘"
+  },
+  "teutonia-ottensen": {
+    "name": "토이토니아 오텐젠",
+    "shortName": "토이토니아 오텐젠"
+  },
+  "thackley": {
+    "name": "타클레이",
+    "shortName": "타클레이"
+  },
+  "thame-united": {
+    "name": "타메 유나이티드",
+    "shortName": "타메 유나이티드"
+  },
+  "thaon": {
+    "name": "타온",
+    "shortName": "타온"
+  },
+  "thatcham-town": {
+    "name": "타트캄 타운",
+    "shortName": "타트캄 타운"
+  },
+  "thetford-town": {
+    "name": "테트포르드 타운",
+    "shortName": "테트포르드 타운"
+  },
+  "thionville-lusitanos": {
+    "name": "티온빌레 루시타노스",
+    "shortName": "티온빌레 루시타노스"
+  },
+  "thonon-e-vian": {
+    "name": "토논 에비안",
+    "shortName": "토논 에비안"
+  },
+  "thornbury-town": {
+    "name": "토른베리 타운",
+    "shortName": "토른베리 타운"
+  },
+  "thouars": {
+    "name": "토바르스",
+    "shortName": "토바르스"
+  },
+  "three-bridges": {
+    "name": "트레에 브리드게스",
+    "shortName": "트레에 브리드게스"
+  },
+  "tilbury": {
+    "name": "틸베리",
+    "shortName": "틸베리"
+  },
+  "tiverton-town": {
+    "name": "티베르톤 타운",
+    "shortName": "티베르톤 타운"
+  },
+  "tividale": {
+    "name": "티비달레",
+    "shortName": "티비달레"
+  },
+  "tonbridge-angels": {
+    "name": "톤브리드게 앙겔스",
+    "shortName": "톤브리드게 앙겔스"
+  },
+  "tooting-and-mitcham-united": {
+    "name": "토오팅그 앤드 미트캄 유나이티드",
+    "shortName": "토오팅그 앤드 미트캄 유나이티드"
+  },
+  "torcy": {
+    "name": "토르키",
+    "shortName": "토르키"
+  },
+  "torpoint-athletic": {
+    "name": "토르포인트 애슬레틱",
+    "shortName": "토르포인트 애슬레틱"
+  },
+  "torquay": {
+    "name": "토르콰이",
+    "shortName": "토르콰이"
+  },
+  "torres": {
+    "name": "토레스",
+    "shortName": "토레스"
+  },
+  "toulouse-me-tropole": {
+    "name": "토울로우세 메트로폴레",
+    "shortName": "토울로우세 메트로폴레"
+  },
+  "tours": {
+    "name": "토우르스",
+    "shortName": "토우르스"
+  },
+  "tow-law-town": {
+    "name": "토브 라브 타운",
+    "shortName": "토브 라브 타운"
+  },
+  "trafford": {
+    "name": "트라포르드",
+    "shortName": "트라포르드"
+  },
+  "tranmere": {
+    "name": "트란메레",
+    "shortName": "트란메레"
+  },
+  "tre-lissac": {
+    "name": "트렐리사크",
+    "shortName": "트렐리사크"
+  },
+  "tre-penne": {
+    "name": "트레 펜네",
+    "shortName": "트레 펜네"
+  },
+  "tring-athletic": {
+    "name": "트링그 애슬레틱",
+    "shortName": "트링그 애슬레틱"
+  },
+  "truro-city": {
+    "name": "트루로 시티",
+    "shortName": "트루로 시티"
+  },
+  "tudelano": {
+    "name": "투델라노",
+    "shortName": "투델라노"
+  },
+  "tuffley-rovers": {
+    "name": "투플레이 로버스",
+    "shortName": "투플레이 로버스"
+  },
+  "tunbridge-wells": {
+    "name": "툰브리드게 벨스",
+    "shortName": "툰브리드게 벨스"
+  },
+  "ture-gano": {
+    "name": "투레가노",
+    "shortName": "투레가노"
+  },
+  "tus-koblenz": {
+    "name": "투스 코블렌츠",
+    "shortName": "투스 코블렌츠"
+  },
+  "tus-rw-koblenz": {
+    "name": "투스 RW 코블렌츠",
+    "shortName": "투스 RW 코블렌츠"
+  },
+  "ucam-murcia": {
+    "name": "우캄 무르시아",
+    "shortName": "우캄 무르시아"
+  },
+  "uckfield-town": {
+    "name": "욱피엘드 타운",
+    "shortName": "욱피엘드 타운"
+  },
+  "ud-logron-e-s": {
+    "name": "UD 로그로녜스",
+    "shortName": "로그로녜스"
+  },
+  "ud-san-pedro": {
+    "name": "UD 산 페드로",
+    "shortName": "산 페드로"
+  },
+  "union-cosnoise": {
+    "name": "우니온 코스노이세",
+    "shortName": "우니온 코스노이세"
+  },
+  "unionistas-de-salamanca": {
+    "name": "우니오니스타스 데 살라망카",
+    "shortName": "우니오니스타스 데 살라망카"
+  },
+  "union-saint-jean": {
+    "name": "우니온 사인트-이에안",
+    "shortName": "우니온 사인트-이에안"
+  },
+  "unio-n-zona-norte": {
+    "name": "우니온 소나 노르테",
+    "shortName": "우니온 소나 노르테"
+  },
+  "united-of-manchester": {
+    "name": "유나이티드 오프 망케스테르",
+    "shortName": "유나이티드 오프 망케스테르"
+  },
+  "united-services": {
+    "name": "유나이티드 세르비케스",
+    "shortName": "유나이티드 세르비케스"
+  },
+  "ursaria": {
+    "name": "우르사리아",
+    "shortName": "우르사리아"
+  },
+  "us-laon": {
+    "name": "US 라온",
+    "shortName": "라온"
+  },
+  "ussa-vertou": {
+    "name": "USSA 베르토우",
+    "shortName": "USSA 베르토우"
+  },
+  "utebo": {
+    "name": "우테보",
+    "shortName": "우테보"
+  },
+  "uttoxeter-town": {
+    "name": "우톡세테르 타운",
+    "shortName": "우톡세테르 타운"
+  },
+  "uxbridge": {
+    "name": "욱스브리드게",
+    "shortName": "욱스브리드게"
+  },
+  "valdahon-vercel": {
+    "name": "발다혼 베르켈",
+    "shortName": "발다혼 베르켈"
+  },
+  "valence-fc": {
+    "name": "발렝케 FC",
+    "shortName": "발렝케"
+  },
+  "valenciennes": {
+    "name": "발렝키엔네스",
+    "shortName": "발렝키엔네스"
+  },
+  "valladolid": {
+    "name": "바야돌리드",
+    "shortName": "바야돌리드"
+  },
+  "valle-egu-e-s": {
+    "name": "바예 에궤스",
+    "shortName": "바예 에궤스"
+  },
+  "valmiera-bss": {
+    "name": "발미에라/BSS",
+    "shortName": "발미에라"
+  },
+  "vannes": {
+    "name": "반네스",
+    "shortName": "반네스"
+  },
+  "varea": {
+    "name": "바레아",
+    "shortName": "바레아"
+  },
+  "varndeanians": {
+    "name": "바른데아니안스",
+    "shortName": "바른데아니안스"
+  },
+  "vauxhall-motors": {
+    "name": "바욱스할 모토르스",
+    "shortName": "바욱스할 모토르스"
+  },
+  "vcd-athletic": {
+    "name": "VCD 애슬레틱",
+    "shortName": "VCD 애슬레틱"
+  },
+  "velay": {
+    "name": "벨라이",
+    "shortName": "벨라이"
+  },
+  "vende-e-fontenay": {
+    "name": "벤데에 폰테나이",
+    "shortName": "벤데에 폰테나이"
+  },
+  "venezia-fc-italy": {
+    "name": "베네치아 FC",
+    "shortName": "베네치아"
+  },
+  "versailles": {
+    "name": "베르사일레스",
+    "shortName": "베르사일레스"
+  },
+  "vesoul": {
+    "name": "베소울",
+    "shortName": "베소울"
+  },
+  "vfb-lubeck": {
+    "name": "VfB 루베크",
+    "shortName": "루베크"
+  },
+  "vfl-bochum": {
+    "name": "VfL 보훔",
+    "shortName": "보훔"
+  },
+  "vfl-osnabruck": {
+    "name": "VfL 오스나브루크",
+    "shortName": "오스나브루크"
+  },
+  "vfr-aalen": {
+    "name": "프프르 알렌",
+    "shortName": "프프르 알렌"
+  },
+  "vic": {
+    "name": "빅",
+    "shortName": "빅"
+  },
+  "vicenza-virtus": {
+    "name": "비첸차 비르투스",
+    "shortName": "비첸차 비르투스"
+  },
+  "vierzon-fc": {
+    "name": "비에르존 FC",
+    "shortName": "비에르존"
+  },
+  "vikingur-reykjavik": {
+    "name": "비킹귀르 레이캬비크",
+    "shortName": "비킹귀르"
+  },
+  "viktoria-berlin": {
+    "name": "빅토리아 베를린",
+    "shortName": "빅토리아 베를린"
+  },
+  "villamuriel": {
+    "name": "비야무리엘",
+    "shortName": "비야무리엘"
+  },
+  "villanovense": {
+    "name": "비야노벤세",
+    "shortName": "비야노벤세"
+  },
+  "villefranche": {
+    "name": "빌레프랑케",
+    "shortName": "빌레프랑케"
+  },
+  "villejuif": {
+    "name": "빌레유이프",
+    "shortName": "빌레유이프"
+  },
+  "villenave": {
+    "name": "빌레나베",
+    "shortName": "빌레나베"
+  },
+  "villers-houlgate-cf": {
+    "name": "빌레르스 호울가테 CF",
+    "shortName": "빌레르스 호울가테"
+  },
+  "villerupt-thil": {
+    "name": "빌레룹트 틸",
+    "shortName": "빌레룹트 틸"
+  },
+  "virginia-water": {
+    "name": "비르기니아 바테르",
+    "shortName": "비르기니아 바테르"
+  },
+  "virtus": {
+    "name": "비르투스",
+    "shortName": "비르투스"
+  },
+  "virtus-entella": {
+    "name": "비르투스 엔텔라",
+    "shortName": "비르투스 엔텔라"
+  },
+  "vitre": {
+    "name": "비트레",
+    "shortName": "비트레"
+  },
+  "volvic": {
+    "name": "볼비크",
+    "shortName": "볼비크"
+  },
+  "wallingford-and-crowmarsh": {
+    "name": "발링그포르드 앤드 크로브마르스흐",
+    "shortName": "발링그포르드 앤드 크로브마르스흐"
+  },
+  "walsall": {
+    "name": "월솔",
+    "shortName": "월솔"
+  },
+  "walsall-wood": {
+    "name": "월솔 우드",
+    "shortName": "월솔 우드"
+  },
+  "walsham-le-willows": {
+    "name": "발스함 레 빌로브스",
+    "shortName": "발스함 레 빌로브스"
+  },
+  "waltham-abbey": {
+    "name": "발탐 아베이",
+    "shortName": "발탐 아베이"
+  },
+  "walthamstow": {
+    "name": "발탐스토브",
+    "shortName": "발탐스토브"
+  },
+  "walton-and-hersham": {
+    "name": "발톤 앤드 헤르스함",
+    "shortName": "발톤 앤드 헤르스함"
+  },
+  "wantage-town": {
+    "name": "반타게 타운",
+    "shortName": "반타게 타운"
+  },
+  "ware": {
+    "name": "바레",
+    "shortName": "바레"
+  },
+  "warrington-town": {
+    "name": "바링그톤 타운",
+    "shortName": "바링그톤 타운"
+  },
+  "wealdstone": {
+    "name": "베알드스토네",
+    "shortName": "베알드스토네"
+  },
+  "wellingborough-town": {
+    "name": "벨링그보로 타운",
+    "shortName": "벨링그보로 타운"
+  },
+  "wellington-afc": {
+    "name": "벨링그톤 AFC",
+    "shortName": "벨링그톤"
+  },
+  "welling-town": {
+    "name": "벨링그 타운",
+    "shortName": "벨링그 타운"
+  },
+  "welling-united": {
+    "name": "벨링그 유나이티드",
+    "shortName": "벨링그 유나이티드"
+  },
+  "wells-city": {
+    "name": "벨스 시티",
+    "shortName": "벨스 시티"
+  },
+  "welton-rovers": {
+    "name": "벨톤 로버스",
+    "shortName": "벨톤 로버스"
+  },
+  "welwyn-garden-city": {
+    "name": "벨빈 가르덴 시티",
+    "shortName": "벨빈 가르덴 시티"
+  },
+  "wembley": {
+    "name": "벰블레이",
+    "shortName": "벰블레이"
+  },
+  "wendron-united": {
+    "name": "벤드론 유나이티드",
+    "shortName": "벤드론 유나이티드"
+  },
+  "werder-bremen": {
+    "name": "베르더 브레멘",
+    "shortName": "베르더 브레멘"
+  },
+  "west-allotment-celtic": {
+    "name": "베스트 알로트멘트 켈티크",
+    "shortName": "베스트 알로트멘트 켈티크"
+  },
+  "west-auckland-town": {
+    "name": "베스트 아우클란드 타운",
+    "shortName": "베스트 아우클란드 타운"
+  },
+  "west-brom": {
+    "name": "베스트 브롬",
+    "shortName": "베스트 브롬"
+  },
+  "westbury-united": {
+    "name": "베스트베리 유나이티드",
+    "shortName": "베스트베리 유나이티드"
+  },
+  "west-didsbury-and-chorlton": {
+    "name": "베스트 디드스베리 앤드 코를톤",
+    "shortName": "베스트 디드스베리 앤드 코를톤"
+  },
+  "west-essex": {
+    "name": "베스트 에섹스",
+    "shortName": "베스트 에섹스"
+  },
+  "westfields": {
+    "name": "베스트피엘드스",
+    "shortName": "베스트피엘드스"
+  },
+  "westfield-surrey": {
+    "name": "베스트피엘드 수레이",
+    "shortName": "베스트피엘드 수레이"
+  },
+  "weston-super-mare": {
+    "name": "베스톤-수페르-마레",
+    "shortName": "베스톤-수페르-마레"
+  },
+  "weymouth": {
+    "name": "베이무트",
+    "shortName": "베이무트"
+  },
+  "whickham": {
+    "name": "비캄",
+    "shortName": "비캄"
+  },
+  "whitby-town": {
+    "name": "비트비 타운",
+    "shortName": "비트비 타운"
+  },
+  "whitchurch-alport": {
+    "name": "비트쿠르크 알포르트",
+    "shortName": "비트쿠르크 알포르트"
+  },
+  "white-ensign": {
+    "name": "비테 엔시근",
+    "shortName": "비테 엔시근"
+  },
+  "whitehawk": {
+    "name": "비테하브크",
+    "shortName": "비테하브크"
+  },
+  "whitley-bay": {
+    "name": "비틀레이 바이",
+    "shortName": "비틀레이 바이"
+  },
+  "whitstable-town": {
+    "name": "비트스타블레 타운",
+    "shortName": "비트스타블레 타운"
+  },
+  "wick": {
+    "name": "비크",
+    "shortName": "비크"
+  },
+  "widnes": {
+    "name": "비드네스",
+    "shortName": "비드네스"
+  },
+  "wigan": {
+    "name": "비간",
+    "shortName": "비간"
+  },
+  "willand-rovers": {
+    "name": "빌란드 로버스",
+    "shortName": "빌란드 로버스"
+  },
+  "wimborne-town": {
+    "name": "빔보르네 타운",
+    "shortName": "빔보르네 타운"
+  },
+  "wincanton-town": {
+    "name": "빙칸톤 타운",
+    "shortName": "빙칸톤 타운"
+  },
+  "winchester-city": {
+    "name": "빙케스테르 시티",
+    "shortName": "빙케스테르 시티"
+  },
+  "wingate-and-finchley": {
+    "name": "빙가테 앤드 핑클레이",
+    "shortName": "빙가테 앤드 핑클레이"
+  },
+  "winslow-united": {
+    "name": "빈슬로브 유나이티드",
+    "shortName": "빈슬로브 유나이티드"
+  },
+  "winterton-rangers": {
+    "name": "빈테르톤 레인저스",
+    "shortName": "빈테르톤 레인저스"
+  },
+  "wisbech-town": {
+    "name": "비스베크 타운",
+    "shortName": "비스베크 타운"
+  },
+  "witham-town": {
+    "name": "비탐 타운",
+    "shortName": "비탐 타운"
+  },
+  "witton-albion": {
+    "name": "비톤 앨비언",
+    "shortName": "비톤 앨비언"
+  },
+  "woking": {
+    "name": "보킹그",
+    "shortName": "보킹그"
+  },
+  "wokingham-and-emmbrook": {
+    "name": "보킹그함 앤드 에믐브로오크",
+    "shortName": "보킹그함 앤드 에믐브로오크"
+  },
+  "wokingham-town": {
+    "name": "보킹그함 타운",
+    "shortName": "보킹그함 타운"
+  },
+  "wolverhampton-casuals": {
+    "name": "볼베르함프톤 카수알스",
+    "shortName": "볼베르함프톤 카수알스"
+  },
+  "woodbridge-town": {
+    "name": "우드브리지 타운",
+    "shortName": "우드브리지 타운"
+  },
+  "woodford-town": {
+    "name": "우드퍼드 타운",
+    "shortName": "우드퍼드 타운"
+  },
+  "worcester-city": {
+    "name": "보르케스테르 시티",
+    "shortName": "보르케스테르 시티"
+  },
+  "worcester-raiders": {
+    "name": "보르케스테르 라이데르스",
+    "shortName": "보르케스테르 라이데르스"
+  },
+  "workington": {
+    "name": "보르킹그톤",
+    "shortName": "보르킹그톤"
+  },
+  "worksop-town": {
+    "name": "보르크소프 타운",
+    "shortName": "보르크소프 타운"
+  },
+  "wormley-rovers": {
+    "name": "보름레이 로버스",
+    "shortName": "보름레이 로버스"
+  },
+  "worthing": {
+    "name": "보르팅그",
+    "shortName": "보르팅그"
+  },
+  "wrexham": {
+    "name": "브렉스함",
+    "shortName": "브렉스함"
+  },
+  "wroxham": {
+    "name": "브록스함",
+    "shortName": "브록스함"
+  },
+  "wu-rzburger-kickers": {
+    "name": "뷔르츠부르거 키케르스",
+    "shortName": "뷔르츠부르거 키케르스"
+  },
+  "wycombe": {
+    "name": "비콤베",
+    "shortName": "비콤베"
+  },
+  "wythenshawe-amateurs": {
+    "name": "비텐스하베 아마테우르스",
+    "shortName": "비텐스하베 아마테우르스"
+  },
+  "wythenshawe-town": {
+    "name": "비텐스하베 타운",
+    "shortName": "비텐스하베 타운"
+  },
+  "yate-town": {
+    "name": "이아테 타운",
+    "shortName": "이아테 타운"
+  },
+  "yaxley": {
+    "name": "이악슬레이",
+    "shortName": "이악슬레이"
+  },
+  "yeclano": {
+    "name": "예클라노",
+    "shortName": "예클라노"
+  },
+  "yeovil-town": {
+    "name": "이에오빌 타운",
+    "shortName": "이에오빌 타운"
+  },
+  "york": {
+    "name": "요크",
+    "shortName": "요크"
+  },
+  "zamora": {
+    "name": "사모라",
+    "shortName": "사모라"
+  },
+  "zaragoza": {
+    "name": "사라고사",
+    "shortName": "사라고사"
+  },
+  "zirauki": {
+    "name": "시라우키",
+    "shortName": "시라우키"
+  },
+  "zorya-luhansk": {
+    "name": "조랴 루한스크",
+    "shortName": "조랴"
+  },
+  "zrinjski": {
+    "name": "즈린스키",
+    "shortName": "즈린스키"
+  }
+}

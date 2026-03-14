@@ -7,7 +7,7 @@ import { ClubBadge } from '@/components/ui/ClubBadge';
 import { ListSearchForm } from '@/components/ui/ListSearchForm';
 import { PaginationNav } from '@/components/ui/PaginationNav';
 import { getPaginatedClubsDb } from '@/data/server';
-import { formatNumber } from '@/lib/utils';
+import { formatNumber, getClubDisplayName } from '@/lib/utils';
 
 const PAGE_SIZE = 50;
 
@@ -127,9 +127,9 @@ export default async function ClubsPage({
                       className="flex items-center gap-2.5 text-text-primary hover:text-accent-emerald transition-colors"
                     >
                       <ClubBadge shortName={club.shortName} clubId={club.id} logo={club.logo} size="sm" />
-                      <span className="font-medium">{club.name}</span>
-                    </Link>
-                  </td>
+                       <span className="font-medium">{getClubDisplayName(club, locale)}</span>
+                     </Link>
+                   </td>
                   <td className="px-3 py-2 text-[13px] text-text-secondary">
                     {club.leagueName ?? '-'}
                   </td>

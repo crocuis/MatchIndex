@@ -1,0 +1,24 @@
+{
+  "competitionSlug": "premier-league",
+  "exportedAt": "2026-03-13T22:54:14.505Z",
+  "seasonSlug": "2015/16",
+  "targets": [
+    {
+      "competitionSeasonId": "232",
+      "contractId": "12138",
+      "playerName": "Aaron Cresswell",
+      "playerNames": [
+        "Aaron Cresswell"
+      ],
+      "playerSlug": "aaron-cresswell",
+      "sourceUrl": "https://www.transfermarkt.com/aaron-cresswell/profil/spieler/92571",
+      "teamName": "West Ham United FC",
+      "teamNames": [
+        "West Ham United FC",
+        "West Ham",
+        "west-ham-united-fc-england"
+      ],
+      "teamSlug": "west-ham-united-fc-england"
+    }
+  ]
+}

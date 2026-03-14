@@ -65,13 +65,17 @@ Options:
 `);
 }
 
-function buildCommands(profile: MatchEventProfile) {
+function buildCommands(profileName: CliOptions['profile'], profile: MatchEventProfile) {
   const limits = [String(profile.competitionLimit), String(profile.matchesPerSeasonLimit)];
 
   return [
     {
-      description: 'StatsBomb manifest 수집',
-      args: ['node', '--experimental-strip-types', 'scripts/statsbomb-ingest-manifests.mts', ...limits, '--write'],
+      description: 'API-Football 경기 라인업 동기화',
+      args: ['node', '--experimental-strip-types', 'scripts/sync-api-football-match-lineups.mts', `--profile=${profileName}`, '--write'],
+    },
+    {
+      description: 'API-Football 경기 이벤트 동기화',
+      args: ['node', '--experimental-strip-types', 'scripts/sync-api-football-match-events.mts', `--profile=${profileName}`, '--write'],
     },
     {
       description: '경기 기본 데이터 적재',
@@ -115,7 +119,7 @@ async function main() {
   }
 
   const profile = PROFILES[options.profile];
-  const commands = buildCommands(profile);
+  const commands = buildCommands(options.profile, profile);
 
   if (options.dryRun) {
     console.log(JSON.stringify({

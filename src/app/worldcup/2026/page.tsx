@@ -52,9 +52,15 @@ export default async function WorldCup2026Page() {
     ...tournament.matches.map((match) => match.id),
     ...tournament.stages.flatMap((stage) => stage.matchIds),
   ]);
-  const resolvedMatches = (await Promise.all(
-    Array.from(allMatchIds).map((id) => getMatchByIdDb(id, locale))
-  )).filter((m): m is Match => m !== undefined);
+  const tournamentMatchMap = new Map(tournament.matches.map((match) => [match.id, match]));
+  const missingMatchIds = Array.from(allMatchIds).filter((id) => !tournamentMatchMap.has(id));
+  const missingMatches = missingMatchIds.length > 0
+    ? (await Promise.all(missingMatchIds.map((id) => getMatchByIdDb(id, locale)))).filter((match): match is Match => match !== undefined)
+    : [];
+  const resolvedMatches = [
+    ...tournament.matches,
+    ...missingMatches,
+  ];
 
   const spotlightRows = await Promise.all(
       tournament.spotlights.map(async (spotlight) => ({

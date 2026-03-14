@@ -15,6 +15,10 @@ interface TeamRow {
   name: string;
   country_code: string;
   gender: 'male' | 'female' | 'mixed';
+  has_mapping: boolean;
+  contract_count: number;
+  match_count: number;
+  team_season_count: number;
 }
 
 function parseArgs(argv: string[]): CliOptions {
@@ -81,6 +85,22 @@ function hasClubToken(value: string) {
   return /\b(fc|cf|ac|afc|cfc|rc|rcd|ca|cd|ud|club)\b/i.test(value);
 }
 
+function hasAfcToken(value: string) {
+  return /\bafc\b/i.test(value);
+}
+
+function isInactiveAfcVariant(row: TeamRow, group: TeamRow[]) {
+  if (row.match_count > 0 || row.team_season_count > 0 || row.contract_count > 0) {
+    return false;
+  }
+
+  if (!hasAfcToken(row.name)) {
+    return false;
+  }
+
+  return group.some((candidate) => candidate.slug !== row.slug && !hasAfcToken(candidate.name));
+}
+
 async function main() {
   loadProjectEnv();
   const options = parseArgs(process.argv.slice(2));
@@ -97,7 +117,28 @@ async function main() {
         t.slug,
         COALESCE(tt.name, t.slug) AS name,
         c.code_alpha3 AS country_code,
-        t.gender
+        t.gender,
+        EXISTS(
+          SELECT 1
+          FROM source_entity_mapping sem
+          WHERE sem.entity_type = 'team'
+            AND sem.entity_id = t.id
+        ) AS has_mapping,
+        (
+          SELECT COUNT(*)::INT
+          FROM matches m
+          WHERE m.home_team_id = t.id OR m.away_team_id = t.id
+        ) AS match_count,
+        (
+          SELECT COUNT(*)::INT
+          FROM team_seasons ts
+          WHERE ts.team_id = t.id
+        ) AS team_season_count,
+        (
+          SELECT COUNT(*)::INT
+          FROM player_contracts pc
+          WHERE pc.team_id = t.id
+        ) AS contract_count
       FROM teams t
       JOIN countries c ON c.id = t.country_id
       LEFT JOIN team_translations tt ON tt.team_id = t.id AND tt.locale = 'en'
@@ -117,13 +158,16 @@ async function main() {
     }
 
     const conflicts = [...groups.entries()]
-      .filter(([, list]) => list.length > 1)
-      .map(([key, list]) => ({
-        key,
-        names: [...new Set(list.map((row) => row.name))],
-        slugs: list.map((row) => row.slug),
-        rows: list,
-      }))
+      .map(([key, list]) => {
+        const substantiveRows = list.filter((row) => !isInactiveAfcVariant(row, list));
+        return {
+          key,
+          names: [...new Set(substantiveRows.map((row) => row.name))],
+          slugs: substantiveRows.map((row) => row.slug),
+          rows: substantiveRows,
+        };
+      })
+      .filter((group) => group.rows.length > 1)
       .filter((group) => {
         const tokenCount = group.rows.filter((row) => hasClubToken(row.name)).length;
         return tokenCount > 0 && tokenCount < group.rows.length;

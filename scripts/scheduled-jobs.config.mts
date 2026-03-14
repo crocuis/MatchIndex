@@ -47,6 +47,40 @@ export const SCHEDULED_JOBS: ScheduledJobDefinition[] = [
     ],
   },
   {
+    id: 'api-football-fixtures-daily',
+    description: 'API-Football 5대 리그·챔스·유로파 당일 경기 정보 일일 동기화',
+    schedule: '42 3 * * *',
+    commands: [
+      {
+        args: [
+          NODE_EXECUTABLE,
+          '--experimental-strip-types',
+          'scripts/sync-api-football-fixtures.mts',
+          '--today',
+          '--timezone=Asia/Seoul',
+        ],
+        description: 'API-Football 당일 경기 정보 동기화',
+      },
+    ],
+  },
+  {
+    id: 'football-data-fixtures-daily',
+    description: 'football-data.org 5대 리그·챔스·유로파 당일 경기 일정 일일 동기화',
+    schedule: '39 3 * * *',
+    commands: [
+      {
+        args: [
+          NODE_EXECUTABLE,
+          '--experimental-strip-types',
+          'scripts/sync-football-data-fixtures.mts',
+          '--today',
+          '--timezone=Asia/Seoul',
+        ],
+        description: 'football-data.org 당일 경기 일정 동기화',
+      },
+    ],
+  },
+  {
     id: 'match-events-hourly',
     description: '경기 이벤트 시간 단위 증분 수집',
     schedule: '8 * * * *',

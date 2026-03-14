@@ -1,0 +1,35 @@
+{
+  "provider": "transfermarkt",
+  "competition": "premier-league",
+  "season": "2015/16",
+  "fetchedAt": "2026-03-13T22:54:15.901804+00:00",
+  "rows": [
+    {
+      "playerSlug": "aaron-cresswell",
+      "playerName": "Aaron Cresswell",
+      "age": 36,
+      "dateOfBirth": "1989-12-15",
+      "heightCm": 170,
+      "preferredFoot": null,
+      "contractStartDate": "2025-07-10",
+      "contractEndDate": "2026-06-30",
+      "marketValue": 450000,
+      "nationalities": [
+        "England"
+      ],
+      "photoUrl": "https://img.a.transfermarkt.technology/portrait/big/92571-1700670925.jpg?lm=1",
+      "position": "Left-Back",
+      "sourceUrl": "https://www.transfermarkt.com/aaron-cresswell/profil/spieler/92571",
+      "teamName": "West Ham United FC",
+      "raw": {
+        "dateOfBirthText": "15/12/1989 (36)",
+        "description": "Aaron Cresswell, 36, from England \u27a4 Stoke City, since 2025 \u27a4 Left-Back \u27a4 Market value: \u20ac450k \u27a4 * 15/12/1989 in Liverpool, England",
+        "footText": null,
+        "heightText": "1,70 m",
+        "keywords": "Aaron Cresswell,Stoke City,Championship,England",
+        "joinedText": "10/07/2025",
+        "contractExpiresText": "30/06/2026"
+      }
+    }
+  ]
+}

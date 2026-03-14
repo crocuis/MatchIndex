@@ -19,8 +19,8 @@ async function main() {
 
     try {
       await sql`
-        INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary)
-        VALUES ('team', (SELECT id FROM teams WHERE slug = ${currentSlug}), ${currentSlug}, NULL, 'historical', FALSE)
+        INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+        VALUES ('team', (SELECT id FROM teams WHERE slug = ${currentSlug}), ${currentSlug}, NULL, 'historical', FALSE, 'approved', 'historical_rule', 'fix-atletico-canonical')
         ON CONFLICT (entity_type, entity_id, alias_normalized)
         DO NOTHING
       `;
@@ -39,8 +39,8 @@ async function main() {
       `;
 
       await sql`
-        INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary)
-        VALUES ('team', (SELECT id FROM teams WHERE slug = ${targetSlug}), ${'Club Atlético de Madrid'}, 'en', 'official', TRUE)
+        INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+        VALUES ('team', (SELECT id FROM teams WHERE slug = ${targetSlug}), ${'Club Atlético de Madrid'}, 'en', 'official', TRUE, 'pending', 'manual', 'fix-atletico-canonical')
         ON CONFLICT (entity_type, entity_id, alias_normalized)
         DO NOTHING
       `;

@@ -11,6 +11,22 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000)
 
+## Scheduled Fixture Sync
+
+```bash
+npm run fixtures:sync-api-football:dry-run
+npm run fixtures:sync-football-data:dry-run
+npm run fixtures:sync-api-football
+npm run fixtures:sync-football-data
+npm run scheduled:cron -- --print
+```
+
+- Daily fixture sync targets `PL`, `PD`, `SA`, `BL1`, `FL1`, `CL`, `EL`
+- The sync runs ingest + materialize for the previous/current European season window
+- Install the cron entry with `npm run scheduled:cron -- --install --jobs=api-football-fixtures-daily`
+- `football-data.org` sync fetches the full selected-season match set so scheduled fixtures are included without a status-specific dependency
+- Install the football-data.org daily job with `npm run scheduled:cron -- --install --jobs=football-data-fixtures-daily`
+
 ## Stack
 
 - **Next.js 16** (App Router, Turbopack)

@@ -1,8 +1,8 @@
 import Redis from 'ioredis';
 import postgres from 'postgres';
 import { loadProjectEnv } from './load-project-env.mts';
+import { loadCountryCodeResolver } from '../src/data/countryCodeResolver.ts';
 import { COMPETITION_NAMES_KO, COUNTRY_TRANSLATIONS, TEAM_NAMES_KO } from './ko-localization-data.mts';
-import { resolveNationCodeAlias } from '../src/data/nationCodeAliases.ts';
 
 interface CliOptions {
   dryRun: boolean;
@@ -191,7 +191,7 @@ async function mapWithConcurrency<T, R>(items: T[], limit: number, mapper: (item
   return results;
 }
 
-async function getCompetitionGaps(sql: postgres.Sql<{}>) {
+async function getCompetitionGaps(sql: postgres.Sql<Record<string, never>>) {
   return sql<CompetitionGapRow[]>`
     WITH latest_competition_seasons AS (
       SELECT DISTINCT ON (cs.competition_id)
@@ -219,7 +219,7 @@ async function getCompetitionGaps(sql: postgres.Sql<{}>) {
   `;
 }
 
-async function getTeamGaps(sql: postgres.Sql<{}>) {
+async function getTeamGaps(sql: postgres.Sql<Record<string, never>>) {
   return sql<TeamGapRow[]>`
     WITH latest_team_seasons AS (
       SELECT DISTINCT ON (ts.team_id)
@@ -248,7 +248,7 @@ async function getTeamGaps(sql: postgres.Sql<{}>) {
   `;
 }
 
-async function getCountryGaps(sql: postgres.Sql<{}>) {
+async function getCountryGaps(sql: postgres.Sql<Record<string, never>>) {
   return sql<CountryGapRow[]>`
     SELECT
       c.code_alpha3,
@@ -300,8 +300,9 @@ async function main() {
     return;
   }
 
-  const sql = getSql();
-  const translationCache = new Map<string, string>();
+    const sql = getSql();
+    const countryCodeResolver = await loadCountryCodeResolver(sql);
+    const translationCache = new Map<string, string>();
 
   try {
     const [competitionRows, teamRows, countryRows] = await Promise.all([
@@ -337,7 +338,8 @@ async function main() {
     });
 
     const countryRepairs = await mapWithConcurrency(countryTargets, 6, async (row) => {
-      const manual = COUNTRY_TRANSLATIONS[resolveNationCodeAlias(row.code_alpha3)] ?? COUNTRY_TRANSLATIONS[row.code_alpha3];
+      const canonicalCode = countryCodeResolver.resolve(row.code_alpha3) ?? row.code_alpha3;
+      const manual = COUNTRY_TRANSLATIONS[canonicalCode] ?? COUNTRY_TRANSLATIONS[row.code_alpha3];
       const name = manual?.ko ?? await translateText(row.en_name, translationCache);
       return { row, name };
     });

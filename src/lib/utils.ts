@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import type { Match } from '@/data/types';
+import type { Club, Match } from '@/data/types';
 
 /** Merge Tailwind classes with conflict resolution */
 export function cn(...inputs: ClassValue[]) {
@@ -125,6 +125,10 @@ export function formatMatchDateTimeForTimeZone(dateStr: string, timeStr: string 
 /** Format large numbers with commas (e.g., 60000 → "60,000") */
 export function formatNumber(num: number): string {
   return num.toLocaleString('en-US');
+}
+
+export function getClubDisplayName(club: Pick<Club, 'name' | 'koreanName'>, locale: string): string {
+  return locale === 'ko' ? club.koreanName : club.name;
 }
 
 /** Calculate age from date of birth string */

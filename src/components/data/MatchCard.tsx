@@ -72,14 +72,14 @@ export function MatchCard({ match, placeholders = [], showDate = true, showLeagu
       <div className="flex-1 flex items-center justify-between min-w-0">
         <div className="flex items-center gap-2 min-w-0 flex-1">
           <div className="flex items-center justify-end gap-1.5 min-w-0 flex-1">
+            <div className="min-w-0 text-[13px] font-medium text-text-primary text-right">
+              {homePlaceholder ? <WorldCupPlaceholderLink placeholder={homePlaceholder} label={homeLabel} className="items-end" /> : <span className="truncate block">{homeLabel}</span>}
+            </div>
               {isNationMatch
                 ? showHomeNationFlag && (
                   <NationFlag nationId={match.homeTeamId} code={homeShortName} size="sm" />
                 )
               : <ClubBadge shortName={homeShortName} clubId={match.homeTeamId} logo={match.homeTeamLogo} size="sm" showText={false} />}
-            <div className="min-w-0 text-[13px] font-medium text-text-primary text-right">
-              {homePlaceholder ? <WorldCupPlaceholderLink placeholder={homePlaceholder} label={homeLabel} className="items-end" /> : <span className="truncate block">{homeLabel}</span>}
-            </div>
           </div>
 
           <div className="flex items-center gap-1.5 shrink-0">

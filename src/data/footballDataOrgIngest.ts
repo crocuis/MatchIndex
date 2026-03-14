@@ -3,9 +3,12 @@ import postgres, { type Sql } from 'postgres';
 import {
   buildFootballDataCompetitionMatchesPath,
   buildFootballDataCompetitionTeamsPath,
+  filterFootballDataMatchesResponse,
   fetchFootballDataJson,
   getFootballDataSourceConfig,
   getDefaultFootballDataCompetitionTargets,
+  resolveFootballDataCompetitionMatchesFilters,
+  type FootballDataCompetitionMatchesFilterOptions,
   type FootballDataOrgCompetitionTarget,
   type FootballDataOrgCompetitionResponse,
   type FootballDataOrgMatchSummary,
@@ -24,8 +27,12 @@ interface SyncRunRow {
 export interface IngestFootballDataManifestOptions {
   dryRun?: boolean;
   competitionCodes?: string[];
+  dateFrom?: string;
+  dateTo?: string;
+  localDate?: string;
   seasons?: number[];
   status?: string;
+  timeZone?: string;
 }
 
 export interface IngestFootballDataManifestSummary {
@@ -84,6 +91,10 @@ function normalizeCompetitionTargets(rawCodes?: string[]) {
 
 function buildCompetitionPath(code: string) {
   return `/competitions/${code}`;
+}
+
+function buildMatchesPath(code: string, season: number, filters: FootballDataCompetitionMatchesFilterOptions = {}) {
+  return buildFootballDataCompetitionMatchesPath(code, season, filters);
 }
 
 async function ensureFootballDataSource(sql: Sql) {
@@ -190,11 +201,12 @@ async function upsertCompetitionSeasonManifest(
     syncRunId: number;
     code: string;
     season: number;
+    matchesPath: string;
     competitionPayload: unknown;
     matchesPayload: FootballDataOrgMatchesResponse;
+    filters: FootballDataCompetitionMatchesFilterOptions;
   }
 ) {
-  const upstreamPath = buildFootballDataCompetitionMatchesPath(params.code, params.season);
   const competition = params.matchesPayload.competition;
 
   await sql`
@@ -213,7 +225,7 @@ async function upsertCompetitionSeasonManifest(
       ${params.sourceId},
       ${params.syncRunId},
       'competition_season',
-      ${upstreamPath},
+      ${params.matchesPath},
       ${String(params.season)},
       ${params.code},
       NULL,
@@ -226,6 +238,13 @@ async function upsertCompetitionSeasonManifest(
         competitionType: competition?.type ?? null,
         season: params.season,
         coverageLevel: 'metadata_only',
+        filters: {
+          dateFrom: params.filters.dateFrom ?? null,
+          dateTo: params.filters.dateTo ?? null,
+          localDate: params.filters.localDate ?? null,
+          status: params.filters.status ?? null,
+          timeZone: params.filters.timeZone ?? null,
+        },
         resultCount: params.matchesPayload.resultSet?.count ?? params.matchesPayload.matches?.length ?? 0,
       })}::jsonb
     )
@@ -307,11 +326,18 @@ export async function ingestFootballDataManifests(
 ): Promise<IngestFootballDataManifestSummary> {
   const targets = normalizeCompetitionTargets(options.competitionCodes);
   const seasons = normalizeSeasons(options.seasons);
-  const status = options.status?.trim().toUpperCase() || 'FINISHED';
+  const filters = {
+    dateFrom: options.dateFrom,
+    dateTo: options.dateTo,
+    localDate: options.localDate,
+    status: options.status?.trim().toUpperCase(),
+    timeZone: options.timeZone,
+  } satisfies FootballDataCompetitionMatchesFilterOptions;
+  const resolvedFilters = resolveFootballDataCompetitionMatchesFilters(filters);
   const plannedEndpoints = targets.flatMap((target) => [
     buildCompetitionPath(target.code),
     ...seasons.map((season) => buildFootballDataCompetitionTeamsPath(target.code, season)),
-    ...seasons.map((season) => `${buildFootballDataCompetitionMatchesPath(target.code, season)}&status=${status}`),
+    ...seasons.map((season) => buildMatchesPath(target.code, season, filters)),
   ]);
 
   if (options.dryRun ?? false) {
@@ -354,9 +380,10 @@ export async function ingestFootballDataManifests(
 
       for (const season of seasons) {
         const teamsPath = buildFootballDataCompetitionTeamsPath(target.code, season);
-        const matchesPath = `${buildFootballDataCompetitionMatchesPath(target.code, season)}&status=${status}`;
+        const matchesPath = buildMatchesPath(target.code, season, filters);
         const teamsPayload = await fetchFootballDataJson<FootballDataOrgTeamsResponse>(teamsPath);
-        const matchesPayload = await fetchFootballDataJson<FootballDataOrgMatchesResponse>(matchesPath);
+        const rawMatchesPayload = await fetchFootballDataJson<FootballDataOrgMatchesResponse>(matchesPath);
+        const matchesPayload = filterFootballDataMatchesResponse(rawMatchesPayload, filters);
         fetchedFiles += 2;
         changedFiles += 2;
         competitionSeasonsProcessed += 1;
@@ -386,8 +413,10 @@ export async function ingestFootballDataManifests(
           syncRunId,
           code: target.code,
           season,
+          matchesPath,
           competitionPayload,
           matchesPayload,
+          filters: resolvedFilters,
         });
 
         for (const match of matchesPayload.matches ?? []) {

@@ -22,8 +22,11 @@ interface ProfileSyncPayload {
 interface ProfileSyncRow {
   dateOfBirth?: string | null;
   heightCm?: number | string | null;
+  nationalities?: string[] | null;
   playerName?: string | null;
   playerSlug?: string | null;
+  photoUrl?: string | null;
+  position?: string | null;
   preferredFoot?: string | null;
   raw?: unknown;
   sourceUrl?: string | null;
@@ -32,6 +35,28 @@ interface ProfileSyncRow {
 
 interface SourceRow { id: number; }
 interface SyncRunRow { id: number; }
+interface CountryLookupRow {
+  id: number;
+  code_alpha2: string | null;
+  code_alpha3: string;
+  translation_name: string | null;
+}
+
+const COUNTRY_NAME_ALIASES: Record<string, string> = {
+  england: 'ENG',
+  scotland: 'SCO',
+  wales: 'WAL',
+  'north ireland': 'NIR',
+  'south korea': 'KOR',
+  'korea republic': 'KOR',
+  'united states': 'USA',
+  'united states of america': 'USA',
+  'ivory coast': 'CIV',
+  'cote d ivoire': 'CIV',
+  'bosnia herzegovina': 'BIH',
+  'dr congo': 'COD',
+  'congo dr': 'COD',
+};
 
 function parsePositiveInt(value: string | undefined) {
   if (!value) return undefined;
@@ -107,6 +132,95 @@ function parsePreferredFoot(value: string | null | undefined): 'Left' | 'Right' 
   return undefined;
 }
 
+function parsePosition(value: string | null | undefined): 'GK' | 'DEF' | 'MID' | 'FWD' | undefined {
+  const normalized = value?.trim().toLowerCase();
+  if (!normalized) return undefined;
+  if (normalized.includes('goalkeeper')) return 'GK';
+  if (
+    normalized.includes('back')
+    || normalized.includes('defender')
+    || normalized.includes('sweeper')
+    || normalized.includes('centre-back')
+    || normalized.includes('center-back')
+  ) return 'DEF';
+  if (
+    normalized.includes('forward')
+    || normalized.includes('striker')
+    || normalized.includes('second striker')
+    || normalized.includes('centre-forward')
+    || normalized.includes('center-forward')
+  ) return 'FWD';
+  if (
+    normalized.includes('midfield')
+    || normalized.includes('midfielder')
+    || normalized.includes('winger')
+    || normalized.includes('attacking mid')
+    || normalized.includes('defensive mid')
+    || normalized.includes('central mid')
+  ) return 'MID';
+  return undefined;
+}
+
+function normalizeCountryKey(value: string) {
+  return value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/&/g, ' and ')
+    .replace(/[^a-zA-Z0-9]+/g, ' ')
+    .trim()
+    .replace(/\s+/g, ' ')
+    .toLowerCase();
+}
+
+async function loadCountryRows(sql: Sql) {
+  return sql<CountryLookupRow[]>`
+    SELECT
+      c.id,
+      c.code_alpha2,
+      c.code_alpha3,
+      ct.name AS translation_name
+    FROM countries c
+    LEFT JOIN country_translations ct ON ct.country_id = c.id AND ct.locale = 'en'
+  `;
+}
+
+function buildCountryResolver(rows: CountryLookupRow[]) {
+  const byKey = new Map<string, number>();
+  const byCode = new Map<string, number>();
+  const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+
+  for (const row of rows) {
+    byCode.set(row.code_alpha3.toUpperCase(), row.id);
+    const displayName = row.code_alpha2 ? regionNames.of(row.code_alpha2.toUpperCase()) : undefined;
+    for (const candidate of [row.code_alpha2, row.code_alpha3, row.translation_name, displayName]) {
+      if (!candidate) continue;
+      byKey.set(normalizeCountryKey(candidate), row.id);
+    }
+  }
+
+  for (const [alias, code] of Object.entries(COUNTRY_NAME_ALIASES)) {
+    const id = byCode.get(code);
+    if (id) byKey.set(alias, id);
+  }
+
+  return {
+    resolve(values: string[] | null | undefined) {
+      for (const value of values ?? []) {
+        const normalized = normalizeCountryKey(value);
+        if (!normalized) continue;
+        const direct = byKey.get(normalized);
+        if (direct) return direct;
+        const alias = COUNTRY_NAME_ALIASES[normalized];
+        if (alias) {
+          const id = byCode.get(alias);
+          if (id) return id;
+        }
+      }
+      return undefined;
+    },
+  };
+}
+
 async function ensureDataSource(sql: Sql, provider: string) {
   const rows = await sql<SourceRow[]>`
     INSERT INTO data_sources (slug, name, base_url, source_kind, upstream_ref, priority)
@@ -152,27 +266,35 @@ async function insertRawPayload(sql: Sql, sourceId: number, syncRunId: number, p
   `;
 }
 
-async function updatePlayer(sql: Sql, row: ProfileSyncRow) {
+async function updatePlayer(sql: Sql, row: ProfileSyncRow, countryId?: number) {
   const playerSlug = row.playerSlug?.trim();
   if (!playerSlug) return false;
   const dateOfBirth = parseDateValue(row.dateOfBirth);
   const heightCm = parseIntegerValue(row.heightCm);
   const weightKg = parseIntegerValue(row.weightKg);
   const preferredFoot = parsePreferredFoot(row.preferredFoot);
-  if (!dateOfBirth && heightCm === undefined && weightKg === undefined && !preferredFoot) return false;
+  const position = parsePosition(row.position);
+  const photoUrl = row.photoUrl?.trim() || undefined;
+  if (!dateOfBirth && heightCm === undefined && weightKg === undefined && !preferredFoot && !position && !photoUrl && !countryId) return false;
 
   await sql`
     UPDATE players
     SET
-      date_of_birth = COALESCE(date_of_birth, ${dateOfBirth ?? null}),
-      height_cm = COALESCE(height_cm, ${heightCm ?? null}),
-      weight_kg = COALESCE(weight_kg, ${weightKg ?? null}),
-      preferred_foot = COALESCE(preferred_foot, ${preferredFoot ?? null}),
+      date_of_birth = COALESCE(date_of_birth, ${dateOfBirth ?? null}::date),
+      country_id = COALESCE(country_id, ${countryId ?? null}::bigint),
+      height_cm = COALESCE(height_cm, ${heightCm ?? null}::integer),
+      position = COALESCE(position, ${position ?? null}::position_type),
+      photo_url = COALESCE(photo_url, ${photoUrl ?? null}::text),
+      weight_kg = COALESCE(weight_kg, ${weightKg ?? null}::integer),
+      preferred_foot = COALESCE(preferred_foot, ${preferredFoot ?? null}::preferred_foot),
       updated_at = CASE
-        WHEN (${dateOfBirth ?? null} IS NOT NULL AND date_of_birth IS NULL)
-          OR (${heightCm ?? null} IS NOT NULL AND height_cm IS NULL)
-          OR (${weightKg ?? null} IS NOT NULL AND weight_kg IS NULL)
-          OR (${preferredFoot ?? null} IS NOT NULL AND preferred_foot IS NULL)
+        WHEN (${dateOfBirth ?? null}::date IS NOT NULL AND date_of_birth IS NULL)
+          OR (${countryId ?? null}::bigint IS NOT NULL AND country_id IS NULL)
+          OR (${heightCm ?? null}::integer IS NOT NULL AND height_cm IS NULL)
+          OR (${position ?? null}::position_type IS NOT NULL AND position IS NULL)
+          OR (${photoUrl ?? null}::text IS NOT NULL AND photo_url IS NULL)
+          OR (${weightKg ?? null}::integer IS NOT NULL AND weight_kg IS NULL)
+          OR (${preferredFoot ?? null}::preferred_foot IS NOT NULL AND preferred_foot IS NULL)
         THEN NOW()
         ELSE updated_at
       END
@@ -195,6 +317,7 @@ async function main() {
   try {
     const provider = payload.provider.trim().toLowerCase();
     const sourceId = options.dryRun ? null : await ensureDataSource(sql, provider);
+    const countryResolver = buildCountryResolver(await loadCountryRows(sql));
     if (!options.dryRun && sourceId !== null) {
       syncRunId = await createSyncRun(sql, sourceId, {
         fetchedAt: payload.fetchedAt ?? null,
@@ -208,10 +331,18 @@ async function main() {
     let updated = 0;
     let skipped = 0;
     for (const row of rows) {
-      const hasValues = Boolean(parseDateValue(row.dateOfBirth) || parseIntegerValue(row.heightCm) || parseIntegerValue(row.weightKg) || parsePreferredFoot(row.preferredFoot));
+      const hasValues = Boolean(
+        parseDateValue(row.dateOfBirth)
+        || parseIntegerValue(row.heightCm)
+        || parseIntegerValue(row.weightKg)
+        || parsePreferredFoot(row.preferredFoot)
+        || parsePosition(row.position)
+        || row.photoUrl?.trim()
+        || row.nationalities?.length
+      );
       if (!hasValues || !row.playerSlug) { skipped += 1; continue; }
       if (!options.dryRun) {
-        const changed = await updatePlayer(sql, row);
+        const changed = await updatePlayer(sql, row, countryResolver.resolve(row.nationalities));
         if (changed && sourceId !== null && syncRunId !== null) {
           await insertRawPayload(sql, sourceId, syncRunId, row.playerSlug, row.raw ?? row);
         }

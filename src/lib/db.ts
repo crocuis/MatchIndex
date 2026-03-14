@@ -38,7 +38,6 @@ function getSingleConnectionDbConfig(envKey: string): DbClientConfig {
 }
 
 const SINGLE_CONNECTION_SCOPE_ENV_KEYS: Record<string, string> = {
-  'statsbomb-ingest': 'DB_POOL_MAX_INGEST',
   'statsbomb-materialize': 'DB_POOL_MAX_MATERIALIZE',
   'statsbomb-details': 'DB_POOL_MAX_DETAILS',
   'photo-ingest': 'DB_POOL_MAX_PHOTO_INGEST',

@@ -1,7 +1,7 @@
 import postgres from 'postgres';
 import { loadProjectEnv } from './load-project-env.mts';
+import { loadCountryCodeResolver } from '../src/data/countryCodeResolver.ts';
 import { getNationBadgeUrl, getNationFlagUrl } from '../src/data/nationVisuals.ts';
-import { NATION_CODE_SKIP, resolveNationCodeAlias } from './nation-code-aliases.mts';
 
 interface CountryRow {
   code_alpha3: string;
@@ -209,6 +209,7 @@ async function main() {
   const [entries, sql] = await Promise.all([fetchLogoIndex(), Promise.resolve(getSql())]);
 
   try {
+    const countryCodeResolver = await loadCountryCodeResolver(sql);
     const rows = await sql<CountryRow[]>`
       SELECT
         c.code_alpha3,
@@ -227,8 +228,8 @@ async function main() {
     const preview = [] as Array<Record<string, string | null>>;
 
     for (const country of countries) {
-      const sourceCode = resolveNationCodeAlias(country.code_alpha3);
-      const skipAssetSync = NATION_CODE_SKIP.has(sourceCode);
+      const sourceCode = countryCodeResolver.resolve(country.code_alpha3) ?? country.code_alpha3;
+      const skipCrestSync = countryCodeResolver.isSkipped(sourceCode);
 
       if (options.onlyMissing) {
         const [current] = await sql<Array<{ crest_url: string | null }>>`
@@ -242,10 +243,10 @@ async function main() {
         }
       }
 
-      const flagUrl = skipAssetSync ? null : getNationFlagUrl(sourceCode) ?? null;
+      const flagUrl = getNationFlagUrl(sourceCode) ?? null;
       const logoEntry = findBestEntry(entries, sourceCode, country.name);
-      const crestUrl = skipAssetSync
-        ? null
+      const crestUrl = skipCrestSync
+        ? flagUrl
         : (logoEntry ? getAssetUrl(logoEntry) : null) ?? getNationBadgeUrl(sourceCode) ?? null;
 
       preview.push({

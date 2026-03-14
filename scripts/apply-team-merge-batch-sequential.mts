@@ -5,6 +5,7 @@ import { spawn } from 'node:child_process';
 interface CliOptions {
   batchFile: string;
   help: boolean;
+  skipRefresh: boolean;
   surfaceOnly: boolean;
 }
 
@@ -21,6 +22,7 @@ function parseArgs(argv: string[]): CliOptions {
   const options: CliOptions = {
     batchFile: path.join('logs', 'club-fullname-conflicts-merge-batch.json'),
     help: false,
+    skipRefresh: false,
     surfaceOnly: false,
   };
 
@@ -37,6 +39,11 @@ function parseArgs(argv: string[]): CliOptions {
 
     if (arg === '--surface-only') {
       options.surfaceOnly = true;
+      continue;
+    }
+
+    if (arg === '--skip-refresh') {
+      options.skipRefresh = true;
     }
   }
 
@@ -49,11 +56,12 @@ function printHelp() {
 Options:
   --batch-file=<path>  Merge batch JSON path (default: logs/club-fullname-conflicts-merge-batch.json)
   --surface-only       Archive alias team rows instead of rewriting deep event history
+  --skip-refresh       Skip per-entry materialized view refresh
   --help, -h           Show this help message
 `);
 }
 
-async function runMergeForEntry(entry: MergeEntry, tempBatchFile: string, surfaceOnly: boolean) {
+async function runMergeForEntry(entry: MergeEntry, tempBatchFile: string, surfaceOnly: boolean, skipRefresh: boolean) {
   await writeFile(tempBatchFile, JSON.stringify({ mergeEntries: [entry] }, null, 2), 'utf8');
 
   const args = [
@@ -65,6 +73,10 @@ async function runMergeForEntry(entry: MergeEntry, tempBatchFile: string, surfac
 
   if (surfaceOnly) {
     args.push('--surface-only');
+  }
+
+  if (skipRefresh) {
+    args.push('--skip-refresh');
   }
 
   await new Promise<void>((resolve, reject) => {
@@ -103,7 +115,7 @@ async function main() {
   try {
     for (const entry of mergeEntries) {
       const tempBatchFile = path.join(tempDir, `${entry.aliasSlug}.json`);
-      await runMergeForEntry(entry, tempBatchFile, options.surfaceOnly);
+      await runMergeForEntry(entry, tempBatchFile, options.surfaceOnly, options.skipRefresh);
       completed.push(`${entry.aliasSlug}->${entry.canonicalSlug}`);
       await rm(tempBatchFile, { force: true });
     }

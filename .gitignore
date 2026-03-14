@@ -39,3 +39,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local-only work artifacts
+/.scheduler-locks/
+/.sisyphus/
+/.venv-contracts/
+/logs/
+/.tmp/
+/.venv-tools/
+/scripts/__pycache__/
+/tm-transfer-network.txt
+
+# ad-hoc local screenshots at repo root
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp

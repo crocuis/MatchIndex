@@ -2,8 +2,8 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { Sql } from 'postgres';
 import { getSingleConnectionDb } from '@/lib/db';
+import { loadCountryCodeResolver, type CountryCodeResolver } from './countryCodeResolver';
 import { getNationBadgeUrl, getNationFlagUrl } from './nationVisuals';
-import { resolveNationCodeAlias } from './nationCodeAliases';
 
 interface ApiFootballPlayerMapping {
   playerId: string;
@@ -135,7 +135,11 @@ async function ensureApiFootballSource(sql: Sql) {
   return rows[0].id;
 }
 
-async function seedCountries(sql: Sql, selectedPlayers: Awaited<ReturnType<typeof getSelectedPlayers>>) {
+async function seedCountries(
+  sql: Sql,
+  countryCodeResolver: CountryCodeResolver,
+  selectedPlayers: Awaited<ReturnType<typeof getSelectedPlayers>>,
+) {
   const [selectedNations, selectedClubs, selectedLeagues] = await Promise.all([
     getSelectedNations(selectedPlayers),
     getSelectedClubs(selectedPlayers),
@@ -153,7 +157,7 @@ async function seedCountries(sql: Sql, selectedPlayers: Awaited<ReturnType<typeo
     .filter((nation): nation is (typeof allNations)[number] => Boolean(nation));
 
   for (const nation of selectedNationRecords) {
-    const canonicalCode = resolveNationCodeAlias(nation.code);
+    const canonicalCode = countryCodeResolver.resolve(nation.code) ?? nation.code;
 
     await sql`
       INSERT INTO countries (
@@ -616,8 +620,9 @@ export async function seedPlayerPhotoFixtures(
   }
 
   const sql = getSeedDb();
+  const countryCodeResolver = await loadCountryCodeResolver(sql);
   const sourceId = await ensureApiFootballSource(sql);
-  const countriesPlanned = await seedCountries(sql, selectedPlayers);
+  const countriesPlanned = await seedCountries(sql, countryCodeResolver, selectedPlayers);
   const { leaguesCount, clubsCount } = await seedSeasonGraph(sql, selectedPlayers);
   const playersPlanned = await seedPlayers(sql, selectedPlayers);
   const mappingsPlanned = await seedMappings(sql, sourceId, selectedPlayers, mappings);

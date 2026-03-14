@@ -49,11 +49,6 @@ export function FixtureCard({ match, placeholders = [], className }: FixtureCard
     >
       <div className="flex items-center gap-3 min-w-0 flex-1">
         <div className="flex items-center gap-1.5 min-w-0">
-          {isNationMatch
-            ? showHomeNationFlag && (
-              <NationFlag nationId={match.homeTeamId} code={homeNationCode} size="sm" />
-            )
-            : <ClubBadge shortName={match.homeTeamCode ?? match.homeTeamName ?? '???'} clubId={match.homeTeamId} logo={match.homeTeamLogo} size="sm" showText={false} />}
           <div className="min-w-0 text-[13px] font-medium text-text-primary">
             {isNationMatch
               ? homePlaceholder
@@ -61,6 +56,11 @@ export function FixtureCard({ match, placeholders = [], className }: FixtureCard
                 : homeNationName
               : match.homeTeamName ?? tCommon('home')}
           </div>
+          {isNationMatch
+            ? showHomeNationFlag && (
+              <NationFlag nationId={match.homeTeamId} code={homeNationCode} size="sm" />
+            )
+            : <ClubBadge shortName={match.homeTeamCode ?? match.homeTeamName ?? '???'} clubId={match.homeTeamId} logo={match.homeTeamLogo} size="sm" showText={false} />}
         </div>
         <span className="text-[11px] text-text-muted shrink-0">{tCommon('vs')}</span>
         <div className="flex items-center gap-1.5 min-w-0">

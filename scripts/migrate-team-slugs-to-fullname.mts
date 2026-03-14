@@ -314,14 +314,17 @@ async function main() {
       try {
         for (const entry of renameEntries) {
           await sql`
-            INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary)
+            INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
             VALUES (
               'team',
               (SELECT id FROM teams WHERE slug = ${entry.fromSlug}),
               ${entry.fromSlug},
               NULL,
               'historical',
-              FALSE
+              FALSE,
+              'approved',
+              'historical_rule',
+              'migrate-team-slugs-to-fullname'
             )
             ON CONFLICT (entity_type, entity_id, alias_normalized)
             DO NOTHING

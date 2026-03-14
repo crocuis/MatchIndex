@@ -7,11 +7,14 @@ import { SectionCard } from '@/components/ui/SectionCard';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { StatPanel } from '@/components/data/StatPanel';
 import { Badge } from '@/components/ui/Badge';
+import { DetailTabNav } from '@/components/ui/DetailTabNav';
 import { LeagueLogo } from '@/components/ui/LeagueLogo';
 import { cn } from '@/lib/utils';
 import { isTournamentCompetition } from '@/data/competitionTypes';
 import {
   getLeagueByIdDb,
+  getMatchesByLeagueAndSeasonDb,
+  getMatchesByLeagueDb,
   getSeasonsByLeagueDb,
 } from '@/data/server';
 
@@ -20,16 +23,18 @@ export default async function LeaguePage({
   searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ season?: string }>;
+  searchParams: Promise<{ season?: string; tab?: string }>;
 }) {
   const { id } = await params;
-  const { season } = await searchParams;
+  const { season, tab } = await searchParams;
   const locale = await getLocale();
   const league = await getLeagueByIdDb(id, locale);
   if (!league) notFound();
 
   const availableSeasons = await getSeasonsByLeagueDb(id);
-  const currentSeason = availableSeasons.find((s) => s.isCurrent) ?? availableSeasons[0];
+  const currentSeason = availableSeasons.find((s) => s.seasonLabel === league.season)
+    ?? availableSeasons.find((s) => s.isCurrent)
+    ?? availableSeasons[0];
   const selectedSeason = season
     ? availableSeasons.find((s) => s.seasonId === season) ?? currentSeason
     : currentSeason;
@@ -39,16 +44,40 @@ export default async function LeaguePage({
     getTranslations('league'),
     getTranslations('common'),
   ]);
+  const detailTabs = [
+    { key: 'overview', label: tCommon('tabOverview') },
+    { key: 'matches', label: tCommon('tabMatches') },
+    { key: 'stats', label: tCommon('tabStats') },
+  ] as const;
+  const activeTab = (tab && detailTabs.some((entry) => entry.key === tab) ? tab : 'overview') as 'overview' | 'matches' | 'stats';
   const isTournament = isTournamentCompetition(league);
+  const pageMatches = isTournament
+    ? (isNonDefaultSeason && selectedSeason
+        ? await getMatchesByLeagueAndSeasonDb(id, selectedSeason.seasonId, locale)
+        : await getMatchesByLeagueDb(id, locale))
+    : [];
+  const hasGroupOrLeaguePhase = pageMatches.some((match) => {
+    const stage = (match.stage ?? '').toLowerCase();
+    return Boolean(match.groupName)
+      || stage.includes('group stage')
+      || stage.includes('league stage')
+      || stage.includes('league_phase')
+      || stage.includes('group_stage');
+  });
+  const isKnockoutOnlyTournament = isTournament && !hasGroupOrLeaguePhase;
   const formatLabel = isTournament ? tLeague('formatTournament') : tLeague('formatLeague');
-  const formatDetail = isTournament ? tLeague('formatTournamentDetail') : tLeague('formatLeagueDetail');
+  const formatDetail = isTournament
+    ? isKnockoutOnlyTournament
+      ? tLeague('formatTournamentKnockoutOnlyDetail')
+      : tLeague('formatTournamentDetail')
+    : tLeague('formatLeagueDetail');
 
   return (
     <div>
       <PageHeader
         title={(
           <div className="flex items-center gap-2">
-            <LeagueLogo leagueId={league.id} name={league.name} logo={league.logo} size="lg" />
+                <LeagueLogo leagueId={league.id} name={league.name} competitionType={league.competitionType} logo={league.logo} size="lg" />
             <span>{league.name}</span>
             <Badge variant={isTournament ? 'info' : 'default'}>{formatLabel}</Badge>
           </div>
@@ -96,6 +125,14 @@ export default async function LeaguePage({
         </SectionCard>
       ) : null}
 
+      <DetailTabNav
+        activeTab={activeTab}
+        basePath={`/leagues/${id}`}
+        className="mb-4"
+        query={isNonDefaultSeason && selectedSeason ? { season: selectedSeason.seasonId } : undefined}
+        tabs={detailTabs.map((entry) => ({ ...entry }))}
+      />
+
       <Suspense
         fallback={
           <SectionCard title={tLeague('standings')}>
@@ -109,6 +146,7 @@ export default async function LeaguePage({
           selectedSeason={selectedSeason}
           isNonDefaultSeason={Boolean(isNonDefaultSeason)}
           isTournament={isTournament}
+          viewTab={activeTab}
         />
       </Suspense>
     </div>

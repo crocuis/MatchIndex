@@ -1,7 +1,8 @@
 import Redis from 'ioredis';
 import postgres from 'postgres';
 import { loadProjectEnv } from './load-project-env.mts';
-import { NATION_CODE_SKIP, resolveNationCodeAlias } from './nation-code-aliases.mts';
+import type { CountryCodeResolver } from '../src/data/countryCodeResolver.ts';
+import { loadCountryCodeResolver } from '../src/data/countryCodeResolver.ts';
 import { getNationFlagUrl } from '../src/data/nationVisuals.ts';
 
 interface CliOptions {
@@ -311,6 +312,7 @@ async function fetchOverviewTopRankings(gender: 'men' | 'women', limit: number):
 
 async function ensureTopCountries(
   sql: postgres.Sql,
+  countryCodeResolver: CountryCodeResolver,
   gender: 'men' | 'women',
   dryRun: boolean,
 ): Promise<EnsureTopCountriesResult> {
@@ -318,8 +320,9 @@ async function ensureTopCountries(
   const overviewEntries = await fetchOverviewTopRankings(gender, TOP_RANK_LIMIT);
   const canonicalOverviewCodes = Array.from(new Set(
     overviewEntries
-      .map((entry) => resolveNationCodeAlias(entry.code))
-      .filter((code) => /^[A-Z]{3}$/.test(code) && !NATION_CODE_SKIP.has(code))
+      .map((entry) => countryCodeResolver.resolve(entry.code))
+      .filter((code): code is string => code !== null)
+      .filter((code) => /^[A-Z]{3}$/.test(code) && !countryCodeResolver.isSkipped(code))
   ));
   const existingRows = await sql<Array<{ code_alpha3: string }>>`
     SELECT code_alpha3
@@ -354,9 +357,9 @@ async function ensureTopCountries(
   }
 
   for (const entry of overviewEntries) {
-    const canonicalCode = resolveNationCodeAlias(entry.code);
+    const canonicalCode = countryCodeResolver.resolve(entry.code) ?? entry.code;
 
-    if (!/^[A-Z]{3}$/.test(canonicalCode) || NATION_CODE_SKIP.has(canonicalCode)) {
+    if (!/^[A-Z]{3}$/.test(canonicalCode) || countryCodeResolver.isSkipped(canonicalCode)) {
       continue;
     }
 
@@ -465,11 +468,15 @@ async function fetchRanking(sourceCode: string, targetCode: string, gender: 'men
   return parseRanking(await response.text(), targetCode, gender);
 }
 
-async function safeFetchRanking(code: string, gender: 'men' | 'women'): Promise<RankingResult | RankingFailure> {
+async function safeFetchRanking(
+  countryCodeResolver: CountryCodeResolver,
+  code: string,
+  gender: 'men' | 'women',
+): Promise<RankingResult | RankingFailure> {
   try {
-    const sourceCode = resolveNationCodeAlias(code);
+    const sourceCode = countryCodeResolver.resolve(code) ?? code;
 
-    if (NATION_CODE_SKIP.has(sourceCode)) {
+    if (countryCodeResolver.isSkipped(sourceCode)) {
       return {
         code,
         reason: 'skipped unsupported pseudo code',
@@ -530,9 +537,10 @@ async function main() {
     const rankingSource = `${OFFICIAL_SOURCE}_${options.gender}`;
 
     try {
+      const countryCodeResolver = await loadCountryCodeResolver(sql);
       const ensuredTopCountries = options.countryCodes
         ? { clearedCodes: [], insertedCodes: [], preview: [], touchedCount: 0 }
-        : await ensureTopCountries(sql, options.gender, options.dryRun);
+        : await ensureTopCountries(sql, countryCodeResolver, options.gender, options.dryRun);
       const countryRows = await sql<CountryRow[]>`
       SELECT code_alpha3, ${rankingColumn} AS fifa_ranking
       FROM countries
@@ -541,10 +549,10 @@ async function main() {
     `;
 
     const selectedCodes = options.countryCodes ? new Set(options.countryCodes) : null;
-    const countries = countryRows
-      .filter((country) => {
-        const sourceCode = resolveNationCodeAlias(country.code_alpha3);
-        return /^[A-Z]{3}$/.test(sourceCode) && !NATION_CODE_SKIP.has(sourceCode);
+      const countries = countryRows
+        .filter((country) => {
+        const sourceCode = countryCodeResolver.resolve(country.code_alpha3) ?? country.code_alpha3;
+        return /^[A-Z]{3}$/.test(sourceCode) && !countryCodeResolver.isSkipped(sourceCode);
       })
       .filter((country) => !options.onlyMissing || !country.fifa_ranking || country.fifa_ranking <= 0)
       .filter((country) => !selectedCodes || selectedCodes.has(country.code_alpha3))
@@ -559,7 +567,7 @@ async function main() {
     const failures: RankingFailure[] = [];
 
     for (const country of countries) {
-      const result = await safeFetchRanking(country.code_alpha3, options.gender);
+      const result = await safeFetchRanking(countryCodeResolver, country.code_alpha3, options.gender);
       if ('currentRank' in result) {
         results.push(result);
       } else {

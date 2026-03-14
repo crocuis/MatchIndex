@@ -1,6 +1,6 @@
 import { getLocale } from 'next-intl/server';
 import { ResultsPageClient } from '@/app/results/ResultsPageClient';
-import { getLeaguesDb, getPaginatedFinishedMatchesDb } from '@/data/server';
+import { getLeagueFilterOptionsDb, getPaginatedFinishedMatchesDb } from '@/data/server';
 
 const PAGE_SIZE = 50;
 
@@ -22,7 +22,7 @@ export default async function ResultsPage({
   const genderCategory = gender === 'women' ? 'women' : 'men';
   const genderFilter = genderCategory === 'women' ? 'female' : 'male';
   const [initialLeagues, results] = await Promise.all([
-    getLeaguesDb(locale).then((items) => items.filter((item) => item.gender === genderFilter)),
+    getLeagueFilterOptionsDb(locale, genderFilter),
     getPaginatedFinishedMatchesDb(locale, selectedLeague, query, genderFilter, { page: currentPage, pageSize: PAGE_SIZE }),
   ]);
 

@@ -15,6 +15,7 @@ const PAIRS: Pair[] = [
   { aliasSlug: 'wolfsburg-germany', canonicalSlug: 'vfl-wolfsburg-germany' },
   { aliasSlug: 'augsburg-germany', canonicalSlug: 'fc-augsburg-germany' },
   { aliasSlug: 'bochum-germany', canonicalSlug: 'vfl-bochum-1848-germany' },
+  { aliasSlug: '1-fc-heidenheim', canonicalSlug: '1-fc-heidenheim-1846-germany' },
 ];
 
 function getArchivedTeamSlug(aliasId: number) {
@@ -54,8 +55,8 @@ async function main() {
         }
 
         await sql`
-          INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary)
-          VALUES ('team', ${canonical.id}, ${pair.aliasSlug}, NULL, 'historical', FALSE)
+          INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+          VALUES ('team', ${canonical.id}, ${pair.aliasSlug}, NULL, 'historical', FALSE, 'approved', 'historical_rule', 'fix-final-transliteration-pairs')
           ON CONFLICT (entity_type, entity_id, alias_normalized)
           DO NOTHING
         `;

@@ -23,9 +23,15 @@ const groupTitleKeys: Record<string, string> = {
   Data: 'data',
 };
 
-export function Sidebar() {
+interface SidebarProps {
+  appVersion: string;
+  hasDatabase: boolean;
+}
+
+export function Sidebar({ appVersion, hasDatabase }: SidebarProps) {
   const pathname = usePathname();
   const t = useTranslations('nav');
+  const dataSourceLabel = hasDatabase ? t('sourceDatabase') : t('sourceMock');
 
   return (
     <aside className="flex w-48 flex-col border-r border-border bg-surface-1 shrink-0 relative z-0">
@@ -67,7 +73,9 @@ export function Sidebar() {
 
       {/* Footer */}
       <div className="border-t border-border px-4 py-3 bg-surface-1/50">
-        <div className="text-[10px] text-text-muted font-mono">{t('version', { fallback: 'v1.0.0' })}</div>
+        <div className="text-[10px] text-text-muted font-mono">
+          {t('version', { version: appVersion, source: dataSourceLabel, fallback: `v${appVersion}` })}
+        </div>
       </div>
     </aside>
   );

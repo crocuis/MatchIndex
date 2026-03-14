@@ -12,6 +12,11 @@ interface CompetitionAccessProbe {
   restrictedCodes: string[];
 }
 
+function isFootballDataRateLimitError(error: unknown) {
+  const message = error instanceof Error ? error.message : String(error);
+  return message.includes('football-data.org request failed: 429');
+}
+
 function parsePositiveInt(value: string | undefined, fallback?: number) {
   if (!value) {
     return fallback;
@@ -133,46 +138,62 @@ async function main() {
   const probeSeason = Math.max(...seasons);
   const access: CompetitionAccessProbe = { accessibleCodes: [], restrictedCodes: [] };
 
-  for (const code of requestedCompetitionCodes) {
-    try {
-      await fetchFootballDataJson(buildFootballDataCompetitionMatchesPath(code, probeSeason));
-      access.accessibleCodes.push(code);
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      if (message.includes('403')) {
-        access.restrictedCodes.push(code);
-        continue;
-      }
+  try {
+    for (const code of requestedCompetitionCodes) {
+      try {
+        await fetchFootballDataJson(buildFootballDataCompetitionMatchesPath(code, probeSeason));
+        access.accessibleCodes.push(code);
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        if (message.includes('403')) {
+          access.restrictedCodes.push(code);
+          continue;
+        }
 
+        throw error;
+      }
+    }
+
+    if (access.accessibleCodes.length === 0) {
+      throw new Error('No accessible football-data.org competitions are available for the current API key');
+    }
+
+    const ingestSummary = await ingestFootballDataManifests({
+      dryRun: false,
+      competitionCodes: access.accessibleCodes,
+      seasons,
+    });
+
+    const materializeSummary = await materializeFootballDataOrgCore({
+      dryRun: false,
+      competitionCodes: access.accessibleCodes,
+      seasons,
+    });
+
+    console.log(JSON.stringify({
+      ok: true,
+      ...plan,
+      requestedCompetitionCodes,
+      accessibleCompetitionCodes: access.accessibleCodes,
+      restrictedCompetitionCodes: access.restrictedCodes,
+      ingestSummary,
+      materializeSummary,
+    }, null, 2));
+  } catch (error) {
+    if (!isFootballDataRateLimitError(error)) {
       throw error;
     }
+
+    console.log(JSON.stringify({
+      ok: true,
+      skipped: true,
+      skippedReason: 'football-data.org rate limited',
+      ...plan,
+      requestedCompetitionCodes,
+      accessibleCompetitionCodes: access.accessibleCodes,
+      restrictedCompetitionCodes: access.restrictedCodes,
+    }, null, 2));
   }
-
-  if (access.accessibleCodes.length === 0) {
-    throw new Error('No accessible football-data.org competitions are available for the current API key');
-  }
-
-  const ingestSummary = await ingestFootballDataManifests({
-    dryRun: false,
-    competitionCodes: access.accessibleCodes,
-    seasons,
-  });
-
-  const materializeSummary = await materializeFootballDataOrgCore({
-    dryRun: false,
-    competitionCodes: access.accessibleCodes,
-    seasons,
-  });
-
-  console.log(JSON.stringify({
-    ok: true,
-    ...plan,
-    requestedCompetitionCodes,
-    accessibleCompetitionCodes: access.accessibleCodes,
-    restrictedCompetitionCodes: access.restrictedCodes,
-    ingestSummary,
-    materializeSummary,
-  }, null, 2));
 }
 
 await main();

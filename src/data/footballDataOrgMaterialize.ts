@@ -1,9 +1,12 @@
 import postgres, { type Sql } from 'postgres';
-import { NATION_CODE_SKIP, resolveNationCodeAlias } from './nationCodeAliases.ts';
+import { loadCountryCodeResolver, type CountryCodeResolver } from './countryCodeResolver.ts';
+import { createTeamLookupKeys } from './teamLookupKeys.ts';
 import {
   buildFootballDataCompetitionMatchesPath,
   buildFootballDataCompetitionTeamsPath,
   parseFootballDataCompetitionTargets,
+  resolveFootballDataCompetitionMatchesFilters,
+  type FootballDataCompetitionMatchesFilterOptions,
   type FootballDataOrgCompetitionResponse,
   type FootballDataOrgMatchSummary,
   type FootballDataOrgMatchesResponse,
@@ -55,6 +58,7 @@ interface CompetitionSeasonDraft {
 
 interface MatchDraft {
   matchId: number;
+  externalMatchId: number;
   matchDate: string;
   competitionSlug: string;
   seasonSlug: string;
@@ -79,6 +83,17 @@ interface RawPayloadRow {
   payload: unknown;
 }
 
+interface ExistingTeamLookupRow {
+  slug: string;
+  name: string | null;
+  code_alpha3: string | null;
+}
+
+interface TeamLookupEntry {
+  slug: string;
+  codeAlpha3: string | null;
+}
+
 interface FootballDataOrgCompetitionConfig {
   slug: string;
   code: string;
@@ -92,7 +107,12 @@ interface FootballDataOrgCompetitionConfig {
 export interface MaterializeFootballDataOrgCoreOptions {
   dryRun?: boolean;
   competitionCodes?: string[];
+  dateFrom?: string;
+  dateTo?: string;
+  localDate?: string;
   seasons?: number[];
+  status?: string;
+  timeZone?: string;
 }
 
 export interface MaterializeFootballDataOrgCoreSummary {
@@ -121,6 +141,15 @@ const COMPETITION_CONFIGS: Record<string, FootballDataOrgCompetitionConfig> = {
     code: 'cl',
     name: 'Champions League',
     shortName: 'Champions League',
+    countryCode: null,
+    compType: 'international',
+    isInternational: true,
+  },
+  EL: {
+    slug: 'europa-league',
+    code: 'el',
+    name: 'Europa League',
+    shortName: 'Europa League',
     countryCode: null,
     compType: 'international',
     isInternational: true,
@@ -185,6 +214,10 @@ function normalizeSeasons(input?: number[]) {
   return [new Date().getUTCFullYear()];
 }
 
+function buildMatchesPath(code: string, season: number, filters: FootballDataCompetitionMatchesFilterOptions = {}) {
+  return buildFootballDataCompetitionMatchesPath(code, season, filters);
+}
+
 function slugify(value: string) {
   return value
     .normalize('NFKD')
@@ -198,6 +231,16 @@ function slugify(value: string) {
 
 function createTeamSlug(name: string, countryName?: string | null) {
   return slugify(countryName ? `${name} ${countryName}` : name);
+}
+
+function registerTeamLookupEntry(lookup: Map<string, TeamLookupEntry[]>, name: string, entry: TeamLookupEntry) {
+  for (const key of createTeamLookupKeys(name)) {
+    const existing = lookup.get(key) ?? [];
+    if (!existing.some((candidate) => candidate.slug === entry.slug)) {
+      existing.push(entry);
+      lookup.set(key, existing);
+    }
+  }
 }
 
 function createSeasonSlug(startDate: string, endDate: string) {
@@ -215,13 +258,89 @@ function createShortName(name: string, maxLength: number = 24) {
   return name.length <= maxLength ? name : `${name.slice(0, maxLength - 1).trimEnd()}.`;
 }
 
-function normalizeCountryCode(code?: string | null) {
+function normalizeCountryCode(countryCodeResolver: CountryCodeResolver, code?: string | null) {
   if (!code) {
     return null;
   }
 
-  const normalized = resolveNationCodeAlias(code);
-  return NATION_CODE_SKIP.has(normalized) ? null : normalized;
+  const normalized = countryCodeResolver.resolve(code);
+  return countryCodeResolver.isSkipped(normalized) ? null : normalized;
+}
+
+async function loadExistingTeamLookup(sql: Sql, countryCodeResolver: CountryCodeResolver) {
+  const rows = await sql<ExistingTeamLookupRow[]>`
+    SELECT DISTINCT slug, name, code_alpha3
+    FROM (
+      SELECT
+        t.slug,
+        tt.name,
+        c.code_alpha3
+      FROM teams t
+      LEFT JOIN team_translations tt ON tt.team_id = t.id AND tt.locale = 'en'
+      LEFT JOIN countries c ON c.id = t.country_id
+      UNION ALL
+      SELECT
+        t.slug,
+        ea.alias AS name,
+        c.code_alpha3
+      FROM teams t
+      JOIN entity_aliases ea ON ea.entity_type = 'team' AND ea.entity_id = t.id
+      LEFT JOIN countries c ON c.id = t.country_id
+    ) lookup
+  `;
+
+  const lookup = new Map<string, TeamLookupEntry[]>();
+  for (const row of rows) {
+    registerTeamLookupEntry(lookup, row.name ?? row.slug, {
+      slug: row.slug,
+      codeAlpha3: normalizeCountryCode(countryCodeResolver, row.code_alpha3),
+    });
+  }
+
+  return lookup;
+}
+
+function resolveCanonicalTeamSlug(
+  lookup: Map<string, TeamLookupEntry[]>,
+  teamName: string,
+  preferredCountryCode: string | null,
+) {
+  const candidates = createTeamLookupKeys(teamName)
+    .flatMap((key) => lookup.get(key) ?? []);
+  const unique = [...new Map(candidates.map((entry) => [entry.slug, entry])).values()];
+
+  if (preferredCountryCode) {
+    const sameCountry = unique.filter((entry) => entry.codeAlpha3 === preferredCountryCode);
+    if (sameCountry.length === 1) {
+      return sameCountry[0].slug;
+    }
+  }
+
+  return unique.length === 1 ? unique[0].slug : null;
+}
+
+function buildMatchLookupKey(matchDate: string, homeTeamSlug: string, awayTeamSlug: string) {
+  return `${matchDate}::${homeTeamSlug}::${awayTeamSlug}`;
+}
+
+async function loadExistingMatchLookup(sql: Sql, competitionSlug: string, seasonSlug: string) {
+  const rows = await sql<{ id: number; match_date: string; home_slug: string; away_slug: string }[]>`
+    SELECT DISTINCT
+      m.id,
+      m.match_date::text AS match_date,
+      home.slug AS home_slug,
+      away.slug AS away_slug
+    FROM matches m
+    JOIN competition_seasons cs ON cs.id = m.competition_season_id
+    JOIN competitions c ON c.id = cs.competition_id
+    JOIN seasons s ON s.id = cs.season_id
+    JOIN teams home ON home.id = m.home_team_id
+    JOIN teams away ON away.id = m.away_team_id
+    WHERE c.slug = ${competitionSlug}
+      AND s.slug = ${seasonSlug}
+  `;
+
+  return new Map(rows.map((row) => [buildMatchLookupKey(row.match_date, row.home_slug, row.away_slug), row.id]));
 }
 
 function normalizeMatchStatus(status?: string | null) {
@@ -259,13 +378,17 @@ function buildCountryDraft(name: string, code: string): CountryDraft {
   };
 }
 
-function buildCompetitionDraft(code: string, payload: FootballDataOrgCompetitionResponse): CompetitionDraft {
+function buildCompetitionDraft(
+  countryCodeResolver: CountryCodeResolver,
+  code: string,
+  payload: FootballDataOrgCompetitionResponse,
+): CompetitionDraft {
   const config = COMPETITION_CONFIGS[code] ?? {
     slug: slugify(payload.name ?? code),
     code: code.toLowerCase(),
     name: payload.name ?? code,
     shortName: createShortName(payload.name ?? code, 20),
-    countryCode: normalizeCountryCode(payload.area?.code),
+    countryCode: normalizeCountryCode(countryCodeResolver, payload.area?.code),
     compType: payload.type === 'CUP' ? 'international' : 'league',
     isInternational: payload.type === 'CUP',
   };
@@ -304,8 +427,12 @@ function buildSeasonDraft(season: FootballDataOrgSeasonSummary | null, fallbackS
   };
 }
 
-function buildTeamDraft(team: FootballDataOrgTeamSummary, competition: CompetitionDraft): TeamDraft {
-  const countryCode = normalizeCountryCode(team.area?.code) ?? competition.countryCode;
+function buildTeamDraft(
+  countryCodeResolver: CountryCodeResolver,
+  team: FootballDataOrgTeamSummary,
+  competition: CompetitionDraft,
+): TeamDraft {
+  const countryCode = normalizeCountryCode(countryCodeResolver, team.area?.code) ?? competition.countryCode;
 
   if (!countryCode) {
     throw new Error(`Unable to resolve country for team ${team.name ?? 'unknown'}`);
@@ -348,9 +475,10 @@ function buildMatchDraft(
   competition: CompetitionDraft,
   season: SeasonDraft,
   teamSlugByExternalId: Map<number, string>,
-): MatchDraft {
+  existingMatchLookup: Map<string, number>,
+): MatchDraft | null {
   if (!match.id || !match.utcDate || !match.homeTeam?.id || !match.awayTeam?.id) {
-    throw new Error('Incomplete football-data.org match payload');
+    return null;
   }
 
   const homeTeamSlug = teamSlugByExternalId.get(match.homeTeam.id);
@@ -360,9 +488,13 @@ function buildMatchDraft(
     throw new Error(`Unable to resolve canonical team slug for match ${match.id}`);
   }
 
+  const matchDate = match.utcDate.slice(0, 10);
+  const existingMatchId = existingMatchLookup.get(buildMatchLookupKey(matchDate, homeTeamSlug, awayTeamSlug));
+
   return {
-    matchId: match.id,
-    matchDate: match.utcDate.slice(0, 10),
+    matchId: existingMatchId ?? match.id,
+    externalMatchId: match.id,
+    matchDate,
     competitionSlug: competition.slug,
     seasonSlug: season.slug,
     homeTeamSlug,
@@ -409,7 +541,16 @@ async function loadLatestRawPayload<T>(sql: Sql, sourceId: number, endpoint: str
     LIMIT 1
   `;
 
-  return (rows[0]?.payload as T | undefined) ?? null;
+  const payload = rows[0]?.payload;
+  if (payload === undefined) {
+    return null;
+  }
+
+  if (typeof payload === 'string') {
+    return JSON.parse(payload) as T;
+  }
+
+  return payload as T;
 }
 
 async function refreshDerivedViews(sql: Sql) {
@@ -420,11 +561,30 @@ async function refreshDerivedViews(sql: Sql) {
 
 async function upsertEntityAlias(sql: Sql, entityType: 'competition' | 'team' | 'country', entityIdSql: ReturnType<Sql>, alias: string) {
   await sql`
-    INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary)
-    VALUES (${entityType}, (${entityIdSql}), ${alias}, 'en', 'common', TRUE)
+    INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+    VALUES (${entityType}, (${entityIdSql}), ${alias}, 'en', 'common', TRUE, 'pending', 'imported', 'football_data_org')
     ON CONFLICT (entity_type, entity_id, alias_normalized)
-    DO UPDATE SET locale = EXCLUDED.locale, alias_kind = EXCLUDED.alias_kind, is_primary = EXCLUDED.is_primary
+    DO UPDATE SET
+      locale = EXCLUDED.locale,
+      alias_kind = EXCLUDED.alias_kind,
+      is_primary = EXCLUDED.is_primary,
+      status = EXCLUDED.status,
+      source_type = EXCLUDED.source_type,
+      source_ref = EXCLUDED.source_ref
   `;
+}
+
+async function upsertTeamLookupAliases(sql: Sql, teamSlug: string, names: Array<string | null | undefined>) {
+  const aliasValues = [...new Set(
+    names
+      .flatMap((name) => name ? createTeamLookupKeys(name) : [])
+      .map((alias) => alias.trim())
+      .filter((alias) => alias.length > 0)
+  )];
+
+  for (const alias of aliasValues) {
+    await upsertEntityAlias(sql, 'team', sql`SELECT id FROM teams WHERE slug = ${teamSlug}`, alias);
+  }
 }
 
 async function upsertCountry(sql: Sql, draft: CountryDraft) {
@@ -531,6 +691,7 @@ async function upsertTeam(sql: Sql, draft: TeamDraft) {
   `;
 
   await upsertEntityAlias(sql, 'team', sql`SELECT id FROM teams WHERE slug = ${draft.slug}`, draft.name);
+  await upsertTeamLookupAliases(sql, draft.slug, [draft.name]);
 }
 
 async function upsertCompetitionSeason(sql: Sql, draft: CompetitionSeasonDraft) {
@@ -687,8 +848,18 @@ export async function materializeFootballDataOrgCore(
 ): Promise<MaterializeFootballDataOrgCoreSummary> {
   const targets = parseFootballDataCompetitionTargets(options.competitionCodes);
   const seasonsToProcess = normalizeSeasons(options.seasons);
+  const filters = {
+    dateFrom: options.dateFrom,
+    dateTo: options.dateTo,
+    localDate: options.localDate,
+    status: options.status?.trim().toUpperCase(),
+    timeZone: options.timeZone,
+  } satisfies FootballDataCompetitionMatchesFilterOptions;
+  const resolvedFilters = resolveFootballDataCompetitionMatchesFilters(filters);
   const sql = getMaterializeDb();
+  const countryCodeResolver = await loadCountryCodeResolver(sql);
   const sourceId = await ensureFootballDataSource(sql);
+  const existingTeamLookup = await loadExistingTeamLookup(sql, countryCodeResolver);
 
   const countries = new Map<string, CountryDraft>();
   const competitions = new Map<string, CompetitionDraft>();
@@ -708,7 +879,7 @@ export async function materializeFootballDataOrgCore(
         continue;
       }
 
-      const competitionDraft = buildCompetitionDraft(target.code, competitionPayload);
+      const competitionDraft = buildCompetitionDraft(countryCodeResolver, target.code, competitionPayload);
       competitions.set(competitionDraft.slug, competitionDraft);
       competitionMappings.push({
         slug: competitionDraft.slug,
@@ -716,7 +887,7 @@ export async function materializeFootballDataOrgCore(
         externalCode: target.code,
       });
 
-      const competitionCountryCode = normalizeCountryCode(competitionPayload.area?.code) ?? competitionDraft.countryCode;
+      const competitionCountryCode = normalizeCountryCode(countryCodeResolver, competitionPayload.area?.code) ?? competitionDraft.countryCode;
       if (competitionCountryCode && competitionPayload.area?.name) {
         countries.set(competitionCountryCode, buildCountryDraft(competitionPayload.area.name, competitionCountryCode));
       }
@@ -726,7 +897,7 @@ export async function materializeFootballDataOrgCore(
         const matchesPayload = await loadLatestRawPayload<FootballDataOrgMatchesResponse>(
           sql,
           sourceId,
-          `${buildFootballDataCompetitionMatchesPath(target.code, seasonValue)}&status=FINISHED`,
+          buildMatchesPath(target.code, seasonValue, filters),
         );
 
         if (!teamsPayload || !matchesPayload) {
@@ -747,14 +918,38 @@ export async function materializeFootballDataOrgCore(
         competitionSeasons.set(`${competitionDraft.slug}:${seasonDraft.slug}`, competitionSeasonDraft);
 
         const teamSlugByExternalId = new Map<number, string>();
+        const existingMatchLookup = await loadExistingMatchLookup(sql, competitionDraft.slug, seasonDraft.slug);
 
         for (const team of teamsPayload.teams ?? []) {
           if (!team.id || !team.name) {
             continue;
           }
 
-          const teamDraft = buildTeamDraft(team, competitionDraft);
+          const resolvedCountryCode = normalizeCountryCode(countryCodeResolver, team.area?.code) ?? competitionDraft.countryCode;
+          const existingTeamSlug = resolveCanonicalTeamSlug(existingTeamLookup, team.name, resolvedCountryCode);
+          if (existingTeamSlug) {
+            await upsertTeamLookupAliases(sql, existingTeamSlug, [team.name]);
+            teamSlugByExternalId.set(team.id, existingTeamSlug);
+            teamSeasonKeys.add(`${competitionDraft.slug}:${seasonDraft.slug}:${existingTeamSlug}`);
+            teamMappings.push({
+              slug: existingTeamSlug,
+              externalId: String(team.id),
+              seasonContext: String(seasonValue),
+            });
+
+            if (resolvedCountryCode && team.area?.name) {
+              countries.set(resolvedCountryCode, buildCountryDraft(team.area.name, resolvedCountryCode));
+            }
+
+            continue;
+          }
+
+          const teamDraft = buildTeamDraft(countryCodeResolver, team, competitionDraft);
           teams.set(teamDraft.slug, teamDraft);
+          registerTeamLookupEntry(existingTeamLookup, teamDraft.name, {
+            slug: teamDraft.slug,
+            codeAlpha3: teamDraft.countryCode,
+          });
           teamSlugByExternalId.set(team.id, teamDraft.slug);
           teamSeasonKeys.add(`${competitionDraft.slug}:${seasonDraft.slug}:${teamDraft.slug}`);
           teamMappings.push({
@@ -763,19 +958,24 @@ export async function materializeFootballDataOrgCore(
             seasonContext: String(seasonValue),
           });
 
-          const teamCountryCode = normalizeCountryCode(team.area?.code) ?? competitionDraft.countryCode;
+          const teamCountryCode = normalizeCountryCode(countryCodeResolver, team.area?.code) ?? competitionDraft.countryCode;
           if (teamCountryCode && team.area?.name) {
             countries.set(teamCountryCode, buildCountryDraft(team.area.name, teamCountryCode));
           }
         }
 
         for (const match of matchesPayload.matches ?? []) {
-          const matchDraft = buildMatchDraft(match, competitionDraft, seasonDraft, teamSlugByExternalId);
+          const matchDraft = buildMatchDraft(match, competitionDraft, seasonDraft, teamSlugByExternalId, existingMatchLookup);
+          if (!matchDraft) {
+            continue;
+          }
+
           matches.push(matchDraft);
+          existingMatchLookup.set(buildMatchLookupKey(matchDraft.matchDate, matchDraft.homeTeamSlug, matchDraft.awayTeamSlug), matchDraft.matchId);
           matchMappings.push({
             matchId: matchDraft.matchId,
             matchDate: matchDraft.matchDate,
-            externalId: String(matchDraft.matchId),
+            externalId: String(matchDraft.externalMatchId),
             seasonContext: String(seasonValue),
           });
         }

@@ -1,6 +1,6 @@
 import postgres from 'postgres';
 import { loadProjectEnv } from './load-project-env.mts';
-import { NATION_CODE_ALIASES } from '../src/data/nationCodeAliases.ts';
+import { COUNTRY_CODE_ALIASES } from '../src/data/countryCodeAliasSeeds.ts';
 
 function getSql() {
   const connectionString = process.env.DATABASE_URL;
@@ -54,7 +54,7 @@ async function mergeAlias(sql: ReturnType<typeof getSql>, aliasCode: string, can
     SELECT ${canonicalRow.id}, ranking_date, fifa_ranking, source
     FROM ranking_history
     WHERE country_id = ${aliasRow.id}
-    ON CONFLICT (country_id, ranking_date)
+    ON CONFLICT (country_id, ranking_date, ranking_category)
     DO NOTHING
   `;
 
@@ -63,6 +63,15 @@ async function mergeAlias(sql: ReturnType<typeof getSql>, aliasCode: string, can
   await sql`UPDATE teams SET country_id = ${canonicalRow.id} WHERE country_id = ${aliasRow.id}`;
   await sql`UPDATE players SET country_id = ${canonicalRow.id} WHERE country_id = ${aliasRow.id}`;
   await sql`UPDATE coaches SET country_id = ${canonicalRow.id} WHERE country_id = ${aliasRow.id}`;
+  await sql`
+    DELETE FROM entity_aliases alias_ea
+    USING entity_aliases canonical_ea
+    WHERE alias_ea.entity_type = 'country'
+      AND canonical_ea.entity_type = 'country'
+      AND alias_ea.entity_id = ${aliasRow.id}
+      AND canonical_ea.entity_id = ${canonicalRow.id}
+      AND alias_ea.alias_normalized = canonical_ea.alias_normalized
+  `;
   await sql`UPDATE entity_aliases SET entity_id = ${canonicalRow.id} WHERE entity_type = 'country' AND entity_id = ${aliasRow.id}`;
   await sql`DELETE FROM countries WHERE id = ${aliasRow.id}`;
 
@@ -75,7 +84,7 @@ async function main() {
 
   try {
     const results = [] as Array<{ aliasCode: string; canonicalCode: string; merged: boolean; reason: string }>;
-    for (const [aliasCode, canonicalCode] of Object.entries(NATION_CODE_ALIASES)) {
+    for (const [aliasCode, canonicalCode] of Object.entries(COUNTRY_CODE_ALIASES)) {
       results.push(await mergeAlias(sql, aliasCode, canonicalCode));
     }
     await sql`UPDATE countries SET is_active = FALSE, updated_at = NOW() WHERE code_alpha3 = 'MON'`;

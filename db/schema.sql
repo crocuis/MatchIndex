@@ -289,6 +289,11 @@ CREATE TABLE entity_aliases (
     locale VARCHAR(10) REFERENCES locales(code),
     alias_kind alias_type NOT NULL DEFAULT 'common',
     is_primary BOOLEAN NOT NULL DEFAULT FALSE,
+    status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected', 'quarantined')),
+    source_type TEXT NOT NULL DEFAULT 'manual' CHECK (source_type IN ('manual', 'imported', 'merge_derived', 'historical_rule', 'machine_generated', 'legacy')),
+    source_ref TEXT,
+    reviewed_at TIMESTAMPTZ,
+    reviewed_by TEXT,
     alias_normalized VARCHAR(255) GENERATED ALWAYS AS (lower(alias)) STORED,
     search_vector tsvector GENERATED ALWAYS AS (to_tsvector('simple', alias)) STORED,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -298,10 +303,18 @@ CREATE UNIQUE INDEX idx_entity_aliases_unique
     ON entity_aliases (entity_type, entity_id, alias_normalized);
 CREATE INDEX idx_entity_aliases_type_locale
     ON entity_aliases (entity_type, locale);
+CREATE INDEX idx_entity_aliases_status
+    ON entity_aliases (status, entity_type, locale);
 CREATE INDEX idx_entity_aliases_fts
     ON entity_aliases USING GIN (search_vector);
 CREATE INDEX idx_entity_aliases_trgm
     ON entity_aliases USING GIN (alias gin_trgm_ops);
+CREATE INDEX idx_entity_aliases_approved_fts
+    ON entity_aliases USING GIN (search_vector)
+    WHERE status = 'approved';
+CREATE INDEX idx_entity_aliases_approved_trgm
+    ON entity_aliases USING GIN (alias gin_trgm_ops)
+    WHERE status = 'approved';
 
 -- Season-scoped snapshot and current data
 
@@ -389,6 +402,67 @@ CREATE INDEX idx_player_season_stats_goals
     ON player_season_stats (competition_season_id, goals DESC, assists DESC);
 CREATE INDEX idx_player_season_stats_assists
     ON player_season_stats (competition_season_id, assists DESC, goals DESC);
+
+CREATE TABLE player_market_values (
+    id BIGSERIAL PRIMARY KEY,
+    player_id BIGINT NOT NULL REFERENCES players(id) ON DELETE CASCADE,
+    source_id BIGINT NOT NULL REFERENCES data_sources(id) ON DELETE RESTRICT,
+    season_id BIGINT REFERENCES seasons(id),
+    season_label VARCHAR(20),
+    club_id BIGINT REFERENCES teams(id),
+    club_name VARCHAR(255),
+    external_player_id TEXT,
+    external_club_id TEXT,
+    observed_at DATE NOT NULL,
+    age SMALLINT,
+    market_value_eur INTEGER NOT NULL CHECK (market_value_eur >= 0),
+    currency_code CHAR(3) NOT NULL DEFAULT 'EUR',
+    source_url TEXT,
+    raw_payload JSONB NOT NULL DEFAULT '{}'::jsonb,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    UNIQUE (player_id, source_id, observed_at)
+);
+
+CREATE INDEX idx_player_market_values_player_date
+    ON player_market_values (player_id, observed_at DESC);
+CREATE INDEX idx_player_market_values_season
+    ON player_market_values (season_id, market_value_eur DESC);
+
+CREATE TABLE player_transfers (
+    id BIGSERIAL PRIMARY KEY,
+    player_id BIGINT NOT NULL REFERENCES players(id) ON DELETE CASCADE,
+    source_id BIGINT NOT NULL REFERENCES data_sources(id) ON DELETE RESTRICT,
+    season_id BIGINT REFERENCES seasons(id),
+    season_label VARCHAR(20),
+    external_transfer_id TEXT NOT NULL,
+    moved_at DATE,
+    age SMALLINT,
+    from_team_id BIGINT REFERENCES teams(id),
+    from_team_name VARCHAR(255),
+    from_team_external_id TEXT,
+    to_team_id BIGINT REFERENCES teams(id),
+    to_team_name VARCHAR(255),
+    to_team_external_id TEXT,
+    market_value_eur INTEGER,
+    fee_eur INTEGER,
+    currency_code CHAR(3),
+    fee_display VARCHAR(50),
+    transfer_type VARCHAR(30),
+    transfer_type_label VARCHAR(100),
+    is_pending BOOLEAN NOT NULL DEFAULT FALSE,
+    contract_until_date DATE,
+    source_url TEXT,
+    raw_payload JSONB NOT NULL DEFAULT '{}'::jsonb,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    UNIQUE (player_id, source_id, external_transfer_id)
+);
+
+CREATE INDEX idx_player_transfers_player_date
+    ON player_transfers (player_id, moved_at DESC NULLS LAST, id DESC);
+CREATE INDEX idx_player_transfers_season
+    ON player_transfers (season_id, moved_at DESC NULLS LAST);
 
 CREATE VIEW current_competition_seasons AS
 SELECT cs.*
@@ -974,56 +1048,191 @@ RETURNS TABLE (
     match_type TEXT,
     score REAL
 ) LANGUAGE sql STABLE AS $$
-    SELECT
-        ranked.entity_type,
-        ranked.entity_id,
-        ranked.matched_alias,
-        ranked.match_type,
-        ranked.score
-    FROM (
+    WITH canonical_terms AS (
+        SELECT
+            'competition'::entity_type AS entity_type,
+            ct.competition_id AS entity_id,
+            ct.name AS matched_alias,
+            ct.locale,
+            to_tsvector('simple', ct.name) AS search_vector
+        FROM competition_translations ct
+        WHERE ct.name IS NOT NULL
+
+        UNION ALL
+
+        SELECT
+            'competition'::entity_type,
+            ct.competition_id,
+            ct.short_name,
+            ct.locale,
+            to_tsvector('simple', ct.short_name)
+        FROM competition_translations ct
+        WHERE ct.short_name IS NOT NULL
+
+        UNION ALL
+
+        SELECT
+            'team'::entity_type,
+            tt.team_id,
+            tt.name,
+            tt.locale,
+            to_tsvector('simple', tt.name)
+        FROM team_translations tt
+        WHERE tt.name IS NOT NULL
+
+        UNION ALL
+
+        SELECT
+            'team'::entity_type,
+            tt.team_id,
+            tt.short_name,
+            tt.locale,
+            to_tsvector('simple', tt.short_name)
+        FROM team_translations tt
+        WHERE tt.short_name IS NOT NULL
+
+        UNION ALL
+
+        SELECT
+            'player'::entity_type,
+            pt.player_id,
+            pt.known_as,
+            pt.locale,
+            to_tsvector('simple', pt.known_as)
+        FROM player_translations pt
+        WHERE pt.known_as IS NOT NULL
+
+        UNION ALL
+
+        SELECT
+            'country'::entity_type,
+            ctr.country_id,
+            ctr.name,
+            ctr.locale,
+            to_tsvector('simple', ctr.name)
+        FROM country_translations ctr
+        WHERE ctr.name IS NOT NULL
+    ),
+    approved_alias_terms AS (
         SELECT
             ea.entity_type,
             ea.entity_id,
             ea.alias AS matched_alias,
+            ea.locale,
+            ea.search_vector
+        FROM entity_aliases ea
+        WHERE ea.status = 'approved'
+    ),
+    ranked AS (
+        SELECT
+            ct.entity_type,
+            ct.entity_id,
+            ct.matched_alias,
+            'exact'::TEXT AS match_type,
+            1.2::REAL AS score,
+            1 AS ord
+        FROM canonical_terms ct
+        WHERE lower(ct.matched_alias) = lower(p_query)
+          AND (p_locale IS NULL OR ct.locale = p_locale OR ct.locale = 'en')
+          AND (p_entity_type IS NULL OR ct.entity_type = p_entity_type)
+
+        UNION ALL
+
+        SELECT
+            ea.entity_type,
+            ea.entity_id,
+            ea.matched_alias,
             'exact'::TEXT AS match_type,
             1.0::REAL AS score,
-            1 AS ord
-        FROM entity_aliases ea
-        WHERE lower(ea.alias) = lower(p_query)
-          AND (p_locale IS NULL OR ea.locale = p_locale OR ea.locale IS NULL)
+            2 AS ord
+        FROM approved_alias_terms ea
+        WHERE lower(ea.matched_alias) = lower(p_query)
+          AND (p_locale IS NULL OR ea.locale = p_locale OR ea.locale = 'en' OR ea.locale IS NULL)
           AND (p_entity_type IS NULL OR ea.entity_type = p_entity_type)
+
+        UNION ALL
+
+        SELECT
+            ct.entity_type,
+            ct.entity_id,
+            ct.matched_alias,
+            'fts'::TEXT AS match_type,
+            ts_rank(ct.search_vector, plainto_tsquery('simple', p_query))::REAL AS score,
+            3 AS ord
+        FROM canonical_terms ct
+        WHERE ct.search_vector @@ plainto_tsquery('simple', p_query)
+          AND lower(ct.matched_alias) <> lower(p_query)
+          AND (p_locale IS NULL OR ct.locale = p_locale OR ct.locale = 'en')
+          AND (p_entity_type IS NULL OR ct.entity_type = p_entity_type)
 
         UNION ALL
 
         SELECT
             ea.entity_type,
             ea.entity_id,
-            ea.alias AS matched_alias,
+            ea.matched_alias,
             'fts'::TEXT AS match_type,
             ts_rank(ea.search_vector, plainto_tsquery('simple', p_query))::REAL AS score,
-            2 AS ord
-        FROM entity_aliases ea
+            4 AS ord
+        FROM approved_alias_terms ea
         WHERE ea.search_vector @@ plainto_tsquery('simple', p_query)
-          AND lower(ea.alias) <> lower(p_query)
-          AND (p_locale IS NULL OR ea.locale = p_locale OR ea.locale IS NULL)
+          AND lower(ea.matched_alias) <> lower(p_query)
+          AND (p_locale IS NULL OR ea.locale = p_locale OR ea.locale = 'en' OR ea.locale IS NULL)
           AND (p_entity_type IS NULL OR ea.entity_type = p_entity_type)
+
+        UNION ALL
+
+        SELECT
+            ct.entity_type,
+            ct.entity_id,
+            ct.matched_alias,
+            'fuzzy'::TEXT AS match_type,
+            similarity(ct.matched_alias, p_query)::REAL AS score,
+            5 AS ord
+        FROM canonical_terms ct
+        WHERE ct.matched_alias % p_query
+          AND lower(ct.matched_alias) <> lower(p_query)
+          AND (p_locale IS NULL OR ct.locale = p_locale OR ct.locale = 'en')
+          AND (p_entity_type IS NULL OR ct.entity_type = p_entity_type)
 
         UNION ALL
 
         SELECT
             ea.entity_type,
             ea.entity_id,
-            ea.alias AS matched_alias,
+            ea.matched_alias,
             'fuzzy'::TEXT AS match_type,
-            similarity(ea.alias, p_query)::REAL AS score,
-            3 AS ord
-        FROM entity_aliases ea
-        WHERE ea.alias % p_query
-          AND lower(ea.alias) <> lower(p_query)
-          AND (p_locale IS NULL OR ea.locale = p_locale OR ea.locale IS NULL)
+            similarity(ea.matched_alias, p_query)::REAL AS score,
+            6 AS ord
+        FROM approved_alias_terms ea
+        WHERE ea.matched_alias % p_query
+          AND lower(ea.matched_alias) <> lower(p_query)
+          AND (p_locale IS NULL OR ea.locale = p_locale OR ea.locale = 'en' OR ea.locale IS NULL)
           AND (p_entity_type IS NULL OR ea.entity_type = p_entity_type)
-    ) ranked
-    ORDER BY ranked.ord, ranked.score DESC
+    ),
+    deduped AS (
+        SELECT
+            ranked.entity_type,
+            ranked.entity_id,
+            ranked.matched_alias,
+            ranked.match_type,
+            ranked.score,
+            ranked.ord,
+            ROW_NUMBER() OVER (
+                PARTITION BY ranked.entity_type, ranked.entity_id
+                ORDER BY ranked.ord ASC, ranked.score DESC, ranked.matched_alias ASC
+            ) AS rn
+        FROM ranked
+    )
+    SELECT
+        deduped.entity_type,
+        deduped.entity_id,
+        deduped.matched_alias,
+        deduped.match_type,
+        deduped.score
+    FROM deduped
+    WHERE deduped.rn = 1
+    ORDER BY deduped.ord ASC, deduped.score DESC
     LIMIT p_limit;
 $$;
 
@@ -1081,6 +1290,18 @@ VALUES
         '구단 마스터 데이터는 하루 1~2회 수준으로 갱신한다.'
     ),
     (
+        'master.countries',
+        'master',
+        'country',
+        FALSE,
+        TRUE,
+        INTERVAL '12 hours',
+        INTERVAL '3 days',
+        43200,
+        FALSE,
+        '국가 마스터 데이터는 하루 1~2회 수준으로 갱신한다.'
+    ),
+    (
         'season.current.standings',
         'season_current',
         'competition',
@@ -1103,6 +1324,30 @@ VALUES
         86400,
         FALSE,
         '종료 시즌은 사실상 read-mostly로 취급한다.'
+    ),
+    (
+        'match.read_model',
+        'matchday_warm',
+        'match',
+        TRUE,
+        FALSE,
+        INTERVAL '15 minutes',
+        INTERVAL '1 hour',
+        300,
+        TRUE,
+        '일반 경기 읽기 모델은 중간 주기로 갱신한다.'
+    ),
+    (
+        'search.read_model',
+        'matchday_warm',
+        'search_index',
+        FALSE,
+        FALSE,
+        INTERVAL '15 minutes',
+        INTERVAL '1 hour',
+        300,
+        FALSE,
+        '검색 읽기 모델은 중간 주기로 갱신한다.'
     ),
     (
         'match.live.detail',

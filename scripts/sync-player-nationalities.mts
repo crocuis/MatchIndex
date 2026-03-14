@@ -1,7 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import postgres, { type Sql } from 'postgres';
-import { resolveNationCodeAlias } from '../src/data/nationCodeAliases.ts';
+import type { CountryCodeResolver } from '../src/data/countryCodeResolver.ts';
+import { loadCountryCodeResolver } from '../src/data/countryCodeResolver.ts';
 import { loadProjectEnv } from './load-project-env.mts';
 
 interface CliOptions {
@@ -277,13 +278,13 @@ async function ensureCountrySeed(sql: Sql, definition: CountrySeedDefinition) {
   return rows[0].id;
 }
 
-function buildCountryResolver(rows: CountryLookupRow[]) {
+function buildCountryResolver(rows: CountryLookupRow[], countryCodeResolver: CountryCodeResolver) {
   const countryIdByKey = new Map<string, number>();
   const countryIdByCode = new Map<string, number>();
   const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
 
   for (const row of rows) {
-    countryIdByCode.set(resolveNationCodeAlias(row.code_alpha3), row.id);
+    countryIdByCode.set(countryCodeResolver.resolve(row.code_alpha3) ?? row.code_alpha3, row.id);
 
     const displayName = row.code_alpha2 ? regionNames.of(row.code_alpha2.toUpperCase()) : undefined;
 
@@ -296,7 +297,7 @@ function buildCountryResolver(rows: CountryLookupRow[]) {
   }
 
   for (const [alias, code] of Object.entries(COUNTRY_NAME_ALIASES)) {
-    const resolvedId = countryIdByCode.get(resolveNationCodeAlias(code));
+    const resolvedId = countryIdByCode.get(countryCodeResolver.resolve(code) ?? code);
     if (resolvedId) {
       countryIdByKey.set(alias, resolvedId);
     }
@@ -304,7 +305,7 @@ function buildCountryResolver(rows: CountryLookupRow[]) {
 
   return {
     register(row: CountryLookupRow) {
-      countryIdByCode.set(resolveNationCodeAlias(row.code_alpha3), row.id);
+      countryIdByCode.set(countryCodeResolver.resolve(row.code_alpha3) ?? row.code_alpha3, row.id);
 
       const displayName = row.code_alpha2 ? regionNames.of(row.code_alpha2.toUpperCase()) : undefined;
       for (const candidate of [row.code_alpha2, row.code_alpha3, row.translation_name, displayName]) {
@@ -328,7 +329,7 @@ function buildCountryResolver(rows: CountryLookupRow[]) {
 
         const aliasCode = COUNTRY_NAME_ALIASES[normalized];
         if (aliasCode) {
-          const aliasMatch = countryIdByCode.get(resolveNationCodeAlias(aliasCode));
+          const aliasMatch = countryIdByCode.get(countryCodeResolver.resolve(aliasCode) ?? aliasCode);
           if (aliasMatch) {
             return aliasMatch;
           }
@@ -401,7 +402,8 @@ async function main() {
 
   let syncRunId: number | null = null;
   try {
-    const resolver = buildCountryResolver(await loadCountryRows(sql));
+    const countryCodeResolver = await loadCountryCodeResolver(sql);
+    const resolver = buildCountryResolver(await loadCountryRows(sql), countryCodeResolver);
     const sourceId = options.dryRun ? null : await ensureDataSource(sql, payload.provider.trim().toLowerCase());
     if (!options.dryRun && sourceId !== null) {
       syncRunId = await createSyncRun(sql, sourceId, {

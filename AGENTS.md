@@ -1,266 +1,187 @@
 # AGENTS.md — MatchIndex
 
-Football data exploration platform. Dark-themed, desktop-first, high-density UI inspired by Football Manager.
+축구 데이터 탐색 플랫폼. Football Manager 스타일의 다크 테마, 데스크톱 퍼스트, 고밀도 UI.
 
 ## Stack
 
-- **Next.js 16** (App Router, Turbopack) — React 19, `src/app/` routing
+- **Next.js 16** (App Router, Turbopack) — React 19, `src/app/` 라우팅
 - **TypeScript** (strict mode) — `@/` path alias → `./src/*`
-- **TailwindCSS v4** — custom design tokens, dark-only theme
-- **next-intl** — i18n (en, ko), cookie-based locale
-- **Lucide React** — icons
-- **clsx + tailwind-merge** — `cn()` class utility
+- **TailwindCSS v4** — 커스텀 디자인 토큰, 다크 전용 테마
+- **PostgreSQL** (`postgres` 라이브러리) — `db/schema.sql` DDL, `db/migrations/`
+- **Redis** (ioredis) — 선택적 캐시 레이어 (`CACHE_ENABLED=true`)
+- **next-intl** — i18n (en, ko), 쿠키 기반 로캘
+- **Lucide React** — 아이콘 / **clsx + tailwind-merge** — `cn()` 유틸
 
 ## Commands
 
 ```bash
-npm run dev          # Start dev server (Turbopack)
-npm run build        # Production build — use to verify no build errors
-npm run start        # Start production server
-npm run lint         # ESLint (eslint-config-next with core-web-vitals + typescript)
-npx tsc --noEmit     # Type-check without emitting
+npm run dev              # 개발 서버 (Turbopack)
+npm run build            # 프로덕션 빌드 — 빌드 에러 검증용
+npm run lint             # ESLint (core-web-vitals + typescript)
+npx tsc --noEmit         # 타입 체크만 (emit 없음)
 ```
+
+테스트 프레임워크 없음. 테스트 러너, 테스트 파일 미존재.
 
 ## Language Policy
 
 - 모든 문서, 에이전트 응답, 커밋 메시지는 **한국어**로 작성합니다.
-- 코드 식별자(클래스, 메서드, 변수, API 이름)는 기존 코드 관례에 따라 **영어**를 유지합니다.
-
-No test framework is configured. No test runner, no test files exist.
+- 코드 식별자(클래스, 메서드, 변수, API 이름)는 **영어**를 유지합니다.
 
 ## Architecture
 
 ```
 src/
-├── app/                    # Next.js App Router — pages are server components by default
-│   ├── layout.tsx          # Root layout (fonts, NextIntlClientProvider, Sidebar, TopBar)
-│   ├── page.tsx            # Dashboard (/)
-│   ├── clubs/[id]/         # /clubs/:id
+├── app/                    # App Router — 서버 컴포넌트 기본
+│   ├── layout.tsx          # 루트 레이아웃 (폰트, i18n, Sidebar, TopBar)
+│   ├── page.tsx            # 대시보드 (/)
+│   ├── clubs/[id]/         # /clubs/:id (시즌 아카이브 포함)
 │   ├── leagues/[id]/       # /leagues/:id
 │   ├── players/[id]/       # /players/:id
 │   ├── nations/[id]/       # /nations/:id
-│   ├── matches/[id]/       # /matches/:id
+│   ├── matches/[id]/       # /matches/:id (분석 탭 포함)
 │   ├── results/            # /results
-│   ├── search/             # /search?q= (client component)
-│   └── globals.css         # Tailwind imports + design tokens
+│   ├── search/             # /search?q= (클라이언트 컴포넌트)
+│   ├── worldcup/           # /worldcup
+│   └── globals.css         # Tailwind 임포트 + 디자인 토큰
 ├── components/
-│   ├── layout/             # AppShell pieces: Sidebar, TopBar, PageHeader
-│   ├── data/               # Data display: DataTable, StandingsTable, MatchCard, StatPanel
-│   └── ui/                 # Primitives: Badge, EntityLink, TabGroup, SectionCard, ClubBadge
+│   ├── layout/             # Sidebar, TopBar, PageHeader
+│   ├── data/               # DataTable, StandingsTable, MatchCard, FixtureCard,
+│   │                       # FootballPitch, HeatMap, PassMap, ShotMap, MatchAnalysisTabs 등
+│   └── ui/                 # Badge, EntityLink, TabGroup, SectionCard, ClubBadge,
+│                           # NationFlag, PlayerAvatar, PaginationNav, DetailTabNav 등
 ├── data/
-│   ├── types.ts            # Domain interfaces (League, Club, Player, Nation, Match, etc.)
-│   ├── index.ts            # Data access layer — ALL queries go through here
-│   ├── leagues.ts          # Mock data
-│   ├── clubs.ts            # Mock data
-│   ├── players.ts          # Mock data
-│   ├── nations.ts          # Mock data
-│   ├── matches.ts          # Mock data
-│   └── standings.ts        # Mock data
+│   ├── types.ts            # 도메인 인터페이스 (League, Club, Player, Nation, Match 등)
+│   ├── server.ts           # 서버 전용 DB 쿼리 re-export ('server-only' 가드)
+│   ├── postgres.ts         # PostgreSQL 쿼리 구현 (전체 데이터 접근 레이어)
+│   ├── index.ts            # 목 데이터 접근 레이어 (DB 미연결 시 폴백)
+│   ├── api*.ts / statsbomb*.ts / footballData*.ts
+│   │                       # 외부 API 인제스트/머티리얼라이즈 모듈
+│   └── *.ts                # 목 데이터 파일 (clubs, players, matches 등)
 ├── config/
-│   └── nav.ts              # Sidebar navigation config (typed NavItem/NavGroup)
+│   ├── app.ts              # APP_VERSION 등 앱 설정
+│   └── nav.ts              # 사이드바 네비게이션 설정
 ├── i18n/
-│   └── request.ts          # next-intl locale config (cookie-based, fallback to 'en')
-├── lib/
-│   └── utils.ts            # cn(), formatDate(), formatNumber(), getPositionColor(), etc.
-└── styles/                 # (globals.css lives in app/ instead)
-messages/
-├── en.json                 # English translations
-└── ko.json                 # Korean translations
+│   └── request.ts          # next-intl 로캘 설정
+└── lib/
+    ├── db.ts               # PostgreSQL 연결 풀 (postgres 라이브러리)
+    ├── cache.ts            # Redis 읽기 캐시 (read-through, 계층형 TTL)
+    ├── redis.ts            # Redis 클라이언트
+    └── utils.ts            # cn(), formatDate(), formatNumber(), getPositionColor() 등
+scripts/                    # 데이터 인제스트/동기화 CLI (.mts 파일들)
+messages/                   # en.json, ko.json (i18n 번역)
 db/
-└── schema.sql              # PostgreSQL DDL (future — not connected yet)
+├── schema.sql              # PostgreSQL DDL (1300+ 줄)
+└── migrations/             # SQL 마이그레이션 파일
 ```
 
 ## Data Layer
 
-All data access goes through `src/data/index.ts`. Currently mock data via in-memory Maps.
-Designed for future API swap — change implementation in `index.ts`, consumers stay unchanged.
+**이중 모드**: `DATABASE_URL` 설정 시 PostgreSQL (`src/data/server.ts` → `postgres.ts`), 미설정 시 목 데이터 폴백 (`src/data/index.ts`).
 
-```typescript
-// Pattern: Map-based O(1) lookup, returns T | undefined
-export function getClubById(id: string): Club | undefined {
-  return clubMap.get(id);
-}
-```
-
-- No API routes exist (`src/app/api/` does not exist)
-- No server actions
-- No ORM — `db/schema.sql` is a future PostgreSQL schema (not connected)
+- 페이지에서는 `@/data/server` 에서 `*Db` 함수를 임포트 (예: `getClubByIdDb`)
+- DB 함수는 대부분 `locale` 파라미터를 받아 한국어명 처리
+- Redis 캐시는 `readThroughCache()` 패턴 사용 (`src/lib/cache.ts`)
+- 스크립트는 `src/data/` 내 인제스트/머티리얼라이즈 모듈 + `scripts/` CLI 사용
+- DB에 적재된 값이 단일 출처(single source of truth)다. 인제스트/머티리얼라이즈/조회/UI 어디에서도 DB 값을 임의 변환한 별도 정답 집합을 만들지 말고, 정규화·매핑·보정이 필요하면 적재 파이프라인 또는 스키마 레벨에서 해결한다
 
 ## Code Style
 
-### Imports
-
-Order: **external → internal (via `@/`)** — never use relative paths.
+### Imports — 순서: 외부 → 내부 (`@/`), 상대경로 사용 금지
 
 ```typescript
-// 1. Next.js / React
-import { notFound } from 'next/navigation';
+import { notFound } from 'next/navigation';        // 1. Next.js / React
 import type { Metadata } from 'next';
-// 2. Third-party
-import { getTranslations } from 'next-intl/server';
-// 3. Internal components
-import { PageHeader } from '@/components/layout/PageHeader';
-import { SectionCard } from '@/components/ui/SectionCard';
-// 4. Data / utilities
-import { getClubById, getPlayersByClub } from '@/data';
-import { cn, formatNumber } from '@/lib/utils';
+import { getTranslations } from 'next-intl/server'; // 2. 서드파티
+import { PageHeader } from '@/components/layout/PageHeader';  // 3. 내부 컴포넌트
+import { getClubByIdDb } from '@/data/server';      // 4. 데이터 / 유틸
+import { cn } from '@/lib/utils';
 ```
 
-- Always use `@/` alias, never `./` or `../`
-- Use `import type` for type-only imports
-- Group named imports from same module on one line
+- 항상 `@/` alias 사용, `./` `../` 금지
+- 타입 전용 임포트에 `import type` 사용
 
 ### Naming
 
-| What | Convention | Example |
+| 대상 | 규칙 | 예시 |
 |---|---|---|
-| Component files | PascalCase.tsx | `DataTable.tsx`, `MatchCard.tsx` |
-| Utility/config files | camelCase.ts | `utils.ts`, `nav.ts` |
-| Component functions | PascalCase | `export function StandingsTable()` |
-| Utility functions | camelCase | `formatDate()`, `getPositionColor()` |
-| Props interfaces | `{Component}Props` | `BadgeProps`, `DataTableProps` |
-| Constants | UPPER_SNAKE_CASE | `NAV_GROUPS`, `LOCALE_COOKIE` |
-| Domain interfaces | PascalCase | `League`, `Club`, `Player` |
-| Route params | `[id]` dirs | `clubs/[id]/page.tsx` |
+| 컴포넌트 파일 | PascalCase.tsx | `DataTable.tsx` |
+| 유틸/설정 파일 | camelCase.ts | `utils.ts` |
+| 컴포넌트 함수 | `export function PascalCase()` | `StandingsTable` |
+| Props 인터페이스 | `{Component}Props` | `BadgeProps` |
+| 도메인 모델 | `interface PascalCase` | `League`, `Club` |
+| 유틸 함수 | camelCase | `formatDate()` |
+| 상수 | UPPER_SNAKE_CASE | `NAV_GROUPS` |
+| DB 쿼리 함수 | camelCase + `Db` 접미사 | `getClubByIdDb()` |
 
 ### TypeScript
 
-- **`interface`** for component props and domain models
-- **`type`** for unions, tuples, utility types
-- **Strict mode** enabled — do not use `as any`, `@ts-ignore`, or `@ts-expect-error`
-- Optional chaining (`?.`) and nullish coalescing (`??`) for safe access
-- Generics for reusable components (see `DataTable<T>`)
-
-```typescript
-// Props: always interface, destructured with defaults
-interface StandingsTableProps {
-  standings: StandingRow[];
-  compact?: boolean;
-  className?: string;
-}
-
-export function StandingsTable({ standings, compact = false, className }: StandingsTableProps) {}
-
-// Union types
-export type EntityType = 'player' | 'club' | 'league' | 'nation';
-```
+- `interface` → 컴포넌트 props, 도메인 모델 / `type` → union, tuple, utility
+- **strict mode** — `as any`, `@ts-ignore`, `@ts-expect-error` 사용 금지
+- optional chaining (`?.`) + nullish coalescing (`??`) 활용
+- 제네릭 활용 (예: `DataTable<T>`)
 
 ### Components
 
-- **Function declarations** — `export function Name()`, not arrow functions
-- **No default exports** for components — only pages use `export default`
-- Server components are `async` functions (default, no directive needed)
-- Client components have `'use client'` as the very first line
+- **함수 선언문** 사용 — `export function Name()`, 화살표 함수 아님
+- 컴포넌트는 **named export** — `export default`는 페이지만
+- 서버 컴포넌트: `async function` (디렉티브 불필요)
+- 클라이언트 컴포넌트: 첫 줄에 `'use client'`
+- 모든 DOM 렌더링 컴포넌트에 `className` prop 제공
 
 ```typescript
-// Server component (page) — async, data fetching at top level
+// 서버 컴포넌트 (페이지)
 export default async function ClubPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const club = getClubById(id);
+  const club = await getClubByIdDb(id, locale);
   if (!club) notFound();
-  // ...
 }
 
-// Client component — 'use client' directive, hooks allowed
+// 클라이언트 컴포넌트
 'use client';
-export function MatchCard({ match, className }: MatchCardProps) {
-  const router = useRouter();
-  const t = useTranslations('matchStatus');
-  // ...
-}
+export function MatchCard({ match, className }: MatchCardProps) { }
 ```
 
-### Dynamic Route Pages
+### Styling — TailwindCSS v4 + 커스텀 토큰
 
-Pages with `[id]` params implement `generateStaticParams` and `generateMetadata`:
-
-```typescript
-export async function generateStaticParams() {
-  return getClubs().map((c) => ({ id: c.id }));
-}
-
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
-  const { id } = await params;
-  const club = getClubById(id);
-  return { title: club?.name ?? 'Club' };
-}
-```
-
-### Styling
-
-TailwindCSS v4 with custom design tokens defined in `src/app/globals.css`.
-
-**Custom tokens** (use these, not raw colors):
-
-| Token | Usage |
+| 토큰 | 용도 |
 |---|---|
-| `bg-surface-0` through `bg-surface-4` | Background layers (0=darkest) |
-| `text-text-primary/secondary/muted` | Text hierarchy |
-| `border-border`, `border-border-subtle` | Borders |
-| `text-accent-emerald` | Primary accent |
-| `text-win/draw/loss` | Match result colors |
+| `bg-surface-0` ~ `bg-surface-4` | 배경 레이어 (0=가장 어두움) |
+| `text-text-primary/secondary/muted` | 텍스트 계층 |
+| `border-border`, `border-border-subtle` | 테두리 |
+| `text-accent-emerald` | 주 강조색 |
+| `text-win/draw/loss` | 경기 결과 색상 |
 
-**Class merging** — always use `cn()` for conditional classes:
+- `cn()` 으로 조건부 클래스 병합: `cn('base-classes', condition && 'extra', className)`
+- 폰트 크기: `text-[10px]` (라벨), `text-[11px]` (헤더), `text-[13px]` (본문) — FM 스타일 밀도
 
-```typescript
-import { cn } from '@/lib/utils';
+### i18n
 
-<div className={cn(
-  'rounded-lg border border-border bg-surface-1',  // base
-  compact && 'px-2',                                 // conditional
-  className                                          // passthrough
-)}>
-```
-
-**Font sizes**: `text-[10px]` (labels), `text-[11px]` (headers), `text-[13px]` (body) — explicit pixel values for FM-style density.
-
-### Internationalization (i18n)
-
-- **Server components**: `const t = await getTranslations('namespace');`
-- **Client components**: `const t = useTranslations('namespace');`
-- Translation files: `messages/en.json`, `messages/ko.json`
-- Locale stored in cookie `MATCHINDEX_LOCALE`, fallback `'en'`
-- Namespaced: `dashboard`, `nav`, `common`, `standings`, `table`, etc.
-
-```typescript
-// Server
-const tDashboard = await getTranslations('dashboard');
-<PageHeader title={tDashboard('title')} />
-
-// Client
-const t = useTranslations('matchStatus');
-<span>{t(match.status)}</span>
-```
+- 서버: `const t = await getTranslations('namespace');`
+- 클라이언트: `const t = useTranslations('namespace');`
+- 번역 파일: `messages/en.json`, `messages/ko.json`
+- 로캘 쿠키: `MATCHINDEX_LOCALE`, 폴백 `'en'`
+- **엔티티명 로컬라이제이션**: 한국어 로캘 선택 시, DB에 저장된 한국어명(`koreanName` 등)이 존재하면 반드시 해당 값을 표시해야 한다 — 예) `getClubDisplayName(club, locale)` 패턴 참고
 
 ### Error Handling
 
-- `notFound()` from `next/navigation` for missing entities in pages
-- Optional chaining + nullish coalescing for safe data access
-- Fallback strings: `getClubName(id)` returns `'Unknown'` if not found
-- No try/catch blocks in current codebase (mock data never throws)
-
-### State Management
-
-React hooks only — no external state library:
-- `useState` for local UI state
-- `useTransition` for async operations (locale switching)
-- `useRouter` / `usePathname` for navigation
-- `useSearchParams` for query params (search page)
+- `notFound()` — 엔티티 미발견 시 사용 (from `next/navigation`)
+- optional chaining + nullish coalescing 으로 안전한 접근
+- 폴백 문자열: 예) `getClubName(id)` → 미발견 시 `'Unknown'` 반환
 
 ## ESLint
 
-Flat config (`eslint.config.mjs`): `eslint-config-next/core-web-vitals` + `eslint-config-next/typescript`.
-No custom rules added. Run `npm run lint` to check.
+flat config (`eslint.config.mjs`): `eslint-config-next/core-web-vitals` + `typescript`. 커스텀 규칙 없음.
 
-## Key Conventions Summary
+## Key Conventions
 
-1. **All data queries** go through `src/data/index.ts` — never import mock data directly
-2. **All internal imports** use `@/` alias — never relative paths
-3. **Components** use function declarations with named exports
-4. **Props** always get a `{Name}Props` interface
-5. **Styling** uses Tailwind with custom tokens — use `cn()` for conditionals
-6. **Pages** are server components (async) unless they need interactivity
-7. **Client components** get `'use client'` and use `useTranslations()` for i18n
-8. **No `as any`** — use proper types or `undefined` returns
-9. **`className` prop** on all components that render DOM elements
-10. **Design density** is intentionally high — small font sizes, compact padding
+1. **DB 쿼리**: 페이지에서 `@/data/server`의 `*Db` 함수 사용 — 목 데이터 직접 임포트 금지
+2. **내부 임포트**: 항상 `@/` alias — 상대경로 금지
+3. **컴포넌트**: 함수 선언문 + named export
+4. **Props**: 반드시 `{Name}Props` 인터페이스 정의
+5. **스타일**: Tailwind 커스텀 토큰 + `cn()` — raw 색상값 금지
+6. **페이지**: 서버 컴포넌트 (async) 기본, 인터랙션 필요 시만 클라이언트
+7. **타입 안전성**: `as any` 금지, proper types 또는 `undefined` 반환
+8. **디자인 밀도**: 의도적으로 높음 — 작은 폰트, 컴팩트 패딩
+9. **엔티티명 표기 일관성**: 선수·구단·리그·국가 등의 이름은 축약어를 제외하고 동일 엔티티에 대해 항상 같은 표기를 사용 — DB 저장값(`name`, `koreanName` 등)을 단일 출처(single source of truth)로 취급하고, UI에서 임의로 다른 표기를 하드코딩하지 않는다
+10. **적재 데이터 원칙**: DB에 적재되는 데이터 자체가 single source of truth다. 적재 이후 애플리케이션 계층에서 별도의 정답 테이블·하드코딩 매핑·임시 보정 로직으로 데이터 의미를 덮어쓰지 말고, 필요한 수정은 인제스트/머티리얼라이즈 또는 DB 레이어에서 반영한다

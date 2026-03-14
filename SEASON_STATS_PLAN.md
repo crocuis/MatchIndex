@@ -12,7 +12,7 @@
 - 앱 읽기 계층은 이미 DB 우선 구조다. 리그 페이지는 `getStandingsByLeagueDb()`, `getTopScorersBySeasonDb()` 등을 사용하고, 선수 페이지는 `getPlayerByIdDb()`에서 `player_season_stats`를 읽는다.
 - ingest/materialize 패턴도 이미 있다.
   - 매치/리그 코어: `src/data/footballDataOrgIngest.ts`, `src/data/footballDataOrgMaterialize.ts`
-  - StatsBomb 오픈데이터: `src/data/statsbombIngest.ts`, `src/data/statsbombMaterialize.ts`, `src/data/statsbombMaterializeDetails.ts`
+  - StatsBomb 오픈데이터 적재: `src/data/statsbombMaterialize.ts`, `src/data/statsbombMaterializeDetails.ts`
   - 실행 진입점: `scripts/football-data-ingest-manifests.mts`, `scripts/football-data-materialize-core.mts`, `scripts/sync-match-events.mts`
 
 ## 권장 구현 순서
@@ -27,7 +27,6 @@
   - `API-Football`은 시즌 + 리그 기준 선수 누적 스탯 조회가 가능하다.
   - `db/schema.sql`과 현재 리그/선수 페이지 요구사항은 xG보다 기본 시즌 집계가 더 우선이다.
 - 보조 후보
-  - `Sportmonks`: 고급 지표 확장 시 2차 후보
   - `FBref` 크롤링: 과거 시즌 보강용 배치 후보, 메인 소스로는 비권장
 
 ### 1. 소스 역할 분리

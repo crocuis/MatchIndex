@@ -20,6 +20,8 @@ interface TeamRow {
   gender: 'male' | 'female' | 'mixed';
   crest_url: string | null;
   has_mapping: boolean;
+  match_count: number;
+  team_season_count: number;
   aliases: string[];
   league_slug: string | null;
 }
@@ -117,6 +119,21 @@ function shouldPrioritize(left: TeamRow, right: TeamRow) {
   return left.slug.localeCompare(right.slug) < 0;
 }
 
+function hasAfcToken(value: string) {
+  return /\bafc\b/i.test(value);
+}
+
+function shouldSkipOrphanAfcVariant(target: TeamRow, canonical: TeamRow) {
+  if (target.has_mapping || target.match_count > 0 || target.team_season_count > 0) {
+    return false;
+  }
+
+  const targetNames = [target.name, target.short_name, ...target.aliases].filter((value): value is string => Boolean(value));
+  const canonicalNames = [canonical.name, canonical.short_name, ...canonical.aliases].filter((value): value is string => Boolean(value));
+
+  return targetNames.some(hasAfcToken) && canonicalNames.every((value) => !hasAfcToken(value));
+}
+
 async function main() {
   loadProjectEnv();
   const options = parseArgs(process.argv.slice(2));
@@ -156,6 +173,16 @@ async function main() {
           WHERE sem.entity_type = 'team'
             AND sem.entity_id = t.id
         ) AS has_mapping,
+        (
+          SELECT COUNT(*)::INT
+          FROM matches m
+          WHERE m.home_team_id = t.id OR m.away_team_id = t.id
+        ) AS match_count,
+        (
+          SELECT COUNT(*)::INT
+          FROM team_seasons ts
+          WHERE ts.team_id = t.id
+        ) AS team_season_count,
         COALESCE(
           ARRAY_AGG(DISTINCT ea.alias) FILTER (WHERE ea.alias IS NOT NULL),
           ARRAY[]::TEXT[]
@@ -173,12 +200,11 @@ async function main() {
     `;
 
     const targets = rows.filter((row) => {
-      const missingBoth = !row.has_mapping && !row.crest_url;
-      const europeCore = !['USA', 'IND', 'ARG', 'BRA', 'NED', 'POR'].includes(row.country_code)
-        && !row.slug.includes('-wfc-')
+      const reviewableCountry = !['USA', 'IND', 'ARG', 'BRA'].includes(row.country_code);
+      const supportedGenderSlug = !row.slug.includes('-wfc-')
         && !row.slug.includes('-fcw-')
         && !row.slug.includes('-women-');
-      return missingBoth && europeCore;
+      return reviewableCountry && supportedGenderSlug;
     });
 
     const canonicalByKey = new Map<string, TeamRow>();
@@ -223,6 +249,10 @@ async function main() {
 
         const canonical = canonicalByKey.get(key);
         if (!canonical || canonical.slug === target.slug) {
+          continue;
+        }
+
+        if (shouldSkipOrphanAfcVariant(target, canonical)) {
           continue;
         }
 

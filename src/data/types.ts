@@ -15,6 +15,7 @@ export interface League {
 export interface Club {
   id: string;
   name: string;
+  koreanName: string;
   shortName: string;
   country: string;
   gender?: 'male' | 'female' | 'mixed';
@@ -68,6 +69,15 @@ export interface Player {
   seasonStats: PlayerSeasonStats;
   seasonHistory?: PlayerSeasonHistoryEntry[];
   clubHistory?: PlayerClubHistoryEntry[];
+  marketValueHistory?: PlayerMarketValueEntry[];
+  transferHistory?: PlayerTransferEntry[];
+  nationalTeam?: PlayerNationalTeamSummary;
+}
+
+export interface PlayerNationalTeamSummary {
+  caps: number;
+  goals: number;
+  recentMatches: Match[];
 }
 
 export interface PlayerListItem extends Player {
@@ -126,11 +136,42 @@ export interface PlayerSeasonHistoryEntry {
 }
 
 export interface PlayerClubHistoryEntry {
-  clubId: string;
+  clubId?: string;
   clubName: string;
   startYear: number;
   endYear: number;
   periodLabel: string;
+  isFreeAgent?: boolean;
+}
+
+export interface PlayerMarketValueEntry {
+  seasonLabel?: string;
+  observedAt: string;
+  age?: number;
+  clubId?: string;
+  clubName?: string;
+  marketValue: number;
+  currencyCode: string;
+  sourceUrl?: string;
+}
+
+export interface PlayerTransferEntry {
+  id: string;
+  seasonLabel?: string;
+  movedAt?: string;
+  age?: number;
+  fromClubId?: string;
+  fromClubName?: string;
+  toClubId?: string;
+  toClubName?: string;
+  marketValue?: number;
+  fee?: number;
+  feeDisplay?: string;
+  currencyCode?: string;
+  transferType?: string;
+  transferTypeLabel?: string;
+  contractUntilDate?: string;
+  sourceUrl?: string;
 }
 
 export type PhotoSyncProvider = 'api_football' | 'sofascore' | 'wikimedia';
@@ -315,6 +356,10 @@ export interface Match {
   date: string; // ISO date
   time: string; // HH:mm
   venue: string;
+  attendance?: number;
+  referee?: string;
+  homeFormation?: string;
+  awayFormation?: string;
   leagueId: string;
   matchWeek?: number;
   stage?: string;
@@ -400,12 +445,19 @@ export interface MatchStats {
   shotsOnTarget: [number, number];
   corners: [number, number];
   fouls: [number, number];
+  expectedGoals?: [number, number];
+  totalPasses?: [number, number];
+  accuratePasses?: [number, number];
+  passAccuracy?: [number, number];
+  offsides?: [number, number];
+  saves?: [number, number];
 }
 
 export interface MatchLineup {
   teamId: string;
   playerId: string;
   playerName: string;
+  gridPosition?: string;
   shirtNumber?: number;
   position?: string;
   isStarter: boolean;
@@ -451,4 +503,8 @@ export interface SearchResult {
   name: string;
   subtitle: string; // e.g., "Manchester City · FWD" or "Premier League · England"
   gender?: 'male' | 'female' | 'mixed';
+  imageUrl?: string;
+  shortName?: string;
+  nationCode?: string;
+  playerPosition?: Player['position'];
 }

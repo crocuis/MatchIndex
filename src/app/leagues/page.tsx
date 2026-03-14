@@ -7,7 +7,7 @@ import { ListSearchForm } from '@/components/ui/ListSearchForm';
 import { Badge } from '@/components/ui/Badge';
 import { PaginationNav } from '@/components/ui/PaginationNav';
 import { LeagueLogo } from '@/components/ui/LeagueLogo';
-import { isTournamentCompetition } from '@/data/competitionTypes';
+import { getCompetitionFormatDetailKey, isTournamentCompetition } from '@/data/competitionTypes';
 import { getPaginatedLeaguesDb } from '@/data/server';
 
 const PAGE_SIZE = 50;
@@ -121,13 +121,13 @@ export default async function LeaguesPage({
                 const isTournament = isTournamentCompetition(league);
 
                 return (
-              <tr key={league.id} className="hover:bg-surface-2 transition-colors">
+               <tr key={league.id} className="hover:bg-surface-2 transition-colors">
                 <td className="px-3 py-2 text-[13px]">
                   <Link
                     href={`/leagues/${league.id}`}
                     className="flex items-center gap-2.5 text-text-primary hover:text-accent-emerald transition-colors"
                   >
-                    <LeagueLogo leagueId={league.id} name={league.name} logo={league.logo} size="sm" />
+                  <LeagueLogo leagueId={league.id} name={league.name} competitionType={league.competitionType} logo={league.logo} size="sm" />
                     <span className="font-medium">{league.name}</span>
                   </Link>
                 </td>
@@ -142,7 +142,7 @@ export default async function LeaguesPage({
                     <Badge variant={isTournament ? 'info' : 'default'}>
                       {isTournament ? tLeague('formatTournament') : tLeague('formatLeague')}
                     </Badge>
-                    <span>{isTournament ? tLeague('formatTournamentDetail') : tLeague('formatLeagueDetail')}</span>
+                    <span>{tLeague(getCompetitionFormatDetailKey(league))}</span>
                   </div>
                 </td>
                 <td className="px-3 py-2 text-[13px] text-center tabular-nums text-text-secondary">

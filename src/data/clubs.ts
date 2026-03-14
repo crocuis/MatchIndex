@@ -1,7 +1,9 @@
 import { clubLogoMap } from './entityImages.generated.ts';
 import type { Club } from './types';
 
-export const baseClubs: Club[] = [
+type BaseClub = Omit<Club, 'koreanName'>;
+
+export const baseClubs: BaseClub[] = [
   {
     id: 'arsenal',
     name: 'Arsenal',
@@ -735,5 +737,6 @@ export const baseClubs: Club[] = [
 
 export const clubs: Club[] = baseClubs.map((club) => ({
   ...club,
+  koreanName: club.name,
   logo: clubLogoMap[club.id] ?? club.logo,
 }));

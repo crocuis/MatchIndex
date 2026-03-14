@@ -162,15 +162,15 @@ async function getEntityRow(sql: DbSql | TxSql, tableName: 'competitions' | 'tea
 
 async function copyCompetitionAliases(sql: DbSql | TxSql, canonicalId: number, aliasId: number, aliasSlug: string) {
   await sql`
-    INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary)
-    VALUES ('competition', ${canonicalId}, ${aliasSlug}, NULL, 'historical', FALSE)
+    INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+    VALUES ('competition', ${canonicalId}, ${aliasSlug}, NULL, 'historical', FALSE, 'approved', 'historical_rule', 'merge-duplicate-entities')
     ON CONFLICT (entity_type, entity_id, alias_normalized)
     DO NOTHING
   `;
 
   await sql`
-    INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary)
-    SELECT 'competition', ${canonicalId}, ct.name, ct.locale, 'common', FALSE
+    INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+    SELECT 'competition', ${canonicalId}, ct.name, ct.locale, 'common', FALSE, 'pending', 'merge_derived', 'merge-duplicate-entities'
     FROM competition_translations ct
     WHERE ct.competition_id = ${aliasId}
     ON CONFLICT (entity_type, entity_id, alias_normalized)
@@ -180,15 +180,15 @@ async function copyCompetitionAliases(sql: DbSql | TxSql, canonicalId: number, a
 
 async function copyTeamAliases(sql: DbSql | TxSql, canonicalId: number, aliasId: number, aliasSlug: string) {
   await sql`
-    INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary)
-    VALUES ('team', ${canonicalId}, ${aliasSlug}, NULL, 'historical', FALSE)
+    INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+    VALUES ('team', ${canonicalId}, ${aliasSlug}, NULL, 'historical', FALSE, 'approved', 'historical_rule', 'merge-duplicate-entities')
     ON CONFLICT (entity_type, entity_id, alias_normalized)
     DO NOTHING
   `;
 
   await sql`
-    INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary)
-    SELECT 'team', ${canonicalId}, tt.name, tt.locale, 'common', FALSE
+    INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+    SELECT 'team', ${canonicalId}, tt.name, tt.locale, 'common', FALSE, 'pending', 'merge_derived', 'merge-duplicate-entities'
     FROM team_translations tt
     WHERE tt.team_id = ${aliasId}
     ON CONFLICT (entity_type, entity_id, alias_normalized)
@@ -210,7 +210,7 @@ async function withTransaction(sql: DbSql, callback: (tx: TxSql) => Promise<void
   } catch (error) {
     throw error;
   } finally {
-    await tx.release();
+    tx.release();
   }
 }
 
@@ -360,6 +360,23 @@ async function mergeTeam(sql: ReturnType<typeof getSql>, pair: MergePair, option
     await tx`DELETE FROM source_entity_mapping WHERE entity_type = 'team' AND entity_id = ${alias.id}`;
     await tx`DELETE FROM entity_aliases WHERE entity_type = 'team' AND entity_id = ${alias.id}`;
 
+    await tx`
+      DELETE FROM team_seasons alias_ts
+      USING team_seasons canonical_ts
+      WHERE alias_ts.team_id = ${alias.id}
+        AND canonical_ts.team_id = ${canonical.id}
+        AND canonical_ts.competition_season_id = alias_ts.competition_season_id
+    `;
+
+    await tx`
+      DELETE FROM player_contracts alias_pc
+      USING player_contracts canonical_pc
+      WHERE alias_pc.team_id = ${alias.id}
+        AND canonical_pc.team_id = ${canonical.id}
+        AND canonical_pc.player_id = alias_pc.player_id
+        AND canonical_pc.competition_season_id = alias_pc.competition_season_id
+    `;
+
     await tx`UPDATE competition_seasons SET winner_team_id = ${canonical.id}, updated_at = NOW() WHERE winner_team_id = ${alias.id}`;
     await tx`UPDATE team_seasons SET team_id = ${canonical.id}, updated_at = NOW() WHERE team_id = ${alias.id}`;
     await tx`UPDATE player_contracts SET team_id = ${canonical.id}, updated_at = NOW() WHERE team_id = ${alias.id}`;
@@ -470,6 +487,23 @@ async function mergeTeamsBulk(sql: DbSql, pairs: MergePair[], options: CliOption
 
       await tx`DELETE FROM source_entity_mapping WHERE entity_type = 'team' AND entity_id = ${alias.id}`;
       await tx`DELETE FROM entity_aliases WHERE entity_type = 'team' AND entity_id = ${alias.id}`;
+
+      await tx`
+        DELETE FROM team_seasons alias_ts
+        USING team_seasons canonical_ts
+        WHERE alias_ts.team_id = ${alias.id}
+          AND canonical_ts.team_id = ${canonical.id}
+          AND canonical_ts.competition_season_id = alias_ts.competition_season_id
+      `;
+
+      await tx`
+        DELETE FROM player_contracts alias_pc
+        USING player_contracts canonical_pc
+        WHERE alias_pc.team_id = ${alias.id}
+          AND canonical_pc.team_id = ${canonical.id}
+          AND canonical_pc.player_id = alias_pc.player_id
+          AND canonical_pc.competition_season_id = alias_pc.competition_season_id
+      `;
     }
 
     const valuesSql = resolvedPairs.map(({ alias, canonical }) => `(${alias.id}, ${canonical.id})`).join(', ');

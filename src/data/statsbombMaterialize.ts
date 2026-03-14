@@ -1,6 +1,6 @@
 import type { Sql } from 'postgres';
 import { getSingleConnectionDb } from '@/lib/db';
-import { resolveNationCodeAlias } from './nationCodeAliases';
+import { loadCountryCodeResolver, type CountryCodeResolver } from './countryCodeResolver';
 import type { StatsBombCompetitionEntry, StatsBombMatchEntry } from './statsbomb';
 
 interface CompetitionDraft {
@@ -108,10 +108,16 @@ async function refreshDerivedViews(sql: Sql) {
 
 async function upsertEntityAlias(sql: Sql, entityType: AliasEntityType, entityIdSql: ReturnType<Sql>, alias: string) {
   await sql`
-    INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary)
-    VALUES (${entityType}, (${entityIdSql}), ${alias}, 'en', 'common', TRUE)
+    INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+    VALUES (${entityType}, (${entityIdSql}), ${alias}, 'en', 'common', TRUE, 'pending', 'imported', 'statsbomb_open_data')
     ON CONFLICT (entity_type, entity_id, alias_normalized)
-    DO UPDATE SET locale = EXCLUDED.locale, alias_kind = EXCLUDED.alias_kind, is_primary = EXCLUDED.is_primary
+    DO UPDATE SET
+      locale = EXCLUDED.locale,
+      alias_kind = EXCLUDED.alias_kind,
+      is_primary = EXCLUDED.is_primary,
+      status = EXCLUDED.status,
+      source_type = EXCLUDED.source_type,
+      source_ref = EXCLUDED.source_ref
   `;
 }
 
@@ -178,13 +184,17 @@ function buildKickoffAt(matchDate: string, kickOff: string) {
   return `${matchDate}T${kickOff}Z`;
 }
 
-function buildCompetitionDraft(entry: StatsBombCompetitionEntry, helpers: typeof import('./statsbomb')): CompetitionDraft {
+function buildCompetitionDraft(
+  countryCodeResolver: CountryCodeResolver,
+  entry: StatsBombCompetitionEntry,
+  helpers: typeof import('./statsbomb'),
+): CompetitionDraft {
   return {
     slug: helpers.createCompetitionSlug(entry),
     code: createCompetitionCode(entry.competition_id),
     name: entry.competition_name,
     shortName: createShortName(entry.competition_name, 20),
-    countryCode: resolveNationCodeAlias(helpers.createCountryCode(entry.country_name)),
+    countryCode: countryCodeResolver.resolve(helpers.createCountryCode(entry.country_name)) ?? 'ZZZ',
     gender: entry.competition_gender,
     isYouth: entry.competition_youth,
     isInternational: entry.competition_international,
@@ -202,14 +212,22 @@ function buildSeasonDraft(entry: StatsBombCompetitionEntry, matches: StatsBombMa
   };
 }
 
-function buildCountryDraft(name: string, helpers: typeof import('./statsbomb')): CountryDraft {
+function buildCountryDraft(
+  countryCodeResolver: CountryCodeResolver,
+  name: string,
+  helpers: typeof import('./statsbomb'),
+): CountryDraft {
   return {
-    codeAlpha3: resolveNationCodeAlias(helpers.createCountryCode(name)),
+    codeAlpha3: countryCodeResolver.resolve(helpers.createCountryCode(name)) ?? 'ZZZ',
     name,
   };
 }
 
-function buildVenueDraft(match: StatsBombMatchEntry, helpers: typeof import('./statsbomb')): VenueDraft | null {
+function buildVenueDraft(
+  countryCodeResolver: CountryCodeResolver,
+  match: StatsBombMatchEntry,
+  helpers: typeof import('./statsbomb'),
+): VenueDraft | null {
   if (!match.stadium?.name) {
     return null;
   }
@@ -217,11 +235,12 @@ function buildVenueDraft(match: StatsBombMatchEntry, helpers: typeof import('./s
   return {
     slug: helpers.createStatsBombSlug(match.stadium.name),
     name: match.stadium.name,
-    countryCode: resolveNationCodeAlias(helpers.createCountryCode(match.stadium.country?.name ?? match.competition.country_name)),
+    countryCode: countryCodeResolver.resolve(helpers.createCountryCode(match.stadium.country?.name ?? match.competition.country_name)) ?? 'ZZZ',
   };
 }
 
 function buildTeamDraft(
+  countryCodeResolver: CountryCodeResolver,
   params: {
     name: string;
     countryName?: string;
@@ -234,7 +253,7 @@ function buildTeamDraft(
     slug: helpers.createTeamSlug(params.name, params.isNational ? undefined : params.countryName),
     name: params.name,
     shortName: createShortName(params.name, 18),
-    countryCode: resolveNationCodeAlias(helpers.createCountryCode(params.countryName ?? params.name)),
+    countryCode: countryCodeResolver.resolve(helpers.createCountryCode(params.countryName ?? params.name)) ?? 'ZZZ',
     gender: params.gender ?? 'mixed',
     isNational: params.isNational,
   };
@@ -556,6 +575,8 @@ async function upsertMatch(sql: Sql, draft: MatchDraft) {
 export async function materializeStatsBombCore(
   options: MaterializeStatsBombCoreOptions = {}
 ): Promise<MaterializeStatsBombCoreSummary> {
+  const sql = getMaterializeDb();
+  const countryCodeResolver = await loadCountryCodeResolver(sql);
   const helpers = await loadStatsBombModule();
   const competitionEntries = await helpers.fetchStatsBombJson<StatsBombCompetitionEntry[]>('data/competitions.json');
   const limitedCompetitionEntries = competitionEntries.slice(0, options.competitionLimit ?? competitionEntries.length);
@@ -575,12 +596,12 @@ export async function materializeStatsBombCore(
     );
     const limitedMatchEntries = matchEntries.slice(0, options.matchesPerSeasonLimit ?? matchEntries.length);
 
-    const competitionDraft = buildCompetitionDraft(competitionEntry, helpers);
+    const competitionDraft = buildCompetitionDraft(countryCodeResolver, competitionEntry, helpers);
     const seasonDraft = buildSeasonDraft(competitionEntry, limitedMatchEntries, helpers);
 
     competitions.set(competitionDraft.slug, competitionDraft);
     seasons.set(seasonDraft.slug, seasonDraft);
-    countries.set(competitionDraft.countryCode, buildCountryDraft(competitionEntry.country_name, helpers));
+    countries.set(competitionDraft.countryCode, buildCountryDraft(countryCodeResolver, competitionEntry.country_name, helpers));
     competitionSeasons.set(
       `${competitionDraft.slug}:${seasonDraft.slug}`,
       buildCompetitionSeasonDraft(competitionEntry, limitedMatchEntries, helpers)
@@ -589,30 +610,35 @@ export async function materializeStatsBombCore(
     for (const matchEntry of limitedMatchEntries) {
       const homeCountryName = matchEntry.home_team.country?.name ?? competitionEntry.country_name;
       const awayCountryName = matchEntry.away_team.country?.name ?? competitionEntry.country_name;
-      const homeTeam = buildTeamDraft({
+      const homeTeam = buildTeamDraft(countryCodeResolver, {
         name: matchEntry.home_team.home_team_name,
         countryName: homeCountryName,
         gender: matchEntry.home_team.home_team_gender,
         isNational: competitionEntry.competition_international,
       }, helpers);
-      const awayTeam = buildTeamDraft({
+      const awayTeam = buildTeamDraft(countryCodeResolver, {
         name: matchEntry.away_team.away_team_name,
         countryName: awayCountryName,
         gender: matchEntry.away_team.away_team_gender,
         isNational: competitionEntry.competition_international,
       }, helpers);
 
-      countries.set(resolveNationCodeAlias(helpers.createCountryCode(homeCountryName)), buildCountryDraft(homeCountryName, helpers));
-      countries.set(resolveNationCodeAlias(helpers.createCountryCode(awayCountryName)), buildCountryDraft(awayCountryName, helpers));
+      const homeCountryCode = countryCodeResolver.resolve(helpers.createCountryCode(homeCountryName)) ?? 'ZZZ';
+      const awayCountryCode = countryCodeResolver.resolve(helpers.createCountryCode(awayCountryName)) ?? 'ZZZ';
+      countries.set(homeCountryCode, buildCountryDraft(countryCodeResolver, homeCountryName, helpers));
+      countries.set(awayCountryCode, buildCountryDraft(countryCodeResolver, awayCountryName, helpers));
       teams.set(homeTeam.slug, homeTeam);
       teams.set(awayTeam.slug, awayTeam);
       teamSeasonKeys.add(`${competitionDraft.slug}:${seasonDraft.slug}:${homeTeam.slug}`);
       teamSeasonKeys.add(`${competitionDraft.slug}:${seasonDraft.slug}:${awayTeam.slug}`);
 
-      const venueDraft = buildVenueDraft(matchEntry, helpers);
+      const venueDraft = buildVenueDraft(countryCodeResolver, matchEntry, helpers);
       if (venueDraft) {
         venues.set(venueDraft.slug, venueDraft);
-        countries.set(venueDraft.countryCode, buildCountryDraft(matchEntry.stadium?.country?.name ?? competitionEntry.country_name, helpers));
+        countries.set(
+          venueDraft.countryCode,
+          buildCountryDraft(countryCodeResolver, matchEntry.stadium?.country?.name ?? competitionEntry.country_name, helpers),
+        );
       }
 
       matches.push(buildMatchDraft(matchEntry, competitionEntry, helpers));
@@ -637,7 +663,6 @@ export async function materializeStatsBombCore(
     return summary;
   }
 
-  const sql = getMaterializeDb();
   await sql`BEGIN`;
 
   try {
