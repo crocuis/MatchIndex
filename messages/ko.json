@@ -7,6 +7,7 @@
     "home": "홈",
     "away": "원정",
     "loading": "로딩 중...",
+    "noData": "데이터가 없습니다.",
     "search": "검색",
     "clear": "초기화",
     "previous": "이전",
@@ -18,7 +19,9 @@
     "tabSquad": "선수단",
     "tabArchive": "아카이브",
     "tabHistory": "이력",
-    "tabProfile": "프로필"
+    "tabProfile": "프로필",
+    "showMore": "{count}개 더 보기",
+    "showLess": "접기"
   },
   "nav": {
     "brand": "MatchIndex",
@@ -28,7 +31,11 @@
     "worldCup": "월드컵",
     "results": "경기 결과",
     "search": "검색",
-    "leagues": "리그",
+    "competitions": "대회",
+    "competitionSplitLeagues": "리그",
+    "competitionSplitLeaguesMeta": "국내 리그 중심",
+    "competitionSplitTournaments": "기타 대회",
+    "competitionSplitTournamentsMeta": "컵 · 국제 대회",
     "clubs": "구단",
     "players": "선수",
     "People": "인물",
@@ -45,6 +52,8 @@
   "dashboard": {
     "title": "대시보드",
     "subtitle": "축구 데이터를 한눈에",
+    "globalMatchRadar": "전역 경기 오버뷰",
+    "competitionFocus": "선택 대회 포커스",
     "recentResults": "최근 경기 결과",
     "upcomingFixtures": "예정된 경기",
     "noUpcomingFixtures": "표시할 예정 경기가 없습니다.",
@@ -70,8 +79,10 @@
     "resultsTracked": "반영된 결과",
     "standings": "순위표",
     "groupStageSnapshot": "리그 페이즈 현황",
+    "standingsSnapshot": "순위 현황",
     "clubsList": "참가 구단",
     "participants": "참가 팀",
+    "currentStage": "현재 단계",
     "competitionOverview": "대회 개요",
     "groupStage": "조별 리그",
     "groupStageSnapshotLegacy": "조별 스테이지 현황",
@@ -92,6 +103,7 @@
     "trackingModeChampionsLeagueLeaguePhase": "리그 페이즈 매치데이와 토너먼트 진행 중심",
     "recentResults": "최근 결과",
     "upcomingFixtures": "예정된 경기",
+    "noMatches": "표시할 경기가 없습니다.",
     "tournamentResults": "대회 최근 결과",
     "tournamentFixtures": "대회 예정 경기",
     "topScorers": "득점 순위",
@@ -209,6 +221,13 @@
   "match": {
     "analysis": "경기 분석",
     "player": "선수",
+    "freezeFrame": "프리즈 프레임",
+    "visibleArea": "시야 영역",
+    "eventContext": "이벤트",
+    "actor": "행동 선수",
+    "teammates": "동료",
+    "opponents": "상대",
+    "goalkeeper": "골키퍼",
     "passMap": "패스 맵",
     "heatMap": "히트 맵",
     "shotMap": "슈팅 맵",
@@ -251,14 +270,14 @@
     "corners": "코너킥",
     "fouls": "파울",
     "offsides": "오프사이드",
-    "saves": "선방"
+    "saves": "선방",
+    "bigChances": "큰 기회",
+    "bigChancesMissed": "큰 기회 놓침"
   },
   "results": {
     "title": "경기 결과",
     "matchCount": "{count}경기",
     "allLeagues": "전체 리그",
-    "men": "남자",
-    "women": "여자",
     "searchPlaceholder": "팀, 리그, 경기장을 검색하세요...",
     "matchResults": "경기 결과",
     "date": "날짜",
@@ -271,16 +290,13 @@
   "search": {
     "title": "검색",
     "subtitle": "선수, 구단, 리그, 국가를 검색하세요",
-    "men": "남자",
-    "women": "여자",
     "searchPlaceholder": "선수, 구단, 리그, 국가를 검색하세요...",
     "emptyQuery": "검색어를 입력하여 선수, 구단, 리그, 국가를 찾아보세요.",
     "noResults": "\"{query}\"에 대한 검색 결과가 없습니다",
     "playersGroup": "인물",
     "clubsGroup": "구단",
     "leaguesGroup": "리그",
-    "nationsGroup": "국가",
-    "womenLabel": "여자"
+    "nationsGroup": "국가"
   },
   "standings": {
     "pos": "#",
@@ -310,7 +326,12 @@
   "matchStatus": {
     "finished": "종료",
     "live": "진행중",
-    "scheduled": "예정"
+    "scheduled": "예정",
+    "timed": "예정",
+    "postponed": "연기",
+    "suspended": "중단",
+    "cancelled": "취소",
+    "awarded": "몰수"
   },
   "stats": {
     "leagues": "리그",
@@ -318,29 +339,29 @@
     "upcoming": "예정 경기"
   },
   "leaguesList": {
-    "title": "리그",
-    "subtitle": "{count}개 리그",
-    "name": "리그",
-    "searchPlaceholder": "리그명 또는 국가를 검색하세요...",
-    "men": "남자",
-    "women": "여자"
+    "title": "대회",
+    "subtitle": "{count}개 대회",
+    "name": "대회",
+    "searchPlaceholder": "대회명 또는 국가를 검색하세요...",
+    "allTypes": "전체",
+    "allTypesMeta": "리그와 컵 대회를 함께 봅니다",
+    "leagueTypes": "리그",
+    "leagueTypesMeta": "정규 시즌형 대회",
+    "tournamentTypes": "기타 대회",
+    "tournamentTypesMeta": "컵 · 국제 토너먼트"
   },
   "clubsList": {
     "title": "구단",
     "subtitle": "{count}개 구단",
     "name": "구단",
-    "searchPlaceholder": "구단, 리그, 국가를 검색하세요...",
-    "men": "남자",
-    "women": "여자"
+    "searchPlaceholder": "구단, 리그, 국가를 검색하세요..."
   },
   "playersList": {
     "title": "인물",
     "subtitle": "{count}명 인물",
     "searchPlaceholder": "인물, 구단, 국가를 검색하세요...",
     "active": "현역 선수",
-    "retired": "은퇴 선수",
-    "men": "남자",
-    "women": "여자"
+    "retired": "은퇴 선수"
   },
   "nationsList": {
     "title": "국가",

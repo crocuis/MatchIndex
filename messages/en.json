@@ -7,6 +7,7 @@
     "home": "Home",
     "away": "Away",
     "loading": "Loading...",
+    "noData": "No data available.",
     "search": "Search",
     "clear": "Clear",
     "previous": "Previous",
@@ -18,7 +19,9 @@
     "tabSquad": "Squad",
     "tabArchive": "Archive",
     "tabHistory": "History",
-    "tabProfile": "Profile"
+    "tabProfile": "Profile",
+    "showMore": "Show {count} more",
+    "showLess": "Show less"
   },
   "nav": {
     "brand": "MatchIndex",
@@ -28,7 +31,11 @@
     "worldCup": "World Cup",
     "results": "Results",
     "search": "Search",
-    "leagues": "Leagues",
+    "competitions": "Competitions",
+    "competitionSplitLeagues": "Leagues",
+    "competitionSplitLeaguesMeta": "Domestic league play",
+    "competitionSplitTournaments": "Other Cups",
+    "competitionSplitTournamentsMeta": "Cup and intl. events",
     "clubs": "Clubs",
     "players": "Players",
     "People": "People",
@@ -45,6 +52,8 @@
   "dashboard": {
     "title": "Dashboard",
     "subtitle": "Football data at a glance",
+    "globalMatchRadar": "Global Match Radar",
+    "competitionFocus": "Competition Focus",
     "recentResults": "Recent Results",
     "upcomingFixtures": "Upcoming Fixtures",
     "noUpcomingFixtures": "No upcoming fixtures available.",
@@ -70,8 +79,10 @@
     "resultsTracked": "Tracked Results",
     "standings": "Standings",
     "groupStageSnapshot": "League Phase Snapshot",
+    "standingsSnapshot": "Standings Snapshot",
     "clubsList": "Clubs",
     "participants": "Participants",
+    "currentStage": "Current Stage",
     "competitionOverview": "Competition Overview",
     "groupStage": "Group Stage",
     "groupStageSnapshotLegacy": "Group Stage Snapshot",
@@ -92,6 +103,7 @@
     "trackingModeChampionsLeagueLeaguePhase": "League phase matchdays and knockout progression",
     "recentResults": "Recent Results",
     "upcomingFixtures": "Upcoming Fixtures",
+    "noMatches": "No matches available.",
     "tournamentResults": "Tournament Results",
     "tournamentFixtures": "Upcoming Tournament Fixtures",
     "topScorers": "Top Scorers",
@@ -209,6 +221,13 @@
   "match": {
     "analysis": "Match Analysis",
     "player": "Player",
+    "freezeFrame": "Freeze Frame",
+    "visibleArea": "Visible Area",
+    "eventContext": "Event",
+    "actor": "Actor",
+    "teammates": "Teammates",
+    "opponents": "Opponents",
+    "goalkeeper": "Goalkeeper",
     "passMap": "Pass Map",
     "heatMap": "Heat Map",
     "shotMap": "Shot Map",
@@ -251,14 +270,14 @@
     "corners": "Corners",
     "fouls": "Fouls",
     "offsides": "Offsides",
-    "saves": "Saves"
+    "saves": "Saves",
+    "bigChances": "Big Chances",
+    "bigChancesMissed": "Big Chances Missed"
   },
   "results": {
     "title": "Results",
     "matchCount": "{count} matches",
     "allLeagues": "All Leagues",
-    "men": "Men",
-    "women": "Women",
     "searchPlaceholder": "Search teams, leagues, venues...",
     "matchResults": "Match Results",
     "date": "Date",
@@ -271,16 +290,13 @@
   "search": {
     "title": "Search",
     "subtitle": "Find players, clubs, leagues, and nations",
-    "men": "Men",
-    "women": "Women",
     "searchPlaceholder": "Search players, clubs, leagues, nations...",
     "emptyQuery": "Enter a search query to find players, clubs, leagues, and nations.",
     "noResults": "No results found for \"{query}\"",
     "playersGroup": "People",
     "clubsGroup": "Clubs",
     "leaguesGroup": "Leagues",
-    "nationsGroup": "Nations",
-    "womenLabel": "Women"
+    "nationsGroup": "Nations"
   },
   "standings": {
     "pos": "#",
@@ -310,7 +326,12 @@
   "matchStatus": {
     "finished": "FT",
     "live": "LIVE",
-    "scheduled": "SCH"
+    "scheduled": "SCH",
+    "timed": "SCH",
+    "postponed": "PPD",
+    "suspended": "SUSP",
+    "cancelled": "CANC",
+    "awarded": "AWD"
   },
   "stats": {
     "leagues": "Leagues",
@@ -318,29 +339,29 @@
     "upcoming": "Upcoming"
   },
   "leaguesList": {
-    "title": "Leagues",
-    "subtitle": "{count} leagues",
-    "name": "League",
-    "searchPlaceholder": "Search leagues or countries...",
-    "men": "Men",
-    "women": "Women"
+    "title": "Competitions",
+    "subtitle": "{count} competitions",
+    "name": "Competition",
+    "searchPlaceholder": "Search competitions or countries...",
+    "allTypes": "All",
+    "allTypesMeta": "Browse leagues and tournaments together",
+    "leagueTypes": "Leagues",
+    "leagueTypesMeta": "Domestic season formats",
+    "tournamentTypes": "Other Cups",
+    "tournamentTypesMeta": "Cup and international formats"
   },
   "clubsList": {
     "title": "Clubs",
     "subtitle": "{count} clubs",
     "name": "Club",
-    "searchPlaceholder": "Search clubs, leagues, countries...",
-    "men": "Men",
-    "women": "Women"
+    "searchPlaceholder": "Search clubs, leagues, countries..."
   },
   "playersList": {
     "title": "People",
     "subtitle": "{count} people",
     "searchPlaceholder": "Search people, clubs, nations...",
     "active": "Active Players",
-    "retired": "Retired Players",
-    "men": "Men",
-    "women": "Women"
+    "retired": "Retired Players"
   },
   "nationsList": {
     "title": "Nations",

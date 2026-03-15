@@ -3,18 +3,25 @@
 import { getTranslations } from 'next-intl/server';
 import { MatchAnalysisTabs } from '@/components/data/MatchAnalysisTabs';
 import { SectionCard } from '@/components/ui/SectionCard';
-import { getMatchAnalysisDataDb } from '@/data/server';
+import {
+  getMatchAnalysisDataDb,
+  getMatchFreezeFramesArtifactDb,
+  getMatchVisibleAreasArtifactDb,
+} from '@/data/server';
 
 interface MatchAnalysisSectionProps {
   matchId: string;
+  matchDate: string;
   homeTeamId: string;
   awayTeamId: string;
 }
 
-export async function MatchAnalysisSection({ matchId, homeTeamId, awayTeamId }: MatchAnalysisSectionProps) {
-  const [tMatch, analysis] = await Promise.all([
+export async function MatchAnalysisSection({ matchId, matchDate, homeTeamId, awayTeamId }: MatchAnalysisSectionProps) {
+  const [tMatch, analysis, freezeFrames, visibleAreas] = await Promise.all([
     getTranslations('match'),
-    getMatchAnalysisDataDb(matchId),
+    getMatchAnalysisDataDb(matchId, matchDate),
+    getMatchFreezeFramesArtifactDb(matchId, matchDate),
+    getMatchVisibleAreasArtifactDb(matchId, matchDate),
   ]);
 
   if (analysis.events.length === 0) {
@@ -25,5 +32,13 @@ export async function MatchAnalysisSection({ matchId, homeTeamId, awayTeamId }: 
     );
   }
 
-  return <MatchAnalysisTabs analysis={analysis} homeTeamId={homeTeamId} awayTeamId={awayTeamId} />;
+  return (
+    <MatchAnalysisTabs
+      analysis={analysis}
+      freezeFrames={freezeFrames}
+      visibleAreas={visibleAreas}
+      homeTeamId={homeTeamId}
+      awayTeamId={awayTeamId}
+    />
+  );
 }

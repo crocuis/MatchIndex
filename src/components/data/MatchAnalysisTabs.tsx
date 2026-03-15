@@ -2,20 +2,34 @@
 
 import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import type { MatchAnalysisData } from '@/data/types';
+import type {
+  MatchAnalysisData,
+  MatchEventFreezeFramesArtifactPayload,
+  MatchEventVisibleAreasArtifactPayload,
+} from '@/data/types';
+import { FreezeFrameView } from '@/components/data/FreezeFrameView';
 import { HeatMap } from '@/components/data/HeatMap';
 import { PassMap } from '@/components/data/PassMap';
 import { ShotMap } from '@/components/data/ShotMap';
+import { VisibleAreaMap } from '@/components/data/VisibleAreaMap';
 import { SectionCard } from '@/components/ui/SectionCard';
 import { TabGroup } from '@/components/ui/TabGroup';
 
 interface MatchAnalysisTabsProps {
   analysis: MatchAnalysisData;
+  freezeFrames: MatchEventFreezeFramesArtifactPayload | null;
+  visibleAreas: MatchEventVisibleAreasArtifactPayload | null;
   homeTeamId: string;
   awayTeamId: string;
 }
 
-export function MatchAnalysisTabs({ analysis, homeTeamId, awayTeamId }: MatchAnalysisTabsProps) {
+export function MatchAnalysisTabs({
+  analysis,
+  freezeFrames,
+  visibleAreas,
+  homeTeamId,
+  awayTeamId,
+}: MatchAnalysisTabsProps) {
   const tMatch = useTranslations('match');
   const selectablePlayers = useMemo(() => {
     const seen = new Set<string>();
@@ -48,6 +62,48 @@ export function MatchAnalysisTabs({ analysis, homeTeamId, awayTeamId }: MatchAna
     );
   }
 
+  const tabs = [
+    {
+      key: 'pass-map',
+      label: tMatch('passMap'),
+      content: (
+        selectedPlayer
+          ? <PassMap events={analysis.events} playerId={selectedPlayer.id} playerLabel={selectedPlayer.name} />
+          : <div className="py-8 text-center text-[13px] text-text-muted">{tMatch('analysisEmpty')}</div>
+      ),
+    },
+    {
+      key: 'heat-map',
+      label: tMatch('heatMap'),
+      content: (
+        selectedPlayer
+          ? <HeatMap events={analysis.events} playerId={selectedPlayer.id} playerLabel={selectedPlayer.name} />
+          : <div className="py-8 text-center text-[13px] text-text-muted">{tMatch('analysisEmpty')}</div>
+      ),
+    },
+    {
+      key: 'shot-map',
+      label: tMatch('shotMap'),
+      content: <ShotMap events={analysis.events} homeTeamId={homeTeamId} awayTeamId={awayTeamId} />,
+    },
+  ];
+
+  if (freezeFrames && freezeFrames.freezeFrames.length > 0) {
+    tabs.push({
+      key: 'freeze-frame',
+      label: tMatch('freezeFrame'),
+      content: <FreezeFrameView events={analysis.events} freezeFrames={freezeFrames.freezeFrames} />,
+    });
+  }
+
+  if (visibleAreas && visibleAreas.visibleAreas.length > 0) {
+    tabs.push({
+      key: 'visible-area',
+      label: tMatch('visibleArea'),
+      content: <VisibleAreaMap events={analysis.events} visibleAreas={visibleAreas.visibleAreas} />,
+    });
+  }
+
   return (
     <SectionCard title={tMatch('analysis')}>
       <div className="mb-4 flex items-center gap-2">
@@ -63,33 +119,7 @@ export function MatchAnalysisTabs({ analysis, homeTeamId, awayTeamId }: MatchAna
           ))}
         </select>
       </div>
-      <TabGroup
-        tabs={[
-          {
-            key: 'pass-map',
-            label: tMatch('passMap'),
-            content: (
-              selectedPlayer
-                ? <PassMap events={analysis.events} playerId={selectedPlayer.id} playerLabel={selectedPlayer.name} />
-                : <div className="py-8 text-center text-[13px] text-text-muted">{tMatch('analysisEmpty')}</div>
-            ),
-          },
-          {
-            key: 'heat-map',
-            label: tMatch('heatMap'),
-            content: (
-              selectedPlayer
-                ? <HeatMap events={analysis.events} playerId={selectedPlayer.id} playerLabel={selectedPlayer.name} />
-                : <div className="py-8 text-center text-[13px] text-text-muted">{tMatch('analysisEmpty')}</div>
-            ),
-          },
-          {
-            key: 'shot-map',
-            label: tMatch('shotMap'),
-            content: <ShotMap events={analysis.events} homeTeamId={homeTeamId} awayTeamId={awayTeamId} />,
-          },
-        ]}
-      />
+      <TabGroup tabs={tabs} />
     </SectionCard>
   );
 }
