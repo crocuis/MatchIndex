@@ -28,6 +28,13 @@
   - `db/schema.sql`과 현재 리그/선수 페이지 요구사항은 xG보다 기본 시즌 집계가 더 우선이다.
 - 보조 후보
   - `FBref` 크롤링: 과거 시즌 보강용 배치 후보, 메인 소스로는 비권장
+  - `football-data-webscraping`: 전체 저장소 도입이 아니라 `FBref scraping reference`로만 제한적으로 활용
+
+### 0-1. football-data-webscraping 도입 범위
+
+- `football-data-webscraping`는 MatchIndex의 단일 통합 소스로 채택하지 않는다.
+- `fbref/` scraping 패턴만 참고하고, MatchIndex 내부의 canonical ingest/materialize 계약에 맞는 adapter를 직접 구현한다.
+- 상세 결정은 `FBREF_SOURCE_ADOPTION_PLAN.md`를 따른다.
 
 ### 1. 소스 역할 분리
 

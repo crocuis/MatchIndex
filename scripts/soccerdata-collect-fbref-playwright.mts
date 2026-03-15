@@ -1,7 +1,11 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
-import { chromium, type Page } from 'playwright';
+import { chromium, type BrowserContext, type Page } from 'playwright';
+
+const DEFAULT_CHROME_CHANNEL = 'chrome';
+const DEFAULT_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36';
+const NAVIGATION_RETRY_LIMIT = 3;
 
 interface LeagueConfig {
   competitionName: string;
@@ -15,7 +19,9 @@ interface CollectorArgs {
   competition: string;
   headed: boolean;
   output?: string;
+  persistentProfileDir?: string;
   season: string;
+  stayOpenSeconds?: number;
   write: boolean;
 }
 
@@ -68,7 +74,9 @@ function parseArgs(argv: string[]): CollectorArgs {
     competition: competition.trim().toUpperCase(),
     headed: argv.includes('--headed'),
     output: getOption('output')?.trim(),
+    persistentProfileDir: getOption('user-data-dir')?.trim(),
     season: season.trim(),
+    stayOpenSeconds: Number.parseInt(getOption('stay-open-seconds') ?? '0', 10) || 0,
     write: argv.includes('--write'),
   };
 }
@@ -101,6 +109,20 @@ function normalizeSeasonValue(value: string) {
 
 function buildEndpoint(league: string, season: string, dataset: string) {
   return `fbref-playwright://${league}/${season}/${dataset}`;
+}
+
+function getChromeChannel(value?: string) {
+  const normalized = value?.trim().toLowerCase();
+  return normalized === 'chrome' || normalized === 'msedge' ? normalized : DEFAULT_CHROME_CHANNEL;
+}
+
+function randomDelay(minMs: number, maxMs: number) {
+  return Math.floor(Math.random() * (maxMs - minMs + 1)) + minMs;
+}
+
+function getBackoffDelay(attempt: number) {
+  const base = Math.min(10_000, 1_500 * 2 ** attempt);
+  return base + randomDelay(150, 900);
 }
 
 function makeRow(params: {
@@ -139,17 +161,109 @@ function makeRow(params: {
 }
 
 async function waitForFbrefReady(page: Page, url: string) {
-  await page.goto(url, { waitUntil: 'domcontentloaded' });
-  for (let attempt = 0; attempt < 45; attempt += 1) {
-    const title = await page.title();
-    if (title && title !== 'Just a moment...') {
-      return;
-    }
+  let lastError: unknown = null;
 
-    await page.waitForTimeout(1000);
+  for (let navigationAttempt = 0; navigationAttempt < NAVIGATION_RETRY_LIMIT; navigationAttempt += 1) {
+    try {
+      await page.waitForTimeout(randomDelay(700, 1800));
+      await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+      await page.waitForTimeout(randomDelay(1200, 2600));
+
+      for (let attempt = 0; attempt < 45; attempt += 1) {
+        const title = await page.title();
+        const challengeText = await page.locator('body').innerText().catch(() => '');
+
+        if (title && title !== 'Just a moment...' && !challengeText.includes('Checking your browser')) {
+          return;
+        }
+
+        await page.waitForTimeout(randomDelay(800, 1500));
+      }
+
+      throw new Error(`FBref challenge did not clear for ${url}`);
+    } catch (error) {
+      lastError = error;
+      if (navigationAttempt < NAVIGATION_RETRY_LIMIT - 1) {
+        await page.waitForTimeout(getBackoffDelay(navigationAttempt));
+        continue;
+      }
+    }
   }
 
-  throw new Error(`FBref challenge did not clear for ${url}`);
+  throw lastError instanceof Error ? lastError : new Error(`FBref challenge did not clear for ${url}`);
+}
+
+async function applyStealth(contextPage: Page) {
+  await contextPage.addInitScript(() => {
+    Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+    Object.defineProperty(navigator, 'platform', { get: () => 'Win32' });
+    Object.defineProperty(navigator, 'language', { get: () => 'en-US' });
+    Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
+    Object.defineProperty(navigator, 'hardwareConcurrency', { get: () => 8 });
+    Object.defineProperty(navigator, 'deviceMemory', { get: () => 8 });
+    Object.defineProperty(navigator, 'plugins', {
+      get: () => [
+        { name: 'Chrome PDF Plugin' },
+        { name: 'Chrome PDF Viewer' },
+        { name: 'Native Client' },
+      ],
+    });
+
+    const originalQuery = window.navigator.permissions?.query?.bind(window.navigator.permissions);
+    if (originalQuery) {
+      window.navigator.permissions.query = (parameters: PermissionDescriptor) => (
+        parameters.name === 'notifications'
+          ? Promise.resolve({ state: Notification.permission } as PermissionStatus)
+          : originalQuery(parameters)
+      );
+    }
+  });
+}
+
+async function createBrowserContext(args: CollectorArgs) {
+  const launchArgs = [
+    '--disable-blink-features=AutomationControlled',
+    '--disable-dev-shm-usage',
+    '--no-default-browser-check',
+    '--disable-infobars',
+  ];
+
+  const contextOptions = {
+    colorScheme: 'light' as const,
+    deviceScaleFactor: 1,
+    extraHTTPHeaders: {
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Cache-Control': 'max-age=0',
+      DNT: '1',
+      'Upgrade-Insecure-Requests': '1',
+    },
+    locale: 'en-US',
+    timezoneId: 'America/New_York',
+    userAgent: DEFAULT_USER_AGENT,
+    viewport: { width: 1440, height: 900 },
+  };
+
+  if (args.persistentProfileDir) {
+    return chromium.launchPersistentContext(resolve(process.cwd(), args.persistentProfileDir), {
+      ...contextOptions,
+      channel: getChromeChannel(args.chromeChannel),
+      headless: args.headed ? false : true,
+      args: launchArgs,
+    });
+  }
+
+  const browser = await chromium.launch({
+    channel: getChromeChannel(args.chromeChannel),
+    headless: args.headed ? false : true,
+    args: launchArgs,
+  });
+
+  return browser.newContext(contextOptions);
+}
+
+async function getActivePage(context: BrowserContext) {
+  const existingPage = context.pages()[0];
+  return existingPage ?? context.newPage();
 }
 
 async function readLeagueRow(page: Page, competitionName: string) {
@@ -329,11 +443,7 @@ async function collectRows(args: CollectorArgs) {
     throw new Error(`Unsupported competition code '${args.competition}'`);
   }
 
-  const browser = await chromium.launch({
-    channel: args.chromeChannel === 'chrome' ? 'chrome' : undefined,
-    headless: args.headed ? false : true,
-  });
-  const context = await browser.newContext({ locale: 'en-US' });
+  const context = await createBrowserContext(args);
   if (args.cookieFile) {
     const cookieHeader = readFileSync(resolve(process.cwd(), args.cookieFile), 'utf8').trim();
     if (cookieHeader) {
@@ -342,10 +452,11 @@ async function collectRows(args: CollectorArgs) {
         httpOnly: false,
         sameSite: 'Lax' as const,
         secure: true,
-      })));
+      }))); 
     }
   }
-  const page = await context.newPage();
+  const page = await getActivePage(context);
+  await applyStealth(page);
   const fetchedAt = new Date().toISOString();
   const rows: FbrefRow[] = [];
   const datasetCounts: Record<string, number> = {};
@@ -454,8 +565,11 @@ async function collectRows(args: CollectorArgs) {
       rows,
     };
   } finally {
+    if (args.headed && args.stayOpenSeconds && args.stayOpenSeconds > 0) {
+      await page.waitForTimeout(args.stayOpenSeconds * 1000);
+    }
+
     await context.close();
-    await browser.close();
   }
 }
 
@@ -473,13 +587,14 @@ async function main() {
       season: args.season,
       dryRun: true,
       headed: args.headed,
-      implemented: true,
-      league: config.league,
-      cookieFileConfigured: Boolean(args.cookieFile),
-      plannedDatasets: ['league_info', 'season_info', 'schedule', 'team_season_stats_standard', 'player_season_stats_standard'],
-      outputPath: args.output ?? null,
-      nextStep: 'Run with --write and --output to collect JSONL payloads through Playwright.',
-    }));
+        implemented: true,
+        league: config.league,
+        cookieFileConfigured: Boolean(args.cookieFile),
+        persistentProfileDir: args.persistentProfileDir ?? null,
+        plannedDatasets: ['league_info', 'season_info', 'schedule', 'team_season_stats_standard', 'player_season_stats_standard'],
+        outputPath: args.output ?? null,
+        nextStep: 'Run with --write and --output to collect JSONL payloads through Playwright. For Cloudflare-heavy flows, prefer --headed with --user-data-dir.',
+      }));
     return;
   }
 
@@ -500,6 +615,7 @@ async function main() {
       dryRun: false,
       headed: args.headed,
       implemented: true,
+      persistentProfileDir: args.persistentProfileDir ?? null,
       league: result.league,
       datasetCounts: result.datasetCounts,
       payloadCount: result.payloadCount,
@@ -515,8 +631,9 @@ async function main() {
       dryRun: false,
       headed: args.headed,
       implemented: true,
+      persistentProfileDir: args.persistentProfileDir ?? null,
       error: error instanceof Error ? error.message : String(error),
-      hint: 'Playwright browser path failed. Check FBref challenge state or page structure changes.',
+      hint: 'Playwright browser path failed. Prefer --headed with --user-data-dir and manually clear any remaining challenge before rerunning.',
     }));
     process.exitCode = 1;
   }
