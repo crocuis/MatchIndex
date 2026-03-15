@@ -8,6 +8,7 @@ CREATE TYPE position_type AS ENUM ('GK', 'DEF', 'MID', 'FWD');
 CREATE TYPE preferred_foot AS ENUM ('Left', 'Right', 'Both');
 CREATE TYPE competition_gender AS ENUM ('male', 'female', 'mixed');
 CREATE TYPE competition_type AS ENUM ('league', 'cup', 'league_cup', 'super_cup', 'international');
+CREATE TYPE competition_format_type AS ENUM ('regular_league', 'league_phase', 'group_knockout', 'knockout');
 CREATE TYPE match_status AS ENUM (
     'scheduled',
     'timed',
@@ -399,6 +400,7 @@ CREATE TABLE competition_seasons (
     id BIGSERIAL PRIMARY KEY,
     competition_id BIGINT NOT NULL REFERENCES competitions(id),
     season_id BIGINT NOT NULL REFERENCES seasons(id),
+    format_type competition_format_type NOT NULL,
     current_matchday SMALLINT,
     total_matchdays SMALLINT,
     source_match_updated_at TIMESTAMPTZ,
@@ -609,69 +611,201 @@ CREATE INDEX idx_matches_status_live_upcoming
     ON matches (status, kickoff_at)
     WHERE status IN ('scheduled', 'timed', 'live_1h', 'live_ht', 'live_2h', 'live_et', 'live_pen');
 
-CREATE TABLE match_events (
-    id BIGSERIAL PRIMARY KEY,
-    match_id BIGINT NOT NULL,
-    match_date DATE NOT NULL,
-    source_event_id UUID,
-    event_index INTEGER,
-    event_type match_event_type NOT NULL,
-    period SMALLINT,
-    event_timestamp INTERVAL,
-    minute SMALLINT NOT NULL,
-    second SMALLINT,
-    extra_minute SMALLINT,
-    possession SMALLINT,
-    possession_team_id BIGINT REFERENCES teams(id),
-    team_id BIGINT NOT NULL REFERENCES teams(id),
-    player_id BIGINT REFERENCES players(id),
-    secondary_player_id BIGINT REFERENCES players(id),
-    location_x DECIMAL(5,2),
-    location_y DECIMAL(5,2),
-    end_location_x DECIMAL(5,2),
-    end_location_y DECIMAL(5,2),
-    end_location_z DECIMAL(5,2),
-    duration_seconds DECIMAL(8,3),
-    under_pressure BOOLEAN,
-    statsbomb_xg DECIMAL(6,4),
-    is_notable BOOLEAN NOT NULL DEFAULT FALSE,
-    detail VARCHAR(100),
-    source_details JSONB,
+CREATE TABLE competition_format_stage_rules (
+    format_type competition_format_type NOT NULL,
+    stage_pattern TEXT NOT NULL,
+    description TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    FOREIGN KEY (match_id, match_date) REFERENCES matches(id, match_date),
-    UNIQUE (source_event_id)
+    PRIMARY KEY (format_type, stage_pattern)
 );
 
-CREATE INDEX idx_match_events_match_timeline
-    ON match_events (match_id, minute, extra_minute);
-CREATE INDEX idx_match_events_source_index
-    ON match_events (match_id, event_index);
-CREATE INDEX idx_match_events_team_id
-    ON match_events (team_id);
-CREATE INDEX idx_match_events_possession_team_id
-    ON match_events (possession_team_id);
-CREATE INDEX idx_match_events_analysis
-    ON match_events (match_id, event_type)
-    WHERE is_notable = FALSE;
-CREATE INDEX idx_match_events_notable
-    ON match_events (match_id, minute, extra_minute)
-    WHERE is_notable = TRUE;
-CREATE INDEX idx_match_events_player
-    ON match_events (player_id, event_type);
-CREATE INDEX idx_match_events_scoring
-    ON match_events (team_id, match_date)
-    WHERE event_type IN ('goal', 'own_goal', 'penalty_scored');
+INSERT INTO competition_format_stage_rules (format_type, stage_pattern, description)
+VALUES
+    ('regular_league', '^REGULAR_SEASON$', 'Standard league season'),
+    ('regular_league', '^RELEGATION_ROUND$', 'Relegation round in split league formats'),
+    ('regular_league', '^CHAMPIONSHIP(_.*)?$', 'Championship round or championship final in split leagues'),
+    ('regular_league', '^PLAY_OFFS(_.*)?$', 'League playoffs'),
+    ('regular_league', '^PLAYOFFS(_.*)?$', 'League playoffs spelling variant'),
+    ('regular_league', '^FINAL$', 'League playoff final'),
+    ('regular_league', '^APERTURA$', 'Apertura season phase'),
+    ('regular_league', '^CLAUSURA$', 'Clausura season phase'),
+    ('league_phase', '^LEAGUE_PHASE$', 'League phase'),
+    ('league_phase', '^LEAGUE_STAGE$', 'League stage alias'),
+    ('league_phase', '^GROUP_STAGE$', 'Legacy group stage'),
+    ('league_phase', '^GROUP_[A-Z0-9]+$', 'Legacy group buckets'),
+    ('league_phase', '^[0-9]+(ST|ND|RD|TH)_GROUP_STAGE$', 'Ordinal group stage label'),
+    ('league_phase', '^KNOCKOUT_ROUND_PLAY_OFFS$', 'Knockout round playoffs'),
+    ('league_phase', '^PLAY_OFFS(_.*)?$', 'Playoffs'),
+    ('league_phase', '^PLAYOFFS(_.*)?$', 'Playoffs spelling variant'),
+    ('league_phase', '^ROUND_OF_[0-9]+$', 'Numbered knockout round'),
+    ('league_phase', '^LAST_[0-9]+$', 'Legacy last-N round'),
+    ('league_phase', '^QUARTER_FINALS?$', 'Quarter-finals'),
+    ('league_phase', '^SEMI_FINALS?$', 'Semi-finals'),
+    ('league_phase', '^FINAL$', 'Final'),
+    ('league_phase', '^3RD_PLACE_FINAL$', 'Third-place match'),
+    ('league_phase', '^THIRD_PLACE_FINAL$', 'Third-place match'),
+    ('league_phase', '^QUALIFICATION$', 'Qualification phase'),
+    ('league_phase', '^[0-9]+(ST|ND|RD|TH)_QUALIFYING(_ROUND)?(_REPLAYS?)?$', 'Qualifying round'),
+    ('league_phase', '^PRELIMINARY_ROUND(_REPLAYS?)?$', 'Preliminary round'),
+    ('league_phase', '^EXTRA_PRELIMINARY_ROUND(_REPLAYS?)?$', 'Extra preliminary round'),
+    ('league_phase', '^[0-9]+(ST|ND|RD|TH)_ROUND(_QUALIFYING)?(_REPLAYS?)?$', 'Numbered round'),
+    ('group_knockout', '^GROUP_STAGE$', 'Group stage'),
+    ('group_knockout', '^GROUP_[A-Z0-9]+$', 'Named group'),
+    ('group_knockout', '^[0-9]+(ST|ND|RD|TH)_GROUP_STAGE$', 'Ordinal group stage'),
+    ('group_knockout', '^ROUND_OF_[0-9]+$', 'Numbered knockout round'),
+    ('group_knockout', '^LAST_[0-9]+$', 'Legacy last-N round'),
+    ('group_knockout', '^QUARTER_FINALS?$', 'Quarter-finals'),
+    ('group_knockout', '^SEMI_FINALS?$', 'Semi-finals'),
+    ('group_knockout', '^FINAL$', 'Final'),
+    ('group_knockout', '^3RD_PLACE_FINAL$', 'Third-place match'),
+    ('group_knockout', '^THIRD_PLACE_FINAL$', 'Third-place match'),
+    ('group_knockout', '^PLAY_OFFS(_.*)?$', 'Inter-stage playoffs'),
+    ('group_knockout', '^PLAYOFFS(_.*)?$', 'Inter-stage playoffs spelling variant'),
+    ('group_knockout', '^KNOCKOUT_ROUND_PLAY_OFFS$', 'Knockout round playoffs'),
+    ('group_knockout', '^QUALIFICATION$', 'Qualification phase'),
+    ('group_knockout', '^[0-9]+(ST|ND|RD|TH)_QUALIFYING(_ROUND)?(_REPLAYS?)?$', 'Qualifying round'),
+    ('group_knockout', '^PRELIMINARY_ROUND(_REPLAYS?)?$', 'Preliminary round'),
+    ('group_knockout', '^EXTRA_PRELIMINARY_ROUND(_REPLAYS?)?$', 'Extra preliminary round'),
+    ('group_knockout', '^[0-9]+(ST|ND|RD|TH)_ROUND(_QUALIFYING)?(_REPLAYS?)?$', 'Numbered round'),
+    ('knockout', '^KNOCKOUT_ROUND_PLAY_OFFS$', 'Knockout round playoffs'),
+    ('knockout', '^PLAY_OFFS(_.*)?$', 'Playoffs'),
+    ('knockout', '^PLAYOFFS(_.*)?$', 'Playoffs spelling variant'),
+    ('knockout', '^ROUND_OF_[0-9]+$', 'Numbered knockout round'),
+    ('knockout', '^LAST_[0-9]+$', 'Legacy last-N round'),
+    ('knockout', '^QUARTER_FINALS?$', 'Quarter-finals'),
+    ('knockout', '^SEMI_FINALS?$', 'Semi-finals'),
+    ('knockout', '^FINAL$', 'Final'),
+    ('knockout', '^3RD_PLACE_FINAL$', 'Third-place match'),
+    ('knockout', '^THIRD_PLACE_FINAL$', 'Third-place match'),
+    ('knockout', '^QUALIFICATION$', 'Qualification phase'),
+    ('knockout', '^[0-9]+(ST|ND|RD|TH)_QUALIFYING(_ROUND)?(_REPLAYS?)?$', 'Qualifying round'),
+    ('knockout', '^PRELIMINARY_ROUND(_REPLAYS?)?$', 'Preliminary round'),
+    ('knockout', '^EXTRA_PRELIMINARY_ROUND(_REPLAYS?)?$', 'Extra preliminary round'),
+    ('knockout', '^[0-9]+(ST|ND|RD|TH)_ROUND(_QUALIFYING)?(_REPLAYS?)?$', 'Numbered round');
 
-CREATE TABLE match_event_relations (
-    event_id BIGINT NOT NULL REFERENCES match_events(id) ON DELETE CASCADE,
-    related_event_id BIGINT NOT NULL REFERENCES match_events(id) ON DELETE CASCADE,
-    relation_kind VARCHAR(50) NOT NULL DEFAULT 'related',
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    PRIMARY KEY (event_id, related_event_id)
-);
+CREATE OR REPLACE FUNCTION normalize_match_stage_token(raw_stage TEXT)
+RETURNS TEXT
+LANGUAGE sql
+IMMUTABLE
+AS $$
+    SELECT NULLIF(
+        REGEXP_REPLACE(
+            REGEXP_REPLACE(UPPER(COALESCE(TRIM(raw_stage), '')), '[^A-Z0-9]+', '_', 'g'),
+            '^_+|_+$',
+            '',
+            'g'
+        ),
+        ''
+    )
+$$;
 
-CREATE INDEX idx_match_event_relations_related
-    ON match_event_relations (related_event_id);
+CREATE OR REPLACE FUNCTION infer_competition_season_format(
+    p_competition_slug TEXT,
+    p_comp_type competition_type,
+    p_season_start_date DATE
+)
+RETURNS competition_format_type
+LANGUAGE plpgsql
+IMMUTABLE
+AS $$
+BEGIN
+    IF p_comp_type = 'league' THEN
+        RETURN 'regular_league';
+    END IF;
+
+    IF p_competition_slug IN ('champions-league', 'europa-league') THEN
+        IF p_season_start_date >= DATE '2024-07-01' THEN
+            RETURN 'league_phase';
+        END IF;
+
+        RETURN 'group_knockout';
+    END IF;
+
+    IF p_competition_slug LIKE '%world-cup%'
+        OR p_competition_slug LIKE '%euro%'
+        OR p_competition_slug LIKE '%copa-america%'
+        OR p_competition_slug LIKE '%african-cup-of-nations%'
+    THEN
+        RETURN 'group_knockout';
+    END IF;
+
+    RETURN 'knockout';
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION set_competition_season_format()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_competition_slug TEXT;
+    v_comp_type competition_type;
+    v_season_start_date DATE;
+BEGIN
+    IF NEW.format_type IS NOT NULL THEN
+        RETURN NEW;
+    END IF;
+
+    SELECT c.slug, c.comp_type, s.start_date
+    INTO v_competition_slug, v_comp_type, v_season_start_date
+    FROM competitions c
+    JOIN seasons s ON s.id = NEW.season_id
+    WHERE c.id = NEW.competition_id;
+
+    NEW.format_type := infer_competition_season_format(v_competition_slug, v_comp_type, v_season_start_date);
+    RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER trg_set_competition_season_format
+BEFORE INSERT OR UPDATE OF competition_id, season_id, format_type
+ON competition_seasons
+FOR EACH ROW
+EXECUTE FUNCTION set_competition_season_format();
+
+CREATE OR REPLACE FUNCTION validate_match_stage_against_competition_format()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_format_type competition_format_type;
+    v_normalized_stage TEXT;
+    v_is_allowed BOOLEAN;
+BEGIN
+    SELECT cs.format_type
+    INTO v_format_type
+    FROM competition_seasons cs
+    WHERE cs.id = NEW.competition_season_id;
+
+    IF v_format_type IS NULL THEN
+        RAISE EXCEPTION 'competition_seasons.format_type is missing for competition_season_id=%', NEW.competition_season_id;
+    END IF;
+
+    v_normalized_stage := normalize_match_stage_token(NEW.stage);
+    IF v_normalized_stage IS NULL THEN
+        RAISE EXCEPTION 'match stage is required for competition_season_id=%', NEW.competition_season_id;
+    END IF;
+
+    SELECT EXISTS (
+        SELECT 1
+        FROM competition_format_stage_rules rule
+        WHERE rule.format_type = v_format_type
+          AND v_normalized_stage ~ rule.stage_pattern
+    ) INTO v_is_allowed;
+
+    IF NOT v_is_allowed THEN
+        RAISE EXCEPTION 'stage % is not allowed for format_type % (competition_season_id=%)', NEW.stage, v_format_type, NEW.competition_season_id;
+    END IF;
+
+    RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER trg_validate_match_stage_against_competition_format
+BEFORE INSERT OR UPDATE OF competition_season_id, stage
+ON matches
+FOR EACH ROW
+EXECUTE FUNCTION validate_match_stage_against_competition_format();
 
 CREATE TABLE match_stats (
     id BIGSERIAL PRIMARY KEY,
@@ -694,6 +828,8 @@ CREATE TABLE match_stats (
     offsides SMALLINT,
     gk_saves SMALLINT,
     expected_goals DECIMAL(4,2),
+    big_chances SMALLINT,
+    big_chances_missed SMALLINT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     FOREIGN KEY (match_id, match_date) REFERENCES matches(id, match_date),
     UNIQUE (match_id, match_date, team_id)
@@ -728,32 +864,35 @@ CREATE TABLE match_lineups (
 
 CREATE INDEX idx_match_lineups_match
     ON match_lineups (match_id, team_id, is_starter);
+CREATE INDEX idx_match_lineups_player_match
+    ON match_lineups (player_id, match_id);
 CREATE INDEX idx_match_lineups_team_id
     ON match_lineups (team_id);
 
-CREATE TABLE match_event_freeze_frames (
+CREATE TABLE match_event_artifacts (
     id BIGSERIAL PRIMARY KEY,
-    event_id BIGINT NOT NULL REFERENCES match_events(id) ON DELETE CASCADE,
-    player_id BIGINT REFERENCES players(id),
-    team_id BIGINT REFERENCES teams(id),
-    is_teammate BOOLEAN,
-    is_actor BOOLEAN,
-    is_goalkeeper BOOLEAN,
-    location_x DECIMAL(5,2) NOT NULL,
-    location_y DECIMAL(5,2) NOT NULL,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    match_id BIGINT NOT NULL,
+    match_date DATE NOT NULL,
+    artifact_type VARCHAR(40) NOT NULL,
+    format VARCHAR(20) NOT NULL,
+    storage_key TEXT NOT NULL,
+    version INTEGER NOT NULL DEFAULT 1,
+    row_count INTEGER,
+    byte_size BIGINT,
+    checksum_sha256 CHAR(64),
+    source_vendor VARCHAR(40),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    FOREIGN KEY (match_id, match_date) REFERENCES matches(id, match_date),
+    CONSTRAINT match_event_artifacts_type_check CHECK (
+        artifact_type IN ('analysis_detail', 'freeze_frames', 'visible_areas', 'raw_event_bundle')
+    ),
+    CONSTRAINT match_event_artifacts_format_check CHECK (format = 'json.gz'),
+    UNIQUE (match_id, artifact_type, version)
 );
 
-CREATE INDEX idx_match_event_freeze_frames_event
-    ON match_event_freeze_frames (event_id);
-CREATE INDEX idx_match_event_freeze_frames_team_id
-    ON match_event_freeze_frames (team_id);
-
-CREATE TABLE match_event_visible_areas (
-    event_id BIGINT PRIMARY KEY REFERENCES match_events(id) ON DELETE CASCADE,
-    visible_area JSONB NOT NULL,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
+CREATE INDEX idx_match_event_artifacts_match
+    ON match_event_artifacts (match_id, artifact_type, version DESC);
 
 -- Source mapping and ingestion support
 

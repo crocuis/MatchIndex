@@ -11,6 +11,7 @@ interface CliOptions {
 
 interface DuplicateGroupRow {
   match_date: string;
+  kickoff_at: string | null;
   stage: string | null;
   group_name: string | null;
   home_slug: string;
@@ -25,6 +26,9 @@ interface MatchCandidateRow {
   lineups: number;
   stats: number;
   kickoff_at: string | null;
+  home_score: number | null;
+  away_score: number | null;
+  status: string;
 }
 
 function parseArgs(argv: string[]): CliOptions {
@@ -97,9 +101,15 @@ function getSourceRank(source: string | null) {
       return 3;
     case 'football_data_org':
       return 2;
+    case 'sofascore':
+      return 1;
     default:
       return 1;
   }
+}
+
+function normalizeSlugForMatchGrouping(column: string) {
+  return `TRIM(REGEXP_REPLACE(REGEXP_REPLACE(REGEXP_REPLACE(${column}, '[0-9]+', ' ', 'g'), '(fc|cf|afc|ac|as|fk|sk|ssc|club|de|del|futbol|football|balompie|town|eindhoven|rc|racing)', ' ', 'g'), '[-_]+', ' ', 'g'))`;
 }
 
 function chooseCanonical(rows: MatchCandidateRow[]) {
@@ -112,6 +122,7 @@ function chooseCanonical(rows: MatchCandidateRow[]) {
         source,
         sourceRank: getSourceRank(source),
         payloadRank: row.events + row.lineups + row.stats,
+        kickoffRank: row.kickoff_at ? 1 : 0,
       };
     })
     .sort((left, right) => {
@@ -119,22 +130,30 @@ function chooseCanonical(rows: MatchCandidateRow[]) {
         return right.payloadRank - left.payloadRank;
       }
 
+       if (right.kickoffRank !== left.kickoffRank) {
+        return right.kickoffRank - left.kickoffRank;
+      }
+
       if (right.sourceRank !== left.sourceRank) {
         return right.sourceRank - left.sourceRank;
       }
 
-      return left.row.id - right.row.id;
+      return right.row.id - left.row.id;
     })[0]!.row;
 }
 
 async function loadDuplicateGroups(sql: ReturnType<typeof getSql>, competition: string, season: string) {
-  return sql<DuplicateGroupRow[]>`
+  const homeSlugKey = normalizeSlugForMatchGrouping('home.slug');
+  const awaySlugKey = normalizeSlugForMatchGrouping('away.slug');
+
+  return sql.unsafe<DuplicateGroupRow[]>(`
     SELECT
-      m.match_date::text AS match_date,
-      m.stage,
-      m.group_name,
-      home.slug AS home_slug,
-      away.slug AS away_slug,
+      MIN(m.match_date)::text AS match_date,
+      MIN(m.kickoff_at::text) AS kickoff_at,
+      MIN(m.stage) AS stage,
+      MIN(m.group_name) AS group_name,
+      MIN(home.slug) AS home_slug,
+      MIN(away.slug) AS away_slug,
       ARRAY_AGG(m.id ORDER BY m.id) AS match_ids
     FROM matches m
     JOIN competition_seasons cs ON cs.id = m.competition_season_id
@@ -142,12 +161,15 @@ async function loadDuplicateGroups(sql: ReturnType<typeof getSql>, competition: 
     JOIN seasons s ON s.id = cs.season_id
     JOIN teams home ON home.id = m.home_team_id
     JOIN teams away ON away.id = m.away_team_id
-    WHERE c.slug = ${competition}
-      AND s.slug = ${season}
-    GROUP BY m.match_date, m.stage, m.group_name, home.slug, away.slug
+    WHERE c.slug = '${competition.replace(/'/g, "''")}'
+      AND s.slug = '${season.replace(/'/g, "''")}'
+    GROUP BY
+      COALESCE(m.matchday::text, m.match_date::text),
+      ${homeSlugKey},
+      ${awaySlugKey}
     HAVING COUNT(*) > 1
-    ORDER BY m.match_date, home.slug, away.slug
-  `;
+    ORDER BY MIN(m.match_date), MIN(home.slug), MIN(away.slug)
+  `);
 }
 
 async function loadCandidates(sql: ReturnType<typeof getSql>, matchIds: number[]) {
@@ -160,10 +182,13 @@ async function loadCandidates(sql: ReturnType<typeof getSql>, matchIds: number[]
     SELECT
       m.id,
       m.source_metadata,
-      (SELECT COUNT(*)::int FROM match_events me WHERE me.match_id = m.id AND me.match_date = m.match_date) AS events,
+      0::int AS events,
       (SELECT COUNT(*)::int FROM match_lineups ml WHERE ml.match_id = m.id AND ml.match_date = m.match_date) AS lineups,
       (SELECT COUNT(*)::int FROM match_stats ms WHERE ms.match_id = m.id AND ms.match_date = m.match_date) AS stats,
-      m.kickoff_at::text AS kickoff_at
+      m.kickoff_at::text AS kickoff_at,
+      m.home_score,
+      m.away_score,
+      m.status::text AS status
     FROM matches m
     WHERE m.id IN (${idList})
     ORDER BY m.id
@@ -225,13 +250,6 @@ async function mergeAliasMatch(tx: Awaited<ReturnType<ReturnType<typeof getSql>[
 
   await tx`
     UPDATE match_lineups
-    SET match_id = ${canonicalId}
-    WHERE match_id = ${aliasId}
-      AND match_date = ${matchDate}
-  `;
-
-  await tx`
-    UPDATE match_events
     SET match_id = ${canonicalId}
     WHERE match_id = ${aliasId}
       AND match_date = ${matchDate}

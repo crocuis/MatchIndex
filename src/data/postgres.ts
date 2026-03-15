@@ -1,8 +1,11 @@
 import 'server-only';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
+import { mapMatchAnalysisArtifactPayload, mapMatchTimelineFromArtifact, type MatchAnalysisArtifactReferences } from '@/data/matchEventArtifacts';
+import { buildMatchArtifactStorageKey, buildSourceAwareMatchArtifactStorageKey } from '@/lib/artifactStore';
 import { readThroughCache, buildCacheKey, deleteCacheKey } from '@/lib/cache';
 import { getDb } from '@/lib/db';
+import { readJsonGzipArtifact } from '@/lib/artifactStore';
 import type {
   Club,
   ClubListItem,
@@ -10,7 +13,13 @@ import type {
   League,
   LeagueSeasonEntry,
   Match,
+  MatchAnalysisArtifactPayload,
   MatchEvent,
+  MatchEventArtifact,
+  MatchEventArtifactFormat,
+  MatchEventArtifactType,
+  MatchEventFreezeFramesArtifactPayload,
+  MatchEventVisibleAreasArtifactPayload,
   MatchAnalysisData,
   MatchAnalysisEvent,
   MatchAnalysisEventType,
@@ -48,6 +57,7 @@ interface LeagueRow {
   season: string;
   gender: League['gender'];
   comp_type: 'league' | 'cup' | 'league_cup' | 'super_cup' | 'international';
+  format_type: League['competitionFormat'] | null;
   emblem_url: string | null;
   number_of_clubs: number;
 }
@@ -74,6 +84,10 @@ interface ClubListRow extends ClubRow {
 interface ClubRepresentativeRow extends ClubListRow {
   season_start_date: string | null;
   season_end_date: string | null;
+}
+
+interface CanonicalSlugRow {
+  slug: string;
 }
 
 interface TeamTranslationSnapshotRow {
@@ -252,6 +266,7 @@ interface MatchRow {
   competition_name: string;
   team_type: 'club' | 'nation';
   status: Match['status'];
+  source?: string | null;
 }
 
 interface StandingRowDb {
@@ -294,6 +309,7 @@ interface LeagueSeasonRowDb {
   season_id: string;
   season_label: string;
   is_current: boolean;
+  format_type: League['competitionFormat'] | null;
 }
 
 interface TopScorerDisplayRowDb extends TopScorerRow {
@@ -339,6 +355,7 @@ interface SearchRow {
 }
 
 const CANONICAL_SEARCH_CLUB_ID_MAP: Record<string, string> = {
+  'borussia-mgladbach': 'borussia-mo-nchengladbach-germany',
   'borussia-mo-nchengladbach': 'borussia-mo-nchengladbach-germany',
   'borussia-monchengladbach': 'borussia-mo-nchengladbach-germany',
   'borussia-monchengladbach-germany': 'borussia-mo-nchengladbach-germany',
@@ -393,6 +410,34 @@ interface MatchStatsRowDb {
   fouls: number | null;
   offsides: number | null;
   gk_saves: number | null;
+  big_chances: number | null;
+  big_chances_missed: number | null;
+}
+
+interface MatchEventArtifactRowDb {
+  match_id: string;
+  match_date: string;
+  artifact_type: MatchEventArtifactType;
+  format: MatchEventArtifactFormat;
+  storage_key: string;
+  version: number;
+  row_count: number | null;
+  byte_size: number | null;
+  checksum_sha256: string | null;
+  source_vendor: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+interface ArtifactTeamReferenceRowDb {
+  id: number;
+  slug: string;
+}
+
+interface ArtifactPlayerReferenceRowDb {
+  id: number;
+  slug: string;
+  name: string;
 }
 
 interface MatchLineupRowDb {
@@ -435,6 +480,17 @@ interface PlayerPhotoSyncTargetRow {
 interface PaginationOptions {
   page?: number;
   pageSize?: number;
+}
+
+interface ClubOverviewStatsRow {
+  player_count: number;
+  goals: number;
+  assists: number;
+}
+
+interface PlayerLinkRow {
+  id: string;
+  name: string;
 }
 
 const EMPTY_WORLD_CUP_2026: WorldCupTournament = {
@@ -589,6 +645,71 @@ function mergeMatches(primary: Match[], secondary: Match[]) {
   return Array.from(new Map([...primary, ...secondary].map((match) => [match.id, match])).values());
 }
 
+function mapMatchEventArtifact(row: MatchEventArtifactRowDb): MatchEventArtifact {
+  return {
+    matchId: row.match_id,
+    matchDate: row.match_date,
+    artifactType: row.artifact_type,
+    format: row.format,
+    storageKey: row.storage_key,
+    version: row.version,
+    rowCount: row.row_count,
+    byteSize: row.byte_size,
+    checksumSha256: row.checksum_sha256,
+    sourceVendor: row.source_vendor,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at,
+  };
+}
+
+async function getMatchAnalysisArtifactReferences(
+  payload: MatchAnalysisArtifactPayload,
+  locale: string,
+): Promise<MatchAnalysisArtifactReferences> {
+  const sql = getDb();
+  const teamIds = Array.from(new Set(payload.events.map((event) => event.teamId)));
+  const playerIds = Array.from(new Set(payload.events.flatMap((event) => {
+    const ids: number[] = [];
+
+    if (event.playerId !== null) {
+      ids.push(event.playerId);
+    }
+
+    if (event.secondaryPlayerId !== null) {
+      ids.push(event.secondaryPlayerId);
+    }
+
+    return ids;
+  })));
+
+  const [teamRows, playerRows] = await Promise.all([
+    teamIds.length === 0
+      ? Promise.resolve([] as ArtifactTeamReferenceRowDb[])
+      : sql<ArtifactTeamReferenceRowDb[]>`
+          SELECT t.id, t.slug
+          FROM teams t
+          WHERE t.id = ANY(${teamIds})
+        `,
+    playerIds.length === 0
+      ? Promise.resolve([] as ArtifactPlayerReferenceRowDb[])
+      : sql<ArtifactPlayerReferenceRowDb[]>`
+          SELECT
+            p.id,
+            p.slug,
+            COALESCE(player_name_local.known_as, player_name_en.known_as, p.slug) AS name
+          FROM players p
+          LEFT JOIN player_translations player_name_local ON player_name_local.player_id = p.id AND player_name_local.locale = ${locale}
+          LEFT JOIN player_translations player_name_en ON player_name_en.player_id = p.id AND player_name_en.locale = 'en'
+          WHERE p.id = ANY(${playerIds})
+        `,
+  ]);
+
+  return {
+    teams: new Map(teamRows.map((row) => [row.id, { slug: row.slug }])),
+    players: new Map(playerRows.map((row) => [row.id, { slug: row.slug, name: row.name }])),
+  };
+}
+
 function addWorldCupNationSeed(
   seeds: Map<string, Pick<Nation, 'id' | 'name' | 'code'>>,
   id: string | undefined,
@@ -736,6 +857,8 @@ function mapLeague(row: LeagueRow): League {
     gender: row.gender ?? undefined,
     logo: leagueLogoMap[row.id] ?? row.emblem_url ?? undefined,
     numberOfClubs: row.number_of_clubs,
+    competitionDataType: row.comp_type,
+    competitionFormat: row.format_type ?? undefined,
     competitionType: row.comp_type === 'league' ? 'league' : 'tournament',
   };
 }
@@ -775,9 +898,9 @@ export async function getTeamTranslationSnapshotDb(locale: string = 'en') {
   return withFallback(async () => {
     const sql = getDb();
     const [{ version }] = await sql<{ version: string }[]>`
-      SELECT GREATEST(
-        COALESCE((SELECT MAX(t.updated_at) FROM teams t WHERE t.is_national = FALSE), TIMESTAMPTZ 'epoch'),
-        COALESCE((SELECT MAX(tt.updated_at) FROM team_translations tt WHERE tt.locale IN (${locale}, 'en', 'ko')), TIMESTAMPTZ 'epoch')
+      SELECT COALESCE(
+        (SELECT MAX(t.updated_at) FROM teams t WHERE t.is_national = FALSE),
+        TIMESTAMPTZ 'epoch'
       )::TEXT AS version
     `;
     const key = buildCacheKey({ namespace: 'team-translation-snapshot-v1', locale, params: { version } });
@@ -820,7 +943,10 @@ function getClubRepresentativeTimestamp(row: Pick<ClubRepresentativeRow, 'season
 }
 
 function getClubIdentityKey(row: Pick<ClubRepresentativeRow, 'name' | 'country' | 'gender'>) {
-  return [row.name.trim().toLowerCase(), row.country.trim().toLowerCase(), row.gender ?? 'unknown'].join('::');
+  const clubKey = buildClubLookupKeys(row.name)[0] ?? row.name.trim().toLowerCase();
+  const countryKey = buildClubLookupKeys(row.country)[0] ?? row.country.trim().toLowerCase();
+
+  return [clubKey, countryKey, row.gender ?? 'unknown'].join('::');
 }
 
 function compareClubRepresentativeRows(left: ClubRepresentativeRow, right: ClubRepresentativeRow) {
@@ -878,38 +1004,17 @@ async function getClubRepresentativeRowsDb(locale: string) {
   return sql<ClubRepresentativeRow[]>`
     SELECT
       t.slug AS id,
-      COALESCE(
-        (SELECT tt.name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = ${locale}),
-        (SELECT tt.name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = 'en'),
-        t.slug
-      ) AS name,
-      (SELECT tt.name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = 'ko') AS korean_name,
-      COALESCE(
-        (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = ${locale}),
-        (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = 'en'),
-        t.slug
-      ) AS short_name,
-      COALESCE(
-        (SELECT ctr.name FROM country_translations ctr WHERE ctr.country_id = country.id AND ctr.locale = ${locale}),
-        (SELECT ctr.name FROM country_translations ctr WHERE ctr.country_id = country.id AND ctr.locale = 'en'),
-        country.code_alpha3
-      ) AS country,
+      COALESCE(tt_locale.name, tt_en.name, t.slug) AS name,
+      tt_ko.name AS korean_name,
+      COALESCE(tt_locale.short_name, tt_en.short_name, t.slug) AS short_name,
+      COALESCE(country_locale.name, country_en.name, country.code_alpha3) AS country,
       t.gender,
       t.founded_year AS founded,
-      COALESCE(
-        (SELECT vt.name FROM venue_translations vt WHERE vt.venue_id = v.id AND vt.locale = ${locale}),
-        (SELECT vt.name FROM venue_translations vt WHERE vt.venue_id = v.id AND vt.locale = 'en'),
-        v.slug,
-        ''
-      ) AS stadium,
+      COALESCE(venue_locale.name, venue_en.name, v.slug, '') AS stadium,
       v.capacity AS stadium_capacity,
       c.slug AS league_id,
       c.comp_type::TEXT AS league_comp_type,
-      COALESCE(
-        (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = ${locale}),
-        (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = 'en'),
-        c.slug
-      ) AS league_name,
+      COALESCE(competition_locale.name, competition_en.name, c.slug) AS league_name,
       t.crest_url,
       s.start_date::TEXT AS season_start_date,
       s.end_date::TEXT AS season_end_date
@@ -920,6 +1025,15 @@ async function getClubRepresentativeRowsDb(locale: string) {
     JOIN competition_seasons cs ON cs.id = ts.competition_season_id
     JOIN competitions c ON c.id = cs.competition_id
     JOIN seasons s ON s.id = cs.season_id
+    LEFT JOIN team_translations tt_locale ON tt_locale.team_id = t.id AND tt_locale.locale = ${locale}
+    LEFT JOIN team_translations tt_en ON tt_en.team_id = t.id AND tt_en.locale = 'en'
+    LEFT JOIN team_translations tt_ko ON tt_ko.team_id = t.id AND tt_ko.locale = 'ko'
+    LEFT JOIN country_translations country_locale ON country_locale.country_id = country.id AND country_locale.locale = ${locale}
+    LEFT JOIN country_translations country_en ON country_en.country_id = country.id AND country_en.locale = 'en'
+    LEFT JOIN venue_translations venue_locale ON venue_locale.venue_id = v.id AND venue_locale.locale = ${locale}
+    LEFT JOIN venue_translations venue_en ON venue_en.venue_id = v.id AND venue_en.locale = 'en'
+    LEFT JOIN competition_translations competition_locale ON competition_locale.competition_id = c.id AND competition_locale.locale = ${locale}
+    LEFT JOIN competition_translations competition_en ON competition_en.competition_id = c.id AND competition_en.locale = 'en'
     WHERE t.is_national = FALSE
   `;
 }
@@ -930,38 +1044,17 @@ async function getClubRepresentativeRowBySlugDb(id: string, locale: string) {
   const rows = await sql<ClubRepresentativeRow[]>`
     SELECT
       t.slug AS id,
-      COALESCE(
-        (SELECT tt.name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = ${locale}),
-        (SELECT tt.name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = 'en'),
-        t.slug
-      ) AS name,
-      (SELECT tt.name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = 'ko') AS korean_name,
-      COALESCE(
-        (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = ${locale}),
-        (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = 'en'),
-        t.slug
-      ) AS short_name,
-      COALESCE(
-        (SELECT ctr.name FROM country_translations ctr WHERE ctr.country_id = country.id AND ctr.locale = ${locale}),
-        (SELECT ctr.name FROM country_translations ctr WHERE ctr.country_id = country.id AND ctr.locale = 'en'),
-        country.code_alpha3
-      ) AS country,
+      COALESCE(tt_locale.name, tt_en.name, t.slug) AS name,
+      tt_ko.name AS korean_name,
+      COALESCE(tt_locale.short_name, tt_en.short_name, t.slug) AS short_name,
+      COALESCE(country_locale.name, country_en.name, country.code_alpha3) AS country,
       t.gender,
       t.founded_year AS founded,
-      COALESCE(
-        (SELECT vt.name FROM venue_translations vt WHERE vt.venue_id = v.id AND vt.locale = ${locale}),
-        (SELECT vt.name FROM venue_translations vt WHERE vt.venue_id = v.id AND vt.locale = 'en'),
-        v.slug,
-        ''
-      ) AS stadium,
+      COALESCE(venue_locale.name, venue_en.name, v.slug, '') AS stadium,
       v.capacity AS stadium_capacity,
       c.slug AS league_id,
       c.comp_type::TEXT AS league_comp_type,
-      COALESCE(
-        (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = ${locale}),
-        (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = 'en'),
-        c.slug
-      ) AS league_name,
+      COALESCE(competition_locale.name, competition_en.name, c.slug) AS league_name,
       t.crest_url,
       s.start_date::TEXT AS season_start_date,
       s.end_date::TEXT AS season_end_date
@@ -972,11 +1065,48 @@ async function getClubRepresentativeRowBySlugDb(id: string, locale: string) {
     JOIN competition_seasons cs ON cs.id = ts.competition_season_id
     JOIN competitions c ON c.id = cs.competition_id
     JOIN seasons s ON s.id = cs.season_id
+    LEFT JOIN team_translations tt_locale ON tt_locale.team_id = t.id AND tt_locale.locale = ${locale}
+    LEFT JOIN team_translations tt_en ON tt_en.team_id = t.id AND tt_en.locale = 'en'
+    LEFT JOIN team_translations tt_ko ON tt_ko.team_id = t.id AND tt_ko.locale = 'ko'
+    LEFT JOIN country_translations country_locale ON country_locale.country_id = country.id AND country_locale.locale = ${locale}
+    LEFT JOIN country_translations country_en ON country_en.country_id = country.id AND country_en.locale = 'en'
+    LEFT JOIN venue_translations venue_locale ON venue_locale.venue_id = v.id AND venue_locale.locale = ${locale}
+    LEFT JOIN venue_translations venue_en ON venue_en.venue_id = v.id AND venue_en.locale = 'en'
+    LEFT JOIN competition_translations competition_locale ON competition_locale.competition_id = c.id AND competition_locale.locale = ${locale}
+    LEFT JOIN competition_translations competition_en ON competition_en.competition_id = c.id AND competition_en.locale = 'en'
     WHERE t.slug = ${id}
       AND t.is_national = FALSE
   `;
 
   return rows.sort(compareClubRepresentativeRows)[0];
+}
+
+export async function getCanonicalClubSlugDb(id: string): Promise<string | undefined> {
+  return withFallback(async () => {
+    const sql = getDb();
+    const rows = await sql<CanonicalSlugRow[]>`
+      SELECT candidate.slug
+      FROM (
+        SELECT t.slug, 0 AS priority
+        FROM teams t
+        WHERE t.slug = ${id}
+          AND t.is_national = FALSE
+
+        UNION ALL
+
+        SELECT t.slug, 1 AS priority
+        FROM entity_aliases ea
+        JOIN teams t ON t.id = ea.entity_id
+        WHERE ea.entity_type = 'team'
+          AND LOWER(ea.alias) = LOWER(${id})
+          AND t.is_national = FALSE
+      ) candidate
+      ORDER BY candidate.priority ASC, candidate.slug ASC
+      LIMIT 1
+    `;
+
+    return rows[0]?.slug;
+  }, () => undefined);
 }
 
 function mapPlayer(row: PlayerRow): Player {
@@ -1238,126 +1368,9 @@ async function getFallbackPlayerSeasonStatsRowsDb(
   playerIds: string[],
   filters: { seasonId?: string; clubId?: string } = {}
 ): Promise<PlayerFallbackStatsRowDb[]> {
-  if (playerIds.length === 0) {
-    return [];
-  }
-
-  const sql = getDb();
-  const { seasonId, clubId } = filters;
-  const seasonFilter = seasonId ? sql`AND s.slug = ${seasonId}` : sql``;
-  const clubFilter = clubId ? sql`AND team.slug = ${clubId}` : sql``;
-
-  return sql<PlayerFallbackStatsRowDb[]>`
-    WITH target_players AS (
-      SELECT p.id, p.slug
-      FROM players p
-      JOIN (
-        SELECT UNNEST(STRING_TO_ARRAY(${playerIds.join(',')}, ',')) AS slug
-      ) target_slugs ON target_slugs.slug = p.slug
-    ), appearance_summary AS (
-      SELECT
-        tp.slug AS player_id,
-        s.slug AS season_id,
-        team.slug AS club_id,
-        s.start_date::TEXT AS start_date,
-        s.end_date::TEXT AS end_date,
-        COUNT(DISTINCT CASE
-          WHEN ml.is_starter OR sub_in.minute IS NOT NULL THEN m.id
-          ELSE NULL
-        END)::INT AS appearances,
-        SUM(CASE
-          WHEN ml.is_starter THEN COALESCE(sub_out.minute, 90)
-          WHEN sub_in.minute IS NOT NULL THEN GREATEST(90 - sub_in.minute, 0)
-          ELSE 0
-        END)::INT AS minutes_played
-      FROM target_players tp
-      JOIN match_lineups ml ON ml.player_id = tp.id
-      JOIN matches m ON m.id = ml.match_id
-      JOIN competition_seasons cs ON cs.id = m.competition_season_id
-      JOIN seasons s ON s.id = cs.season_id
-      JOIN teams team ON team.id = ml.team_id
-      LEFT JOIN LATERAL (
-        SELECT MIN(me.minute) AS minute
-        FROM match_events me
-        WHERE me.match_id = m.id
-          AND me.event_type = 'substitution'
-          AND me.secondary_player_id = ml.player_id
-      ) sub_in ON TRUE
-      LEFT JOIN LATERAL (
-        SELECT MIN(me.minute) AS minute
-        FROM match_events me
-        WHERE me.match_id = m.id
-          AND me.event_type = 'substitution'
-          AND me.player_id = ml.player_id
-      ) sub_out ON TRUE
-      WHERE m.status <> 'scheduled'
-        ${seasonFilter}
-        ${clubFilter}
-      GROUP BY tp.slug, s.slug, s.start_date, s.end_date, team.slug
-      HAVING COUNT(DISTINCT CASE
-        WHEN ml.is_starter OR sub_in.minute IS NOT NULL THEN m.id
-        ELSE NULL
-      END) > 0
-    ), primary_event_summary AS (
-      SELECT
-        tp.slug AS player_id,
-        s.slug AS season_id,
-        team.slug AS club_id,
-        SUM(CASE WHEN me.event_type IN ('goal', 'penalty_scored') THEN 1 ELSE 0 END)::INT AS goals,
-        SUM(CASE WHEN me.event_type = 'yellow_card' THEN 1 ELSE 0 END)::INT AS yellow_cards,
-        SUM(CASE WHEN me.event_type IN ('red_card', 'yellow_red_card') THEN 1 ELSE 0 END)::INT AS red_cards
-      FROM target_players tp
-      JOIN match_events me ON me.player_id = tp.id
-      JOIN matches m ON m.id = me.match_id
-      JOIN competition_seasons cs ON cs.id = m.competition_season_id
-      JOIN seasons s ON s.id = cs.season_id
-      JOIN teams team ON team.id = me.team_id
-      WHERE m.status <> 'scheduled'
-        ${seasonFilter}
-        ${clubFilter}
-      GROUP BY tp.slug, s.slug, team.slug
-    ), assist_event_summary AS (
-      SELECT
-        tp.slug AS player_id,
-        s.slug AS season_id,
-        team.slug AS club_id,
-        COUNT(*)::INT AS assists
-      FROM target_players tp
-      JOIN match_events me ON me.secondary_player_id = tp.id
-      JOIN matches m ON m.id = me.match_id
-      JOIN competition_seasons cs ON cs.id = m.competition_season_id
-      JOIN seasons s ON s.id = cs.season_id
-      JOIN teams team ON team.id = me.team_id
-      WHERE m.status <> 'scheduled'
-        AND me.event_type IN ('goal', 'own_goal', 'penalty_scored')
-        ${seasonFilter}
-        ${clubFilter}
-      GROUP BY tp.slug, s.slug, team.slug
-    )
-    SELECT
-      appearance_summary.player_id,
-      appearance_summary.season_id,
-      appearance_summary.club_id,
-      appearance_summary.start_date,
-      appearance_summary.end_date,
-      appearance_summary.appearances,
-      COALESCE(primary_event_summary.goals, 0)::INT AS goals,
-      COALESCE(assist_event_summary.assists, 0)::INT AS assists,
-      appearance_summary.minutes_played,
-      COALESCE(primary_event_summary.yellow_cards, 0)::INT AS yellow_cards,
-      COALESCE(primary_event_summary.red_cards, 0)::INT AS red_cards,
-      NULL::INT AS clean_sheets
-    FROM appearance_summary
-    LEFT JOIN primary_event_summary
-      ON primary_event_summary.player_id = appearance_summary.player_id
-     AND primary_event_summary.season_id = appearance_summary.season_id
-     AND primary_event_summary.club_id = appearance_summary.club_id
-    LEFT JOIN assist_event_summary
-      ON assist_event_summary.player_id = appearance_summary.player_id
-     AND assist_event_summary.season_id = appearance_summary.season_id
-     AND assist_event_summary.club_id = appearance_summary.club_id
-    ORDER BY appearance_summary.player_id ASC, appearance_summary.end_date DESC NULLS LAST, appearance_summary.start_date DESC NULLS LAST, appearance_summary.club_id ASC
-  `;
+  void playerIds;
+  void filters;
+  return [];
 }
 
 function applyFallbackStatsToPlayers<T extends Player | PlayerListItem>(
@@ -1489,7 +1502,127 @@ function normalizeMatchStatus(status: string): Match['status'] {
     return 'finished';
   }
 
+  if (status === 'timed') {
+    return 'timed';
+  }
+
+  if (status === 'postponed') {
+    return 'postponed';
+  }
+
+  if (status === 'suspended') {
+    return 'suspended';
+  }
+
+  if (status === 'cancelled') {
+    return 'cancelled';
+  }
+
+  if (status === 'awarded') {
+    return 'awarded';
+  }
+
   return 'scheduled';
+}
+
+function getMatchRowDedupKey(row: MatchRow) {
+  return [
+    row.league_id,
+    row.date,
+    row.home_team_id,
+    row.away_team_id,
+  ].join('::');
+}
+
+function getMatchRowStatusPriority(status: string) {
+  switch (status) {
+    case 'timed':
+      return 4;
+    case 'live_pen':
+    case 'live_et':
+    case 'live_2h':
+    case 'live_ht':
+    case 'live_1h':
+      return 3;
+    case 'finished_pen':
+    case 'finished_aet':
+    case 'finished':
+      return 2;
+    case 'scheduled':
+    default:
+      return 1;
+  }
+}
+
+function getMatchRowSourcePriority(source?: string | null) {
+  switch (source) {
+    case 'api_football':
+      return 4;
+    case 'football_data_org':
+      return 3;
+    case 'statsbomb_open_data':
+      return 2;
+    case 'sofascore':
+      return 1;
+    default:
+      return 0;
+  }
+}
+
+function getMatchRowStagePriority(stage?: string | null) {
+  switch (stage) {
+    case 'REGULAR_SEASON':
+      return 3;
+    case 'LEAGUE_STAGE':
+    case 'LEAGUE_PHASE':
+      return 2;
+    default:
+      return 1;
+  }
+}
+
+function preferMatchRow(candidate: MatchRow, current: MatchRow) {
+  const candidateStatusPriority = getMatchRowStatusPriority(candidate.status);
+  const currentStatusPriority = getMatchRowStatusPriority(current.status);
+  if (candidateStatusPriority !== currentStatusPriority) {
+    return candidateStatusPriority > currentStatusPriority;
+  }
+
+  const candidateSourcePriority = getMatchRowSourcePriority(candidate.source);
+  const currentSourcePriority = getMatchRowSourcePriority(current.source);
+  if (candidateSourcePriority !== currentSourcePriority) {
+    return candidateSourcePriority > currentSourcePriority;
+  }
+
+  const candidateStagePriority = getMatchRowStagePriority(candidate.stage);
+  const currentStagePriority = getMatchRowStagePriority(current.stage);
+  if (candidateStagePriority !== currentStagePriority) {
+    return candidateStagePriority > currentStagePriority;
+  }
+
+  return Number(candidate.id) > Number(current.id);
+}
+
+function dedupeMatchRows(rows: MatchRow[], limit: number) {
+  const deduped = new Map<string, { row: MatchRow; index: number }>();
+
+  for (const [index, row] of rows.entries()) {
+    const key = getMatchRowDedupKey(row);
+    const existing = deduped.get(key);
+    if (!existing) {
+      deduped.set(key, { row, index });
+      continue;
+    }
+
+    if (preferMatchRow(row, existing.row)) {
+      deduped.set(key, { row, index: existing.index });
+    }
+  }
+
+  return [...deduped.values()]
+    .sort((left, right) => left.index - right.index)
+    .slice(0, limit)
+    .map((entry) => entry.row);
 }
 
 function mapMatch(row: MatchRow, locale: string = 'en'): Match {
@@ -1513,7 +1646,7 @@ function mapMatch(row: MatchRow, locale: string = 'en'): Match {
     homeScore: row.home_score,
     awayScore: row.away_score,
     date: row.date,
-    time: row.time ?? '00:00',
+    time: row.time ?? null,
     venue: row.venue,
     attendance: row.attendance ?? undefined,
     referee: row.referee ?? undefined,
@@ -1651,29 +1784,6 @@ function extractMatchEventDetail(
   return detail ?? undefined;
 }
 
-function mapMatchAnalysisEvent(row: MatchAnalysisEventRowDb): MatchAnalysisEvent {
-  return {
-    id: row.source_event_id,
-    minute: row.minute,
-    second: row.second,
-    type: row.event_type,
-    teamId: row.team_id,
-    playerId: row.player_id ?? undefined,
-    playerName: row.player_name ?? row.player_id ?? undefined,
-    secondaryPlayerId: row.secondary_player_id ?? undefined,
-    secondaryPlayerName: row.secondary_player_name ?? row.secondary_player_id ?? undefined,
-    locationX: row.location_x ?? undefined,
-    locationY: row.location_y ?? undefined,
-    endLocationX: row.end_location_x ?? undefined,
-    endLocationY: row.end_location_y ?? undefined,
-    endLocationZ: row.end_location_z ?? undefined,
-    underPressure: row.under_pressure ?? false,
-    statsbombXg: row.statsbomb_xg ?? undefined,
-    outcome: extractAnalysisOutcome(row.event_type, row.source_details),
-    detail: row.detail ?? undefined,
-  };
-}
-
 function mapMatchLineup(row: MatchLineupRowDb): MatchLineup {
   return {
     teamId: row.team_id,
@@ -1683,25 +1793,6 @@ function mapMatchLineup(row: MatchLineupRowDb): MatchLineup {
     shirtNumber: row.shirt_number ?? undefined,
     position: row.position ?? undefined,
     isStarter: row.is_starter,
-  };
-}
-
-function mapTimelineMatchEvent(row: MatchEventRowDb): MatchEvent {
-  const parsedSourceDetails = parseStoredSourceDetails(row.source_details);
-
-  return {
-    sourceEventId: row.source_event_id,
-    minute: row.minute,
-    type: mapMatchEventType(row.event_type),
-    rawType: row.event_type,
-    playerId: row.player_id ?? 'unknown',
-    playerName: row.player_name ?? row.player_id ?? 'Unknown',
-    teamId: row.team_id,
-    secondaryPlayerId: row.secondary_player_id ?? undefined,
-    secondaryPlayerName: row.secondary_player_name ?? row.secondary_player_id ?? undefined,
-    assistPlayerId: row.assist_player_id ?? undefined,
-    assistPlayerName: row.assist_player_name ?? row.assist_player_id ?? undefined,
-    detail: extractMatchEventDetail(row.event_type, row.detail, parsedSourceDetails, row.player_name, row.secondary_player_name),
   };
 }
 
@@ -1729,6 +1820,7 @@ export async function getLeaguesDb(locale: string = 'en'): Promise<League[]> {
               cs.id,
               cs.competition_id,
               cs.season_id,
+              cs.format_type::TEXT AS format_type,
               COUNT(DISTINCT ts.team_id)::INT AS participant_count,
               COUNT(DISTINCT m.id)::INT AS match_count
             FROM competition_seasons cs
@@ -1745,16 +1837,8 @@ export async function getLeaguesDb(locale: string = 'en'): Promise<League[]> {
           )
           SELECT
             c.slug AS id,
-            COALESCE(
-              (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = ${locale}),
-              (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = 'en'),
-              c.slug
-            ) AS name,
-            COALESCE(
-              (SELECT ctr.name FROM country_translations ctr WHERE ctr.country_id = country.id AND ctr.locale = ${locale}),
-              (SELECT ctr.name FROM country_translations ctr WHERE ctr.country_id = country.id AND ctr.locale = 'en'),
-              country.code_alpha3
-            ) AS country,
+            COALESCE(competition_locale.name, competition_en.name, c.slug) AS name,
+            COALESCE(country_locale.name, country_en.name, country.code_alpha3) AS country,
             CASE
               WHEN s.start_date IS NOT NULL AND s.end_date IS NOT NULL THEN
                 CASE
@@ -1770,13 +1854,17 @@ export async function getLeaguesDb(locale: string = 'en'): Promise<League[]> {
             END AS season,
             c.gender,
             c.comp_type::TEXT AS comp_type,
+            lcs.format_type,
             c.emblem_url,
             lcs.participant_count AS number_of_clubs
           FROM competitions c
           LEFT JOIN countries country ON country.id = c.country_id
+          LEFT JOIN competition_translations competition_locale ON competition_locale.competition_id = c.id AND competition_locale.locale = ${locale}
+          LEFT JOIN competition_translations competition_en ON competition_en.competition_id = c.id AND competition_en.locale = 'en'
+          LEFT JOIN country_translations country_locale ON country_locale.country_id = country.id AND country_locale.locale = ${locale}
+          LEFT JOIN country_translations country_en ON country_en.country_id = country.id AND country_en.locale = 'en'
           JOIN latest_competition_seasons lcs ON lcs.competition_id = c.id
           JOIN seasons s ON s.id = lcs.season_id
-          GROUP BY c.id, country.id, s.id, lcs.participant_count
           ORDER BY name ASC
         `;
 
@@ -1833,6 +1921,7 @@ export async function getLeaguesByIdsDb(leagueIds: string[], locale: string = 'e
               cs.id,
               cs.competition_id,
               cs.season_id,
+              cs.format_type::TEXT AS format_type,
               COUNT(DISTINCT ts.team_id)::INT AS participant_count,
               COUNT(DISTINCT m.id)::INT AS match_count
             FROM competition_seasons cs
@@ -1850,16 +1939,8 @@ export async function getLeaguesByIdsDb(leagueIds: string[], locale: string = 'e
           )
           SELECT
             c.slug AS id,
-            COALESCE(
-              (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = ${locale}),
-              (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = 'en'),
-              c.slug
-            ) AS name,
-            COALESCE(
-              (SELECT ctr.name FROM country_translations ctr WHERE ctr.country_id = country.id AND ctr.locale = ${locale}),
-              (SELECT ctr.name FROM country_translations ctr WHERE ctr.country_id = country.id AND ctr.locale = 'en'),
-              country.code_alpha3
-            ) AS country,
+            COALESCE(competition_locale.name, competition_en.name, c.slug) AS name,
+            COALESCE(country_locale.name, country_en.name, country.code_alpha3) AS country,
             CASE
               WHEN s.start_date IS NOT NULL AND s.end_date IS NOT NULL THEN
                 CASE
@@ -1873,15 +1954,20 @@ export async function getLeaguesByIdsDb(leagueIds: string[], locale: string = 'e
                 END
               ELSE REGEXP_REPLACE(s.slug, '-[0-9]+$', '')
             END AS season,
+            c.comp_type::TEXT AS comp_type,
+            lcs.format_type,
             c.gender,
             c.emblem_url,
             lcs.participant_count AS number_of_clubs
           FROM target_competitions tc
           JOIN competitions c ON c.id = tc.id
           LEFT JOIN countries country ON country.id = c.country_id
+          LEFT JOIN competition_translations competition_locale ON competition_locale.competition_id = c.id AND competition_locale.locale = ${locale}
+          LEFT JOIN competition_translations competition_en ON competition_en.competition_id = c.id AND competition_en.locale = 'en'
+          LEFT JOIN country_translations country_locale ON country_locale.country_id = country.id AND country_locale.locale = ${locale}
+          LEFT JOIN country_translations country_en ON country_en.country_id = country.id AND country_en.locale = 'en'
           JOIN latest_competition_seasons lcs ON lcs.competition_id = c.id
           JOIN seasons s ON s.id = lcs.season_id
-          GROUP BY c.id, country.id, s.id, lcs.participant_count
           ORDER BY name ASC
         `;
 
@@ -1893,11 +1979,10 @@ export async function getLeaguesByIdsDb(leagueIds: string[], locale: string = 'e
 
 export async function getLeagueFilterOptionsDb(
   locale: string = 'en',
-  gender: 'male' | 'female' = 'male',
 ): Promise<LeagueFilterOption[]> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'league-filter-options', locale, params: { gender } });
+    const key = buildCacheKey({ namespace: 'league-filter-options', locale });
 
     return readThroughCache({
       key,
@@ -1919,7 +2004,6 @@ export async function getLeagueFilterOptionsDb(
           LEFT JOIN competition_translations ct_en
             ON ct_en.competition_id = c.id
             AND ct_en.locale = 'en'
-          WHERE c.gender = ${gender}
           ORDER BY name ASC
         `;
 
@@ -1932,71 +2016,68 @@ export async function getLeagueFilterOptionsDb(
 export async function getPaginatedLeaguesDb(
   locale: string = 'en',
   query: string = '',
-  gender: 'male' | 'female' = 'male',
-  options: PaginationOptions = {}
+  options: PaginationOptions = {},
+  competitionType?: League['competitionType']
 ): Promise<PaginatedResult<League>> {
   const { currentPage, pageSize, offset } = normalizePagination(options);
-  const trimmedQuery = query.trim();
-  const searchPattern = `%${trimmedQuery}%`;
+  const trimmedQuery = query.trim().toLowerCase();
+  const normalizedCompetitionType = competitionType ?? null;
+  const queryPattern = `%${trimmedQuery}%`;
 
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'leagues-paginated', locale, params: { page: currentPage, pageSize, q: trimmedQuery, gender } });
+    const key = buildCacheKey({
+      namespace: 'leagues-paginated',
+      locale,
+      params: { page: currentPage, pageSize, q: trimmedQuery, competitionType: competitionType ?? 'all' },
+    });
 
     return readThroughCache({
       key,
       tier: 'master',
       policySlug: 'master.competitions',
       loader: async () => {
-        const [countRows, rows] = await Promise.all([
-          sql<{ total_count: number }[]>`
-            SELECT COUNT(*)::INT AS total_count
-            FROM competitions c
-            LEFT JOIN competition_translations ct_locale ON ct_locale.competition_id = c.id AND ct_locale.locale = ${locale}
-            LEFT JOIN competition_translations ct_en ON ct_en.competition_id = c.id AND ct_en.locale = 'en'
-            LEFT JOIN countries country ON country.id = c.country_id
-            LEFT JOIN country_translations ctr_locale ON ctr_locale.country_id = country.id AND ctr_locale.locale = ${locale}
-            LEFT JOIN country_translations ctr_en ON ctr_en.country_id = country.id AND ctr_en.locale = 'en'
-            WHERE c.gender = ${gender}
-              AND (
-                ${trimmedQuery === ''}
-                OR COALESCE(ct_locale.name, ct_en.name, c.slug) ILIKE ${searchPattern}
-                OR COALESCE(ctr_locale.name, ctr_en.name, country.code_alpha3, '') ILIKE ${searchPattern}
-                OR c.slug ILIKE ${searchPattern}
-              )
-          `,
-          sql<LeagueRow[]>`
-            WITH latest_competition_seasons AS (
-              SELECT DISTINCT ON (cs.competition_id)
-                cs.id,
-                cs.competition_id,
-                cs.season_id,
-                COUNT(DISTINCT ts.team_id)::INT AS participant_count,
-                COUNT(DISTINCT m.id)::INT AS match_count
-              FROM competition_seasons cs
-              JOIN seasons s ON s.id = cs.season_id
-              LEFT JOIN team_seasons ts ON ts.competition_season_id = cs.id
-              LEFT JOIN matches m ON m.competition_season_id = cs.id
-              GROUP BY cs.id, cs.competition_id, cs.season_id, s.end_date, s.start_date, s.id
-              ORDER BY
-                cs.competition_id,
-                CASE WHEN COUNT(DISTINCT ts.team_id) > 0 OR COUNT(DISTINCT m.id) > 0 THEN 0 ELSE 1 END,
-                s.end_date DESC NULLS LAST,
-                s.start_date DESC NULLS LAST,
-                s.id DESC
-            )
+        const rows = await sql<(LeagueRow & { total_count: number })[]>`
+          WITH ranked_competition_seasons AS (
+            SELECT
+              cs.id,
+              cs.competition_id,
+              cs.season_id,
+              cs.format_type::TEXT AS format_type,
+              ROW_NUMBER() OVER (
+                PARTITION BY cs.competition_id
+                ORDER BY
+                  CASE
+                    WHEN EXISTS(
+                      SELECT 1
+                      FROM team_seasons ts
+                      WHERE ts.competition_season_id = cs.id
+                    ) OR EXISTS(
+                      SELECT 1
+                      FROM matches m
+                      WHERE m.competition_season_id = cs.id
+                    ) THEN 0
+                    ELSE 1
+                  END,
+                  s.end_date DESC NULLS LAST,
+                  s.start_date DESC NULLS LAST,
+                  s.id DESC
+              ) AS season_rank
+            FROM competition_seasons cs
+            JOIN seasons s ON s.id = cs.season_id
+          ), selected_competition_seasons AS (
+            SELECT
+              rcs.id,
+              rcs.competition_id,
+              rcs.season_id,
+              rcs.format_type
+            FROM ranked_competition_seasons rcs
+            WHERE rcs.season_rank = 1
+          ), filtered_competitions AS (
             SELECT
               c.slug AS id,
-              COALESCE(
-                (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = ${locale}),
-                (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = 'en'),
-                c.slug
-              ) AS name,
-              COALESCE(
-                (SELECT ctr.name FROM country_translations ctr WHERE ctr.country_id = country.id AND ctr.locale = ${locale}),
-                (SELECT ctr.name FROM country_translations ctr WHERE ctr.country_id = country.id AND ctr.locale = 'en'),
-                country.code_alpha3
-              ) AS country,
+              COALESCE(competition_locale.name, competition_en.name, c.slug) AS name,
+              COALESCE(country_locale.name, country_en.name, country.code_alpha3) AS country,
               CASE
                 WHEN s.start_date IS NOT NULL AND s.end_date IS NOT NULL THEN
                   CASE
@@ -2012,35 +2093,51 @@ export async function getPaginatedLeaguesDb(
               END AS season,
               c.gender,
               c.comp_type::TEXT AS comp_type,
+              scs.format_type,
               c.emblem_url,
-              lcs.participant_count AS number_of_clubs
+              scs.id AS competition_season_id,
+              COUNT(*) OVER()::INT AS total_count
             FROM competitions c
+            JOIN selected_competition_seasons scs ON scs.competition_id = c.id
+            JOIN seasons s ON s.id = scs.season_id
             LEFT JOIN countries country ON country.id = c.country_id
-            JOIN latest_competition_seasons lcs ON lcs.competition_id = c.id
-            JOIN seasons s ON s.id = lcs.season_id
-            WHERE c.gender = ${gender}
-              AND (
-                ${trimmedQuery === ''}
-                OR COALESCE(
-                  (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = ${locale}),
-                  (SELECT ct.name FROM competition_translations ct WHERE ct.competition_id = c.id AND ct.locale = 'en'),
-                  c.slug
-                ) ILIKE ${searchPattern}
-                OR COALESCE(
-                  (SELECT ctr.name FROM country_translations ctr WHERE ctr.country_id = country.id AND ctr.locale = ${locale}),
-                  (SELECT ctr.name FROM country_translations ctr WHERE ctr.country_id = country.id AND ctr.locale = 'en'),
-                  country.code_alpha3
-                ) ILIKE ${searchPattern}
-                OR c.slug ILIKE ${searchPattern}
-              )
-            GROUP BY c.id, country.id, s.id, lcs.participant_count
+            LEFT JOIN competition_translations competition_locale ON competition_locale.competition_id = c.id AND competition_locale.locale = ${locale}
+            LEFT JOIN competition_translations competition_en ON competition_en.competition_id = c.id AND competition_en.locale = 'en'
+            LEFT JOIN country_translations country_locale ON country_locale.country_id = country.id AND country_locale.locale = ${locale}
+            LEFT JOIN country_translations country_en ON country_en.country_id = country.id AND country_en.locale = 'en'
+            WHERE (
+              ${normalizedCompetitionType}::TEXT IS NULL
+              OR (CASE WHEN c.comp_type = 'league' THEN 'league' ELSE 'tournament' END) = ${normalizedCompetitionType}
+            )
+            AND (
+              ${trimmedQuery} = ''
+              OR LOWER(CONCAT_WS(' ', COALESCE(competition_locale.name, competition_en.name, c.slug), COALESCE(country_locale.name, country_en.name, country.code_alpha3), c.slug)) LIKE ${queryPattern}
+            )
             ORDER BY name ASC
             LIMIT ${pageSize}
             OFFSET ${offset}
-          `,
-        ]);
+          )
+          SELECT
+            fc.id,
+            fc.name,
+            fc.country,
+            fc.season,
+            fc.gender,
+            fc.comp_type,
+            fc.format_type,
+            fc.emblem_url,
+            COALESCE(participants.participant_count, 0) AS number_of_clubs,
+            fc.total_count
+          FROM filtered_competitions fc
+          LEFT JOIN LATERAL (
+            SELECT COUNT(DISTINCT ts.team_id)::INT AS participant_count
+            FROM team_seasons ts
+            WHERE ts.competition_season_id = fc.competition_season_id
+          ) participants ON TRUE
+          ORDER BY fc.name ASC
+        `;
 
-        return createPaginatedResult(rows.map(mapLeague), countRows[0]?.total_count ?? 0, currentPage, pageSize);
+        return createPaginatedResult(rows.map(mapLeague), rows[0]?.total_count ?? 0, currentPage, pageSize);
       },
     });
   }, () => createPaginatedResult([], 0, currentPage, pageSize));
@@ -2062,6 +2159,7 @@ export async function getLeagueByIdDb(id: string, locale: string = 'en'): Promis
               cs.id,
               cs.competition_id,
               cs.season_id,
+              cs.format_type::TEXT AS format_type,
               COUNT(DISTINCT ts.team_id)::INT AS participant_count,
               COUNT(DISTINCT m.id)::INT AS match_count
             FROM competition_seasons cs
@@ -2104,6 +2202,7 @@ export async function getLeagueByIdDb(id: string, locale: string = 'en'): Promis
               END AS season,
               c.gender,
               c.comp_type::TEXT AS comp_type,
+              lcs.format_type,
               c.emblem_url,
               lcs.participant_count AS number_of_clubs
           FROM competitions c
@@ -2111,7 +2210,6 @@ export async function getLeagueByIdDb(id: string, locale: string = 'en'): Promis
           JOIN latest_competition_season lcs ON lcs.competition_id = c.id
           JOIN seasons s ON s.id = lcs.season_id
           WHERE c.slug = ${id}
-          GROUP BY c.id, country.id, s.id, lcs.participant_count
           LIMIT 1
         `;
 
@@ -2128,49 +2226,55 @@ export async function getClubsDb(locale: string = 'en'): Promise<Club[]> {
     return readThroughCache({
       key,
       tier: 'season-finished',
-      loader: async () => {
-        const rows = await getClubRepresentativeRowsDb(locale);
-        return selectRepresentativeClubRows(rows).map(mapClub);
-      },
+      loader: async () => getClubListItemsDb(locale),
     });
   }, () => []);
+}
+
+async function getClubListItemsDb(locale: string): Promise<ClubListItem[]> {
+  const key = buildCacheKey({ namespace: 'club-list-items-v1', locale });
+
+  return readThroughCache({
+    key,
+    tier: 'season-finished',
+    loader: async () => {
+      const rows = await getClubRepresentativeRowsDb(locale);
+      return selectRepresentativeClubRows(rows).map(mapClubListItem);
+    },
+  });
 }
 
 export async function getPaginatedClubsDb(
   locale: string = 'en',
   query: string = '',
-  gender: 'male' | 'female' = 'male',
   options: PaginationOptions = {}
 ): Promise<PaginatedResult<ClubListItem>> {
   const { currentPage, pageSize, offset } = normalizePagination(options);
   const trimmedQuery = query.trim().toLowerCase();
 
   return withFallback(async () => {
-    const key = buildCacheKey({ namespace: 'clubs-paginated-v4', locale, params: { page: currentPage, pageSize, q: trimmedQuery, gender } });
+    const key = buildCacheKey({ namespace: 'clubs-paginated-v4', locale, params: { page: currentPage, pageSize, q: trimmedQuery } });
 
     return readThroughCache({
       key,
       tier: 'season-finished',
       loader: async () => {
-        const rows = selectRepresentativeClubRows(await getClubRepresentativeRowsDb(locale)).filter((row) => {
-          if (row.gender !== gender) {
-            return false;
-          }
-
+        const items = await getClubListItemsDb(locale);
+        const filteredItems = items.filter((item) => {
           if (!trimmedQuery) {
             return true;
           }
 
-          const haystack = [row.name, row.short_name, row.country, row.stadium, row.league_name, row.id]
+          const haystack = [item.name, item.shortName, item.country, item.stadium, item.leagueName, item.id]
             .filter(Boolean)
             .join(' ')
             .toLowerCase();
 
           return haystack.includes(trimmedQuery);
         });
-        const pagedRows = rows.slice(offset, offset + pageSize);
+        const pagedItems = filteredItems.slice(offset, offset + pageSize);
 
-        return createPaginatedResult(pagedRows.map(mapClubListItem), rows.length, currentPage, pageSize);
+        return createPaginatedResult(pagedItems, filteredItems.length, currentPage, pageSize);
       },
     });
   }, () => createPaginatedResult([], 0, currentPage, pageSize));
@@ -2184,7 +2288,8 @@ export async function getClubByIdDb(id: string, locale: string = 'en'): Promise<
       key,
       tier: 'season-finished',
       loader: async () => {
-        const row = await getClubRepresentativeRowBySlugDb(id, locale);
+        const canonicalId = await getCanonicalClubSlugDb(id) ?? id;
+        const row = await getClubRepresentativeRowBySlugDb(canonicalId, locale);
         return row ? mapClub(row) : undefined;
       },
     });
@@ -2265,7 +2370,8 @@ function buildClubLookupKeys(value: string | null | undefined) {
   }
 
   const compact = normalized
-    .replace(/\b(fc|cf|afc|cfc|sc|ac|club|football|futbol|clube|club de futebol)\b/g, ' ')
+    .replace(/\b(\d+)\b/g, ' ')
+    .replace(/\b(fc|cf|afc|cfc|sc|ac|club|football|futbol|clube|club de futebol|rc|racing|de|del|sco)\b/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 
@@ -2608,7 +2714,7 @@ export async function getClubSeasonHistoryDb(clubId: string, locale: string = 'e
             team_form.form::TEXT[]
           FROM club_competition_seasons ccs
           JOIN club_team team ON TRUE
-          JOIN standings
+          LEFT JOIN standings
             ON standings.competition_season_id = ccs.competition_season_id
             AND standings.team_id = team.id
           LEFT JOIN team_form
@@ -2626,7 +2732,7 @@ export async function getClubSeasonHistoryDb(clubId: string, locale: string = 'e
 export async function getClubsByLeagueDb(leagueId: string, locale: string = 'en'): Promise<Club[]> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'clubs-by-league-v3', locale, id: leagueId });
+    const key = buildCacheKey({ namespace: 'clubs-by-league-v4', locale, id: leagueId });
 
     return readThroughCache({
       key,
@@ -2638,12 +2744,17 @@ export async function getClubsByLeagueDb(leagueId: string, locale: string = 'en'
             FROM competition_seasons cs
             JOIN competitions c ON c.id = cs.competition_id
             JOIN seasons s ON s.id = cs.season_id
-            LEFT JOIN team_seasons ts ON ts.competition_season_id = cs.id
-            LEFT JOIN matches m ON m.competition_season_id = cs.id
             WHERE c.slug = ${leagueId}
-            GROUP BY cs.id, s.end_date, s.start_date, s.id
             ORDER BY
-              CASE WHEN COUNT(DISTINCT ts.team_id) > 0 OR COUNT(DISTINCT m.id) > 0 THEN 0 ELSE 1 END,
+              CASE WHEN EXISTS (
+                SELECT 1
+                FROM team_seasons ts
+                WHERE ts.competition_season_id = cs.id
+              ) OR EXISTS (
+                SELECT 1
+                FROM matches season_matches
+                WHERE season_matches.competition_season_id = cs.id
+              ) THEN 0 ELSE 1 END,
               s.end_date DESC NULLS LAST,
               s.start_date DESC NULLS LAST,
               s.id DESC
@@ -2680,53 +2791,51 @@ export async function getClubsByLeagueDb(leagueId: string, locale: string = 'en'
               JOIN latest_competition_season lcs ON lcs.id = ts.competition_season_id
               WHERE hrsm.has_regular_season = FALSE
             ) participant ON TRUE
-          ), ranked_clubs AS (
+          ), club_candidates AS (
             SELECT
               t.slug AS id,
-              COALESCE(
-                (SELECT tt.name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = ${locale}),
-                (SELECT tt.name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = 'en'),
-                t.slug
-              ) AS name,
-              COALESCE(
-                (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = ${locale}),
-                (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = 'en'),
-                t.slug
-              ) AS short_name,
-              COALESCE(
-                (SELECT ctr.name FROM country_translations ctr WHERE ctr.country_id = country.id AND ctr.locale = ${locale}),
-                (SELECT ctr.name FROM country_translations ctr WHERE ctr.country_id = country.id AND ctr.locale = 'en'),
-                country.code_alpha3
-              ) AS country,
+              COALESCE(team_name_locale.name, team_name_en.name, t.slug) AS localized_name,
+              COALESCE(team_name_locale.name, team_name_en.name, t.slug) AS name,
+              COALESCE(team_name_locale.short_name, team_name_en.short_name, t.slug) AS short_name,
+              COALESCE(country_name_locale.name, country_name_en.name, country.code_alpha3) AS country,
               t.gender,
               t.founded_year AS founded,
-              COALESCE(
-                (SELECT vt.name FROM venue_translations vt WHERE vt.venue_id = v.id AND vt.locale = ${locale}),
-                (SELECT vt.name FROM venue_translations vt WHERE vt.venue_id = v.id AND vt.locale = 'en'),
-                v.slug,
-                ''
-              ) AS stadium,
+              COALESCE(venue_name_locale.name, venue_name_en.name, v.slug, '') AS stadium,
               v.capacity AS stadium_capacity,
               c.slug AS league_id,
               t.crest_url,
-              ROW_NUMBER() OVER (
-                PARTITION BY LOWER(
-                  COALESCE(
-                    (SELECT tt.name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = ${locale}),
-                    (SELECT tt.name FROM team_translations tt WHERE tt.team_id = t.id AND tt.locale = 'en'),
-                    t.slug
-                  )
-                )
-                ORDER BY CASE WHEN t.slug LIKE '%-germany' THEN 0 ELSE 1 END, t.slug ASC
-              ) AS duplicate_rank
+              t.slug AS team_slug
             FROM season_participants sp
             JOIN teams t ON t.id = sp.team_id
             JOIN countries country ON country.id = t.country_id
             LEFT JOIN venues v ON v.id = t.venue_id
+            LEFT JOIN team_translations team_name_locale ON team_name_locale.team_id = t.id AND team_name_locale.locale = ${locale}
+            LEFT JOIN team_translations team_name_en ON team_name_en.team_id = t.id AND team_name_en.locale = 'en'
+            LEFT JOIN country_translations country_name_locale ON country_name_locale.country_id = country.id AND country_name_locale.locale = ${locale}
+            LEFT JOIN country_translations country_name_en ON country_name_en.country_id = country.id AND country_name_en.locale = 'en'
+            LEFT JOIN venue_translations venue_name_locale ON venue_name_locale.venue_id = v.id AND venue_name_locale.locale = ${locale}
+            LEFT JOIN venue_translations venue_name_en ON venue_name_en.venue_id = v.id AND venue_name_en.locale = 'en'
             JOIN latest_competition_season lcs ON TRUE
             JOIN competition_seasons cs ON cs.id = lcs.id
             JOIN competitions c ON c.id = cs.competition_id
             WHERE t.is_national = FALSE
+          ), ranked_clubs AS (
+            SELECT
+              id,
+              name,
+              short_name,
+              country,
+              gender,
+              founded,
+              stadium,
+              stadium_capacity,
+              league_id,
+              crest_url,
+              ROW_NUMBER() OVER (
+                PARTITION BY LOWER(localized_name)
+                ORDER BY CASE WHEN team_slug LIKE '%-germany' THEN 0 ELSE 1 END, team_slug ASC
+              ) AS duplicate_rank
+            FROM club_candidates
           )
           SELECT
             id,
@@ -2871,7 +2980,6 @@ export async function getPlayersDb(locale: string = 'en'): Promise<Player[]> {
 export async function getPaginatedPlayersDb(
   locale: string = 'en',
   query: string = '',
-  gender: 'male' | 'female' = 'male',
   status: 'active' | 'retired' = 'active',
   options: PaginationOptions = {}
 ): Promise<PaginatedResult<PlayerListItem>> {
@@ -2881,7 +2989,7 @@ export async function getPaginatedPlayersDb(
 
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'players-paginated-v3', locale, params: { page: currentPage, pageSize, q: trimmedQuery, gender, status } });
+    const key = buildCacheKey({ namespace: 'players-paginated-v3', locale, params: { page: currentPage, pageSize, q: trimmedQuery, status } });
     const statusFilter = status === 'retired'
       ? sql`s.end_date < CURRENT_DATE - INTERVAL '3 years'`
       : sql`s.end_date >= CURRENT_DATE - INTERVAL '3 years'`;
@@ -2928,8 +3036,7 @@ export async function getPaginatedPlayersDb(
             JOIN seasons s ON s.id = cs.season_id
             LEFT JOIN team_translations tt_locale ON tt_locale.team_id = team.id AND tt_locale.locale = ${locale}
             LEFT JOIN team_translations tt_en ON tt_en.team_id = team.id AND tt_en.locale = 'en'
-            WHERE team.gender = ${gender}
-              AND ${statusFilter}
+            WHERE ${statusFilter}
               AND (
                 ${trimmedQuery === ''}
                 OR COALESCE(pt_locale.known_as, pt_en.known_as, p.slug) ILIKE ${searchPattern}
@@ -3017,8 +3124,7 @@ export async function getPaginatedPlayersDb(
             JOIN seasons s ON s.id = cs.season_id
             JOIN teams team ON team.id = lpc.team_id
             LEFT JOIN player_season_stats pss ON pss.player_id = p.id AND pss.competition_season_id = lpc.competition_season_id
-            WHERE team.gender = ${gender}
-              AND ${statusFilter}
+            WHERE ${statusFilter}
               AND (
                 ${trimmedQuery === ''}
                 OR COALESCE(
@@ -3299,26 +3405,11 @@ export async function getPlayerByIdDb(id: string, locale: string = 'en'): Promis
               JOIN match_lineups ml ON ml.player_id = pr.id
               JOIN matches m ON m.id = ml.match_id
               JOIN teams t ON t.id = ml.team_id
-              LEFT JOIN LATERAL (
-                SELECT 1 AS participated
-                FROM match_events me
-                WHERE me.match_id = m.id
-                  AND me.event_type = 'substitution'
-                  AND me.secondary_player_id = ml.player_id
-                LIMIT 1
-              ) sub_in ON TRUE
               WHERE t.is_national = TRUE
                 AND m.status <> 'scheduled'
-                AND (ml.is_starter = TRUE OR sub_in.participated = 1)
+                AND COALESCE(ml.minutes_played, 0) > 0
             ), national_goals AS (
-              SELECT COUNT(*)::INT AS goals
-              FROM player_record pr
-              JOIN match_events me ON me.player_id = pr.id
-              JOIN matches m ON m.id = me.match_id
-              JOIN teams t ON t.id = me.team_id
-              WHERE t.is_national = TRUE
-                AND m.status <> 'scheduled'
-                AND me.event_type IN ('goal', 'penalty_scored')
+              SELECT 0::INT AS goals
             )
             SELECT nc.caps, ng.goals
             FROM national_caps nc
@@ -3375,186 +3466,15 @@ export async function getPlayerByIdDb(id: string, locale: string = 'en'): Promis
             LEFT JOIN competition_translations comp_name ON comp_name.competition_id = c.id AND comp_name.locale = ${locale}
             LEFT JOIN competition_translations comp_name_en ON comp_name_en.competition_id = c.id AND comp_name_en.locale = 'en'
             LEFT JOIN venues v ON v.id = m.venue_id
-            LEFT JOIN LATERAL (
-              SELECT 1 AS participated
-              FROM match_events me
-              WHERE me.match_id = m.id
-                AND me.event_type = 'substitution'
-                AND me.secondary_player_id = ml.player_id
-              LIMIT 1
-            ) sub_in ON TRUE
             WHERE team.is_national = TRUE
               AND m.status IN ('finished', 'finished_aet', 'finished_pen')
-              AND (ml.is_starter = TRUE OR sub_in.participated = 1)
+              AND COALESCE(ml.minutes_played, 0) > 0
             ORDER BY m.match_date DESC, m.kickoff_at DESC NULLS LAST, m.id DESC
             LIMIT 8
           `,
         ]);
 
-        if (seasonHistoryRows.length === 0) {
-          const fallbackSeasonHistoryRows = await sql<PlayerFallbackSeasonHistoryRowDb[]>`
-            WITH player_record AS (
-              SELECT p.id
-              FROM players p
-              WHERE p.slug = ${id}
-              LIMIT 1
-            ), appearance_summary AS (
-              SELECT
-                s.slug AS season_id,
-                CASE
-                  WHEN s.start_date IS NOT NULL AND s.end_date IS NOT NULL THEN
-                    CASE
-                      WHEN EXTRACT(YEAR FROM s.start_date) = EXTRACT(YEAR FROM s.end_date)
-                        THEN EXTRACT(YEAR FROM s.start_date)::INT::TEXT
-                      ELSE CONCAT(
-                        EXTRACT(YEAR FROM s.start_date)::INT::TEXT,
-                        '/',
-                        LPAD((EXTRACT(YEAR FROM s.end_date)::INT % 100)::TEXT, 2, '0')
-                      )
-                    END
-                  ELSE REGEXP_REPLACE(s.slug, '-[0-9]+$', '')
-                END AS season_label,
-                team.slug AS club_id,
-                COALESCE(
-                  (SELECT tt.name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = ${locale}),
-                  (SELECT tt.name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = 'en'),
-                  team.slug
-                ) AS club_name,
-                EXTRACT(YEAR FROM s.start_date)::INT AS start_year,
-                EXTRACT(YEAR FROM s.end_date)::INT AS end_year,
-                s.start_date,
-                s.end_date,
-                COUNT(DISTINCT CASE
-                  WHEN ml.is_starter OR sub_in.minute IS NOT NULL THEN m.id
-                  ELSE NULL
-                END)::INT AS appearances,
-                SUM(CASE
-                  WHEN ml.is_starter THEN COALESCE(sub_out.minute, 90)
-                  WHEN sub_in.minute IS NOT NULL THEN GREATEST(90 - sub_in.minute, 0)
-                  ELSE 0
-                END)::INT AS minutes_played
-              FROM player_record pr
-              JOIN match_lineups ml ON ml.player_id = pr.id
-              JOIN matches m ON m.id = ml.match_id
-              JOIN competition_seasons cs ON cs.id = m.competition_season_id
-              JOIN seasons s ON s.id = cs.season_id
-              JOIN teams team ON team.id = ml.team_id
-              LEFT JOIN LATERAL (
-                SELECT MIN(me.minute) AS minute
-                FROM match_events me
-                WHERE me.match_id = m.id
-                  AND me.event_type = 'substitution'
-                  AND me.secondary_player_id = ml.player_id
-              ) sub_in ON TRUE
-              LEFT JOIN LATERAL (
-                SELECT MIN(me.minute) AS minute
-                FROM match_events me
-                WHERE me.match_id = m.id
-                  AND me.event_type = 'substitution'
-                  AND me.player_id = ml.player_id
-              ) sub_out ON TRUE
-              WHERE m.status <> 'scheduled'
-              GROUP BY s.slug, s.start_date, s.end_date, team.id, team.slug
-              HAVING COUNT(DISTINCT CASE
-                WHEN ml.is_starter OR sub_in.minute IS NOT NULL THEN m.id
-                ELSE NULL
-              END) > 0
-            ), primary_event_summary AS (
-              SELECT
-                m.competition_season_id,
-                me.team_id,
-                SUM(CASE WHEN me.event_type IN ('goal', 'penalty_scored') THEN 1 ELSE 0 END)::INT AS goals,
-                SUM(CASE WHEN me.event_type = 'yellow_card' THEN 1 ELSE 0 END)::INT AS yellow_cards,
-                SUM(CASE WHEN me.event_type IN ('red_card', 'yellow_red_card') THEN 1 ELSE 0 END)::INT AS red_cards
-              FROM player_record pr
-              JOIN match_events me ON me.player_id = pr.id
-              JOIN matches m ON m.id = me.match_id
-              WHERE m.status <> 'scheduled'
-              GROUP BY m.competition_season_id, me.team_id
-            ), assist_event_summary AS (
-              SELECT
-                m.competition_season_id,
-                me.team_id,
-                COUNT(*)::INT AS assists
-              FROM player_record pr
-              JOIN match_events me ON me.secondary_player_id = pr.id
-              JOIN matches m ON m.id = me.match_id
-              WHERE m.status <> 'scheduled'
-                AND me.event_type IN ('goal', 'own_goal', 'penalty_scored')
-              GROUP BY m.competition_season_id, me.team_id
-            ), event_summary AS (
-              SELECT
-                s.slug AS season_id,
-                team.slug AS club_id,
-                SUM(primary_event_summary.goals)::INT AS goals,
-                COALESCE(SUM(assist_event_summary.assists), 0)::INT AS assists,
-                SUM(primary_event_summary.yellow_cards)::INT AS yellow_cards,
-                SUM(primary_event_summary.red_cards)::INT AS red_cards
-              FROM primary_event_summary
-              JOIN competition_seasons cs ON cs.id = primary_event_summary.competition_season_id
-              JOIN seasons s ON s.id = cs.season_id
-              JOIN teams team ON team.id = primary_event_summary.team_id
-              LEFT JOIN assist_event_summary
-                ON assist_event_summary.competition_season_id = primary_event_summary.competition_season_id
-               AND assist_event_summary.team_id = primary_event_summary.team_id
-              GROUP BY s.slug, team.slug
-            )
-            SELECT
-              appearance_summary.season_id,
-              appearance_summary.season_label,
-              appearance_summary.club_id,
-              appearance_summary.club_name,
-              appearance_summary.appearances,
-              COALESCE(event_summary.goals, 0)::INT AS goals,
-              COALESCE(event_summary.assists, 0)::INT AS assists,
-              appearance_summary.minutes_played,
-              COALESCE(event_summary.yellow_cards, 0)::INT AS yellow_cards,
-              COALESCE(event_summary.red_cards, 0)::INT AS red_cards,
-              NULL::INT AS clean_sheets,
-              appearance_summary.start_year,
-              appearance_summary.end_year
-            FROM appearance_summary
-            LEFT JOIN event_summary
-              ON event_summary.season_id = appearance_summary.season_id
-             AND event_summary.club_id = appearance_summary.club_id
-            ORDER BY appearance_summary.end_date DESC NULLS LAST, appearance_summary.start_date DESC NULLS LAST, appearance_summary.club_id ASC
-          `;
-
-          seasonHistoryRows = fallbackSeasonHistoryRows.map(({ start_year: _startYear, end_year: _endYear, ...row }) => row);
-          if (clubHistoryRows.length === 0) {
-            const fallbackClubHistoryMap = new Map<string, { clubId: string; clubName: string; startYear: number; endYear: number }>();
-
-            for (const row of fallbackSeasonHistoryRows) {
-              const startYear = row.start_year ?? row.end_year;
-              const endYear = row.end_year ?? row.start_year;
-
-              if (!startYear || !endYear) {
-                continue;
-              }
-
-              const existing = fallbackClubHistoryMap.get(row.club_id);
-              if (!existing) {
-                fallbackClubHistoryMap.set(row.club_id, {
-                  clubId: row.club_id,
-                  clubName: row.club_name,
-                  startYear,
-                  endYear,
-                });
-                continue;
-              }
-
-              existing.startYear = Math.min(existing.startYear, startYear);
-              existing.endYear = Math.max(existing.endYear, endYear);
-            }
-
-            clubHistoryRows = [...fallbackClubHistoryMap.values()].map((row) => ({
-              club_id: row.clubId,
-              club_name: row.clubName,
-              start_year: row.startYear,
-              end_year: row.endYear,
-            }));
-          }
-        }
+        
 
         const player = mapPlayer(rows[0]);
         const latestSeason = seasonHistoryRows[0];
@@ -3597,6 +3517,41 @@ export async function getPlayerByIdDb(id: string, locale: string = 'en'): Promis
       },
     });
   }, () => undefined);
+}
+
+export async function getPlayerLinksByIdsDb(
+  ids: string[],
+  locale: string = 'en',
+): Promise<Array<{ id: string; name: string }>> {
+  const uniqueIds = Array.from(new Set(ids.filter(Boolean)));
+  if (uniqueIds.length === 0) {
+    return [];
+  }
+
+  return withFallback(async () => {
+    const sql = getDb();
+    const key = buildCacheKey({ namespace: 'player-links-by-ids-v1', locale, params: { ids: uniqueIds.slice().sort().join(',') } });
+
+    return readThroughCache({
+      key,
+      tier: 'season-finished',
+      loader: async () => {
+        const rows = await sql<PlayerLinkRow[]>`
+          SELECT
+            p.slug AS id,
+            COALESCE(
+              (SELECT pt.known_as FROM player_translations pt WHERE pt.player_id = p.id AND pt.locale = ${locale}),
+              (SELECT pt.known_as FROM player_translations pt WHERE pt.player_id = p.id AND pt.locale = 'en'),
+              p.slug
+            ) AS name
+          FROM players p
+          WHERE p.slug = ANY(${uniqueIds})
+        `;
+
+        return rows;
+      },
+    });
+  }, () => [] as Array<{ id: string; name: string }>);
 }
 
 export async function getPlayersByClubDb(clubId: string, locale: string = 'en'): Promise<Player[]> {
@@ -3707,38 +3662,245 @@ export async function getPlayersByClubDb(clubId: string, locale: string = 'en'):
   }, () => []);
 }
 
+export async function getClubOverviewStatsDb(
+  clubId: string,
+  seasonId?: string,
+  competitionId?: string,
+): Promise<{ playerCount: number; goals: number; assists: number }> {
+  return withFallback(async () => {
+    const sql = getDb();
+    const key = buildCacheKey({
+      namespace: 'club-overview-stats',
+      id: clubId,
+      params: seasonId ? { season: seasonId, competition: competitionId ?? '' } : undefined,
+    });
+
+    return readThroughCache({
+      key,
+      tier: 'season-finished',
+      loader: async () => {
+        const rows = seasonId
+          ? await sql<ClubOverviewStatsRow[]>`
+              WITH target_season_context AS (
+                SELECT
+                  cs.id AS competition_season_id,
+                  team.id AS team_id,
+                  s.id AS season_id,
+                  LEAST(CURRENT_DATE, COALESCE(s.end_date, CURRENT_DATE)) AS squad_cutoff_date
+                FROM teams team
+                JOIN team_seasons ts ON ts.team_id = team.id
+                JOIN competition_seasons cs ON cs.id = ts.competition_season_id
+                JOIN competitions c ON c.id = cs.competition_id
+                JOIN seasons s ON s.id = cs.season_id
+                WHERE team.slug = ${clubId}
+                  AND s.slug = ${seasonId}
+                  AND (${competitionId ?? null}::TEXT IS NULL OR c.slug = ${competitionId ?? null})
+                ORDER BY cs.id DESC
+                LIMIT 1
+              ), season_player_contracts AS (
+                SELECT DISTINCT ON (pc.player_id)
+                  pc.player_id,
+                  pc.team_id,
+                  pc.competition_season_id,
+                  pc.joined_date,
+                  pc.left_date,
+                  0 AS source_priority
+                FROM player_contracts pc
+                JOIN target_season_context tsc
+                  ON tsc.competition_season_id = pc.competition_season_id
+                 AND tsc.team_id = pc.team_id
+                ORDER BY pc.player_id, pc.joined_date DESC NULLS LAST, pc.competition_season_id DESC
+              ), season_lineup_members AS (
+                SELECT DISTINCT ON (ml.player_id)
+                  ml.player_id,
+                  ml.team_id,
+                  tsc.competition_season_id,
+                  m.match_date AS joined_date,
+                  NULL::DATE AS left_date,
+                  1 AS source_priority
+                FROM target_season_context tsc
+                JOIN matches m ON m.competition_season_id = tsc.competition_season_id
+                JOIN match_lineups ml ON ml.match_id = m.id AND ml.team_id = tsc.team_id
+                WHERE m.status <> 'scheduled'
+                ORDER BY ml.player_id, m.match_date DESC, m.kickoff_at DESC NULLS LAST, m.id DESC
+              ), latest_same_season_contracts AS (
+                SELECT DISTINCT ON (pc.player_id)
+                  pc.player_id,
+                  pc.team_id,
+                  pc.joined_date,
+                  pc.left_date
+                FROM target_season_context tsc
+                JOIN competition_seasons cs ON cs.season_id = tsc.season_id
+                JOIN player_contracts pc ON pc.competition_season_id = cs.id
+                JOIN teams contract_team ON contract_team.id = pc.team_id
+                WHERE contract_team.is_national = FALSE
+                ORDER BY pc.player_id,
+                  COALESCE(pc.left_date, pc.contract_end_date, pc.joined_date) DESC NULLS LAST,
+                  pc.joined_date DESC NULLS LAST,
+                  pc.id DESC
+              ), lineup_activity AS (
+                SELECT
+                  ml.player_id,
+                  COUNT(*)::INT AS lineup_rows,
+                  COUNT(*) FILTER (WHERE ml.is_starter)::INT AS starter_rows,
+                  COALESCE(SUM(COALESCE(ml.minutes_played, 0)), 0)::INT AS lineup_minutes
+                FROM target_season_context tsc
+                JOIN matches m ON m.competition_season_id = tsc.competition_season_id
+                JOIN match_lineups ml ON ml.match_id = m.id AND ml.team_id = tsc.team_id
+                GROUP BY ml.player_id
+              ), transfermarkt_mapped_players AS (
+                SELECT DISTINCT sem.entity_id AS player_id
+                FROM source_entity_mapping sem
+                JOIN data_sources ds ON ds.id = sem.source_id
+                WHERE sem.entity_type = 'player'
+                  AND ds.slug = 'transfermarkt'
+              ), season_members AS (
+                SELECT DISTINCT ON (member_candidates.player_id)
+                  member_candidates.player_id,
+                  member_candidates.team_id,
+                  member_candidates.competition_season_id,
+                  member_candidates.joined_date,
+                  member_candidates.left_date
+                FROM (
+                  SELECT * FROM season_player_contracts
+                  UNION ALL
+                  SELECT * FROM season_lineup_members
+                ) member_candidates
+                ORDER BY member_candidates.player_id, member_candidates.source_priority ASC
+              ), active_season_members AS (
+                SELECT
+                  sm.player_id,
+                  sm.competition_season_id
+                FROM season_members sm
+                JOIN target_season_context tsc ON tsc.competition_season_id = sm.competition_season_id
+                WHERE COALESCE(sm.left_date, 'infinity'::DATE) > tsc.squad_cutoff_date
+                  AND NOT EXISTS (
+                    SELECT 1
+                    FROM latest_same_season_contracts lssc
+                    WHERE lssc.player_id = sm.player_id
+                      AND lssc.team_id <> sm.team_id
+                      AND COALESCE(lssc.left_date, 'infinity'::DATE) > tsc.squad_cutoff_date
+                      AND COALESCE(lssc.joined_date, tsc.squad_cutoff_date) <= tsc.squad_cutoff_date
+                  )
+                  AND NOT EXISTS (
+                    SELECT 1
+                    FROM lineup_activity la
+                    LEFT JOIN transfermarkt_mapped_players tmp ON tmp.player_id = sm.player_id
+                    LEFT JOIN player_season_stats pss
+                      ON pss.player_id = sm.player_id
+                     AND pss.competition_season_id = sm.competition_season_id
+                    WHERE la.player_id = sm.player_id
+                      AND la.lineup_minutes = 0
+                      AND la.starter_rows = 0
+                      AND tmp.player_id IS NULL
+                      AND COALESCE(pss.appearances, 0) = 0
+                      AND COALESCE(pss.starts, 0) = 0
+                      AND COALESCE(pss.minutes_played, 0) = 0
+                  )
+                  AND NOT EXISTS (
+                    SELECT 1
+                    FROM player_transfers pt
+                    WHERE pt.player_id = sm.player_id
+                      AND pt.from_team_id = sm.team_id
+                      AND pt.to_team_id IS NOT NULL
+                      AND pt.to_team_id <> sm.team_id
+                      AND pt.is_pending = FALSE
+                      AND pt.moved_at IS NOT NULL
+                      AND pt.moved_at <= tsc.squad_cutoff_date
+                      AND (sm.joined_date IS NULL OR pt.moved_at >= sm.joined_date)
+                      AND NOT EXISTS (
+                        SELECT 1
+                        FROM player_transfers pt_return
+                        WHERE pt_return.player_id = sm.player_id
+                          AND pt_return.to_team_id = sm.team_id
+                          AND pt_return.is_pending = FALSE
+                          AND pt_return.moved_at IS NOT NULL
+                          AND pt_return.moved_at > pt.moved_at
+                          AND pt_return.moved_at <= tsc.squad_cutoff_date
+                      )
+                  )
+              )
+              SELECT
+                COUNT(*)::INT AS player_count,
+                COALESCE(SUM(pss.goals), 0)::INT AS goals,
+                COALESCE(SUM(pss.assists), 0)::INT AS assists
+              FROM active_season_members asm
+              JOIN player_season_stats pss
+                ON pss.player_id = asm.player_id
+               AND pss.competition_season_id = asm.competition_season_id
+            `
+          : await sql<ClubOverviewStatsRow[]>`
+              WITH latest_player_contracts AS (
+                SELECT DISTINCT ON (pc.player_id)
+                  pc.player_id,
+                  pc.competition_season_id
+                FROM player_contracts pc
+                JOIN teams current_team ON current_team.id = pc.team_id
+                JOIN competition_seasons cs ON cs.id = pc.competition_season_id
+                JOIN seasons s ON s.id = cs.season_id
+                WHERE current_team.is_national = FALSE
+                ORDER BY
+                  pc.player_id,
+                  COALESCE(pc.left_date, s.end_date, s.start_date) DESC NULLS LAST,
+                  s.start_date DESC NULLS LAST,
+                  pc.joined_date DESC NULLS LAST,
+                  pc.competition_season_id DESC
+              )
+              SELECT
+                COUNT(*)::INT AS player_count,
+                COALESCE(SUM(pss.goals), 0)::INT AS goals,
+                COALESCE(SUM(pss.assists), 0)::INT AS assists
+              FROM latest_player_contracts lpc
+              JOIN teams team ON team.slug = ${clubId}
+              JOIN player_contracts pc ON pc.player_id = lpc.player_id AND pc.competition_season_id = lpc.competition_season_id AND pc.team_id = team.id
+              LEFT JOIN player_season_stats pss ON pss.player_id = lpc.player_id AND pss.competition_season_id = lpc.competition_season_id
+            `;
+
+        return {
+          playerCount: rows[0]?.player_count ?? 0,
+          goals: rows[0]?.goals ?? 0,
+          assists: rows[0]?.assists ?? 0,
+        };
+      },
+    });
+  }, () => ({ playerCount: 0, goals: 0, assists: 0 }));
+}
+
 export async function getPlayersByClubAndSeasonDb(
   clubId: string,
   seasonId: string,
+  competitionId?: string,
   locale: string = 'en'
 ): Promise<Player[]> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'players-by-club-season', locale, id: clubId, params: { season: seasonId } });
+    const key = buildCacheKey({
+      namespace: 'players-by-club-season',
+      locale,
+      id: clubId,
+      params: competitionId ? { season: seasonId, competition: competitionId } : { season: seasonId },
+    });
 
     return readThroughCache({
       key,
       tier: 'season-finished',
       loader: async () => {
         const rows = await sql<PlayerRow[]>`
-          WITH target_competition_season AS (
-            SELECT cs.id
-            FROM competition_seasons cs
+          WITH target_season_context AS (
+            SELECT
+              cs.id AS competition_season_id,
+              team.id AS team_id,
+              s.id AS season_id,
+              s.end_date AS season_end_date,
+              LEAST(CURRENT_DATE, COALESCE(s.end_date, CURRENT_DATE)) AS squad_cutoff_date
+            FROM teams team
+            JOIN team_seasons ts ON ts.team_id = team.id
+            JOIN competition_seasons cs ON cs.id = ts.competition_season_id
             JOIN competitions c ON c.id = cs.competition_id
             JOIN seasons s ON s.id = cs.season_id
-            WHERE c.slug IN (
-              SELECT c2.slug
-              FROM teams team
-              JOIN team_seasons ts ON ts.team_id = team.id
-              JOIN competition_seasons cs2 ON cs2.id = ts.competition_season_id
-              JOIN competitions c2 ON c2.id = cs2.competition_id
-              JOIN seasons s2 ON s2.id = cs2.season_id
-              WHERE team.slug = ${clubId}
-                AND s2.slug = ${seasonId}
-              ORDER BY cs2.id DESC
-              LIMIT 1
-            )
+            WHERE team.slug = ${clubId}
               AND s.slug = ${seasonId}
+              AND (${competitionId ?? null}::TEXT IS NULL OR c.slug = ${competitionId ?? null})
             ORDER BY cs.id DESC
             LIMIT 1
           ), season_player_contracts AS (
@@ -3747,12 +3909,128 @@ export async function getPlayersByClubAndSeasonDb(
               pc.team_id,
               pc.competition_season_id,
               pc.shirt_number,
-              pc.joined_date
+              pc.joined_date,
+              pc.left_date,
+              0 AS source_priority
             FROM player_contracts pc
-            JOIN teams team ON team.id = pc.team_id
-            JOIN target_competition_season tcs ON tcs.id = pc.competition_season_id
-            WHERE team.slug = ${clubId}
+            JOIN target_season_context tsc
+              ON tsc.competition_season_id = pc.competition_season_id
+             AND tsc.team_id = pc.team_id
             ORDER BY pc.player_id, pc.joined_date DESC NULLS LAST, pc.competition_season_id DESC
+          ), season_lineup_members AS (
+            SELECT DISTINCT ON (ml.player_id)
+              ml.player_id,
+              ml.team_id,
+              tsc.competition_season_id,
+              ml.shirt_number,
+              m.match_date AS joined_date,
+              NULL::DATE AS left_date,
+              1 AS source_priority
+            FROM target_season_context tsc
+            JOIN matches m ON m.competition_season_id = tsc.competition_season_id
+            JOIN match_lineups ml ON ml.match_id = m.id AND ml.team_id = tsc.team_id
+            WHERE m.status <> 'scheduled'
+            ORDER BY ml.player_id, m.match_date DESC, m.kickoff_at DESC NULLS LAST, m.id DESC
+          ), latest_same_season_contracts AS (
+            SELECT DISTINCT ON (pc.player_id)
+              pc.player_id,
+              pc.team_id,
+              pc.joined_date,
+              pc.left_date
+            FROM target_season_context tsc
+            JOIN competition_seasons cs ON cs.season_id = tsc.season_id
+            JOIN player_contracts pc ON pc.competition_season_id = cs.id
+            JOIN teams contract_team ON contract_team.id = pc.team_id
+            WHERE contract_team.is_national = FALSE
+            ORDER BY pc.player_id,
+              COALESCE(pc.left_date, pc.contract_end_date, pc.joined_date) DESC NULLS LAST,
+              pc.joined_date DESC NULLS LAST,
+              pc.id DESC
+          ), lineup_activity AS (
+            SELECT
+              ml.player_id,
+              COUNT(*)::INT AS lineup_rows,
+              COUNT(*) FILTER (WHERE ml.is_starter)::INT AS starter_rows,
+              COALESCE(SUM(COALESCE(ml.minutes_played, 0)), 0)::INT AS lineup_minutes
+            FROM target_season_context tsc
+            JOIN matches m ON m.competition_season_id = tsc.competition_season_id
+            JOIN match_lineups ml ON ml.match_id = m.id AND ml.team_id = tsc.team_id
+            GROUP BY ml.player_id
+          ), transfermarkt_mapped_players AS (
+            SELECT DISTINCT sem.entity_id AS player_id
+            FROM source_entity_mapping sem
+            JOIN data_sources ds ON ds.id = sem.source_id
+            WHERE sem.entity_type = 'player'
+              AND ds.slug = 'transfermarkt'
+          ), season_members AS (
+            SELECT DISTINCT ON (member_candidates.player_id)
+              member_candidates.player_id,
+              member_candidates.team_id,
+              member_candidates.competition_season_id,
+              member_candidates.shirt_number,
+              member_candidates.joined_date,
+              member_candidates.left_date
+            FROM (
+              SELECT * FROM season_player_contracts
+              UNION ALL
+              SELECT * FROM season_lineup_members
+            ) member_candidates
+            ORDER BY member_candidates.player_id, member_candidates.source_priority ASC
+          ), active_season_members AS (
+            SELECT
+              sm.player_id,
+              sm.team_id,
+              sm.competition_season_id,
+              sm.shirt_number,
+              sm.joined_date
+            FROM season_members sm
+            JOIN target_season_context tsc ON tsc.competition_season_id = sm.competition_season_id
+            WHERE COALESCE(sm.left_date, 'infinity'::DATE) > tsc.squad_cutoff_date
+              AND NOT EXISTS (
+                SELECT 1
+                FROM latest_same_season_contracts lssc
+                WHERE lssc.player_id = sm.player_id
+                  AND lssc.team_id <> sm.team_id
+                  AND COALESCE(lssc.left_date, 'infinity'::DATE) > tsc.squad_cutoff_date
+                  AND COALESCE(lssc.joined_date, tsc.squad_cutoff_date) <= tsc.squad_cutoff_date
+              )
+              AND NOT EXISTS (
+                SELECT 1
+                FROM lineup_activity la
+                LEFT JOIN transfermarkt_mapped_players tmp ON tmp.player_id = sm.player_id
+                LEFT JOIN player_season_stats pss
+                  ON pss.player_id = sm.player_id
+                 AND pss.competition_season_id = sm.competition_season_id
+                WHERE la.player_id = sm.player_id
+                  AND la.lineup_minutes = 0
+                  AND la.starter_rows = 0
+                  AND tmp.player_id IS NULL
+                  AND COALESCE(pss.appearances, 0) = 0
+                  AND COALESCE(pss.starts, 0) = 0
+                  AND COALESCE(pss.minutes_played, 0) = 0
+              )
+              AND NOT EXISTS (
+                SELECT 1
+                FROM player_transfers pt
+                WHERE pt.player_id = sm.player_id
+                  AND pt.from_team_id = sm.team_id
+                  AND pt.to_team_id IS NOT NULL
+                  AND pt.to_team_id <> sm.team_id
+                  AND pt.is_pending = FALSE
+                  AND pt.moved_at IS NOT NULL
+                  AND pt.moved_at <= tsc.squad_cutoff_date
+                  AND (sm.joined_date IS NULL OR pt.moved_at >= sm.joined_date)
+                  AND NOT EXISTS (
+                    SELECT 1
+                    FROM player_transfers pt_return
+                    WHERE pt_return.player_id = sm.player_id
+                      AND pt_return.to_team_id = sm.team_id
+                      AND pt_return.is_pending = FALSE
+                      AND pt_return.moved_at IS NOT NULL
+                      AND pt_return.moved_at > pt.moved_at
+                      AND pt_return.moved_at <= tsc.squad_cutoff_date
+                  )
+              )
           )
           SELECT
             p.slug AS id,
@@ -3785,8 +4063,8 @@ export async function getPlayersByClubAndSeasonDb(
             team.slug AS club_id,
             p.position,
             p.photo_url,
-            spc.shirt_number,
-            spc.joined_date::TEXT AS joined_date,
+            sm.shirt_number,
+            sm.joined_date::TEXT AS joined_date,
             NULL::TEXT AS contract_start_date,
             NULL::TEXT AS contract_end_date,
             NULL::INT AS annual_salary_eur,
@@ -3797,6 +4075,7 @@ export async function getPlayersByClubAndSeasonDb(
             NULL::BOOLEAN AS salary_is_estimated,
             p.height_cm AS height,
             p.preferred_foot,
+            tsc.season_end_date::TEXT AS latest_season_end_date,
             pss.appearances,
             pss.goals,
             pss.assists,
@@ -3804,11 +4083,12 @@ export async function getPlayersByClubAndSeasonDb(
             pss.yellow_cards,
             pss.red_cards,
             pss.clean_sheets
-          FROM season_player_contracts spc
-          JOIN players p ON p.id = spc.player_id
+          FROM active_season_members sm
+          JOIN target_season_context tsc ON tsc.competition_season_id = sm.competition_season_id
+          JOIN players p ON p.id = sm.player_id
           LEFT JOIN countries country ON country.id = p.country_id
-          JOIN teams team ON team.id = spc.team_id
-          LEFT JOIN player_season_stats pss ON pss.player_id = p.id AND pss.competition_season_id = spc.competition_season_id
+          JOIN teams team ON team.id = sm.team_id
+          LEFT JOIN player_season_stats pss ON pss.player_id = p.id AND pss.competition_season_id = sm.competition_season_id
           ORDER BY name ASC
         `;
 
@@ -3960,6 +4240,45 @@ export async function getPlayersByNationDb(nationId: string, locale: string = 'e
       },
     });
   }, () => []);
+}
+
+export async function getPlayerCountByNationDb(nationId: string): Promise<number> {
+  return withFallback(async () => {
+    const sql = getDb();
+    const key = buildCacheKey({ namespace: 'player-count-by-nation', id: nationId.toLowerCase() });
+
+    return readThroughCache({
+      key,
+      tier: 'season-finished',
+      loader: async () => {
+        const rows = await sql<{ player_count: number }[]>`
+          WITH latest_player_contracts AS (
+            SELECT DISTINCT ON (pc.player_id)
+              pc.player_id,
+              p.country_id
+            FROM player_contracts pc
+            JOIN players p ON p.id = pc.player_id
+            JOIN teams current_team ON current_team.id = pc.team_id
+            JOIN competition_seasons cs ON cs.id = pc.competition_season_id
+            JOIN seasons s ON s.id = cs.season_id
+            WHERE current_team.is_national = FALSE
+            ORDER BY
+              pc.player_id,
+              COALESCE(pc.left_date, s.end_date, s.start_date) DESC NULLS LAST,
+              s.start_date DESC NULLS LAST,
+              pc.joined_date DESC NULLS LAST,
+              pc.competition_season_id DESC
+          )
+          SELECT COUNT(*)::INT AS player_count
+          FROM latest_player_contracts lpc
+          JOIN countries country ON country.id = lpc.country_id
+          WHERE UPPER(country.code_alpha3) = UPPER(${nationId})
+        `;
+
+        return rows[0]?.player_count ?? 0;
+      },
+    });
+  }, () => 0);
 }
 
 export async function getPlayerNameDb(id: string, locale: string = 'en'): Promise<string> {
@@ -4222,12 +4541,10 @@ export async function getPaginatedNationsDb(
   rankingCategory: NationRankingCategory = 'men',
   options: PaginationOptions = {}
 ): Promise<PaginatedResult<NationListItem>> {
-  const cacheNamespace = rankingCategory === 'women' ? 'nations-women-paginated' : 'nations-paginated';
   const { currentPage, pageSize, offset } = normalizePagination(options);
 
   return withFallback(async () => {
-    const sql = getDb();
-    const rankingColumn = rankingCategory === 'women' ? sql`c.fifa_ranking_women` : sql`c.fifa_ranking`;
+    const cacheNamespace = rankingCategory === 'women' ? 'nations-women-paginated' : 'nations-paginated';
     const key = buildCacheKey({ namespace: cacheNamespace, locale, params: { page: currentPage, pageSize } });
 
     return readThroughCache({
@@ -4235,111 +4552,106 @@ export async function getPaginatedNationsDb(
       tier: 'master',
       policySlug: 'master.countries',
       loader: async () => {
-        const nationBase = sql`
-          WITH latest_player_contracts AS (
-            SELECT DISTINCT ON (pc.player_id)
-              pc.player_id
-            FROM player_contracts pc
-            JOIN teams current_team ON current_team.id = pc.team_id
-            JOIN competition_seasons cs ON cs.id = pc.competition_season_id
-            JOIN seasons s ON s.id = cs.season_id
-            WHERE current_team.is_national = FALSE
-            ORDER BY
-              pc.player_id,
-              COALESCE(pc.left_date, s.end_date, s.start_date) DESC NULLS LAST,
-              s.start_date DESC NULLS LAST,
-              pc.joined_date DESC NULLS LAST,
-              pc.competition_season_id DESC
-          ),
-          player_counts AS (
-            SELECT p.country_id, COUNT(*)::INT AS player_count
-            FROM latest_player_contracts lpc
-            JOIN players p ON p.id = lpc.player_id
-            WHERE p.country_id IS NOT NULL
-            GROUP BY p.country_id
-          ),
-          localized_countries AS (
-            SELECT
-              c.id,
-              c.code_alpha3,
-              COALESCE(
-                (SELECT ct.name FROM country_translations ct WHERE ct.country_id = c.id AND ct.locale = ${locale}),
-                (SELECT ct.name FROM country_translations ct WHERE ct.country_id = c.id AND ct.locale = 'en'),
-                c.code_alpha3
-              ) AS localized_name,
-              COALESCE(c.confederation, '') AS confederation,
-              ${rankingColumn} AS fifa_ranking,
-              (
-                SELECT rh.fifa_ranking
-                FROM ranking_history rh
-                WHERE rh.country_id = c.id
-                  AND rh.ranking_category = ${rankingCategory}
-                ORDER BY rh.ranking_date DESC
-                LIMIT 1
-              ) AS previous_fifa_ranking,
-              c.flag_url,
-              c.crest_url,
-              COALESCE(pc.player_count, 0)::INT AS player_count,
-              ROW_NUMBER() OVER (
-                PARTITION BY LOWER(COALESCE(
-                  (SELECT ct.name FROM country_translations ct WHERE ct.country_id = c.id AND ct.locale = 'en'),
-                  c.code_alpha3
-                ))
-                ORDER BY
-                  CASE WHEN c.confederation IS NOT NULL AND c.confederation <> '' THEN 0 ELSE 1 END,
-                  CASE WHEN ${rankingColumn} IS NOT NULL AND ${rankingColumn} > 0 THEN 0 ELSE 1 END,
-                  CASE WHEN ${rankingColumn} IS NOT NULL AND ${rankingColumn} > 0 THEN ${rankingColumn} ELSE 32767 END,
-                  CASE WHEN EXISTS(SELECT 1 FROM country_translations ct WHERE ct.country_id = c.id AND ct.locale = 'ko') THEN 0 ELSE 1 END,
-                  c.updated_at DESC,
-                  c.id DESC
-              ) AS duplicate_rank
-            FROM countries c
-            LEFT JOIN player_counts pc ON pc.country_id = c.id
-          )
-        `;
+        const items = await getNationListItemsDb(locale, rankingCategory);
+        const pagedItems = items.slice(offset, offset + pageSize);
 
-        const [countRows, rows] = await Promise.all([
-          sql<{ total_count: number }[]>`
-            ${nationBase}
-            SELECT COUNT(*)::INT AS total_count
-            FROM localized_countries
-            WHERE duplicate_rank = 1
-              AND fifa_ranking > 0
-              AND fifa_ranking <= 100
-          `,
-          sql<NationListRow[]>`
-            ${nationBase}
-            SELECT
-              code_alpha3::TEXT AS id,
-              localized_name AS name,
-              code_alpha3::TEXT AS code,
-              confederation,
-              fifa_ranking,
-              previous_fifa_ranking,
-              flag_url,
-              crest_url,
-              player_count
-            FROM localized_countries
-            WHERE duplicate_rank = 1
-              AND fifa_ranking > 0
-              AND fifa_ranking <= 100
-            ORDER BY fifa_ranking ASC, name ASC
-            LIMIT ${pageSize}
-            OFFSET ${offset}
-          `,
-        ]);
-
-        const localizedRows = getLocalizedNationRows(rows) as NationListRow[];
-
-        return createPaginatedResult(
-          localizedRows.map((row) => mapNationListItem(row, rankingCategory)),
-          countRows[0]?.total_count ?? 0,
-          currentPage,
-          pageSize,
-        );
+        return createPaginatedResult(pagedItems, items.length, currentPage, pageSize);
       },
     });
   }, () => createPaginatedResult([], 0, currentPage, pageSize));
+}
+
+async function getNationListItemsDb(locale: string, rankingCategory: NationRankingCategory): Promise<NationListItem[]> {
+  const sql = getDb();
+  const rankingColumn = rankingCategory === 'women' ? sql`c.fifa_ranking_women` : sql`c.fifa_ranking`;
+  const key = buildCacheKey({ namespace: `nation-list-items-${rankingCategory}-v1`, locale });
+
+  return readThroughCache({
+    key,
+    tier: 'master',
+    policySlug: 'master.countries',
+    loader: async () => {
+      const rows = await sql<NationListRow[]>`
+        WITH latest_player_contracts AS (
+          SELECT DISTINCT ON (pc.player_id)
+            pc.player_id
+          FROM player_contracts pc
+          JOIN teams current_team ON current_team.id = pc.team_id
+          JOIN competition_seasons cs ON cs.id = pc.competition_season_id
+          JOIN seasons s ON s.id = cs.season_id
+          WHERE current_team.is_national = FALSE
+          ORDER BY
+            pc.player_id,
+            COALESCE(pc.left_date, s.end_date, s.start_date) DESC NULLS LAST,
+            s.start_date DESC NULLS LAST,
+            pc.joined_date DESC NULLS LAST,
+            pc.competition_season_id DESC
+        ),
+        player_counts AS (
+          SELECT p.country_id, COUNT(*)::INT AS player_count
+          FROM latest_player_contracts lpc
+          JOIN players p ON p.id = lpc.player_id
+          WHERE p.country_id IS NOT NULL
+          GROUP BY p.country_id
+        ),
+        localized_countries AS (
+          SELECT
+            c.id,
+            c.code_alpha3,
+            COALESCE(
+              (SELECT ct.name FROM country_translations ct WHERE ct.country_id = c.id AND ct.locale = ${locale}),
+              (SELECT ct.name FROM country_translations ct WHERE ct.country_id = c.id AND ct.locale = 'en'),
+              c.code_alpha3
+            ) AS localized_name,
+            COALESCE(c.confederation, '') AS confederation,
+            ${rankingColumn} AS fifa_ranking,
+            (
+              SELECT rh.fifa_ranking
+              FROM ranking_history rh
+              WHERE rh.country_id = c.id
+                AND rh.ranking_category = ${rankingCategory}
+              ORDER BY rh.ranking_date DESC
+              LIMIT 1
+            ) AS previous_fifa_ranking,
+            c.flag_url,
+            c.crest_url,
+            COALESCE(pc.player_count, 0)::INT AS player_count,
+            ROW_NUMBER() OVER (
+              PARTITION BY LOWER(COALESCE(
+                (SELECT ct.name FROM country_translations ct WHERE ct.country_id = c.id AND ct.locale = 'en'),
+                c.code_alpha3
+              ))
+              ORDER BY
+                CASE WHEN c.confederation IS NOT NULL AND c.confederation <> '' THEN 0 ELSE 1 END,
+                CASE WHEN ${rankingColumn} IS NOT NULL AND ${rankingColumn} > 0 THEN 0 ELSE 1 END,
+                CASE WHEN ${rankingColumn} IS NOT NULL AND ${rankingColumn} > 0 THEN ${rankingColumn} ELSE 32767 END,
+                CASE WHEN EXISTS(SELECT 1 FROM country_translations ct WHERE ct.country_id = c.id AND ct.locale = 'ko') THEN 0 ELSE 1 END,
+                c.updated_at DESC,
+                c.id DESC
+            ) AS duplicate_rank
+          FROM countries c
+          LEFT JOIN player_counts pc ON pc.country_id = c.id
+        )
+        SELECT
+          code_alpha3::TEXT AS id,
+          localized_name AS name,
+          code_alpha3::TEXT AS code,
+          confederation,
+          fifa_ranking,
+          previous_fifa_ranking,
+          flag_url,
+          crest_url,
+          player_count
+        FROM localized_countries
+        WHERE duplicate_rank = 1
+          AND fifa_ranking > 0
+          AND fifa_ranking <= 100
+        ORDER BY fifa_ranking ASC, name ASC
+      `;
+
+      return (getLocalizedNationRows(rows) as NationListRow[]).map((row) => mapNationListItem(row, rankingCategory));
+    },
+  });
 }
 
 export async function getNationByIdDb(id: string, locale: string = 'en', rankingCategory: NationRankingCategory = 'men'): Promise<Nation | undefined> {
@@ -4447,11 +4759,12 @@ export async function getMatchesDb(locale: string = 'en'): Promise<Match[]> {
             ) AS venue,
             c.slug AS league_id,
             m.matchday AS match_week,
-            m.stage,
+            COALESCE(NULLIF(m.source_metadata->>'roundName', ''), m.stage) AS stage,
             m.group_name,
             COALESCE(comp_name.name, comp_name_en.name, c.slug) AS competition_name,
             'club'::TEXT AS team_type,
-            m.status::TEXT AS status
+            m.status::TEXT AS status,
+            m.source_metadata->>'source' AS source
           FROM matches m
           JOIN teams home ON home.id = m.home_team_id
           JOIN teams away ON away.id = m.away_team_id
@@ -4575,48 +4888,268 @@ export async function getMatchByIdDb(id: string, locale: string = 'en'): Promise
   });
 }
 
-export async function getMatchTimelineDb(id: string, locale: string = 'en'): Promise<MatchEvent[]> {
+export async function getMatchTimelineDb(id: string, locale: string = 'en', matchDate?: string): Promise<MatchEvent[]> {
+  return withFallback(async () => {
+    if (!matchDate) {
+      return [];
+    }
+
+    return (await getMatchTimelineFromArtifactDb(id, matchDate, locale)) ?? [];
+  }, () => []);
+}
+
+async function getMatchTimelineFromArtifactDb(
+  id: string,
+  matchDate: string,
+  locale: string,
+): Promise<MatchEvent[] | null> {
+  try {
+    const key = buildCacheKey({ namespace: 'match-timeline-artifact-v2', locale, id });
+
+    return await readThroughCache({
+      key,
+      tier: 'matchday-warm',
+      policySlug: 'match.read_model',
+      loader: async () => {
+        const payload = await loadAnalysisArtifactPayload(id, matchDate);
+
+        if (String(payload.matchId) !== id) {
+          return null;
+        }
+
+        const references = await getMatchAnalysisArtifactReferences(payload, locale);
+        return mapMatchTimelineFromArtifact(payload, references);
+      },
+    });
+  } catch {
+    return null;
+  }
+}
+
+export async function getMatchEventArtifactDb(
+  matchId: string,
+  artifactType: MatchEventArtifactType,
+): Promise<MatchEventArtifact | undefined> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'match-timeline', locale, id });
-    const numericId = Number(id);
+    const rows = await sql<MatchEventArtifactRowDb[]>`
+      SELECT
+        mea.match_id::TEXT AS match_id,
+        mea.match_date::TEXT AS match_date,
+        mea.artifact_type,
+        mea.format,
+        mea.storage_key,
+        mea.version,
+        mea.row_count,
+        mea.byte_size,
+        mea.checksum_sha256,
+        mea.source_vendor,
+        mea.created_at::TEXT AS created_at,
+        mea.updated_at::TEXT AS updated_at
+      FROM match_event_artifacts mea
+      WHERE mea.match_id = ${Number(matchId)}
+        AND mea.artifact_type = ${artifactType}
+      ORDER BY mea.version DESC
+      LIMIT 1
+    `;
+
+    return rows[0] ? mapMatchEventArtifact(rows[0]) : undefined;
+  }, () => undefined);
+}
+
+export async function getMatchesByIdsDb(ids: string[], locale: string = 'en'): Promise<Match[]> {
+  const uniqueIds = Array.from(new Set(ids.filter(Boolean)));
+  if (uniqueIds.length === 0) {
+    return [];
+  }
+
+  const numericIds = uniqueIds.filter((id) => /^\d+$/.test(id)).map((id) => Number(id));
+  const nonNumericIds = uniqueIds.filter((id) => !/^\d+$/.test(id));
+  const tournament = nonNumericIds.length > 0 ? await loadWorldCup2026Source() : undefined;
+
+  const dbMatches = numericIds.length > 0
+    ? await withFallback(async () => {
+        const sql = getDb();
+        const rows = await sql<MatchRow[]>`
+          WITH target_matches AS (
+            SELECT *
+            FROM matches
+            WHERE id = ANY(${numericIds})
+          )
+          SELECT
+            m.id::TEXT AS id,
+            home.slug AS home_team_id,
+            away.slug AS away_team_id,
+            COALESCE(
+              home_name.name,
+              home_name_en.name,
+              home.slug
+            ) AS home_team_name,
+            COALESCE(
+              away_name.name,
+              away_name_en.name,
+              away.slug
+            ) AS away_team_name,
+            COALESCE(
+              home_name.short_name,
+              home_name_en.short_name,
+              home.slug
+            ) AS home_team_code,
+            COALESCE(
+              away_name.short_name,
+              away_name_en.short_name,
+              away.slug
+            ) AS away_team_code,
+            home.crest_url AS home_team_logo,
+            away.crest_url AS away_team_logo,
+            m.home_score,
+            m.away_score,
+            m.match_date::TEXT AS date,
+            TO_CHAR(m.kickoff_at AT TIME ZONE 'UTC', 'HH24:MI') AS time,
+            COALESCE(
+              (SELECT vt.name FROM venue_translations vt WHERE vt.venue_id = v.id AND vt.locale = ${locale}),
+              (SELECT vt.name FROM venue_translations vt WHERE vt.venue_id = v.id AND vt.locale = 'en'),
+              v.slug,
+              ''
+            ) AS venue,
+            c.slug AS league_id,
+            m.matchday AS match_week,
+            COALESCE(NULLIF(m.source_metadata->>'roundName', ''), m.stage) AS stage,
+            m.group_name,
+            COALESCE(comp_name.name, comp_name_en.name, c.slug) AS competition_name,
+            'club'::TEXT AS team_type,
+            m.status::TEXT AS status,
+            m.source_metadata->>'source' AS source
+          FROM target_matches m
+          JOIN teams home ON home.id = m.home_team_id
+          JOIN teams away ON away.id = m.away_team_id
+          LEFT JOIN team_translations home_name ON home_name.team_id = home.id AND home_name.locale = ${locale}
+          LEFT JOIN team_translations away_name ON away_name.team_id = away.id AND away_name.locale = ${locale}
+          LEFT JOIN team_translations home_name_en ON home_name_en.team_id = home.id AND home_name_en.locale = 'en'
+          LEFT JOIN team_translations away_name_en ON away_name_en.team_id = away.id AND away_name_en.locale = 'en'
+          JOIN competition_seasons cs ON cs.id = m.competition_season_id
+          JOIN competitions c ON c.id = cs.competition_id
+          LEFT JOIN competition_translations comp_name ON comp_name.competition_id = c.id AND comp_name.locale = ${locale}
+          LEFT JOIN competition_translations comp_name_en ON comp_name_en.competition_id = c.id AND comp_name_en.locale = 'en'
+          LEFT JOIN venues v ON v.id = m.venue_id
+          ORDER BY m.match_date DESC, m.kickoff_at DESC NULLS LAST
+        `;
+
+        return rows.map((row) => mapMatch(row, locale));
+      }, () => [])
+    : [];
+
+  const fallbackMatches = nonNumericIds.length > 0 && tournament
+    ? await localizeNationMatchNames(
+        nonNumericIds
+          .map((id) => tournament.matches.find((match) => match.id === id))
+          .filter((match): match is Match => match !== undefined),
+        locale,
+      )
+    : [];
+
+  const matchById = new Map([...dbMatches, ...fallbackMatches].map((match) => [match.id, match]));
+  return uniqueIds.map((id) => matchById.get(id)).filter((match): match is Match => match !== undefined);
+}
+
+export async function getMatchAnalysisDataFromArtifactDb(
+  id: string,
+  matchDate: string,
+  locale: string = 'en',
+): Promise<MatchAnalysisData | null> {
+  return withFallback(async () => {
+    const key = buildCacheKey({ namespace: 'match-analysis-artifact-v1', locale, id });
 
     return readThroughCache({
       key,
       tier: 'matchday-warm',
       policySlug: 'match.read_model',
       loader: async () => {
-        const rows = await sql<MatchEventRowDb[]>`
-          SELECT
-            me.source_event_id::TEXT AS source_event_id,
-            me.minute,
-            me.event_type,
-            player.slug AS player_id,
-            COALESCE(player_name_local.known_as, player_name_en.known_as, player.slug) AS player_name,
-            CASE WHEN me.event_type = 'substitution' THEN secondary_player.slug ELSE NULL::TEXT END AS secondary_player_id,
-            CASE WHEN me.event_type = 'substitution' THEN COALESCE(secondary_player_name_local.known_as, secondary_player_name_en.known_as, secondary_player.slug) ELSE NULL::TEXT END AS secondary_player_name,
-            CASE WHEN me.event_type IN ('goal', 'own_goal', 'penalty_scored') THEN secondary_player.slug ELSE NULL::TEXT END AS assist_player_id,
-            CASE WHEN me.event_type IN ('goal', 'own_goal', 'penalty_scored') THEN COALESCE(secondary_player_name_local.known_as, secondary_player_name_en.known_as, secondary_player.slug) ELSE NULL::TEXT END AS assist_player_name,
-            team.slug AS team_id,
-            me.detail,
-            me.source_details
-          FROM match_events me
-          JOIN teams team ON team.id = me.team_id
-          LEFT JOIN players player ON player.id = me.player_id
-          LEFT JOIN player_translations player_name_local ON player_name_local.player_id = player.id AND player_name_local.locale = ${locale}
-          LEFT JOIN player_translations player_name_en ON player_name_en.player_id = player.id AND player_name_en.locale = 'en'
-          LEFT JOIN players secondary_player ON secondary_player.id = me.secondary_player_id
-          LEFT JOIN player_translations secondary_player_name_local ON secondary_player_name_local.player_id = secondary_player.id AND secondary_player_name_local.locale = ${locale}
-          LEFT JOIN player_translations secondary_player_name_en ON secondary_player_name_en.player_id = secondary_player.id AND secondary_player_name_en.locale = 'en'
-          WHERE me.match_id = ${numericId}
-            AND me.is_notable = TRUE
-          ORDER BY me.minute ASC, me.event_index ASC
-        `;
+        const payload = await loadAnalysisArtifactPayload(id, matchDate);
 
-        return rows.filter((event) => event.player_id).map(mapTimelineMatchEvent);
+        if (String(payload.matchId) !== id) {
+          return null;
+        }
+
+        const references = await getMatchAnalysisArtifactReferences(payload, locale);
+        return mapMatchAnalysisArtifactPayload(payload, references);
       },
     });
-  }, () => []);
+  }, () => null);
+}
+
+export async function getMatchFreezeFramesArtifactDb(
+  id: string,
+  matchDate: string,
+): Promise<MatchEventFreezeFramesArtifactPayload | null> {
+  return withFallback(async () => {
+    const key = buildCacheKey({ namespace: 'match-freeze-frames-artifact-v1', id });
+
+    return readThroughCache({
+      key,
+      tier: 'matchday-warm',
+      policySlug: 'match.read_model',
+      loader: async () => {
+        const payload = await loadSourceAwareArtifact<MatchEventFreezeFramesArtifactPayload>(
+          id,
+          matchDate,
+          'freeze-frames.v1.json.gz',
+        );
+        return String(payload.matchId) === id ? payload : null;
+      },
+    });
+  }, () => null);
+}
+
+export async function getMatchVisibleAreasArtifactDb(
+  id: string,
+  matchDate: string,
+): Promise<MatchEventVisibleAreasArtifactPayload | null> {
+  return withFallback(async () => {
+    const key = buildCacheKey({ namespace: 'match-visible-areas-artifact-v1', id });
+
+    return readThroughCache({
+      key,
+      tier: 'matchday-warm',
+      policySlug: 'match.read_model',
+      loader: async () => {
+        const payload = await loadSourceAwareArtifact<MatchEventVisibleAreasArtifactPayload>(
+          id,
+          matchDate,
+          'visible-areas.v1.json.gz',
+        );
+        return String(payload.matchId) === id ? payload : null;
+      },
+    });
+  }, () => null);
+}
+
+const MATCH_EVENT_ARTIFACT_SOURCE_PRIORITY = ['statsbomb', 'understat', 'whoscored', 'sofascore', 'api_football', 'fbref'] as const;
+
+async function loadSourceAwareArtifact<T>(matchId: string, matchDate: string, fileName: string): Promise<T> {
+  let lastError: unknown = null;
+
+  for (const sourceVendor of MATCH_EVENT_ARTIFACT_SOURCE_PRIORITY) {
+    const storageKey = buildSourceAwareMatchArtifactStorageKey(sourceVendor, matchDate, matchId, fileName);
+
+    try {
+      return await readJsonGzipArtifact<T>(storageKey);
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  try {
+    return await readJsonGzipArtifact<T>(buildMatchArtifactStorageKey(matchDate, matchId, fileName));
+  } catch (error) {
+    lastError = error;
+  }
+
+  throw lastError instanceof Error ? lastError : new Error(`Artifact not found for match ${matchId}`);
+}
+
+async function loadAnalysisArtifactPayload(matchId: string, matchDate: string) {
+  return loadSourceAwareArtifact<MatchAnalysisArtifactPayload>(matchId, matchDate, 'analysis-detail.v1.json.gz');
 }
 
 export async function getMatchStatsDb(id: string): Promise<MatchStats | undefined> {
@@ -4642,10 +5175,13 @@ export async function getMatchStatsDb(id: string): Promise<MatchStats | undefine
             ms.corner_kicks,
             ms.fouls,
             ms.offsides,
-            ms.gk_saves
+            ms.gk_saves,
+            ms.big_chances,
+            ms.big_chances_missed
           FROM match_stats ms
           JOIN teams team ON team.id = ms.team_id
           WHERE ms.match_id = ${Number(id)}
+          ORDER BY ms.is_home DESC
         `;
 
         if (rows.length < 2) {
@@ -4664,6 +5200,12 @@ export async function getMatchStatsDb(id: string): Promise<MatchStats | undefine
           fouls: [rows[0].fouls ?? 0, rows[1].fouls ?? 0],
           offsides: [rows[0].offsides ?? 0, rows[1].offsides ?? 0],
           saves: [rows[0].gk_saves ?? 0, rows[1].gk_saves ?? 0],
+          bigChances: rows[0].big_chances != null || rows[1].big_chances != null
+            ? [rows[0].big_chances ?? 0, rows[1].big_chances ?? 0]
+            : undefined,
+          bigChancesMissed: rows[0].big_chances_missed != null || rows[1].big_chances_missed != null
+            ? [rows[0].big_chances_missed ?? 0, rows[1].big_chances_missed ?? 0]
+            : undefined,
         };
       },
     });
@@ -4710,59 +5252,20 @@ export async function getMatchLineupsDb(id: string, locale: string = 'en'): Prom
   }, () => [], 'getMatchLineupsDb');
 }
 
-export async function getMatchAnalysisDataDb(id: string): Promise<MatchAnalysisData> {
+export async function getMatchAnalysisDataDb(id: string, matchDate?: string): Promise<MatchAnalysisData> {
   return withFallback(async () => {
-    const sql = getDb();
-    const key = buildCacheKey({ namespace: 'match-analysis', id });
+    if (!matchDate) {
+      return { events: [] };
+    }
 
-    return readThroughCache({
-      key,
-      tier: 'matchday-warm',
-      policySlug: 'match.read_model',
-      loader: async () => {
-        const rows = await sql<MatchAnalysisEventRowDb[]>`
-          SELECT
-            me.source_event_id::TEXT AS source_event_id,
-            me.minute,
-            me.second,
-            me.event_type::TEXT AS event_type,
-            player.slug AS player_id,
-            COALESCE(player_name.known_as, player.slug) AS player_name,
-            secondary_player.slug AS secondary_player_id,
-            COALESCE(secondary_player_name.known_as, secondary_player.slug) AS secondary_player_name,
-            team.slug AS team_id,
-            me.location_x::FLOAT8 AS location_x,
-            me.location_y::FLOAT8 AS location_y,
-            me.end_location_x::FLOAT8 AS end_location_x,
-            me.end_location_y::FLOAT8 AS end_location_y,
-            me.end_location_z::FLOAT8 AS end_location_z,
-            me.under_pressure,
-            me.statsbomb_xg::FLOAT8 AS statsbomb_xg,
-            me.detail,
-            me.source_details
-          FROM match_events me
-          JOIN teams team ON team.id = me.team_id
-          LEFT JOIN players player ON player.id = me.player_id
-          LEFT JOIN player_translations player_name ON player_name.player_id = player.id AND player_name.locale = 'en'
-          LEFT JOIN players secondary_player ON secondary_player.id = me.secondary_player_id
-          LEFT JOIN player_translations secondary_player_name ON secondary_player_name.player_id = secondary_player.id AND secondary_player_name.locale = 'en'
-          WHERE me.match_id = ${Number(id)}
-            AND me.location_x IS NOT NULL
-          ORDER BY me.event_index ASC
-        `;
-
-        return {
-          events: rows.map(mapMatchAnalysisEvent),
-        };
-      },
-    });
+    return (await getMatchAnalysisDataFromArtifactDb(id, matchDate, 'en')) ?? { events: [] };
   }, () => ({ events: [] }));
 }
 
 export async function getMatchesByLeagueDb(leagueId: string, locale: string = 'en'): Promise<Match[]> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'matches-by-league-v3', locale, id: leagueId });
+    const key = buildCacheKey({ namespace: 'matches-by-league-v5', locale, id: leagueId });
 
     return readThroughCache({
       key,
@@ -4770,16 +5273,25 @@ export async function getMatchesByLeagueDb(leagueId: string, locale: string = 'e
       loader: async () => {
         const rows = await sql<MatchRow[]>`
           WITH latest_competition_season AS (
-            SELECT cs.id
+            SELECT
+              cs.id,
+              c.slug AS league_id,
+              COALESCE(comp_name.name, c.slug) AS competition_name
             FROM competition_seasons cs
             JOIN competitions c ON c.id = cs.competition_id
             JOIN seasons s ON s.id = cs.season_id
-            LEFT JOIN team_seasons ts ON ts.competition_season_id = cs.id
-            LEFT JOIN matches m ON m.competition_season_id = cs.id
+            LEFT JOIN competition_translations comp_name ON comp_name.competition_id = c.id AND comp_name.locale = ${locale}
             WHERE c.slug = ${leagueId}
-            GROUP BY cs.id, s.end_date, s.start_date, s.id
             ORDER BY
-              CASE WHEN COUNT(DISTINCT ts.team_id) > 0 OR COUNT(DISTINCT m.id) > 0 THEN 0 ELSE 1 END,
+              CASE WHEN EXISTS (
+                SELECT 1
+                FROM team_seasons ts
+                WHERE ts.competition_season_id = cs.id
+              ) OR EXISTS (
+                SELECT 1
+                FROM matches season_matches
+                WHERE season_matches.competition_season_id = cs.id
+              ) THEN 0 ELSE 1 END,
               s.end_date DESC NULLS LAST,
               s.start_date DESC NULLS LAST,
               s.id DESC
@@ -4815,19 +5327,15 @@ export async function getMatchesByLeagueDb(leagueId: string, locale: string = 'e
             m.away_score,
             m.match_date::TEXT AS date,
             TO_CHAR(m.kickoff_at AT TIME ZONE 'UTC', 'HH24:MI') AS time,
-            COALESCE(
-              (SELECT vt.name FROM venue_translations vt WHERE vt.venue_id = v.id AND vt.locale = ${locale}),
-              (SELECT vt.name FROM venue_translations vt WHERE vt.venue_id = v.id AND vt.locale = 'en'),
-              v.slug,
-              ''
-            ) AS venue,
-            c.slug AS league_id,
+            COALESCE(venue_name.name, venue_name_en.name, v.slug, '') AS venue,
+            lcs.league_id,
             m.matchday AS match_week,
-            m.stage,
+            COALESCE(NULLIF(m.source_metadata->>'roundName', ''), m.stage) AS stage,
             m.group_name,
-            COALESCE(comp_name.name, c.slug) AS competition_name,
+            lcs.competition_name,
             'club'::TEXT AS team_type,
-            m.status::TEXT AS status
+            m.status::TEXT AS status,
+            m.source_metadata->>'source' AS source
           FROM latest_competition_season lcs
           JOIN matches m ON m.competition_season_id = lcs.id
           JOIN teams home ON home.id = m.home_team_id
@@ -4836,15 +5344,13 @@ export async function getMatchesByLeagueDb(leagueId: string, locale: string = 'e
           LEFT JOIN team_translations away_name ON away_name.team_id = away.id AND away_name.locale = ${locale}
           LEFT JOIN team_translations home_name_en ON home_name_en.team_id = home.id AND home_name_en.locale = 'en'
           LEFT JOIN team_translations away_name_en ON away_name_en.team_id = away.id AND away_name_en.locale = 'en'
-          JOIN competition_seasons cs ON cs.id = m.competition_season_id
-          JOIN competitions c ON c.id = cs.competition_id
-          LEFT JOIN competition_translations comp_name ON comp_name.competition_id = c.id AND comp_name.locale = ${locale}
-          LEFT JOIN competition_translations comp_name_en ON comp_name_en.competition_id = c.id AND comp_name_en.locale = 'en'
           LEFT JOIN venues v ON v.id = m.venue_id
+          LEFT JOIN venue_translations venue_name ON venue_name.venue_id = v.id AND venue_name.locale = ${locale}
+          LEFT JOIN venue_translations venue_name_en ON venue_name_en.venue_id = v.id AND venue_name_en.locale = 'en'
           ORDER BY m.match_date DESC, m.kickoff_at DESC NULLS LAST
         `;
 
-        return rows.map((row) => mapMatch(row, locale));
+        return dedupeMatchRows(rows, rows.length).map((row) => mapMatch(row, locale));
       },
     });
   }, () => []);
@@ -4971,10 +5477,10 @@ export async function getRecentFinishedMatchesByClubDb(
           WHERE (home.slug = ${clubId} OR away.slug = ${clubId})
             AND m.status IN ('finished', 'finished_aet', 'finished_pen')
           ORDER BY m.match_date DESC, m.kickoff_at DESC NULLS LAST, m.id DESC
-          LIMIT ${limit}
+          LIMIT ${limit * 4}
         `;
 
-        return rows.map((row) => mapMatch(row, locale));
+        return dedupeMatchRows(rows, limit).map((row) => mapMatch(row, locale));
       },
     });
   }, () => []);
@@ -4993,7 +5499,7 @@ export async function getUpcomingScheduledMatchesByLeagueIdsDb(
 
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'upcoming-scheduled-matches-by-league-ids-v2', locale, params: { ids: normalizedIds.join(','), limit } });
+    const key = buildCacheKey({ namespace: 'upcoming-scheduled-matches-by-league-ids-v4', locale, params: { ids: normalizedIds.join(','), limit } });
 
     return readThroughCache({
       key,
@@ -5027,7 +5533,8 @@ export async function getUpcomingScheduledMatchesByLeagueIdsDb(
             m.group_name,
             COALESCE(comp_name.name, comp_name_en.name, c.slug) AS competition_name,
             'club'::TEXT AS team_type,
-            m.status::TEXT AS status
+            m.status::TEXT AS status,
+            m.source_metadata->>'source' AS source
           FROM matches m
           JOIN teams home ON home.id = m.home_team_id
           JOIN teams away ON away.id = m.away_team_id
@@ -5042,11 +5549,12 @@ export async function getUpcomingScheduledMatchesByLeagueIdsDb(
           LEFT JOIN venues v ON v.id = m.venue_id
           WHERE c.slug = ANY(${normalizedIds})
             AND m.status IN ('scheduled', 'timed')
+            AND m.match_date >= CURRENT_DATE
           ORDER BY m.match_date ASC, m.kickoff_at ASC NULLS LAST, m.id ASC
-          LIMIT ${limit}
+          LIMIT ${limit * 4}
         `;
 
-        return rows.map((row) => mapMatch(row, locale));
+        return dedupeMatchRows(rows, limit).map((row) => mapMatch(row, locale));
       },
     });
   }, () => []);
@@ -5065,7 +5573,7 @@ export async function getRecentFinishedMatchesByLeagueIdsDb(
 
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'recent-finished-matches-by-league-ids-v2', locale, params: { ids: normalizedIds.join(','), limit } });
+    const key = buildCacheKey({ namespace: 'recent-finished-matches-by-league-ids-v3', locale, params: { ids: normalizedIds.join(','), limit } });
 
     return readThroughCache({
       key,
@@ -5099,7 +5607,8 @@ export async function getRecentFinishedMatchesByLeagueIdsDb(
             m.group_name,
             COALESCE(comp_name.name, comp_name_en.name, c.slug) AS competition_name,
             'club'::TEXT AS team_type,
-            m.status::TEXT AS status
+            m.status::TEXT AS status,
+            m.source_metadata->>'source' AS source
           FROM matches m
           JOIN teams home ON home.id = m.home_team_id
           JOIN teams away ON away.id = m.away_team_id
@@ -5115,10 +5624,10 @@ export async function getRecentFinishedMatchesByLeagueIdsDb(
           WHERE c.slug = ANY(${normalizedIds})
             AND m.status IN ('finished', 'finished_aet', 'finished_pen')
           ORDER BY m.match_date DESC, m.kickoff_at DESC NULLS LAST, m.id DESC
-          LIMIT ${limit}
+          LIMIT ${limit * 4}
         `;
 
-        return rows.map((row) => mapMatch(row, locale));
+        return dedupeMatchRows(rows, limit).map((row) => mapMatch(row, locale));
       },
     });
   }, () => []);
@@ -5165,7 +5674,8 @@ export async function getMatchesByClubAndSeasonDb(
             m.group_name,
             COALESCE(comp_name.name, comp_name_en.name, c.slug) AS competition_name,
             'club'::TEXT AS team_type,
-            m.status::TEXT AS status
+            m.status::TEXT AS status,
+            m.source_metadata->>'source' AS source
           FROM matches m
           JOIN competition_seasons cs ON cs.id = m.competition_season_id
           JOIN seasons s ON s.id = cs.season_id
@@ -5185,7 +5695,7 @@ export async function getMatchesByClubAndSeasonDb(
           ORDER BY m.match_date DESC, m.kickoff_at DESC NULLS LAST, m.id DESC
         `;
 
-        return rows.map((row) => mapMatch(row, locale));
+        return dedupeMatchRows(rows, rows.length).map((row) => mapMatch(row, locale));
       },
     });
   }, () => []);
@@ -5241,7 +5751,8 @@ export async function getRecentFinishedMatchesByClubAndSeasonDb(
             m.group_name,
             COALESCE(comp_name.name, comp_name_en.name, c.slug) AS competition_name,
             'club'::TEXT AS team_type,
-            m.status::TEXT AS status
+            m.status::TEXT AS status,
+            m.source_metadata->>'source' AS source
           FROM matches m
           JOIN target_competition_seasons tcs ON tcs.id = m.competition_season_id
           JOIN teams home ON home.id = m.home_team_id
@@ -5258,10 +5769,10 @@ export async function getRecentFinishedMatchesByClubAndSeasonDb(
           WHERE (home.slug = ${clubId} OR away.slug = ${clubId})
             AND m.status IN ('finished', 'finished_aet', 'finished_pen')
           ORDER BY m.match_date DESC, m.kickoff_at DESC NULLS LAST, m.id DESC
-          LIMIT ${limit}
+          LIMIT ${limit * 4}
         `;
 
-        return rows.map((row) => mapMatch(row, locale));
+        return dedupeMatchRows(rows, limit).map((row) => mapMatch(row, locale));
       },
     });
   }, () => []);
@@ -5317,7 +5828,8 @@ export async function getUpcomingScheduledMatchesByClubAndSeasonDb(
             m.group_name,
             COALESCE(comp_name.name, comp_name_en.name, c.slug) AS competition_name,
             'club'::TEXT AS team_type,
-            m.status::TEXT AS status
+            m.status::TEXT AS status,
+            m.source_metadata->>'source' AS source
           FROM matches m
           JOIN target_competition_seasons tcs ON tcs.id = m.competition_season_id
           JOIN teams home ON home.id = m.home_team_id
@@ -5332,12 +5844,13 @@ export async function getUpcomingScheduledMatchesByClubAndSeasonDb(
           LEFT JOIN competition_translations comp_name_en ON comp_name_en.competition_id = c.id AND comp_name_en.locale = 'en'
           LEFT JOIN venues v ON v.id = m.venue_id
           WHERE (home.slug = ${clubId} OR away.slug = ${clubId})
-            AND m.status = 'scheduled'
+            AND m.status IN ('scheduled', 'timed')
+            AND m.match_date >= CURRENT_DATE
           ORDER BY m.match_date ASC, m.kickoff_at ASC NULLS LAST, m.id ASC
-          LIMIT ${limit}
+          LIMIT ${limit * 4}
         `;
 
-        return rows.map((row) => mapMatch(row, locale));
+        return dedupeMatchRows(rows, limit).map((row) => mapMatch(row, locale));
       },
     });
   }, () => []);
@@ -5426,7 +5939,6 @@ export async function getPaginatedFinishedMatchesDb(
   locale: string = 'en',
   leagueId?: string,
   query: string = '',
-  gender: 'male' | 'female' = 'male',
   options: PaginationOptions = {}
 ): Promise<PaginatedResult<Match>> {
   const { currentPage, pageSize, offset } = normalizePagination(options);
@@ -5438,7 +5950,7 @@ export async function getPaginatedFinishedMatchesDb(
     const key = buildCacheKey({
       namespace: 'finished-matches-paginated',
       locale,
-      params: { page: currentPage, pageSize, leagueId: leagueId ?? 'all', q: trimmedQuery, gender },
+      params: { page: currentPage, pageSize, leagueId: leagueId ?? 'all', q: trimmedQuery },
     });
 
     return readThroughCache({
@@ -5477,7 +5989,6 @@ export async function getPaginatedFinishedMatchesDb(
             LEFT JOIN competition_translations comp_name_en ON comp_name_en.competition_id = c.id AND comp_name_en.locale = 'en'
             LEFT JOIN venues v ON v.id = m.venue_id
             WHERE m.status IN ('finished', 'finished_aet', 'finished_pen')
-              AND c.gender = ${gender}
               ${leagueFilter}
               ${queryFilter}
           `,
@@ -5524,7 +6035,6 @@ export async function getPaginatedFinishedMatchesDb(
             LEFT JOIN competition_translations comp_name_en ON comp_name_en.competition_id = c.id AND comp_name_en.locale = 'en'
             LEFT JOIN venues v ON v.id = m.venue_id
             WHERE m.status IN ('finished', 'finished_aet', 'finished_pen')
-              AND c.gender = ${gender}
               ${leagueFilter}
               ${queryFilter}
             ORDER BY m.match_date DESC, m.kickoff_at DESC NULLS LAST, m.id DESC
@@ -5541,7 +6051,7 @@ export async function getPaginatedFinishedMatchesDb(
 
 export async function getScheduledMatchesDb(locale: string = 'en'): Promise<Match[]> {
   const matches = await getMatchesDb(locale);
-  return matches.filter((match) => match.status === 'scheduled');
+  return matches.filter((match) => match.status === 'scheduled' || match.status === 'timed' || match.status === 'postponed');
 }
 
 export async function getFinishedMatchesByNationDb(nationId: string, locale: string = 'en'): Promise<Match[]> {
@@ -5551,7 +6061,7 @@ export async function getFinishedMatchesByNationDb(nationId: string, locale: str
 
 export async function getScheduledMatchesByNationDb(nationId: string, locale: string = 'en'): Promise<Match[]> {
   const matches = await getMatchesByNationDb(nationId, locale);
-  return matches.filter((match) => match.status === 'scheduled');
+  return matches.filter((match) => match.status === 'scheduled' || match.status === 'timed' || match.status === 'postponed');
 }
 
 export async function getWorldCup2026Db(): Promise<WorldCupTournament> {
@@ -5655,6 +6165,7 @@ export async function getScheduledMatchesByLeagueDb(leagueId: string, locale: st
       LEFT JOIN venues v ON v.id = m.venue_id
       WHERE c.slug = ${leagueId}
         AND m.status = 'scheduled'
+        AND m.match_date >= CURRENT_DATE
       ORDER BY m.match_date ASC, m.kickoff_at ASC NULLS LAST, m.id ASC
     `;
 
@@ -5662,10 +6173,46 @@ export async function getScheduledMatchesByLeagueDb(leagueId: string, locale: st
   }, () => []);
 }
 
-export async function getStandingsByLeagueDb(leagueId: string, locale: string = 'en'): Promise<StandingRow[]> {
+export async function getStandingsByLeagueDb(
+  leagueId: string,
+  locale: string = 'en',
+  includeForm: boolean = true,
+): Promise<StandingRow[]> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'standings-v5', locale, id: leagueId });
+    const key = buildCacheKey({ namespace: 'standings-v6', locale, id: leagueId, params: { includeForm } });
+    const formCtes = includeForm
+      ? sql`, ranked_results AS (
+            SELECT
+              mr.competition_season_id,
+              mr.team_id,
+              mr.form_result,
+              mr.match_date,
+              mr.match_id,
+              ROW_NUMBER() OVER (
+                PARTITION BY mr.competition_season_id, mr.team_id
+                ORDER BY mr.match_date DESC, mr.match_id DESC
+              ) AS recent_rank
+            FROM match_results mr
+          ), team_form AS (
+            SELECT
+              rr.competition_season_id,
+              rr.team_id,
+              ARRAY_AGG(rr.form_result::TEXT ORDER BY rr.match_date DESC, rr.match_id DESC) AS form
+            FROM ranked_results rr
+            WHERE rr.recent_rank <= 5
+            GROUP BY rr.competition_season_id, rr.team_id
+          )`
+      : sql``;
+    const formSelect = includeForm
+      ? sql`team_form.form::TEXT[] AS form`
+      : sql`ARRAY[]::TEXT[] AS form`;
+    const formJoin = includeForm
+      ? sql`
+          LEFT JOIN team_form
+            ON team_form.competition_season_id = standings.competition_season_id
+            AND team_form.team_id = standings.team_id`
+      : sql``;
 
     return readThroughCache({
       key,
@@ -5697,55 +6244,58 @@ export async function getStandingsByLeagueDb(leagueId: string, locale: string = 
           ), match_results AS (
             SELECT
               m.competition_season_id,
-              m.home_team_id AS team_id,
-              CASE
-                WHEN m.home_score > m.away_score THEN 3
-                WHEN m.home_score = m.away_score THEN 1
-                ELSE 0
-              END AS points,
-              CASE WHEN m.home_score > m.away_score THEN 1 ELSE 0 END AS won,
-              CASE WHEN m.home_score = m.away_score THEN 1 ELSE 0 END AS drawn,
-              CASE WHEN m.home_score < m.away_score THEN 1 ELSE 0 END AS lost,
-              m.home_score AS goals_for,
-              m.away_score AS goals_against,
+              team_result.team_id,
+              team_result.points,
+              team_result.won,
+              team_result.drawn,
+              team_result.lost,
+              team_result.goals_for,
+              team_result.goals_against,
               m.match_date,
               m.id AS match_id,
-              CASE
-                WHEN m.home_score > m.away_score THEN 'W'
-                WHEN m.home_score = m.away_score THEN 'D'
-                ELSE 'L'
-              END::TEXT AS form_result
+              team_result.form_result
             FROM matches m
             JOIN latest_competition_season lcs ON lcs.id = m.competition_season_id
             CROSS JOIN has_regular_season_matches hrsm
-            WHERE m.status IN ('finished', 'finished_aet', 'finished_pen')
-              AND (hrsm.has_regular_season = FALSE OR m.stage = 'REGULAR_SEASON')
-
-            UNION ALL
-
-            SELECT
-              m.competition_season_id,
-              m.away_team_id AS team_id,
-              CASE
-                WHEN m.away_score > m.home_score THEN 3
-                WHEN m.away_score = m.home_score THEN 1
-                ELSE 0
-              END AS points,
-              CASE WHEN m.away_score > m.home_score THEN 1 ELSE 0 END AS won,
-              CASE WHEN m.away_score = m.home_score THEN 1 ELSE 0 END AS drawn,
-              CASE WHEN m.away_score < m.home_score THEN 1 ELSE 0 END AS lost,
-              m.away_score AS goals_for,
-              m.home_score AS goals_against,
-              m.match_date,
-              m.id AS match_id,
-              CASE
-                WHEN m.away_score > m.home_score THEN 'W'
-                WHEN m.away_score = m.home_score THEN 'D'
-                ELSE 'L'
-              END::TEXT AS form_result
-            FROM matches m
-            JOIN latest_competition_season lcs ON lcs.id = m.competition_season_id
-            CROSS JOIN has_regular_season_matches hrsm
+            CROSS JOIN LATERAL (
+              VALUES
+                (
+                  m.home_team_id,
+                  CASE
+                    WHEN m.home_score > m.away_score THEN 3
+                    WHEN m.home_score = m.away_score THEN 1
+                    ELSE 0
+                  END,
+                  CASE WHEN m.home_score > m.away_score THEN 1 ELSE 0 END,
+                  CASE WHEN m.home_score = m.away_score THEN 1 ELSE 0 END,
+                  CASE WHEN m.home_score < m.away_score THEN 1 ELSE 0 END,
+                  m.home_score,
+                  m.away_score,
+                  CASE
+                    WHEN m.home_score > m.away_score THEN 'W'
+                    WHEN m.home_score = m.away_score THEN 'D'
+                    ELSE 'L'
+                  END::TEXT
+                ),
+                (
+                  m.away_team_id,
+                  CASE
+                    WHEN m.away_score > m.home_score THEN 3
+                    WHEN m.away_score = m.home_score THEN 1
+                    ELSE 0
+                  END,
+                  CASE WHEN m.away_score > m.home_score THEN 1 ELSE 0 END,
+                  CASE WHEN m.away_score = m.home_score THEN 1 ELSE 0 END,
+                  CASE WHEN m.away_score < m.home_score THEN 1 ELSE 0 END,
+                  m.away_score,
+                  m.home_score,
+                  CASE
+                    WHEN m.away_score > m.home_score THEN 'W'
+                    WHEN m.away_score = m.home_score THEN 'D'
+                    ELSE 'L'
+                  END::TEXT
+                )
+            ) AS team_result(team_id, points, won, drawn, lost, goals_for, goals_against, form_result)
             WHERE m.status IN ('finished', 'finished_aet', 'finished_pen')
               AND (hrsm.has_regular_season = FALSE OR m.stage = 'REGULAR_SEASON')
           ), standings AS (
@@ -5769,40 +6319,13 @@ export async function getStandingsByLeagueDb(leagueId: string, locale: string = 
               )::INT AS position
             FROM match_results mr
             GROUP BY mr.competition_season_id, mr.team_id
-          ), ranked_results AS (
-            SELECT
-              mr.competition_season_id,
-              mr.team_id,
-              mr.form_result,
-              mr.match_date,
-              mr.match_id,
-              ROW_NUMBER() OVER (
-                PARTITION BY mr.competition_season_id, mr.team_id
-                ORDER BY mr.match_date DESC, mr.match_id DESC
-              ) AS recent_rank
-            FROM match_results mr
-          ), team_form AS (
-            SELECT
-              rr.competition_season_id,
-              rr.team_id,
-              ARRAY_AGG(rr.form_result::TEXT ORDER BY rr.match_date DESC, rr.match_id DESC) AS form
-            FROM ranked_results rr
-            WHERE rr.recent_rank <= 5
-            GROUP BY rr.competition_season_id, rr.team_id
           )
+          ${formCtes}
           SELECT
             standings.position,
             team.slug AS club_id,
-            COALESCE(
-              (SELECT tt.name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = ${locale}),
-              (SELECT tt.name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = 'en'),
-              team.slug
-            ) AS club_name,
-            COALESCE(
-              (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = ${locale}),
-              (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = 'en'),
-              team.slug
-            ) AS club_short_name,
+            COALESCE(team_name_locale.name, team_name_en.name, team.slug) AS club_name,
+            COALESCE(team_name_locale.short_name, team_name_en.short_name, team.slug) AS club_short_name,
             team.crest_url AS club_logo,
             standings.played,
             standings.won,
@@ -5812,12 +6335,16 @@ export async function getStandingsByLeagueDb(leagueId: string, locale: string = 
             standings.goals_against,
             standings.goal_difference,
             standings.points,
-            team_form.form::TEXT[]
+            ${formSelect}
           FROM standings
           JOIN teams team ON team.id = standings.team_id
-          LEFT JOIN team_form
-            ON team_form.competition_season_id = standings.competition_season_id
-            AND team_form.team_id = standings.team_id
+          LEFT JOIN team_translations team_name_locale
+            ON team_name_locale.team_id = team.id
+            AND team_name_locale.locale = ${locale}
+          LEFT JOIN team_translations team_name_en
+            ON team_name_en.team_id = team.id
+            AND team_name_en.locale = 'en'
+          ${formJoin}
           ORDER BY standings.position ASC
         `;
 
@@ -5833,7 +6360,7 @@ export async function getDashboardTournamentSummaryDb(
 ): Promise<DashboardTournamentSummary> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'dashboard-tournament-summary-v3', locale, id: leagueId });
+      const key = buildCacheKey({ namespace: 'dashboard-tournament-summary-v5', locale, id: leagueId });
 
     return readThroughCache({
       key,
@@ -5886,7 +6413,8 @@ export async function getDashboardTournamentSummaryDb(
               m.group_name,
               COALESCE(comp_name.name, comp_name_en.name, c.slug) AS competition_name,
               'club'::TEXT AS team_type,
-              m.status::TEXT AS status
+              m.status::TEXT AS status,
+              m.source_metadata->>'source' AS source
             FROM latest_competition_season lcs
             JOIN matches m ON m.competition_season_id = lcs.id
             JOIN teams home ON home.id = m.home_team_id
@@ -5902,8 +6430,8 @@ export async function getDashboardTournamentSummaryDb(
             LEFT JOIN venues v ON v.id = m.venue_id
             WHERE m.status IN ('finished', 'finished_aet', 'finished_pen')
             ORDER BY m.match_date DESC, m.kickoff_at DESC NULLS LAST, m.id DESC
-            LIMIT 2
-          `,
+              LIMIT 8
+           `,
           sql<MatchRow[]>`
             WITH latest_competition_season AS (
               SELECT cs.id
@@ -5947,7 +6475,8 @@ export async function getDashboardTournamentSummaryDb(
               m.group_name,
               COALESCE(comp_name.name, comp_name_en.name, c.slug) AS competition_name,
               'club'::TEXT AS team_type,
-              m.status::TEXT AS status
+              m.status::TEXT AS status,
+              m.source_metadata->>'source' AS source
             FROM latest_competition_season lcs
             JOIN matches m ON m.competition_season_id = lcs.id
             JOIN teams home ON home.id = m.home_team_id
@@ -5962,9 +6491,10 @@ export async function getDashboardTournamentSummaryDb(
             LEFT JOIN competition_translations comp_name_en ON comp_name_en.competition_id = c.id AND comp_name_en.locale = 'en'
             LEFT JOIN venues v ON v.id = m.venue_id
             WHERE m.status IN ('scheduled', 'timed')
+              AND m.match_date >= CURRENT_DATE
             ORDER BY m.match_date ASC, m.kickoff_at ASC NULLS LAST, m.id ASC
-            LIMIT 2
-          `,
+              LIMIT 8
+           `,
           sql<TournamentStageTrailRowDb[]>`
             WITH latest_competition_season AS (
               SELECT cs.id
@@ -6000,8 +6530,8 @@ export async function getDashboardTournamentSummaryDb(
         ]);
 
         return {
-          recentResults: recentRows.map((row) => mapMatch(row, locale)),
-          upcomingFixtures: upcomingRows.map((row) => mapMatch(row, locale)),
+          recentResults: dedupeMatchRows(recentRows, 2).map((row) => mapMatch(row, locale)),
+          upcomingFixtures: dedupeMatchRows(upcomingRows, 2).map((row) => mapMatch(row, locale)),
           stageTrail: stageRows.map((row) => row.stage),
         };
       },
@@ -6208,10 +6738,11 @@ export async function getStandingsByLeagueAndSeasonDb(
   leagueId: string,
   seasonId: string,
   locale: string = 'en',
+  includeForm: boolean = true,
 ): Promise<StandingRow[]> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'standings-by-season-v4', locale, id: leagueId, params: { season: seasonId } });
+    const key = buildCacheKey({ namespace: 'standings-by-season-v5', locale, id: leagueId, params: { season: seasonId, includeForm } });
 
     return readThroughCache({
       key,
@@ -6307,7 +6838,8 @@ export async function getStandingsByLeagueAndSeasonDb(
               )::INT AS position
             FROM match_results mr
             GROUP BY mr.competition_season_id, mr.team_id
-          ), ranked_results AS (
+          )
+          ${includeForm ? sql`, ranked_results AS (
             SELECT
               mr.competition_season_id,
               mr.team_id,
@@ -6327,20 +6859,12 @@ export async function getStandingsByLeagueAndSeasonDb(
             FROM ranked_results rr
             WHERE rr.recent_rank <= 5
             GROUP BY rr.competition_season_id, rr.team_id
-          )
+          )` : sql``}
           SELECT
             standings.position,
             team.slug AS club_id,
-            COALESCE(
-              (SELECT tt.name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = ${locale}),
-              (SELECT tt.name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = 'en'),
-              team.slug
-            ) AS club_name,
-            COALESCE(
-              (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = ${locale}),
-              (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = 'en'),
-              team.slug
-            ) AS club_short_name,
+            COALESCE(team_name_locale.name, team_name_en.name, team.slug) AS club_name,
+            COALESCE(team_name_locale.short_name, team_name_en.short_name, team.slug) AS club_short_name,
             team.crest_url AS club_logo,
             standings.played,
             standings.won,
@@ -6350,12 +6874,18 @@ export async function getStandingsByLeagueAndSeasonDb(
             standings.goals_against,
             standings.goal_difference,
             standings.points,
-            team_form.form::TEXT[]
+            ${includeForm ? sql`team_form.form::TEXT[]` : sql`ARRAY[]::TEXT[] AS form`}
           FROM standings
           JOIN teams team ON team.id = standings.team_id
-          LEFT JOIN team_form
+          LEFT JOIN team_translations team_name_locale
+            ON team_name_locale.team_id = team.id
+            AND team_name_locale.locale = ${locale}
+          LEFT JOIN team_translations team_name_en
+            ON team_name_en.team_id = team.id
+            AND team_name_en.locale = 'en'
+          ${includeForm ? sql`LEFT JOIN team_form
             ON team_form.competition_season_id = standings.competition_season_id
-            AND team_form.team_id = standings.team_id
+            AND team_form.team_id = standings.team_id` : sql``}
           ORDER BY standings.position ASC
         `;
 
@@ -6423,7 +6953,7 @@ export async function getTopScorerRowsDb(
 ): Promise<Array<StatLeader & { playerName: string; clubShortName: string }>> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'top-scorer-rows-v2', locale, id: leagueId, params: { limit } });
+    const key = buildCacheKey({ namespace: 'top-scorer-rows-v3', locale, id: leagueId, params: { limit } });
 
     return readThroughCache({
       key,
@@ -6435,12 +6965,17 @@ export async function getTopScorerRowsDb(
             FROM competition_seasons cs
             JOIN competitions c ON c.id = cs.competition_id
             JOIN seasons s ON s.id = cs.season_id
-            LEFT JOIN team_seasons ts ON ts.competition_season_id = cs.id
-            LEFT JOIN matches m ON m.competition_season_id = cs.id
             WHERE c.slug = ${leagueId}
-            GROUP BY cs.id, s.end_date, s.start_date, s.id
             ORDER BY
-              CASE WHEN COUNT(DISTINCT ts.team_id) > 0 OR COUNT(DISTINCT m.id) > 0 THEN 0 ELSE 1 END,
+              CASE WHEN EXISTS (
+                SELECT 1
+                FROM team_seasons ts
+                WHERE ts.competition_season_id = cs.id
+              ) OR EXISTS (
+                SELECT 1
+                FROM matches season_matches
+                WHERE season_matches.competition_season_id = cs.id
+              ) THEN 0 ELSE 1 END,
               s.end_date DESC NULLS LAST,
               s.start_date DESC NULLS LAST,
               s.id DESC
@@ -6451,20 +6986,24 @@ export async function getTopScorerRowsDb(
             team.slug AS club_id,
             scorers.goals,
             scorers.assists,
-            COALESCE(
-              (SELECT pt.known_as FROM player_translations pt WHERE pt.player_id = player.id AND pt.locale = ${locale}),
-              (SELECT pt.known_as FROM player_translations pt WHERE pt.player_id = player.id AND pt.locale = 'en'),
-              player.slug
-            ) AS player_name,
-            COALESCE(
-              (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = ${locale}),
-              (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = 'en'),
-              team.slug
-            ) AS club_short_name
+            COALESCE(player_name_locale.known_as, player_name_en.known_as, player.slug) AS player_name,
+            COALESCE(team_name_locale.short_name, team_name_en.short_name, team.slug) AS club_short_name
           FROM mv_top_scorers scorers
           JOIN latest_competition_season lcs ON lcs.id = scorers.competition_season_id
           JOIN players player ON player.id = scorers.player_id
           JOIN teams team ON team.id = scorers.team_id
+          LEFT JOIN player_translations player_name_locale
+            ON player_name_locale.player_id = player.id
+            AND player_name_locale.locale = ${locale}
+          LEFT JOIN player_translations player_name_en
+            ON player_name_en.player_id = player.id
+            AND player_name_en.locale = 'en'
+          LEFT JOIN team_translations team_name_locale
+            ON team_name_locale.team_id = team.id
+            AND team_name_locale.locale = ${locale}
+          LEFT JOIN team_translations team_name_en
+            ON team_name_en.team_id = team.id
+            AND team_name_en.locale = 'en'
           ORDER BY scorers.rank ASC
           LIMIT ${limit}
         `;
@@ -6491,7 +7030,7 @@ export async function getTopScorerRowsBySeasonDb(
 ): Promise<Array<StatLeader & { playerName: string; clubShortName: string }>> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'top-scorer-rows-by-season-v2', locale, id: leagueId, params: { season: seasonId, limit } });
+    const key = buildCacheKey({ namespace: 'top-scorer-rows-by-season-v3', locale, id: leagueId, params: { season: seasonId, limit } });
 
     return readThroughCache({
       key,
@@ -6511,20 +7050,24 @@ export async function getTopScorerRowsBySeasonDb(
             team.slug AS club_id,
             scorers.goals,
             scorers.assists,
-            COALESCE(
-              (SELECT pt.known_as FROM player_translations pt WHERE pt.player_id = player.id AND pt.locale = ${locale}),
-              (SELECT pt.known_as FROM player_translations pt WHERE pt.player_id = player.id AND pt.locale = 'en'),
-              player.slug
-            ) AS player_name,
-            COALESCE(
-              (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = ${locale}),
-              (SELECT tt.short_name FROM team_translations tt WHERE tt.team_id = team.id AND tt.locale = 'en'),
-              team.slug
-            ) AS club_short_name
+            COALESCE(player_name_locale.known_as, player_name_en.known_as, player.slug) AS player_name,
+            COALESCE(team_name_locale.short_name, team_name_en.short_name, team.slug) AS club_short_name
           FROM mv_top_scorers scorers
           JOIN target_competition_season tcs ON tcs.id = scorers.competition_season_id
           JOIN players player ON player.id = scorers.player_id
           JOIN teams team ON team.id = scorers.team_id
+          LEFT JOIN player_translations player_name_locale
+            ON player_name_locale.player_id = player.id
+            AND player_name_locale.locale = ${locale}
+          LEFT JOIN player_translations player_name_en
+            ON player_name_en.player_id = player.id
+            AND player_name_en.locale = 'en'
+          LEFT JOIN team_translations team_name_locale
+            ON team_name_locale.team_id = team.id
+            AND team_name_locale.locale = ${locale}
+          LEFT JOIN team_translations team_name_en
+            ON team_name_en.team_id = team.id
+            AND team_name_en.locale = 'en'
           ORDER BY scorers.rank ASC
           LIMIT ${limit}
         `;
@@ -6564,7 +7107,8 @@ export async function getSeasonsByLeagueDb(leagueId: string): Promise<LeagueSeas
                 LPAD((EXTRACT(YEAR FROM s.end_date)::INT % 100)::TEXT, 2, '0')
               )
             END AS season_label,
-            s.is_current
+            s.is_current,
+            cs.format_type::TEXT AS format_type
           FROM competition_seasons cs
           JOIN competitions c ON c.id = cs.competition_id
           JOIN seasons s ON s.id = cs.season_id
@@ -6576,6 +7120,7 @@ export async function getSeasonsByLeagueDb(leagueId: string): Promise<LeagueSeas
           seasonId: row.season_id,
           seasonLabel: row.season_label,
           isCurrent: row.is_current,
+          competitionFormat: row.format_type ?? undefined,
         }));
       },
     });
@@ -6589,7 +7134,7 @@ export async function getMatchesByLeagueAndSeasonDb(
 ): Promise<Match[]> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'matches-by-league-season-v3', locale, id: leagueId, params: { season: seasonId } });
+    const key = buildCacheKey({ namespace: 'matches-by-league-season-v5', locale, id: leagueId, params: { season: seasonId } });
 
     return readThroughCache({
       key,
@@ -6597,10 +7142,14 @@ export async function getMatchesByLeagueAndSeasonDb(
       loader: async () => {
         const rows = await sql<MatchRow[]>`
           WITH target_competition_season AS (
-            SELECT cs.id
+            SELECT
+              cs.id,
+              c.slug AS league_id,
+              COALESCE(comp_name.name, c.slug) AS competition_name
             FROM competition_seasons cs
             JOIN competitions c ON c.id = cs.competition_id
             JOIN seasons s ON s.id = cs.season_id
+            LEFT JOIN competition_translations comp_name ON comp_name.competition_id = c.id AND comp_name.locale = ${locale}
             WHERE c.slug = ${leagueId}
               AND s.slug = ${seasonId}
           )
@@ -6608,45 +7157,25 @@ export async function getMatchesByLeagueAndSeasonDb(
             m.id::TEXT AS id,
             home.slug AS home_team_id,
             away.slug AS away_team_id,
-            COALESCE(
-              home_name.name,
-              home_name_en.name,
-              home.slug
-            ) AS home_team_name,
-            COALESCE(
-              away_name.name,
-              away_name_en.name,
-              away.slug
-            ) AS away_team_name,
-            COALESCE(
-              home_name.short_name,
-              home_name_en.short_name,
-              home.slug
-            ) AS home_team_code,
-            COALESCE(
-              away_name.short_name,
-              away_name_en.short_name,
-              away.slug
-            ) AS away_team_code,
+            COALESCE(home_name.name, home_name_en.name, home.slug) AS home_team_name,
+            COALESCE(away_name.name, away_name_en.name, away.slug) AS away_team_name,
+            COALESCE(home_name.short_name, home_name_en.short_name, home.slug) AS home_team_code,
+            COALESCE(away_name.short_name, away_name_en.short_name, away.slug) AS away_team_code,
             home.crest_url AS home_team_logo,
             away.crest_url AS away_team_logo,
             m.home_score,
             m.away_score,
             m.match_date::TEXT AS date,
             TO_CHAR(m.kickoff_at AT TIME ZONE 'UTC', 'HH24:MI') AS time,
-            COALESCE(
-              (SELECT vt.name FROM venue_translations vt WHERE vt.venue_id = v.id AND vt.locale = ${locale}),
-              (SELECT vt.name FROM venue_translations vt WHERE vt.venue_id = v.id AND vt.locale = 'en'),
-              v.slug,
-              ''
-            ) AS venue,
-            c.slug AS league_id,
+            COALESCE(venue_name.name, venue_name_en.name, v.slug, '') AS venue,
+            tcs.league_id,
             m.matchday AS match_week,
             m.stage,
             m.group_name,
-            COALESCE(comp_name.name, comp_name_en.name, c.slug) AS competition_name,
+            tcs.competition_name,
             'club'::TEXT AS team_type,
-            m.status::TEXT AS status
+            m.status::TEXT AS status,
+            m.source_metadata->>'source' AS source
           FROM target_competition_season tcs
           JOIN matches m ON m.competition_season_id = tcs.id
           JOIN teams home ON home.id = m.home_team_id
@@ -6655,15 +7184,13 @@ export async function getMatchesByLeagueAndSeasonDb(
           LEFT JOIN team_translations away_name ON away_name.team_id = away.id AND away_name.locale = ${locale}
           LEFT JOIN team_translations home_name_en ON home_name_en.team_id = home.id AND home_name_en.locale = 'en'
           LEFT JOIN team_translations away_name_en ON away_name_en.team_id = away.id AND away_name_en.locale = 'en'
-          JOIN competition_seasons cs ON cs.id = m.competition_season_id
-          JOIN competitions c ON c.id = cs.competition_id
-          LEFT JOIN competition_translations comp_name ON comp_name.competition_id = c.id AND comp_name.locale = ${locale}
-          LEFT JOIN competition_translations comp_name_en ON comp_name_en.competition_id = c.id AND comp_name_en.locale = 'en'
           LEFT JOIN venues v ON v.id = m.venue_id
+          LEFT JOIN venue_translations venue_name ON venue_name.venue_id = v.id AND venue_name.locale = ${locale}
+          LEFT JOIN venue_translations venue_name_en ON venue_name_en.venue_id = v.id AND venue_name_en.locale = 'en'
           ORDER BY m.match_date DESC, m.kickoff_at DESC NULLS LAST
         `;
 
-        return rows.map((row) => mapMatch(row, locale));
+        return dedupeMatchRows(rows, rows.length).map((row) => mapMatch(row, locale));
       },
     });
   }, () => []);
@@ -6846,7 +7373,6 @@ export async function getTopScorersBySeasonDb(
 export async function searchAllDb(
   query: string,
   locale: string = 'en',
-  gender?: 'male' | 'female'
 ): Promise<SearchResult[]> {
   const normalizedQuery = query.trim();
 
@@ -6856,7 +7382,7 @@ export async function searchAllDb(
 
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'search-v4', locale, params: { q: normalizedQuery, gender: gender ?? 'all' } });
+    const key = buildCacheKey({ namespace: 'search-v4', locale, params: { q: normalizedQuery } });
 
     return readThroughCache({
       key,
@@ -6971,17 +7497,7 @@ export async function searchAllDb(
             nationCode: row.nation_code ?? undefined,
             playerPosition: row.player_position ?? undefined,
           }))
-          .filter((row) => {
-            if (!gender) {
-              return true;
-            }
-
-            if (row.type === 'nation') {
-              return true;
-            }
-
-            return row.gender === gender;
-          });
+          ;
 
         return deduplicateClubSearchResults(filteredResults, locale);
       },

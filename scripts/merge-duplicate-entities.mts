@@ -44,18 +44,21 @@ const COMPETITION_MAPPINGS: MergePair[] = [
 const TEAM_MAPPINGS: MergePair[] = [
   { aliasSlug: 'ac-milan-italy', canonicalSlug: 'milan' },
   { aliasSlug: 'arsenal-england', canonicalSlug: 'arsenal' },
+  { aliasSlug: 'as-roma-italy', canonicalSlug: 'roma' },
   { aliasSlug: 'barcelona-spain', canonicalSlug: 'barcelona' },
   { aliasSlug: 'bayer-leverkusen-germany', canonicalSlug: 'leverkusen' },
   { aliasSlug: 'bayern-munich-germany', canonicalSlug: 'bayern' },
   { aliasSlug: 'borussia-dortmund-germany', canonicalSlug: 'dortmund' },
   { aliasSlug: 'chelsea-england', canonicalSlug: 'chelsea' },
   { aliasSlug: 'juventus-italy', canonicalSlug: 'juventus' },
+  { aliasSlug: 'krc-genk', canonicalSlug: 'genk' },
   { aliasSlug: 'liverpool-england', canonicalSlug: 'liverpool' },
   { aliasSlug: 'manchester-city-england', canonicalSlug: 'mancity' },
   { aliasSlug: 'napoli-italy', canonicalSlug: 'napoli' },
   { aliasSlug: 'paris-saint-germain-france', canonicalSlug: 'psg' },
   { aliasSlug: 'rb-leipzig-germany', canonicalSlug: 'leipzig' },
   { aliasSlug: 'real-madrid-spain', canonicalSlug: 'realmadrid' },
+  { aliasSlug: 'sporting-braga', canonicalSlug: 'sc-braga' },
 ];
 
 function parseArgs(argv: string[]): CliOptions {
@@ -428,9 +431,6 @@ async function mergeTeam(sql: ReturnType<typeof getSql>, pair: MergePair, option
       await tx`DELETE FROM team_translations WHERE team_id = ${alias.id}`;
       await tx`UPDATE teams SET slug = ${getArchivedTeamSlug(alias.id)}, is_active = FALSE, updated_at = NOW() WHERE id = ${alias.id}`;
     } else {
-      await tx`UPDATE match_events SET possession_team_id = ${canonical.id} WHERE possession_team_id = ${alias.id}`;
-      await tx`UPDATE match_events SET team_id = ${canonical.id} WHERE team_id = ${alias.id}`;
-      await tx`UPDATE match_event_freeze_frames SET team_id = ${canonical.id} WHERE team_id = ${alias.id}`;
       await tx`UPDATE match_lineups SET team_id = ${canonical.id} WHERE team_id = ${alias.id}`;
       await tx`UPDATE match_stats SET team_id = ${canonical.id} WHERE team_id = ${alias.id}`;
       await tx`DELETE FROM teams WHERE id = ${alias.id}`;
@@ -598,27 +598,6 @@ async function mergeTeamsBulk(sql: DbSql, pairs: MergePair[], options: CliOption
         await tx`UPDATE teams SET slug = ${getArchivedTeamSlug(alias.id)}, is_active = FALSE, updated_at = NOW() WHERE id = ${alias.id}`;
       }
     } else {
-      await tx.unsafe(`
-        UPDATE match_events me
-        SET possession_team_id = mapping.canonical_id
-        FROM (VALUES ${valuesSql}) AS mapping(alias_id, canonical_id)
-        WHERE me.possession_team_id = mapping.alias_id
-      `);
-
-      await tx.unsafe(`
-        UPDATE match_events me
-        SET team_id = mapping.canonical_id
-        FROM (VALUES ${valuesSql}) AS mapping(alias_id, canonical_id)
-        WHERE me.team_id = mapping.alias_id
-      `);
-
-      await tx.unsafe(`
-        UPDATE match_event_freeze_frames ff
-        SET team_id = mapping.canonical_id
-        FROM (VALUES ${valuesSql}) AS mapping(alias_id, canonical_id)
-        WHERE ff.team_id = mapping.alias_id
-      `);
-
       await tx.unsafe(`
         UPDATE match_lineups ml
         SET team_id = mapping.canonical_id

@@ -1,6 +1,9 @@
 // MatchIndex — Domain Models
 // All interfaces are API-ready: replace mock data with fetch calls without changing consumers.
 
+export type CompetitionDataType = 'league' | 'cup' | 'league_cup' | 'super_cup' | 'international';
+export type CompetitionFormatType = 'regular_league' | 'league_phase' | 'group_knockout' | 'knockout';
+
 export interface League {
   id: string;
   name: string;
@@ -9,6 +12,8 @@ export interface League {
   gender?: 'male' | 'female' | 'mixed';
   logo?: string;
   numberOfClubs: number;
+  competitionDataType?: CompetitionDataType;
+  competitionFormat?: CompetitionFormatType;
   competitionType: 'league' | 'tournament';
 }
 
@@ -354,7 +359,7 @@ export interface Match {
   homeScore: number | null;
   awayScore: number | null;
   date: string; // ISO date
-  time: string; // HH:mm
+  time: string | null; // HH:mm
   venue: string;
   attendance?: number;
   referee?: string;
@@ -366,10 +371,20 @@ export interface Match {
   groupName?: string;
   competitionName?: string;
   teamType?: 'club' | 'nation';
-  status: 'scheduled' | 'live' | 'finished';
+  status: MatchStatus;
   events?: MatchEvent[];
   stats?: MatchStats;
 }
+
+export type MatchStatus =
+  | 'scheduled'
+  | 'timed'
+  | 'live'
+  | 'finished'
+  | 'postponed'
+  | 'suspended'
+  | 'cancelled'
+  | 'awarded';
 
 export type MatchAnalysisEventType =
   | 'pass'
@@ -439,6 +454,93 @@ export interface MatchAnalysisData {
   events: MatchAnalysisEvent[];
 }
 
+export type MatchEventArtifactType = 'analysis_detail' | 'freeze_frames' | 'visible_areas' | 'raw_event_bundle';
+
+export type MatchEventArtifactFormat = 'json.gz';
+
+export interface MatchEventArtifact {
+  matchId: string;
+  matchDate: string;
+  artifactType: MatchEventArtifactType;
+  format: MatchEventArtifactFormat;
+  storageKey: string;
+  version: number;
+  rowCount: number | null;
+  byteSize: number | null;
+  checksumSha256: string | null;
+  sourceVendor: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface MatchAnalysisArtifactEvent {
+  sourceEventId: string | null;
+  eventIndex: number;
+  minute: number;
+  second: number | null;
+  type: MatchAnalysisEventType;
+  teamId: number;
+  playerId: number | null;
+  secondaryPlayerId: number | null;
+  locationX: number | null;
+  locationY: number | null;
+  endLocationX: number | null;
+  endLocationY: number | null;
+  endLocationZ: number | null;
+  underPressure: boolean;
+  statsbombXg: number | null;
+  detail: string | null;
+  outcome: string | null;
+}
+
+export interface MatchAnalysisArtifactPayload {
+  version: number;
+  matchId: number;
+  artifactType: 'analysis_detail';
+  sourceVendor: string | null;
+  generatedAt: string;
+  events: MatchAnalysisArtifactEvent[];
+}
+
+export interface MatchEventFreezeFramePoint {
+  sourceEventId: string | null;
+  playerId: number | null;
+  teamId: number | null;
+  isTeammate: boolean | null;
+  isActor: boolean | null;
+  isGoalkeeper: boolean | null;
+  locationX: number;
+  locationY: number;
+}
+
+export interface MatchEventFreezeFrameEntry {
+  sourceEventId: string | null;
+  freezeFrames: MatchEventFreezeFramePoint[];
+}
+
+export interface MatchEventFreezeFramesArtifactPayload {
+  version: number;
+  matchId: number;
+  artifactType: 'freeze_frames';
+  sourceVendor: string | null;
+  generatedAt: string;
+  freezeFrames: MatchEventFreezeFrameEntry[];
+}
+
+export interface MatchEventVisibleAreaEntry {
+  sourceEventId: string | null;
+  visibleArea: number[];
+}
+
+export interface MatchEventVisibleAreasArtifactPayload {
+  version: number;
+  matchId: number;
+  artifactType: 'visible_areas';
+  sourceVendor: string | null;
+  generatedAt: string;
+  visibleAreas: MatchEventVisibleAreaEntry[];
+}
+
 export interface MatchStats {
   possession: [number, number]; // [home, away]
   shots: [number, number];
@@ -451,6 +553,8 @@ export interface MatchStats {
   passAccuracy?: [number, number];
   offsides?: [number, number];
   saves?: [number, number];
+  bigChances?: [number, number];
+  bigChancesMissed?: [number, number];
 }
 
 export interface MatchLineup {
@@ -492,6 +596,7 @@ export interface LeagueSeasonEntry {
   seasonId: string;
   seasonLabel: string;
   isCurrent: boolean;
+  competitionFormat?: CompetitionFormatType;
 }
 
 // Utility types for data access

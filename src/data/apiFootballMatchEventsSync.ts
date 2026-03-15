@@ -1,5 +1,7 @@
 import { createHash } from 'node:crypto';
 import postgres, { type JSONValue, type Sql } from 'postgres';
+import type { MatchAnalysisArtifactPayload } from '@/data/types';
+import { persistMatchEventArtifacts } from '@/data/matchEventArtifactWriter';
 import {
   buildApiFootballFixtureEventsPath,
   buildApiFootballFixturesByDatePath,
@@ -78,24 +80,6 @@ interface ApiFootballPreparedEventDraft {
   sourceDetails: Record<string, unknown>;
   sourceEventId: string;
   teamId: number;
-}
-
-interface ApiFootballEventInsertDraft {
-  detail: string | null;
-  event_index: number;
-  event_timestamp: string | null;
-  event_type: ApiFootballPreparedEventDraft['eventType'];
-  is_notable: boolean;
-  match_date: string;
-  match_id: number;
-  minute: number;
-  period: number | null;
-  player_id: number | null;
-  second: number | null;
-  secondary_player_id: number | null;
-  source_details: Record<string, unknown>;
-  source_event_id: string;
-  team_id: number;
 }
 
 interface RawPayloadTarget {
@@ -627,6 +611,7 @@ async function upsertPlayerAlias(sql: Sql, playerSlug: string, alias: string) {
       status = EXCLUDED.status,
       source_type = EXCLUDED.source_type,
       source_ref = EXCLUDED.source_ref
+    WHERE entity_aliases.status <> 'approved'
   `;
 }
 
@@ -883,139 +868,33 @@ function collectMissingPlayerDrafts(
   return [...missing.values()];
 }
 
-function buildEventInsertDrafts(
+function buildArtifactEvents(
   drafts: ApiFootballPreparedEventDraft[],
   playerMappings: Map<string, PlayerMappingRow>,
 ) {
-  return drafts.map<ApiFootballEventInsertDraft>((draft) => ({
-    detail: draft.detail,
-    event_index: draft.eventIndex,
-    event_timestamp: draft.eventTimestamp,
-    event_type: draft.eventType,
-    is_notable: draft.isNotable,
-    match_date: draft.matchDate,
-    match_id: draft.matchId,
+  return drafts.map<MatchAnalysisArtifactPayload['events'][number]>((draft) => ({
+    sourceEventId: draft.sourceEventId,
+    eventIndex: draft.eventIndex,
     minute: draft.minute,
-    period: draft.period,
-    player_id: draft.playerExternalId ? playerMappings.get(draft.playerExternalId)?.entity_id ?? null : null,
     second: draft.second,
-    secondary_player_id: draft.secondaryPlayerExternalId ? playerMappings.get(draft.secondaryPlayerExternalId)?.entity_id ?? null : null,
-    source_details: draft.sourceDetails,
-    source_event_id: draft.sourceEventId,
-    team_id: draft.teamId,
+    type: draft.eventType,
+    teamId: draft.teamId,
+    playerId: draft.playerExternalId ? playerMappings.get(draft.playerExternalId)?.entity_id ?? null : null,
+    secondaryPlayerId: draft.secondaryPlayerExternalId ? playerMappings.get(draft.secondaryPlayerExternalId)?.entity_id ?? null : null,
+    locationX: null,
+    locationY: null,
+    endLocationX: null,
+    endLocationY: null,
+    endLocationZ: null,
+    underPressure: false,
+    statsbombXg: null,
+    detail: draft.detail,
+    outcome: null,
   }));
 }
 
 function toJsonValue(value: unknown) {
   return JSON.parse(JSON.stringify(value)) as JSONValue;
-}
-
-function serializeEventInsertDrafts(drafts: ApiFootballEventInsertDraft[]) {
-  return drafts.map((draft) => ({
-    ...draft,
-    source_details: draft.source_details,
-  }));
-}
-
-async function deleteApiFootballEventsForMatches(sql: Sql, targets: TargetMatchRow[]) {
-  if (targets.length === 0) {
-    return;
-  }
-
-  await sql`
-    WITH input AS (
-      SELECT *
-      FROM jsonb_to_recordset(${sql.json(toJsonValue(targets.map((target) => ({
-        match_id: target.match_id,
-        match_date: target.match_date,
-      }))))}::jsonb) AS item(
-        match_id BIGINT,
-        match_date DATE
-      )
-    )
-    DELETE FROM match_events me
-    USING input
-    WHERE me.match_id = input.match_id
-      AND me.match_date = input.match_date
-      AND COALESCE(me.source_details->>'source', '') = 'api_football'
-  `;
-}
-
-async function upsertMatchEventsBatch(sql: Sql, drafts: ApiFootballEventInsertDraft[]) {
-  if (drafts.length === 0) {
-    return;
-  }
-
-  await sql`
-    WITH input AS (
-      SELECT *
-      FROM jsonb_to_recordset(${sql.json(toJsonValue(serializeEventInsertDrafts(drafts)))}::jsonb) AS item(
-        match_id BIGINT,
-        match_date DATE,
-        source_event_id UUID,
-        event_index INTEGER,
-        event_type match_event_type,
-        period INTEGER,
-        event_timestamp INTERVAL,
-        minute INTEGER,
-        second INTEGER,
-        team_id BIGINT,
-        player_id BIGINT,
-        secondary_player_id BIGINT,
-        is_notable BOOLEAN,
-        detail TEXT,
-        source_details JSONB
-      )
-    )
-    INSERT INTO match_events (
-      match_id,
-      match_date,
-      source_event_id,
-      event_index,
-      event_type,
-      period,
-      event_timestamp,
-      minute,
-      second,
-      team_id,
-      player_id,
-      secondary_player_id,
-      is_notable,
-      detail,
-      source_details
-    )
-    SELECT
-      input.match_id,
-      input.match_date,
-      input.source_event_id,
-      input.event_index,
-      input.event_type,
-      input.period,
-      input.event_timestamp,
-      input.minute,
-      input.second,
-      input.team_id,
-      input.player_id,
-      input.secondary_player_id,
-      input.is_notable,
-      input.detail,
-      input.source_details
-    FROM input
-    ON CONFLICT (source_event_id)
-    DO UPDATE SET
-      event_index = EXCLUDED.event_index,
-      event_type = EXCLUDED.event_type,
-      period = EXCLUDED.period,
-      event_timestamp = EXCLUDED.event_timestamp,
-      minute = EXCLUDED.minute,
-      second = EXCLUDED.second,
-      team_id = EXCLUDED.team_id,
-      player_id = EXCLUDED.player_id,
-      secondary_player_id = EXCLUDED.secondary_player_id,
-      is_notable = EXCLUDED.is_notable,
-      detail = EXCLUDED.detail,
-      source_details = EXCLUDED.source_details
-  `;
 }
 
 export async function syncApiFootballMatchEvents(
@@ -1107,10 +986,36 @@ export async function syncApiFootballMatchEvents(
       playerUpserts = missingPlayers.length;
 
       const playerMappingsAfterUpsert = await loadPlayerMappings(sql, sourceId);
-      const eventInsertDrafts = buildEventInsertDrafts(preparedEventDrafts, playerMappingsAfterUpsert);
+      const draftsByMatch = new Map<string, ApiFootballPreparedEventDraft[]>();
 
-      await deleteApiFootballEventsForMatches(sql, targets);
-      await upsertMatchEventsBatch(sql, eventInsertDrafts);
+      for (const draft of preparedEventDrafts) {
+        const key = `${draft.matchId}:${draft.matchDate}`;
+        const current = draftsByMatch.get(key) ?? [];
+        current.push(draft);
+        draftsByMatch.set(key, current);
+      }
+
+      for (const target of targets) {
+        const events = buildArtifactEvents(
+          draftsByMatch.get(`${target.match_id}:${target.match_date}`) ?? [],
+          playerMappingsAfterUpsert,
+        );
+        const payload: MatchAnalysisArtifactPayload = {
+          version: 1,
+          matchId: target.match_id,
+          artifactType: 'analysis_detail',
+          sourceVendor: 'api_football',
+          generatedAt: new Date().toISOString(),
+          events,
+        };
+
+        await persistMatchEventArtifacts(sql, {
+          matchId: target.match_id,
+          matchDate: target.match_date,
+          sourceVendor: 'api_football',
+          payload,
+        });
+      }
 
       await sql`COMMIT`;
     } catch (error) {

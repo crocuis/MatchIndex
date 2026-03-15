@@ -1,5 +1,11 @@
 import type { JSONValue, Sql } from 'postgres';
 import { open, readFile, rm } from 'node:fs/promises';
+import type {
+  MatchAnalysisArtifactPayload,
+  MatchEventFreezeFramesArtifactPayload,
+  MatchEventVisibleAreasArtifactPayload,
+} from '@/data/types';
+import { persistMatchEventArtifacts } from '@/data/matchEventArtifactWriter';
 import { getSingleConnectionDb, resetDbClient } from '@/lib/db';
 import type {
   StatsBombCompetitionEntry,
@@ -311,6 +317,7 @@ async function upsertEntityAlias(sql: Sql, entityType: AliasEntityType, entityId
       status = EXCLUDED.status,
       source_type = EXCLUDED.source_type,
       source_ref = EXCLUDED.source_ref
+    WHERE entity_aliases.status <> 'approved'
   `;
 }
 
@@ -1175,354 +1182,6 @@ async function upsertMatchLineupsBatch(sql: Sql, drafts: MatchLineupDraft[]) {
   `;
 }
 
-async function upsertMatchEvent(sql: Sql, draft: MatchEventDraft) {
-  await sql`
-    INSERT INTO match_events (
-      match_id,
-      match_date,
-      source_event_id,
-      event_index,
-      event_type,
-      period,
-      event_timestamp,
-      minute,
-      second,
-      possession,
-      possession_team_id,
-      team_id,
-      player_id,
-      secondary_player_id,
-      location_x,
-      location_y,
-      end_location_x,
-      end_location_y,
-      end_location_z,
-      duration_seconds,
-      under_pressure,
-      statsbomb_xg,
-      is_notable,
-      detail,
-      source_details
-    )
-    VALUES (
-      ${draft.matchId},
-      ${draft.matchDate},
-      ${draft.sourceEventId},
-      ${draft.eventIndex},
-      ${draft.eventType},
-      ${draft.period},
-      ${draft.eventTimestamp},
-      ${draft.minute},
-      ${draft.second},
-      ${draft.possession},
-      ${draft.possessionTeamSlug ? sql`(SELECT id FROM teams WHERE slug = ${draft.possessionTeamSlug})` : sql`NULL`},
-      (SELECT id FROM teams WHERE slug = ${draft.teamSlug}),
-      ${draft.playerSlug ? sql`(SELECT id FROM players WHERE slug = ${draft.playerSlug})` : sql`NULL`},
-      ${draft.secondaryPlayerSlug ? sql`(SELECT id FROM players WHERE slug = ${draft.secondaryPlayerSlug})` : sql`NULL`},
-      ${draft.locationX},
-      ${draft.locationY},
-      ${draft.endLocationX},
-      ${draft.endLocationY},
-      ${draft.endLocationZ},
-      ${draft.durationSeconds},
-      ${draft.underPressure},
-      ${draft.statsbombXg},
-      ${draft.isNotable},
-      ${draft.detail},
-      ${JSON.stringify(draft.sourceDetails)}::jsonb
-    )
-    ON CONFLICT (source_event_id)
-    DO UPDATE SET
-      event_index = EXCLUDED.event_index,
-      event_type = EXCLUDED.event_type,
-      period = EXCLUDED.period,
-      event_timestamp = EXCLUDED.event_timestamp,
-      minute = EXCLUDED.minute,
-      second = EXCLUDED.second,
-      possession = EXCLUDED.possession,
-      possession_team_id = EXCLUDED.possession_team_id,
-      team_id = EXCLUDED.team_id,
-      player_id = EXCLUDED.player_id,
-      secondary_player_id = EXCLUDED.secondary_player_id,
-      location_x = EXCLUDED.location_x,
-      location_y = EXCLUDED.location_y,
-      end_location_x = EXCLUDED.end_location_x,
-      end_location_y = EXCLUDED.end_location_y,
-      end_location_z = EXCLUDED.end_location_z,
-      duration_seconds = EXCLUDED.duration_seconds,
-      under_pressure = EXCLUDED.under_pressure,
-      statsbomb_xg = EXCLUDED.statsbomb_xg,
-      is_notable = EXCLUDED.is_notable,
-      detail = EXCLUDED.detail,
-      source_details = EXCLUDED.source_details
-  `;
-}
-
-async function upsertMatchEventsBatch(sql: Sql, drafts: MatchEventDraft[]) {
-  if (drafts.length === 0) {
-    return;
-  }
-
-  await sql`
-    WITH input AS (
-      SELECT *
-      FROM jsonb_to_recordset(${sql.json(toJsonValue(serializeMatchEventDrafts(drafts)))}::jsonb) AS item(
-        match_id BIGINT,
-        match_date DATE,
-        source_event_id UUID,
-        event_index INTEGER,
-        event_type match_event_type,
-        period INTEGER,
-        event_timestamp INTERVAL,
-        minute INTEGER,
-        second INTEGER,
-        possession INTEGER,
-        possession_team_slug TEXT,
-        team_slug TEXT,
-        player_slug TEXT,
-        secondary_player_slug TEXT,
-        location_x DECIMAL,
-        location_y DECIMAL,
-        end_location_x DECIMAL,
-        end_location_y DECIMAL,
-        end_location_z DECIMAL,
-        duration_seconds DECIMAL,
-        under_pressure BOOLEAN,
-        statsbomb_xg DECIMAL,
-        is_notable BOOLEAN,
-        detail TEXT,
-        source_details JSONB
-      )
-    )
-    INSERT INTO match_events (
-      match_id,
-      match_date,
-      source_event_id,
-      event_index,
-      event_type,
-      period,
-      event_timestamp,
-      minute,
-      second,
-      possession,
-      possession_team_id,
-      team_id,
-      player_id,
-      secondary_player_id,
-      location_x,
-      location_y,
-      end_location_x,
-      end_location_y,
-      end_location_z,
-      duration_seconds,
-      under_pressure,
-      statsbomb_xg,
-      is_notable,
-      detail,
-      source_details
-    )
-    SELECT
-      input.match_id,
-      input.match_date,
-      input.source_event_id,
-      input.event_index,
-      input.event_type,
-      input.period,
-      input.event_timestamp,
-      input.minute,
-      input.second,
-      input.possession,
-      possession_team.id,
-      team.id,
-      player.id,
-      secondary_player.id,
-      input.location_x,
-      input.location_y,
-      input.end_location_x,
-      input.end_location_y,
-      input.end_location_z,
-      input.duration_seconds,
-      input.under_pressure,
-      input.statsbomb_xg,
-      input.is_notable,
-      input.detail,
-      input.source_details
-    FROM input
-    JOIN teams team ON team.slug = input.team_slug
-    LEFT JOIN teams possession_team ON possession_team.slug = input.possession_team_slug
-    LEFT JOIN players player ON player.slug = input.player_slug
-    LEFT JOIN players secondary_player ON secondary_player.slug = input.secondary_player_slug
-    ON CONFLICT (source_event_id)
-    DO UPDATE SET
-      event_index = EXCLUDED.event_index,
-      event_type = EXCLUDED.event_type,
-      period = EXCLUDED.period,
-      event_timestamp = EXCLUDED.event_timestamp,
-      minute = EXCLUDED.minute,
-      second = EXCLUDED.second,
-      possession = EXCLUDED.possession,
-      possession_team_id = EXCLUDED.possession_team_id,
-      team_id = EXCLUDED.team_id,
-      player_id = EXCLUDED.player_id,
-      secondary_player_id = EXCLUDED.secondary_player_id,
-      location_x = EXCLUDED.location_x,
-      location_y = EXCLUDED.location_y,
-      end_location_x = EXCLUDED.end_location_x,
-      end_location_y = EXCLUDED.end_location_y,
-      end_location_z = EXCLUDED.end_location_z,
-      duration_seconds = EXCLUDED.duration_seconds,
-      under_pressure = EXCLUDED.under_pressure,
-      statsbomb_xg = EXCLUDED.statsbomb_xg,
-      is_notable = EXCLUDED.is_notable,
-      detail = EXCLUDED.detail,
-      source_details = EXCLUDED.source_details
-  `;
-}
-
-async function upsertMatchEventRelation(sql: Sql, draft: MatchEventRelationDraft) {
-  await sql`
-    INSERT INTO match_event_relations (event_id, related_event_id, relation_kind)
-    VALUES (
-      (SELECT id FROM match_events WHERE source_event_id = ${draft.sourceEventId}),
-      (SELECT id FROM match_events WHERE source_event_id = ${draft.relatedSourceEventId}),
-      ${draft.relationKind}
-    )
-    ON CONFLICT (event_id, related_event_id)
-    DO UPDATE SET relation_kind = EXCLUDED.relation_kind
-  `;
-}
-
-async function upsertMatchEventRelationsBatch(sql: Sql, drafts: MatchEventRelationDraft[]) {
-  if (drafts.length === 0) {
-    return;
-  }
-
-  await sql`
-    WITH input AS (
-      SELECT *
-      FROM jsonb_to_recordset(${sql.json(toJsonValue(serializeMatchEventRelationDrafts(drafts)))}::jsonb) AS item(
-        source_event_id UUID,
-        related_source_event_id UUID,
-        relation_kind TEXT
-      )
-    )
-    INSERT INTO match_event_relations (event_id, related_event_id, relation_kind)
-    SELECT
-      event_row.id,
-      related_event_row.id,
-      input.relation_kind
-    FROM input
-    JOIN match_events event_row ON event_row.source_event_id = input.source_event_id
-    JOIN match_events related_event_row ON related_event_row.source_event_id = input.related_source_event_id
-    ON CONFLICT (event_id, related_event_id)
-    DO UPDATE SET relation_kind = EXCLUDED.relation_kind
-  `;
-}
-
-async function upsertMatchEventFreezeFrame(sql: Sql, draft: MatchEventFreezeFrameDraft) {
-  await sql`
-    INSERT INTO match_event_freeze_frames (
-      event_id,
-      player_id,
-      team_id,
-      is_teammate,
-      is_actor,
-      is_goalkeeper,
-      location_x,
-      location_y
-    )
-    VALUES (
-      (SELECT id FROM match_events WHERE source_event_id = ${draft.sourceEventId}),
-      ${draft.playerSlug ? sql`(SELECT id FROM players WHERE slug = ${draft.playerSlug})` : sql`NULL`},
-      ${draft.teamSlug ? sql`(SELECT id FROM teams WHERE slug = ${draft.teamSlug})` : sql`NULL`},
-      ${draft.isTeammate},
-      ${draft.isActor},
-      ${draft.isGoalkeeper},
-      ${draft.locationX},
-      ${draft.locationY}
-    )
-  `;
-}
-
-async function upsertMatchEventFreezeFramesBatch(sql: Sql, drafts: MatchEventFreezeFrameDraft[]) {
-  if (drafts.length === 0) {
-    return;
-  }
-
-  await sql`
-    WITH input AS (
-      SELECT *
-      FROM jsonb_to_recordset(${sql.json(toJsonValue(serializeMatchEventFreezeFrameDrafts(drafts)))}::jsonb) AS item(
-        source_event_id UUID,
-        player_slug TEXT,
-        team_slug TEXT,
-        is_teammate BOOLEAN,
-        is_actor BOOLEAN,
-        is_goalkeeper BOOLEAN,
-        location_x DECIMAL,
-        location_y DECIMAL
-      )
-    )
-    INSERT INTO match_event_freeze_frames (
-      event_id,
-      player_id,
-      team_id,
-      is_teammate,
-      is_actor,
-      is_goalkeeper,
-      location_x,
-      location_y
-    )
-    SELECT
-      event_row.id,
-      player.id,
-      team.id,
-      input.is_teammate,
-      input.is_actor,
-      input.is_goalkeeper,
-      input.location_x,
-      input.location_y
-    FROM input
-    JOIN match_events event_row ON event_row.source_event_id = input.source_event_id
-    LEFT JOIN players player ON player.slug = input.player_slug
-    LEFT JOIN teams team ON team.slug = input.team_slug
-  `;
-}
-
-async function upsertMatchEventVisibleArea(sql: Sql, draft: MatchEventVisibleAreaDraft) {
-  await sql`
-    INSERT INTO match_event_visible_areas (event_id, visible_area)
-    VALUES (
-      (SELECT id FROM match_events WHERE source_event_id = ${draft.sourceEventId}),
-      ${JSON.stringify(draft.visibleArea)}::jsonb
-    )
-    ON CONFLICT (event_id)
-    DO UPDATE SET visible_area = EXCLUDED.visible_area
-  `;
-}
-
-async function upsertMatchEventVisibleAreasBatch(sql: Sql, drafts: MatchEventVisibleAreaDraft[]) {
-  if (drafts.length === 0) {
-    return;
-  }
-
-  await sql`
-    WITH input AS (
-      SELECT *
-      FROM jsonb_to_recordset(${sql.json(toJsonValue(serializeMatchEventVisibleAreaDrafts(drafts)))}::jsonb) AS item(
-        source_event_id UUID,
-        visible_area JSONB
-      )
-    )
-    INSERT INTO match_event_visible_areas (event_id, visible_area)
-    SELECT event_row.id, input.visible_area
-    FROM input
-    JOIN match_events event_row ON event_row.source_event_id = input.source_event_id
-    ON CONFLICT (event_id)
-    DO UPDATE SET visible_area = EXCLUDED.visible_area
-  `;
-}
-
 async function upsertMatchStats(sql: Sql, draft: MatchStatsDraft) {
   await sql`
     INSERT INTO match_stats (
@@ -1663,6 +1322,135 @@ async function upsertMatchStatsBatch(sql: Sql, drafts: MatchStatsDraft[]) {
   `;
 }
 
+async function loadEntityIdBySlug(sql: Sql, tableName: 'players' | 'teams', slugs: string[]) {
+  if (slugs.length === 0) {
+    return new Map<string, number>();
+  }
+
+  const rows = tableName === 'players'
+    ? await sql<{ id: number; slug: string }[]>`
+        SELECT id, slug
+        FROM players
+        WHERE slug = ANY(${slugs})
+      `
+    : await sql<{ id: number; slug: string }[]>`
+        SELECT id, slug
+        FROM teams
+        WHERE slug = ANY(${slugs})
+      `;
+
+  return new Map(rows.map((row) => [row.slug, row.id]));
+}
+
+async function persistStatsBombArtifacts(sql: Sql, params: {
+  matchId: number;
+  matchDate: string;
+  events: MatchEventDraft[];
+  freezeFrames: MatchEventFreezeFrameDraft[];
+  visibleAreas: MatchEventVisibleAreaDraft[];
+}) {
+  const playerSlugs = Array.from(new Set([
+    ...params.events.flatMap((draft) => [draft.playerSlug, draft.secondaryPlayerSlug].filter((value): value is string => Boolean(value))),
+    ...params.freezeFrames.flatMap((draft) => [draft.playerSlug].filter((value): value is string => Boolean(value))),
+  ]));
+  const teamSlugs = Array.from(new Set([
+    ...params.events.flatMap((draft) => [draft.teamSlug, draft.possessionTeamSlug].filter((value): value is string => Boolean(value))),
+    ...params.freezeFrames.flatMap((draft) => [draft.teamSlug].filter((value): value is string => Boolean(value))),
+  ]));
+  const playerIdBySlug = await loadEntityIdBySlug(sql, 'players', playerSlugs);
+  const teamIdBySlug = await loadEntityIdBySlug(sql, 'teams', teamSlugs);
+
+  const analysisPayload: MatchAnalysisArtifactPayload = {
+    version: 1,
+    matchId: params.matchId,
+    artifactType: 'analysis_detail',
+    sourceVendor: 'statsbomb',
+    generatedAt: new Date().toISOString(),
+    events: params.events.map((draft) => ({
+      sourceEventId: draft.sourceEventId,
+      eventIndex: draft.eventIndex,
+      minute: draft.minute,
+      second: draft.second,
+      type: draft.eventType,
+      teamId: teamIdBySlug.get(draft.teamSlug) ?? 0,
+      playerId: draft.playerSlug ? playerIdBySlug.get(draft.playerSlug) ?? null : null,
+      secondaryPlayerId: draft.secondaryPlayerSlug ? playerIdBySlug.get(draft.secondaryPlayerSlug) ?? null : null,
+      locationX: draft.locationX,
+      locationY: draft.locationY,
+      endLocationX: draft.endLocationX,
+      endLocationY: draft.endLocationY,
+      endLocationZ: draft.endLocationZ,
+      underPressure: draft.underPressure,
+      statsbombXg: draft.statsbombXg,
+      detail: draft.detail,
+      outcome: null,
+    })),
+  };
+
+  await persistMatchEventArtifacts(sql, {
+    matchId: params.matchId,
+    matchDate: params.matchDate,
+    sourceVendor: 'statsbomb',
+    payload: analysisPayload,
+  });
+
+  const freezeFramesPayload: MatchEventFreezeFramesArtifactPayload = {
+    version: 1,
+    matchId: params.matchId,
+    artifactType: 'freeze_frames',
+    sourceVendor: 'statsbomb',
+    generatedAt: new Date().toISOString(),
+    freezeFrames: Array.from(params.freezeFrames.reduce((map, draft) => {
+      const key = draft.sourceEventId;
+      const current = map.get(key) ?? { sourceEventId: draft.sourceEventId, freezeFrames: [] as MatchEventFreezeFramesArtifactPayload['freezeFrames'][number]['freezeFrames'] };
+      current.freezeFrames.push({
+        sourceEventId: draft.sourceEventId,
+        playerId: draft.playerSlug ? playerIdBySlug.get(draft.playerSlug) ?? null : null,
+        teamId: draft.teamSlug ? teamIdBySlug.get(draft.teamSlug) ?? null : null,
+        isTeammate: draft.isTeammate,
+        isActor: draft.isActor,
+        isGoalkeeper: draft.isGoalkeeper,
+        locationX: draft.locationX,
+        locationY: draft.locationY,
+      });
+      map.set(key, current);
+      return map;
+    }, new Map<string, MatchEventFreezeFramesArtifactPayload['freezeFrames'][number]>()).values()),
+  };
+
+  if (freezeFramesPayload.freezeFrames.length > 0) {
+    await persistMatchEventArtifacts(sql, {
+      matchId: params.matchId,
+      matchDate: params.matchDate,
+      sourceVendor: 'statsbomb',
+      payload: freezeFramesPayload,
+    });
+  }
+
+  const visibleAreasPayload: MatchEventVisibleAreasArtifactPayload = {
+    version: 1,
+    matchId: params.matchId,
+    artifactType: 'visible_areas',
+    sourceVendor: 'statsbomb',
+    generatedAt: new Date().toISOString(),
+    visibleAreas: params.visibleAreas.map((draft) => ({
+      sourceEventId: draft.sourceEventId,
+      visibleArea: Array.isArray(draft.visibleArea)
+        ? draft.visibleArea.filter((value): value is number => typeof value === 'number')
+        : [],
+    })),
+  };
+
+  if (visibleAreasPayload.visibleAreas.length > 0) {
+    await persistMatchEventArtifacts(sql, {
+      matchId: params.matchId,
+      matchDate: params.matchDate,
+      sourceVendor: 'statsbomb',
+      payload: visibleAreasPayload,
+    });
+  }
+}
+
 async function persistMatchDetails(sql: Sql, params: {
   players: Map<string, PlayerDraft>;
   lineups: MatchLineupDraft[];
@@ -1683,57 +1471,18 @@ async function persistMatchDetails(sql: Sql, params: {
       await upsertMatchLineupsBatch(sql, chunk);
     }
 
-    for (const chunk of chunkArray(params.events, 1000)) {
-      await upsertMatchEventsBatch(sql, chunk);
-    }
-
     for (const chunk of chunkArray(params.matchStats, 500)) {
       await upsertMatchStatsBatch(sql, chunk);
     }
 
     if (params.events.length > 0) {
-      const materializedSourceEventIds = new Set(params.events.map((event) => event.sourceEventId));
-      const materializedMatchIds = Array.from(new Set(params.events.map((event) => event.matchId)));
-      const persistedRelations = params.relations.filter(
-        (relation) => materializedSourceEventIds.has(relation.sourceEventId) && materializedSourceEventIds.has(relation.relatedSourceEventId)
-      );
-
-      await sql`
-        DELETE FROM match_event_relations
-        WHERE event_id IN (
-          SELECT id
-          FROM match_events
-          WHERE match_id IN (${sql(materializedMatchIds)})
-        )
-      `;
-      await sql`
-        DELETE FROM match_event_freeze_frames
-        WHERE event_id IN (
-          SELECT id
-          FROM match_events
-          WHERE match_id IN (${sql(materializedMatchIds)})
-        )
-      `;
-      await sql`
-        DELETE FROM match_event_visible_areas
-        WHERE event_id IN (
-          SELECT id
-          FROM match_events
-          WHERE match_id IN (${sql(materializedMatchIds)})
-        )
-      `;
-
-      for (const chunk of chunkArray(persistedRelations, 1000)) {
-        await upsertMatchEventRelationsBatch(sql, chunk);
-      }
-
-      for (const chunk of chunkArray(params.freezeFrames, 500)) {
-        await upsertMatchEventFreezeFramesBatch(sql, chunk);
-      }
-
-      for (const chunk of chunkArray(params.visibleAreas, 1000)) {
-        await upsertMatchEventVisibleAreasBatch(sql, chunk);
-      }
+      await persistStatsBombArtifacts(sql, {
+        matchId: params.events[0]!.matchId,
+        matchDate: params.events[0]!.matchDate,
+        events: params.events,
+        freezeFrames: params.freezeFrames,
+        visibleAreas: params.visibleAreas,
+      });
     }
 
     await sql`COMMIT`;

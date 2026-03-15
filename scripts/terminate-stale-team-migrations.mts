@@ -23,7 +23,6 @@ async function main() {
           query ILIKE '%merge-duplicate-entities%'
           OR query ILIKE '%migrate-team-slugs-to-fullname%'
           OR query ILIKE '%fix-atletico-canonical%'
-          OR query ILIKE '%UPDATE match_events me%'
           OR query ILIKE '%UPDATE matches SET home_team_id%'
           OR query ILIKE '%UPDATE teams%' 
         )

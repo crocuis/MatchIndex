@@ -109,9 +109,6 @@ async function main() {
       await sql`UPDATE competition_seasons SET winner_team_id = ${canonicalId}, updated_at = NOW() WHERE winner_team_id = ${aliasId}`;
       await sql`UPDATE matches SET home_team_id = ${canonicalId}, updated_at = NOW() WHERE home_team_id = ${aliasId}`;
       await sql`UPDATE matches SET away_team_id = ${canonicalId}, updated_at = NOW() WHERE away_team_id = ${aliasId}`;
-      await sql`UPDATE match_events SET possession_team_id = ${canonicalId} WHERE possession_team_id = ${aliasId}`;
-      await sql`UPDATE match_events SET team_id = ${canonicalId} WHERE team_id = ${aliasId}`;
-      await sql`UPDATE match_event_freeze_frames SET team_id = ${canonicalId} WHERE team_id = ${aliasId}`;
       await sql`UPDATE match_lineups SET team_id = ${canonicalId} WHERE team_id = ${aliasId}`;
       await sql`UPDATE match_stats SET team_id = ${canonicalId} WHERE team_id = ${aliasId}`;
 
