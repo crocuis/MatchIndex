@@ -1,5 +1,6 @@
 import postgres, { type Sql } from 'postgres';
 import { getApiFootballSourceConfig } from './apiFootball.ts';
+import { normalizePlayerSeasonYears } from './playerSeasonWindow.ts';
 
 interface SourceRow {
   id: number;
@@ -79,14 +80,6 @@ function getDb() {
   });
 }
 
-function normalizeSeasons(input?: number[]) {
-  if (input && input.length > 0) {
-    return [...new Set(input)].sort((a, b) => a - b);
-  }
-
-  return [new Date().getUTCFullYear()];
-}
-
 function normalizeName(value: string) {
   return value
     .normalize('NFKD')
@@ -99,9 +92,9 @@ function normalizeName(value: string) {
 function resolveApiTeamSlug(teamName: string) {
   const normalized = normalizeName(teamName);
   const aliases = new Map<string, string>([
-    ['wolves', 'wolverhampton-wanderers-england'],
-    ['tottenham', 'tottenham-hotspur-england'],
-    ['west ham', 'west-ham-united-england'],
+    ['wolves', 'wolverhampton-wanderers-fc-england'],
+    ['tottenham', 'tottenham-hotspur-fc-england'],
+    ['west ham', 'west-ham-united-fc-england'],
     ['sheffield utd', 'sheffield-united-england'],
     ['alaves', 'deportivo-alaves-spain'],
     ['sevilla', 'sevilla'],
@@ -233,7 +226,7 @@ function buildPlayerIndex(players: PlayerRow[]) {
 export async function backfillApiFootballPlayerMappings(
   options: BackfillApiFootballPlayerMappingsOptions = {},
 ): Promise<BackfillApiFootballPlayerMappingsSummary> {
-  const seasons = normalizeSeasons(options.seasons);
+  const seasons = normalizePlayerSeasonYears(options.seasons);
   const sql = getDb();
 
   try {

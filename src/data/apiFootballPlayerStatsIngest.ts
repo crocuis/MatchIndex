@@ -7,6 +7,7 @@ import {
   parseApiFootballCompetitionTargets,
   type ApiFootballPlayersResponse,
 } from './apiFootball.ts';
+import { normalizePlayerSeasonYears } from './playerSeasonWindow.ts';
 
 interface SourceRow {
   id: number;
@@ -61,14 +62,6 @@ function getIngestDb() {
     idle_timeout: 20,
     prepare: false,
   });
-}
-
-function normalizeSeasons(input?: number[]) {
-  if (input && input.length > 0) {
-    return [...new Set(input)].sort((a, b) => a - b);
-  }
-
-  return [new Date().getUTCFullYear()];
 }
 
 async function ensureApiFootballSource(sql: Sql) {
@@ -236,7 +229,7 @@ export async function ingestApiFootballPlayerStats(
   options: IngestApiFootballPlayerStatsOptions = {},
 ): Promise<IngestApiFootballPlayerStatsSummary> {
   const targets = parseApiFootballCompetitionTargets(options.competitionCodes);
-  const seasons = normalizeSeasons(options.seasons);
+  const seasons = normalizePlayerSeasonYears(options.seasons);
   const plannedEndpoints = targets.flatMap((target) => seasons.map((season) => buildApiFootballPlayersPath(target.leagueId, season, 1)));
 
   if (options.dryRun ?? true) {

@@ -12,7 +12,7 @@ interface EntityLinkProps {
 const typeToPath: Record<EntityType, string> = {
   player: '/players',
   club: '/clubs',
-  league: '/leagues',
+  league: '/competitions',
   nation: '/nations',
 };
 

@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils';
 export interface AnalysisEventPickerOption {
   eventId: string;
   minute: number;
+  stoppageMinute?: number | null;
+  matchSecond?: number | null;
   playerName: string;
   eventType: string;
   detail?: string;
@@ -24,6 +26,10 @@ interface AnalysisEventPickerProps {
 
 function formatEventType(eventType: string) {
   return eventType.replace(/_/g, ' ');
+}
+
+function formatMatchClock(minute: number, stoppageMinute?: number | null) {
+  return stoppageMinute && stoppageMinute > 0 ? `${minute}+${stoppageMinute}'` : `${minute}'`;
 }
 
 export function AnalysisEventPicker({
@@ -75,13 +81,16 @@ export function AnalysisEventPicker({
         <div className="space-y-1">
           <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-text-muted">{label}</div>
           <div className="flex flex-wrap items-center gap-2 text-[13px] text-text-primary">
-            <span className="font-semibold tabular-nums">{selectedOption.minute}&apos;</span>
+            <span className="font-semibold tabular-nums">{formatMatchClock(selectedOption.minute, selectedOption.stoppageMinute)}</span>
             <span className="font-medium">{selectedOption.playerName}</span>
             <span className="rounded border border-border-subtle bg-surface-3 px-1.5 py-0.5 text-[10px] uppercase tracking-wide text-text-secondary">
               {formatEventType(selectedOption.eventType)}
             </span>
             {selectedOption.metaLabel ? (
               <span className="text-[11px] text-text-muted">{selectedOption.metaLabel}</span>
+            ) : null}
+            {selectedOption.matchSecond !== undefined && selectedOption.matchSecond !== null ? (
+              <span className="text-[11px] text-text-muted">T+{selectedOption.matchSecond}s</span>
             ) : null}
           </div>
           {selectedOption.detail ? (
@@ -161,7 +170,7 @@ export function AnalysisEventPicker({
                 )}
               >
                 <div className="flex items-center justify-between gap-2 text-[11px]">
-                  <span className="font-semibold tabular-nums">{option.minute}&apos;</span>
+                  <span className="font-semibold tabular-nums">{formatMatchClock(option.minute, option.stoppageMinute)}</span>
                   <span className="truncate uppercase tracking-wide text-text-muted">{formatEventType(option.eventType)}</span>
                 </div>
                 <div className="mt-1 truncate text-[12px] font-medium">{option.playerName}</div>

@@ -6,8 +6,8 @@
 
 @theme inline {
   /* Typography */
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: 'IBM Plex Sans', 'Segoe UI', 'Noto Sans KR', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', 'Cascadia Code', ui-monospace, monospace;
 
   /* Surface palette — dark layered depth (Navy/Purple tint for FM feel) */
   --color-surface-0: #0b0c10; /* Deepest background */

@@ -15,6 +15,8 @@ import type {
   StatsBombThreeSixtyEntry,
 } from './statsbomb';
 
+const BATCH_SIZE = 500;
+
 type PositionType = 'GK' | 'DEF' | 'MID' | 'FWD';
 type MatchEventType =
   | 'pass'
@@ -1463,8 +1465,59 @@ async function persistMatchDetails(sql: Sql, params: {
   await sql`BEGIN`;
 
   try {
-    for (const player of params.players.values()) {
-      await upsertPlayer(sql, player);
+    const playerList = Array.from(params.players.values());
+    for (let i = 0; i < playerList.length; i += BATCH_SIZE) {
+      const chunk = playerList.slice(i, i + BATCH_SIZE);
+      await sql`
+        INSERT INTO players (slug, country_id, position, is_active, updated_at)
+        SELECT t.slug, c.id, t.position, TRUE, NOW()
+        FROM UNNEST(
+          ${sql.array(chunk.map(p => p.slug))}::text[],
+          ${sql.array(chunk.map(p => p.countryCode))}::text[],
+          ${sql.array(chunk.map(p => p.position))}::text[]
+        ) AS t(slug, country_code, position)
+        LEFT JOIN countries c ON c.code_alpha3 = t.country_code
+        ON CONFLICT (slug)
+        DO UPDATE SET
+          country_id = COALESCE(EXCLUDED.country_id, players.country_id),
+          position = COALESCE(EXCLUDED.position, players.position),
+          is_active = TRUE,
+          updated_at = NOW()
+      `;
+      await sql`
+        INSERT INTO player_translations (player_id, locale, first_name, last_name, known_as)
+        SELECT p.id, 'en', t.first_name, t.last_name, t.known_as
+        FROM UNNEST(
+          ${sql.array(chunk.map(p => p.slug))}::text[],
+          ${sql.array(chunk.map(p => p.firstName))}::text[],
+          ${sql.array(chunk.map(p => p.lastName))}::text[],
+          ${sql.array(chunk.map(p => p.knownAs))}::text[]
+        ) AS t(slug, first_name, last_name, known_as)
+        JOIN players p ON p.slug = t.slug
+        ON CONFLICT (player_id, locale)
+        DO UPDATE SET
+          first_name = EXCLUDED.first_name,
+          last_name = EXCLUDED.last_name,
+          known_as = EXCLUDED.known_as
+      `;
+      await sql`
+        INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+        SELECT 'player', p.id, t.known_as, 'en', 'common', TRUE, 'pending', 'imported', 'statsbomb_open_data'
+        FROM UNNEST(
+          ${sql.array(chunk.map(p => p.slug))}::text[],
+          ${sql.array(chunk.map(p => p.knownAs))}::text[]
+        ) AS t(slug, known_as)
+        JOIN players p ON p.slug = t.slug
+        ON CONFLICT (entity_type, entity_id, alias_normalized)
+        DO UPDATE SET
+          locale = EXCLUDED.locale,
+          alias_kind = EXCLUDED.alias_kind,
+          is_primary = EXCLUDED.is_primary,
+          status = EXCLUDED.status,
+          source_type = EXCLUDED.source_type,
+          source_ref = EXCLUDED.source_ref
+        WHERE entity_aliases.status <> 'approved'
+      `;
     }
 
     for (const chunk of chunkArray(params.lineups, 500)) {

@@ -1,5 +1,10 @@
 import postgres, { type Sql } from 'postgres';
 import { getApiFootballSourceConfig, parseApiFootballCompetitionTargets, type ApiFootballCompetitionTarget } from './apiFootball.ts';
+import { backfillApiFootballPlayerContracts } from './apiFootballPlayerContractsBackfill.ts';
+import { normalizePlayerSeasonYears } from './playerSeasonWindow.ts';
+import { isCompetitionSeasonWriteAllowed, loadCompetitionSeasonPolicies } from './sourceOwnership.ts';
+
+const BATCH_SIZE = 500;
 
 interface SourceRow {
   id: number;
@@ -86,6 +91,7 @@ export interface MaterializeApiFootballPlayerStatsOptions {
   dryRun?: boolean;
   competitionCodes?: string[];
   seasons?: number[];
+  includeContractBackfill?: boolean;
 }
 
 export interface MaterializeApiFootballPlayerStatsSummary {
@@ -97,6 +103,13 @@ export interface MaterializeApiFootballPlayerStatsSummary {
   rowsPlanned: number;
   rowsWritten: number;
   unmatchedExternalPlayerIds: string[];
+  contractBackfill: {
+    enabled: boolean;
+    teamMatchesFound: number;
+    contractRowsPlanned: number;
+    contractRowsWritten: number;
+    unresolvedTeamNames: string[];
+  };
 }
 
 function getMaterializeDb() {
@@ -110,14 +123,6 @@ function getMaterializeDb() {
     idle_timeout: 20,
     prepare: false,
   });
-}
-
-function normalizeSeasons(input?: number[]) {
-  if (input && input.length > 0) {
-    return [...new Set(input)].sort((a, b) => a - b);
-  }
-
-  return [new Date().getUTCFullYear()];
 }
 
 function toNumber(value: unknown, fallback: number = 0) {
@@ -325,64 +330,63 @@ function buildAggregatedStats(
 }
 
 async function upsertPlayerSeasonStats(sql: Sql, rows: AggregatedPlayerSeasonStats[]) {
-  for (const row of rows) {
-    await sql`
-      INSERT INTO player_season_stats (
-        player_id,
-        competition_season_id,
-        appearances,
-        starts,
-        minutes_played,
-        goals,
-        assists,
-        penalty_goals,
-        own_goals,
-        yellow_cards,
-        red_cards,
-        yellow_red_cards,
-        clean_sheets,
-        goals_conceded,
-        saves,
-        avg_rating,
-        updated_at
-      )
-      VALUES (
-        ${row.playerId},
-        ${row.competitionSeasonId},
-        ${row.appearances},
-        ${row.starts},
-        ${row.minutesPlayed},
-        ${row.goals},
-        ${row.assists},
-        ${row.penaltyGoals},
-        ${row.ownGoals},
-        ${row.yellowCards},
-        ${row.redCards},
-        ${row.yellowRedCards},
-        ${row.cleanSheets},
-        ${row.goalsConceded},
-        ${row.saves},
-        ${row.avgRating},
-        NOW()
-      )
-      ON CONFLICT (player_id, competition_season_id)
-      DO UPDATE SET
-        appearances = EXCLUDED.appearances,
-        starts = EXCLUDED.starts,
-        minutes_played = EXCLUDED.minutes_played,
-        goals = EXCLUDED.goals,
-        assists = EXCLUDED.assists,
-        penalty_goals = EXCLUDED.penalty_goals,
-        own_goals = EXCLUDED.own_goals,
-        yellow_cards = EXCLUDED.yellow_cards,
-        red_cards = EXCLUDED.red_cards,
-        yellow_red_cards = EXCLUDED.yellow_red_cards,
-        clean_sheets = EXCLUDED.clean_sheets,
-        goals_conceded = EXCLUDED.goals_conceded,
-        saves = EXCLUDED.saves,
-        avg_rating = EXCLUDED.avg_rating,
-        updated_at = NOW()
-    `;
+  await sql`BEGIN`;
+  try {
+    for (let i = 0; i < rows.length; i += BATCH_SIZE) {
+      const chunk = rows.slice(i, i + BATCH_SIZE);
+      await sql`
+        INSERT INTO player_season_stats (
+          player_id, competition_season_id, appearances, starts, minutes_played,
+          goals, assists, penalty_goals, own_goals, yellow_cards, red_cards,
+          yellow_red_cards, clean_sheets, goals_conceded, saves, avg_rating, updated_at
+        )
+        SELECT
+          t.player_id, t.competition_season_id, t.appearances, t.starts, t.minutes_played,
+          t.goals, t.assists, t.penalty_goals, t.own_goals, t.yellow_cards, t.red_cards,
+          t.yellow_red_cards, t.clean_sheets, t.goals_conceded, t.saves, t.avg_rating, NOW()
+        FROM UNNEST(
+          ${sql.array(chunk.map((r) => r.playerId))}::int[],
+          ${sql.array(chunk.map((r) => r.competitionSeasonId))}::int[],
+          ${sql.array(chunk.map((r) => r.appearances))}::int[],
+          ${sql.array(chunk.map((r) => r.starts))}::int[],
+          ${sql.array(chunk.map((r) => r.minutesPlayed))}::int[],
+          ${sql.array(chunk.map((r) => r.goals))}::int[],
+          ${sql.array(chunk.map((r) => r.assists))}::int[],
+          ${sql.array(chunk.map((r) => r.penaltyGoals))}::int[],
+          ${sql.array(chunk.map((r) => r.ownGoals))}::int[],
+          ${sql.array(chunk.map((r) => r.yellowCards))}::int[],
+          ${sql.array(chunk.map((r) => r.redCards))}::int[],
+          ${sql.array(chunk.map((r) => r.yellowRedCards))}::int[],
+          ${sql.array(chunk.map((r) => r.cleanSheets))}::int[],
+          ${sql.array(chunk.map((r) => r.goalsConceded))}::int[],
+          ${sql.array(chunk.map((r) => r.saves))}::int[],
+          ${sql.array(chunk.map((r) => r.avgRating))}::numeric[]
+        ) AS t(player_id, competition_season_id, appearances, starts, minutes_played,
+               goals, assists, penalty_goals, own_goals, yellow_cards, red_cards,
+               yellow_red_cards, clean_sheets, goals_conceded, saves, avg_rating)
+        ON CONFLICT (player_id, competition_season_id)
+        DO UPDATE SET
+          appearances = EXCLUDED.appearances,
+          starts = EXCLUDED.starts,
+          minutes_played = EXCLUDED.minutes_played,
+          goals = EXCLUDED.goals,
+          assists = EXCLUDED.assists,
+          penalty_goals = EXCLUDED.penalty_goals,
+          own_goals = EXCLUDED.own_goals,
+          yellow_cards = EXCLUDED.yellow_cards,
+          red_cards = EXCLUDED.red_cards,
+          yellow_red_cards = EXCLUDED.yellow_red_cards,
+          clean_sheets = EXCLUDED.clean_sheets,
+          goals_conceded = EXCLUDED.goals_conceded,
+          saves = EXCLUDED.saves,
+          avg_rating = EXCLUDED.avg_rating,
+          updated_at = NOW()
+      `;
+    }
+    await sql`COMMIT`;
+  } catch (error) {
+    await sql`ROLLBACK`;
+    throw error;
   }
 }
 
@@ -394,7 +398,8 @@ export async function materializeApiFootballPlayerStats(
   options: MaterializeApiFootballPlayerStatsOptions = {},
 ): Promise<MaterializeApiFootballPlayerStatsSummary> {
   const targets = parseApiFootballCompetitionTargets(options.competitionCodes);
-  const seasons = normalizeSeasons(options.seasons);
+  const seasons = normalizePlayerSeasonYears(options.seasons);
+  const includeContractBackfill = options.includeContractBackfill ?? true;
   const sql = getMaterializeDb();
 
   try {
@@ -408,6 +413,28 @@ export async function materializeApiFootballPlayerStats(
       playerIdByExternalId,
       new Set(targets.map((target) => String(target.leagueId))),
     );
+    const policies = await loadCompetitionSeasonPolicies(sql, Array.from(new Set(rows.map((row) => row.competitionSeasonId))));
+    const allowedRows = rows.filter((row) => isCompetitionSeasonWriteAllowed(
+      policies.get(row.competitionSeasonId),
+      'playerSeasonStats',
+      'api_football',
+      'sync',
+    ));
+    const contractBackfillSummary = includeContractBackfill
+      ? await backfillApiFootballPlayerContracts({
+          dryRun: options.dryRun ?? true,
+          competitionCodes: targets.map((target) => target.code),
+          seasons,
+        })
+      : {
+          dryRun: options.dryRun ?? true,
+          rawPayloadsRead: 0,
+          playerMappingsFound: 0,
+          teamMatchesFound: 0,
+          contractRowsPlanned: 0,
+          contractRowsWritten: 0,
+          unresolvedTeamNames: [],
+        };
 
     if (options.dryRun ?? true) {
       return {
@@ -416,13 +443,20 @@ export async function materializeApiFootballPlayerStats(
         seasons,
         rawPayloadsRead: rawPayloads.length,
         playerMappingsFound: playerIdByExternalId.size,
-        rowsPlanned: rows.length,
+        rowsPlanned: allowedRows.length,
         rowsWritten: 0,
         unmatchedExternalPlayerIds,
+        contractBackfill: {
+          enabled: includeContractBackfill,
+          teamMatchesFound: contractBackfillSummary.teamMatchesFound,
+          contractRowsPlanned: contractBackfillSummary.contractRowsPlanned,
+          contractRowsWritten: 0,
+          unresolvedTeamNames: contractBackfillSummary.unresolvedTeamNames,
+        },
       };
     }
 
-    await upsertPlayerSeasonStats(sql, rows);
+    await upsertPlayerSeasonStats(sql, allowedRows);
     await refreshDerivedViews(sql);
 
     return {
@@ -431,9 +465,16 @@ export async function materializeApiFootballPlayerStats(
       seasons,
       rawPayloadsRead: rawPayloads.length,
       playerMappingsFound: playerIdByExternalId.size,
-      rowsPlanned: rows.length,
-      rowsWritten: rows.length,
+      rowsPlanned: allowedRows.length,
+      rowsWritten: allowedRows.length,
       unmatchedExternalPlayerIds,
+      contractBackfill: {
+        enabled: includeContractBackfill,
+        teamMatchesFound: contractBackfillSummary.teamMatchesFound,
+        contractRowsPlanned: contractBackfillSummary.contractRowsPlanned,
+        contractRowsWritten: contractBackfillSummary.contractRowsWritten,
+        unresolvedTeamNames: contractBackfillSummary.unresolvedTeamNames,
+      },
     };
   } finally {
     await sql.end({ timeout: 1 }).catch(() => undefined);

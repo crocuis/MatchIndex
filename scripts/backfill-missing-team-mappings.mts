@@ -2,6 +2,8 @@ import postgres from 'postgres';
 
 import { loadProjectEnv } from './load-project-env.mts';
 
+const BATCH_SIZE = 500;
+
 interface CliOptions {
   dryRun: boolean;
   help: boolean;
@@ -15,6 +17,13 @@ interface MissingTeamRow {
   league_slug: string | null;
   league_name: string | null;
   season_label: string | null;
+}
+
+interface MappingDraft {
+  entityId: number;
+  externalId: string;
+  metadata: string;
+  seasonContext: string | null;
 }
 
 const MANUAL_SOURCE_SLUG = 'manual_team_backfill';
@@ -122,9 +131,7 @@ async function loadMissingTeams(sql: postgres.Sql<{}>) {
 }
 
 async function writeMappings(sql: postgres.Sql<{}>, sourceId: number, teams: MissingTeamRow[]) {
-  let inserted = 0;
-
-  for (const team of teams) {
+  const drafts: MappingDraft[] = teams.map((team) => {
     const metadata = {
       source: MANUAL_SOURCE_SLUG,
       strategy: 'canonical-slug-fallback',
@@ -135,7 +142,17 @@ async function writeMappings(sql: postgres.Sql<{}>, sourceId: number, teams: Mis
       leagueName: team.league_name,
     } satisfies Record<string, string | null>;
 
-    const rows = await sql<Array<{ id: number }>>`
+    return {
+      entityId: team.id,
+      externalId: team.slug,
+      metadata: JSON.stringify(metadata),
+      seasonContext: team.season_label,
+    };
+  });
+
+  for (let i = 0; i < drafts.length; i += BATCH_SIZE) {
+    const chunk = drafts.slice(i, i + BATCH_SIZE);
+    await sql`
       INSERT INTO source_entity_mapping (
         entity_type,
         entity_id,
@@ -145,28 +162,30 @@ async function writeMappings(sql: postgres.Sql<{}>, sourceId: number, teams: Mis
         metadata,
         updated_at
       )
-      VALUES (
+      SELECT
         'team',
-        ${team.id},
+        t.entity_id,
         ${sourceId},
-        ${team.slug},
-        ${team.season_label},
-        ${JSON.stringify(metadata)}::jsonb,
+        t.external_id,
+        t.season_context,
+        t.metadata::jsonb,
         NOW()
-      )
+      FROM UNNEST(
+        ${sql.array(chunk.map((draft) => draft.entityId))}::int[],
+        ${sql.array(chunk.map((draft) => draft.externalId))}::text[],
+        ${sql.array(chunk.map((draft) => draft.seasonContext))}::text[],
+        ${sql.array(chunk.map((draft) => draft.metadata))}::text[]
+      ) AS t(entity_id, external_id, season_context, metadata)
       ON CONFLICT (entity_type, source_id, external_id)
       DO UPDATE SET
         entity_id = EXCLUDED.entity_id,
         season_context = COALESCE(EXCLUDED.season_context, source_entity_mapping.season_context),
         metadata = COALESCE(source_entity_mapping.metadata, '{}'::jsonb) || EXCLUDED.metadata,
         updated_at = NOW()
-      RETURNING id
     `;
-
-    inserted += rows.length;
   }
 
-  return inserted;
+  return drafts.length;
 }
 
 async function main() {
@@ -188,9 +207,17 @@ async function main() {
       return;
     }
 
-    const sourceId = await ensureManualSource(sql);
-    const inserted = await writeMappings(sql, sourceId, teams);
-    console.log(JSON.stringify({ dryRun: false, sourceId, inserted, teams: teams.length }, null, 2));
+    await sql`BEGIN`;
+    let sourceId = 0;
+    try {
+      sourceId = await ensureManualSource(sql);
+      const inserted = await writeMappings(sql, sourceId, teams);
+      await sql`COMMIT`;
+      console.log(JSON.stringify({ dryRun: false, sourceId, inserted, teams: teams.length }, null, 2));
+    } catch (error) {
+      await sql`ROLLBACK`;
+      throw error;
+    }
   } finally {
     await sql.end({ timeout: 1 });
   }

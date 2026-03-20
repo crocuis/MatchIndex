@@ -57,6 +57,8 @@ export function DetailTabNav({
             <Link
               key={tab.key}
               href={buildDetailTabHref(basePath, tab.key, defaultTab, query)}
+              prefetch
+              scroll={false}
               className={cn(
                 'whitespace-nowrap rounded-t-md border-b-2 -mb-px px-3 py-2 text-[13px] font-medium transition-colors',
                 isActive

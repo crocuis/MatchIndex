@@ -13,6 +13,8 @@ import {
   type ApiFootballFixtureResponseItem,
 } from './apiFootball.ts';
 
+const BATCH_SIZE = 500;
+
 interface SourceRow {
   id: number;
 }
@@ -980,8 +982,65 @@ export async function syncApiFootballMatchEvents(
         });
       }
 
-      for (const player of missingPlayers) {
-        await upsertPlayer(sql, sourceId, player);
+      for (let i = 0; i < missingPlayers.length; i += BATCH_SIZE) {
+        const chunk = missingPlayers.slice(i, i + BATCH_SIZE);
+        await sql`
+          INSERT INTO players (slug, country_id, position, is_active, updated_at)
+          SELECT t.slug, NULL, NULL, TRUE, NOW()
+          FROM UNNEST(${sql.array(chunk.map(p => p.slug))}::text[]) AS t(slug)
+          ON CONFLICT (slug)
+          DO UPDATE SET
+            is_active = TRUE,
+            updated_at = NOW()
+        `;
+        await sql`
+          INSERT INTO player_translations (player_id, locale, first_name, last_name, known_as)
+          SELECT p.id, 'en', t.first_name, t.last_name, t.known_as
+          FROM UNNEST(
+            ${sql.array(chunk.map(p => p.slug))}::text[],
+            ${sql.array(chunk.map(p => p.firstName))}::text[],
+            ${sql.array(chunk.map(p => p.lastName))}::text[],
+            ${sql.array(chunk.map(p => p.knownAs))}::text[]
+          ) AS t(slug, first_name, last_name, known_as)
+          JOIN players p ON p.slug = t.slug
+          ON CONFLICT (player_id, locale)
+          DO UPDATE SET
+            first_name = EXCLUDED.first_name,
+            last_name = EXCLUDED.last_name,
+            known_as = EXCLUDED.known_as
+        `;
+        await sql`
+          INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+          SELECT 'player', p.id, t.known_as, 'en', 'common', TRUE, 'pending', 'imported', 'api_football'
+          FROM UNNEST(
+            ${sql.array(chunk.map(p => p.slug))}::text[],
+            ${sql.array(chunk.map(p => p.knownAs))}::text[]
+          ) AS t(slug, known_as)
+          JOIN players p ON p.slug = t.slug
+          ON CONFLICT (entity_type, entity_id, alias_normalized)
+          DO UPDATE SET
+            locale = EXCLUDED.locale,
+            alias_kind = EXCLUDED.alias_kind,
+            is_primary = EXCLUDED.is_primary,
+            status = EXCLUDED.status,
+            source_type = EXCLUDED.source_type,
+            source_ref = EXCLUDED.source_ref
+          WHERE entity_aliases.status <> 'approved'
+        `;
+        await sql`
+          INSERT INTO source_entity_mapping (entity_type, entity_id, source_id, external_id, external_code, season_context, metadata, updated_at)
+          SELECT 'player', p.id, ${sourceId}, t.external_id, NULL, NULL, ${JSON.stringify({ source: 'api_football' })}::jsonb, NOW()
+          FROM UNNEST(
+            ${sql.array(chunk.map(p => p.slug))}::text[],
+            ${sql.array(chunk.map(p => p.externalId))}::text[]
+          ) AS t(slug, external_id)
+          JOIN players p ON p.slug = t.slug
+          ON CONFLICT (entity_type, source_id, external_id)
+          DO UPDATE SET
+            entity_id = EXCLUDED.entity_id,
+            metadata = EXCLUDED.metadata,
+            updated_at = NOW()
+        `;
       }
       playerUpserts = missingPlayers.length;
 

@@ -10,6 +10,7 @@ interface CliOptions {
   outputPath?: string;
   playerSlug?: string;
   seasonSlug?: string;
+  teamSlug?: string;
 }
 
 interface TargetRow {
@@ -47,6 +48,12 @@ interface FbrefMappingEntry {
   sourceUrl: string;
 }
 
+interface StoredPlayerMappingRow {
+  external_id: string;
+  player_slug: string;
+  source_url: string | null;
+}
+
 function parsePositiveInt(value: string | undefined) {
   if (!value) {
     return undefined;
@@ -80,6 +87,11 @@ function parseArgs(argv: string[]): CliOptions {
       continue;
     }
 
+    if (arg.startsWith('--team=')) {
+      options.teamSlug = arg.slice('--team='.length).trim();
+      continue;
+    }
+
     if (arg.startsWith('--limit=')) {
       options.limit = parsePositiveInt(arg.slice('--limit='.length));
       continue;
@@ -99,6 +111,7 @@ function printHelp() {
 Options:
   --competition=<slug>  Internal competition slug (e.g. premier-league)
   --season=<slug>       Internal season slug (e.g. 2025-2026)
+  --team=<slug>         Restrict export to one internal team slug
   --player=<slug>       Restrict export to one player slug
   --limit=<n>           Limit exported targets
   --output=<path>       Write JSON to a file instead of stdout
@@ -152,18 +165,41 @@ function collectNames(values: Array<string | null | undefined>) {
   return Array.from(new Set(values.map((value) => value?.trim()).filter((value): value is string => Boolean(value))));
 }
 
-async function loadTransfermarktMappings() {
+async function loadTransfermarktMappings(sql: ReturnType<typeof postgres>) {
+  const rows = await sql<StoredPlayerMappingRow[]>`
+    SELECT DISTINCT ON (p.slug)
+      sem.external_id,
+      p.slug AS player_slug,
+      sem.metadata->>'sourceUrl' AS source_url
+    FROM source_entity_mapping sem
+    JOIN data_sources ds ON ds.id = sem.source_id
+    JOIN players p ON p.id = sem.entity_id
+    WHERE sem.entity_type = 'player'
+      AND ds.slug = 'transfermarkt'
+    ORDER BY p.slug, sem.updated_at DESC NULLS LAST, sem.id DESC
+  `;
+
+  const mapping = new Map<string, string>();
+  for (const row of rows) {
+    const sourceUrl = row.source_url?.trim() || (row.external_id ? `https://www.transfermarkt.com/-/profil/spieler/${row.external_id}` : null);
+    if (row.player_slug?.trim() && sourceUrl) {
+      mapping.set(row.player_slug.trim(), sourceUrl);
+    }
+  }
+
   try {
     const raw = await readFile(resolveMappingsPath(), 'utf8');
     const payload = JSON.parse(raw) as TransfermarktMappingEntry[];
-    return new Map(
-      payload
-        .filter((entry) => entry.playerSlug?.trim() && entry.sourceUrl?.trim())
-        .map((entry) => [entry.playerSlug.trim(), entry.sourceUrl.trim()])
-    );
+    for (const entry of payload) {
+      if (entry.playerSlug?.trim() && entry.sourceUrl?.trim() && !mapping.has(entry.playerSlug.trim())) {
+        mapping.set(entry.playerSlug.trim(), entry.sourceUrl.trim());
+      }
+    }
   } catch {
-    return new Map<string, string>();
+    return mapping;
   }
+
+  return mapping;
 }
 
 async function loadFbrefMappings() {
@@ -180,7 +216,7 @@ async function loadFbrefMappings() {
   }
 }
 
-async function loadTargets(sql: ReturnType<typeof postgres>, options: Required<Pick<CliOptions, 'competitionSlug' | 'seasonSlug'>> & Pick<CliOptions, 'limit' | 'playerSlug'>) {
+async function loadTargets(sql: ReturnType<typeof postgres>, options: Required<Pick<CliOptions, 'competitionSlug' | 'seasonSlug'>> & Pick<CliOptions, 'limit' | 'playerSlug' | 'teamSlug'>) {
   const rows = await sql<TargetRow[]>`
     SELECT
       pc.id AS contract_id,
@@ -203,15 +239,67 @@ async function loadTargets(sql: ReturnType<typeof postgres>, options: Required<P
     WHERE c.slug = ${options.competitionSlug}
       AND s.slug = ${options.seasonSlug}
       AND pc.left_date IS NULL
+      AND (${options.teamSlug ?? null}::text IS NULL OR t.slug = ${options.teamSlug ?? null})
       AND (${options.playerSlug ?? null}::text IS NULL OR p.slug = ${options.playerSlug ?? null})
     ORDER BY pt.known_as ASC
     LIMIT ${options.limit ?? 10000}
   `;
 
-  const sourceUrlByPlayerSlug = await loadTransfermarktMappings();
+  const fallbackRows = rows.length > 0
+    ? rows
+    : await sql<TargetRow[]>`
+        WITH target_season AS (
+          SELECT start_date, end_date
+          FROM seasons
+          WHERE slug = ${options.seasonSlug}
+          LIMIT 1
+        ), latest_team_contracts AS (
+          SELECT DISTINCT ON (pc.player_id)
+            pc.id AS contract_id,
+            pc.competition_season_id,
+            c.slug AS competition_slug,
+            p.slug AS player_slug,
+            pt.known_as,
+            CONCAT_WS(' ', pt.first_name, pt.last_name) AS full_name,
+            t.slug AS team_slug,
+            tt.name AS team_name,
+            tt.short_name,
+            COALESCE(pc.left_date, pc.contract_end_date, pc.joined_date, s.end_date, s.start_date) AS recency_date
+          FROM player_contracts pc
+          CROSS JOIN target_season target
+          JOIN players p ON p.id = pc.player_id
+          JOIN player_translations pt ON pt.player_id = p.id AND pt.locale = 'en'
+          JOIN teams t ON t.id = pc.team_id
+          JOIN team_translations tt ON tt.team_id = t.id AND tt.locale = 'en'
+          JOIN competition_seasons cs ON cs.id = pc.competition_season_id
+          JOIN competitions c ON c.id = cs.competition_id
+          JOIN seasons s ON s.id = cs.season_id
+          WHERE pc.left_date IS NULL
+            AND (${options.teamSlug ?? null}::text IS NULL OR t.slug = ${options.teamSlug ?? null})
+            AND (${options.playerSlug ?? null}::text IS NULL OR p.slug = ${options.playerSlug ?? null})
+            AND COALESCE(pc.left_date, pc.contract_end_date, pc.joined_date, s.end_date, s.start_date) IS NOT NULL
+            AND COALESCE(pc.left_date, pc.contract_end_date, pc.joined_date, s.end_date, s.start_date) >= target.start_date - INTERVAL '18 months'
+          ORDER BY pc.player_id, recency_date DESC NULLS LAST, pc.joined_date DESC NULLS LAST, pc.id DESC
+        )
+        SELECT
+          contract_id,
+          competition_season_id,
+          competition_slug,
+          player_slug,
+          known_as,
+          full_name,
+          team_slug,
+          team_name,
+          short_name
+        FROM latest_team_contracts
+        ORDER BY known_as ASC
+        LIMIT ${options.limit ?? 10000}
+      `;
+
+  const sourceUrlByPlayerSlug = await loadTransfermarktMappings(sql);
   const fbrefUrlByPlayerSlug = await loadFbrefMappings();
 
-  return rows.map<ExportTarget>((row) => ({
+  return fallbackRows.map<ExportTarget>((row) => ({
     competitionSeasonId: row.competition_season_id,
     contractId: row.contract_id,
     fbrefUrl: fbrefUrlByPlayerSlug.get(row.player_slug),
@@ -242,15 +330,17 @@ async function main() {
   try {
     const targets = await loadTargets(sql, {
       competitionSlug: options.competitionSlug,
-      limit: options.limit,
-      playerSlug: options.playerSlug,
-      seasonSlug: options.seasonSlug,
-    });
+        limit: options.limit,
+        playerSlug: options.playerSlug,
+        teamSlug: options.teamSlug,
+        seasonSlug: options.seasonSlug,
+      });
 
     const payload = {
       competitionSlug: options.competitionSlug,
       exportedAt: new Date().toISOString(),
       seasonSlug: options.seasonSlug,
+      teamSlug: options.teamSlug ?? null,
       targets,
     };
 

@@ -2,6 +2,15 @@ import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import type { Club, Match } from '@/data/types';
 
+function hasConcreteMatchTime(timeStr?: string | null): timeStr is string {
+  return Boolean(timeStr && timeStr.includes(':'));
+}
+
+function getFixedDate(dateStr: string) {
+  const [year, month, day] = dateStr.split('-').map(Number);
+  return new Date(Date.UTC(year, month - 1, day, 0, 0));
+}
+
 /** Merge Tailwind classes with conflict resolution */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -28,7 +37,7 @@ export function formatDateShort(dateStr: string): string {
 
 function getMatchDate(dateStr: string, timeStr?: string | null, sourceOffsetMinutes: number = 0): Date {
   const [year, month, day] = dateStr.split('-').map(Number);
-  const normalizedTime = timeStr && timeStr.includes(':') ? timeStr : '00:00';
+  const normalizedTime = hasConcreteMatchTime(timeStr) ? timeStr : '00:00';
   const [hour, minute] = normalizedTime.split(':').map(Number);
 
   return new Date(Date.UTC(year, month - 1, day, hour, minute) - (sourceOffsetMinutes * 60 * 1000));
@@ -68,6 +77,10 @@ export function getMatchSourceOffsetMinutes(match: Pick<Match, 'id' | 'venue'>):
 }
 
 export function getMatchDateKeyForTimeZone(dateStr: string, timeStr: string | null | undefined, timeZone: string, sourceOffsetMinutes: number = 0): string {
+  if (!hasConcreteMatchTime(timeStr)) {
+    return dateStr;
+  }
+
   return new Intl.DateTimeFormat('sv-SE', {
     year: 'numeric',
     month: '2-digit',
@@ -77,6 +90,15 @@ export function getMatchDateKeyForTimeZone(dateStr: string, timeStr: string | nu
 }
 
 export function formatMatchDateForTimeZone(dateStr: string, timeStr: string | null | undefined, locale: string, timeZone: string, sourceOffsetMinutes: number = 0): string {
+  if (!hasConcreteMatchTime(timeStr)) {
+    return new Intl.DateTimeFormat(locale, {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      timeZone: 'UTC',
+    }).format(getFixedDate(dateStr));
+  }
+
   return new Intl.DateTimeFormat(locale, {
     day: '2-digit',
     month: 'short',
@@ -86,6 +108,14 @@ export function formatMatchDateForTimeZone(dateStr: string, timeStr: string | nu
 }
 
 export function formatMatchDateShortForTimeZone(dateStr: string, timeStr: string | null | undefined, locale: string, timeZone: string, sourceOffsetMinutes: number = 0): string {
+  if (!hasConcreteMatchTime(timeStr)) {
+    return new Intl.DateTimeFormat(locale, {
+      day: 'numeric',
+      month: 'short',
+      timeZone: 'UTC',
+    }).format(getFixedDate(dateStr));
+  }
+
   return new Intl.DateTimeFormat(locale, {
     day: 'numeric',
     month: 'short',
@@ -94,6 +124,10 @@ export function formatMatchDateShortForTimeZone(dateStr: string, timeStr: string
 }
 
 export function formatMatchTimeForTimeZone(dateStr: string, timeStr: string | null | undefined, locale: string, timeZone: string, sourceOffsetMinutes: number = 0): string {
+  if (!hasConcreteMatchTime(timeStr)) {
+    return '--:--';
+  }
+
   return new Intl.DateTimeFormat(locale, {
     hour: '2-digit',
     minute: '2-digit',
@@ -103,6 +137,15 @@ export function formatMatchTimeForTimeZone(dateStr: string, timeStr: string | nu
 }
 
 export function formatMatchDateLabelForTimeZone(dateStr: string, timeStr: string | null | undefined, locale: string, timeZone: string, sourceOffsetMinutes: number = 0): string {
+  if (!hasConcreteMatchTime(timeStr)) {
+    return new Intl.DateTimeFormat(locale, {
+      month: 'short',
+      day: 'numeric',
+      weekday: 'short',
+      timeZone: 'UTC',
+    }).format(getFixedDate(dateStr));
+  }
+
   return new Intl.DateTimeFormat(locale, {
     month: 'short',
     day: 'numeric',
@@ -112,6 +155,10 @@ export function formatMatchDateLabelForTimeZone(dateStr: string, timeStr: string
 }
 
 export function formatMatchDateTimeForTimeZone(dateStr: string, timeStr: string | null | undefined, locale: string, timeZone: string, sourceOffsetMinutes: number = 0): string {
+  if (!hasConcreteMatchTime(timeStr)) {
+    return formatMatchDateForTimeZone(dateStr, timeStr, locale, timeZone, sourceOffsetMinutes);
+  }
+
   return new Intl.DateTimeFormat(locale, {
     year: 'numeric',
     month: 'short',
@@ -129,6 +176,28 @@ export function formatNumber(num: number): string {
 
 export function getClubDisplayName(club: Pick<Club, 'name' | 'koreanName'>, locale: string): string {
   return locale === 'ko' ? club.koreanName : club.name;
+}
+
+export function getCanonicalSeasonSlug(value: string): string {
+  const trimmed = value.trim();
+  const singleYearMatch = trimmed.match(/^(\d{4})$/);
+
+  if (singleYearMatch) {
+    return singleYearMatch[1];
+  }
+
+  const seasonRangeMatch = trimmed.match(/^(\d{4})[-/](\d{2}|\d{4})$/);
+  if (!seasonRangeMatch) {
+    return trimmed;
+  }
+
+  const startYear = seasonRangeMatch[1];
+  const endYear = seasonRangeMatch[2].slice(-2);
+  return `${startYear}/${endYear}`;
+}
+
+export function seasonSlugMatches(left: string, right: string): boolean {
+  return getCanonicalSeasonSlug(left) === getCanonicalSeasonSlug(right);
 }
 
 /** Calculate age from date of birth string */
@@ -178,8 +247,17 @@ export function getMatchStatusDisplay(status: string): { text: string; className
       return { text: 'FT', className: 'text-zinc-400' };
     case 'live':
       return { text: 'LIVE', className: 'text-red-400 animate-pulse' };
+    case 'timed':
     case 'scheduled':
       return { text: 'SCH', className: 'text-zinc-500' };
+    case 'postponed':
+      return { text: 'PPD', className: 'text-amber-400' };
+    case 'suspended':
+      return { text: 'SUSP', className: 'text-amber-400' };
+    case 'cancelled':
+      return { text: 'CANC', className: 'text-zinc-300' };
+    case 'awarded':
+      return { text: 'AWD', className: 'text-zinc-300' };
     default:
       return { text: status, className: 'text-zinc-500' };
   }

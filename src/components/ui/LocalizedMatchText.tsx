@@ -1,7 +1,7 @@
 'use client';
 
-import { useSyncExternalStore } from 'react';
 import { useLocale } from 'next-intl';
+import { useBrowserTimeZone } from '@/components/providers/BrowserTimeZoneProvider';
 import {
   formatMatchDateForTimeZone,
   formatMatchDateTimeForTimeZone,
@@ -23,11 +23,7 @@ interface LocalizedMatchTextProps {
 
 export function LocalizedMatchText({ matchId, venue = '', date, time, variant, displayMode = 'browser', className }: LocalizedMatchTextProps) {
   const locale = useLocale();
-  const timeZone = useSyncExternalStore(
-    () => () => {},
-    () => Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
-    () => 'UTC'
-  );
+  const timeZone = useBrowserTimeZone();
   const sourceOffsetMinutes = displayMode === 'browser' ? getMatchSourceOffsetMinutes({ id: matchId ?? '', venue }) : 0;
   const targetTimeZone = displayMode === 'browser' ? timeZone : 'UTC';
 

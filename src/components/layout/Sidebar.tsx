@@ -12,7 +12,7 @@ const navLabelKeys: Record<string, string> = {
   'World Cup': 'worldCup',
   Results: 'results',
   Search: 'search',
-  Leagues: 'leagues',
+  Competitions: 'competitions',
   Clubs: 'clubs',
   Players: 'players',
   Nations: 'nations',
@@ -62,7 +62,7 @@ export function Sidebar({ appVersion, hasDatabase }: SidebarProps) {
                   {isActive && (
                     <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-accent-magenta to-accent-violet" />
                   )}
-                  <item.icon className={cn("h-4 w-4 shrink-0", isActive ? "text-accent-magenta" : "text-text-muted")} />
+                  <item.icon className={cn('h-4 w-4 shrink-0', isActive ? 'text-accent-magenta' : 'text-text-muted')} />
                   {t(navLabelKeys[item.label] ?? item.label)}
                 </Link>
               );

@@ -87,6 +87,9 @@ export default async function MatchPage({
     if (type === 'yellow_card') return tMatch('eventYellowCard');
     if (type === 'red_card') return tMatch('eventRedCard');
     if (type === 'substitution') return tMatch('eventSubstitution');
+    if (type === 'var_decision') return tMatch('eventVarDecision');
+    if (type === 'period') return tMatch('eventPeriod');
+    if (type === 'injury_time') return tMatch('eventInjuryTime');
     return type.replace('_', ' ');
   }
 
@@ -155,10 +158,14 @@ export default async function MatchPage({
   });
 
   function renderPlayerName(playerId?: string, playerName?: string, className?: string) {
-    const label = playerName ?? tCommon('unknown');
+    const label = playerName?.trim();
+
+    if (!label && !playerId) {
+      return null;
+    }
 
     if (!playerId) {
-      return <span className={className}>{label}</span>;
+      return <span className={className}>{label ?? tCommon('unknown')}</span>;
     }
 
     return (
@@ -166,6 +173,10 @@ export default async function MatchPage({
         <span>{label}</span>
       </EntityLink>
     );
+  }
+
+  function formatEventMinute(minute: number, stoppageMinute?: number | null) {
+    return stoppageMinute && stoppageMinute > 0 ? `${minute}+${stoppageMinute}'` : `${minute}'`;
   }
 
   return (
@@ -267,7 +278,7 @@ export default async function MatchPage({
                       <div className="flex items-center justify-end gap-2 text-[13px] font-medium text-text-primary">
                         {specialTag && <span className="text-[10px] uppercase text-amber-400">{specialTag}</span>}
                         {renderPlayerName(event.playerId, event.playerName, 'truncate')}
-                        <span className="tabular-nums text-text-muted">{event.minute}&apos;</span>
+                        <span className="tabular-nums text-text-muted">{formatEventMinute(event.minute, event.stoppageMinute)}</span>
                       </div>
                       {event.assistPlayerId && event.assistPlayerName && (
                         <div className="mt-1 text-[11px] text-text-muted">
@@ -289,7 +300,7 @@ export default async function MatchPage({
                       className="rounded border border-border bg-surface-2/50 px-3 py-2 text-left"
                     >
                       <div className="flex items-center gap-2 text-[13px] font-medium text-text-primary">
-                        <span className="tabular-nums text-text-muted">{event.minute}&apos;</span>
+                        <span className="tabular-nums text-text-muted">{formatEventMinute(event.minute, event.stoppageMinute)}</span>
                         {renderPlayerName(event.playerId, event.playerName, 'truncate')}
                         {specialTag && <span className="text-[10px] uppercase text-amber-400">{specialTag}</span>}
                       </div>
@@ -383,16 +394,19 @@ export default async function MatchPage({
                       key={i}
                       className={cn(
                         'flex items-center gap-3 px-3 py-1.5 rounded',
-                        event.teamId === match.homeTeamId ? 'bg-surface-2' : 'bg-surface-2/50'
+                        !event.teamId ? 'bg-surface-2/70' : event.teamId === match.homeTeamId ? 'bg-surface-2' : 'bg-surface-2/50'
                       )}
                     >
-                      <span className="text-[13px] tabular-nums text-text-muted w-8">{event.minute}&apos;</span>
+                      <span className="text-[13px] tabular-nums text-text-muted w-12">{formatEventMinute(event.minute, event.stoppageMinute)}</span>
                       <span className={cn(
                         'text-[10px] font-bold uppercase w-16',
                         event.type === 'goal' ? 'text-emerald-400' :
                           event.type === 'yellow_card' ? 'text-amber-400' :
                             event.type === 'red_card' ? 'text-red-400' :
-                              'text-text-muted'
+                              event.type === 'var_decision' ? 'text-sky-400' :
+                                event.type === 'period' ? 'text-text-secondary' :
+                                  event.type === 'injury_time' ? 'text-orange-300' :
+                                    'text-text-muted'
                       )}>
                         {getEventTypeLabel(event.type)}
                       </span>
@@ -400,6 +414,9 @@ export default async function MatchPage({
                       {event.detail && (
                         <span className="text-[11px] text-text-muted">({getLocalizedEventDetail(event.detail, event.type)})</span>
                       )}
+                      {event.sourceSubtype ? (
+                        <span className="text-[11px] text-text-muted">[{event.sourceSubtype}]</span>
+                      ) : null}
                     </div>
                   );
                 })}

@@ -49,9 +49,12 @@ next-env.d.ts
 /.venv-tools/
 /scripts/__pycache__/
 /tm-transfer-network.txt
+/.venv
 
 # ad-hoc local screenshots at repo root
 /*.png
 /*.jpg
 /*.jpeg
 /*.webp
+
+artifacts

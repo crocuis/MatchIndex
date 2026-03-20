@@ -1,5 +1,4 @@
 import { leagueLogoMap } from './entityImages.generated.ts';
-import { deriveCompetitionType } from './competitionTypes';
 import type { League } from './types';
 
 export const baseLeagues: League[] = [
@@ -10,7 +9,9 @@ export const baseLeagues: League[] = [
     season: '2025/26',
     logo: 'https://assets.football-logos.cc/logos/england/256x256/english-premier-league.d2af2256.png',
     numberOfClubs: 20,
-    competitionType: deriveCompetitionType('pl', 'Premier League'),
+    competitionDataType: 'league',
+    competitionFormat: 'regular_league',
+    competitionType: 'league',
   },
   {
     id: 'laliga',
@@ -19,7 +20,9 @@ export const baseLeagues: League[] = [
     season: '2025/26',
     logo: 'https://assets.football-logos.cc/logos/spain/256x256/la-liga.f431b6b0.png',
     numberOfClubs: 20,
-    competitionType: deriveCompetitionType('laliga', 'La Liga'),
+    competitionDataType: 'league',
+    competitionFormat: 'regular_league',
+    competitionType: 'league',
   },
   {
     id: 'bundesliga',
@@ -27,7 +30,9 @@ export const baseLeagues: League[] = [
     country: 'Germany',
     season: '2025/26',
     numberOfClubs: 4,
-    competitionType: deriveCompetitionType('bundesliga', 'Bundesliga'),
+    competitionDataType: 'league',
+    competitionFormat: 'regular_league',
+    competitionType: 'league',
   },
   {
     id: 'seriea',
@@ -35,7 +40,9 @@ export const baseLeagues: League[] = [
     country: 'Italy',
     season: '2025/26',
     numberOfClubs: 4,
-    competitionType: deriveCompetitionType('seriea', 'Serie A'),
+    competitionDataType: 'league',
+    competitionFormat: 'regular_league',
+    competitionType: 'league',
   },
   {
     id: 'ligue1',
@@ -43,7 +50,9 @@ export const baseLeagues: League[] = [
     country: 'France',
     season: '2025/26',
     numberOfClubs: 4,
-    competitionType: deriveCompetitionType('ligue1', 'Ligue 1'),
+    competitionDataType: 'league',
+    competitionFormat: 'regular_league',
+    competitionType: 'league',
   },
   {
     id: 'championship',
@@ -51,7 +60,9 @@ export const baseLeagues: League[] = [
     country: 'England',
     season: '2025/26',
     numberOfClubs: 4,
-    competitionType: deriveCompetitionType('championship', 'EFL Championship'),
+    competitionDataType: 'league',
+    competitionFormat: 'regular_league',
+    competitionType: 'league',
   },
   {
     id: 'eredivisie',
@@ -59,7 +70,9 @@ export const baseLeagues: League[] = [
     country: 'Netherlands',
     season: '2025/26',
     numberOfClubs: 4,
-    competitionType: deriveCompetitionType('eredivisie', 'Eredivisie'),
+    competitionDataType: 'league',
+    competitionFormat: 'regular_league',
+    competitionType: 'league',
   },
   {
     id: 'ucl',
@@ -67,7 +80,9 @@ export const baseLeagues: League[] = [
     country: 'Europe',
     season: '2025/26',
     numberOfClubs: 4,
-    competitionType: deriveCompetitionType('ucl', 'UEFA Champions League'),
+    competitionDataType: 'international',
+    competitionFormat: 'league_phase',
+    competitionType: 'tournament',
   },
   {
     id: 'uel',
@@ -75,7 +90,9 @@ export const baseLeagues: League[] = [
     country: 'Europe',
     season: '2025/26',
     numberOfClubs: 4,
-    competitionType: deriveCompetitionType('uel', 'UEFA Europa League'),
+    competitionDataType: 'international',
+    competitionFormat: 'league_phase',
+    competitionType: 'tournament',
   },
   {
     id: 'cwc',
@@ -83,7 +100,9 @@ export const baseLeagues: League[] = [
     country: 'World',
     season: '2025',
     numberOfClubs: 4,
-    competitionType: deriveCompetitionType('cwc', 'FIFA Club World Cup'),
+    competitionDataType: 'international',
+    competitionFormat: 'knockout',
+    competitionType: 'tournament',
   },
 ];
 

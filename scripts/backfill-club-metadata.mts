@@ -1,5 +1,7 @@
 import postgres from 'postgres';
 
+const BATCH_SIZE = 500;
+
 interface BaseClubRecord {
   id: string;
   name: string;
@@ -25,10 +27,33 @@ interface DonorRow extends TeamRow {
 
 interface CountryRow {
   id: number;
+  name: string;
 }
 
 interface VenueRow {
   id: number;
+  name: string;
+  country_id: number | null;
+  capacity: number | null;
+  slug: string;
+}
+
+interface TeamUpdateDraft {
+  countryId: number | null;
+  foundedYear: number | null;
+  teamId: number;
+  venueId: number | null;
+}
+
+interface VenueSeedDraft {
+  capacity: number;
+  countryId: number | null;
+  name: string;
+  slug: string;
+}
+
+interface InsertedVenueRow {
+  inserted: boolean;
 }
 
 function normalizeName(value: string) {
@@ -56,6 +81,124 @@ function slugify(value: string) {
 
 function getBaseClubMetadataKey(club: BaseClubRecord) {
   return [club.country, club.founded, club.stadium, club.stadiumCapacity].join('::');
+}
+
+function lowerKey(value: string) {
+  return value.trim().toLowerCase();
+}
+
+function buildCountryIdByName(countries: CountryRow[]) {
+  return new Map(countries.map((country) => [lowerKey(country.name), country.id]));
+}
+
+function buildVenueByName(venues: VenueRow[]) {
+  return new Map(venues.map((venue) => [lowerKey(venue.name), venue]));
+}
+
+async function loadCountries(sql: ReturnType<typeof postgres>) {
+  return sql<CountryRow[]>`
+    SELECT c.id, ct.name
+    FROM countries c
+    JOIN country_translations ct ON ct.country_id = c.id
+    WHERE ct.locale = 'en'
+  `;
+}
+
+async function loadVenues(sql: ReturnType<typeof postgres>) {
+  return sql<VenueRow[]>`
+    SELECT v.id, v.slug, v.country_id, v.capacity, vt.name
+    FROM venues v
+    JOIN venue_translations vt ON vt.venue_id = v.id
+    WHERE vt.locale = 'en'
+  `;
+}
+
+async function insertVenueSeeds(sql: ReturnType<typeof postgres>, venueSeeds: VenueSeedDraft[]) {
+  let insertedCount = 0;
+
+  for (let i = 0; i < venueSeeds.length; i += BATCH_SIZE) {
+    const chunk = venueSeeds.slice(i, i + BATCH_SIZE);
+    const rows = await sql<InsertedVenueRow[]>`
+      INSERT INTO venues (slug, country_id, capacity, updated_at)
+      SELECT t.slug, t.country_id, t.capacity, NOW()
+      FROM UNNEST(
+        ${sql.array(chunk.map((venue) => venue.slug))}::text[],
+        ${sql.array(chunk.map((venue) => venue.countryId))}::int[],
+        ${sql.array(chunk.map((venue) => venue.capacity))}::int[]
+      ) AS t(slug, country_id, capacity)
+      ON CONFLICT (slug)
+      DO UPDATE SET
+        country_id = COALESCE(venues.country_id, EXCLUDED.country_id),
+        capacity = CASE
+          WHEN venues.capacity IS NULL OR venues.capacity = 0 THEN EXCLUDED.capacity
+          ELSE venues.capacity
+        END,
+        updated_at = NOW()
+      RETURNING (xmax = 0) AS inserted
+    `;
+    insertedCount += rows.filter((row) => row.inserted).length;
+  }
+
+  return insertedCount;
+}
+
+async function upsertVenueTranslations(sql: ReturnType<typeof postgres>, venues: VenueRow[]) {
+  for (let i = 0; i < venues.length; i += BATCH_SIZE) {
+    const chunk = venues.slice(i, i + BATCH_SIZE);
+    await sql`
+      INSERT INTO venue_translations (venue_id, locale, name)
+      SELECT t.venue_id, 'en', t.name
+      FROM UNNEST(
+        ${sql.array(chunk.map((venue) => venue.id))}::int[],
+        ${sql.array(chunk.map((venue) => venue.name))}::text[]
+      ) AS t(venue_id, name)
+      ON CONFLICT (venue_id, locale)
+      DO UPDATE SET name = EXCLUDED.name
+    `;
+  }
+}
+
+async function updateVenuesBatch(sql: ReturnType<typeof postgres>, venues: VenueRow[]) {
+  for (let i = 0; i < venues.length; i += BATCH_SIZE) {
+    const chunk = venues.slice(i, i + BATCH_SIZE);
+    await sql`
+      UPDATE venues v
+      SET
+        country_id = COALESCE(v.country_id, t.country_id),
+        capacity = CASE
+          WHEN v.capacity IS NULL OR v.capacity = 0 THEN t.capacity
+          ELSE v.capacity
+        END,
+        updated_at = NOW()
+      FROM UNNEST(
+        ${sql.array(chunk.map((venue) => venue.id))}::int[],
+        ${sql.array(chunk.map((venue) => venue.country_id))}::int[],
+        ${sql.array(chunk.map((venue) => venue.capacity))}::int[]
+      ) AS t(id, country_id, capacity)
+      WHERE v.id = t.id
+    `;
+  }
+}
+
+async function updateTeamsBatch(sql: ReturnType<typeof postgres>, drafts: TeamUpdateDraft[]) {
+  for (let i = 0; i < drafts.length; i += BATCH_SIZE) {
+    const chunk = drafts.slice(i, i + BATCH_SIZE);
+    await sql`
+      UPDATE teams t
+      SET
+        country_id = COALESCE(t.country_id, d.country_id),
+        founded_year = COALESCE(t.founded_year, d.founded_year),
+        venue_id = COALESCE(t.venue_id, d.venue_id),
+        updated_at = NOW()
+      FROM UNNEST(
+        ${sql.array(chunk.map((draft) => draft.teamId))}::int[],
+        ${sql.array(chunk.map((draft) => draft.countryId))}::int[],
+        ${sql.array(chunk.map((draft) => draft.foundedYear))}::int[],
+        ${sql.array(chunk.map((draft) => draft.venueId))}::int[]
+      ) AS d(team_id, country_id, founded_year, venue_id)
+      WHERE t.id = d.team_id
+    `;
+  }
 }
 
 async function main() {
@@ -104,6 +247,9 @@ async function main() {
         AND t.venue_id IS NOT NULL
         AND v.capacity IS NOT NULL
     `;
+    const countries = await loadCountries(sql);
+    let venueByName = buildVenueByName(await loadVenues(sql));
+    const countryIdByName = buildCountryIdByName(countries);
 
     const donorMap = new Map<string, DonorRow[]>();
     for (const donor of donors) {
@@ -125,114 +271,104 @@ async function main() {
     let updatedFromBaseClub = 0;
     let venuesCreated = 0;
 
+    const donorTeamUpdates: TeamUpdateDraft[] = [];
+    const baseClubAssignments = new Map<number, BaseClubRecord>();
+
+    for (const team of teams) {
+      if (
+        team.country_id !== null
+        && team.founded_year !== null
+        && team.venue_id !== null
+        && team.venue_capacity !== null
+        && team.venue_capacity !== 0
+      ) {
+        continue;
+      }
+
+      const key = normalizeName(team.name);
+      const donorCandidates = (donorMap.get(key) ?? []).filter((donor) => donor.id !== team.id);
+      if (donorCandidates.length === 1) {
+        const donor = donorCandidates[0]!;
+        donorTeamUpdates.push({
+          countryId: donor.country_id,
+          foundedYear: donor.founded_year,
+          teamId: team.id,
+          venueId: donor.venue_id,
+        });
+        continue;
+      }
+
+      const baseClubCandidates = baseClubMap.get(key) ?? [];
+      const uniqueBaseClubCandidates = [...new Map(baseClubCandidates.map((club) => [getBaseClubMetadataKey(club), club])).values()];
+      if (uniqueBaseClubCandidates.length !== 1) {
+        continue;
+      }
+
+      baseClubAssignments.set(team.id, uniqueBaseClubCandidates[0]!);
+    }
+
+    const venueSeedMap = new Map<string, VenueSeedDraft>();
+    for (const baseClub of baseClubAssignments.values()) {
+      const venueNameKey = lowerKey(baseClub.stadium);
+      if (venueByName.has(venueNameKey)) {
+        continue;
+      }
+
+      if (!venueSeedMap.has(venueNameKey)) {
+        venueSeedMap.set(venueNameKey, {
+          capacity: baseClub.stadiumCapacity,
+          countryId: countryIdByName.get(lowerKey(baseClub.country)) ?? null,
+          name: baseClub.stadium,
+          slug: slugify(baseClub.stadium),
+        });
+      }
+    }
+
     await sql`BEGIN`;
     try {
-      for (const team of teams) {
-        if (
-          team.country_id !== null
-          && team.founded_year !== null
-          && team.venue_id !== null
-          && team.venue_capacity !== null
-          && team.venue_capacity !== 0
-        ) {
-          continue;
-        }
+      const venueSeeds = Array.from(venueSeedMap.values());
+      venuesCreated = await insertVenueSeeds(sql, venueSeeds);
 
-        const key = normalizeName(team.name);
-        const donorCandidates = (donorMap.get(key) ?? []).filter((donor) => donor.id !== team.id);
-        if (donorCandidates.length === 1) {
-          const donor = donorCandidates[0];
-          await sql`
-            UPDATE teams
-            SET
-              country_id = COALESCE(country_id, ${donor.country_id}),
-              founded_year = COALESCE(founded_year, ${donor.founded_year}),
-              venue_id = COALESCE(venue_id, ${donor.venue_id}),
-              updated_at = NOW()
-            WHERE id = ${team.id}
-          `;
-          updatedFromDonor += 1;
-          continue;
-        }
-
-        const baseClubCandidates = baseClubMap.get(key) ?? [];
-        const uniqueBaseClubCandidates = [...new Map(baseClubCandidates.map((club) => [getBaseClubMetadataKey(club), club])).values()];
-        if (uniqueBaseClubCandidates.length !== 1) {
-          continue;
-        }
-
-        const baseClub = uniqueBaseClubCandidates[0];
-        const countryRows = await sql<CountryRow[]>`
-          SELECT c.id
-          FROM countries c
-          JOIN country_translations ct ON ct.country_id = c.id
-          WHERE ct.locale = 'en'
-            AND LOWER(ct.name) = LOWER(${baseClub.country})
-          LIMIT 1
-        `;
-        const countryId = countryRows[0]?.id ?? null;
-
-        const venueRows = await sql<VenueRow[]>`
-          SELECT v.id
-          FROM venues v
-          JOIN venue_translations vt ON vt.venue_id = v.id
-          WHERE vt.locale = 'en'
-            AND LOWER(vt.name) = LOWER(${baseClub.stadium})
-          LIMIT 1
-        `;
-
-        let venueId = venueRows[0]?.id ?? null;
-        if (!venueId) {
-          const insertedVenueRows = await sql<VenueRow[]>`
-            INSERT INTO venues (slug, country_id, capacity, updated_at)
-            VALUES (${slugify(baseClub.stadium)}, ${countryId}, ${baseClub.stadiumCapacity}, NOW())
-            ON CONFLICT (slug)
-            DO UPDATE SET
-              country_id = COALESCE(venues.country_id, EXCLUDED.country_id),
-              capacity = COALESCE(venues.capacity, EXCLUDED.capacity),
-              updated_at = NOW()
-            RETURNING id
-          `;
-          venueId = insertedVenueRows[0]?.id ?? null;
-          if (venueId) {
-            venuesCreated += 1;
-          }
-        }
-
-        if (venueId) {
-          await sql`
-            UPDATE venues
-            SET
-              country_id = COALESCE(country_id, ${countryId}),
-              capacity = CASE
-                WHEN capacity IS NULL OR capacity = 0 THEN ${baseClub.stadiumCapacity}
-                ELSE capacity
-              END,
-              updated_at = NOW()
-            WHERE id = ${venueId}
-          `;
-        }
-
-        if (venueId) {
-          await sql`
-            INSERT INTO venue_translations (venue_id, locale, name)
-            VALUES (${venueId}, 'en', ${baseClub.stadium})
-            ON CONFLICT (venue_id, locale)
-            DO UPDATE SET name = EXCLUDED.name
-          `;
-        }
-
-        await sql`
-          UPDATE teams
-          SET
-            country_id = COALESCE(country_id, ${countryId}),
-            founded_year = COALESCE(founded_year, ${baseClub.founded}),
-            venue_id = COALESCE(venue_id, ${venueId}),
-            updated_at = NOW()
-          WHERE id = ${team.id}
-        `;
-        updatedFromBaseClub += 1;
+      if (venueSeeds.length > 0) {
+        venueByName = buildVenueByName(await loadVenues(sql));
       }
+
+      const venueMetadataRows = Array.from(
+        new Map(
+          Array.from(baseClubAssignments.values()).flatMap((baseClub) => {
+            const venue = venueByName.get(lowerKey(baseClub.stadium));
+            if (!venue) {
+              return [] as VenueRow[];
+            }
+
+            return [{
+              id: venue.id,
+              slug: venue.slug,
+              name: baseClub.stadium,
+              country_id: countryIdByName.get(lowerKey(baseClub.country)) ?? null,
+              capacity: baseClub.stadiumCapacity,
+            }];
+          }).map((venue) => [venue.id, venue]),
+        ).values(),
+      );
+
+      await updateVenuesBatch(sql, venueMetadataRows);
+      await upsertVenueTranslations(sql, venueMetadataRows);
+
+      const baseClubTeamUpdates: TeamUpdateDraft[] = [];
+      for (const [teamId, baseClub] of baseClubAssignments.entries()) {
+        baseClubTeamUpdates.push({
+          countryId: countryIdByName.get(lowerKey(baseClub.country)) ?? null,
+          foundedYear: baseClub.founded,
+          teamId,
+          venueId: venueByName.get(lowerKey(baseClub.stadium))?.id ?? null,
+        });
+      }
+
+      await updateTeamsBatch(sql, donorTeamUpdates);
+      await updateTeamsBatch(sql, baseClubTeamUpdates);
+      updatedFromDonor = donorTeamUpdates.length;
+      updatedFromBaseClub = baseClubTeamUpdates.length;
 
       await sql`COMMIT`;
     } catch (error) {

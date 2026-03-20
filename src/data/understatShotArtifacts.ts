@@ -1,5 +1,5 @@
 import postgres from 'postgres';
-import type { MatchAnalysisArtifactPayload } from '@/data/types';
+import type { MatchAnalysisArtifactPayloadV2 } from '@/data/types';
 import { persistMatchEventArtifacts } from '@/data/matchEventArtifactWriter';
 
 interface MatchContextRow {
@@ -163,21 +163,34 @@ export async function collectUnderstatShotArtifacts(
 
     const html = await response.text();
     const shots = extractShotsFromHtml(html);
-    const payload: MatchAnalysisArtifactPayload = {
-      version: 1,
+    const payload: MatchAnalysisArtifactPayloadV2 = {
+      version: 2,
       matchId: Number(options.matchId),
       artifactType: 'analysis_detail',
       sourceVendor: 'understat',
       generatedAt: new Date().toISOString(),
+      coordinateSystem: 'pitch-0to1',
+      normalizedCoordinateSystem: 'pitch-100x100',
       events: shots.map((shot, index) => ({
         sourceEventId: shot.id ?? `understat:${options.matchId}:${index}`,
+        sourceType: 'shot',
+        sourceSubtype: [shot.result, shot.shotType, shot.situation].filter(Boolean).join(' / ') || null,
+        canonicalType: mapShotTypeToEventType(shot.result),
         eventIndex: index,
+        period: null,
         minute: Math.trunc(toNumber(shot.minute) ?? 0),
         second: Math.trunc(toNumber(shot.second) ?? 0),
+        stoppageMinute: null,
+        matchSecond: null,
         type: mapShotTypeToEventType(shot.result),
         teamId: (shot.home_away ?? shot.h_a) === 'a' ? match.away_team_id : match.home_team_id,
         playerId: null,
         secondaryPlayerId: null,
+        sourceLocationX: toNumber(shot.X),
+        sourceLocationY: toNumber(shot.Y),
+        sourceEndLocationX: null,
+        sourceEndLocationY: null,
+        sourceEndLocationZ: null,
         locationX: clampPitchX(toNumber(shot.X)),
         locationY: clampPitchY(toNumber(shot.Y)),
         endLocationX: null,
@@ -185,8 +198,17 @@ export async function collectUnderstatShotArtifacts(
         endLocationZ: null,
         underPressure: false,
         statsbombXg: toNumber(shot.xG),
+        metrics: {
+          xg: toNumber(shot.xG),
+        },
         detail: buildDetail(shot),
         outcome: shot.result ?? null,
+        sourcePayload: {
+          player: shot.player ?? null,
+          result: shot.result ?? null,
+          shotType: shot.shotType ?? null,
+          situation: shot.situation ?? null,
+        },
       })),
     };
 

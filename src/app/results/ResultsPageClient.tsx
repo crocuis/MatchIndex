@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { SectionCard } from '@/components/ui/SectionCard';
 import { ClubBadge } from '@/components/ui/ClubBadge';
+import { HoverPrefetchLink } from '@/components/ui/HoverPrefetchLink';
 import { ListSearchForm } from '@/components/ui/ListSearchForm';
 import { NationFlag } from '@/components/ui/NationFlag';
 import { LocalizedMatchText } from '@/components/ui/LocalizedMatchText';
@@ -20,10 +21,9 @@ interface ResultsPageClientProps {
   results: PaginatedResult<Match>;
   selectedLeague: string;
   query: string;
-  gender: 'men' | 'women';
 }
 
-function buildResultsHref(page: number, league?: string, query?: string, gender: 'men' | 'women' = 'men') {
+function buildResultsHref(page: number, league?: string, query?: string) {
   const params = new URLSearchParams();
 
   if (page > 1) {
@@ -38,19 +38,17 @@ function buildResultsHref(page: number, league?: string, query?: string, gender:
     params.set('q', query);
   }
 
-  params.set('gender', gender);
-
   const queryString = params.toString();
   return queryString ? `/results?${queryString}` : '/results';
 }
 
-export async function ResultsPageClient({ initialLeagues, results, selectedLeague, query, gender }: ResultsPageClientProps) {
+export async function ResultsPageClient({ initialLeagues, results, selectedLeague, query }: ResultsPageClientProps) {
   const [tResults, tCommon] = await Promise.all([
     getTranslations('results'),
     getTranslations('common'),
   ]);
 
-  const hrefForPage = (page: number) => buildResultsHref(page, selectedLeague, query, gender);
+  const hrefForPage = (page: number) => buildResultsHref(page, selectedLeague, query);
 
   return (
     <div>
@@ -65,31 +63,12 @@ export async function ResultsPageClient({ initialLeagues, results, selectedLeagu
         placeholder={tResults('searchPlaceholder')}
         searchLabel={tCommon('search')}
         clearLabel={tCommon('clear')}
-        hiddenValues={{ ...(selectedLeague !== 'all' ? { league: selectedLeague } : {}), gender }}
+        hiddenValues={selectedLeague !== 'all' ? { league: selectedLeague } : undefined}
       />
 
-      <div className="mb-3 flex items-center gap-2">
+      <div className="mb-4 flex flex-wrap gap-1.5">
         <Link
-          href={query ? `/results?gender=men&q=${encodeURIComponent(query)}` : '/results?gender=men'}
-          className={gender === 'men'
-            ? 'rounded-md bg-surface-3 px-2.5 py-1 text-[11px] font-semibold text-text-primary'
-            : 'rounded-md px-2.5 py-1 text-[11px] font-medium text-text-secondary hover:bg-surface-2'}
-        >
-          {tResults('men')}
-        </Link>
-        <Link
-          href={query ? `/results?gender=women&q=${encodeURIComponent(query)}` : '/results?gender=women'}
-          className={gender === 'women'
-            ? 'rounded-md bg-surface-3 px-2.5 py-1 text-[11px] font-semibold text-text-primary'
-            : 'rounded-md px-2.5 py-1 text-[11px] font-medium text-text-secondary hover:bg-surface-2'}
-        >
-          {tResults('women')}
-        </Link>
-      </div>
-
-      <div className="flex gap-1.5 mb-4 flex-wrap">
-        <Link
-          href={buildResultsHref(1, undefined, query, gender)}
+          href={buildResultsHref(1, undefined, query)}
           className={cn(
             'px-3 py-1.5 rounded text-[12px] font-medium transition-colors',
             selectedLeague === 'all'
@@ -102,7 +81,7 @@ export async function ResultsPageClient({ initialLeagues, results, selectedLeagu
         {initialLeagues.map((league) => (
           <Link
             key={league.id}
-            href={buildResultsHref(1, league.id, query, gender)}
+            href={buildResultsHref(1, league.id, query)}
             className={cn(
               'px-3 py-1.5 rounded text-[12px] font-medium transition-colors',
               selectedLeague === league.id
@@ -148,37 +127,37 @@ export async function ResultsPageClient({ initialLeagues, results, selectedLeagu
               return (
                 <tr key={match.id} className="transition-colors hover:bg-surface-2">
                   <td className="p-0 text-[13px] text-text-muted tabular-nums">
-                    <Link href={matchHref} className="block px-3 py-1.5 text-inherit">
+                    <HoverPrefetchLink href={matchHref} className="block px-3 py-1.5 text-inherit">
                       <LocalizedMatchText date={match.date} time={match.time} variant="dateShort" />
-                    </Link>
+                    </HoverPrefetchLink>
                   </td>
                   <td className="p-0 text-[13px] text-right font-medium text-text-primary">
-                    <Link href={matchHref} className="block px-3 py-1.5 text-inherit">
+                    <HoverPrefetchLink href={matchHref} className="block px-3 py-1.5 text-inherit">
                       <div className="flex items-center justify-end gap-2">
                         <span>{match.homeTeamName ?? '-'}</span>
                         {isNationMatch
                           ? <NationFlag nationId={match.homeTeamId} code={match.homeTeamCode ?? '???'} size="sm" />
                           : <ClubBadge shortName={match.homeTeamCode ?? '???'} clubId={match.homeTeamId} logo={match.homeTeamLogo} size="sm" />}
                       </div>
-                    </Link>
+                    </HoverPrefetchLink>
                   </td>
                   <td className="p-0 text-[13px] text-center font-bold tabular-nums">
-                    <Link href={matchHref} className="block px-3 py-1.5 text-inherit">
+                    <HoverPrefetchLink href={matchHref} className="block px-3 py-1.5 text-inherit">
                       {match.homeScore} - {match.awayScore}
-                    </Link>
+                    </HoverPrefetchLink>
                   </td>
                   <td className="p-0 text-[13px] font-medium text-text-primary">
-                    <Link href={matchHref} className="block px-3 py-1.5 text-inherit">
+                    <HoverPrefetchLink href={matchHref} className="block px-3 py-1.5 text-inherit">
                       <div className="flex items-center gap-2">
                         {isNationMatch
                           ? <NationFlag nationId={match.awayTeamId} code={match.awayTeamCode ?? '???'} size="sm" />
                           : <ClubBadge shortName={match.awayTeamCode ?? '???'} clubId={match.awayTeamId} logo={match.awayTeamLogo} size="sm" />}
                         <span>{match.awayTeamName ?? '-'}</span>
                       </div>
-                    </Link>
+                    </HoverPrefetchLink>
                   </td>
-                  <td className="p-0 text-[13px] text-text-secondary"><Link href={matchHref} className="block px-3 py-1.5 text-inherit">{match.competitionName ?? '-'}</Link></td>
-                  <td className="p-0 text-[13px] text-text-muted"><Link href={matchHref} className="block px-3 py-1.5 text-inherit">{match.venue}</Link></td>
+                  <td className="p-0 text-[13px] text-text-secondary"><HoverPrefetchLink href={matchHref} className="block px-3 py-1.5 text-inherit">{match.competitionName ?? '-'}</HoverPrefetchLink></td>
+                  <td className="p-0 text-[13px] text-text-muted"><HoverPrefetchLink href={matchHref} className="block px-3 py-1.5 text-inherit">{match.venue}</HoverPrefetchLink></td>
                 </tr>
               );
             })}

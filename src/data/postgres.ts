@@ -1,11 +1,17 @@
 import 'server-only';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { mapMatchAnalysisArtifactPayload, mapMatchTimelineFromArtifact, type MatchAnalysisArtifactReferences } from '@/data/matchEventArtifacts';
+import {
+  createEmptyMatchAnalysisSummary,
+  mapMatchAnalysisArtifactPayload,
+  mapMatchTimelineFromArtifact,
+  type MatchAnalysisArtifactReferences,
+} from '@/data/matchEventArtifacts';
 import { buildMatchArtifactStorageKey, buildSourceAwareMatchArtifactStorageKey } from '@/lib/artifactStore';
 import { readThroughCache, buildCacheKey, deleteCacheKey } from '@/lib/cache';
 import { getDb } from '@/lib/db';
 import { readJsonGzipArtifact } from '@/lib/artifactStore';
+import { loadCompetitionSeasonPolicies } from './sourceOwnership.ts';
 import type {
   Club,
   ClubListItem,
@@ -13,7 +19,7 @@ import type {
   League,
   LeagueSeasonEntry,
   Match,
-  MatchAnalysisArtifactPayload,
+  MatchAnalysisArtifactPayloadAny,
   MatchEvent,
   MatchEventArtifact,
   MatchEventArtifactFormat,
@@ -310,11 +316,15 @@ interface LeagueSeasonRowDb {
   season_label: string;
   is_current: boolean;
   format_type: League['competitionFormat'] | null;
+  has_finished_matches: boolean;
 }
 
 interface TopScorerDisplayRowDb extends TopScorerRow {
   player_name: string;
   club_short_name: string;
+  player_photo_url: string | null;
+  player_position: Player['position'] | null;
+  club_logo: string | null;
 }
 
 interface TournamentStageTrailRowDb {
@@ -663,7 +673,7 @@ function mapMatchEventArtifact(row: MatchEventArtifactRowDb): MatchEventArtifact
 }
 
 async function getMatchAnalysisArtifactReferences(
-  payload: MatchAnalysisArtifactPayload,
+  payload: MatchAnalysisArtifactPayloadAny,
   locale: string,
 ): Promise<MatchAnalysisArtifactReferences> {
   const sql = getDb();
@@ -811,12 +821,12 @@ function sortNations(nations: Nation[]) {
 }
 
 async function localizeNationMatchNames(matches: Match[], locale: string): Promise<Match[]> {
-  if (locale === 'en' || matches.every((match) => match.teamType !== 'nation')) {
+  if (matches.every((match) => match.teamType !== 'nation')) {
     return matches;
   }
 
   const nations = await getNationsDb(locale);
-  const nationMap = new Map(nations.map((nation) => [nation.id, nation.name]));
+  const nationMap = new Map(nations.map((nation) => [nation.id, nation]));
   const nationCodeMap = new Map(nations.map((nation) => [nation.code.toUpperCase(), nation.name]));
 
   return matches.map((match) => {
@@ -824,10 +834,19 @@ async function localizeNationMatchNames(matches: Match[], locale: string): Promi
       return match;
     }
 
+    const homeNation = nationMap.get(match.homeTeamId);
+    const awayNation = nationMap.get(match.awayTeamId);
+
     return {
       ...match,
-      homeTeamName: nationMap.get(match.homeTeamId) ?? nationCodeMap.get(match.homeTeamCode?.toUpperCase() ?? '') ?? match.homeTeamName,
-      awayTeamName: nationMap.get(match.awayTeamId) ?? nationCodeMap.get(match.awayTeamCode?.toUpperCase() ?? '') ?? match.awayTeamName,
+      homeTeamName: locale === 'en'
+        ? match.homeTeamName
+        : homeNation?.name ?? nationCodeMap.get(match.homeTeamCode?.toUpperCase() ?? '') ?? match.homeTeamName,
+      awayTeamName: locale === 'en'
+        ? match.awayTeamName
+        : awayNation?.name ?? nationCodeMap.get(match.awayTeamCode?.toUpperCase() ?? '') ?? match.awayTeamName,
+      homeTeamCode: homeNation?.code ?? match.homeTeamCode,
+      awayTeamCode: awayNation?.code ?? match.awayTeamCode,
     };
   });
 }
@@ -1493,12 +1512,16 @@ function mapPlayerPhotoSyncTarget(row: PlayerPhotoSyncTargetRow): PlayerPhotoSyn
   };
 }
 
-function normalizeMatchStatus(status: string): Match['status'] {
+function normalizeMatchStatus(status: string, homeScore: number | null, awayScore: number | null): Match['status'] {
   if (status.startsWith('live')) {
     return 'live';
   }
 
   if (status.startsWith('finished')) {
+    return 'finished';
+  }
+
+  if ((status === 'scheduled' || status === 'timed' || status === 'postponed') && homeScore !== null && awayScore !== null) {
     return 'finished';
   }
 
@@ -1658,7 +1681,7 @@ function mapMatch(row: MatchRow, locale: string = 'en'): Match {
     groupName: row.group_name ?? undefined,
     competitionName: row.competition_name,
     teamType: row.team_type,
-    status: normalizeMatchStatus(row.status),
+    status: normalizeMatchStatus(row.status, row.home_score, row.away_score),
   };
 }
 
@@ -3272,7 +3295,7 @@ export async function getPlayerByIdDb(id: string, locale: string = 'en'): Promis
           return undefined;
         }
 
-        let seasonHistoryRows: PlayerSeasonHistoryRowDb[] = await sql<PlayerSeasonHistoryRowDb[]>`
+        const seasonHistoryRows: PlayerSeasonHistoryRowDb[] = await sql<PlayerSeasonHistoryRowDb[]>`
           SELECT
             s.slug AS season_id,
             CASE
@@ -3313,7 +3336,7 @@ export async function getPlayerByIdDb(id: string, locale: string = 'en'): Promis
           ORDER BY s.start_date DESC NULLS LAST, s.end_date DESC NULLS LAST, team.slug ASC
         `;
 
-        let clubHistoryRows: PlayerClubHistoryRowDb[] = await sql<PlayerClubHistoryRowDb[]>`
+        const clubHistoryRows: PlayerClubHistoryRowDb[] = await sql<PlayerClubHistoryRowDb[]>`
           SELECT
             team.slug AS club_id,
             COALESCE(
@@ -3501,12 +3524,17 @@ export async function getPlayerByIdDb(id: string, locale: string = 'en'): Promis
           player.clubId = latestSeason.club_id;
         }
 
+        const localizedNationalTeamRecentMatches = await localizeNationMatchNames(
+          nationalTeamRecentMatchRows.map((row) => mapMatch(row, locale)),
+          locale,
+        );
+
         return {
           ...player,
           marketValueHistory: marketValueRows.map((row) => mapPlayerMarketValueEntry(row, locale)),
           nationalTeam: mapPlayerNationalTeamSummary(
             nationalTeamSummaryRows[0],
-            nationalTeamRecentMatchRows.map((row) => mapMatch(row, locale))
+            localizedNationalTeamRecentMatches,
           ),
           seasonHistory: seasonHistoryRows.map((row) => mapPlayerSeasonHistoryEntry(row, locale)),
           transferHistory: transferRows.map((row) => mapPlayerTransferEntry(row, locale)),
@@ -5078,6 +5106,91 @@ export async function getMatchAnalysisDataFromArtifactDb(
   }, () => null);
 }
 
+export async function getMatchAnalysisArtifactsBundleDb(
+  id: string,
+  matchDate: string,
+  locale: string = 'en',
+): Promise<{
+  analysis: MatchAnalysisData;
+  freezeFrames: MatchEventFreezeFramesArtifactPayload | null;
+  visibleAreas: MatchEventVisibleAreasArtifactPayload | null;
+  artifactSources: {
+    analysis: string | null;
+    freezeFrames: string | null;
+    visibleAreas: string | null;
+  };
+}> {
+  return withFallback(async () => {
+    const key = buildCacheKey({ namespace: 'match-analysis-artifact-bundle-v1', locale, id });
+
+    return readThroughCache({
+      key,
+      tier: 'matchday-warm',
+      policySlug: 'match.read_model',
+      loader: async () => {
+        const payload = await loadOptionalSourceAwareArtifact<MatchAnalysisArtifactPayloadAny>(
+          id,
+          matchDate,
+          'analysis_detail',
+          'analysis-detail.v1.json.gz',
+        );
+
+        if (!payload || String(payload.matchId) !== id) {
+          return {
+            analysis: { events: [], summary: createEmptyMatchAnalysisSummary() },
+            freezeFrames: null,
+            visibleAreas: null,
+            artifactSources: {
+              analysis: null,
+              freezeFrames: null,
+              visibleAreas: null,
+            },
+          };
+        }
+
+        const references = await getMatchAnalysisArtifactReferences(payload, locale);
+        const sourceVendor = payload.sourceVendor ?? undefined;
+        const [freezeFrames, visibleAreas] = await Promise.all([
+          loadOptionalSourceAwareArtifact<MatchEventFreezeFramesArtifactPayload>(
+            id,
+            matchDate,
+            'freeze_frames',
+            'freeze-frames.v1.json.gz',
+            sourceVendor,
+          ),
+          loadOptionalSourceAwareArtifact<MatchEventVisibleAreasArtifactPayload>(
+            id,
+            matchDate,
+            'visible_areas',
+            'visible-areas.v1.json.gz',
+            sourceVendor,
+          ),
+        ]);
+
+        return {
+          analysis: mapMatchAnalysisArtifactPayload(payload, references),
+          freezeFrames: freezeFrames && String(freezeFrames.matchId) === id ? freezeFrames : null,
+          visibleAreas: visibleAreas && String(visibleAreas.matchId) === id ? visibleAreas : null,
+          artifactSources: {
+            analysis: payload.sourceVendor ?? null,
+            freezeFrames: freezeFrames?.sourceVendor ?? null,
+            visibleAreas: visibleAreas?.sourceVendor ?? null,
+          },
+        };
+      },
+    });
+  }, () => ({
+    analysis: { events: [], summary: createEmptyMatchAnalysisSummary() },
+    freezeFrames: null,
+    visibleAreas: null,
+    artifactSources: {
+      analysis: null,
+      freezeFrames: null,
+      visibleAreas: null,
+    },
+  }));
+}
+
 export async function getMatchFreezeFramesArtifactDb(
   id: string,
   matchDate: string,
@@ -5090,11 +5203,17 @@ export async function getMatchFreezeFramesArtifactDb(
       tier: 'matchday-warm',
       policySlug: 'match.read_model',
       loader: async () => {
-        const payload = await loadSourceAwareArtifact<MatchEventFreezeFramesArtifactPayload>(
+        const payload = await loadOptionalSourceAwareArtifact<MatchEventFreezeFramesArtifactPayload>(
           id,
           matchDate,
+          'freeze_frames',
           'freeze-frames.v1.json.gz',
         );
+
+        if (!payload) {
+          return null;
+        }
+
         return String(payload.matchId) === id ? payload : null;
       },
     });
@@ -5113,11 +5232,17 @@ export async function getMatchVisibleAreasArtifactDb(
       tier: 'matchday-warm',
       policySlug: 'match.read_model',
       loader: async () => {
-        const payload = await loadSourceAwareArtifact<MatchEventVisibleAreasArtifactPayload>(
+        const payload = await loadOptionalSourceAwareArtifact<MatchEventVisibleAreasArtifactPayload>(
           id,
           matchDate,
+          'visible_areas',
           'visible-areas.v1.json.gz',
         );
+
+        if (!payload) {
+          return null;
+        }
+
         return String(payload.matchId) === id ? payload : null;
       },
     });
@@ -5126,10 +5251,136 @@ export async function getMatchVisibleAreasArtifactDb(
 
 const MATCH_EVENT_ARTIFACT_SOURCE_PRIORITY = ['statsbomb', 'understat', 'whoscored', 'sofascore', 'api_football', 'fbref'] as const;
 
-async function loadSourceAwareArtifact<T>(matchId: string, matchDate: string, fileName: string): Promise<T> {
-  let lastError: unknown = null;
+async function getMatchEventArtifactRowsDb(
+  matchId: string,
+  artifactType: MatchEventArtifactType,
+  matchDate?: string,
+): Promise<MatchEventArtifactRowDb[]> {
+  if (!/^\d+$/.test(matchId)) {
+    return [];
+  }
 
-  for (const sourceVendor of MATCH_EVENT_ARTIFACT_SOURCE_PRIORITY) {
+  return withFallback(async () => {
+    const sql = getDb();
+
+    if (matchDate) {
+      return sql<MatchEventArtifactRowDb[]>`
+        SELECT
+          mea.match_id::TEXT AS match_id,
+          mea.match_date::TEXT AS match_date,
+          mea.artifact_type,
+          mea.format,
+          mea.storage_key,
+          mea.version,
+          mea.row_count,
+          mea.byte_size,
+          mea.checksum_sha256,
+          mea.source_vendor,
+          mea.created_at::TEXT AS created_at,
+          mea.updated_at::TEXT AS updated_at
+        FROM match_event_artifacts mea
+        WHERE mea.match_id = ${Number(matchId)}
+          AND mea.artifact_type = ${artifactType}
+          AND mea.match_date = ${matchDate}
+        ORDER BY mea.version DESC, mea.updated_at DESC
+      `;
+    }
+
+    return sql<MatchEventArtifactRowDb[]>`
+      SELECT
+        mea.match_id::TEXT AS match_id,
+        mea.match_date::TEXT AS match_date,
+        mea.artifact_type,
+        mea.format,
+        mea.storage_key,
+        mea.version,
+        mea.row_count,
+        mea.byte_size,
+        mea.checksum_sha256,
+        mea.source_vendor,
+        mea.created_at::TEXT AS created_at,
+        mea.updated_at::TEXT AS updated_at
+      FROM match_event_artifacts mea
+      WHERE mea.match_id = ${Number(matchId)}
+        AND mea.artifact_type = ${artifactType}
+      ORDER BY mea.version DESC, mea.updated_at DESC
+    `;
+  }, () => [] as MatchEventArtifactRowDb[]);
+}
+
+function sortArtifactRowsBySourcePriority(
+  rows: MatchEventArtifactRowDb[],
+  preferredSources: string[],
+  preferredSourceVendor?: string,
+) {
+  const sourcePriority = [
+    ...(preferredSourceVendor ? [preferredSourceVendor] : []),
+    ...preferredSources,
+    ...MATCH_EVENT_ARTIFACT_SOURCE_PRIORITY.filter((source) => source !== preferredSourceVendor && !preferredSources.includes(source)),
+  ];
+  const sourceOrder = new Map(sourcePriority.map((source, index) => [source, index]));
+
+  return [...rows].sort((left, right) => {
+    const leftIndex = sourceOrder.get(left.source_vendor ?? '') ?? Number.MAX_SAFE_INTEGER;
+    const rightIndex = sourceOrder.get(right.source_vendor ?? '') ?? Number.MAX_SAFE_INTEGER;
+
+    if (leftIndex !== rightIndex) {
+      return leftIndex - rightIndex;
+    }
+
+    return right.version - left.version;
+  });
+}
+
+async function getPreferredArtifactSources(matchId: string) {
+  return withFallback(async () => {
+    const sql = getDb();
+    const rows = await sql<{ competition_season_id: number }[]>`
+      SELECT competition_season_id
+      FROM matches
+      WHERE id = ${Number(matchId)}
+      LIMIT 1
+    `;
+
+    const competitionSeasonId = rows[0]?.competition_season_id;
+    if (!competitionSeasonId) {
+      return [] as string[];
+    }
+
+    const policies = await loadCompetitionSeasonPolicies(sql, [competitionSeasonId]);
+    return policies.get(competitionSeasonId)?.preferredArtifactSources ?? [];
+  }, () => [] as string[]);
+}
+
+async function loadSourceAwareArtifact<T>(
+  matchId: string,
+  matchDate: string,
+  artifactType: MatchEventArtifactType,
+  fileName: string,
+  preferredSourceVendor?: string,
+): Promise<T> {
+  let lastError: unknown = null;
+  const preferredSources = await getPreferredArtifactSources(matchId);
+  const artifactRows = sortArtifactRowsBySourcePriority(
+    await getMatchEventArtifactRowsDb(matchId, artifactType, matchDate),
+    preferredSources,
+    preferredSourceVendor,
+  );
+  const sourcePriority = [
+    ...(preferredSourceVendor ? [preferredSourceVendor] : []),
+    ...preferredSources,
+    ...MATCH_EVENT_ARTIFACT_SOURCE_PRIORITY.filter((source) => source !== preferredSourceVendor && !preferredSources.includes(source)),
+  ];
+
+  for (const artifactRow of artifactRows) {
+    try {
+      return await readJsonGzipArtifact<T>(artifactRow.storage_key);
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  for (const sourceVendor of sourcePriority) {
     const storageKey = buildSourceAwareMatchArtifactStorageKey(sourceVendor, matchDate, matchId, fileName);
 
     try {
@@ -5148,8 +5399,44 @@ async function loadSourceAwareArtifact<T>(matchId: string, matchDate: string, fi
   throw lastError instanceof Error ? lastError : new Error(`Artifact not found for match ${matchId}`);
 }
 
+function isMissingArtifactError(error: unknown) {
+  if (!(error instanceof Error)) {
+    return false;
+  }
+
+  const nodeError = error as NodeJS.ErrnoException;
+  if (nodeError.code === 'ENOENT') {
+    return true;
+  }
+
+  return error.message.includes('(404)') || error.message.startsWith('Artifact not found for match ');
+}
+
+async function loadOptionalSourceAwareArtifact<T>(
+  matchId: string,
+  matchDate: string,
+  artifactType: MatchEventArtifactType,
+  fileName: string,
+  preferredSourceVendor?: string,
+): Promise<T | null> {
+  try {
+    return await loadSourceAwareArtifact<T>(matchId, matchDate, artifactType, fileName, preferredSourceVendor);
+  } catch (error) {
+    if (isMissingArtifactError(error)) {
+      return null;
+    }
+
+    throw error;
+  }
+}
+
 async function loadAnalysisArtifactPayload(matchId: string, matchDate: string) {
-  return loadSourceAwareArtifact<MatchAnalysisArtifactPayload>(matchId, matchDate, 'analysis-detail.v1.json.gz');
+  return loadSourceAwareArtifact<MatchAnalysisArtifactPayloadAny>(
+    matchId,
+    matchDate,
+    'analysis_detail',
+    'analysis-detail.v1.json.gz',
+  );
 }
 
 export async function getMatchStatsDb(id: string): Promise<MatchStats | undefined> {
@@ -5255,11 +5542,11 @@ export async function getMatchLineupsDb(id: string, locale: string = 'en'): Prom
 export async function getMatchAnalysisDataDb(id: string, matchDate?: string): Promise<MatchAnalysisData> {
   return withFallback(async () => {
     if (!matchDate) {
-      return { events: [] };
-    }
+        return { events: [], summary: createEmptyMatchAnalysisSummary() };
+      }
 
-    return (await getMatchAnalysisDataFromArtifactDb(id, matchDate, 'en')) ?? { events: [] };
-  }, () => ({ events: [] }));
+      return (await getMatchAnalysisDataFromArtifactDb(id, matchDate, 'en')) ?? { events: [], summary: createEmptyMatchAnalysisSummary() };
+    }, () => ({ events: [], summary: createEmptyMatchAnalysisSummary() }));
 }
 
 export async function getMatchesByLeagueDb(leagueId: string, locale: string = 'en'): Promise<Match[]> {
@@ -6229,6 +6516,7 @@ export async function getStandingsByLeagueDb(
             WHERE c.slug = ${leagueId}
             GROUP BY cs.id, s.end_date, s.start_date, s.id
             ORDER BY
+              CASE WHEN COUNT(DISTINCT CASE WHEN m.status IN ('finished', 'finished_aet', 'finished_pen') THEN m.id END) > 0 THEN 0 ELSE 1 END,
               CASE WHEN COUNT(DISTINCT ts.team_id) > 0 OR COUNT(DISTINCT m.id) > 0 THEN 0 ELSE 1 END,
               s.end_date DESC NULLS LAST,
               s.start_date DESC NULLS LAST,
@@ -6319,6 +6607,27 @@ export async function getStandingsByLeagueDb(
               )::INT AS position
             FROM match_results mr
             GROUP BY mr.competition_season_id, mr.team_id
+            UNION ALL
+            SELECT
+              lcs.id AS competition_season_id,
+              ts.team_id,
+              0::INT AS played,
+              0::INT AS won,
+              0::INT AS drawn,
+              0::INT AS lost,
+              0::INT AS goals_for,
+              0::INT AS goals_against,
+              0::INT AS goal_difference,
+              0::INT AS points,
+              ROW_NUMBER() OVER (ORDER BY team.slug ASC)::INT AS position
+            FROM latest_competition_season lcs
+            JOIN team_seasons ts ON ts.competition_season_id = lcs.id
+            JOIN teams team ON team.id = ts.team_id
+            WHERE NOT EXISTS (
+              SELECT 1
+              FROM match_results mr
+              WHERE mr.competition_season_id = lcs.id
+            )
           )
           ${formCtes}
           SELECT
@@ -6574,12 +6883,13 @@ export async function getStandingsByLeagueIdsDb(
             JOIN seasons s ON s.id = cs.season_id
             LEFT JOIN team_seasons ts ON ts.competition_season_id = cs.id
             LEFT JOIN matches m ON m.competition_season_id = cs.id
-            GROUP BY cs.id, cs.competition_id, tc.slug, s.end_date, s.start_date, s.id
-            ORDER BY
-              cs.competition_id,
-               CASE WHEN COUNT(DISTINCT ts.team_id) > 0 OR COUNT(DISTINCT m.id) > 0 THEN 0 ELSE 1 END,
-               s.end_date DESC NULLS LAST,
-               s.start_date DESC NULLS LAST,
+             GROUP BY cs.id, cs.competition_id, tc.slug, s.end_date, s.start_date, s.id
+             ORDER BY
+               cs.competition_id,
+               CASE WHEN COUNT(DISTINCT CASE WHEN m.status IN ('finished', 'finished_aet', 'finished_pen') THEN m.id END) > 0 THEN 0 ELSE 1 END,
+                CASE WHEN COUNT(DISTINCT ts.team_id) > 0 OR COUNT(DISTINCT m.id) > 0 THEN 0 ELSE 1 END,
+                s.end_date DESC NULLS LAST,
+                s.start_date DESC NULLS LAST,
                s.id DESC
           ), has_regular_season_matches AS (
             SELECT
@@ -6668,6 +6978,28 @@ export async function getStandingsByLeagueIdsDb(
               )::INT AS position
             FROM match_results mr
             GROUP BY mr.league_id, mr.competition_season_id, mr.team_id
+            UNION ALL
+            SELECT
+              lcs.league_id,
+              lcs.id AS competition_season_id,
+              ts.team_id,
+              0::INT AS played,
+              0::INT AS won,
+              0::INT AS drawn,
+              0::INT AS lost,
+              0::INT AS goals_for,
+              0::INT AS goals_against,
+              0::INT AS goal_difference,
+              0::INT AS points,
+              ROW_NUMBER() OVER (PARTITION BY lcs.id ORDER BY team.slug ASC)::INT AS position
+            FROM latest_competition_seasons lcs
+            JOIN team_seasons ts ON ts.competition_season_id = lcs.id
+            JOIN teams team ON team.id = ts.team_id
+            WHERE NOT EXISTS (
+              SELECT 1
+              FROM match_results mr
+              WHERE mr.competition_season_id = lcs.id
+            )
           ), ranked_results AS (
             SELECT
               mr.league_id,
@@ -6742,7 +7074,7 @@ export async function getStandingsByLeagueAndSeasonDb(
 ): Promise<StandingRow[]> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'standings-by-season-v5', locale, id: leagueId, params: { season: seasonId, includeForm } });
+    const key = buildCacheKey({ namespace: 'standings-by-season-v15', locale, id: leagueId, params: { season: seasonId, includeForm } });
 
     return readThroughCache({
       key,
@@ -6838,6 +7170,27 @@ export async function getStandingsByLeagueAndSeasonDb(
               )::INT AS position
             FROM match_results mr
             GROUP BY mr.competition_season_id, mr.team_id
+            UNION ALL
+            SELECT
+              tcs.id AS competition_season_id,
+              ts.team_id,
+              0::INT AS played,
+              0::INT AS won,
+              0::INT AS drawn,
+              0::INT AS lost,
+              0::INT AS goals_for,
+              0::INT AS goals_against,
+              0::INT AS goal_difference,
+              0::INT AS points,
+              ROW_NUMBER() OVER (ORDER BY team.slug ASC)::INT AS position
+            FROM target_competition_season tcs
+            JOIN team_seasons ts ON ts.competition_season_id = tcs.id
+            JOIN teams team ON team.id = ts.team_id
+            WHERE NOT EXISTS (
+              SELECT 1
+              FROM match_results mr
+              WHERE mr.competition_season_id = tcs.id
+            )
           )
           ${includeForm ? sql`, ranked_results AS (
             SELECT
@@ -6950,7 +7303,7 @@ export async function getTopScorerRowsDb(
   leagueId: string,
   locale: string = 'en',
   limit: number = 10,
-): Promise<Array<StatLeader & { playerName: string; clubShortName: string }>> {
+): Promise<Array<StatLeader & { playerName: string; clubShortName: string; photoUrl?: string; playerPosition?: Player['position']; clubLogo?: string }>> {
   return withFallback(async () => {
     const sql = getDb();
     const key = buildCacheKey({ namespace: 'top-scorer-rows-v3', locale, id: leagueId, params: { limit } });
@@ -6987,7 +7340,10 @@ export async function getTopScorerRowsDb(
             scorers.goals,
             scorers.assists,
             COALESCE(player_name_locale.known_as, player_name_en.known_as, player.slug) AS player_name,
-            COALESCE(team_name_locale.short_name, team_name_en.short_name, team.slug) AS club_short_name
+            COALESCE(team_name_locale.short_name, team_name_en.short_name, team.slug) AS club_short_name,
+            player.photo_url AS player_photo_url,
+            player.position AS player_position,
+            team.crest_url AS club_logo
           FROM mv_top_scorers scorers
           JOIN latest_competition_season lcs ON lcs.id = scorers.competition_season_id
           JOIN players player ON player.id = scorers.player_id
@@ -7015,7 +7371,10 @@ export async function getTopScorerRowsDb(
           goals: row.goals,
           assists: row.assists,
           playerName: row.player_name,
-    clubShortName: getLocalizedClubName(row.club_id, row.club_short_name, locale),
+          clubShortName: getLocalizedClubName(row.club_id, row.club_short_name, locale),
+          photoUrl: row.player_photo_url ?? undefined,
+          playerPosition: row.player_position ?? undefined,
+          clubLogo: clubLogoMap[row.club_id] ?? row.club_logo ?? undefined,
         }));
       },
     });
@@ -7027,7 +7386,7 @@ export async function getTopScorerRowsBySeasonDb(
   seasonId: string,
   locale: string = 'en',
   limit: number = 10,
-): Promise<Array<StatLeader & { playerName: string; clubShortName: string }>> {
+): Promise<Array<StatLeader & { playerName: string; clubShortName: string; photoUrl?: string; playerPosition?: Player['position']; clubLogo?: string }>> {
   return withFallback(async () => {
     const sql = getDb();
     const key = buildCacheKey({ namespace: 'top-scorer-rows-by-season-v3', locale, id: leagueId, params: { season: seasonId, limit } });
@@ -7051,7 +7410,10 @@ export async function getTopScorerRowsBySeasonDb(
             scorers.goals,
             scorers.assists,
             COALESCE(player_name_locale.known_as, player_name_en.known_as, player.slug) AS player_name,
-            COALESCE(team_name_locale.short_name, team_name_en.short_name, team.slug) AS club_short_name
+            COALESCE(team_name_locale.short_name, team_name_en.short_name, team.slug) AS club_short_name,
+            player.photo_url AS player_photo_url,
+            player.position AS player_position,
+            team.crest_url AS club_logo
           FROM mv_top_scorers scorers
           JOIN target_competition_season tcs ON tcs.id = scorers.competition_season_id
           JOIN players player ON player.id = scorers.player_id
@@ -7080,6 +7442,9 @@ export async function getTopScorerRowsBySeasonDb(
           assists: row.assists,
           playerName: row.player_name,
           clubShortName: getLocalizedClubName(row.club_id, row.club_short_name, locale),
+          photoUrl: row.player_photo_url ?? undefined,
+          playerPosition: row.player_position ?? undefined,
+          clubLogo: clubLogoMap[row.club_id] ?? row.club_logo ?? undefined,
         }));
       },
     });
@@ -7089,7 +7454,7 @@ export async function getTopScorerRowsBySeasonDb(
 export async function getSeasonsByLeagueDb(leagueId: string): Promise<LeagueSeasonEntry[]> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'seasons-by-league', id: leagueId });
+    const key = buildCacheKey({ namespace: 'seasons-by-league-v2', id: leagueId });
 
     return readThroughCache({
       key,
@@ -7108,7 +7473,13 @@ export async function getSeasonsByLeagueDb(leagueId: string): Promise<LeagueSeas
               )
             END AS season_label,
             s.is_current,
-            cs.format_type::TEXT AS format_type
+            cs.format_type::TEXT AS format_type,
+            EXISTS (
+              SELECT 1
+              FROM matches m
+              WHERE m.competition_season_id = cs.id
+                AND m.status IN ('finished', 'finished_aet', 'finished_pen')
+            ) AS has_finished_matches
           FROM competition_seasons cs
           JOIN competitions c ON c.id = cs.competition_id
           JOIN seasons s ON s.id = cs.season_id
@@ -7121,6 +7492,7 @@ export async function getSeasonsByLeagueDb(leagueId: string): Promise<LeagueSeas
           seasonLabel: row.season_label,
           isCurrent: row.is_current,
           competitionFormat: row.format_type ?? undefined,
+          hasFinishedMatches: row.has_finished_matches,
         }));
       },
     });
@@ -7134,7 +7506,7 @@ export async function getMatchesByLeagueAndSeasonDb(
 ): Promise<Match[]> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'matches-by-league-season-v5', locale, id: leagueId, params: { season: seasonId } });
+    const key = buildCacheKey({ namespace: 'matches-by-league-season-v14', locale, id: leagueId, params: { season: seasonId } });
 
     return readThroughCache({
       key,
@@ -7203,7 +7575,7 @@ export async function getClubsByLeagueAndSeasonDb(
 ): Promise<Club[]> {
   return withFallback(async () => {
     const sql = getDb();
-    const key = buildCacheKey({ namespace: 'clubs-by-league-season-v3', locale, id: leagueId, params: { season: seasonId } });
+    const key = buildCacheKey({ namespace: 'clubs-by-league-season-v12', locale, id: leagueId, params: { season: seasonId } });
 
     return readThroughCache({
       key,

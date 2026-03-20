@@ -1,5 +1,5 @@
 import { execFile } from 'node:child_process';
-import { access } from 'node:fs/promises';
+import { access, readFile } from 'node:fs/promises';
 import { promisify } from 'node:util';
 import path from 'node:path';
 
@@ -13,10 +13,29 @@ interface CliOptions {
   limit?: number;
   player?: string;
   season?: string;
+  team?: string;
   skipFbref: boolean;
   skipEnsureSchema: boolean;
   skipSearchMappings: boolean;
+  skipTransferHistory: boolean;
 }
+
+interface ExportTarget {
+  playerSlug: string;
+  sourceUrl?: string;
+}
+
+interface ExportPayload {
+  targets: ExportTarget[];
+}
+
+const SCRAPERFC_TRANSFERMARKT_LEAGUES: Record<string, string> = {
+  '1-bundesliga': 'Germany Bundesliga',
+  'la-liga': 'Spain La Liga',
+  'ligue-1': 'France Ligue 1',
+  'premier-league': 'England Premier League',
+  'serie-a': 'Italy Serie A',
+};
 
 function parsePositiveInt(value: string | undefined) {
   if (!value) return undefined;
@@ -25,7 +44,7 @@ function parsePositiveInt(value: string | undefined) {
 }
 
 function parseArgs(argv: string[]): CliOptions {
-  const options: CliOptions = { help: false, skipEnsureSchema: false, skipFbref: false, skipSearchMappings: false };
+  const options: CliOptions = { help: false, skipEnsureSchema: false, skipFbref: false, skipSearchMappings: false, skipTransferHistory: false };
   for (const arg of argv) {
     if (arg === '--help' || arg === '-h') {
       options.help = true;
@@ -43,11 +62,16 @@ function parseArgs(argv: string[]): CliOptions {
       options.skipSearchMappings = true;
       continue;
     }
+    if (arg === '--skip-transfer-history') {
+      options.skipTransferHistory = true;
+      continue;
+    }
     if (arg.startsWith('--competition=')) { options.competition = arg.slice('--competition='.length).trim(); continue; }
     if (arg.startsWith('--season=')) { options.season = arg.slice('--season='.length).trim(); continue; }
     if (arg.startsWith('--capology-league=')) { options.capologyLeague = arg.slice('--capology-league='.length).trim(); continue; }
     if (arg.startsWith('--capology-season=')) { options.capologySeason = arg.slice('--capology-season='.length).trim(); continue; }
     if (arg.startsWith('--player=')) { options.player = arg.slice('--player='.length).trim(); continue; }
+    if (arg.startsWith('--team=')) { options.team = arg.slice('--team='.length).trim(); continue; }
     if (arg.startsWith('--limit=')) { options.limit = parsePositiveInt(arg.slice('--limit='.length)); }
   }
   return options;
@@ -61,18 +85,30 @@ Options:
   --season=<slug>       Internal season slug
   --capology-league=<name>  Optional ScraperFC Capology league label
   --capology-season=<name>  Optional ScraperFC Capology season label (e.g. 2025-26)
+  --team=<slug>         Optional single team slug
   --player=<slug>       Optional single player slug
   --limit=<n>           Limit exported targets
   --skip-search-mappings  Skip mapping search/apply steps
   --skip-fbref          Skip FBref fetch/sync steps
+  --skip-transfer-history  Skip Transfermarkt transfer history fetch/sync steps
   --skip-ensure-schema  Skip schema preparation step
   --help, -h            Show this help message
 `);
 }
 
 function getBaseName(competition: string, season: string, player?: string) {
-  const suffix = player ? `${competition}-${season}-${player}` : `${competition}-${season}`;
+  const safeSeason = season.replace(/[\\/]/g, '-');
+  const suffix = player ? `${competition}-${safeSeason}-${player}` : `${competition}-${safeSeason}`;
   return path.join(process.cwd(), 'data', suffix);
+}
+
+function toScraperfcSeason(season: string) {
+  const match = season.match(/^(\d{4})[\/-](\d{2})$/);
+  if (match) {
+    return `${match[1].slice(-2)}/${match[2]}`;
+  }
+
+  return season;
 }
 
 async function resolvePythonCommand() {
@@ -129,6 +165,7 @@ async function main() {
   const profilesPath = `${baseName}-fbref-profiles.json`;
   const contractsPath = `${baseName}-transfermarkt-contracts.json`;
   const capologyPath = `${baseName}-capology-contracts.json`;
+  const transfersDir = `${baseName}-transfer-history`;
   const pythonCommand = await resolvePythonCommand();
 
   if (!options.skipEnsureSchema) {
@@ -138,6 +175,7 @@ async function main() {
   const exportArgs = ['--experimental-strip-types', 'scripts/export-player-contract-targets.mts', `--competition=${options.competition}`, `--season=${options.season}`, `--output=${targetsPath}`];
   if (options.limit) exportArgs.push(`--limit=${options.limit}`);
   if (options.player) exportArgs.push(`--player=${options.player}`);
+  if (options.team) exportArgs.push(`--team=${options.team}`);
   await run('node', exportArgs, 'export-targets');
 
   if (!options.skipSearchMappings) {
@@ -150,6 +188,8 @@ async function main() {
 
   await run('node', exportArgs, 'export-targets-refresh');
 
+  let targetsPayload = JSON.parse(await readFile(targetsPath, 'utf8')) as ExportPayload;
+
   if (!options.skipFbref) {
     await runBestEffort(pythonCommand, ['scripts/fetch-player-profiles-fbref.py', `--targets=${targetsPath}`, `--output=${profilesPath}`, ...(options.limit ? [`--limit=${options.limit}`] : [])], 'fbref-fetch');
     await runBestEffort('node', ['--experimental-strip-types', 'scripts/sync-player-profiles.mts', `--input=${profilesPath}`], 'fbref-sync');
@@ -157,6 +197,54 @@ async function main() {
 
   await run(pythonCommand, ['scripts/fetch-player-contracts-transfermarkt.py', `--targets=${targetsPath}`, `--output=${contractsPath}`, ...(options.limit ? [`--limit=${options.limit}`] : [])], 'transfermarkt-fetch');
   await run('node', ['--experimental-strip-types', 'scripts/sync-player-contracts.mts', `--input=${contractsPath}`, `--competition=${options.competition}`, `--season=${options.season}`, ...(options.player ? [`--player=${options.player}`] : [])], 'transfermarkt-sync');
+
+  if (targetsPayload.targets.some((target) => !target.sourceUrl)) {
+    const scraperfcLeague = SCRAPERFC_TRANSFERMARKT_LEAGUES[options.competition];
+    if (scraperfcLeague) {
+      await runBestEffort(pythonCommand, [
+        'scripts/fetch-player-contracts-scraperfc.py',
+        'transfermarkt-league',
+        `--league=${scraperfcLeague}`,
+        `--season=${toScraperfcSeason(options.season)}`,
+        `--targets=${targetsPath}`,
+        `--output=${contractsPath}`,
+        ...(options.limit ? [`--limit=${options.limit}`] : []),
+      ], 'transfermarkt-scraperfc-fetch');
+      await runBestEffort('node', [
+        '--experimental-strip-types',
+        'scripts/sync-player-contracts.mts',
+        `--input=${contractsPath}`,
+        `--competition=${options.competition}`,
+        `--season=${options.season}`,
+        ...(options.team ? [`--team=${options.team}`] : []),
+        ...(options.player ? [`--player=${options.player}`] : []),
+        ...(options.limit ? [`--limit=${options.limit}`] : []),
+      ], 'transfermarkt-scraperfc-sync');
+      await run('node', exportArgs, 'export-targets-transfermarkt-refresh');
+      targetsPayload = JSON.parse(await readFile(targetsPath, 'utf8')) as ExportPayload;
+    }
+  }
+
+  if (!options.skipTransferHistory) {
+    let transferRuns = 0;
+    for (const target of targetsPayload.targets.filter((entry) => entry.sourceUrl)) {
+      const outputPath = `${transfersDir}-${target.playerSlug}.json`;
+      await runBestEffort('node', [
+        '--experimental-strip-types',
+        'scripts/fetch-player-transfers-transfermarkt.mts',
+        `--player-url=${target.sourceUrl}`,
+        `--output=${outputPath}`,
+      ], `transfermarkt-transfer-fetch:${target.playerSlug}`);
+      await runBestEffort('node', [
+        '--experimental-strip-types',
+        'scripts/sync-player-transfers.mts',
+        `--input=${outputPath}`,
+        `--player=${target.playerSlug}`,
+      ], `transfermarkt-transfer-sync:${target.playerSlug}`);
+      transferRuns += 1;
+    }
+    console.log(`[transfermarkt-transfer-history] processed ${transferRuns} target(s)`);
+  }
 
   if (options.capologyLeague && options.capologySeason) {
     await runBestEffort(pythonCommand, [
@@ -174,6 +262,7 @@ async function main() {
       `--input=${capologyPath}`,
       `--competition=${options.competition}`,
       `--season=${options.season}`,
+      ...(options.team ? [`--team=${options.team}`] : []),
       ...(options.player ? [`--player=${options.player}`] : []),
     ], 'capology-sync');
   }

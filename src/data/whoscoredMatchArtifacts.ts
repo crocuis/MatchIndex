@@ -1,5 +1,5 @@
 import postgres from 'postgres';
-import type { MatchAnalysisArtifactPayload } from '@/data/types';
+import type { MatchAnalysisArtifactPayloadV2 } from '@/data/types';
 import { persistMatchEventArtifacts } from '@/data/matchEventArtifactWriter';
 
 interface MatchContextRow {
@@ -82,23 +82,46 @@ export async function collectWhoScoredMatchArtifacts(
 
     const html = await response.text();
     const matchCentreData = extractMatchCentreData(html);
-    const payload: MatchAnalysisArtifactPayload = {
-      version: 1,
+    const payload: MatchAnalysisArtifactPayloadV2 = {
+      version: 2,
       matchId: Number(options.matchId),
       artifactType: 'analysis_detail',
       sourceVendor: 'whoscored',
       generatedAt: new Date().toISOString(),
+      coordinateSystem: 'pitch-100x100',
+      normalizedCoordinateSystem: 'pitch-100x100',
       events: (matchCentreData.events ?? [])
         .filter((event) => event.isShot || event.isGoal || event.type?.displayName === 'Card' || event.type?.displayName === 'Substitution')
         .map((event, index) => ({
           sourceEventId: String(event.id ?? event.eventId ?? `whoscored:${options.matchId}:${index}`),
+          sourceType: event.type?.displayName ?? null,
+          sourceSubtype: event.outcomeType?.displayName ?? null,
+          canonicalType: event.isGoal
+            ? 'goal'
+            : event.type?.displayName === 'Card'
+              ? 'yellow_card'
+              : event.type?.displayName === 'Substitution'
+                ? 'substitution'
+                : 'shot',
           eventIndex: index,
+          period: null,
           minute: event.minute ?? 0,
           second: event.second ?? null,
+          stoppageMinute: null,
+          matchSecond: event.minute !== undefined && event.second !== undefined
+            ? (event.minute * 60) + event.second
+            : event.minute !== undefined
+              ? event.minute * 60
+              : null,
           type: event.isGoal ? 'goal' : event.type?.displayName === 'Card' ? 'yellow_card' : event.type?.displayName === 'Substitution' ? 'substitution' : 'shot',
           teamId: (event.teamId === 1 ? match.home_team_id : match.away_team_id),
           playerId: null,
           secondaryPlayerId: null,
+          sourceLocationX: event.x ?? null,
+          sourceLocationY: event.y ?? null,
+          sourceEndLocationX: event.endX ?? null,
+          sourceEndLocationY: event.endY ?? null,
+          sourceEndLocationZ: null,
           locationX: event.x ?? null,
           locationY: event.y ?? null,
           endLocationX: event.endX ?? null,
@@ -106,8 +129,16 @@ export async function collectWhoScoredMatchArtifacts(
           endLocationZ: null,
           underPressure: false,
           statsbombXg: null,
+          metrics: {},
           detail: event.type?.displayName ?? event.outcomeType?.displayName ?? null,
           outcome: event.outcomeType?.displayName ?? null,
+          sourcePayload: {
+            eventId: event.eventId ?? null,
+            id: event.id ?? null,
+            isGoal: event.isGoal ?? null,
+            isShot: event.isShot ?? null,
+            teamId: event.teamId ?? null,
+          },
         })),
     };
 

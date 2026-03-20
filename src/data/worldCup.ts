@@ -280,7 +280,16 @@ function isMatch(value: unknown): value is Match {
     && typeof value.venue === 'string'
     && typeof value.leagueId === 'string'
     && (value.teamType === 'club' || value.teamType === 'nation' || value.teamType === undefined)
-    && (value.status === 'scheduled' || value.status === 'live' || value.status === 'finished');
+    && (
+      value.status === 'scheduled'
+      || value.status === 'timed'
+      || value.status === 'live'
+      || value.status === 'finished'
+      || value.status === 'postponed'
+      || value.status === 'suspended'
+      || value.status === 'cancelled'
+      || value.status === 'awarded'
+    );
 }
 
 export function isWorldCupTournament(value: unknown): value is WorldCupTournament {

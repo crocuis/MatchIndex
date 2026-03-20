@@ -1,10 +1,18 @@
 import { createHash } from 'node:crypto';
 import postgres from 'postgres';
-import type { MatchAnalysisArtifactPayload } from '@/data/types';
-import { persistMatchEventArtifacts } from '@/data/matchEventArtifactWriter';
+import type { MatchAnalysisArtifactPayload } from './types.ts';
+import { persistMatchEventArtifacts } from './matchEventArtifactWriter.ts';
+import { isCompetitionSeasonWriteAllowed, loadCompetitionSeasonPolicies } from './sourceOwnership.ts';
+
+const BATCH_SIZE = 500;
 
 interface SourceRow {
   id: number;
+}
+
+interface ExistingPlayerMappingRow {
+  external_id: string;
+  slug: string;
 }
 
 interface TargetMatchRow {
@@ -56,7 +64,7 @@ interface PlayerContractDraft {
 interface MatchEventDraft {
   detail: string | null;
   eventIndex: number;
-  eventType: 'goal' | 'own_goal' | 'penalty_scored' | 'penalty_missed' | 'yellow_card' | 'red_card' | 'yellow_red_card' | 'substitution' | 'var_decision';
+  eventType: 'goal' | 'own_goal' | 'penalty_scored' | 'penalty_missed' | 'yellow_card' | 'red_card' | 'yellow_red_card' | 'substitution' | 'var_decision' | 'period' | 'injury_time';
   extraMinute: number | null;
   isNotable: boolean;
   matchDate: string;
@@ -126,10 +134,12 @@ interface SofascoreIncidentPlayer {
 interface SofascoreIncident {
   addedTime?: number | null;
   assist1?: SofascoreIncidentPlayer;
+  description?: string | null;
   id?: number | string;
   incidentClass?: string | null;
   incidentType?: string | null;
   isHome?: boolean;
+  length?: number | null;
   player?: SofascoreIncidentPlayer;
   playerIn?: SofascoreIncidentPlayer;
   playerOut?: SofascoreIncidentPlayer;
@@ -188,6 +198,17 @@ const COMPETITION_SLUGS: Record<string, string> = {
   PL: 'premier-league',
   SA: 'serie-a',
   UEL: 'europa-league',
+  UCL: 'champions-league',
+};
+
+const COMPETITION_LEAGUES: Record<string, string> = {
+  BL1: 'GER-Bundesliga',
+  FL1: 'FRA-Ligue 1',
+  PD: 'ESP-La Liga',
+  PL: 'ENG-Premier League',
+  SA: 'ITA-Serie A',
+  UEL: 'INT-UEFA Europa League',
+  UCL: 'INT-UEFA Champions League',
 };
 
 function getDetailsDb() {
@@ -252,22 +273,49 @@ function normalizeSeasonSlug(seasonLabel: string) {
   return `${startYear}/${endYear}`;
 }
 
+function normalizeIncidentClass(value?: string | null) {
+  return (value ?? '').trim().toLowerCase();
+}
+
+function buildIncidentDetail(incident: SofascoreIncident) {
+  if (incident.incidentType === 'period') {
+    return incident.text ?? incident.reason ?? null;
+  }
+
+  if (incident.incidentType === 'injuryTime') {
+    if (typeof incident.length === 'number' && Number.isFinite(incident.length) && incident.length > 0) {
+      return `${incident.length} minutes`;
+    }
+
+    return incident.text ?? incident.reason ?? null;
+  }
+
+  if (incident.incidentType === 'substitution') {
+    return incident.incidentClass ?? incident.reason ?? incident.text ?? null;
+  }
+
+  return incident.description ?? incident.incidentClass ?? incident.reason ?? incident.text ?? null;
+}
+
 function getIncidentEventType(incident: SofascoreIncident): MatchEventDraft['eventType'] | null {
   const type = incident.incidentType;
-  const klass = incident.incidentClass ?? '';
+  const klass = normalizeIncidentClass(incident.incidentClass);
   if (type === 'goal') {
-    if (klass === 'ownGoal') return 'own_goal';
+    if (klass === 'owngoal') return 'own_goal';
     if (klass === 'penalty') return 'penalty_scored';
     return 'goal';
   }
   if (type === 'card') {
     if (klass === 'red') return 'red_card';
-    if (klass === 'yellowRed') return 'yellow_red_card';
+    if (klass === 'yellowred') return 'yellow_red_card';
     return 'yellow_card';
   }
   if (type === 'substitution') return 'substitution';
   if (type === 'inGamePenalty') return klass === 'missed' ? 'penalty_missed' : 'penalty_scored';
+  if (type === 'penaltyShootout') return klass === 'missed' ? 'penalty_missed' : 'penalty_scored';
   if (type === 'varDecision') return 'var_decision';
+  if (type === 'period') return 'period';
+  if (type === 'injuryTime') return 'injury_time';
   return null;
 }
 
@@ -324,6 +372,18 @@ async function upsertPlayer(sql: ReturnType<typeof getDetailsDb>, draft: PlayerD
   `;
 }
 
+async function loadExistingPlayerMappings(sql: ReturnType<typeof getDetailsDb>, sourceId: number) {
+  const rows = await sql<ExistingPlayerMappingRow[]>`
+    SELECT sem.external_id, p.slug
+    FROM source_entity_mapping sem
+    JOIN players p ON p.id = sem.entity_id
+    WHERE sem.source_id = ${sourceId}
+      AND sem.entity_type = 'player'
+  `;
+
+  return new Map(rows.map((row) => [row.external_id, row.slug]));
+}
+
 async function loadTargetMatches(sql: ReturnType<typeof getDetailsDb>, competitionSlug: string, seasonLabel: string) {
   return sql<TargetMatchRow[]>`
     SELECT
@@ -346,20 +406,26 @@ async function loadTargetMatches(sql: ReturnType<typeof getDetailsDb>, competiti
   `;
 }
 
-async function loadDetailRawPayloads(sql: ReturnType<typeof getDetailsDb>, sourceId: number, seasonLabel: string, endpointSuffix: string) {
+async function loadDetailRawPayloads(
+  sql: ReturnType<typeof getDetailsDb>,
+  sourceId: number,
+  seasonLabel: string,
+  endpointPrefix: string,
+  endpointSuffix: string,
+) {
   return sql<RawPayloadRow[]>`
     WITH target_run AS (
       SELECT MAX(sync_run_id) AS sync_run_id
       FROM raw_payloads
       WHERE source_id = ${sourceId}
         AND season_context = ${seasonLabel}
-        AND endpoint LIKE ${`%/${endpointSuffix}`}
+        AND endpoint LIKE ${`${endpointPrefix}%${endpointSuffix}`}
     )
     SELECT external_id, payload
     FROM raw_payloads
     WHERE source_id = ${sourceId}
       AND season_context = ${seasonLabel}
-      AND endpoint LIKE ${`%/${endpointSuffix}`}
+      AND endpoint LIKE ${`${endpointPrefix}%${endpointSuffix}`}
       AND sync_run_id = (SELECT sync_run_id FROM target_run)
   `;
 }
@@ -371,6 +437,26 @@ async function deleteMatchDetails(sql: ReturnType<typeof getDetailsDb>, match: T
       AND match_date = ${match.match_date}
       AND COALESCE(source_details->>'source', '') = 'sofascore'
   `;
+}
+
+async function deleteMatchDetailsBatch(sql: ReturnType<typeof getDetailsDb>, matches: TargetMatchRow[]) {
+  if (matches.length === 0) {
+    return;
+  }
+
+  for (let i = 0; i < matches.length; i += BATCH_SIZE) {
+    const chunk = matches.slice(i, i + BATCH_SIZE);
+    await sql`
+      DELETE FROM match_lineups ml
+      USING UNNEST(
+        ${sql.array(chunk.map((match) => match.match_id))}::int[],
+        ${sql.array(chunk.map((match) => match.match_date))}::text[]
+      ) AS t(match_id, match_date)
+      WHERE ml.match_id = t.match_id
+        AND ml.match_date = t.match_date::date
+        AND COALESCE(ml.source_details->>'source', '') = 'sofascore'
+    `;
+  }
 }
 
 async function loadPlayerIdBySlug(sql: ReturnType<typeof getDetailsDb>, slugs: string[]) {
@@ -527,11 +613,19 @@ async function upsertMatchStat(sql: ReturnType<typeof getDetailsDb>, draft: Matc
   `;
 }
 
-function ensurePlayerDraft(player: SofascoreIncidentPlayer | SofascoreLineupPlayer['player'] | undefined, drafts: Map<string, PlayerDraft>) {
+function ensurePlayerDraft(
+  player: SofascoreIncidentPlayer | SofascoreLineupPlayer['player'] | undefined,
+  drafts: Map<string, PlayerDraft>,
+  existingMappings: Map<string, string>,
+) {
   const externalId = player?.id ? String(player.id) : null;
   const knownAs = player?.name?.trim() || player?.shortName?.trim() || null;
   if (!externalId || !knownAs) {
     return null;
+  }
+  const mappedSlug = existingMappings.get(externalId);
+  if (mappedSlug) {
+    return mappedSlug;
   }
   const existing = drafts.get(externalId);
   if (existing) {
@@ -590,11 +684,16 @@ function buildMatchStats(match: TargetMatchRow, payload: SofascoreOverviewPayloa
   return [build(true), build(false)];
 }
 
-function buildLineups(match: TargetMatchRow, payload: SofascoreLineupsPayload, playerDrafts: Map<string, PlayerDraft>) {
+function buildLineups(
+  match: TargetMatchRow,
+  payload: SofascoreLineupsPayload,
+  playerDrafts: Map<string, PlayerDraft>,
+  existingMappings: Map<string, string>,
+) {
   const lineups: MatchLineupDraft[] = [];
   const pushSide = (players: SofascoreLineupPlayer[] | undefined, teamId: number) => {
     for (const entry of players ?? []) {
-      const playerSlug = ensurePlayerDraft(entry.player, playerDrafts);
+      const playerSlug = ensurePlayerDraft(entry.player, playerDrafts, existingMappings);
       if (!playerSlug) continue;
       lineups.push({
         isStarter: !entry.substitute,
@@ -615,21 +714,27 @@ function buildLineups(match: TargetMatchRow, payload: SofascoreLineupsPayload, p
   return lineups;
 }
 
-function buildEvents(match: TargetMatchRow, payload: SofascoreIncidentsPayload, playerDrafts: Map<string, PlayerDraft>) {
+function buildEvents(
+  match: TargetMatchRow,
+  payload: SofascoreIncidentsPayload,
+  playerDrafts: Map<string, PlayerDraft>,
+  existingMappings: Map<string, string>,
+) {
   const events: MatchEventDraft[] = [];
   let eventIndex = 0;
   for (const incident of payload.incidents ?? []) {
     const eventType = getIncidentEventType(incident);
     if (!eventType) continue;
     const teamId = incident.isHome ? match.home_team_id : match.away_team_id;
-    const playerSlug = ensurePlayerDraft(incident.player ?? incident.playerIn, playerDrafts);
+    const playerSlug = ensurePlayerDraft(incident.player ?? incident.playerIn, playerDrafts, existingMappings);
     const secondaryPlayerSlug = ensurePlayerDraft(
       eventType === 'substitution' ? incident.playerOut : (incident.assist1 ?? undefined),
       playerDrafts,
+      existingMappings,
     );
     const sourceEventId = toUuid(`${match.match_id}:${incident.id ?? eventIndex}:${eventType}`);
     events.push({
-      detail: incident.incidentClass ?? incident.reason ?? incident.text ?? null,
+      detail: buildIncidentDetail(incident),
       eventIndex,
       eventType,
       extraMinute: incident.addedTime ?? null,
@@ -648,21 +753,45 @@ function buildEvents(match: TargetMatchRow, payload: SofascoreIncidentsPayload, 
   return events;
 }
 
+function groupEventDraftsByMatch(eventDrafts: MatchEventDraft[]) {
+  const draftsByMatch = new Map<string, MatchEventDraft[]>();
+
+  for (const draft of eventDrafts) {
+    const key = `${draft.matchId}:${draft.matchDate}`;
+    const current = draftsByMatch.get(key) ?? [];
+    current.push(draft);
+    draftsByMatch.set(key, current);
+  }
+
+  return draftsByMatch;
+}
+
+function dedupeLineupDrafts(drafts: MatchLineupDraft[]) {
+  return Array.from(new Map(drafts.map((draft) => [`${draft.matchId}:${draft.matchDate}:${draft.teamId}:${draft.playerSlug}`, draft])).values());
+}
+
+function dedupeMatchStatsDrafts(drafts: MatchStatsDraft[]) {
+  return Array.from(new Map(drafts.map((draft) => [`${draft.matchId}:${draft.matchDate}:${draft.teamId}`, draft])).values());
+}
+
 export async function materializeSofascoreDetails(options: MaterializeSofascoreDetailsOptions): Promise<MaterializeSofascoreDetailsSummary> {
   const sql = getDetailsDb();
   const sourceSlug = options.sourceSlug?.trim() || 'soccerdata_sofascore';
   const competitionCode = options.competitionCodes?.[0]?.toUpperCase() || 'UEL';
   const competitionSlug = COMPETITION_SLUGS[competitionCode];
-  if (!competitionSlug) {
+  const competitionLeague = COMPETITION_LEAGUES[competitionCode];
+  if (!competitionSlug || !competitionLeague) {
     throw new Error(`Unsupported Sofascore detail competition code: ${competitionCode}`);
   }
 
   const sourceId = await ensureSource(sql, sourceSlug);
+  const endpointPrefix = `sofascore://${competitionLeague}/${options.seasonLabel}/`;
+  const existingPlayerMappings = await loadExistingPlayerMappings(sql, sourceId);
   const seasonSlug = normalizeSeasonSlug(options.seasonLabel);
   const matches = await loadTargetMatches(sql, competitionSlug, seasonSlug);
-  const overviews = new Map((await loadDetailRawPayloads(sql, sourceId, options.seasonLabel, 'match_overview')).map((row) => [row.external_id ?? '', row.payload as SofascoreOverviewPayload]));
-  const lineups = new Map((await loadDetailRawPayloads(sql, sourceId, options.seasonLabel, 'match_lineups')).map((row) => [row.external_id ?? '', row.payload as SofascoreLineupsPayload]));
-  const incidents = new Map((await loadDetailRawPayloads(sql, sourceId, options.seasonLabel, 'match_events')).map((row) => [row.external_id ?? '', row.payload as SofascoreIncidentsPayload]));
+  const overviews = new Map((await loadDetailRawPayloads(sql, sourceId, options.seasonLabel, endpointPrefix, 'match_overview')).map((row) => [row.external_id ?? '', row.payload as SofascoreOverviewPayload]));
+  const lineups = new Map((await loadDetailRawPayloads(sql, sourceId, options.seasonLabel, endpointPrefix, 'match_lineups')).map((row) => [row.external_id ?? '', row.payload as SofascoreLineupsPayload]));
+  const incidents = new Map((await loadDetailRawPayloads(sql, sourceId, options.seasonLabel, endpointPrefix, 'match_events')).map((row) => [row.external_id ?? '', row.payload as SofascoreIncidentsPayload]));
 
   const playerDrafts = new Map<string, PlayerDraft>();
   const contractDrafts = new Map<string, PlayerContractDraft>();
@@ -670,37 +799,47 @@ export async function materializeSofascoreDetails(options: MaterializeSofascoreD
   const eventDrafts: MatchEventDraft[] = [];
   const statsDrafts: MatchStatsDraft[] = [];
   const matched = matches.filter((match) => overviews.has(match.external_match_id));
+  const policies = await loadCompetitionSeasonPolicies(sql, Array.from(new Set(matched.map((match) => match.competition_season_id))));
 
   for (const match of matched) {
     const overview = overviews.get(match.external_match_id);
     const lineupPayload = lineups.get(match.external_match_id);
     const incidentsPayload = incidents.get(match.external_match_id);
     if (overview) {
-      statsDrafts.push(...buildMatchStats(match, overview));
+      if (isCompetitionSeasonWriteAllowed(policies.get(match.competition_season_id), 'matchStats', 'sofascore', 'sync')) {
+        statsDrafts.push(...buildMatchStats(match, overview));
+      }
     }
     if (lineupPayload) {
-      const currentLineups = buildLineups(match, lineupPayload, playerDrafts);
+      const currentLineups = buildLineups(match, lineupPayload, playerDrafts, existingPlayerMappings);
       lineupDrafts.push(...currentLineups);
-      for (const draft of currentLineups) {
-        contractDrafts.set(`${draft.playerSlug}:${match.competition_season_id}`, {
-          competitionSeasonId: match.competition_season_id,
-          playerSlug: draft.playerSlug,
-          shirtNumber: draft.shirtNumber,
-          teamId: draft.teamId,
-        });
+      if (isCompetitionSeasonWriteAllowed(policies.get(match.competition_season_id), 'playerContracts', 'sofascore', 'sync')) {
+        for (const draft of currentLineups) {
+          contractDrafts.set(`${draft.playerSlug}:${match.competition_season_id}`, {
+            competitionSeasonId: match.competition_season_id,
+            playerSlug: draft.playerSlug,
+            shirtNumber: draft.shirtNumber,
+            teamId: draft.teamId,
+          });
+        }
       }
     }
     if (incidentsPayload) {
-      eventDrafts.push(...buildEvents(match, incidentsPayload, playerDrafts));
+      if (isCompetitionSeasonWriteAllowed(policies.get(match.competition_season_id), 'matchArtifacts', 'sofascore', 'sync')) {
+        eventDrafts.push(...buildEvents(match, incidentsPayload, playerDrafts, existingPlayerMappings));
+      }
     }
   }
+
+  const uniqueLineupDrafts = dedupeLineupDrafts(lineupDrafts);
+  const uniqueStatsDrafts = dedupeMatchStatsDrafts(statsDrafts);
 
   const summary: MaterializeSofascoreDetailsSummary = {
     contractRows: contractDrafts.size,
     dryRun: options.dryRun ?? true,
     eventRows: eventDrafts.length,
-    lineupRows: lineupDrafts.length,
-    matchStatsRows: statsDrafts.length,
+    lineupRows: uniqueLineupDrafts.length,
+    matchStatsRows: uniqueStatsDrafts.length,
     matchedCanonicalMatches: matched.length,
     players: playerDrafts.size,
     seasonLabel: options.seasonLabel,
@@ -711,24 +850,240 @@ export async function materializeSofascoreDetails(options: MaterializeSofascoreD
     return summary;
   }
 
-  for (const draft of playerDrafts.values()) {
-    await upsertPlayer(sql, draft, sourceId);
+  const playerDraftList = Array.from(playerDrafts.values());
+  const uniqueCountryCodes = Array.from(new Set(playerDraftList.map((d) => d.countryCode)));
+
+  await sql`BEGIN`;
+  try {
+    for (let i = 0; i < uniqueCountryCodes.length; i += BATCH_SIZE) {
+      const chunk = uniqueCountryCodes.slice(i, i + BATCH_SIZE);
+      await sql`
+        INSERT INTO countries (code_alpha3, is_active, updated_at)
+        SELECT t.code_alpha3, TRUE, NOW()
+        FROM UNNEST(${sql.array(chunk)}::text[]) AS t(code_alpha3)
+        ON CONFLICT (code_alpha3)
+        DO UPDATE SET is_active = TRUE, updated_at = NOW()
+      `;
+      await sql`
+        INSERT INTO country_translations (country_id, locale, name)
+        SELECT c.id, 'en', t.code_alpha3
+        FROM UNNEST(${sql.array(chunk)}::text[]) AS t(code_alpha3)
+        JOIN countries c ON c.code_alpha3 = t.code_alpha3
+        ON CONFLICT (country_id, locale)
+        DO UPDATE SET name = EXCLUDED.name
+      `;
+    }
+    for (let i = 0; i < playerDraftList.length; i += BATCH_SIZE) {
+      const chunk = playerDraftList.slice(i, i + BATCH_SIZE);
+      await sql`
+        INSERT INTO players (slug, country_id, position, is_active, updated_at)
+        SELECT t.slug, c.id, t.position::position_type, TRUE, NOW()
+        FROM UNNEST(
+          ${sql.array(chunk.map((r) => r.slug))}::text[],
+          ${sql.array(chunk.map((r) => r.countryCode))}::text[],
+          ${sql.array(chunk.map((r) => r.position))}::text[]
+        ) AS t(slug, country_code, position)
+        LEFT JOIN countries c ON c.code_alpha3 = t.country_code
+        ON CONFLICT (slug)
+        DO UPDATE SET
+          country_id = COALESCE(EXCLUDED.country_id, players.country_id),
+          position = COALESCE(EXCLUDED.position, players.position),
+          is_active = TRUE,
+          updated_at = NOW()
+      `;
+      await sql`
+        INSERT INTO player_translations (player_id, locale, first_name, last_name, known_as)
+        SELECT p.id, 'en', t.first_name, t.last_name, t.known_as
+        FROM UNNEST(
+          ${sql.array(chunk.map((r) => r.slug))}::text[],
+          ${sql.array(chunk.map((r) => r.firstName))}::text[],
+          ${sql.array(chunk.map((r) => r.lastName))}::text[],
+          ${sql.array(chunk.map((r) => r.knownAs))}::text[]
+        ) AS t(slug, first_name, last_name, known_as)
+        JOIN players p ON p.slug = t.slug
+        ON CONFLICT (player_id, locale)
+        DO UPDATE SET first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, known_as = EXCLUDED.known_as
+      `;
+      await sql`
+        INSERT INTO source_entity_mapping (entity_type, entity_id, source_id, external_id, metadata, updated_at)
+        SELECT 'player', p.id, ${sourceId}, t.external_id, '{"source":"sofascore"}'::jsonb, NOW()
+        FROM UNNEST(
+          ${sql.array(chunk.map((r) => r.slug))}::text[],
+          ${sql.array(chunk.map((r) => r.externalId))}::text[]
+        ) AS t(slug, external_id)
+        JOIN players p ON p.slug = t.slug
+        ON CONFLICT (entity_type, source_id, external_id)
+        DO UPDATE SET entity_id = EXCLUDED.entity_id, metadata = EXCLUDED.metadata, updated_at = NOW()
+      `;
+    }
+    await sql`COMMIT`;
+  } catch (error) {
+    await sql`ROLLBACK`;
+    throw error;
   }
-  for (const draft of contractDrafts.values()) {
-    await upsertPlayerContract(sql, draft);
+
+  const contractDraftList = Array.from(contractDrafts.values());
+
+  await sql`BEGIN`;
+  try {
+    for (let i = 0; i < contractDraftList.length; i += BATCH_SIZE) {
+      const chunk = contractDraftList.slice(i, i + BATCH_SIZE);
+      await sql`
+        INSERT INTO player_contracts (player_id, team_id, competition_season_id, shirt_number, updated_at)
+        SELECT p.id, t.team_id, t.competition_season_id, t.shirt_number, NOW()
+        FROM UNNEST(
+          ${sql.array(chunk.map((r) => r.playerSlug))}::text[],
+          ${sql.array(chunk.map((r) => r.teamId))}::int[],
+          ${sql.array(chunk.map((r) => r.competitionSeasonId))}::int[],
+          ${sql.array(chunk.map((r) => r.shirtNumber))}::int[]
+        ) AS t(player_slug, team_id, competition_season_id, shirt_number)
+        JOIN players p ON p.slug = t.player_slug
+        ON CONFLICT (player_id, competition_season_id)
+        DO UPDATE SET
+          team_id = EXCLUDED.team_id,
+          shirt_number = EXCLUDED.shirt_number,
+          left_date = NULL,
+          updated_at = NOW()
+      `;
+      await sql`
+        INSERT INTO team_seasons (team_id, competition_season_id, updated_at)
+        SELECT DISTINCT t.team_id, t.competition_season_id, NOW()
+        FROM UNNEST(
+          ${sql.array(chunk.map((r) => r.teamId))}::int[],
+          ${sql.array(chunk.map((r) => r.competitionSeasonId))}::int[]
+        ) AS t(team_id, competition_season_id)
+        ON CONFLICT (team_id, competition_season_id)
+        DO UPDATE SET updated_at = NOW()
+      `;
+    }
+    await sql`COMMIT`;
+  } catch (error) {
+    await sql`ROLLBACK`;
+    throw error;
   }
+
+  await deleteMatchDetailsBatch(sql, matched);
+
+  await sql`BEGIN`;
+  try {
+    for (let i = 0; i < uniqueLineupDrafts.length; i += BATCH_SIZE) {
+      const chunk = uniqueLineupDrafts.slice(i, i + BATCH_SIZE);
+      await sql`
+        INSERT INTO match_lineups (
+          match_id, match_date, team_id, player_id, shirt_number, position, is_starter,
+          minutes_played, rating, source_details
+        )
+        SELECT
+          t.match_id, t.match_date::date, t.team_id, p.id,
+          t.shirt_number, t.position, t.is_starter,
+          t.minutes_played, t.rating, t.source_details::jsonb
+        FROM UNNEST(
+          ${sql.array(chunk.map((r) => r.matchId))}::int[],
+          ${sql.array(chunk.map((r) => r.matchDate))}::text[],
+          ${sql.array(chunk.map((r) => r.teamId))}::int[],
+          ${sql.array(chunk.map((r) => r.playerSlug))}::text[],
+          ${sql.array(chunk.map((r) => r.shirtNumber))}::int[],
+          ${sql.array(chunk.map((r) => r.position))}::text[],
+          ${sql.array(chunk.map((r) => r.isStarter))}::bool[],
+          ${sql.array(chunk.map((r) => r.minutesPlayed))}::int[],
+          ${sql.array(chunk.map((r) => r.rating))}::numeric[],
+          ${sql.array(chunk.map((r) => JSON.stringify(r.sourceDetails)))}::text[]
+        ) AS t(match_id, match_date, team_id, player_slug, shirt_number, position, is_starter, minutes_played, rating, source_details)
+        JOIN players p ON p.slug = t.player_slug
+        ON CONFLICT (match_id, match_date, team_id, player_id)
+        DO UPDATE SET
+          shirt_number = EXCLUDED.shirt_number,
+          position = EXCLUDED.position,
+          is_starter = EXCLUDED.is_starter,
+          minutes_played = EXCLUDED.minutes_played,
+          rating = EXCLUDED.rating,
+          source_details = EXCLUDED.source_details
+      `;
+    }
+    await sql`COMMIT`;
+  } catch (error) {
+    await sql`ROLLBACK`;
+    throw error;
+  }
+
+  const eventDraftsByMatch = groupEventDraftsByMatch(eventDrafts);
+
   for (const match of matched) {
-    await deleteMatchDetails(sql, match);
+    await persistSofascoreEventArtifacts(
+      sql,
+      match,
+      eventDraftsByMatch.get(`${match.match_id}:${match.match_date}`) ?? [],
+    );
   }
-  for (const draft of lineupDrafts) {
-    await upsertMatchLineup(sql, draft);
-  }
-  for (const match of matched) {
-    const currentEventDrafts = eventDrafts.filter((draft) => draft.matchId === match.match_id && draft.matchDate === match.match_date);
-    await persistSofascoreEventArtifacts(sql, match, currentEventDrafts);
-  }
-  for (const draft of statsDrafts) {
-    await upsertMatchStat(sql, draft);
+
+  await sql`BEGIN`;
+  try {
+    for (let i = 0; i < uniqueStatsDrafts.length; i += BATCH_SIZE) {
+      const chunk = uniqueStatsDrafts.slice(i, i + BATCH_SIZE);
+      await sql`
+        INSERT INTO match_stats (
+          match_id, match_date, team_id, is_home, possession, total_passes, accurate_passes,
+          pass_accuracy, total_shots, shots_on_target, shots_off_target, blocked_shots,
+          corner_kicks, free_kicks, throw_ins, fouls, offsides, gk_saves, expected_goals,
+          big_chances, big_chances_missed
+        )
+        SELECT
+          t.match_id, t.match_date::date, t.team_id, t.is_home, t.possession, t.total_passes, t.accurate_passes,
+          t.pass_accuracy, t.total_shots, t.shots_on_target, t.shots_off_target, t.blocked_shots,
+          t.corner_kicks, t.free_kicks, t.throw_ins, t.fouls, t.offsides, t.gk_saves, t.expected_goals,
+          t.big_chances, t.big_chances_missed
+        FROM UNNEST(
+          ${sql.array(chunk.map((r) => r.matchId))}::int[],
+          ${sql.array(chunk.map((r) => r.matchDate))}::text[],
+          ${sql.array(chunk.map((r) => r.teamId))}::int[],
+          ${sql.array(chunk.map((r) => r.isHome))}::bool[],
+          ${sql.array(chunk.map((r) => r.possession))}::numeric[],
+          ${sql.array(chunk.map((r) => r.totalPasses))}::int[],
+          ${sql.array(chunk.map((r) => r.accuratePasses))}::int[],
+          ${sql.array(chunk.map((r) => r.passAccuracy))}::int[],
+          ${sql.array(chunk.map((r) => r.totalShots))}::int[],
+          ${sql.array(chunk.map((r) => r.shotsOnTarget))}::int[],
+          ${sql.array(chunk.map((r) => r.shotsOffTarget))}::int[],
+          ${sql.array(chunk.map((r) => r.blockedShots))}::int[],
+          ${sql.array(chunk.map((r) => r.cornerKicks))}::int[],
+          ${sql.array(chunk.map((r) => r.freeKicks))}::int[],
+          ${sql.array(chunk.map((r) => r.throwIns))}::int[],
+          ${sql.array(chunk.map((r) => r.fouls))}::int[],
+          ${sql.array(chunk.map((r) => r.offsides))}::int[],
+          ${sql.array(chunk.map((r) => r.gkSaves))}::int[],
+          ${sql.array(chunk.map((r) => r.expectedGoals))}::numeric[],
+          ${sql.array(chunk.map((r) => r.bigChances))}::int[],
+          ${sql.array(chunk.map((r) => r.bigChancesMissed))}::int[]
+        ) AS t(match_id, match_date, team_id, is_home, possession, total_passes, accurate_passes,
+               pass_accuracy, total_shots, shots_on_target, shots_off_target, blocked_shots,
+               corner_kicks, free_kicks, throw_ins, fouls, offsides, gk_saves, expected_goals,
+               big_chances, big_chances_missed)
+        ON CONFLICT (match_id, match_date, team_id)
+        DO UPDATE SET
+          is_home = EXCLUDED.is_home,
+          possession = EXCLUDED.possession,
+          total_passes = EXCLUDED.total_passes,
+          accurate_passes = EXCLUDED.accurate_passes,
+          pass_accuracy = EXCLUDED.pass_accuracy,
+          total_shots = EXCLUDED.total_shots,
+          shots_on_target = EXCLUDED.shots_on_target,
+          shots_off_target = EXCLUDED.shots_off_target,
+          blocked_shots = EXCLUDED.blocked_shots,
+          corner_kicks = EXCLUDED.corner_kicks,
+          free_kicks = EXCLUDED.free_kicks,
+          throw_ins = EXCLUDED.throw_ins,
+          fouls = EXCLUDED.fouls,
+          offsides = EXCLUDED.offsides,
+          gk_saves = EXCLUDED.gk_saves,
+          expected_goals = EXCLUDED.expected_goals,
+          big_chances = EXCLUDED.big_chances,
+          big_chances_missed = EXCLUDED.big_chances_missed
+      `;
+    }
+    await sql`COMMIT`;
+  } catch (error) {
+    await sql`ROLLBACK`;
+    throw error;
   }
 
   return summary;

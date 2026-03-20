@@ -10,6 +10,7 @@ interface Pair {
 const PAIRS: Pair[] = [
   { aliasSlug: 'strasbourg-france', canonicalSlug: 'rc-strasbourg-alsace-france' },
   { aliasSlug: 'bologna-italy', canonicalSlug: 'bologna-fc-1909-italy' },
+  { aliasSlug: 'borussia-mgladbach', canonicalSlug: 'borussia-mo-nchengladbach-germany' },
   { aliasSlug: 'borussia-monchengladbach-germany', canonicalSlug: 'borussia-mo-nchengladbach-germany' },
   { aliasSlug: 'werder-bremen-germany', canonicalSlug: 'sv-werder-bremen-germany' },
   { aliasSlug: 'wolfsburg-germany', canonicalSlug: 'vfl-wolfsburg-germany' },

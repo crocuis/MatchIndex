@@ -1,6 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { FixtureCard } from '@/components/data/FixtureCard';
-import { MatchCard } from '@/components/data/MatchCard';
+import { MatchArchiveSplitList } from '@/components/data/MatchArchiveSplitList';
 import { StandingsTable } from '@/components/data/StandingsTable';
 import { SectionCard } from '@/components/ui/SectionCard';
 import { TabGroup } from '@/components/ui/TabGroup';
@@ -9,8 +8,8 @@ import {
   buildKnockoutStages,
   buildLeaguePhaseMatchdays,
   buildQualifyingStages,
-  getChampionsLeagueFormat,
-} from '@/app/leagues/[id]/tournamentView';
+  getEuropeanCompetitionFormat,
+} from '@/app/competitions/[id]/tournamentView';
 import { isTournamentCompetition } from '@/data/competitionTypes';
 import { getLeagueByIdDb, getMatchesByClubAndSeasonDb, getStandingsByLeagueAndSeasonDb } from '@/data/server';
 
@@ -39,39 +38,37 @@ export async function ClubSeasonArchiveSections({
   const isTournament = league ? isTournamentCompetition(league) : false;
 
   if (isTournament) {
-    const championsLeagueFormat = leagueId === 'champions-league'
-      ? getChampionsLeagueFormat(seasonLabel)
-      : undefined;
-    const qualifyingStages = championsLeagueFormat === 'legacy' ? buildQualifyingStages(seasonMatches) : [];
-    const leaguePhaseStages = championsLeagueFormat === 'league-phase' ? buildLeaguePhaseMatchdays(seasonMatches) : [];
-    const legacyGroupStageMatches = championsLeagueFormat === 'legacy' ? buildGroupStageMatches(seasonMatches) : undefined;
+    const europeanCompetitionFormat = getEuropeanCompetitionFormat(leagueId, seasonLabel);
+    const qualifyingStages = europeanCompetitionFormat === 'legacy' ? buildQualifyingStages(seasonMatches) : [];
+    const leaguePhaseStages = europeanCompetitionFormat === 'league-phase' ? buildLeaguePhaseMatchdays(seasonMatches) : [];
+    const legacyGroupStageMatches = europeanCompetitionFormat === 'legacy' ? buildGroupStageMatches(seasonMatches) : undefined;
     const knockoutStages = buildKnockoutStages(seasonMatches);
     const stageTabs = [
       ...knockoutStages.slice().reverse().map((stage) => ({
         key: `knockout-${stage.name}`,
         label: stage.name,
         content: (
-          <div className="space-y-1.5">
-            {stage.matches.map((match) => (
-              match.status === 'finished'
-                ? <MatchCard key={match.id} match={match} />
-                : <FixtureCard key={match.id} match={match} />
-            ))}
-          </div>
+          <MatchArchiveSplitList
+            matches={stage.matches}
+            locale={locale}
+            recentResultsLabel={tLeague('recentResults')}
+            upcomingFixturesLabel={tLeague('upcomingFixtures')}
+            emptyLabel={tClub('seasonMatchesEmpty')}
+          />
         ),
       })),
-      ...(championsLeagueFormat === 'league-phase'
+      ...(europeanCompetitionFormat === 'league-phase'
         ? leaguePhaseStages.slice().reverse().map((stage) => ({
             key: stage.id,
             label: stage.name,
             content: (
-              <div className="space-y-1.5">
-                {stage.matches.map((match) => (
-                  match.status === 'finished'
-                    ? <MatchCard key={match.id} match={match} />
-                    : <FixtureCard key={match.id} match={match} />
-                ))}
-              </div>
+              <MatchArchiveSplitList
+                matches={stage.matches}
+                locale={locale}
+                recentResultsLabel={tLeague('recentResults')}
+                upcomingFixturesLabel={tLeague('upcomingFixtures')}
+                emptyLabel={tClub('seasonMatchesEmpty')}
+              />
             ),
           }))
         : legacyGroupStageMatches
@@ -79,27 +76,27 @@ export async function ClubSeasonArchiveSections({
               key: legacyGroupStageMatches.id,
               label: tLeague('groupStage'),
               content: (
-                <div className="space-y-1.5">
-                  {legacyGroupStageMatches.matches.map((match) => (
-                    match.status === 'finished'
-                      ? <MatchCard key={match.id} match={match} />
-                      : <FixtureCard key={match.id} match={match} />
-                  ))}
-                </div>
+                <MatchArchiveSplitList
+                  matches={legacyGroupStageMatches.matches}
+                  locale={locale}
+                  recentResultsLabel={tLeague('recentResults')}
+                  upcomingFixturesLabel={tLeague('upcomingFixtures')}
+                  emptyLabel={tClub('seasonMatchesEmpty')}
+                />
               ),
             }]
           : []),
-      ...qualifyingStages.slice().reverse().map((stage) => ({
+      ...qualifyingStages.map((stage) => ({
         key: stage.id,
         label: stage.name,
         content: (
-          <div className="space-y-1.5">
-            {stage.matches.map((match) => (
-              match.status === 'finished'
-                ? <MatchCard key={match.id} match={match} />
-                : <FixtureCard key={match.id} match={match} />
-            ))}
-          </div>
+          <MatchArchiveSplitList
+            matches={stage.matches}
+            locale={locale}
+            recentResultsLabel={tLeague('recentResults')}
+            upcomingFixturesLabel={tLeague('upcomingFixtures')}
+            emptyLabel={tClub('seasonMatchesEmpty')}
+          />
         ),
       })),
     ];
@@ -109,13 +106,13 @@ export async function ClubSeasonArchiveSections({
         {stageTabs.length > 0 ? (
           <TabGroup tabs={stageTabs} defaultTab={stageTabs[0]?.key} />
         ) : (
-          <div className="space-y-1.5">
-            {seasonMatches.length > 0 ? seasonMatches.map((match) => (
-              match.status === 'finished'
-                ? <MatchCard key={match.id} match={match} />
-                : <FixtureCard key={match.id} match={match} />
-            )) : <div className="text-[13px] text-text-secondary">{tClub('seasonMatchesEmpty')}</div>}
-          </div>
+          <MatchArchiveSplitList
+            matches={seasonMatches}
+            locale={locale}
+            recentResultsLabel={tLeague('recentResults')}
+            upcomingFixturesLabel={tLeague('upcomingFixtures')}
+            emptyLabel={tClub('seasonMatchesEmpty')}
+          />
         )}
       </SectionCard>
     );
@@ -130,13 +127,13 @@ export async function ClubSeasonArchiveSections({
       </SectionCard>
 
       <SectionCard title={`${tClub('seasonMatchArchive')} · ${seasonLabel}`}>
-        <div className="space-y-1.5">
-          {seasonMatches.length > 0 ? seasonMatches.map((match) => (
-            match.status === 'scheduled'
-              ? <FixtureCard key={match.id} match={match} />
-              : <MatchCard key={match.id} match={match} />
-          )) : <div className="text-[13px] text-text-secondary">{tClub('seasonMatchesEmpty')}</div>}
-        </div>
+        <MatchArchiveSplitList
+          matches={seasonMatches}
+          locale={locale}
+          recentResultsLabel={tLeague('recentResults')}
+          upcomingFixturesLabel={tLeague('upcomingFixtures')}
+          emptyLabel={tClub('seasonMatchesEmpty')}
+        />
       </SectionCard>
     </>
   );

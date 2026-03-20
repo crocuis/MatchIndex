@@ -1,5 +1,5 @@
 import postgres from 'postgres';
-import type { MatchAnalysisArtifactPayload } from '@/data/types';
+import type { MatchAnalysisArtifactPayloadV2 } from '@/data/types';
 import { persistMatchEventArtifacts } from '@/data/matchEventArtifactWriter';
 
 interface MatchContextRow {
@@ -20,10 +20,12 @@ interface SofascoreIncidentPlayer {
 interface SofascoreIncident {
   addedTime?: number;
   assist1?: SofascoreIncidentPlayer;
+  description?: string;
   id?: string | number;
   incidentClass?: string;
   incidentType?: string;
   isHome?: boolean;
+  length?: number;
   player?: SofascoreIncidentPlayer;
   playerIn?: SofascoreIncidentPlayer;
   playerOut?: SofascoreIncidentPlayer;
@@ -50,6 +52,30 @@ export interface CollectSofascoreMatchArtifactsSummary {
   sourceSlug: string;
 }
 
+function normalizeIncidentClass(value?: string | null) {
+  return (value ?? '').trim().toLowerCase();
+}
+
+function buildIncidentDetail(incident: SofascoreIncident) {
+  if (incident.incidentType === 'period') {
+    return incident.text ?? incident.reason ?? null;
+  }
+
+  if (incident.incidentType === 'injuryTime') {
+    if (typeof incident.length === 'number' && Number.isFinite(incident.length) && incident.length > 0) {
+      return `${incident.length} minutes`;
+    }
+
+    return incident.text ?? incident.reason ?? null;
+  }
+
+  if (incident.incidentType === 'substitution') {
+    return incident.incidentClass ?? incident.reason ?? incident.text ?? null;
+  }
+
+  return incident.description ?? incident.incidentClass ?? incident.reason ?? incident.text ?? null;
+}
+
 function getDb() {
   const connectionString = process.env.DATABASE_URL;
 
@@ -60,14 +86,26 @@ function getDb() {
   return postgres(connectionString, { max: 1, idle_timeout: 20, prepare: false });
 }
 
-function getIncidentEventType(incident: SofascoreIncident): MatchAnalysisArtifactPayload['events'][number]['type'] | null {
-  if (incident.incidentType === 'goal') return 'goal';
+function getIncidentEventType(incident: SofascoreIncident): MatchAnalysisArtifactPayloadV2['events'][number]['type'] | null {
+  const klass = normalizeIncidentClass(incident.incidentClass);
+
+  if (incident.incidentType === 'goal') {
+    if (klass === 'owngoal') return 'own_goal';
+    if (klass === 'penalty') return 'penalty_scored';
+    return 'goal';
+  }
+
   if (incident.incidentType === 'card') {
-    if (incident.incidentClass === 'red') return 'red_card';
-    if (incident.incidentClass === 'yellowred') return 'yellow_red_card';
+    if (klass === 'red') return 'red_card';
+    if (klass === 'yellowred') return 'yellow_red_card';
     return 'yellow_card';
   }
   if (incident.incidentType === 'substitution') return 'substitution';
+  if (incident.incidentType === 'inGamePenalty') return klass === 'missed' ? 'penalty_missed' : 'penalty_scored';
+  if (incident.incidentType === 'penaltyShootout') return klass === 'missed' ? 'penalty_missed' : 'penalty_scored';
+  if (incident.incidentType === 'varDecision') return 'var_decision';
+  if (incident.incidentType === 'period') return 'period';
+  if (incident.incidentType === 'injuryTime') return 'injury_time';
   return null;
 }
 
@@ -116,7 +154,7 @@ export async function collectSofascoreMatchArtifacts(
 
     const season = match.match_date.slice(0, 4);
     const incidents = await loadIncidentsPayload(sql, sourceSlug, season, match.external_match_id);
-    const events: MatchAnalysisArtifactPayload['events'] = [];
+    const events: MatchAnalysisArtifactPayloadV2['events'] = [];
 
     for (const [index, incident] of (incidents?.incidents ?? []).entries()) {
       const type = getIncidentEventType(incident);
@@ -128,13 +166,24 @@ export async function collectSofascoreMatchArtifacts(
       const secondaryPlayerName = type === 'substitution' ? incident.playerOut?.name ?? null : incident.assist1?.name ?? null;
       events.push({
         sourceEventId: String(incident.id ?? `sofascore:${options.matchId}:${index}`),
+        sourceType: incident.incidentType ?? null,
+        sourceSubtype: incident.incidentClass ?? incident.reason ?? null,
+        canonicalType: type,
         eventIndex: index,
+        period: null,
         minute: incident.time ?? 0,
         second: null,
+        stoppageMinute: incident.addedTime ?? null,
+        matchSecond: null,
         type,
         teamId: incident.isHome ? match.home_team_id : match.away_team_id,
         playerId: null,
         secondaryPlayerId: null,
+        sourceLocationX: null,
+        sourceLocationY: null,
+        sourceEndLocationX: null,
+        sourceEndLocationY: null,
+        sourceEndLocationZ: null,
         locationX: null,
         locationY: null,
         endLocationX: null,
@@ -142,17 +191,31 @@ export async function collectSofascoreMatchArtifacts(
         endLocationZ: null,
         underPressure: false,
         statsbombXg: null,
-        detail: [playerName, incident.incidentClass ?? incident.reason ?? incident.text ?? null, secondaryPlayerName].filter(Boolean).join(' · ') || null,
+        detail: buildIncidentDetail(incident),
         outcome: null,
+        sourcePayload: {
+          addedTime: incident.addedTime ?? null,
+          description: incident.description ?? null,
+          incidentClass: incident.incidentClass ?? null,
+          incidentType: incident.incidentType ?? null,
+          isHome: incident.isHome ?? null,
+          length: incident.length ?? null,
+          player: playerName,
+          playerIn: incident.playerIn?.name ?? null,
+          playerOut: incident.playerOut?.name ?? null,
+          text: incident.text ?? null,
+        },
       });
     }
 
-    const payload: MatchAnalysisArtifactPayload = {
-      version: 1,
+    const payload: MatchAnalysisArtifactPayloadV2 = {
+      version: 2,
       matchId: Number(options.matchId),
       artifactType: 'analysis_detail',
       sourceVendor: 'sofascore',
       generatedAt: new Date().toISOString(),
+      coordinateSystem: 'pitch-100x100',
+      normalizedCoordinateSystem: 'pitch-100x100',
       events,
     };
 

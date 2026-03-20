@@ -2,6 +2,18 @@ import postgres from 'postgres';
 import { loadProjectEnv } from './load-project-env.mts';
 import { COUNTRY_CODE_ALIASES, COUNTRY_CODE_SKIP } from '../src/data/countryCodeAliasSeeds.ts';
 
+const BATCH_SIZE = 500;
+
+interface CountryRow {
+  code_alpha3: string;
+  id: number;
+}
+
+interface AliasDraft {
+  alias: string;
+  entityId: number;
+}
+
 interface CliOptions {
   dryRun: boolean;
 }
@@ -31,31 +43,41 @@ async function main() {
   const sql = getSql();
 
   try {
+    const countries = await sql<CountryRow[]>`
+      SELECT id, code_alpha3
+      FROM countries
+    `;
+    const countryIdByCode = new Map(countries.map((country) => [country.code_alpha3, country.id]));
     const unresolved: string[] = [];
     let inserted = 0;
+    const drafts: AliasDraft[] = [];
 
     for (const [aliasCode, canonicalCode] of Object.entries(COUNTRY_CODE_ALIASES)) {
       if (COUNTRY_CODE_SKIP.has(canonicalCode)) {
         continue;
       }
 
-      const rows = await sql<Array<{ id: number }>>`
-        SELECT id
-        FROM countries
-        WHERE code_alpha3 = ${canonicalCode}
-        LIMIT 1
-      `;
-      const countryId = rows[0]?.id;
+      const countryId = countryIdByCode.get(canonicalCode);
 
       if (!countryId) {
         unresolved.push(`${aliasCode} -> ${canonicalCode}`);
         continue;
       }
 
-      if (!options.dryRun) {
+      drafts.push({ alias: aliasCode, entityId: countryId });
+      inserted += 1;
+    }
+
+    if (!options.dryRun) {
+      for (let i = 0; i < drafts.length; i += BATCH_SIZE) {
+        const chunk = drafts.slice(i, i + BATCH_SIZE);
         await sql`
           INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
-          VALUES ('country', ${countryId}, ${aliasCode}, NULL, 'common', FALSE, 'approved', 'legacy', 'country_code_alias_seed')
+          SELECT 'country', t.entity_id, t.alias, NULL, 'common', FALSE, 'approved', 'legacy', 'country_code_alias_seed'
+          FROM UNNEST(
+            ${sql.array(chunk.map((draft) => draft.entityId))}::int[],
+            ${sql.array(chunk.map((draft) => draft.alias))}::text[]
+          ) AS t(entity_id, alias)
           ON CONFLICT (entity_type, entity_id, alias_normalized)
           DO UPDATE SET
             locale = EXCLUDED.locale,
@@ -66,8 +88,6 @@ async function main() {
             source_ref = EXCLUDED.source_ref
         `;
       }
-
-      inserted += 1;
     }
 
     console.log(JSON.stringify({

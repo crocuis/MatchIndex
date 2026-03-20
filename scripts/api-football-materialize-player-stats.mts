@@ -37,7 +37,9 @@ async function main() {
 
 Options:
   --competitions=PL,PD   Restrict to supported competition codes
-  --write                Upsert player_season_stats and refresh mv_top_scorers
+  season ...            Optional start years to process (default: 2015 through 2026)
+  --write                Upsert player_season_stats, refresh mv_top_scorers, and backfill player_contracts
+  --skip-contract-backfill  Skip player_contracts/team_seasons backfill
   --help, -h             Show this help message
 
 Required environment:
@@ -50,6 +52,7 @@ Required environment:
     dryRun: args.has('--write') ? false : true,
     competitionCodes: parseCompetitionCodes(argv),
     seasons,
+    includeContractBackfill: !args.has('--skip-contract-backfill'),
   });
 
   console.log(JSON.stringify(summary, null, 2));

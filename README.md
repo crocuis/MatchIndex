@@ -50,6 +50,10 @@ npm run scheduled:cron -- --print
 - 앱 read 경로 기본값은 `jsDelivr` CDN이며 `MATCH_EVENT_ARTIFACT_REMOTE_BASE_URL`, `MATCH_EVENT_ARTIFACT_READ_MODE`로 제어 가능
 - private GitHub 저장소를 쓰면 `MATCH_EVENT_ARTIFACT_GITHUB_TOKEN`과 `MATCH_EVENT_ARTIFACT_GITHUB_OWNER/REPO/REF`를 함께 설정하면 된다
 
+## SofaScore Rollout
+
+- `SofaScore-only` pilot rollout 순서는 `SOFASCORE_ROLLOUT_CHECKLIST.md`를 참고
+
 ## Stack
 
 - **Next.js 16** (App Router, Turbopack)

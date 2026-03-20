@@ -10,8 +10,8 @@
 | **Season-scoped isolation** | 시즌별 데이터(통계, 순위, 계약)는 마스터 엔티티와 분리된 별도 테이블에 저장한다. 한 시즌이 종료되어도 마스터 데이터는 불변이다. |
 | **Hot/Cold separation** | 현재 시즌 = hot (NVMe tablespace, 짧은 Redis TTL, 빈번한 materialized view refresh). 종료 시즌 = cold (HDD tablespace, 긴 TTL, refresh 없음). |
 | **Translation ≠ Canonical** | 엔티티 테이블에는 언어 독립적 데이터만 저장한다. 모든 사람이 읽는 이름/설명은 `*_translations` 테이블에 locale별로 저장한다. |
-| **Source-agnostic ingestion** | football-data.org, API-Football 등 여러 소스를 동시 지원한다. raw payload 저장 → normalize → canonical 테이블 upsert 파이프라인. |
-| **Partitioned event data** | 매치/이벤트 테이블은 `match_date` 기준 RANGE 파티셔닝. 시즌 경계에 맞춰 파티션 생성. |
+| **Source-agnostic ingestion** | 여러 소스를 동시 지원한다. `raw_payloads`/source-aware artifact 저장 → normalize → canonical read model upsert 파이프라인. |
+| **Artifact-first events** | raw event table 대신 source-aware artifact(`artifacts/<source>/matches/...`)를 canonical event bundle의 기본 저장소로 사용한다. |
 | **Materialized reads** | 순위표, 득점 랭킹 등 읽기 집약 데이터는 materialized view + `REFRESH CONCURRENTLY`로 서빙한다. |
 
 ### 1.2 ID 전략
@@ -68,10 +68,10 @@ URL slug: VARCHAR(100) UNIQUE (teams.slug = 'manchester-city', SEO/URL용)
 │  │   player_contracts      │ │  player_season_stats    │                   │
 │  └─────────────────────────┘ └─────────────────────────┘                   │
 │                                                                             │
-│  Layer 4: MATCH/EVENT (high-volume, partitioned by match_date)             │
-│  ┌──────────────┐ ┌──────────────┐ ┌────────────────┐                      │
-│  │   matches    │ │ match_events │ │  match_stats   │                      │
-│  │ (PARTITIONED)│ └──────────────┘ └────────────────┘                      │
+│  Layer 4: MATCH / ARTIFACT / READ MODEL                                   │
+│  ┌──────────────┐ ┌─────────────────────┐ ┌────────────────┐               │
+│  │   matches    │ │ match_event_artifacts│ │  match_stats   │               │
+│  │ (PARTITIONED)│ └─────────────────────┘ └────────────────┘               │
 │  └──────────────┘ ┌────────────────┐                                       │
 │                   │ match_lineups  │                                       │
 │                   └────────────────┘                                       │
@@ -85,9 +85,9 @@ URL slug: VARCHAR(100) UNIQUE (teams.slug = 'manchester-city', SEO/URL용)
 │  ┌──────────────────┐ ┌───────────────────────┐ ┌────────────────┐         │
 │  │  data_sources     │ │ source_entity_mapping │ │  raw_payloads  │         │
 │  └──────────────────┘ └───────────────────────┘ └────────────────┘         │
-│  ┌──────────────────┐                                                      │
-│  │  ingestion_log   │                                                      │
-│  └──────────────────┘                                                      │
+│  ┌──────────────────┐ ┌───────────────────────┐                            │
+│  │ source_sync_runs │ │ source_sync_manifests │                            │
+│  └──────────────────┘ └───────────────────────┘                            │
 │                                                                             │
 │  REDIS (Cache Layer)                                                       │
 │  ┌───────────────────────────────────────────────────────────────────────┐  │
@@ -106,9 +106,9 @@ URL slug: VARCHAR(100) UNIQUE (teams.slug = 'manchester-city', SEO/URL용)
 | **Static** | `countries`, `locales` | 거의 없음 | 앱 배포 시 seed |
 | **Slow-moving** | `competitions`, `teams`, `players`, `venues`, `coaches` | 일~주 단위 | 이적, 감독 교체 |
 | **Seasonal** | `competition_seasons`, `team_seasons`, `player_contracts`, `player_season_stats` | 시즌 단위 생성, 매치 후 갱신 | 시즌 종료 후 immutable |
-| **Event-driven** | `matches`, `match_events`, `match_stats`, `match_lineups` | 실시간~분 단위 | 라이브 매치 중 빈번 갱신 |
+| **Event-driven** | `matches`, `match_event_artifacts`, `match_stats`, `match_lineups` | 경기 종료 후 artifact/통계 갱신 | source별 raw는 artifact로 보존 |
 | **Derived** | `mv_standings`, `mv_top_scorers` | 매치 종료 시 refresh | MATERIALIZED VIEW |
-| **Ingestion** | `raw_payloads`, `ingestion_log` | 매 API 호출 시 | 보관 후 cold 이동 가능 |
+| **Ingestion** | `raw_payloads`, `source_sync_runs`, `source_sync_manifests` | 매 fetch/materialize 실행 시 | 보관 후 cold 이동 가능 |
 
 ---
 
@@ -137,21 +137,27 @@ URL slug: VARCHAR(100) UNIQUE (teams.slug = 'manchester-city', SEO/URL용)
 | 17 | Season | `player_contracts` | junction | - | ✅ |
 | 18 | Season | `player_season_stats` | stats | - | ✅ |
 | 19 | Match | `matches` | event | ✅ RANGE | ✅ |
-| 20 | Match | `match_events` | event | - | ✅ |
-| 21 | Match | `match_stats` | event | - | ✅ |
-| 22 | Match | `match_lineups` | event | - | ⬜ |
+| 20 | Match | `match_stats` | read model | - | ✅ |
+| 21 | Match | `match_lineups` | read model | - | ⬜ |
+| 22 | Match | `match_event_artifacts` | metadata | - | ✅ |
 | 23 | View | `mv_standings` | materialized | - | ✅ |
 | 24 | View | `mv_top_scorers` | materialized | - | ✅ |
 | 25 | Source | `data_sources` | reference | - | ✅ |
 | 26 | Source | `source_entity_mapping` | mapping | - | ✅ |
-| 27 | Source | `raw_payloads` | audit | - | ⬜ |
-| 28 | Source | `ingestion_log` | audit | - | ⬜ |
+| 27 | Source | `source_sync_runs` | audit | - | ✅ |
+| 28 | Source | `source_sync_manifests` | audit | - | ✅ |
+| 29 | Source | `raw_payloads` | audit | - | ✅ |
 
-**MVP 필수**: 20개 (✅) / **확장**: 8개 (⬜)
+**핵심 원칙**: raw payload와 source-aware artifact는 유지하고, 앱은 read model과 canonical artifact contract를 읽는다.
 
 ---
 
 ## 4. 테이블 상세 (DDL)
+
+> 참고: 이 섹션의 일부 예시는 초기 설계 문맥을 보존하기 위한 아카이브 성격이 남아 있습니다.
+> 현재 authoritative schema는 `db/schema.sql`이며, 구조 재편 원칙은 `DATA_RESTRUCTURE_PLAN.md`를 우선 기준으로 봅니다.
+> canonical event contract는 `ANALYSIS_DETAIL_V2_CONTRACT.md`를 기준으로 확장합니다.
+> season owner / frozen 정책은 `SOURCE_OWNER_FREEZE_POLICY.md`를 기준으로 확장합니다.
 
 ### 4.0 Extensions & Enums
 
@@ -596,33 +602,31 @@ CREATE INDEX idx_matches_kickoff ON matches (kickoff_at);
 
 
 -- ═══════════════════════════════════════════════════════════
--- MATCH_EVENTS (goals, cards, substitutions)
---
--- Normalized: 하나의 테이블에 모든 이벤트 유형 저장
--- football-data.org의 goals[]/bookings[]/substitutions[] +
--- API-Football의 events[] 양쪽 모두 이 테이블로 normalize
+-- MATCH_EVENT_ARTIFACTS
+-- source-aware raw/normalized event bundle metadata
+-- 실제 payload는 artifacts/<source>/matches/... 경로에 저장
 -- ═══════════════════════════════════════════════════════════
-CREATE TABLE match_events (
+CREATE TABLE match_event_artifacts (
     id              BIGSERIAL PRIMARY KEY,
     match_id        BIGINT NOT NULL,
-    match_date      DATE NOT NULL,                 -- for partition-aware FK
-    event_type      match_event_type NOT NULL,
-    minute          SMALLINT NOT NULL,
-    extra_minute    SMALLINT,                      -- 추가시간 분
-    team_id         BIGINT NOT NULL REFERENCES teams(id),
-    player_id       BIGINT REFERENCES players(id),
-    secondary_player_id BIGINT REFERENCES players(id),  -- assist(goal) / player_in(sub)
-    detail          VARCHAR(100),                  -- 'Normal Goal', 'Penalty', etc.
-
+    match_date      DATE NOT NULL,
+    artifact_type   VARCHAR(40) NOT NULL,          -- analysis_detail / freeze_frames / visible_areas / raw_event_bundle
+    format          VARCHAR(20) NOT NULL,          -- json.gz
+    storage_key     TEXT NOT NULL,                 -- statsbomb/matches/2024/07/3943077/analysis-detail.v1.json.gz
+    version         INTEGER NOT NULL DEFAULT 1,
+    row_count       INTEGER,
+    byte_size       BIGINT,
+    checksum_sha256 CHAR(64),
+    source_vendor   VARCHAR(40),
     created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 
-    FOREIGN KEY (match_id, match_date) REFERENCES matches(id, match_date)
+    FOREIGN KEY (match_id, match_date) REFERENCES matches(id, match_date),
+    UNIQUE (match_id, artifact_type, version)
 );
 
-CREATE INDEX idx_match_events_match ON match_events (match_id, minute);
-CREATE INDEX idx_match_events_player ON match_events (player_id, event_type);
-CREATE INDEX idx_match_events_goals ON match_events (match_date, team_id)
-    WHERE event_type IN ('goal', 'penalty_scored');
+CREATE INDEX idx_match_event_artifacts_match
+    ON match_event_artifacts (match_id, artifact_type, version DESC);
 
 
 -- ═══════════════════════════════════════════════════════════
@@ -801,7 +805,7 @@ CREATE INDEX idx_mv_top_scorers_rank
 
 ```sql
 -- ═══════════════════════════════════════════════════════════
--- DATA_SOURCES (registered external API providers)
+-- DATA_SOURCES (registered external providers)
 -- ═══════════════════════════════════════════════════════════
 CREATE TABLE data_sources (
     id          BIGSERIAL PRIMARY KEY,
@@ -815,7 +819,10 @@ CREATE TABLE data_sources (
 
 INSERT INTO data_sources (slug, name, base_url, priority) VALUES
     ('football_data_org', 'football-data.org v4', 'https://api.football-data.org/v4', 1),
-    ('api_football',      'API-Football v3',      'https://v3.football.api-sports.io', 2);
+    ('api_football',      'API-Football v3',      'https://v3.football.api-sports.io', 2),
+    ('statsbomb',         'StatsBomb Open Data',  'https://github.com/statsbomb/open-data', 3),
+    ('sofascore',         'SofaScore Scrape',     'https://www.sofascore.com', 4),
+    ('fbref',             'FBref Scrape',         'https://fbref.com', 5);
 
 
 -- ═══════════════════════════════════════════════════════════
@@ -868,19 +875,36 @@ CREATE INDEX idx_raw_payloads_fetched
 
 
 -- ═══════════════════════════════════════════════════════════
--- INGESTION_LOG (ETL 파이프라인 실행 로그)
+-- SOURCE_SYNC_RUNS / SOURCE_SYNC_MANIFESTS
+-- ingest/materialize 단위 실행 기록과 upstream snapshot 추적
 -- ═══════════════════════════════════════════════════════════
-CREATE TABLE ingestion_log (
+CREATE TABLE source_sync_runs (
     id              BIGSERIAL PRIMARY KEY,
     source_id       BIGINT NOT NULL REFERENCES data_sources(id),
-    job_type        VARCHAR(50) NOT NULL,           -- 'sync_matches', 'sync_standings'
-    status          VARCHAR(20) NOT NULL DEFAULT 'running', -- running, completed, failed
-    entities_created INTEGER DEFAULT 0,
-    entities_updated INTEGER DEFAULT 0,
-    errors          JSONB,                          -- [{entity_type, external_id, error}]
+    upstream_ref    VARCHAR(255),
+    upstream_commit_sha VARCHAR(255),
+    status          ingestion_status NOT NULL DEFAULT 'running',
+    fetched_files   INTEGER NOT NULL DEFAULT 0,
+    changed_files   INTEGER NOT NULL DEFAULT 0,
+    metadata        JSONB,
     started_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    completed_at    TIMESTAMPTZ,
-    duration_ms     INTEGER
+    completed_at    TIMESTAMPTZ
+);
+
+CREATE TABLE source_sync_manifests (
+    id                  BIGSERIAL PRIMARY KEY,
+    source_id           BIGINT NOT NULL REFERENCES data_sources(id),
+    sync_run_id         BIGINT REFERENCES source_sync_runs(id) ON DELETE SET NULL,
+    manifest_type       VARCHAR(50) NOT NULL,
+    upstream_path       TEXT NOT NULL,
+    external_id         TEXT,
+    external_parent_id  TEXT,
+    source_updated_at   TIMESTAMPTZ,
+    source_available_at TIMESTAMPTZ,
+    metadata            JSONB,
+    created_at          TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at          TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    UNIQUE (source_id, manifest_type, upstream_path)
 );
 ```
 
@@ -1193,9 +1217,7 @@ WHERE match_date BETWEEN '2025-08-01' AND '2026-05-31'
 | | `(away_team_id, match_date)` | B-tree | 팀별 원정 경기 |
 | | `(status) WHERE status IN (scheduled, live_*)` | Partial B-tree | 라이브/예정 경기만 |
 | | `(kickoff_at)` | B-tree | 시간순 정렬 |
-| **match_events** | `(match_id, minute)` | B-tree | 매치 이벤트 타임라인 |
-| | `(player_id, event_type)` | B-tree | 선수별 이벤트 조회 |
-| | `(match_date, team_id) WHERE event_type IN (goal, penalty_scored)` | Partial B-tree | 팀별 득점 조회 |
+| **match_event_artifacts** | `(match_id, artifact_type, version DESC)` | B-tree | 매치 artifact 메타 조회 |
 | **match_stats** | `(match_id)` | B-tree | 매치 통계 조회 |
 | **player_season_stats** | `(competition_season_id, goals DESC)` | B-tree | 득점 랭킹 |
 | | `(competition_season_id, assists DESC)` | B-tree | 어시스트 랭킹 |
@@ -1423,8 +1445,8 @@ WHERE sem.source_id = (SELECT id FROM data_sources WHERE slug = 'api_football')
 
  ┌─ Match/Event ────────────────────────────────┐
  │  matches (PARTITIONED)  ← Match/Results 페이지│
- │  match_events           ← Match 이벤트 타임라인│
- │  match_stats            ← Match 통계           │
+│  match_event_artifacts  ← Match 이벤트 artifact │
+│  match_stats            ← Match 통계 read model │
  └───────────────────────────────────────────────┘
 
  ┌─ Source Mapping ─────────────────────────────┐
@@ -1446,8 +1468,9 @@ WHERE sem.source_id = (SELECT id FROM data_sources WHERE slug = 'api_football')
 | `venues` + `venue_translations` | 경기장 상세 정보 (위치, 수용인원, 이미지) | 중 |
 | `coaches` + `coach_translations` | 감독 프로필 | 중 |
 | `match_lineups` | 선발 라인업 + 교체 명단 | 높음 |
-| `raw_payloads` | API 응답 원본 저장 (디버깅/재처리) | 낮음 |
-| `ingestion_log` | ETL 파이프라인 모니터링 | 낮음 |
+| `raw_payloads` | source 원본 저장 (디버깅/재처리) | 높음 |
+| `source_sync_runs` | ingest/materialize 실행 추적 | 중 |
+| `source_sync_manifests` | upstream snapshot 추적 | 중 |
 
 ### MVP 마이그레이션 순서
 
@@ -1462,8 +1485,8 @@ WHERE sem.source_id = (SELECT id FROM data_sources WHERE slug = 'api_football')
 8. competition_seasons, team_seasons, player_contracts (시즌 연결)
 9. player_season_stats                                (통계)
 10. matches (+ partitions)                            (경기 데이터)
-11. match_events, match_stats                         (이벤트/통계)
-12. source_entity_mapping                             (외부 API 매핑)
+11. matches, match_event_artifacts, match_stats, match_lineups
+12. source_entity_mapping, source_sync_runs, source_sync_manifests, raw_payloads
 13. mv_standings, mv_top_scorers                      (materialized views)
 ```
 
@@ -1479,7 +1502,7 @@ WHERE sem.source_id = (SELECT id FROM data_sources WHERE slug = 'api_football')
 | `Player.seasonStats` | `player_season_stats` | 별도 테이블로 분리 |
 | `Nation` | `countries` + `country_translations` | |
 | `Match` | `matches` | 파티셔닝 추가 |
-| `MatchEvent` | `match_events` | normalized 이벤트 모델 |
+| `MatchEvent` | `analysis_detail` artifact + `match_event_artifacts` | normalized 이벤트 모델 |
 | `MatchStats` | `match_stats` | [home,away] → 2행으로 분리 |
 | `StandingRow` | `mv_standings` | materialized view |
 | `StatLeader` | `mv_top_scorers` | materialized view |

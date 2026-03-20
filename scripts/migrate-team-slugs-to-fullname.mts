@@ -38,6 +38,11 @@ interface RenameEntry {
   countryCode: string;
 }
 
+const DISTINCT_TEAM_PAIRS = new Set([
+  buildDistinctPairKey('afc-liverpool', 'liverpool-fc-england'),
+  buildDistinctPairKey('bury', 'bury-afc'),
+]);
+
 function normalizeClubName(value: string) {
   return value
     .normalize('NFKD')
@@ -50,6 +55,14 @@ function normalizeClubName(value: string) {
     .replace(/\s+/g, ' ')
     .trim()
     .toLowerCase();
+}
+
+function buildDistinctPairKey(leftSlug: string, rightSlug: string) {
+  return [leftSlug, rightSlug].sort((left, right) => left.localeCompare(right, 'en')).join('::');
+}
+
+function isKnownDistinctTeamPair(leftSlug: string, rightSlug: string) {
+  return DISTINCT_TEAM_PAIRS.has(buildDistinctPairKey(leftSlug, rightSlug));
 }
 
 function parseArgs(argv: string[]): CliOptions {
@@ -236,6 +249,10 @@ async function main() {
       }
 
       if (preferredExistingTarget && preferredExistingTarget.id !== row.id) {
+        if (isKnownDistinctTeamPair(row.slug, preferredExistingTarget.slug)) {
+          continue;
+        }
+
         const preferredKey = `${row.slug}->${preferredExistingTarget.slug}`;
         if (!seenMerge.has(preferredKey)) {
           seenMerge.add(preferredKey);
@@ -254,6 +271,10 @@ async function main() {
 
       const existingTarget = bySlug.get(targetSlug);
       if (existingTarget && existingTarget.id !== row.id) {
+        if (isKnownDistinctTeamPair(row.slug, targetSlug)) {
+          continue;
+        }
+
         const key = `${row.slug}->${targetSlug}`;
         if (!seenMerge.has(key)) {
           seenMerge.add(key);

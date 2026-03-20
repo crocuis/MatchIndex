@@ -1,4 +1,7 @@
 import postgres, { type Sql } from 'postgres';
+import { isCompetitionSeasonWriteAllowed, loadCompetitionSeasonPolicies } from './sourceOwnership.ts';
+
+const BATCH_SIZE = 500;
 
 interface SourceRow {
   id: number;
@@ -426,64 +429,68 @@ function buildAggregatedStats(
 }
 
 async function upsertPlayerSeasonStats(sql: Sql, rows: AggregatedPlayerSeasonStats[]) {
-  for (const row of rows) {
-    await sql`
-      INSERT INTO player_season_stats (
-        player_id,
-        competition_season_id,
-        appearances,
-        starts,
-        minutes_played,
-        goals,
-        assists,
-        penalty_goals,
-        own_goals,
-        yellow_cards,
-        red_cards,
-        yellow_red_cards,
-        clean_sheets,
-        goals_conceded,
-        saves,
-        avg_rating,
-        updated_at
-      )
-      VALUES (
-        ${row.playerId},
-        ${row.competitionSeasonId},
-        ${row.appearances},
-        ${row.starts},
-        ${row.minutesPlayed},
-        ${row.goals},
-        ${row.assists},
-        ${row.penaltyGoals},
-        ${row.ownGoals},
-        ${row.yellowCards},
-        ${row.redCards},
-        ${row.yellowRedCards},
-        ${row.cleanSheets},
-        ${row.goalsConceded},
-        ${row.saves},
-        ${row.avgRating},
-        NOW()
-      )
-      ON CONFLICT (player_id, competition_season_id)
-      DO UPDATE SET
-        appearances = EXCLUDED.appearances,
-        starts = EXCLUDED.starts,
-        minutes_played = EXCLUDED.minutes_played,
-        goals = EXCLUDED.goals,
-        assists = EXCLUDED.assists,
-        penalty_goals = EXCLUDED.penalty_goals,
-        own_goals = EXCLUDED.own_goals,
-        yellow_cards = EXCLUDED.yellow_cards,
-        red_cards = EXCLUDED.red_cards,
-        yellow_red_cards = EXCLUDED.yellow_red_cards,
-        clean_sheets = EXCLUDED.clean_sheets,
-        goals_conceded = EXCLUDED.goals_conceded,
-        saves = EXCLUDED.saves,
-        avg_rating = EXCLUDED.avg_rating,
-        updated_at = NOW()
-    `;
+  if (rows.length === 0) {
+    return;
+  }
+
+  await sql`BEGIN`;
+
+  try {
+    for (let i = 0; i < rows.length; i += BATCH_SIZE) {
+      const chunk = rows.slice(i, i + BATCH_SIZE);
+
+      await sql`
+        INSERT INTO player_season_stats (
+          player_id, competition_season_id,
+          appearances, starts, minutes_played,
+          goals, assists, penalty_goals, own_goals,
+          yellow_cards, red_cards, yellow_red_cards,
+          clean_sheets, goals_conceded, saves, avg_rating,
+          updated_at
+        )
+        SELECT *, NOW()
+        FROM UNNEST(
+          ${chunk.map((r) => r.playerId)}::int[],
+          ${chunk.map((r) => r.competitionSeasonId)}::int[],
+          ${chunk.map((r) => r.appearances)}::int[],
+          ${chunk.map((r) => r.starts)}::int[],
+          ${chunk.map((r) => r.minutesPlayed)}::int[],
+          ${chunk.map((r) => r.goals)}::int[],
+          ${chunk.map((r) => r.assists)}::int[],
+          ${chunk.map((r) => r.penaltyGoals)}::int[],
+          ${chunk.map((r) => r.ownGoals)}::int[],
+          ${chunk.map((r) => r.yellowCards)}::int[],
+          ${chunk.map((r) => r.redCards)}::int[],
+          ${chunk.map((r) => r.yellowRedCards)}::int[],
+          ${chunk.map((r) => r.cleanSheets)}::int[],
+          ${chunk.map((r) => r.goalsConceded)}::int[],
+          ${chunk.map((r) => r.saves)}::int[],
+          ${chunk.map((r) => r.avgRating)}::numeric[]
+        )
+        ON CONFLICT (player_id, competition_season_id)
+        DO UPDATE SET
+          appearances = EXCLUDED.appearances,
+          starts = EXCLUDED.starts,
+          minutes_played = EXCLUDED.minutes_played,
+          goals = EXCLUDED.goals,
+          assists = EXCLUDED.assists,
+          penalty_goals = EXCLUDED.penalty_goals,
+          own_goals = EXCLUDED.own_goals,
+          yellow_cards = EXCLUDED.yellow_cards,
+          red_cards = EXCLUDED.red_cards,
+          yellow_red_cards = EXCLUDED.yellow_red_cards,
+          clean_sheets = EXCLUDED.clean_sheets,
+          goals_conceded = EXCLUDED.goals_conceded,
+          saves = EXCLUDED.saves,
+          avg_rating = EXCLUDED.avg_rating,
+          updated_at = NOW()
+      `;
+    }
+
+    await sql`COMMIT`;
+  } catch (error) {
+    await sql`ROLLBACK`.catch(() => undefined);
+    throw error;
   }
 }
 
@@ -531,6 +538,7 @@ export async function materializeSoccerdataFbref(
       loadCanonicalPlayers(sql),
       loadRawPayloads(sql, sourceId, season, competitionCode),
     ]);
+    const policies = await loadCompetitionSeasonPolicies(sql, [competitionSeason.competition_season_id]);
     const { rows, unmatchedExternalPlayerIds } = buildAggregatedStats(
       rawPayloads,
       competitionSeason.competition_season_id,
@@ -538,19 +546,25 @@ export async function materializeSoccerdataFbref(
       roster,
       canonicalPlayers,
     );
+    const allowedRows = rows.filter((row) => isCompetitionSeasonWriteAllowed(
+      policies.get(row.competitionSeasonId),
+      'playerSeasonStats',
+      'fbref',
+      'backfill',
+    ));
 
     summary.playerMappingsFound = playerIdByExternalId.size;
     summary.rawPayloadsRead = rawPayloads.length;
-    summary.rowsPlanned = rows.length;
+    summary.rowsPlanned = allowedRows.length;
     summary.unmatchedExternalPlayerIds = unmatchedExternalPlayerIds;
 
     if (summary.dryRun) {
       return summary;
     }
 
-    await upsertPlayerSeasonStats(sql, rows);
+    await upsertPlayerSeasonStats(sql, allowedRows);
     await refreshDerivedViews(sql);
-    summary.rowsWritten = rows.length;
+    summary.rowsWritten = allowedRows.length;
     return summary;
   } finally {
     await sql.end({ timeout: 1 }).catch(() => undefined);

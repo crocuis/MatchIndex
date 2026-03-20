@@ -2,6 +2,7 @@
 import argparse
 import json
 import sys
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -56,7 +57,7 @@ def normalize_text(value: str | None) -> str:
     if not value:
         return ""
 
-    normalized = value.lower()
+    normalized = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii").lower()
     tokens = []
     current = []
     for character in normalized:
@@ -71,6 +72,61 @@ def normalize_text(value: str | None) -> str:
         tokens.append("".join(current))
 
     return " ".join(tokens)
+
+
+def tokens(value: str | None) -> list[str]:
+    normalized = normalize_text(value)
+    return [token for token in normalized.split(" ") if token]
+
+
+def build_acronym(value: str | None) -> str:
+    return "".join(token[0] for token in tokens(value) if token)
+
+
+def names_match(expected: str | None, actual: str | None) -> bool:
+    expected_tokens = tokens(expected)
+    actual_tokens = tokens(actual)
+    if not expected_tokens or not actual_tokens:
+        return False
+
+    expected_joined = " ".join(expected_tokens)
+    actual_joined = " ".join(actual_tokens)
+    if expected_joined == actual_joined:
+        return True
+
+    if len(expected_tokens) == len(actual_tokens):
+        if all(
+            expected_token == actual_token or (len(expected_token) == 1 and actual_token.startswith(expected_token))
+            for expected_token, actual_token in zip(expected_tokens, actual_tokens)
+        ):
+            return True
+
+    return False
+
+
+def team_names_match(expected: str | None, actual: str | None) -> bool:
+    expected_normalized = normalize_text(expected)
+    actual_normalized = normalize_text(actual)
+    if not expected_normalized or not actual_normalized:
+        return False
+    if expected_normalized == actual_normalized:
+        return True
+    if build_acronym(expected) == actual_normalized or build_acronym(actual) == expected_normalized:
+        return True
+    return False
+
+
+def get_link_player_key(player_link: str) -> str:
+    parts = player_link.rstrip("/").split("/")
+    if len(parts) < 3:
+        return ""
+    try:
+        slug_index = parts.index("profil") - 1
+    except ValueError:
+        return ""
+    if slug_index < 0:
+        return ""
+    return normalize_text(parts[slug_index].replace("-", " "))
 
 
 def load_target_index(path_value: str | None) -> dict[str, set[str]]:
@@ -116,22 +172,30 @@ def should_include_row(row: dict[str, Any], target_index: dict[str, set[str]]) -
     if source_url and source_url in target_index.get("source_urls", set()):
         return True
 
-    player_name = normalize_text(str(row.get("playerName") or ""))
-    team_name = normalize_text(str(row.get("teamName") or ""))
+    raw_player_name = str(row.get("playerName") or "")
+    raw_team_name = str(row.get("teamName") or "")
+    player_name = normalize_text(raw_player_name)
     if not player_name:
         return False
 
-    if player_name not in target_index.get("players", set()):
+    target_players = target_index.get("players", set())
+    if not any(names_match(target_player, raw_player_name) for target_player in target_players):
         return False
 
     pairs = target_index.get("player_team_pairs", set())
     if not pairs:
         return True
 
-    if team_name and f"{player_name}::{team_name}" in pairs:
-        return True
+    for pair in pairs:
+        pair_player, _, pair_team = pair.partition("::")
+        if not names_match(pair_player, raw_player_name):
+            continue
+        if not pair_team:
+            return True
+        if team_names_match(pair_team, raw_team_name):
+            return True
 
-    return f"{player_name}::" in pairs
+    return False
 
 
 def flatten_columns(columns: list[Any]) -> list[str]:
@@ -247,7 +311,18 @@ def scrape_capology_league(args: argparse.Namespace) -> dict[str, Any]:
 
 
 def scrape_transfermarkt_player_link(scraper: Any, player_link: str) -> dict[str, Any]:
-    dataframe = scraper.scrape_player(player_link)
+    try:
+        dataframe = scraper.scrape_player(player_link)
+    except Exception:
+        return {
+            "playerName": None,
+            "teamName": None,
+            "contractStartDate": None,
+            "contractEndDate": None,
+            "sourceUrl": player_link,
+            "raw": {},
+        }
+
     if dataframe.empty:
         return {
             "playerName": None,
@@ -275,20 +350,42 @@ def scrape_transfermarkt_league(args: argparse.Namespace) -> dict[str, Any]:
     _, imported_transfermarkt = get_scraperfc_classes()
     scraper = imported_transfermarkt()
     target_index = load_target_index(getattr(args, "targets", None))
-    player_links = scraper.get_player_links(args.season, args.league)
+    prefiltered_by_player_link = False
+    player_links = [
+        player_link
+        for player_link in scraper.get_player_links(args.season, args.league)
+        if "/profil/spieler/" in player_link
+    ]
     source_urls = target_index.get("source_urls", set())
     if source_urls:
         filtered_links = [player_link for player_link in player_links if player_link in source_urls]
         if filtered_links:
             player_links = filtered_links
-    if args.limit:
-        player_links = player_links[: args.limit]
+            prefiltered_by_player_link = True
+    elif target_index.get("players"):
+        target_players = target_index.get("players", set())
+        filtered_links = [
+            player_link
+            for player_link in player_links
+            if any(names_match(target_player, get_link_player_key(player_link)) for target_player in target_players)
+        ]
+        if filtered_links:
+            player_links = filtered_links
+            prefiltered_by_player_link = True
 
-    rows = [
-        row for player_link in player_links
-        for row in [scrape_transfermarkt_player_link(scraper, player_link)]
-        if should_include_row(row, target_index)
-    ]
+    rows: list[dict[str, Any]] = []
+    for player_link in player_links:
+        row = scrape_transfermarkt_player_link(scraper, player_link)
+        if prefiltered_by_player_link:
+            if row.get("playerName"):
+                rows.append(row)
+            continue
+
+        if should_include_row(row, target_index):
+            rows.append(row)
+
+    if args.limit:
+        rows = rows[: args.limit]
     return {
         "provider": "transfermarkt",
         "competition": args.league,

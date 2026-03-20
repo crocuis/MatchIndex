@@ -412,16 +412,20 @@ export type MatchAnalysisEventType =
   | 'red_card'
   | 'yellow_red_card'
   | 'substitution'
-  | 'var_decision';
+  | 'var_decision'
+  | 'period'
+  | 'injury_time';
 
 export interface MatchEvent {
   sourceEventId?: string;
   minute: number;
-  type: 'goal' | 'yellow_card' | 'red_card' | 'substitution';
+  stoppageMinute?: number | null;
+  type: 'goal' | 'yellow_card' | 'red_card' | 'substitution' | 'var_decision' | 'period' | 'injury_time';
   rawType?: MatchAnalysisEventType;
-  playerId: string;
+  sourceSubtype?: string | null;
+  playerId?: string;
   playerName?: string;
-  teamId: string;
+  teamId?: string;
   secondaryPlayerId?: string;
   secondaryPlayerName?: string;
   assistPlayerId?: string;
@@ -433,6 +437,8 @@ export interface MatchAnalysisEvent {
   id: string;
   minute: number;
   second: number | null;
+  stoppageMinute?: number | null;
+  matchSecond?: number | null;
   type: MatchAnalysisEventType;
   teamId: string;
   playerId?: string;
@@ -448,10 +454,24 @@ export interface MatchAnalysisEvent {
   statsbombXg?: number;
   outcome?: string;
   detail?: string;
+  sourceSubtype?: string | null;
+}
+
+export interface MatchAnalysisSummary {
+  totalEvents: number;
+  coordinateEvents: number;
+  trajectoryEvents: number;
+  playerLinkedEvents: number;
+  timelineEvents: number;
+  passMapEligibleEvents: number;
+  heatMapEligibleEvents: number;
+  shotMapEligibleEvents: number;
+  typeCounts: Record<string, number>;
 }
 
 export interface MatchAnalysisData {
   events: MatchAnalysisEvent[];
+  summary: MatchAnalysisSummary;
 }
 
 export type MatchEventArtifactType = 'analysis_detail' | 'freeze_frames' | 'visible_areas' | 'raw_event_bundle';
@@ -474,14 +494,25 @@ export interface MatchEventArtifact {
 }
 
 export interface MatchAnalysisArtifactEvent {
+  canonicalType?: MatchAnalysisEventType;
   sourceEventId: string | null;
+  sourceType?: string | null;
+  sourceSubtype?: string | null;
   eventIndex: number;
+  period?: number | null;
   minute: number;
   second: number | null;
+  stoppageMinute?: number | null;
+  matchSecond?: number | null;
   type: MatchAnalysisEventType;
   teamId: number;
   playerId: number | null;
   secondaryPlayerId: number | null;
+  sourceLocationX?: number | null;
+  sourceLocationY?: number | null;
+  sourceEndLocationX?: number | null;
+  sourceEndLocationY?: number | null;
+  sourceEndLocationZ?: number | null;
   locationX: number | null;
   locationY: number | null;
   endLocationX: number | null;
@@ -489,8 +520,14 @@ export interface MatchAnalysisArtifactEvent {
   endLocationZ: number | null;
   underPressure: boolean;
   statsbombXg: number | null;
+  metrics?: {
+    psxg?: number | null;
+    xg?: number | null;
+    xgChain?: number | null;
+  };
   detail: string | null;
   outcome: string | null;
+  sourcePayload?: Record<string, unknown> | null;
 }
 
 export interface MatchAnalysisArtifactPayload {
@@ -501,6 +538,22 @@ export interface MatchAnalysisArtifactPayload {
   generatedAt: string;
   events: MatchAnalysisArtifactEvent[];
 }
+
+export interface MatchAnalysisArtifactEventV2 extends MatchAnalysisArtifactEvent {}
+
+export interface MatchAnalysisArtifactPayloadV2 {
+  artifactType: 'analysis_detail';
+  coordinateSystem: 'pitch-120x80' | 'pitch-100x100' | 'pitch-0to1';
+  events: MatchAnalysisArtifactEventV2[];
+  generatedAt: string;
+  matchId: number;
+  normalizedCoordinateSystem: 'pitch-100x100';
+  sourceRevision?: string | null;
+  sourceVendor: string;
+  version: 2;
+}
+
+export type MatchAnalysisArtifactPayloadAny = MatchAnalysisArtifactPayload | MatchAnalysisArtifactPayloadV2;
 
 export interface MatchEventFreezeFramePoint {
   sourceEventId: string | null;
@@ -597,6 +650,7 @@ export interface LeagueSeasonEntry {
   seasonLabel: string;
   isCurrent: boolean;
   competitionFormat?: CompetitionFormatType;
+  hasFinishedMatches?: boolean;
 }
 
 // Utility types for data access

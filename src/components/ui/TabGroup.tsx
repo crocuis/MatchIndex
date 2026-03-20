@@ -3,21 +3,23 @@
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
-interface Tab {
+export interface TabGroupTab {
   key: string;
   label: React.ReactNode;
-  content: React.ReactNode;
+  content?: React.ReactNode;
+  render?: () => React.ReactNode;
 }
 
 interface TabGroupProps {
-  tabs: Tab[];
+  tabs: readonly TabGroupTab[];
   defaultTab?: string;
   className?: string;
 }
 
 export function TabGroup({ tabs, defaultTab, className }: TabGroupProps) {
   const [activeTab, setActiveTab] = useState(defaultTab ?? tabs[0]?.key ?? '');
-  const activeContent = tabs.find((t) => t.key === activeTab)?.content;
+  const activeTabEntry = tabs.find((tab) => tab.key === activeTab);
+  const activeContent = activeTabEntry?.render ? activeTabEntry.render() : activeTabEntry?.content;
 
   return (
     <div className={className}>

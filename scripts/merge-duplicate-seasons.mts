@@ -88,12 +88,18 @@ function getSql() {
 }
 
 function normalizeSeasonSlug(slug: string) {
-  const match = slug.match(/^(\d{4})-(\d{4})$/);
-  if (!match) {
+  const shortRangeMatch = slug.match(/^(\d{4})-(\d{2})$/);
+  if (shortRangeMatch) {
+    const [, startYear, endYear] = shortRangeMatch;
+    return `${startYear}/${endYear}`;
+  }
+
+  const fullRangeMatch = slug.match(/^(\d{4})-(\d{4})$/);
+  if (!fullRangeMatch) {
     return slug;
   }
 
-  const [, startYear, endYear] = match;
+  const [, startYear, endYear] = fullRangeMatch;
   return `${startYear}/${endYear.slice(-2)}`;
 }
 

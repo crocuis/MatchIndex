@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import { isTournamentCompetition } from '@/data/competitionTypes';
 import type { League } from '@/data/types';
 
 interface LeagueLogoProps {
@@ -24,7 +25,7 @@ const fontSizes = { sm: 6, md: 8, lg: 11 };
 
 export function LeagueLogo({ leagueId, name, competitionType, logo, size = 'md', className }: LeagueLogoProps) {
   const colors = leagueColorMap[leagueId] ?? defaultColors;
-  const isTournament = competitionType === 'tournament';
+  const isTournament = isTournamentCompetition({ competitionType: competitionType ?? 'league' });
   const sz = svgSizes[size];
   const fs = fontSizes[size];
   const cx = sz / 2;

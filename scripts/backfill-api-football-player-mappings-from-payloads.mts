@@ -23,6 +23,7 @@ async function main() {
     console.log(`Usage: node --experimental-strip-types scripts/backfill-api-football-player-mappings-from-payloads.mts [season ...] [options]
 
 Options:
+  season ...   Optional start years to process (default: 2015 through 2026)
   --write       Persist exact name matches into source_entity_mapping
   --help, -h    Show this help message
 

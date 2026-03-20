@@ -1,4 +1,7 @@
 import postgres, { type Sql } from 'postgres';
+import { isCompetitionSeasonWriteAllowed, loadCompetitionSeasonPolicies } from './sourceOwnership.ts';
+
+const BATCH_SIZE = 500;
 
 interface SourceRow {
   id: number;
@@ -300,37 +303,61 @@ function resolvePlayerId(rawPayload: RawPayloadRow, payload: unknown, playerMapp
   return candidates.length === 1 ? candidates[0]!.id : null;
 }
 
-async function upsertContract(sql: Sql, draft: ContractDraft) {
-  await sql`
-    INSERT INTO player_contracts (
-      player_id,
-      team_id,
-      competition_season_id,
-      shirt_number,
-      is_on_loan,
-      left_date,
-      updated_at
-    ) VALUES (
-      ${draft.playerId},
-      ${draft.teamId},
-      ${draft.competitionSeasonId},
-      NULL,
-      FALSE,
-      NULL,
-      NOW()
-    )
-    ON CONFLICT (player_id, competition_season_id)
-    DO UPDATE SET
-      team_id = EXCLUDED.team_id,
-      updated_at = NOW()
-  `;
+async function upsertContractsBatch(sql: Sql, drafts: ContractDraft[]) {
+  const allDrafts = Array.from(drafts);
 
-  await sql`
-    INSERT INTO team_seasons (team_id, competition_season_id, updated_at)
-    VALUES (${draft.teamId}, ${draft.competitionSeasonId}, NOW())
-    ON CONFLICT (team_id, competition_season_id)
-    DO UPDATE SET updated_at = NOW()
-  `;
+  if (allDrafts.length === 0) {
+    return;
+  }
+
+  await sql`BEGIN`;
+
+  try {
+    for (let i = 0; i < allDrafts.length; i += BATCH_SIZE) {
+      const chunk = allDrafts.slice(i, i + BATCH_SIZE);
+
+      await sql`
+        INSERT INTO player_contracts (
+          player_id, team_id, competition_season_id,
+          shirt_number, is_on_loan, left_date, updated_at
+        )
+        SELECT *, NULL::int, FALSE, NULL::date, NOW()
+        FROM UNNEST(
+          ${chunk.map((d) => d.playerId)}::int[],
+          ${chunk.map((d) => d.teamId)}::int[],
+          ${chunk.map((d) => d.competitionSeasonId)}::int[]
+        )
+        ON CONFLICT (player_id, competition_season_id)
+        DO UPDATE SET
+          team_id = EXCLUDED.team_id,
+          updated_at = NOW()
+      `;
+    }
+
+    const uniqueTeamSeasons = Array.from(
+      new Map(allDrafts.map((d) => [`${d.teamId}:${d.competitionSeasonId}`, d])).values(),
+    );
+
+    for (let i = 0; i < uniqueTeamSeasons.length; i += BATCH_SIZE) {
+      const chunk = uniqueTeamSeasons.slice(i, i + BATCH_SIZE);
+
+      await sql`
+        INSERT INTO team_seasons (team_id, competition_season_id, updated_at)
+        SELECT *, NOW()
+        FROM UNNEST(
+          ${chunk.map((d) => d.teamId)}::int[],
+          ${chunk.map((d) => d.competitionSeasonId)}::int[]
+        )
+        ON CONFLICT (team_id, competition_season_id)
+        DO UPDATE SET updated_at = NOW()
+      `;
+    }
+
+    await sql`COMMIT`;
+  } catch (error) {
+    await sql`ROLLBACK`.catch(() => undefined);
+    throw error;
+  }
 }
 
 export async function backfillSoccerdataFbrefContracts(
@@ -366,6 +393,8 @@ export async function backfillSoccerdataFbrefContracts(
     if (!competitionSeason) {
       return summary;
     }
+
+    const policies = await loadCompetitionSeasonPolicies(sql, [competitionSeason.competition_season_id]);
 
     const [playerMappings, teams, players, rawTeamPayloads, rawPlayerPayloads] = await Promise.all([
       loadPlayerMappings(sql, sourceId),
@@ -431,9 +460,17 @@ export async function backfillSoccerdataFbrefContracts(
       return summary;
     }
 
-    for (const draft of drafts.values()) {
-      await upsertContract(sql, draft);
+    if (!isCompetitionSeasonWriteAllowed(
+      policies.get(competitionSeason.competition_season_id),
+      'playerContracts',
+      'fbref',
+      'backfill',
+    )) {
+      summary.contractRowsPlanned = 0;
+      return summary;
     }
+
+    await upsertContractsBatch(sql, Array.from(drafts.values()));
 
     summary.contractRowsWritten = drafts.size;
     return summary;

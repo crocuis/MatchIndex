@@ -4,6 +4,8 @@ import postgres, { type Sql } from 'postgres';
 
 type SoccerdataEntityType = 'competition' | 'match' | 'player' | 'team';
 
+const BATCH_SIZE = 500;
+
 interface SourceRow {
   id: number;
 }
@@ -191,91 +193,6 @@ async function updateSyncRun(
   `;
 }
 
-async function insertRawPayload(
-  sql: Sql,
-  params: {
-    record: SoccerdataFbrefRawRecord;
-    sourceId: number;
-    syncRunId: number;
-  },
-) {
-  await sql`
-    INSERT INTO raw_payloads (
-      source_id,
-      sync_run_id,
-      endpoint,
-      entity_type,
-      external_id,
-      season_context,
-      http_status,
-      payload,
-      payload_hash,
-      source_updated_at
-    )
-    VALUES (
-      ${params.sourceId},
-      ${params.syncRunId},
-      ${params.record.endpoint},
-      ${params.record.entityType},
-      ${params.record.externalId},
-      ${params.record.seasonContext ?? null},
-      200,
-      ${sql.json(toJsonValue(params.record.payload))},
-      ${buildPayloadHash(params.record.payload)},
-      ${params.record.sourceUpdatedAt ?? null}
-    )
-  `;
-}
-
-async function upsertManifest(
-  sql: Sql,
-  params: {
-    aggregate: ManifestAggregate;
-    sourceId: number;
-    syncRunId: number;
-  },
-) {
-  const metadata = {
-    ...params.aggregate.metadata,
-    entityTypes: [...params.aggregate.entityTypes],
-    rowCount: params.aggregate.rowCount,
-  };
-
-  await sql`
-    INSERT INTO source_sync_manifests (
-      source_id,
-      sync_run_id,
-      manifest_type,
-      upstream_path,
-      external_id,
-      external_parent_id,
-      source_updated_at,
-      source_available_at,
-      metadata
-    )
-    VALUES (
-      ${params.sourceId},
-      ${params.syncRunId},
-      ${params.aggregate.manifestType},
-      ${params.aggregate.upstreamPath},
-      ${params.aggregate.externalId},
-      ${params.aggregate.externalParentId},
-      ${params.aggregate.sourceUpdatedAt},
-      ${params.aggregate.sourceAvailableAt},
-      ${sql.json(metadata)}
-    )
-    ON CONFLICT (source_id, manifest_type, upstream_path)
-    DO UPDATE SET
-      sync_run_id = EXCLUDED.sync_run_id,
-      external_id = EXCLUDED.external_id,
-      external_parent_id = EXCLUDED.external_parent_id,
-      source_updated_at = EXCLUDED.source_updated_at,
-      source_available_at = EXCLUDED.source_available_at,
-      metadata = EXCLUDED.metadata,
-      updated_at = NOW()
-  `;
-}
-
 export async function importSoccerdataFbrefRaw(
   options: ImportSoccerdataFbrefRawOptions = {},
 ): Promise<ImportSoccerdataFbrefRawSummary> {
@@ -325,17 +242,104 @@ export async function importSoccerdataFbrefRaw(
   summary.syncRunId = syncRunId;
 
   try {
-    for (const record of records) {
-      await insertRawPayload(sql, { record, sourceId, syncRunId });
+    await sql`BEGIN`;
+
+    for (let i = 0; i < records.length; i += BATCH_SIZE) {
+      const chunk = records.slice(i, i + BATCH_SIZE);
+
+      await sql`
+        INSERT INTO raw_payloads (
+          source_id, sync_run_id, endpoint, entity_type, external_id,
+          season_context, http_status, payload, payload_hash, source_updated_at
+        )
+        SELECT
+          ${sourceId}, ${syncRunId},
+          t.endpoint,
+          t.entity_type,
+          t.external_id,
+          t.season_context,
+          t.http_status,
+          t.payload::jsonb,
+          t.payload_hash,
+          t.source_updated_at
+        FROM UNNEST(
+          ${chunk.map((r) => r.endpoint)}::text[],
+          ${chunk.map((r) => r.entityType)}::entity_type[],
+          ${chunk.map((r) => r.externalId ?? null)}::text[],
+          ${chunk.map((r) => r.seasonContext ?? null)}::text[],
+          ${chunk.map(() => 200)}::int[],
+          ${chunk.map((r) => JSON.stringify(toJsonValue(r.payload)))}::text[],
+          ${chunk.map((r) => buildPayloadHash(r.payload))}::text[],
+          ${chunk.map((r) => r.sourceUpdatedAt ?? null)}::timestamptz[]
+        ) AS t(
+          endpoint,
+          entity_type,
+          external_id,
+          season_context,
+          http_status,
+          payload,
+          payload_hash,
+          source_updated_at
+        )
+      `;
     }
 
-    for (const aggregate of manifests) {
-      await upsertManifest(sql, { aggregate, sourceId, syncRunId });
+    for (let i = 0; i < manifests.length; i += BATCH_SIZE) {
+      const chunk = manifests.slice(i, i + BATCH_SIZE);
+
+      await sql`
+        INSERT INTO source_sync_manifests (
+          source_id, sync_run_id, manifest_type, upstream_path,
+          external_id, external_parent_id, source_updated_at,
+          source_available_at, metadata
+        )
+        SELECT
+          ${sourceId}, ${syncRunId},
+          t.manifest_type,
+          t.upstream_path,
+          t.external_id,
+          t.external_parent_id,
+          t.source_updated_at,
+          t.source_available_at,
+          t.metadata::jsonb
+        FROM UNNEST(
+          ${chunk.map((a) => a.manifestType)}::text[],
+          ${chunk.map((a) => a.upstreamPath)}::text[],
+          ${chunk.map((a) => a.externalId)}::text[],
+          ${chunk.map((a) => a.externalParentId)}::text[],
+          ${chunk.map((a) => a.sourceUpdatedAt)}::timestamptz[],
+          ${chunk.map((a) => a.sourceAvailableAt)}::timestamptz[],
+          ${chunk.map((a) => JSON.stringify({
+            ...a.metadata,
+            entityTypes: [...a.entityTypes],
+            rowCount: a.rowCount,
+          }))}::text[]
+        ) AS t(
+          manifest_type,
+          upstream_path,
+          external_id,
+          external_parent_id,
+          source_updated_at,
+          source_available_at,
+          metadata
+        )
+        ON CONFLICT (source_id, manifest_type, upstream_path)
+        DO UPDATE SET
+          sync_run_id = EXCLUDED.sync_run_id,
+          external_id = EXCLUDED.external_id,
+          external_parent_id = EXCLUDED.external_parent_id,
+          source_updated_at = EXCLUDED.source_updated_at,
+          source_available_at = EXCLUDED.source_available_at,
+          metadata = EXCLUDED.metadata,
+          updated_at = NOW()
+      `;
     }
 
+    await sql`COMMIT`;
     await updateSyncRun(sql, syncRunId, summary, 'completed');
     return summary;
   } catch (error) {
+    await sql`ROLLBACK`.catch(() => undefined);
     await updateSyncRun(sql, syncRunId, summary, 'failed');
     throw error;
   }

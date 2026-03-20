@@ -2,6 +2,8 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import postgres from 'postgres';
 
+const BATCH_SIZE = 500;
+
 interface SourceRow {
   id: number;
 }
@@ -109,7 +111,9 @@ export async function syncFbrefPlayerMappings(
     ]);
 
     const missingPlayers: string[] = [];
-    let written = 0;
+
+    type MappingTuple = { playerId: number; externalId: string; metadata: string };
+    const tuples: MappingTuple[] = [];
 
     for (const entry of validEntries) {
       const playerId = playerIdBySlug.get(entry.playerSlug.trim());
@@ -119,13 +123,22 @@ export async function syncFbrefPlayerMappings(
       }
 
       const externalIds = buildExternalIds(entry.sourceUrl);
+      const metadataJson = JSON.stringify({ source: 'fbref_mapping_file', sourceUrl: entry.sourceUrl });
 
       if (summary.dryRun) {
-        written += externalIds.length;
+        tuples.push(...externalIds.map(externalId => ({ playerId, externalId, metadata: metadataJson })));
         continue;
       }
 
-      for (const externalId of externalIds) {
+      tuples.push(...externalIds.map(externalId => ({ playerId, externalId, metadata: metadataJson })));
+    }
+
+    const written = summary.dryRun ? tuples.length : 0;
+
+    if (!summary.dryRun) {
+      let writtenCount = 0;
+      for (let i = 0; i < tuples.length; i += BATCH_SIZE) {
+        const chunk = tuples.slice(i, i + BATCH_SIZE);
         await sql`
           INSERT INTO source_entity_mapping (
             entity_type,
@@ -135,25 +148,25 @@ export async function syncFbrefPlayerMappings(
             metadata,
             updated_at
           )
-          VALUES (
-            'player',
-            ${playerId},
-            ${sourceId},
-            ${externalId},
-            ${JSON.stringify({ source: 'fbref_mapping_file', sourceUrl: entry.sourceUrl })}::jsonb,
-            NOW()
-          )
+          SELECT 'player', t.player_id, ${sourceId}, t.external_id, t.metadata::jsonb, NOW()
+          FROM UNNEST(
+            ${sql.array(chunk.map(t => t.playerId))}::int[],
+            ${sql.array(chunk.map(t => t.externalId))}::text[],
+            ${sql.array(chunk.map(t => t.metadata))}::text[]
+          ) AS t(player_id, external_id, metadata)
           ON CONFLICT (entity_type, source_id, external_id)
           DO UPDATE SET
             entity_id = EXCLUDED.entity_id,
             metadata = EXCLUDED.metadata,
             updated_at = NOW()
         `;
-        written += 1;
+        writtenCount += chunk.length;
       }
+      summary.mappingsWritten = writtenCount;
+    } else {
+      summary.mappingsWritten = written;
     }
 
-    summary.mappingsWritten = written;
     summary.missingPlayers = missingPlayers.sort();
     return summary;
   } finally {

@@ -1,6 +1,7 @@
 import 'server-only';
 
 export {
+  getMatchAnalysisArtifactsBundleDb,
   getMatchAnalysisDataFromArtifactDb,
   getMatchEventArtifactDb,
   getMatchFreezeFramesArtifactDb,

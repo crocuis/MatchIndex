@@ -9,6 +9,7 @@ const DEFAULT_PLAYER_STATS_COMPETITION_TARGETS = [
   { code: 'BL1', name: '1. Bundesliga', leagueId: 78, competitionSlug: '1-bundesliga' },
   { code: 'SA', name: 'Serie A', leagueId: 135, competitionSlug: 'serie-a' },
   { code: 'FL1', name: 'Ligue 1', leagueId: 61, competitionSlug: 'ligue-1' },
+  { code: 'SPL', name: 'Saudi Pro League', leagueId: 307, competitionSlug: 'saudi-pro-league' },
 ] as const;
 
 const DEFAULT_COMPETITION_DATA_TARGETS = [
@@ -24,6 +25,7 @@ const DEFAULT_COMPETITION_DATA_TARGETS = [
   { code: 'CI', name: 'Coppa Italia', leagueId: 137, competitionSlug: 'coppa-italia' },
   { code: 'PD', name: 'La Liga', leagueId: 140, competitionSlug: 'la-liga' },
   { code: 'CDR', name: 'Copa del Rey', leagueId: 143, competitionSlug: 'copa-del-rey' },
+  { code: 'SPL', name: 'Saudi Pro League', leagueId: 307, competitionSlug: 'saudi-pro-league' },
 ] as const;
 
 export interface ApiFootballCompetitionTarget {

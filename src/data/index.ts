@@ -120,7 +120,7 @@ export function getFinishedMatches(): Match[] {
 
 export function getScheduledMatches(): Match[] {
   return getAllMatches()
-    .filter((m) => m.status === 'scheduled')
+    .filter((m) => (m.status === 'scheduled' || m.status === 'timed' || m.status === 'postponed') && m.date >= new Date().toISOString().slice(0, 10))
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 }
 
@@ -142,7 +142,7 @@ export function getFinishedMatchesByLeague(leagueId: string): Match[] {
 
 export function getScheduledMatchesByLeague(leagueId: string): Match[] {
   return matches
-    .filter((m) => m.leagueId === leagueId && m.status === 'scheduled')
+    .filter((m) => m.leagueId === leagueId && (m.status === 'scheduled' || m.status === 'timed' || m.status === 'postponed') && m.date >= new Date().toISOString().slice(0, 10))
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 }
 
@@ -154,7 +154,7 @@ export function getFinishedMatchesByNation(nationId: string): Match[] {
 
 export function getScheduledMatchesByNation(nationId: string): Match[] {
   return getMatchesByNation(nationId)
-    .filter((m) => m.status === 'scheduled')
+    .filter((m) => (m.status === 'scheduled' || m.status === 'timed' || m.status === 'postponed') && m.date >= new Date().toISOString().slice(0, 10))
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 }
 

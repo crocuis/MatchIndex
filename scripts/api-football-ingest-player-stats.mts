@@ -37,6 +37,7 @@ async function main() {
 
 Options:
   --competitions=PL,PD   Restrict to supported competition codes
+  season ...            Optional start years to process (default: 2015 through 2026)
   --write                Persist raw payloads and manifests (default: dry-run)
   --help, -h             Show this help message
 

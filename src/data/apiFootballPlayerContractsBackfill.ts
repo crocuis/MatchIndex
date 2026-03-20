@@ -1,5 +1,8 @@
 import postgres, { type Sql } from 'postgres';
 import { parseApiFootballCompetitionTargets, type ApiFootballCompetitionTarget } from './apiFootball.ts';
+import { normalizePlayerSeasonYears } from './playerSeasonWindow.ts';
+
+const BATCH_SIZE = 500;
 
 interface SourceRow { id: number; }
 interface MappingRow { entity_id: number; external_id: string; }
@@ -51,11 +54,6 @@ function getDb() {
   return postgres(connectionString, { max: 1, idle_timeout: 20, prepare: false });
 }
 
-function normalizeSeasons(input?: number[]) {
-  if (input && input.length > 0) return [...new Set(input)].sort((a, b) => a - b);
-  return [new Date().getUTCFullYear()];
-}
-
 function normalizeName(value: string) {
   return value.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-zA-Z0-9]+/g, ' ').trim().toLowerCase();
 }
@@ -63,9 +61,9 @@ function normalizeName(value: string) {
 function resolveCanonicalTeamSlug(value: string) {
   const normalized = normalizeName(value);
   const exact = new Map<string, string>([
-    ['wolves', 'wolverhampton-wanderers-england'],
-    ['tottenham', 'tottenham-hotspur-england'],
-    ['west ham', 'west-ham-united-england'],
+    ['wolves', 'wolverhampton-wanderers-fc-england'],
+    ['tottenham', 'tottenham-hotspur-fc-england'],
+    ['west ham', 'west-ham-united-fc-england'],
     ['sheffield utd', 'sheffield-united-england'],
     ['alaves', 'deportivo-alaves-spain'],
     ['sevilla', 'sevilla-spain'],
@@ -83,6 +81,8 @@ function expandTeamAliases(value: string) {
 
   if (normalized === 'wolves') {
     aliases.add('wolverhampton wanderers');
+    aliases.add('wolverhampton wanderers fc');
+    aliases.add('wolverhampton wanderers fc england');
     aliases.add('wolverhampton wanderers england');
   }
 
@@ -246,7 +246,7 @@ async function upsertContract(sql: Sql, draft: ContractDraft) {
 export async function backfillApiFootballPlayerContracts(
   options: BackfillApiFootballPlayerContractsOptions = {},
 ): Promise<BackfillApiFootballPlayerContractsSummary> {
-  const seasons = normalizeSeasons(options.seasons);
+  const seasons = normalizePlayerSeasonYears(options.seasons);
   const targets = parseApiFootballCompetitionTargets(options.competitionCodes);
   const targetByLeagueId = new Map(targets.map((target) => [String(target.leagueId), target]));
   const sql = getDb();
@@ -316,8 +316,46 @@ export async function backfillApiFootballPlayerContracts(
       };
     }
 
-    for (const draft of drafts.values()) {
-      await upsertContract(sql, draft);
+    const draftList = Array.from(drafts.values());
+
+    await sql`BEGIN`;
+    try {
+      for (let i = 0; i < draftList.length; i += BATCH_SIZE) {
+        const chunk = draftList.slice(i, i + BATCH_SIZE);
+        await sql`
+          INSERT INTO player_contracts (
+            player_id, team_id, competition_season_id, shirt_number, is_on_loan, left_date, updated_at
+          )
+          SELECT t.player_id, t.team_id, t.competition_season_id, t.shirt_number, FALSE, NULL, NOW()
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.playerId))}::int[],
+            ${sql.array(chunk.map((r) => r.teamId))}::int[],
+            ${sql.array(chunk.map((r) => r.competitionSeasonId))}::int[],
+            ${sql.array(chunk.map((r) => r.shirtNumber))}::int[]
+          ) AS t(player_id, team_id, competition_season_id, shirt_number)
+          ON CONFLICT (player_id, competition_season_id)
+          DO UPDATE SET
+            team_id = EXCLUDED.team_id,
+            shirt_number = EXCLUDED.shirt_number,
+            is_on_loan = EXCLUDED.is_on_loan,
+            left_date = EXCLUDED.left_date,
+            updated_at = NOW()
+        `;
+        await sql`
+          INSERT INTO team_seasons (team_id, competition_season_id, updated_at)
+          SELECT DISTINCT t.team_id, t.competition_season_id, NOW()
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.teamId))}::int[],
+            ${sql.array(chunk.map((r) => r.competitionSeasonId))}::int[]
+          ) AS t(team_id, competition_season_id)
+          ON CONFLICT (team_id, competition_season_id)
+          DO UPDATE SET updated_at = NOW()
+        `;
+      }
+      await sql`COMMIT`;
+    } catch (error) {
+      await sql`ROLLBACK`;
+      throw error;
     }
 
     return {

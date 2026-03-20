@@ -82,6 +82,20 @@ const REFRESH_SCOPES_BY_POLICY_SLUG: Record<RefreshPolicySlug, RefreshScope> = {
   'match.upcoming.detail': 'matchday_warm',
 };
 
+function shouldBypassCache() {
+  return process.env.MATCHINDEX_BYPASS_CACHE === 'true';
+}
+
+function isCacheEnabled() {
+  const raw = process.env.CACHE_ENABLED?.trim().toLowerCase();
+
+  if (!raw) {
+    return true;
+  }
+
+  return raw !== 'false' && raw !== '0' && raw !== 'off';
+}
+
 function serializeParams(params?: Record<string, boolean | number | string | undefined>) {
   if (!params) {
     return '';
@@ -183,6 +197,21 @@ export async function readThroughCache<T>({ key, tier, policySlug, loader }: Rea
   const effectivePolicySlug = policySlug ?? (tier === 'season-finished' ? 'season.finished.read_model' : undefined);
 
   validateCachePolicyAlignment(tier, effectivePolicySlug);
+
+  if (shouldBypassCache() || !isCacheEnabled()) {
+    return loader();
+  }
+
+  if (process.env.NODE_ENV === 'development') {
+    const memoryValue = readMemoryCache<T>(key);
+    if (memoryValue !== null) {
+      return memoryValue;
+    }
+
+    const freshValue = await loader();
+    writeMemoryCache(key, tier, freshValue);
+    return freshValue;
+  }
 
   let redis = null;
 

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { SectionCard } from '@/components/ui/SectionCard';
@@ -43,35 +42,23 @@ function getResultImage(item: SearchResult) {
   return <NationFlag nationId={item.id} code={item.nationCode ?? item.id} flag={item.imageUrl} size="sm" />;
 }
 
-function formatSearchSubtitle(item: SearchResult, womenLabel: string) {
-  if (item.gender !== 'female') {
-    return item.subtitle;
-  }
-
-  return item.subtitle ? `${item.subtitle} · ${womenLabel}` : womenLabel;
-}
-
 export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; gender?: string }>;
+  searchParams: Promise<{ q?: string }>;
 }) {
   const locale = await getLocale();
   const tSearch = await getTranslations('search');
   const tCommon = await getTranslations('common');
-  const { q, gender } = await searchParams;
+  const { q } = await searchParams;
   const query = q?.trim() ?? '';
-  const genderCategory = gender === 'women' ? 'women' : 'men';
-  const genderFilter = genderCategory === 'women' ? 'female' : 'male';
-  const results = query ? await searchAllDb(query, locale, genderFilter) : [];
+  const results = query ? await searchAllDb(query, locale) : [];
   const typeLabels: Record<EntityType, string> = {
     player: tSearch('playersGroup'),
     club: tSearch('clubsGroup'),
     league: tSearch('leaguesGroup'),
     nation: tSearch('nationsGroup'),
   };
-  const womenLabel = tSearch('womenLabel');
-
   const grouped = results.reduce<Record<EntityType, SearchResult[]>>((acc, result) => {
     if (!acc[result.type]) {
       acc[result.type] = [];
@@ -92,32 +79,12 @@ export default async function SearchPage({
     <div>
       <PageHeader title={tSearch('title')} subtitle={tSearch('subtitle')} />
 
-      <div className="mb-3 flex items-center gap-2">
-        <Link
-          href={query ? `/search?gender=men&q=${encodeURIComponent(query)}` : '/search?gender=men'}
-          className={genderCategory === 'men'
-            ? 'rounded-md bg-surface-3 px-2.5 py-1 text-[11px] font-semibold text-text-primary'
-            : 'rounded-md px-2.5 py-1 text-[11px] font-medium text-text-secondary hover:bg-surface-2'}
-        >
-          {tSearch('men')}
-        </Link>
-        <Link
-          href={query ? `/search?gender=women&q=${encodeURIComponent(query)}` : '/search?gender=women'}
-          className={genderCategory === 'women'
-            ? 'rounded-md bg-surface-3 px-2.5 py-1 text-[11px] font-semibold text-text-primary'
-            : 'rounded-md px-2.5 py-1 text-[11px] font-medium text-text-secondary hover:bg-surface-2'}
-        >
-          {tSearch('women')}
-        </Link>
-      </div>
-
       <ListSearchForm
         action="/search"
         query={query}
         placeholder={tSearch('searchPlaceholder')}
         searchLabel={tCommon('search')}
         clearLabel={tCommon('clear')}
-        hiddenValues={{ gender: genderCategory }}
       />
 
       {!query ? (
@@ -140,7 +107,7 @@ export default async function SearchPage({
                       {image}
                       <div>
                          <div className="text-[13px] font-medium">{item.name}</div>
-                        <div className="text-[11px] text-text-muted">{formatSearchSubtitle(item, womenLabel)}</div>
+                        <div className="text-[11px] text-text-muted">{item.subtitle}</div>
                        </div>
                      </div>
                     <Badge variant={typeBadgeVariants[item.type]}>{typeLabels[item.type]}</Badge>

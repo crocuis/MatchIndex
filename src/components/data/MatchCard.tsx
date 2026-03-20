@@ -7,6 +7,7 @@ import { ClubBadge } from '@/components/ui/ClubBadge';
 import { LocalizedMatchText } from '@/components/ui/LocalizedMatchText';
 import { NationFlag } from '@/components/ui/NationFlag';
 import { WorldCupPlaceholderLink } from '@/components/ui/WorldCupPlaceholderLink';
+import { getMatchStatusClassName, isFinishedMatchStatus } from '@/lib/matchStatus';
 import { cn } from '@/lib/utils';
 
 interface MatchCardProps {
@@ -49,11 +50,8 @@ export function MatchCard({ match, placeholders = [], showDate = true, showLeagu
   const showAwayNationFlag = !isPendingNationSlot(awayLabel, awayShortName);
   const homePlaceholder = placeholders.find((placeholder) => placeholder.id === match.homeTeamId);
   const awayPlaceholder = placeholders.find((placeholder) => placeholder.id === match.awayTeamId);
-  const statusClassName = match.status === 'finished'
-    ? 'text-zinc-400'
-    : match.status === 'live'
-      ? 'text-red-400 animate-pulse'
-      : 'text-zinc-500';
+  const statusClassName = getMatchStatusClassName(match.status);
+  const matchHref = `/matches/${match.id}`;
 
   return (
     <div
@@ -61,7 +59,8 @@ export function MatchCard({ match, placeholders = [], showDate = true, showLeagu
         'flex items-center gap-3 px-3 py-2 rounded border border-border-subtle bg-surface-2 hover:bg-surface-3 cursor-pointer transition-colors',
         className
       )}
-      onClick={() => router.push(`/matches/${match.id}`)}
+      onMouseEnter={() => router.prefetch(matchHref)}
+      onClick={() => router.push(matchHref)}
     >
       {showDate && (
         <div className="text-[11px] text-text-muted w-12 shrink-0">
@@ -83,7 +82,7 @@ export function MatchCard({ match, placeholders = [], showDate = true, showLeagu
           </div>
 
           <div className="flex items-center gap-1.5 shrink-0">
-            {match.status === 'finished' ? (
+            {isFinishedMatchStatus(match.status) ? (
               <>
                 <span className={cn(
                   'text-[13px] font-bold tabular-nums w-4 text-center',

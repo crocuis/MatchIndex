@@ -1,14 +1,20 @@
 import type { Sql } from 'postgres';
 import type {
   MatchAnalysisArtifactPayload,
+  MatchAnalysisArtifactPayloadAny,
   MatchEventArtifactType,
   MatchEventFreezeFramesArtifactPayload,
   MatchEventVisibleAreasArtifactPayload,
-} from '@/data/types';
-import { buildSourceAwareMatchArtifactStorageKey, writeJsonGzipArtifact } from '@/lib/artifactStore';
+} from './types.ts';
+import { buildSourceAwareMatchArtifactStorageKey, writeJsonGzipArtifact } from '../lib/artifactStore.ts';
+import { isCompetitionSeasonWriteAllowed, loadCompetitionSeasonPolicies } from './sourceOwnership.ts';
 
 interface MatchEventArtifactRecordRow {
   table_name: string | null;
+}
+
+interface MatchCompetitionSeasonRow {
+  competition_season_id: number;
 }
 
 interface PersistArtifactParams {
@@ -16,7 +22,7 @@ interface PersistArtifactParams {
   matchDate: string;
   sourceVendor: string | null;
   payload:
-    | MatchAnalysisArtifactPayload
+    | MatchAnalysisArtifactPayloadAny
     | MatchEventFreezeFramesArtifactPayload
     | MatchEventVisibleAreasArtifactPayload;
 }
@@ -31,6 +37,7 @@ const ARTIFACT_FILE_NAMES: Record<MatchEventArtifactType, string> = {
 function getArtifactRowCount(
   payload:
     | MatchAnalysisArtifactPayload
+    | MatchAnalysisArtifactPayloadAny
     | MatchEventFreezeFramesArtifactPayload
     | MatchEventVisibleAreasArtifactPayload,
 ) {
@@ -96,7 +103,42 @@ async function upsertArtifactMetadata(sql: Sql, params: PersistArtifactParams, s
   `;
 }
 
+async function isArtifactWriteAllowed(sql: Sql, matchId: number, sourceVendor: string | null) {
+  const rows = await sql<MatchCompetitionSeasonRow[]>`
+    SELECT competition_season_id
+    FROM matches
+    WHERE id = ${matchId}
+    LIMIT 1
+  `;
+
+  const competitionSeasonId = rows[0]?.competition_season_id;
+  if (!competitionSeasonId) {
+    return true;
+  }
+
+  const policies = await loadCompetitionSeasonPolicies(sql, [competitionSeasonId]);
+  return isCompetitionSeasonWriteAllowed(
+    policies.get(competitionSeasonId),
+    'matchArtifacts',
+    sourceVendor ?? 'unknown',
+    'sync',
+  );
+}
+
 export async function persistMatchEventArtifacts(sql: Sql, params: PersistArtifactParams) {
+  if (!(await isArtifactWriteAllowed(sql, params.matchId, params.sourceVendor))) {
+    return {
+      storageKey: buildSourceAwareMatchArtifactStorageKey(
+        params.sourceVendor,
+        params.matchDate,
+        params.matchId,
+        ARTIFACT_FILE_NAMES[params.payload.artifactType],
+      ),
+      rowCount: 0,
+      byteSize: 0,
+    };
+  }
+
   const storageKey = buildSourceAwareMatchArtifactStorageKey(
     params.sourceVendor,
     params.matchDate,

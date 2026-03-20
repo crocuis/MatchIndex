@@ -310,7 +310,7 @@ export function createCompetitionSlug(entry: Pick<StatsBombCompetitionEntry, 'co
 }
 
 export function createSeasonSlug(seasonName: string, seasonId?: number | string) {
-  const base = createStatsBombSlug(seasonName.replace(/\//g, '-'));
+  const base = seasonName.trim().replace(/\s+/g, '').replace(/-/g, '/');
   return seasonId === undefined ? base : `${base}-${seasonId}`;
 }
 

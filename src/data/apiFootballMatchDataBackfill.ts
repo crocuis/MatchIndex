@@ -12,6 +12,9 @@ import {
   type ApiFootballFixtureStatisticsResponseItem,
 } from './apiFootball.ts';
 
+const BATCH_SIZE = 500;
+const FETCH_CONCURRENCY = 4;
+
 interface SourceRow {
   id: number;
 }
@@ -68,6 +71,13 @@ interface MatchStatsDraft {
   offsides: number | null;
   gkSaves: number | null;
   expectedGoals: number | null;
+}
+
+interface TargetMatchFetchResult {
+  matchDraft: MatchUpdateDraft;
+  statsDrafts: MatchStatsDraft[];
+  lineupsFetched: number;
+  statsFetched: number;
 }
 
 export interface BackfillApiFootballMatchDataOptions {
@@ -426,6 +436,116 @@ async function upsertMatchStats(sql: Sql, draft: MatchStatsDraft) {
   `;
 }
 
+async function mapWithConcurrency<T, R>(items: T[], concurrency: number, worker: (item: T) => Promise<R>) {
+  if (items.length === 0) {
+    return [] as R[];
+  }
+
+  const results = new Array<R>(items.length);
+  let nextIndex = 0;
+
+  const runWorker = async () => {
+    while (true) {
+      const currentIndex = nextIndex;
+      nextIndex += 1;
+
+      if (currentIndex >= items.length) {
+        return;
+      }
+
+      results[currentIndex] = await worker(items[currentIndex]!);
+    }
+  };
+
+  await Promise.all(
+    Array.from({ length: Math.min(concurrency, items.length) }, () => runWorker()),
+  );
+
+  return results;
+}
+
+async function fetchTargetMatchData(
+  target: TargetMatchRow,
+  teamMappings: Map<string, number>,
+): Promise<TargetMatchFetchResult> {
+  const matchDraft: MatchUpdateDraft = {
+    matchId: target.match_id,
+    matchDate: target.match_date,
+    referee: target.referee,
+    homeFormation: target.home_formation,
+    awayFormation: target.away_formation,
+  };
+  const statsDrafts: MatchStatsDraft[] = [];
+
+  const [lineupPayload, statsPayload] = await Promise.all([
+    target.needs_lineups
+      ? fetchApiFootballJson<ApiFootballEnvelope<ApiFootballFixtureLineupResponseItem>>(
+        buildApiFootballFixtureLineupsPath(target.external_fixture_id),
+      )
+      : Promise.resolve(null),
+    target.needs_stats
+      ? fetchApiFootballJson<ApiFootballEnvelope<ApiFootballFixtureStatisticsResponseItem>>(
+        buildApiFootballFixtureStatisticsPath(target.external_fixture_id),
+      )
+      : Promise.resolve(null),
+  ]);
+
+  if (lineupPayload) {
+    const lineupError = getApiFootballErrorMessage(lineupPayload);
+    if (lineupError) {
+      throw new Error(`API-Football lineups request failed for fixture ${target.external_fixture_id}: ${lineupError}`);
+    }
+
+    for (const teamLineup of lineupPayload.response ?? []) {
+      const externalTeamId = teamLineup.team?.id ? String(teamLineup.team.id) : null;
+      if (!externalTeamId) {
+        continue;
+      }
+
+      const internalTeamId = teamMappings.get(externalTeamId);
+      if (!internalTeamId) {
+        continue;
+      }
+
+      if (internalTeamId === target.home_team_id) {
+        matchDraft.homeFormation = teamLineup.formation ?? matchDraft.homeFormation;
+      }
+
+      if (internalTeamId === target.away_team_id) {
+        matchDraft.awayFormation = teamLineup.formation ?? matchDraft.awayFormation;
+      }
+    }
+  }
+
+  if (statsPayload) {
+    const statsError = getApiFootballErrorMessage(statsPayload);
+    if (statsError) {
+      throw new Error(`API-Football statistics request failed for fixture ${target.external_fixture_id}: ${statsError}`);
+    }
+
+    for (const teamStats of statsPayload.response ?? []) {
+      const externalTeamId = teamStats.team?.id ? String(teamStats.team.id) : null;
+      if (!externalTeamId) {
+        continue;
+      }
+
+      const internalTeamId = teamMappings.get(externalTeamId);
+      if (!internalTeamId) {
+        continue;
+      }
+
+      statsDrafts.push(buildMatchStatsDraft(target, internalTeamId, teamStats.statistics));
+    }
+  }
+
+  return {
+    matchDraft,
+    statsDrafts,
+    lineupsFetched: lineupPayload ? 1 : 0,
+    statsFetched: statsPayload ? 1 : 0,
+  };
+}
+
 export async function backfillApiFootballMatchData(
   options: BackfillApiFootballMatchDataOptions = {},
 ): Promise<BackfillApiFootballMatchDataSummary> {
@@ -464,72 +584,19 @@ export async function backfillApiFootballMatchData(
     let lineupsFetched = 0;
     let statsFetched = 0;
 
-    for (const target of targetMatches) {
-      const nextMatchDraft: MatchUpdateDraft = matchDrafts.get(`${target.match_id}:${target.match_date}`) ?? {
-        matchId: target.match_id,
-        matchDate: target.match_date,
-        referee: target.referee,
-        homeFormation: target.home_formation,
-        awayFormation: target.away_formation,
-      };
+    const fetchedMatches = await mapWithConcurrency(
+      targetMatches,
+      FETCH_CONCURRENCY,
+      async (target) => fetchTargetMatchData(target, teamMappings),
+    );
 
-      if (target.needs_lineups) {
-        const lineupPayload = await fetchApiFootballJson<ApiFootballEnvelope<ApiFootballFixtureLineupResponseItem>>(
-          buildApiFootballFixtureLineupsPath(target.external_fixture_id)
-        );
-        const lineupError = getApiFootballErrorMessage(lineupPayload);
-        if (lineupError) {
-          throw new Error(`API-Football lineups request failed for fixture ${target.external_fixture_id}: ${lineupError}`);
-        }
-        lineupsFetched += 1;
+    for (const result of fetchedMatches) {
+      lineupsFetched += result.lineupsFetched;
+      statsFetched += result.statsFetched;
+      matchDrafts.set(`${result.matchDraft.matchId}:${result.matchDraft.matchDate}`, result.matchDraft);
 
-        for (const teamLineup of lineupPayload.response ?? []) {
-          const externalTeamId = teamLineup.team?.id ? String(teamLineup.team.id) : null;
-          if (!externalTeamId) {
-            continue;
-          }
-
-          const internalTeamId = teamMappings.get(externalTeamId);
-          if (!internalTeamId) {
-            continue;
-          }
-
-          if (internalTeamId === target.home_team_id) {
-            nextMatchDraft.homeFormation = teamLineup.formation ?? nextMatchDraft.homeFormation;
-          }
-
-          if (internalTeamId === target.away_team_id) {
-            nextMatchDraft.awayFormation = teamLineup.formation ?? nextMatchDraft.awayFormation;
-          }
-        }
-      }
-
-      matchDrafts.set(`${target.match_id}:${target.match_date}`, nextMatchDraft);
-
-      if (target.needs_stats) {
-        const statsPayload = await fetchApiFootballJson<ApiFootballEnvelope<ApiFootballFixtureStatisticsResponseItem>>(
-          buildApiFootballFixtureStatisticsPath(target.external_fixture_id)
-        );
-        const statsError = getApiFootballErrorMessage(statsPayload);
-        if (statsError) {
-          throw new Error(`API-Football statistics request failed for fixture ${target.external_fixture_id}: ${statsError}`);
-        }
-        statsFetched += 1;
-
-        for (const teamStats of statsPayload.response ?? []) {
-          const externalTeamId = teamStats.team?.id ? String(teamStats.team.id) : null;
-          if (!externalTeamId) {
-            continue;
-          }
-
-          const internalTeamId = teamMappings.get(externalTeamId);
-          if (!internalTeamId) {
-            continue;
-          }
-
-          const draft = buildMatchStatsDraft(target, internalTeamId, teamStats.statistics);
-          statDrafts.set(`${draft.matchId}:${draft.matchDate}:${draft.teamId}`, draft);
-        }
+      for (const draft of result.statsDrafts) {
+        statDrafts.set(`${draft.matchId}:${draft.matchDate}:${draft.teamId}`, draft);
       }
     }
 
@@ -550,12 +617,85 @@ export async function backfillApiFootballMatchData(
 
     await sql`BEGIN`;
     try {
-      for (const draft of matchDrafts.values()) {
-        await upsertMatch(sql, draft);
+      const matchDraftList = Array.from(matchDrafts.values());
+      for (let i = 0; i < matchDraftList.length; i += BATCH_SIZE) {
+        const chunk = matchDraftList.slice(i, i + BATCH_SIZE);
+        await sql`
+          UPDATE matches m
+          SET
+            referee = COALESCE(t.referee, m.referee),
+            home_formation = COALESCE(t.home_formation, m.home_formation),
+            away_formation = COALESCE(t.away_formation, m.away_formation),
+            updated_at = NOW()
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.matchId))}::int[],
+            ${sql.array(chunk.map((r) => r.matchDate))}::text[],
+            ${sql.array(chunk.map((r) => r.referee))}::text[],
+            ${sql.array(chunk.map((r) => r.homeFormation))}::text[],
+            ${sql.array(chunk.map((r) => r.awayFormation))}::text[]
+          ) AS t(match_id, match_date, referee, home_formation, away_formation)
+          WHERE m.id = t.match_id AND m.match_date = t.match_date
+        `;
       }
 
-      for (const draft of statDrafts.values()) {
-        await upsertMatchStats(sql, draft);
+      const statDraftList = Array.from(statDrafts.values());
+      for (let i = 0; i < statDraftList.length; i += BATCH_SIZE) {
+        const chunk = statDraftList.slice(i, i + BATCH_SIZE);
+        await sql`
+          INSERT INTO match_stats (
+            match_id, match_date, team_id, is_home, possession,
+            total_passes, accurate_passes, pass_accuracy,
+            total_shots, shots_on_target, shots_off_target, blocked_shots,
+            corner_kicks, free_kicks, throw_ins, fouls, offsides, gk_saves, expected_goals
+          )
+          SELECT
+            t.match_id, t.match_date, t.team_id, t.is_home, t.possession,
+            t.total_passes, t.accurate_passes, t.pass_accuracy,
+            t.total_shots, t.shots_on_target, t.shots_off_target, t.blocked_shots,
+            t.corner_kicks, t.free_kicks, t.throw_ins, t.fouls, t.offsides, t.gk_saves, t.expected_goals
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.matchId))}::int[],
+            ${sql.array(chunk.map((r) => r.matchDate))}::text[],
+            ${sql.array(chunk.map((r) => r.teamId))}::int[],
+            ${sql.array(chunk.map((r) => r.isHome))}::bool[],
+            ${sql.array(chunk.map((r) => r.possession))}::int[],
+            ${sql.array(chunk.map((r) => r.totalPasses))}::int[],
+            ${sql.array(chunk.map((r) => r.accuratePasses))}::int[],
+            ${sql.array(chunk.map((r) => r.passAccuracy))}::int[],
+            ${sql.array(chunk.map((r) => r.totalShots))}::int[],
+            ${sql.array(chunk.map((r) => r.shotsOnTarget))}::int[],
+            ${sql.array(chunk.map((r) => r.shotsOffTarget))}::int[],
+            ${sql.array(chunk.map((r) => r.blockedShots))}::int[],
+            ${sql.array(chunk.map((r) => r.cornerKicks))}::int[],
+            ${sql.array(chunk.map((r) => r.freeKicks))}::int[],
+            ${sql.array(chunk.map((r) => r.throwIns))}::int[],
+            ${sql.array(chunk.map((r) => r.fouls))}::int[],
+            ${sql.array(chunk.map((r) => r.offsides))}::int[],
+            ${sql.array(chunk.map((r) => r.gkSaves))}::int[],
+            ${sql.array(chunk.map((r) => r.expectedGoals))}::numeric[]
+          ) AS t(match_id, match_date, team_id, is_home, possession,
+                 total_passes, accurate_passes, pass_accuracy,
+                 total_shots, shots_on_target, shots_off_target, blocked_shots,
+                 corner_kicks, free_kicks, throw_ins, fouls, offsides, gk_saves, expected_goals)
+          ON CONFLICT (match_id, match_date, team_id)
+          DO UPDATE SET
+            is_home = EXCLUDED.is_home,
+            possession = COALESCE(EXCLUDED.possession, match_stats.possession),
+            total_passes = COALESCE(EXCLUDED.total_passes, match_stats.total_passes),
+            accurate_passes = COALESCE(EXCLUDED.accurate_passes, match_stats.accurate_passes),
+            pass_accuracy = COALESCE(EXCLUDED.pass_accuracy, match_stats.pass_accuracy),
+            total_shots = COALESCE(EXCLUDED.total_shots, match_stats.total_shots),
+            shots_on_target = COALESCE(EXCLUDED.shots_on_target, match_stats.shots_on_target),
+            shots_off_target = COALESCE(EXCLUDED.shots_off_target, match_stats.shots_off_target),
+            blocked_shots = COALESCE(EXCLUDED.blocked_shots, match_stats.blocked_shots),
+            corner_kicks = COALESCE(EXCLUDED.corner_kicks, match_stats.corner_kicks),
+            free_kicks = COALESCE(EXCLUDED.free_kicks, match_stats.free_kicks),
+            throw_ins = COALESCE(EXCLUDED.throw_ins, match_stats.throw_ins),
+            fouls = COALESCE(EXCLUDED.fouls, match_stats.fouls),
+            offsides = COALESCE(EXCLUDED.offsides, match_stats.offsides),
+            gk_saves = COALESCE(EXCLUDED.gk_saves, match_stats.gk_saves),
+            expected_goals = COALESCE(EXCLUDED.expected_goals, match_stats.expected_goals)
+        `;
       }
 
       await sql`COMMIT`;

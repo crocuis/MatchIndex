@@ -9,6 +9,7 @@ import { FootballPitch } from '@/components/data/FootballPitch';
 interface FreezeFrameViewProps {
   events: MatchAnalysisEvent[];
   freezeFrames: MatchEventFreezeFrameEntry[];
+  hasLinkedEvents?: boolean;
 }
 
 function buildPickerOption(entry: MatchEventFreezeFrameEntry, event?: MatchAnalysisEvent): AnalysisEventPickerOption | null {
@@ -19,10 +20,12 @@ function buildPickerOption(entry: MatchEventFreezeFrameEntry, event?: MatchAnaly
   return {
     eventId: entry.sourceEventId,
     minute: event?.minute ?? 0,
+    stoppageMinute: event?.stoppageMinute ?? null,
+    matchSecond: event?.matchSecond ?? null,
     playerName: event?.playerName ?? 'Unknown',
     eventType: event?.type ?? 'event',
     detail: event?.detail,
-    metaLabel: `${entry.freezeFrames.length} frame points`,
+    metaLabel: [event?.sourceSubtype, `${entry.freezeFrames.length} frame points`].filter(Boolean).join(' · '),
   };
 }
 
@@ -38,7 +41,7 @@ function getMarkerFill(isTeammate: boolean | null, isGoalkeeper: boolean | null,
   return isTeammate ? '#60a5fa' : '#f87171';
 }
 
-export function FreezeFrameView({ events, freezeFrames }: FreezeFrameViewProps) {
+export function FreezeFrameView({ events, freezeFrames, hasLinkedEvents = true }: FreezeFrameViewProps) {
   const tMatch = useTranslations('match');
   const eventById = useMemo(() => new Map(events.map((event) => [event.id, event])), [events]);
   const options = useMemo<AnalysisEventPickerOption[]>(() => {
@@ -57,6 +60,11 @@ export function FreezeFrameView({ events, freezeFrames }: FreezeFrameViewProps) 
 
   return (
     <div className="space-y-3">
+      {!hasLinkedEvents ? (
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-[12px] text-text-secondary">
+          {tMatch('analysisArtifactLinkMissing')}
+        </div>
+      ) : null}
       <AnalysisEventPicker
         label={tMatch('freezeFrame')}
         options={options}

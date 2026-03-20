@@ -2,6 +2,8 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import postgres, { type Sql } from 'postgres';
 
+const BATCH_SIZE = 500;
+
 interface ApiFootballPlayerMappingRecord {
   playerId: string;
   externalId: string;
@@ -130,14 +132,14 @@ export async function syncApiFootballPlayerMappings(
     }
 
     const sourceId = await ensureApiFootballSource(sql);
+    const mappingFilename = path.basename(getMappingsFilePath());
+    const metadataJson = JSON.stringify({ source: 'api_football', mappingFile: mappingFilename });
+
+    const matchedMappings = selectedMappings.filter((mapping) => playerIdBySlug.has(mapping.playerId));
     let syncedMappings = 0;
 
-    for (const mapping of selectedMappings) {
-      const internalPlayerId = playerIdBySlug.get(mapping.playerId);
-      if (!internalPlayerId) {
-        continue;
-      }
-
+    for (let i = 0; i < matchedMappings.length; i += BATCH_SIZE) {
+      const chunk = matchedMappings.slice(i, i + BATCH_SIZE);
       await sql`
         INSERT INTO source_entity_mapping (
           entity_type,
@@ -147,21 +149,18 @@ export async function syncApiFootballPlayerMappings(
           metadata,
           updated_at
         )
-        VALUES (
-          'player',
-          ${internalPlayerId},
-          ${sourceId},
-          ${mapping.externalId},
-          ${JSON.stringify({ source: 'api_football', mappingFile: path.basename(getMappingsFilePath()) })}::jsonb,
-          NOW()
-        )
+        SELECT 'player', t.player_id, ${sourceId}, t.external_id, ${metadataJson}::jsonb, NOW()
+        FROM UNNEST(
+          ${sql.array(chunk.map(m => playerIdBySlug.get(m.playerId)!))}::int[],
+          ${sql.array(chunk.map(m => m.externalId))}::text[]
+        ) AS t(player_id, external_id)
         ON CONFLICT (entity_type, source_id, external_id)
         DO UPDATE SET
           entity_id = EXCLUDED.entity_id,
           metadata = EXCLUDED.metadata,
           updated_at = NOW()
       `;
-      syncedMappings += 1;
+      syncedMappings += chunk.length;
     }
 
     return {

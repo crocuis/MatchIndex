@@ -21,10 +21,12 @@ interface CandidateMatchRow {
   away_team_id: number;
   away_team_name: string;
   away_team_slug: string;
+  competition_slug: string;
   home_team_id: number;
   home_team_name: string;
   home_team_slug: string;
-  local_date: string;
+  kickoff_known: boolean;
+  local_date: string | null;
   match_date: string;
   match_id: number;
 }
@@ -42,8 +44,10 @@ interface TargetMatchRow {
 }
 
 export interface SyncApiFootballDailyFixturesOptions {
+  candidateMode?: 'known-kickoff' | 'missing-kickoff' | 'both';
   dryRun?: boolean;
   localDate: string;
+  refreshDerivedViews?: boolean;
   timeZone: string;
 }
 
@@ -236,18 +240,28 @@ async function updateSyncRun(
   `;
 }
 
-async function loadCandidateMatches(sql: Sql, localDate: string, timeZone: string) {
+async function loadCandidateMatches(
+  sql: Sql,
+  localDate: string,
+  timeZone: string,
+  candidateMode: NonNullable<SyncApiFootballDailyFixturesOptions['candidateMode']>,
+) {
   return sql<CandidateMatchRow[]>`
     SELECT
       m.id AS match_id,
       m.match_date::TEXT AS match_date,
-      TIMEZONE(${timeZone}, m.kickoff_at)::DATE::TEXT AS local_date,
+      CASE
+        WHEN m.kickoff_at IS NULL THEN NULL
+        ELSE TIMEZONE(${timeZone}, m.kickoff_at)::DATE::TEXT
+      END AS local_date,
+      (m.kickoff_at IS NOT NULL) AS kickoff_known,
       m.home_team_id,
       COALESCE(home_tt.name, home_team.slug) AS home_team_name,
       home_team.slug AS home_team_slug,
       m.away_team_id,
       COALESCE(away_tt.name, away_team.slug) AS away_team_name,
-      away_team.slug AS away_team_slug
+      away_team.slug AS away_team_slug,
+      c.slug AS competition_slug
     FROM matches m
     JOIN competition_seasons cs ON cs.id = m.competition_season_id
     JOIN competitions c ON c.id = cs.competition_id
@@ -255,10 +269,36 @@ async function loadCandidateMatches(sql: Sql, localDate: string, timeZone: strin
     LEFT JOIN team_translations home_tt ON home_tt.team_id = home_team.id AND home_tt.locale = 'en'
     JOIN teams away_team ON away_team.id = m.away_team_id
     LEFT JOIN team_translations away_tt ON away_tt.team_id = away_team.id AND away_tt.locale = 'en'
-    WHERE m.kickoff_at IS NOT NULL
-      AND TIMEZONE(${timeZone}, m.kickoff_at)::DATE = ${localDate}::DATE
-      AND c.slug = ANY(${getDefaultApiFootballDataCompetitionTargets().map((target) => target.competitionSlug)})
+    WHERE c.slug = ANY(${getDefaultApiFootballDataCompetitionTargets().map((target) => target.competitionSlug)})
+      AND (
+        (
+          ${candidateMode !== 'missing-kickoff'}
+          AND m.kickoff_at IS NOT NULL
+          AND TIMEZONE(${timeZone}, m.kickoff_at)::DATE = ${localDate}::DATE
+        )
+        OR (
+          ${candidateMode !== 'known-kickoff'}
+          AND m.kickoff_at IS NULL
+          AND m.status IN ('scheduled', 'timed')
+          AND m.match_date BETWEEN (${localDate}::DATE - INTERVAL '1 day')::DATE AND (${localDate}::DATE + INTERVAL '1 day')::DATE
+        )
+      )
   `;
+}
+
+function getCompetitionSlugByLeagueId(leagueId?: number | null) {
+  if (!leagueId) {
+    return null;
+  }
+
+  const target = getDefaultApiFootballDataCompetitionTargets().find((item) => item.leagueId === leagueId);
+  return target?.competitionSlug ?? null;
+}
+
+function getDateDistanceInDays(left: string, right: string) {
+  const leftDate = new Date(`${left}T00:00:00Z`);
+  const rightDate = new Date(`${right}T00:00:00Z`);
+  return Math.round((leftDate.getTime() - rightDate.getTime()) / 86400000);
 }
 
 function normalizeTeamNameForMatch(value: string) {
@@ -295,15 +335,40 @@ function doesCandidateTeamMatch(candidateName: string, candidateSlug: string, fi
 function resolveCandidateMatch(candidateMatches: CandidateMatchRow[], fixture: ApiFootballFixtureResponseItem, localDate: string) {
   const fixtureHomeName = fixture.teams?.home?.name ?? '';
   const fixtureAwayName = fixture.teams?.away?.name ?? '';
+  const fixtureCompetitionSlug = getCompetitionSlugByLeagueId(fixture.league?.id ?? null);
 
-  return candidateMatches.find((candidate) => {
-    if (candidate.local_date !== localDate) {
-      return false;
-    }
+  const matches = candidateMatches
+    .filter((candidate) => {
+      if (fixtureCompetitionSlug && candidate.competition_slug !== fixtureCompetitionSlug) {
+        return false;
+      }
 
-    return doesCandidateTeamMatch(candidate.home_team_name, candidate.home_team_slug, fixtureHomeName)
-      && doesCandidateTeamMatch(candidate.away_team_name, candidate.away_team_slug, fixtureAwayName);
-  }) ?? null;
+      if (!doesCandidateTeamMatch(candidate.home_team_name, candidate.home_team_slug, fixtureHomeName)) {
+        return false;
+      }
+
+      if (!doesCandidateTeamMatch(candidate.away_team_name, candidate.away_team_slug, fixtureAwayName)) {
+        return false;
+      }
+
+      if (candidate.kickoff_known) {
+        return candidate.local_date === localDate;
+      }
+
+      return Math.abs(getDateDistanceInDays(candidate.match_date, localDate)) <= 1;
+    })
+    .sort((left, right) => {
+      const leftDistance = left.kickoff_known ? 0 : Math.abs(getDateDistanceInDays(left.match_date, localDate));
+      const rightDistance = right.kickoff_known ? 0 : Math.abs(getDateDistanceInDays(right.match_date, localDate));
+
+      if (leftDistance !== rightDistance) {
+        return leftDistance - rightDistance;
+      }
+
+      return left.match_id - right.match_id;
+    });
+
+  return matches[0] ?? null;
 }
 
 function shouldSyncApiFootballFixture(fixture: ApiFootballFixtureResponseItem, localDate: string, timeZone: string) {
@@ -363,12 +428,13 @@ function parseRound(round?: string | null) {
   const normalizedStage = stagePart.replace(/\b\w/g, (char) => char.toUpperCase()).replace(/\bof\b/g, 'of');
   const trailingNumber = trailingPart ? Number.parseInt(trailingPart, 10) : Number.NaN;
   const isRegularSeason = /regular season/i.test(stagePart);
+  const isLeaguePhase = /league (stage|phase)/i.test(stagePart);
   const isGroup = /group/i.test(stagePart);
 
   return {
     stage: normalizedStage.replace(/\s+/g, '_').toUpperCase(),
     groupName: isGroup ? trailingPart ?? null : null,
-    matchWeek: isRegularSeason && Number.isFinite(trailingNumber) ? trailingNumber : null,
+    matchWeek: (isRegularSeason || isLeaguePhase) && Number.isFinite(trailingNumber) ? trailingNumber : null,
   };
 }
 
@@ -491,6 +557,16 @@ async function refreshDerivedViews(sql: Sql) {
   await sql`REFRESH MATERIALIZED VIEW mv_top_scorers`;
 }
 
+export async function refreshApiFootballDerivedViews() {
+  const sql = getApiFootballDailyFixturesDb();
+
+  try {
+    await refreshDerivedViews(sql);
+  } finally {
+    await sql.end({ timeout: 1 }).catch(() => undefined);
+  }
+}
+
 export async function syncApiFootballDailyFixtures(
   options: SyncApiFootballDailyFixturesOptions,
 ): Promise<SyncApiFootballDailyFixturesSummary> {
@@ -500,13 +576,15 @@ export async function syncApiFootballDailyFixtures(
     throw new Error('timeZone is required');
   }
 
+  const candidateMode = options.candidateMode ?? 'known-kickoff';
   const dryRun = options.dryRun ?? false;
+  const shouldRefreshDerivedViews = options.refreshDerivedViews ?? true;
   const sql = getApiFootballDailyFixturesDb();
   const sourceId = await ensureApiFootballSource(sql);
   const requestState = { lastRequestStartedAt: 0 };
   const fixturesPath = buildApiFootballFixturesByDatePath(localDate, timeZone);
   const fixturesPayload = await fetchApiFootballEnvelope<ApiFootballFixtureResponseItem>(fixturesPath, requestState);
-  const candidateMatches = await loadCandidateMatches(sql, localDate, timeZone);
+  const candidateMatches = await loadCandidateMatches(sql, localDate, timeZone, candidateMode);
   const targets = new Map<string, TargetMatchRow>();
 
   for (const fixture of fixturesPayload.response ?? []) {
@@ -602,7 +680,9 @@ export async function syncApiFootballDailyFixtures(
         matchesUpdated += 1;
       }
 
-      await refreshDerivedViews(sql);
+      if (shouldRefreshDerivedViews) {
+        await refreshDerivedViews(sql);
+      }
       await sql`COMMIT`;
     } catch (error) {
       await sql`ROLLBACK`;

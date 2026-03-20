@@ -12,18 +12,16 @@ function parsePage(value?: string) {
 export default async function ResultsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string; league?: string; q?: string; gender?: string }>;
+  searchParams: Promise<{ page?: string; league?: string; q?: string }>;
 }) {
   const locale = await getLocale();
-  const { page, league, q, gender } = await searchParams;
+  const { page, league, q } = await searchParams;
   const currentPage = parsePage(page);
   const selectedLeague = league && league !== 'all' ? league : undefined;
   const query = q?.trim() ?? '';
-  const genderCategory = gender === 'women' ? 'women' : 'men';
-  const genderFilter = genderCategory === 'women' ? 'female' : 'male';
   const [initialLeagues, results] = await Promise.all([
-    getLeagueFilterOptionsDb(locale, genderFilter),
-    getPaginatedFinishedMatchesDb(locale, selectedLeague, query, genderFilter, { page: currentPage, pageSize: PAGE_SIZE }),
+    getLeagueFilterOptionsDb(locale),
+    getPaginatedFinishedMatchesDb(locale, selectedLeague, query, { page: currentPage, pageSize: PAGE_SIZE }),
   ]);
 
   return (
@@ -32,7 +30,6 @@ export default async function ResultsPage({
       results={results}
       selectedLeague={selectedLeague ?? 'all'}
       query={query}
-      gender={genderCategory}
     />
   );
 }

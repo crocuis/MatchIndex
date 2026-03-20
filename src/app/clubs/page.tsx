@@ -23,15 +23,13 @@ export const metadata: Metadata = {
 export default async function ClubsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string; q?: string; gender?: string }>;
+  searchParams: Promise<{ page?: string; q?: string }>;
 }) {
   const locale = await getLocale();
-  const { page, q, gender } = await searchParams;
+  const { page, q } = await searchParams;
   const currentPage = parsePage(page);
   const query = q?.trim() ?? '';
-  const genderCategory = gender === 'women' ? 'women' : 'men';
-  const genderFilter = genderCategory === 'women' ? 'female' : 'male';
-  const clubsResult = await getPaginatedClubsDb(locale, query, genderFilter, { page: currentPage, pageSize: PAGE_SIZE });
+  const clubsResult = await getPaginatedClubsDb(locale, query, { page: currentPage, pageSize: PAGE_SIZE });
   const t = await getTranslations('clubsList');
   const tClub = await getTranslations('club');
   const tCommon = await getTranslations('common');
@@ -40,7 +38,6 @@ export default async function ClubsPage({
     const params = new URLSearchParams();
     if (nextPage > 1) params.set('page', String(nextPage));
     if (query) params.set('q', query);
-    params.set('gender', genderCategory);
     const queryString = params.toString();
     return queryString ? `/clubs?${queryString}` : '/clubs';
   };
@@ -51,33 +48,12 @@ export default async function ClubsPage({
         title={t('title')}
         subtitle={t('subtitle', { count: clubsResult.totalCount })}
       />
-
-      <div className="mb-3 flex items-center gap-2">
-        <Link
-          href={query ? `/clubs?gender=men&q=${encodeURIComponent(query)}` : '/clubs?gender=men'}
-          className={genderCategory === 'men'
-            ? 'rounded-md bg-surface-3 px-2.5 py-1 text-[11px] font-semibold text-text-primary'
-            : 'rounded-md px-2.5 py-1 text-[11px] font-medium text-text-secondary hover:bg-surface-2'}
-        >
-          {t('men')}
-        </Link>
-        <Link
-          href={query ? `/clubs?gender=women&q=${encodeURIComponent(query)}` : '/clubs?gender=women'}
-          className={genderCategory === 'women'
-            ? 'rounded-md bg-surface-3 px-2.5 py-1 text-[11px] font-semibold text-text-primary'
-            : 'rounded-md px-2.5 py-1 text-[11px] font-medium text-text-secondary hover:bg-surface-2'}
-        >
-          {t('women')}
-        </Link>
-      </div>
-
       <ListSearchForm
         action="/clubs"
         query={query}
         placeholder={t('searchPlaceholder')}
         searchLabel={tCommon('search')}
         clearLabel={tCommon('clear')}
-        hiddenValues={{ gender: genderCategory }}
       />
 
       <SectionCard
@@ -124,6 +100,7 @@ export default async function ClubsPage({
                   <td className="px-3 py-2 text-[13px]">
                     <Link
                       href={`/clubs/${club.id}`}
+                      prefetch
                       className="flex items-center gap-2.5 text-text-primary hover:text-accent-emerald transition-colors"
                     >
                       <ClubBadge shortName={club.shortName} clubId={club.id} logo={club.logo} size="sm" />

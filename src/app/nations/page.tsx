@@ -140,6 +140,7 @@ export default async function NationsPage({
                   <td className="px-3 py-2 text-[13px]">
                     <Link
                       href={`/nations/${nation.id}`}
+                      prefetch
                       className="flex items-center gap-2.5 font-medium text-text-primary hover:text-accent-emerald transition-colors"
                     >
                       <NationFlag nationId={nation.id} code={nation.code} flag={nation.flag} size="sm" />

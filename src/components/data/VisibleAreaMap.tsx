@@ -9,6 +9,7 @@ import { FootballPitch } from '@/components/data/FootballPitch';
 interface VisibleAreaMapProps {
   events: MatchAnalysisEvent[];
   visibleAreas: MatchEventVisibleAreaEntry[];
+  hasLinkedEvents?: boolean;
 }
 
 function buildPickerOption(entry: MatchEventVisibleAreaEntry, event?: MatchAnalysisEvent): AnalysisEventPickerOption | null {
@@ -19,10 +20,12 @@ function buildPickerOption(entry: MatchEventVisibleAreaEntry, event?: MatchAnaly
   return {
     eventId: entry.sourceEventId,
     minute: event?.minute ?? 0,
+    stoppageMinute: event?.stoppageMinute ?? null,
+    matchSecond: event?.matchSecond ?? null,
     playerName: event?.playerName ?? 'Unknown',
     eventType: event?.type ?? 'event',
     detail: event?.detail,
-    metaLabel: `${Math.floor(entry.visibleArea.length / 2)} polygon points`,
+    metaLabel: [event?.sourceSubtype, `${Math.floor(entry.visibleArea.length / 2)} polygon points`].filter(Boolean).join(' · '),
   };
 }
 
@@ -41,7 +44,7 @@ function buildPolygonPoints(visibleArea: number[]) {
   return points.join(' ');
 }
 
-export function VisibleAreaMap({ events, visibleAreas }: VisibleAreaMapProps) {
+export function VisibleAreaMap({ events, visibleAreas, hasLinkedEvents = true }: VisibleAreaMapProps) {
   const tMatch = useTranslations('match');
   const eventById = useMemo(() => new Map(events.map((event) => [event.id, event])), [events]);
   const options = useMemo<AnalysisEventPickerOption[]>(() => {
@@ -60,6 +63,11 @@ export function VisibleAreaMap({ events, visibleAreas }: VisibleAreaMapProps) {
 
   return (
     <div className="space-y-3">
+      {!hasLinkedEvents ? (
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-[12px] text-text-secondary">
+          {tMatch('analysisArtifactLinkMissing')}
+        </div>
+      ) : null}
       <AnalysisEventPicker
         label={tMatch('visibleArea')}
         options={options}

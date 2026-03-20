@@ -1,4 +1,5 @@
 import postgres, { type Sql } from 'postgres';
+import { deriveCompetitionSeasonFormat, type CompetitionSeasonFormatType } from './competitionFormats.ts';
 import { loadCountryCodeResolver, type CountryCodeResolver } from './countryCodeResolver.ts';
 import { createTeamLookupKeys } from './teamLookupKeys.ts';
 import {
@@ -10,6 +11,8 @@ import {
   type ApiFootballFixtureResponseItem,
   type ApiFootballLeagueResponseItem,
 } from './apiFootball.ts';
+
+const BATCH_SIZE = 500;
 
 interface CountryDraft {
   codeAlpha3: string;
@@ -48,6 +51,7 @@ interface TeamDraft {
 interface CompetitionSeasonDraft {
   competitionSlug: string;
   seasonSlug: string;
+  formatType: CompetitionSeasonFormatType;
   currentMatchday: number | null;
   totalMatchdays: number | null;
   status: string;
@@ -93,6 +97,8 @@ interface ExistingTeamLookupRow {
 interface ExistingMatchLookupRow {
   id: number;
   match_date: string;
+  stage: string | null;
+  group_name: string | null;
   home_slug: string;
   away_slug: string;
 }
@@ -142,6 +148,7 @@ const COMPETITION_CONFIGS: Record<string, ApiFootballCompetitionConfig> = {
   PD: { slug: 'la-liga', code: 'pd', name: 'La Liga', shortName: 'La Liga', countryCode: 'ESP', isInternational: false, compType: 'league' },
   PL: { slug: 'premier-league', code: 'pl', name: 'Premier League', shortName: 'Premier League', countryCode: 'ENG', isInternational: false, compType: 'league' },
   SA: { slug: 'serie-a', code: 'sa', name: 'Serie A', shortName: 'Serie A', countryCode: 'ITA', isInternational: false, compType: 'league' },
+  SPL: { slug: 'saudi-pro-league', code: 'spl', name: 'Saudi Pro League', shortName: 'Saudi Pro League', countryCode: 'SAU', isInternational: false, compType: 'league' },
 };
 
 function getMaterializeDb() {
@@ -310,22 +317,6 @@ async function loadExistingTeamLookup(sql: Sql, countryCodeResolver: CountryCode
       JOIN entity_aliases ea ON ea.entity_type = 'team' AND ea.entity_id = t.id
       LEFT JOIN countries c ON c.id = t.country_id
     ) lookup
-    WHERE NOT EXISTS (
-      SELECT 1
-      FROM source_entity_mapping sem_api
-      JOIN data_sources ds_api ON ds_api.id = sem_api.source_id
-      WHERE sem_api.entity_type = 'team'
-        AND sem_api.entity_id = lookup.team_id
-        AND ds_api.slug = 'api_football'
-        AND NOT EXISTS (
-          SELECT 1
-          FROM source_entity_mapping sem_other
-          JOIN data_sources ds_other ON ds_other.id = sem_other.source_id
-          WHERE sem_other.entity_type = 'team'
-            AND sem_other.entity_id = lookup.team_id
-            AND ds_other.slug <> 'api_football'
-        )
-    )
   `;
 
   const lookup = new Map<string, TeamLookupEntry[]>();
@@ -358,8 +349,14 @@ function resolveCanonicalTeamSlug(
   return unique.length === 1 ? unique[0].slug : null;
 }
 
-function buildMatchLookupKey(matchDate: string, homeTeamSlug: string, awayTeamSlug: string) {
-  return `${matchDate}::${homeTeamSlug}::${awayTeamSlug}`;
+function buildMatchLookupKey(
+  matchDate: string,
+  stage: string,
+  groupName: string | null,
+  homeTeamSlug: string,
+  awayTeamSlug: string,
+) {
+  return `${matchDate}::${stage}::${groupName ?? ''}::${homeTeamSlug}::${awayTeamSlug}`;
 }
 
 async function loadExistingMatchLookup(sql: Sql, competitionSlug: string, seasonSlug: string) {
@@ -367,6 +364,8 @@ async function loadExistingMatchLookup(sql: Sql, competitionSlug: string, season
     SELECT DISTINCT
       m.id,
       m.match_date::text AS match_date,
+      m.stage,
+      m.group_name,
       home.slug AS home_slug,
       away.slug AS away_slug
     FROM matches m
@@ -377,10 +376,9 @@ async function loadExistingMatchLookup(sql: Sql, competitionSlug: string, season
     JOIN teams away ON away.id = m.away_team_id
     WHERE c.slug = ${competitionSlug}
       AND s.slug = ${seasonSlug}
-      AND NOT (m.source_metadata @> '{"source":"api_football"}'::jsonb)
   `;
 
-  return new Map(rows.map((row) => [buildMatchLookupKey(row.match_date, row.home_slug, row.away_slug), row.id]));
+  return new Map(rows.map((row) => [buildMatchLookupKey(row.match_date, row.stage ?? 'REGULAR_SEASON', row.group_name, row.home_slug, row.away_slug), row.id]));
 }
 
 async function resolveExistingTeamCountryCode(sql: Sql, teamName: string) {
@@ -473,6 +471,11 @@ function buildCompetitionSeasonDraft(
   return {
     competitionSlug: competition.slug,
     seasonSlug: season.slug,
+    formatType: deriveCompetitionSeasonFormat({
+      competitionSlug: competition.slug,
+      compType: competition.compType,
+      seasonStartDate: season.startDate,
+    }),
     currentMatchday: null,
     totalMatchdays: null,
     status: seasonInfo?.current ? 'active' : 'completed',
@@ -509,7 +512,7 @@ function buildMatchDraft(
 
   const roundInfo = parseRound(fixture.league?.round ?? null);
   const matchDate = kickoffAt.slice(0, 10);
-  const existingMatchId = existingMatchLookup.get(buildMatchLookupKey(matchDate, homeTeamSlug, awayTeamSlug));
+  const existingMatchId = existingMatchLookup.get(buildMatchLookupKey(matchDate, roundInfo.stage, roundInfo.groupName, homeTeamSlug, awayTeamSlug));
 
   return {
     matchId: existingMatchId ?? fixtureId,
@@ -573,7 +576,9 @@ async function refreshDerivedViews(sql: Sql) {
 async function upsertEntityAlias(sql: Sql, entityType: 'competition' | 'team' | 'country', entityIdSql: ReturnType<Sql>, alias: string) {
   await sql`
     INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
-    VALUES (${entityType}, (${entityIdSql}), ${alias}, 'en', 'common', TRUE, 'pending', 'imported', 'api_football')
+    SELECT ${entityType}, entity.id, ${alias}, 'en', 'common', TRUE, 'pending', 'imported', 'api_football'
+    FROM (${entityIdSql}) AS entity(id)
+    WHERE entity.id IS NOT NULL
     ON CONFLICT (entity_type, entity_id, alias_normalized)
     DO UPDATE SET
       locale = EXCLUDED.locale,
@@ -582,6 +587,7 @@ async function upsertEntityAlias(sql: Sql, entityType: 'competition' | 'team' | 
       status = EXCLUDED.status,
       source_type = EXCLUDED.source_type,
       source_ref = EXCLUDED.source_ref
+    WHERE entity_aliases.status <> 'approved'
   `;
 }
 
@@ -712,6 +718,7 @@ async function upsertCompetitionSeason(sql: Sql, draft: CompetitionSeasonDraft) 
     INSERT INTO competition_seasons (
       competition_id,
       season_id,
+      format_type,
       current_matchday,
       total_matchdays,
       source_metadata,
@@ -721,6 +728,7 @@ async function upsertCompetitionSeason(sql: Sql, draft: CompetitionSeasonDraft) 
     VALUES (
       (SELECT id FROM competitions WHERE slug = ${draft.competitionSlug}),
       (SELECT id FROM seasons WHERE slug = ${draft.seasonSlug}),
+      ${draft.formatType},
       ${draft.currentMatchday},
       ${draft.totalMatchdays},
       ${JSON.stringify(draft.sourceMetadata)}::jsonb,
@@ -729,6 +737,7 @@ async function upsertCompetitionSeason(sql: Sql, draft: CompetitionSeasonDraft) 
     )
     ON CONFLICT (competition_id, season_id)
     DO UPDATE SET
+      format_type = EXCLUDED.format_type,
       current_matchday = EXCLUDED.current_matchday,
       total_matchdays = EXCLUDED.total_matchdays,
       source_metadata = EXCLUDED.source_metadata,
@@ -857,6 +866,42 @@ async function upsertSourceEntityMapping(
 }
 
 async function cleanupCompetitionSeasonMatches(sql: Sql, competitionSlug: string, seasonSlug: string) {
+  await sql`
+    DELETE FROM match_stats ms
+    USING matches m, competition_seasons cs, competitions c, seasons s
+    WHERE ms.match_id = m.id
+      AND ms.match_date = m.match_date
+      AND m.competition_season_id = cs.id
+      AND cs.competition_id = c.id
+      AND cs.season_id = s.id
+      AND c.slug = ${competitionSlug}
+      AND s.slug = ${seasonSlug}
+  `;
+
+  await sql`
+    DELETE FROM match_lineups ml
+    USING matches m, competition_seasons cs, competitions c, seasons s
+    WHERE ml.match_id = m.id
+      AND ml.match_date = m.match_date
+      AND m.competition_season_id = cs.id
+      AND cs.competition_id = c.id
+      AND cs.season_id = s.id
+      AND c.slug = ${competitionSlug}
+      AND s.slug = ${seasonSlug}
+  `;
+
+  await sql`
+    DELETE FROM match_event_artifacts mea
+    USING matches m, competition_seasons cs, competitions c, seasons s
+    WHERE mea.match_id = m.id
+      AND mea.match_date = m.match_date
+      AND m.competition_season_id = cs.id
+      AND cs.competition_id = c.id
+      AND cs.season_id = s.id
+      AND c.slug = ${competitionSlug}
+      AND s.slug = ${seasonSlug}
+  `;
+
   await sql`
     DELETE FROM matches m
     USING competition_seasons cs, competitions c, seasons s
@@ -1017,7 +1062,16 @@ export async function materializeApiFootballCompetitions(
 
           const matchDraft = buildMatchDraft(fixture, competitionDraft, seasonDraft, teamSlugByExternalId, existingMatchLookup);
           matches.push(matchDraft);
-          existingMatchLookup.set(buildMatchLookupKey(matchDraft.matchDate, matchDraft.homeTeamSlug, matchDraft.awayTeamSlug), matchDraft.matchId);
+  existingMatchLookup.set(
+    buildMatchLookupKey(
+      matchDraft.matchDate,
+      matchDraft.stage,
+      matchDraft.groupName,
+      matchDraft.homeTeamSlug,
+      matchDraft.awayTeamSlug,
+    ),
+    matchDraft.matchId,
+  );
           matchMappings.push({
             matchId: matchDraft.matchId,
             matchDate: matchDraft.matchDate,
@@ -1039,6 +1093,10 @@ export async function materializeApiFootballCompetitions(
       matches: matches.length,
     } satisfies MaterializeApiFootballCompetitionSummary;
 
+    const uniqueTeamMappings = Array.from(
+      new Map(teamMappings.map((entry) => [`${entry.externalId}`, entry])).values()
+    );
+
     if (options.dryRun ?? false) {
       await sql.end({ timeout: 1 });
       return summary;
@@ -1046,24 +1104,238 @@ export async function materializeApiFootballCompetitions(
 
     await sql`BEGIN`;
     try {
-      for (const country of countries.values()) {
-        await upsertCountry(sql, country);
+      const countryList = Array.from(countries.values());
+      for (let i = 0; i < countryList.length; i += BATCH_SIZE) {
+        const chunk = countryList.slice(i, i + BATCH_SIZE);
+        await sql`
+          INSERT INTO countries (code_alpha3, is_active, updated_at)
+          SELECT * FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.codeAlpha3))}::text[],
+            ${sql.array(chunk.map(() => true))}::bool[],
+            ${sql.array(chunk.map(() => new Date().toISOString()))}::timestamptz[]
+          ) AS t(code_alpha3, is_active, updated_at)
+          ON CONFLICT (code_alpha3)
+          DO UPDATE SET is_active = TRUE, updated_at = NOW()
+        `;
+        await sql`
+          INSERT INTO country_translations (country_id, locale, name)
+          SELECT c.id, 'en', t.name
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.codeAlpha3))}::text[],
+            ${sql.array(chunk.map((r) => r.name))}::text[]
+          ) AS t(code_alpha3, name)
+          JOIN countries c ON c.code_alpha3 = t.code_alpha3
+          ON CONFLICT (country_id, locale)
+          DO UPDATE SET name = EXCLUDED.name
+        `;
+        await sql`
+          INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+          SELECT 'country', c.id, t.alias, 'en', 'common', TRUE, 'pending', 'imported', 'api_football'
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.codeAlpha3))}::text[],
+            ${sql.array(chunk.map((r) => r.name))}::text[]
+          ) AS t(code_alpha3, alias)
+          JOIN countries c ON c.code_alpha3 = t.code_alpha3
+          ON CONFLICT (entity_type, entity_id, alias_normalized)
+          DO UPDATE SET
+            locale = EXCLUDED.locale,
+            alias_kind = EXCLUDED.alias_kind,
+            is_primary = EXCLUDED.is_primary,
+            status = EXCLUDED.status,
+            source_type = EXCLUDED.source_type,
+            source_ref = EXCLUDED.source_ref
+          WHERE entity_aliases.status <> 'approved'
+        `;
       }
 
-      for (const season of seasons.values()) {
-        await upsertSeason(sql, season);
+      const seasonList = Array.from(seasons.values());
+      for (let i = 0; i < seasonList.length; i += BATCH_SIZE) {
+        const chunk = seasonList.slice(i, i + BATCH_SIZE);
+        await sql`
+          INSERT INTO seasons (slug, start_date, end_date, is_current)
+          SELECT * FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.slug))}::text[],
+            ${sql.array(chunk.map((r) => r.startDate))}::date[],
+            ${sql.array(chunk.map((r) => r.endDate))}::date[],
+            ${sql.array(chunk.map(() => false))}::bool[]
+          ) AS t(slug, start_date, end_date, is_current)
+          ON CONFLICT (slug)
+          DO UPDATE SET
+            start_date = LEAST(seasons.start_date, EXCLUDED.start_date),
+            end_date = GREATEST(seasons.end_date, EXCLUDED.end_date),
+            is_current = EXCLUDED.is_current
+        `;
       }
 
-      for (const competition of competitions.values()) {
-        await upsertCompetition(sql, competition);
+      const competitionList = Array.from(competitions.values());
+      for (let i = 0; i < competitionList.length; i += BATCH_SIZE) {
+        const chunk = competitionList.slice(i, i + BATCH_SIZE);
+        await sql`
+          INSERT INTO competitions (slug, code, comp_type, gender, is_youth, is_international, country_id, is_active, updated_at)
+          SELECT t.slug, t.code, t.comp_type, t.gender, t.is_youth, t.is_international, c.id, TRUE, NOW()
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.slug))}::text[],
+            ${sql.array(chunk.map((r) => r.code))}::text[],
+            ${sql.array(chunk.map((r) => r.compType))}::competition_type[],
+            ${sql.array(chunk.map((r) => r.gender))}::competition_gender[],
+            ${sql.array(chunk.map((r) => r.isYouth))}::bool[],
+            ${sql.array(chunk.map((r) => r.isInternational))}::bool[],
+            ${sql.array(chunk.map((r) => r.countryCode))}::text[]
+          ) AS t(slug, code, comp_type, gender, is_youth, is_international, country_code)
+          LEFT JOIN countries c ON c.code_alpha3 = t.country_code
+          ON CONFLICT (slug)
+          DO UPDATE SET
+            code = EXCLUDED.code,
+            comp_type = EXCLUDED.comp_type,
+            gender = EXCLUDED.gender,
+            is_youth = EXCLUDED.is_youth,
+            is_international = EXCLUDED.is_international,
+            country_id = EXCLUDED.country_id,
+            is_active = TRUE,
+            updated_at = NOW()
+        `;
+        await sql`
+          INSERT INTO competition_translations (competition_id, locale, name, short_name)
+          SELECT c.id, 'en', t.name, t.short_name
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.slug))}::text[],
+            ${sql.array(chunk.map((r) => r.name))}::text[],
+            ${sql.array(chunk.map((r) => r.shortName))}::text[]
+          ) AS t(slug, name, short_name)
+          JOIN competitions c ON c.slug = t.slug
+          ON CONFLICT (competition_id, locale)
+          DO UPDATE SET name = EXCLUDED.name, short_name = EXCLUDED.short_name
+        `;
+        await sql`
+          INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+          SELECT 'competition', c.id, t.alias, 'en', 'common', TRUE, 'pending', 'imported', 'api_football'
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.slug))}::text[],
+            ${sql.array(chunk.map((r) => r.name))}::text[]
+          ) AS t(slug, alias)
+          JOIN competitions c ON c.slug = t.slug
+          ON CONFLICT (entity_type, entity_id, alias_normalized)
+          DO UPDATE SET
+            locale = EXCLUDED.locale,
+            alias_kind = EXCLUDED.alias_kind,
+            is_primary = EXCLUDED.is_primary,
+            status = EXCLUDED.status,
+            source_type = EXCLUDED.source_type,
+            source_ref = EXCLUDED.source_ref
+          WHERE entity_aliases.status <> 'approved'
+        `;
       }
 
-      for (const team of teams.values()) {
-        await upsertTeam(sql, team);
+      const teamList = Array.from(teams.values());
+      for (let i = 0; i < teamList.length; i += BATCH_SIZE) {
+        const chunk = teamList.slice(i, i + BATCH_SIZE);
+        await sql`
+          INSERT INTO teams (slug, country_id, gender, is_national, crest_url, is_active, updated_at)
+          SELECT t.slug, c.id, t.gender, t.is_national, t.crest_url, TRUE, NOW()
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.slug))}::text[],
+            ${sql.array(chunk.map((r) => r.countryCode))}::text[],
+            ${sql.array(chunk.map((r) => r.gender))}::competition_gender[],
+            ${sql.array(chunk.map((r) => r.isNational))}::bool[],
+            ${sql.array(chunk.map((r) => r.crestUrl))}::text[]
+          ) AS t(slug, country_code, gender, is_national, crest_url)
+          LEFT JOIN countries c ON c.code_alpha3 = t.country_code
+          ON CONFLICT (slug)
+          DO UPDATE SET
+            country_id = EXCLUDED.country_id,
+            gender = EXCLUDED.gender,
+            is_national = EXCLUDED.is_national,
+            crest_url = COALESCE(EXCLUDED.crest_url, teams.crest_url),
+            is_active = TRUE,
+            updated_at = NOW()
+        `;
+        await sql`
+          INSERT INTO team_translations (team_id, locale, name, short_name)
+          SELECT t2.id, 'en', t.name, t.short_name
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.slug))}::text[],
+            ${sql.array(chunk.map((r) => r.name))}::text[],
+            ${sql.array(chunk.map((r) => r.shortName))}::text[]
+          ) AS t(slug, name, short_name)
+          JOIN teams t2 ON t2.slug = t.slug
+          ON CONFLICT (team_id, locale)
+          DO UPDATE SET name = EXCLUDED.name, short_name = EXCLUDED.short_name
+        `;
+        await sql`
+          INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+          SELECT 'team', t2.id, t.alias, 'en', 'common', TRUE, 'pending', 'imported', 'api_football'
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.slug))}::text[],
+            ${sql.array(chunk.map((r) => r.name))}::text[]
+          ) AS t(slug, alias)
+          JOIN teams t2 ON t2.slug = t.slug
+          ON CONFLICT (entity_type, entity_id, alias_normalized)
+          DO UPDATE SET
+            locale = EXCLUDED.locale,
+            alias_kind = EXCLUDED.alias_kind,
+            is_primary = EXCLUDED.is_primary,
+            status = EXCLUDED.status,
+            source_type = EXCLUDED.source_type,
+            source_ref = EXCLUDED.source_ref
+          WHERE entity_aliases.status <> 'approved'
+        `;
+        const lookupAliasRows = chunk.flatMap((r) =>
+          [...new Set(
+            createTeamLookupKeys(r.name)
+              .map((alias) => alias.trim())
+              .filter((alias) => alias.length > 0)
+          )].map((alias) => ({ slug: r.slug, alias }))
+        );
+        if (lookupAliasRows.length > 0) {
+          await sql`
+            INSERT INTO entity_aliases (entity_type, entity_id, alias, locale, alias_kind, is_primary, status, source_type, source_ref)
+          SELECT 'team', t2.id, t.alias, 'en', 'common', FALSE, 'pending', 'imported', 'api_football'
+            FROM UNNEST(
+              ${sql.array(lookupAliasRows.map((r) => r.slug))}::text[],
+              ${sql.array(lookupAliasRows.map((r) => r.alias))}::text[]
+            ) AS t(slug, alias)
+            JOIN teams t2 ON t2.slug = t.slug
+            ON CONFLICT (entity_type, entity_id, alias_normalized)
+            DO UPDATE SET
+              locale = EXCLUDED.locale,
+              alias_kind = EXCLUDED.alias_kind,
+              source_type = EXCLUDED.source_type,
+              source_ref = EXCLUDED.source_ref
+            WHERE entity_aliases.status <> 'approved'
+          `;
+        }
       }
 
-      for (const competitionSeason of competitionSeasons.values()) {
-        await upsertCompetitionSeason(sql, competitionSeason);
+      const competitionSeasonList = Array.from(competitionSeasons.values());
+      for (let i = 0; i < competitionSeasonList.length; i += BATCH_SIZE) {
+        const chunk = competitionSeasonList.slice(i, i + BATCH_SIZE);
+        await sql`
+          INSERT INTO competition_seasons (
+            competition_id, season_id, format_type, current_matchday, total_matchdays,
+            source_metadata, status, updated_at
+          )
+          SELECT comp.id, s.id, t.format_type, t.current_matchday, t.total_matchdays,
+            t.source_metadata::jsonb, t.status, NOW()
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.competitionSlug))}::text[],
+            ${sql.array(chunk.map((r) => r.seasonSlug))}::text[],
+            ${sql.array(chunk.map((r) => r.formatType))}::competition_format_type[],
+            ${sql.array(chunk.map((r) => r.currentMatchday))}::int[],
+            ${sql.array(chunk.map((r) => r.totalMatchdays))}::int[],
+            ${sql.array(chunk.map((r) => JSON.stringify(r.sourceMetadata)))}::text[],
+            ${sql.array(chunk.map((r) => r.status))}::text[]
+          ) AS t(competition_slug, season_slug, format_type, current_matchday, total_matchdays, source_metadata, status)
+          JOIN competitions comp ON comp.slug = t.competition_slug
+          JOIN seasons s ON s.slug = t.season_slug
+          ON CONFLICT (competition_id, season_id)
+          DO UPDATE SET
+            format_type = EXCLUDED.format_type,
+            current_matchday = EXCLUDED.current_matchday,
+            total_matchdays = EXCLUDED.total_matchdays,
+            source_metadata = EXCLUDED.source_metadata,
+            status = EXCLUDED.status,
+            updated_at = NOW()
+        `;
       }
 
       for (const competitionSeason of competitionSeasons.values()) {
@@ -1071,46 +1343,144 @@ export async function materializeApiFootballCompetitions(
         await cleanupCompetitionSeasonTeamSeasons(sql, competitionSeason.competitionSlug, competitionSeason.seasonSlug);
       }
 
-      for (const key of teamSeasonKeys) {
+      const teamSeasonParsed = Array.from(teamSeasonKeys).map((key) => {
         const [competitionSlug, seasonSlug, teamSlug] = key.split(':');
-        await upsertTeamSeason(sql, competitionSlug, seasonSlug, teamSlug);
+        return { competitionSlug, seasonSlug, teamSlug };
+      });
+      for (let i = 0; i < teamSeasonParsed.length; i += BATCH_SIZE) {
+        const chunk = teamSeasonParsed.slice(i, i + BATCH_SIZE);
+        await sql`
+          INSERT INTO team_seasons (team_id, competition_season_id, updated_at)
+          SELECT tm.id, cs.id, NOW()
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.competitionSlug))}::text[],
+            ${sql.array(chunk.map((r) => r.seasonSlug))}::text[],
+            ${sql.array(chunk.map((r) => r.teamSlug))}::text[]
+          ) AS t(competition_slug, season_slug, team_slug)
+          JOIN teams tm ON tm.slug = t.team_slug
+          JOIN competitions comp ON comp.slug = t.competition_slug
+          JOIN seasons s ON s.slug = t.season_slug
+          JOIN competition_seasons cs ON cs.competition_id = comp.id AND cs.season_id = s.id
+          ON CONFLICT (team_id, competition_season_id)
+          DO UPDATE SET updated_at = NOW()
+        `;
       }
 
-      for (const match of matches) {
-        await upsertMatch(sql, match);
+      for (let i = 0; i < matches.length; i += BATCH_SIZE) {
+        const chunk = matches.slice(i, i + BATCH_SIZE);
+        await sql`
+          INSERT INTO matches (
+            id, match_date, competition_season_id, matchday, stage, group_name,
+            home_team_id, away_team_id, home_score, away_score, status, kickoff_at,
+            source_metadata, updated_at
+          )
+          SELECT
+            t.match_id, t.match_date, cs.id, t.matchday, t.stage, t.group_name,
+            home_tm.id, away_tm.id, t.home_score, t.away_score, t.status, t.kickoff_at,
+            t.source_metadata::jsonb, NOW()
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.matchId))}::int[],
+            ${sql.array(chunk.map((r) => r.matchDate))}::date[],
+            ${sql.array(chunk.map((r) => r.competitionSlug))}::text[],
+            ${sql.array(chunk.map((r) => r.seasonSlug))}::text[],
+            ${sql.array(chunk.map((r) => r.homeTeamSlug))}::text[],
+            ${sql.array(chunk.map((r) => r.awayTeamSlug))}::text[],
+            ${sql.array(chunk.map((r) => r.homeScore))}::int[],
+            ${sql.array(chunk.map((r) => r.awayScore))}::int[],
+            ${sql.array(chunk.map((r) => r.matchWeek))}::int[],
+            ${sql.array(chunk.map((r) => r.stage))}::text[],
+            ${sql.array(chunk.map((r) => r.groupName))}::text[],
+            ${sql.array(chunk.map((r) => r.status))}::match_status[],
+            ${sql.array(chunk.map((r) => r.kickoffAt))}::timestamptz[],
+            ${sql.array(chunk.map((r) => JSON.stringify(r.sourceMetadata)))}::text[]
+          ) AS t(match_id, match_date, competition_slug, season_slug,
+                 home_team_slug, away_team_slug, home_score, away_score,
+                 matchday, stage, group_name, status, kickoff_at, source_metadata)
+          JOIN competitions comp ON comp.slug = t.competition_slug
+          JOIN seasons s ON s.slug = t.season_slug
+          JOIN competition_seasons cs ON cs.competition_id = comp.id AND cs.season_id = s.id
+          JOIN teams home_tm ON home_tm.slug = t.home_team_slug
+          JOIN teams away_tm ON away_tm.slug = t.away_team_slug
+          ON CONFLICT (id, match_date)
+          DO UPDATE SET
+            competition_season_id = EXCLUDED.competition_season_id,
+            matchday = EXCLUDED.matchday,
+            stage = EXCLUDED.stage,
+            group_name = EXCLUDED.group_name,
+            home_team_id = EXCLUDED.home_team_id,
+            away_team_id = EXCLUDED.away_team_id,
+            home_score = EXCLUDED.home_score,
+            away_score = EXCLUDED.away_score,
+            status = EXCLUDED.status,
+            kickoff_at = EXCLUDED.kickoff_at,
+            source_metadata = EXCLUDED.source_metadata,
+            updated_at = NOW()
+        `;
       }
 
-      for (const mapping of competitionMappings) {
-        await upsertSourceEntityMapping(sql, {
-          entityType: 'competition',
-          entityIdSql: sql`SELECT id FROM competitions WHERE slug = ${mapping.slug}`,
-          sourceId,
-          externalId: mapping.externalId,
-          externalCode: mapping.externalCode,
-          metadata: { source: 'api_football' },
-        });
+      for (let i = 0; i < competitionMappings.length; i += BATCH_SIZE) {
+        const chunk = competitionMappings.slice(i, i + BATCH_SIZE);
+        await sql`
+          INSERT INTO source_entity_mapping (entity_type, entity_id, source_id, external_id, external_code, season_context, metadata, updated_at)
+          SELECT 'competition', c.id, ${sourceId}, t.external_id, t.external_code, NULL, '{"source":"api_football"}'::jsonb, NOW()
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.slug))}::text[],
+            ${sql.array(chunk.map((r) => r.externalId))}::text[],
+            ${sql.array(chunk.map((r) => r.externalCode))}::text[]
+          ) AS t(slug, external_id, external_code)
+          JOIN competitions c ON c.slug = t.slug
+          ON CONFLICT (entity_type, source_id, external_id)
+          DO UPDATE SET
+            entity_id = EXCLUDED.entity_id,
+            external_code = EXCLUDED.external_code,
+            season_context = EXCLUDED.season_context,
+            metadata = EXCLUDED.metadata,
+            updated_at = NOW()
+        `;
       }
 
-      for (const mapping of teamMappings) {
-        await upsertSourceEntityMapping(sql, {
-          entityType: 'team',
-          entityIdSql: sql`SELECT id FROM teams WHERE slug = ${mapping.slug}`,
-          sourceId,
-          externalId: mapping.externalId,
-          seasonContext: mapping.seasonContext,
-          metadata: { source: 'api_football' },
-        });
+      for (let i = 0; i < uniqueTeamMappings.length; i += BATCH_SIZE) {
+        const chunk = uniqueTeamMappings.slice(i, i + BATCH_SIZE);
+        await sql`
+          INSERT INTO source_entity_mapping (entity_type, entity_id, source_id, external_id, external_code, season_context, metadata, updated_at)
+          SELECT 'team', tm.id, ${sourceId}, t.external_id, NULL, t.season_context, '{"source":"api_football"}'::jsonb, NOW()
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.slug))}::text[],
+            ${sql.array(chunk.map((r) => r.externalId))}::text[],
+            ${sql.array(chunk.map((r) => r.seasonContext))}::text[]
+          ) AS t(slug, external_id, season_context)
+          JOIN teams tm ON tm.slug = t.slug
+          ON CONFLICT (entity_type, source_id, external_id)
+          DO UPDATE SET
+            entity_id = EXCLUDED.entity_id,
+            external_code = EXCLUDED.external_code,
+            season_context = EXCLUDED.season_context,
+            metadata = EXCLUDED.metadata,
+            updated_at = NOW()
+        `;
       }
 
-      for (const mapping of matchMappings) {
-        await upsertSourceEntityMapping(sql, {
-          entityType: 'match',
-          entityIdSql: sql`SELECT id FROM matches WHERE id = ${mapping.matchId} AND match_date = ${mapping.matchDate}`,
-          sourceId,
-          externalId: mapping.externalId,
-          seasonContext: mapping.seasonContext,
-          metadata: { source: 'api_football', matchDate: mapping.matchDate },
-        });
+      for (let i = 0; i < matchMappings.length; i += BATCH_SIZE) {
+        const chunk = matchMappings.slice(i, i + BATCH_SIZE);
+        await sql`
+          INSERT INTO source_entity_mapping (entity_type, entity_id, source_id, external_id, external_code, season_context, metadata, updated_at)
+          SELECT 'match', m.id, ${sourceId}, t.external_id, NULL, t.season_context,
+            jsonb_build_object('source', 'api_football', 'matchDate', t.match_date), NOW()
+          FROM UNNEST(
+            ${sql.array(chunk.map((r) => r.matchId))}::int[],
+            ${sql.array(chunk.map((r) => r.matchDate))}::date[],
+            ${sql.array(chunk.map((r) => r.externalId))}::text[],
+            ${sql.array(chunk.map((r) => r.seasonContext))}::text[]
+          ) AS t(match_id, match_date, external_id, season_context)
+          JOIN matches m ON m.id = t.match_id AND m.match_date = t.match_date
+          ON CONFLICT (entity_type, source_id, external_id)
+          DO UPDATE SET
+            entity_id = EXCLUDED.entity_id,
+            external_code = EXCLUDED.external_code,
+            season_context = EXCLUDED.season_context,
+            metadata = EXCLUDED.metadata,
+            updated_at = NOW()
+        `;
       }
 
       await refreshDerivedViews(sql);

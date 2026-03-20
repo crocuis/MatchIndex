@@ -4,9 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { MatchAnalysisTabs } from '@/components/data/MatchAnalysisTabs';
 import { SectionCard } from '@/components/ui/SectionCard';
 import {
-  getMatchAnalysisDataDb,
-  getMatchFreezeFramesArtifactDb,
-  getMatchVisibleAreasArtifactDb,
+  getMatchAnalysisArtifactsBundleDb,
 } from '@/data/server';
 
 interface MatchAnalysisSectionProps {
@@ -17,12 +15,11 @@ interface MatchAnalysisSectionProps {
 }
 
 export async function MatchAnalysisSection({ matchId, matchDate, homeTeamId, awayTeamId }: MatchAnalysisSectionProps) {
-  const [tMatch, analysis, freezeFrames, visibleAreas] = await Promise.all([
+  const [tMatch, artifacts] = await Promise.all([
     getTranslations('match'),
-    getMatchAnalysisDataDb(matchId, matchDate),
-    getMatchFreezeFramesArtifactDb(matchId, matchDate),
-    getMatchVisibleAreasArtifactDb(matchId, matchDate),
+    getMatchAnalysisArtifactsBundleDb(matchId, matchDate),
   ]);
+  const { analysis, freezeFrames, visibleAreas } = artifacts;
 
   if (analysis.events.length === 0) {
     return (
@@ -39,6 +36,7 @@ export async function MatchAnalysisSection({ matchId, matchDate, homeTeamId, awa
       visibleAreas={visibleAreas}
       homeTeamId={homeTeamId}
       awayTeamId={awayTeamId}
+      artifactSources={artifacts.artifactSources}
     />
   );
 }

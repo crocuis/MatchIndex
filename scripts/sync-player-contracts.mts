@@ -13,6 +13,7 @@ interface CliOptions {
   limit?: number;
   playerSlug?: string;
   seasonSlug?: string;
+  teamSlug?: string;
 }
 
 interface ContractSyncPayload {
@@ -162,6 +163,11 @@ function parseArgs(argv: string[]): CliOptions {
       continue;
     }
 
+    if (arg.startsWith('--team=')) {
+      options.teamSlug = arg.slice('--team='.length).trim();
+      continue;
+    }
+
     if (arg.startsWith('--limit=')) {
       options.limit = parsePositiveInt(arg.slice('--limit='.length));
     }
@@ -178,6 +184,7 @@ Options:
   --competition=<slug>  Internal competition slug (e.g. premier-league)
   --season=<slug>       Internal season slug (e.g. 2025-2026)
   --player=<slug>       Restrict sync to one internal player slug
+  --team=<slug>         Restrict/fallback sync to one internal team slug
   --limit=<n>           Limit rows read from the input payload
   --dry-run             Preview matched updates without writing to the database
   --help, -h            Show this help message
@@ -221,6 +228,44 @@ function normalizeText(value: string | null | undefined) {
 
 function collectUniqueKeys(values: Array<string | null | undefined>) {
   return Array.from(new Set(values.map(normalizeText).filter(Boolean)));
+}
+
+function tokenizeNormalized(value: string | null | undefined) {
+  return normalizeText(value).split(' ').filter(Boolean);
+}
+
+function buildAcronym(value: string | null | undefined) {
+  return tokenizeNormalized(value).map((token) => token[0]).join('');
+}
+
+function namesMatch(expected: string | null | undefined, actual: string | null | undefined) {
+  const expectedTokens = tokenizeNormalized(expected);
+  const actualTokens = tokenizeNormalized(actual);
+  if (expectedTokens.length === 0 || actualTokens.length === 0) {
+    return false;
+  }
+  if (expectedTokens.join(' ') === actualTokens.join(' ')) {
+    return true;
+  }
+  if (expectedTokens.length === actualTokens.length) {
+    return expectedTokens.every((expectedToken, index) => {
+      const actualToken = actualTokens[index];
+      return expectedToken === actualToken || (expectedToken.length === 1 && actualToken.startsWith(expectedToken));
+    });
+  }
+  return false;
+}
+
+function teamNamesMatch(expected: string | null | undefined, actual: string | null | undefined) {
+  const expectedNormalized = normalizeText(expected);
+  const actualNormalized = normalizeText(actual);
+  if (!expectedNormalized || !actualNormalized) {
+    return false;
+  }
+  if (expectedNormalized === actualNormalized) {
+    return true;
+  }
+  return buildAcronym(expected) === actualNormalized || buildAcronym(actual) === expectedNormalized;
 }
 
 function parseMoneyValue(value: number | string | null | undefined) {
@@ -408,7 +453,7 @@ async function insertRawPayload(
   `;
 }
 
-async function loadTargets(sql: Sql, competitionSlug: string, seasonSlug: string, playerSlug?: string) {
+async function loadTargets(sql: Sql, competitionSlug: string, seasonSlug: string, playerSlug?: string, teamSlug?: string) {
   const rows = playerSlug
     ? await sql<SyncTargetRow[]>`
         SELECT
@@ -432,6 +477,7 @@ async function loadTargets(sql: Sql, competitionSlug: string, seasonSlug: string
           AND s.slug = ${seasonSlug}
           AND pc.left_date IS NULL
           AND p.slug = ${playerSlug}
+          AND (${teamSlug ?? null}::text IS NULL OR t.slug = ${teamSlug ?? null})
       `
     : await sql<SyncTargetRow[]>`
         SELECT
@@ -454,9 +500,49 @@ async function loadTargets(sql: Sql, competitionSlug: string, seasonSlug: string
         WHERE c.slug = ${competitionSlug}
           AND s.slug = ${seasonSlug}
           AND pc.left_date IS NULL
+          AND (${teamSlug ?? null}::text IS NULL OR t.slug = ${teamSlug ?? null})
       `;
 
-  return rows.map<SyncTarget>((row) => ({
+  const fallbackRows = rows.length > 0 || !teamSlug
+    ? rows
+    : await sql<SyncTargetRow[]>`
+        WITH target_season AS (
+          SELECT start_date
+          FROM seasons
+          WHERE slug = ${seasonSlug}
+          LIMIT 1
+        ), latest_team_contracts AS (
+          SELECT DISTINCT ON (pc.player_id)
+            pc.id AS contract_id,
+            pc.competition_season_id,
+            p.slug AS player_slug,
+            pt.known_as,
+            CONCAT_WS(' ', pt.first_name, pt.last_name) AS full_name,
+            t.slug AS team_slug,
+            tt.name AS team_name,
+            tt.short_name,
+            COALESCE(pc.left_date, pc.contract_end_date, pc.joined_date, s.end_date, s.start_date) AS recency_date
+          FROM player_contracts pc
+          CROSS JOIN target_season target
+          JOIN players p ON p.id = pc.player_id
+          JOIN player_translations pt ON pt.player_id = p.id AND pt.locale = 'en'
+          JOIN teams t ON t.id = pc.team_id
+          JOIN team_translations tt ON tt.team_id = t.id AND tt.locale = 'en'
+          JOIN competition_seasons cs ON cs.id = pc.competition_season_id
+          JOIN competitions c ON c.id = cs.competition_id
+          JOIN seasons s ON s.id = cs.season_id
+          WHERE pc.left_date IS NULL
+            AND t.slug = ${teamSlug}
+            AND (${playerSlug ?? null}::text IS NULL OR p.slug = ${playerSlug ?? null})
+            AND COALESCE(pc.left_date, pc.contract_end_date, pc.joined_date, s.end_date, s.start_date) IS NOT NULL
+            AND COALESCE(pc.left_date, pc.contract_end_date, pc.joined_date, s.end_date, s.start_date) >= target.start_date - INTERVAL '18 months'
+          ORDER BY pc.player_id, recency_date DESC NULLS LAST, pc.joined_date DESC NULLS LAST, pc.id DESC
+        )
+        SELECT contract_id, competition_season_id, player_slug, known_as, full_name, team_slug, team_name, short_name
+        FROM latest_team_contracts
+      `;
+
+  return fallbackRows.map<SyncTarget>((row) => ({
     competitionSeasonId: row.competition_season_id,
     contractId: row.contract_id,
     playerSlug: row.player_slug,
@@ -555,12 +641,21 @@ function matchTarget(row: ContractSyncRow, targets: SyncTarget[]) {
     return null;
   }
 
-  const exact = targets.find((target) => target.playerKeys.includes(playerKey) && (!teamKey || target.teamKeys.includes(teamKey)));
+  const exact = targets.find((target) => {
+    const playerMatches = target.playerKeys.some((candidate) => namesMatch(candidate, row.playerName));
+    if (!playerMatches) {
+      return false;
+    }
+    if (!teamKey) {
+      return true;
+    }
+    return target.teamKeys.some((candidate) => teamNamesMatch(candidate, row.teamName));
+  });
   if (exact) {
     return exact;
   }
 
-  const playerMatches = targets.filter((target) => target.playerKeys.includes(playerKey));
+  const playerMatches = targets.filter((target) => target.playerKeys.some((candidate) => namesMatch(candidate, row.playerName)));
   return playerMatches.length === 1 ? playerMatches[0] : null;
 }
 
@@ -819,7 +914,7 @@ async function main() {
   let syncRunId: number | null = null;
   try {
     const countryCodeResolver = await loadCountryCodeResolver(sql);
-    const targets = await loadTargets(sql, options.competitionSlug, options.seasonSlug, options.playerSlug);
+    const targets = await loadTargets(sql, options.competitionSlug, options.seasonSlug, options.playerSlug, options.teamSlug);
     const countryResolver = buildCountryResolver(await loadCountryRows(sql), countryCodeResolver);
     const sourceId = options.dryRun ? null : await ensureDataSource(sql, provider);
 
@@ -878,17 +973,15 @@ async function main() {
           row,
         });
 
-        if (!isTransfermarktProfileSync(provider)) {
-          await updateContract(sql, {
-            contractId: target.contractId,
-            provider,
-            row: {
-              ...row,
-              currencyCode: row.currencyCode ?? payload.currencyCode ?? undefined,
-              sourceUrl: row.sourceUrl ?? payload.sourceUrl ?? undefined,
-            },
-          });
-        }
+        await updateContract(sql, {
+          contractId: target.contractId,
+          provider,
+          row: {
+            ...row,
+            currencyCode: row.currencyCode ?? payload.currencyCode ?? undefined,
+            sourceUrl: row.sourceUrl ?? payload.sourceUrl ?? undefined,
+          },
+        });
 
         if (sourceId !== null && syncRunId !== null) {
           await insertRawPayload(sql, {

@@ -27,16 +27,14 @@ export const metadata: Metadata = {
 export default async function PlayersPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string; q?: string; gender?: string; status?: string }>;
+  searchParams: Promise<{ page?: string; q?: string; status?: string }>;
 }) {
   const locale = await getLocale();
-  const { page, q, gender, status } = await searchParams;
+  const { page, q, status } = await searchParams;
   const currentPage = parsePage(page);
   const query = q?.trim() ?? '';
-  const genderCategory = gender === 'women' ? 'women' : 'men';
-  const genderFilter = genderCategory === 'women' ? 'female' : 'male';
   const statusCategory = status === 'retired' ? 'retired' : 'active';
-  const playersResult = await getPaginatedPlayersDb(locale, query, genderFilter, statusCategory, { page: currentPage, pageSize: PAGE_SIZE });
+  const playersResult = await getPaginatedPlayersDb(locale, query, statusCategory, { page: currentPage, pageSize: PAGE_SIZE });
   const t = await getTranslations('playersList');
   const tTable = await getTranslations('table');
   const tCommon = await getTranslations('common');
@@ -45,7 +43,6 @@ export default async function PlayersPage({
     const params = new URLSearchParams();
     if (nextPage > 1) params.set('page', String(nextPage));
     if (query) params.set('q', query);
-    params.set('gender', genderCategory);
     params.set('status', statusCategory);
     const queryString = params.toString();
     return queryString ? `/players?${queryString}` : '/players';
@@ -57,29 +54,9 @@ export default async function PlayersPage({
         title={t('title')}
         subtitle={t('subtitle', { count: playersResult.totalCount })}
       />
-
       <div className="mb-3 flex items-center gap-2">
         <Link
-          href={query ? `/players?gender=men&q=${encodeURIComponent(query)}` : '/players?gender=men'}
-          className={genderCategory === 'men'
-            ? 'rounded-md bg-surface-3 px-2.5 py-1 text-[11px] font-semibold text-text-primary'
-            : 'rounded-md px-2.5 py-1 text-[11px] font-medium text-text-secondary hover:bg-surface-2'}
-        >
-          {t('men')}
-        </Link>
-        <Link
-          href={query ? `/players?gender=women&q=${encodeURIComponent(query)}` : '/players?gender=women'}
-          className={genderCategory === 'women'
-            ? 'rounded-md bg-surface-3 px-2.5 py-1 text-[11px] font-semibold text-text-primary'
-            : 'rounded-md px-2.5 py-1 text-[11px] font-medium text-text-secondary hover:bg-surface-2'}
-        >
-          {t('women')}
-        </Link>
-      </div>
-
-      <div className="mb-3 flex items-center gap-2">
-        <Link
-          href={query ? `/players?gender=${genderCategory}&status=active&q=${encodeURIComponent(query)}` : `/players?gender=${genderCategory}&status=active`}
+          href={query ? `/players?status=active&q=${encodeURIComponent(query)}` : '/players?status=active'}
           className={statusCategory === 'active'
             ? 'rounded-md bg-surface-3 px-2.5 py-1 text-[11px] font-semibold text-text-primary'
             : 'rounded-md px-2.5 py-1 text-[11px] font-medium text-text-secondary hover:bg-surface-2'}
@@ -87,7 +64,7 @@ export default async function PlayersPage({
           {t('active')}
         </Link>
         <Link
-          href={query ? `/players?gender=${genderCategory}&status=retired&q=${encodeURIComponent(query)}` : `/players?gender=${genderCategory}&status=retired`}
+          href={query ? `/players?status=retired&q=${encodeURIComponent(query)}` : '/players?status=retired'}
           className={statusCategory === 'retired'
             ? 'rounded-md bg-surface-3 px-2.5 py-1 text-[11px] font-semibold text-text-primary'
             : 'rounded-md px-2.5 py-1 text-[11px] font-medium text-text-secondary hover:bg-surface-2'}
@@ -102,7 +79,7 @@ export default async function PlayersPage({
         placeholder={t('searchPlaceholder')}
         searchLabel={tCommon('search')}
         clearLabel={tCommon('clear')}
-        hiddenValues={{ gender: genderCategory, status: statusCategory }}
+        hiddenValues={{ status: statusCategory }}
       />
 
       <SectionCard
